@@ -1,0 +1,1146 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//tftp.module_gcc_-O0:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_swap_bytes16>:
+       0:	sub	sp, sp, #0x10
+       4:	strh	w0, [sp, #14]
+       8:	ldrh	w0, [sp, #14]
+       c:	lsl	w0, w0, #8
+      10:	sxth	w1, w0
+      14:	ldrh	w0, [sp, #14]
+      18:	lsr	w0, w0, #8
+      1c:	and	w0, w0, #0xffff
+      20:	sxth	w0, w0
+      24:	orr	w0, w1, w0
+      28:	sxth	w0, w0
+      2c:	and	w0, w0, #0xffff
+      30:	add	sp, sp, #0x10
+      34:	ret
+
+0000000000000038 <grub_memcpy>:
+      38:	stp	x29, x30, [sp, #-48]!
+      3c:	mov	x29, sp
+      40:	str	x0, [sp, #40]
+      44:	str	x1, [sp, #32]
+      48:	str	x2, [sp, #24]
+      4c:	ldr	x2, [sp, #24]
+      50:	ldr	x1, [sp, #32]
+      54:	ldr	x0, [sp, #40]
+      58:	bl	0 <grub_memmove>
+      5c:	ldp	x29, x30, [sp], #48
+      60:	ret
+
+0000000000000064 <grub_error_save>:
+      64:	stp	x29, x30, [sp, #-32]!
+      68:	mov	x29, sp
+      6c:	str	x0, [sp, #24]
+      70:	ldr	x0, [sp, #24]
+      74:	add	x3, x0, #0x4
+      78:	mov	x2, #0x100                 	// #256
+      7c:	adrp	x0, 0 <grub_swap_bytes16>
+      80:	add	x0, x0, #0x0
+      84:	ldr	x1, [x0]
+      88:	mov	x0, x3
+      8c:	bl	38 <grub_memcpy>
+      90:	adrp	x0, 0 <grub_swap_bytes16>
+      94:	add	x0, x0, #0x0
+      98:	ldr	x0, [x0]
+      9c:	ldr	w1, [x0]
+      a0:	ldr	x0, [sp, #24]
+      a4:	str	w1, [x0]
+      a8:	adrp	x0, 0 <grub_swap_bytes16>
+      ac:	add	x0, x0, #0x0
+      b0:	ldr	x0, [x0]
+      b4:	str	wzr, [x0]
+      b8:	nop
+      bc:	ldp	x29, x30, [sp], #32
+      c0:	ret
+      c4:	nop
+	...
+
+00000000000000d8 <grub_error_load>:
+      d8:	stp	x29, x30, [sp, #-32]!
+      dc:	mov	x29, sp
+      e0:	str	x0, [sp, #24]
+      e4:	ldr	x0, [sp, #24]
+      e8:	add	x0, x0, #0x4
+      ec:	mov	x2, #0x100                 	// #256
+      f0:	mov	x1, x0
+      f4:	adrp	x0, 0 <grub_swap_bytes16>
+      f8:	add	x0, x0, #0x0
+      fc:	ldr	x0, [x0]
+     100:	bl	38 <grub_memcpy>
+     104:	ldr	x0, [sp, #24]
+     108:	ldr	w1, [x0]
+     10c:	adrp	x0, 0 <grub_swap_bytes16>
+     110:	add	x0, x0, #0x0
+     114:	ldr	x0, [x0]
+     118:	str	w1, [x0]
+     11c:	nop
+     120:	ldp	x29, x30, [sp], #32
+     124:	ret
+	...
+
+0000000000000138 <grub_net_put_packet>:
+     138:	stp	x29, x30, [sp, #-48]!
+     13c:	mov	x29, sp
+     140:	str	x0, [sp, #24]
+     144:	str	x1, [sp, #16]
+     148:	mov	x0, #0x20                  	// #32
+     14c:	bl	0 <grub_malloc>
+     150:	str	x0, [sp, #40]
+     154:	ldr	x0, [sp, #40]
+     158:	cmp	x0, #0x0
+     15c:	b.ne	174 <grub_net_put_packet+0x3c>  // b.any
+     160:	adrp	x0, 0 <grub_swap_bytes16>
+     164:	add	x0, x0, #0x0
+     168:	ldr	x0, [x0]
+     16c:	ldr	w0, [x0]
+     170:	b	210 <grub_net_put_packet+0xd8>
+     174:	ldr	x0, [sp, #40]
+     178:	ldr	x1, [sp, #16]
+     17c:	str	x1, [x0, #24]
+     180:	ldr	x0, [sp, #40]
+     184:	str	xzr, [x0]
+     188:	ldr	x0, [sp, #40]
+     18c:	str	xzr, [x0, #8]
+     190:	ldr	x0, [sp, #40]
+     194:	ldr	x1, [sp, #24]
+     198:	str	x1, [x0, #16]
+     19c:	ldr	x0, [sp, #24]
+     1a0:	ldr	x0, [x0]
+     1a4:	cmp	x0, #0x0
+     1a8:	b.eq	1dc <grub_net_put_packet+0xa4>  // b.none
+     1ac:	ldr	x0, [sp, #24]
+     1b0:	ldr	x0, [x0, #8]
+     1b4:	ldr	x1, [sp, #40]
+     1b8:	str	x1, [x0]
+     1bc:	ldr	x0, [sp, #24]
+     1c0:	ldr	x1, [sp, #40]
+     1c4:	str	x1, [x0, #8]
+     1c8:	ldr	x0, [sp, #24]
+     1cc:	ldr	x1, [x0, #8]
+     1d0:	ldr	x0, [sp, #40]
+     1d4:	str	x1, [x0, #8]
+     1d8:	b	1f8 <grub_net_put_packet+0xc0>
+     1dc:	ldr	x0, [sp, #24]
+     1e0:	ldr	x1, [sp, #40]
+     1e4:	str	x1, [x0, #8]
+     1e8:	ldr	x0, [sp, #24]
+     1ec:	ldr	x1, [x0, #8]
+     1f0:	ldr	x0, [sp, #24]
+     1f4:	str	x1, [x0]
+     1f8:	ldr	x0, [sp, #24]
+     1fc:	ldr	x0, [x0, #16]
+     200:	add	x1, x0, #0x1
+     204:	ldr	x0, [sp, #24]
+     208:	str	x1, [x0, #16]
+     20c:	mov	w0, #0x0                   	// #0
+     210:	ldp	x29, x30, [sp], #48
+     214:	ret
+	...
+
+0000000000000220 <grub_net_app_level_register>:
+     220:	stp	x29, x30, [sp, #-32]!
+     224:	mov	x29, sp
+     228:	str	x0, [sp, #24]
+     22c:	ldr	x1, [sp, #24]
+     230:	adrp	x0, 0 <grub_swap_bytes16>
+     234:	add	x0, x0, #0x0
+     238:	ldr	x0, [x0]
+     23c:	bl	0 <grub_list_push>
+     240:	nop
+     244:	ldp	x29, x30, [sp], #32
+     248:	ret
+     24c:	nop
+	...
+
+0000000000000258 <grub_net_app_level_unregister>:
+     258:	stp	x29, x30, [sp, #-32]!
+     25c:	mov	x29, sp
+     260:	str	x0, [sp, #24]
+     264:	ldr	x0, [sp, #24]
+     268:	bl	0 <grub_list_remove>
+     26c:	nop
+     270:	ldp	x29, x30, [sp], #32
+     274:	ret
+
+0000000000000278 <cmp_block>:
+     278:	sub	sp, sp, #0x20
+     27c:	strh	w0, [sp, #14]
+     280:	strh	w1, [sp, #12]
+     284:	ldrh	w1, [sp, #14]
+     288:	ldrh	w0, [sp, #12]
+     28c:	sub	w0, w1, w0
+     290:	and	w0, w0, #0xffff
+     294:	strh	w0, [sp, #30]
+     298:	ldrsh	w0, [sp, #30]
+     29c:	cmp	w0, #0x0
+     2a0:	b.le	2ac <cmp_block+0x34>
+     2a4:	mov	w0, #0x1                   	// #1
+     2a8:	b	2c4 <cmp_block+0x4c>
+     2ac:	ldrsh	w0, [sp, #30]
+     2b0:	cmp	w0, #0x0
+     2b4:	b.ge	2c0 <cmp_block+0x48>  // b.tcont
+     2b8:	mov	w0, #0xffffffff            	// #-1
+     2bc:	b	2c4 <cmp_block+0x4c>
+     2c0:	mov	w0, #0x0                   	// #0
+     2c4:	add	sp, sp, #0x20
+     2c8:	ret
+
+00000000000002cc <cmp>:
+     2cc:	stp	x29, x30, [sp, #-80]!
+     2d0:	mov	x29, sp
+     2d4:	str	x19, [sp, #16]
+     2d8:	str	x0, [sp, #40]
+     2dc:	str	x1, [sp, #32]
+     2e0:	ldr	x0, [sp, #40]
+     2e4:	ldr	x0, [x0]
+     2e8:	str	x0, [sp, #72]
+     2ec:	ldr	x0, [sp, #32]
+     2f0:	ldr	x0, [x0]
+     2f4:	str	x0, [sp, #64]
+     2f8:	ldr	x0, [sp, #72]
+     2fc:	ldr	x0, [x0, #8]
+     300:	str	x0, [sp, #56]
+     304:	ldr	x0, [sp, #64]
+     308:	ldr	x0, [x0, #8]
+     30c:	str	x0, [sp, #48]
+     310:	ldr	x0, [sp, #56]
+     314:	ldrh	w0, [x0, #2]
+     318:	bl	0 <grub_swap_bytes16>
+     31c:	and	w19, w0, #0xffff
+     320:	ldr	x0, [sp, #48]
+     324:	ldrh	w0, [x0, #2]
+     328:	bl	0 <grub_swap_bytes16>
+     32c:	and	w0, w0, #0xffff
+     330:	mov	w1, w0
+     334:	mov	w0, w19
+     338:	bl	278 <cmp_block>
+     33c:	neg	w0, w0
+     340:	ldr	x19, [sp, #16]
+     344:	ldp	x29, x30, [sp], #80
+     348:	ret
+
+000000000000034c <ack>:
+     34c:	sub	sp, sp, #0x250
+     350:	stp	x29, x30, [sp]
+     354:	mov	x29, sp
+     358:	str	x0, [sp, #24]
+     35c:	str	x1, [sp, #16]
+     360:	add	x0, sp, #0x40
+     364:	str	x0, [sp, #32]
+     368:	add	x0, sp, #0x40
+     36c:	add	x0, x0, #0x200
+     370:	str	x0, [sp, #56]
+     374:	add	x0, sp, #0x20
+     378:	bl	0 <grub_netbuff_clear>
+     37c:	add	x0, sp, #0x20
+     380:	mov	x1, #0x200                 	// #512
+     384:	bl	0 <grub_netbuff_reserve>
+     388:	add	x0, sp, #0x20
+     38c:	mov	x1, #0x4                   	// #4
+     390:	bl	0 <grub_netbuff_push>
+     394:	str	w0, [sp, #588]
+     398:	ldr	w0, [sp, #588]
+     39c:	cmp	w0, #0x0
+     3a0:	b.eq	3ac <ack+0x60>  // b.none
+     3a4:	ldr	w0, [sp, #588]
+     3a8:	b	410 <ack+0xc4>
+     3ac:	ldr	x0, [sp, #40]
+     3b0:	str	x0, [sp, #576]
+     3b4:	ldr	x0, [sp, #576]
+     3b8:	mov	w1, #0x400                 	// #1024
+     3bc:	strh	w1, [x0]
+     3c0:	ldr	x0, [sp, #16]
+     3c4:	and	w0, w0, #0xffff
+     3c8:	bl	0 <grub_swap_bytes16>
+     3cc:	and	w1, w0, #0xffff
+     3d0:	ldr	x0, [sp, #576]
+     3d4:	strh	w1, [x0, #2]
+     3d8:	ldr	x0, [sp, #24]
+     3dc:	ldr	x0, [x0, #296]
+     3e0:	add	x1, sp, #0x20
+     3e4:	bl	0 <grub_net_send_udp_packet>
+     3e8:	str	w0, [sp, #588]
+     3ec:	ldr	w0, [sp, #588]
+     3f0:	cmp	w0, #0x0
+     3f4:	b.eq	400 <ack+0xb4>  // b.none
+     3f8:	ldr	w0, [sp, #588]
+     3fc:	b	410 <ack+0xc4>
+     400:	ldr	x0, [sp, #24]
+     404:	ldr	x1, [sp, #16]
+     408:	str	x1, [x0, #24]
+     40c:	mov	w0, #0x0                   	// #0
+     410:	ldp	x29, x30, [sp]
+     414:	add	sp, sp, #0x250
+     418:	ret
+
+000000000000041c <tftp_receive>:
+     41c:	stp	x29, x30, [sp, #-112]!
+     420:	mov	x29, sp
+     424:	str	x0, [sp, #40]
+     428:	str	x1, [sp, #32]
+     42c:	str	x2, [sp, #24]
+     430:	ldr	x0, [sp, #24]
+     434:	str	x0, [sp, #88]
+     438:	ldr	x0, [sp, #32]
+     43c:	ldr	x0, [x0, #8]
+     440:	str	x0, [sp, #80]
+     444:	ldr	x0, [sp, #88]
+     448:	ldr	x0, [x0, #80]
+     44c:	str	x0, [sp, #72]
+     450:	ldr	x0, [sp, #32]
+     454:	ldr	x1, [x0, #16]
+     458:	ldr	x0, [sp, #32]
+     45c:	ldr	x0, [x0, #8]
+     460:	sub	x0, x1, x0
+     464:	cmp	x0, #0x1
+     468:	b.gt	4a0 <tftp_receive+0x84>
+     46c:	adrp	x0, 0 <grub_swap_bytes16>
+     470:	add	x0, x0, #0x0
+     474:	ldr	x3, [x0]
+     478:	adrp	x0, 0 <grub_swap_bytes16>
+     47c:	add	x0, x0, #0x0
+     480:	ldr	x2, [x0]
+     484:	mov	w1, #0xaf                  	// #175
+     488:	adrp	x0, 0 <grub_swap_bytes16>
+     48c:	add	x0, x0, #0x0
+     490:	ldr	x0, [x0]
+     494:	bl	0 <grub_real_dprintf>
+     498:	mov	w0, #0x0                   	// #0
+     49c:	b	990 <tftp_receive+0x574>
+     4a0:	ldr	x0, [sp, #32]
+     4a4:	ldr	x0, [x0, #8]
+     4a8:	str	x0, [sp, #80]
+     4ac:	ldr	x0, [sp, #80]
+     4b0:	ldrh	w0, [x0]
+     4b4:	bl	0 <grub_swap_bytes16>
+     4b8:	and	w0, w0, #0xffff
+     4bc:	cmp	w0, #0x6
+     4c0:	b.eq	4e0 <tftp_receive+0xc4>  // b.none
+     4c4:	cmp	w0, #0x6
+     4c8:	b.gt	984 <tftp_receive+0x568>
+     4cc:	cmp	w0, #0x3
+     4d0:	b.eq	614 <tftp_receive+0x1f8>  // b.none
+     4d4:	cmp	w0, #0x5
+     4d8:	b.eq	948 <tftp_receive+0x52c>  // b.none
+     4dc:	b	984 <tftp_receive+0x568>
+     4e0:	ldr	x0, [sp, #72]
+     4e4:	mov	w1, #0x200                 	// #512
+     4e8:	str	w1, [x0, #16]
+     4ec:	ldr	x0, [sp, #72]
+     4f0:	mov	w1, #0x1                   	// #1
+     4f4:	str	w1, [x0, #32]
+     4f8:	ldr	x0, [sp, #32]
+     4fc:	ldr	x0, [x0, #8]
+     500:	add	x0, x0, #0x2
+     504:	str	x0, [sp, #96]
+     508:	b	5cc <tftp_receive+0x1b0>
+     50c:	mov	x2, #0x6                   	// #6
+     510:	adrp	x0, 0 <grub_swap_bytes16>
+     514:	add	x0, x0, #0x0
+     518:	ldr	x1, [x0]
+     51c:	ldr	x0, [sp, #96]
+     520:	bl	0 <grub_memcmp>
+     524:	cmp	w0, #0x0
+     528:	b.ne	54c <tftp_receive+0x130>  // b.any
+     52c:	ldr	x0, [sp, #96]
+     530:	add	x0, x0, #0x6
+     534:	mov	w2, #0x0                   	// #0
+     538:	mov	x1, #0x0                   	// #0
+     53c:	bl	0 <grub_strtoul>
+     540:	mov	x1, x0
+     544:	ldr	x0, [sp, #72]
+     548:	str	x1, [x0]
+     54c:	mov	x2, #0x8                   	// #8
+     550:	adrp	x0, 0 <grub_swap_bytes16>
+     554:	add	x0, x0, #0x0
+     558:	ldr	x1, [x0]
+     55c:	ldr	x0, [sp, #96]
+     560:	bl	0 <grub_memcmp>
+     564:	cmp	w0, #0x0
+     568:	b.ne	59c <tftp_receive+0x180>  // b.any
+     56c:	ldr	x0, [sp, #96]
+     570:	add	x0, x0, #0x8
+     574:	mov	w2, #0x0                   	// #0
+     578:	mov	x1, #0x0                   	// #0
+     57c:	bl	0 <grub_strtoul>
+     580:	mov	w1, w0
+     584:	ldr	x0, [sp, #72]
+     588:	str	w1, [x0, #16]
+     58c:	b	59c <tftp_receive+0x180>
+     590:	ldr	x0, [sp, #96]
+     594:	add	x0, x0, #0x1
+     598:	str	x0, [sp, #96]
+     59c:	ldr	x0, [sp, #32]
+     5a0:	ldr	x0, [x0, #16]
+     5a4:	ldr	x1, [sp, #96]
+     5a8:	cmp	x1, x0
+     5ac:	b.cs	5c0 <tftp_receive+0x1a4>  // b.hs, b.nlast
+     5b0:	ldr	x0, [sp, #96]
+     5b4:	ldrb	w0, [x0]
+     5b8:	cmp	w0, #0x0
+     5bc:	b.ne	590 <tftp_receive+0x174>  // b.any
+     5c0:	ldr	x0, [sp, #96]
+     5c4:	add	x0, x0, #0x1
+     5c8:	str	x0, [sp, #96]
+     5cc:	ldr	x0, [sp, #32]
+     5d0:	ldr	x0, [x0, #16]
+     5d4:	ldr	x1, [sp, #96]
+     5d8:	cmp	x1, x0
+     5dc:	b.cc	50c <tftp_receive+0xf0>  // b.lo, b.ul, b.last
+     5e0:	ldr	x0, [sp, #72]
+     5e4:	str	xzr, [x0, #8]
+     5e8:	ldr	x0, [sp, #32]
+     5ec:	bl	0 <grub_netbuff_free>
+     5f0:	mov	x1, #0x0                   	// #0
+     5f4:	ldr	x0, [sp, #72]
+     5f8:	bl	34c <ack>
+     5fc:	str	w0, [sp, #108]
+     600:	ldr	x0, [sp, #72]
+     604:	add	x0, x0, #0x24
+     608:	bl	64 <grub_error_save>
+     60c:	mov	w0, #0x0                   	// #0
+     610:	b	990 <tftp_receive+0x574>
+     614:	ldr	x0, [sp, #32]
+     618:	ldr	x1, [x0, #16]
+     61c:	ldr	x0, [sp, #32]
+     620:	ldr	x0, [x0, #8]
+     624:	sub	x0, x1, x0
+     628:	cmp	x0, #0x3
+     62c:	b.gt	664 <tftp_receive+0x248>
+     630:	adrp	x0, 0 <grub_swap_bytes16>
+     634:	add	x0, x0, #0x0
+     638:	ldr	x3, [x0]
+     63c:	adrp	x0, 0 <grub_swap_bytes16>
+     640:	add	x0, x0, #0x0
+     644:	ldr	x2, [x0]
+     648:	mov	w1, #0xce                  	// #206
+     64c:	adrp	x0, 0 <grub_swap_bytes16>
+     650:	add	x0, x0, #0x0
+     654:	ldr	x0, [x0]
+     658:	bl	0 <grub_real_dprintf>
+     65c:	mov	w0, #0x0                   	// #0
+     660:	b	990 <tftp_receive+0x574>
+     664:	ldr	x0, [sp, #72]
+     668:	ldr	x0, [x0, #304]
+     66c:	add	x1, sp, #0x20
+     670:	bl	0 <grub_priority_queue_push>
+     674:	str	w0, [sp, #108]
+     678:	ldr	w0, [sp, #108]
+     67c:	cmp	w0, #0x0
+     680:	b.eq	68c <tftp_receive+0x270>  // b.none
+     684:	ldr	w0, [sp, #108]
+     688:	b	990 <tftp_receive+0x574>
+     68c:	ldr	x0, [sp, #72]
+     690:	ldr	x0, [x0, #304]
+     694:	bl	0 <grub_priority_queue_top>
+     698:	str	x0, [sp, #64]
+     69c:	ldr	x0, [sp, #64]
+     6a0:	cmp	x0, #0x0
+     6a4:	b.ne	6b0 <tftp_receive+0x294>  // b.any
+     6a8:	mov	w0, #0x0                   	// #0
+     6ac:	b	990 <tftp_receive+0x574>
+     6b0:	ldr	x0, [sp, #64]
+     6b4:	ldr	x0, [x0]
+     6b8:	str	x0, [sp, #56]
+     6bc:	ldr	x0, [sp, #56]
+     6c0:	ldr	x0, [x0, #8]
+     6c4:	str	x0, [sp, #80]
+     6c8:	ldr	x0, [sp, #80]
+     6cc:	ldrh	w0, [x0, #2]
+     6d0:	bl	0 <grub_swap_bytes16>
+     6d4:	and	w2, w0, #0xffff
+     6d8:	ldr	x0, [sp, #72]
+     6dc:	ldr	x0, [x0, #8]
+     6e0:	and	w0, w0, #0xffff
+     6e4:	add	w0, w0, #0x1
+     6e8:	and	w0, w0, #0xffff
+     6ec:	mov	w1, w0
+     6f0:	mov	w0, w2
+     6f4:	bl	278 <cmp_block>
+     6f8:	cmp	w0, #0x0
+     6fc:	b.ge	738 <tftp_receive+0x31c>  // b.tcont
+     700:	ldr	x0, [sp, #80]
+     704:	ldrh	w0, [x0, #2]
+     708:	bl	0 <grub_swap_bytes16>
+     70c:	and	w0, w0, #0xffff
+     710:	and	x0, x0, #0xffff
+     714:	mov	x1, x0
+     718:	ldr	x0, [sp, #72]
+     71c:	bl	34c <ack>
+     720:	ldr	x0, [sp, #56]
+     724:	bl	0 <grub_netbuff_free>
+     728:	ldr	x0, [sp, #72]
+     72c:	ldr	x0, [x0, #304]
+     730:	bl	0 <grub_priority_queue_pop>
+     734:	b	68c <tftp_receive+0x270>
+     738:	nop
+     73c:	b	908 <tftp_receive+0x4ec>
+     740:	ldr	x0, [sp, #72]
+     744:	ldr	x0, [x0, #304]
+     748:	bl	0 <grub_priority_queue_pop>
+     74c:	ldr	x0, [sp, #88]
+     750:	ldr	x0, [x0, #8]
+     754:	ldr	x0, [x0, #8]
+     758:	ldr	x0, [x0, #40]
+     75c:	cmp	x0, #0x31
+     760:	b.hi	784 <tftp_receive+0x368>  // b.pmore
+     764:	ldr	x0, [sp, #72]
+     768:	ldr	x0, [x0, #8]
+     76c:	add	x0, x0, #0x1
+     770:	mov	x1, x0
+     774:	ldr	x0, [sp, #72]
+     778:	bl	34c <ack>
+     77c:	str	w0, [sp, #108]
+     780:	b	79c <tftp_receive+0x380>
+     784:	ldr	x0, [sp, #88]
+     788:	ldr	x0, [x0, #8]
+     78c:	ldr	x0, [x0, #8]
+     790:	mov	w1, #0x1                   	// #1
+     794:	str	w1, [x0, #68]
+     798:	str	wzr, [sp, #108]
+     79c:	ldr	w0, [sp, #108]
+     7a0:	cmp	w0, #0x0
+     7a4:	b.eq	7b0 <tftp_receive+0x394>  // b.none
+     7a8:	ldr	w0, [sp, #108]
+     7ac:	b	990 <tftp_receive+0x574>
+     7b0:	mov	x1, #0x4                   	// #4
+     7b4:	ldr	x0, [sp, #56]
+     7b8:	bl	0 <grub_netbuff_pull>
+     7bc:	str	w0, [sp, #108]
+     7c0:	ldr	w0, [sp, #108]
+     7c4:	cmp	w0, #0x0
+     7c8:	b.eq	7d4 <tftp_receive+0x3b8>  // b.none
+     7cc:	ldr	w0, [sp, #108]
+     7d0:	b	990 <tftp_receive+0x574>
+     7d4:	ldr	x0, [sp, #56]
+     7d8:	ldr	x1, [x0, #16]
+     7dc:	ldr	x0, [sp, #56]
+     7e0:	ldr	x0, [x0, #8]
+     7e4:	sub	x0, x1, x0
+     7e8:	str	w0, [sp, #52]
+     7ec:	ldr	x0, [sp, #72]
+     7f0:	ldr	x0, [x0, #8]
+     7f4:	add	x1, x0, #0x1
+     7f8:	ldr	x0, [sp, #72]
+     7fc:	str	x1, [x0, #8]
+     800:	ldr	x0, [sp, #72]
+     804:	ldr	w0, [x0, #16]
+     808:	ldr	w1, [sp, #52]
+     80c:	cmp	w1, w0
+     810:	b.cs	87c <tftp_receive+0x460>  // b.hs, b.nlast
+     814:	ldr	x0, [sp, #72]
+     818:	ldr	x1, [x0, #24]
+     81c:	ldr	x0, [sp, #72]
+     820:	ldr	x0, [x0, #8]
+     824:	cmp	x1, x0
+     828:	b.cs	840 <tftp_receive+0x424>  // b.hs, b.nlast
+     82c:	ldr	x0, [sp, #72]
+     830:	ldr	x0, [x0, #8]
+     834:	mov	x1, x0
+     838:	ldr	x0, [sp, #72]
+     83c:	bl	34c <ack>
+     840:	ldr	x0, [sp, #88]
+     844:	ldr	x0, [x0, #8]
+     848:	ldr	x0, [x0, #8]
+     84c:	mov	w1, #0x1                   	// #1
+     850:	str	w1, [x0, #64]
+     854:	ldr	x0, [sp, #88]
+     858:	ldr	x0, [x0, #8]
+     85c:	ldr	x0, [x0, #8]
+     860:	mov	w1, #0x1                   	// #1
+     864:	str	w1, [x0, #68]
+     868:	ldr	x0, [sp, #72]
+     86c:	ldr	x0, [x0, #296]
+     870:	bl	0 <grub_net_udp_close>
+     874:	ldr	x0, [sp, #72]
+     878:	str	xzr, [x0, #296]
+     87c:	ldr	x0, [sp, #72]
+     880:	ldr	w0, [x0, #16]
+     884:	ldr	w1, [sp, #52]
+     888:	cmp	w1, w0
+     88c:	b.ls	8c8 <tftp_receive+0x4ac>  // b.plast
+     890:	ldr	x0, [sp, #72]
+     894:	ldr	w0, [x0, #16]
+     898:	ldr	w1, [sp, #52]
+     89c:	sub	w0, w1, w0
+     8a0:	mov	w0, w0
+     8a4:	mov	x1, x0
+     8a8:	ldr	x0, [sp, #56]
+     8ac:	bl	0 <grub_netbuff_unput>
+     8b0:	str	w0, [sp, #108]
+     8b4:	ldr	w0, [sp, #108]
+     8b8:	cmp	w0, #0x0
+     8bc:	b.eq	8c8 <tftp_receive+0x4ac>  // b.none
+     8c0:	ldr	w0, [sp, #108]
+     8c4:	b	990 <tftp_receive+0x574>
+     8c8:	ldr	x0, [sp, #56]
+     8cc:	ldr	x1, [x0, #16]
+     8d0:	ldr	x0, [sp, #56]
+     8d4:	ldr	x0, [x0, #8]
+     8d8:	sub	x0, x1, x0
+     8dc:	cmp	x0, #0x0
+     8e0:	b.le	900 <tftp_receive+0x4e4>
+     8e4:	ldr	x0, [sp, #88]
+     8e8:	ldr	x0, [x0, #8]
+     8ec:	ldr	x0, [x0, #8]
+     8f0:	add	x0, x0, #0x18
+     8f4:	ldr	x1, [sp, #56]
+     8f8:	bl	138 <grub_net_put_packet>
+     8fc:	b	908 <tftp_receive+0x4ec>
+     900:	ldr	x0, [sp, #56]
+     904:	bl	0 <grub_netbuff_free>
+     908:	ldr	x0, [sp, #80]
+     90c:	ldrh	w0, [x0, #2]
+     910:	bl	0 <grub_swap_bytes16>
+     914:	and	w2, w0, #0xffff
+     918:	ldr	x0, [sp, #72]
+     91c:	ldr	x0, [x0, #8]
+     920:	and	w0, w0, #0xffff
+     924:	add	w0, w0, #0x1
+     928:	and	w0, w0, #0xffff
+     92c:	mov	w1, w0
+     930:	mov	w0, w2
+     934:	bl	278 <cmp_block>
+     938:	cmp	w0, #0x0
+     93c:	b.eq	740 <tftp_receive+0x324>  // b.none
+     940:	mov	w0, #0x0                   	// #0
+     944:	b	990 <tftp_receive+0x574>
+     948:	ldr	x0, [sp, #72]
+     94c:	mov	w1, #0x1                   	// #1
+     950:	str	w1, [x0, #32]
+     954:	ldr	x0, [sp, #32]
+     958:	bl	0 <grub_netbuff_free>
+     95c:	ldr	x0, [sp, #80]
+     960:	add	x0, x0, #0x4
+     964:	mov	x1, x0
+     968:	mov	w0, #0x1d                  	// #29
+     96c:	bl	0 <grub_error>
+     970:	ldr	x0, [sp, #72]
+     974:	add	x0, x0, #0x24
+     978:	bl	64 <grub_error_save>
+     97c:	mov	w0, #0x0                   	// #0
+     980:	b	990 <tftp_receive+0x574>
+     984:	ldr	x0, [sp, #32]
+     988:	bl	0 <grub_netbuff_free>
+     98c:	mov	w0, #0x0                   	// #0
+     990:	ldp	x29, x30, [sp], #112
+     994:	ret
+	...
+
+00000000000009c0 <destroy_pq>:
+     9c0:	stp	x29, x30, [sp, #-48]!
+     9c4:	mov	x29, sp
+     9c8:	str	x0, [sp, #24]
+     9cc:	b	9e8 <destroy_pq+0x28>
+     9d0:	ldr	x0, [sp, #40]
+     9d4:	ldr	x0, [x0]
+     9d8:	bl	0 <grub_netbuff_free>
+     9dc:	ldr	x0, [sp, #24]
+     9e0:	ldr	x0, [x0, #304]
+     9e4:	bl	0 <grub_priority_queue_pop>
+     9e8:	ldr	x0, [sp, #24]
+     9ec:	ldr	x0, [x0, #304]
+     9f0:	bl	0 <grub_priority_queue_top>
+     9f4:	str	x0, [sp, #40]
+     9f8:	ldr	x0, [sp, #40]
+     9fc:	cmp	x0, #0x0
+     a00:	b.ne	9d0 <destroy_pq+0x10>  // b.any
+     a04:	ldr	x0, [sp, #24]
+     a08:	ldr	x0, [x0, #304]
+     a0c:	bl	0 <grub_priority_queue_destroy>
+     a10:	nop
+     a14:	ldp	x29, x30, [sp], #48
+     a18:	ret
+
+0000000000000a1c <tftp_open>:
+     a1c:	sub	sp, sp, #0x6a0
+     a20:	stp	x29, x30, [sp]
+     a24:	mov	x29, sp
+     a28:	str	x0, [sp, #56]
+     a2c:	str	x1, [sp, #48]
+     a30:	mov	x0, #0x138                 	// #312
+     a34:	bl	0 <grub_zalloc>
+     a38:	str	x0, [sp, #1680]
+     a3c:	ldr	x0, [sp, #1680]
+     a40:	cmp	x0, #0x0
+     a44:	b.ne	a5c <tftp_open+0x40>  // b.any
+     a48:	adrp	x0, 0 <grub_swap_bytes16>
+     a4c:	add	x0, x0, #0x0
+     a50:	ldr	x0, [x0]
+     a54:	ldr	w0, [x0]
+     a58:	b	f84 <tftp_open+0x568>
+     a5c:	add	x0, sp, #0x88
+     a60:	str	x0, [sp, #104]
+     a64:	add	x0, sp, #0x88
+     a68:	add	x0, x0, #0x5dc
+     a6c:	str	x0, [sp, #128]
+     a70:	add	x0, sp, #0x68
+     a74:	bl	0 <grub_netbuff_clear>
+     a78:	add	x0, sp, #0x68
+     a7c:	mov	x1, #0x5dc                 	// #1500
+     a80:	bl	0 <grub_netbuff_reserve>
+     a84:	add	x0, sp, #0x68
+     a88:	mov	x1, #0x204                 	// #516
+     a8c:	bl	0 <grub_netbuff_push>
+     a90:	str	w0, [sp, #1676]
+     a94:	ldr	w0, [sp, #1676]
+     a98:	cmp	w0, #0x0
+     a9c:	b.eq	ab0 <tftp_open+0x94>  // b.none
+     aa0:	ldr	x0, [sp, #1680]
+     aa4:	bl	0 <grub_free>
+     aa8:	ldr	w0, [sp, #1676]
+     aac:	b	f84 <tftp_open+0x568>
+     ab0:	ldr	x0, [sp, #112]
+     ab4:	str	x0, [sp, #1664]
+     ab8:	ldr	x0, [sp, #1664]
+     abc:	add	x0, x0, #0x2
+     ac0:	str	x0, [sp, #1656]
+     ac4:	str	wzr, [sp, #1652]
+     ac8:	ldr	x0, [sp, #1664]
+     acc:	mov	w1, #0x100                 	// #256
+     ad0:	strh	w1, [x0]
+     ad4:	ldr	x1, [sp, #48]
+     ad8:	ldr	x0, [sp, #1656]
+     adc:	bl	0 <grub_strcpy>
+     ae0:	ldr	x0, [sp, #48]
+     ae4:	bl	0 <grub_strlen>
+     ae8:	add	x0, x0, #0x1
+     aec:	mov	w1, w0
+     af0:	ldr	w0, [sp, #1652]
+     af4:	add	w0, w1, w0
+     af8:	str	w0, [sp, #1652]
+     afc:	ldr	x0, [sp, #48]
+     b00:	bl	0 <grub_strlen>
+     b04:	add	x0, x0, #0x1
+     b08:	ldr	x1, [sp, #1656]
+     b0c:	add	x0, x1, x0
+     b10:	str	x0, [sp, #1656]
+     b14:	adrp	x0, 0 <grub_swap_bytes16>
+     b18:	add	x0, x0, #0x0
+     b1c:	ldr	x1, [x0]
+     b20:	ldr	x0, [sp, #1656]
+     b24:	bl	0 <grub_strcpy>
+     b28:	adrp	x0, 0 <grub_swap_bytes16>
+     b2c:	add	x0, x0, #0x0
+     b30:	ldr	x0, [x0]
+     b34:	bl	0 <grub_strlen>
+     b38:	add	x0, x0, #0x1
+     b3c:	mov	w1, w0
+     b40:	ldr	w0, [sp, #1652]
+     b44:	add	w0, w1, w0
+     b48:	str	w0, [sp, #1652]
+     b4c:	adrp	x0, 0 <grub_swap_bytes16>
+     b50:	add	x0, x0, #0x0
+     b54:	ldr	x0, [x0]
+     b58:	bl	0 <grub_strlen>
+     b5c:	add	x0, x0, #0x1
+     b60:	ldr	x1, [sp, #1656]
+     b64:	add	x0, x1, x0
+     b68:	str	x0, [sp, #1656]
+     b6c:	adrp	x0, 0 <grub_swap_bytes16>
+     b70:	add	x0, x0, #0x0
+     b74:	ldr	x1, [x0]
+     b78:	ldr	x0, [sp, #1656]
+     b7c:	bl	0 <grub_strcpy>
+     b80:	adrp	x0, 0 <grub_swap_bytes16>
+     b84:	add	x0, x0, #0x0
+     b88:	ldr	x0, [x0]
+     b8c:	bl	0 <grub_strlen>
+     b90:	add	x0, x0, #0x1
+     b94:	mov	w1, w0
+     b98:	ldr	w0, [sp, #1652]
+     b9c:	add	w0, w1, w0
+     ba0:	str	w0, [sp, #1652]
+     ba4:	adrp	x0, 0 <grub_swap_bytes16>
+     ba8:	add	x0, x0, #0x0
+     bac:	ldr	x0, [x0]
+     bb0:	bl	0 <grub_strlen>
+     bb4:	add	x0, x0, #0x1
+     bb8:	ldr	x1, [sp, #1656]
+     bbc:	add	x0, x1, x0
+     bc0:	str	x0, [sp, #1656]
+     bc4:	adrp	x0, 0 <grub_swap_bytes16>
+     bc8:	add	x0, x0, #0x0
+     bcc:	ldr	x1, [x0]
+     bd0:	ldr	x0, [sp, #1656]
+     bd4:	bl	0 <grub_strcpy>
+     bd8:	adrp	x0, 0 <grub_swap_bytes16>
+     bdc:	add	x0, x0, #0x0
+     be0:	ldr	x0, [x0]
+     be4:	bl	0 <grub_strlen>
+     be8:	add	x0, x0, #0x1
+     bec:	mov	w1, w0
+     bf0:	ldr	w0, [sp, #1652]
+     bf4:	add	w0, w1, w0
+     bf8:	str	w0, [sp, #1652]
+     bfc:	adrp	x0, 0 <grub_swap_bytes16>
+     c00:	add	x0, x0, #0x0
+     c04:	ldr	x0, [x0]
+     c08:	bl	0 <grub_strlen>
+     c0c:	add	x0, x0, #0x1
+     c10:	ldr	x1, [sp, #1656]
+     c14:	add	x0, x1, x0
+     c18:	str	x0, [sp, #1656]
+     c1c:	adrp	x0, 0 <grub_swap_bytes16>
+     c20:	add	x0, x0, #0x0
+     c24:	ldr	x1, [x0]
+     c28:	ldr	x0, [sp, #1656]
+     c2c:	bl	0 <grub_strcpy>
+     c30:	adrp	x0, 0 <grub_swap_bytes16>
+     c34:	add	x0, x0, #0x0
+     c38:	ldr	x0, [x0]
+     c3c:	bl	0 <grub_strlen>
+     c40:	add	x0, x0, #0x1
+     c44:	mov	w1, w0
+     c48:	ldr	w0, [sp, #1652]
+     c4c:	add	w0, w1, w0
+     c50:	str	w0, [sp, #1652]
+     c54:	adrp	x0, 0 <grub_swap_bytes16>
+     c58:	add	x0, x0, #0x0
+     c5c:	ldr	x0, [x0]
+     c60:	bl	0 <grub_strlen>
+     c64:	add	x0, x0, #0x1
+     c68:	ldr	x1, [sp, #1656]
+     c6c:	add	x0, x1, x0
+     c70:	str	x0, [sp, #1656]
+     c74:	adrp	x0, 0 <grub_swap_bytes16>
+     c78:	add	x0, x0, #0x0
+     c7c:	ldr	x1, [x0]
+     c80:	ldr	x0, [sp, #1656]
+     c84:	bl	0 <grub_strcpy>
+     c88:	adrp	x0, 0 <grub_swap_bytes16>
+     c8c:	add	x0, x0, #0x0
+     c90:	ldr	x0, [x0]
+     c94:	bl	0 <grub_strlen>
+     c98:	add	x0, x0, #0x1
+     c9c:	mov	w1, w0
+     ca0:	ldr	w0, [sp, #1652]
+     ca4:	add	w0, w1, w0
+     ca8:	str	w0, [sp, #1652]
+     cac:	adrp	x0, 0 <grub_swap_bytes16>
+     cb0:	add	x0, x0, #0x0
+     cb4:	ldr	x0, [x0]
+     cb8:	bl	0 <grub_strlen>
+     cbc:	add	x0, x0, #0x1
+     cc0:	ldr	x1, [sp, #1656]
+     cc4:	add	x0, x1, x0
+     cc8:	str	x0, [sp, #1656]
+     ccc:	ldr	w0, [sp, #1652]
+     cd0:	add	w0, w0, #0x2
+     cd4:	str	w0, [sp, #1648]
+     cd8:	ldr	x1, [sp, #120]
+     cdc:	ldr	x2, [sp, #112]
+     ce0:	ldrsw	x0, [sp, #1648]
+     ce4:	add	x0, x2, x0
+     ce8:	sub	x0, x1, x0
+     cec:	mov	x1, x0
+     cf0:	add	x0, sp, #0x68
+     cf4:	bl	0 <grub_netbuff_unput>
+     cf8:	str	w0, [sp, #1676]
+     cfc:	ldr	w0, [sp, #1676]
+     d00:	cmp	w0, #0x0
+     d04:	b.eq	d18 <tftp_open+0x2fc>  // b.none
+     d08:	ldr	x0, [sp, #1680]
+     d0c:	bl	0 <grub_free>
+     d10:	ldr	w0, [sp, #1676]
+     d14:	b	f84 <tftp_open+0x568>
+     d18:	ldr	x0, [sp, #56]
+     d1c:	mov	w1, #0x1                   	// #1
+     d20:	str	w1, [x0, #72]
+     d24:	ldr	x0, [sp, #56]
+     d28:	ldr	x1, [sp, #1680]
+     d2c:	str	x1, [x0, #80]
+     d30:	adrp	x0, 0 <grub_swap_bytes16>
+     d34:	add	x0, x0, #0x0
+     d38:	ldr	x1, [x0]
+     d3c:	mov	x0, #0x8                   	// #8
+     d40:	bl	0 <grub_priority_queue_new>
+     d44:	mov	x1, x0
+     d48:	ldr	x0, [sp, #1680]
+     d4c:	str	x1, [x0, #304]
+     d50:	ldr	x0, [sp, #1680]
+     d54:	ldr	x0, [x0, #304]
+     d58:	cmp	x0, #0x0
+     d5c:	b.ne	d7c <tftp_open+0x360>  // b.any
+     d60:	ldr	x0, [sp, #1680]
+     d64:	bl	0 <grub_free>
+     d68:	adrp	x0, 0 <grub_swap_bytes16>
+     d6c:	add	x0, x0, #0x0
+     d70:	ldr	x0, [x0]
+     d74:	ldr	w0, [x0]
+     d78:	b	f84 <tftp_open+0x568>
+     d7c:	ldr	x0, [sp, #56]
+     d80:	ldr	x0, [x0, #8]
+     d84:	ldr	x0, [x0, #8]
+     d88:	ldr	x0, [x0]
+     d8c:	add	x1, sp, #0x48
+     d90:	bl	0 <grub_net_resolve_address>
+     d94:	str	w0, [sp, #1676]
+     d98:	ldr	w0, [sp, #1676]
+     d9c:	cmp	w0, #0x0
+     da0:	b.eq	dbc <tftp_open+0x3a0>  // b.none
+     da4:	ldr	x0, [sp, #1680]
+     da8:	bl	9c0 <destroy_pq>
+     dac:	ldr	x0, [sp, #1680]
+     db0:	bl	0 <grub_free>
+     db4:	ldr	w0, [sp, #1676]
+     db8:	b	f84 <tftp_open+0x568>
+     dbc:	add	x2, sp, #0x10
+     dc0:	add	x3, sp, #0x48
+     dc4:	ldp	x0, x1, [x3]
+     dc8:	stp	x0, x1, [x2]
+     dcc:	ldp	x0, x1, [x3, #16]
+     dd0:	stp	x0, x1, [x2, #16]
+     dd4:	add	x4, sp, #0x10
+     dd8:	ldr	x3, [sp, #56]
+     ddc:	adrp	x0, 0 <grub_swap_bytes16>
+     de0:	add	x0, x0, #0x0
+     de4:	ldr	x2, [x0]
+     de8:	mov	w1, #0x45                  	// #69
+     dec:	mov	x0, x4
+     df0:	bl	0 <grub_net_udp_open>
+     df4:	mov	x1, x0
+     df8:	ldr	x0, [sp, #1680]
+     dfc:	str	x1, [x0, #296]
+     e00:	ldr	x0, [sp, #1680]
+     e04:	ldr	x0, [x0, #296]
+     e08:	cmp	x0, #0x0
+     e0c:	b.ne	e34 <tftp_open+0x418>  // b.any
+     e10:	ldr	x0, [sp, #1680]
+     e14:	bl	9c0 <destroy_pq>
+     e18:	ldr	x0, [sp, #1680]
+     e1c:	bl	0 <grub_free>
+     e20:	adrp	x0, 0 <grub_swap_bytes16>
+     e24:	add	x0, x0, #0x0
+     e28:	ldr	x0, [x0]
+     e2c:	ldr	w0, [x0]
+     e30:	b	f84 <tftp_open+0x568>
+     e34:	ldr	x0, [sp, #112]
+     e38:	str	x0, [sp, #1640]
+     e3c:	str	wzr, [sp, #1692]
+     e40:	b	edc <tftp_open+0x4c0>
+     e44:	ldr	x0, [sp, #1640]
+     e48:	str	x0, [sp, #112]
+     e4c:	ldr	x0, [sp, #1680]
+     e50:	ldr	x0, [x0, #296]
+     e54:	add	x1, sp, #0x68
+     e58:	bl	0 <grub_net_send_udp_packet>
+     e5c:	str	w0, [sp, #1676]
+     e60:	ldr	w0, [sp, #1676]
+     e64:	cmp	w0, #0x0
+     e68:	b.eq	e90 <tftp_open+0x474>  // b.none
+     e6c:	ldr	x0, [sp, #1680]
+     e70:	ldr	x0, [x0, #296]
+     e74:	bl	0 <grub_net_udp_close>
+     e78:	ldr	x0, [sp, #1680]
+     e7c:	bl	9c0 <destroy_pq>
+     e80:	ldr	x0, [sp, #1680]
+     e84:	bl	0 <grub_free>
+     e88:	ldr	w0, [sp, #1676]
+     e8c:	b	f84 <tftp_open+0x568>
+     e90:	ldr	w1, [sp, #1692]
+     e94:	mov	w0, w1
+     e98:	lsl	w0, w0, #2
+     e9c:	add	w0, w0, w1
+     ea0:	lsl	w0, w0, #2
+     ea4:	add	w0, w0, #0x190
+     ea8:	mov	w2, w0
+     eac:	ldr	x0, [sp, #1680]
+     eb0:	add	x0, x0, #0x20
+     eb4:	mov	x1, x0
+     eb8:	mov	w0, w2
+     ebc:	bl	0 <grub_net_poll_cards>
+     ec0:	ldr	x0, [sp, #1680]
+     ec4:	ldr	w0, [x0, #32]
+     ec8:	cmp	w0, #0x0
+     ecc:	b.ne	eec <tftp_open+0x4d0>  // b.any
+     ed0:	ldr	w0, [sp, #1692]
+     ed4:	add	w0, w0, #0x1
+     ed8:	str	w0, [sp, #1692]
+     edc:	ldr	w0, [sp, #1692]
+     ee0:	cmp	w0, #0x27
+     ee4:	b.le	e44 <tftp_open+0x428>
+     ee8:	b	ef0 <tftp_open+0x4d4>
+     eec:	nop
+     ef0:	ldr	x0, [sp, #1680]
+     ef4:	ldr	w0, [x0, #32]
+     ef8:	cmp	w0, #0x0
+     efc:	b.ne	f1c <tftp_open+0x500>  // b.any
+     f00:	ldr	x2, [sp, #48]
+     f04:	adrp	x0, 0 <grub_swap_bytes16>
+     f08:	add	x0, x0, #0x0
+     f0c:	ldr	x1, [x0]
+     f10:	mov	w0, #0x1c                  	// #28
+     f14:	bl	0 <grub_error>
+     f18:	b	f28 <tftp_open+0x50c>
+     f1c:	ldr	x0, [sp, #1680]
+     f20:	add	x0, x0, #0x24
+     f24:	bl	d8 <grub_error_load>
+     f28:	adrp	x0, 0 <grub_swap_bytes16>
+     f2c:	add	x0, x0, #0x0
+     f30:	ldr	x0, [x0]
+     f34:	ldr	w0, [x0]
+     f38:	cmp	w0, #0x0
+     f3c:	b.eq	f70 <tftp_open+0x554>  // b.none
+     f40:	ldr	x0, [sp, #1680]
+     f44:	ldr	x0, [x0, #296]
+     f48:	bl	0 <grub_net_udp_close>
+     f4c:	ldr	x0, [sp, #1680]
+     f50:	bl	9c0 <destroy_pq>
+     f54:	ldr	x0, [sp, #1680]
+     f58:	bl	0 <grub_free>
+     f5c:	adrp	x0, 0 <grub_swap_bytes16>
+     f60:	add	x0, x0, #0x0
+     f64:	ldr	x0, [x0]
+     f68:	ldr	w0, [x0]
+     f6c:	b	f84 <tftp_open+0x568>
+     f70:	ldr	x0, [sp, #1680]
+     f74:	ldr	x1, [x0]
+     f78:	ldr	x0, [sp, #56]
+     f7c:	str	x1, [x0, #64]
+     f80:	mov	w0, #0x0                   	// #0
+     f84:	ldp	x29, x30, [sp]
+     f88:	add	sp, sp, #0x6a0
+     f8c:	ret
+	...
+
+0000000000000fd8 <tftp_close>:
+     fd8:	sub	sp, sp, #0x260
+     fdc:	stp	x29, x30, [sp]
+     fe0:	mov	x29, sp
+     fe4:	str	x0, [sp, #24]
+     fe8:	ldr	x0, [sp, #24]
+     fec:	ldr	x0, [x0, #80]
+     ff0:	str	x0, [sp, #592]
+     ff4:	ldr	x0, [sp, #592]
+     ff8:	ldr	x0, [x0, #296]
+     ffc:	cmp	x0, #0x0
+    1000:	b.eq	10b4 <tftp_close+0xdc>  // b.none
+    1004:	add	x0, sp, #0x48
+    1008:	str	x0, [sp, #40]
+    100c:	add	x0, sp, #0x48
+    1010:	add	x0, x0, #0x200
+    1014:	str	x0, [sp, #64]
+    1018:	add	x0, sp, #0x28
+    101c:	bl	0 <grub_netbuff_clear>
+    1020:	add	x0, sp, #0x28
+    1024:	mov	x1, #0x200                 	// #512
+    1028:	bl	0 <grub_netbuff_reserve>
+    102c:	add	x0, sp, #0x28
+    1030:	mov	x1, #0xb                   	// #11
+    1034:	bl	0 <grub_netbuff_push>
+    1038:	str	w0, [sp, #604]
+    103c:	ldr	w0, [sp, #604]
+    1040:	cmp	w0, #0x0
+    1044:	b.ne	1098 <tftp_close+0xc0>  // b.any
+    1048:	ldr	x0, [sp, #48]
+    104c:	str	x0, [sp, #584]
+    1050:	ldr	x0, [sp, #584]
+    1054:	mov	w1, #0x500                 	// #1280
+    1058:	strh	w1, [x0]
+    105c:	ldr	x0, [sp, #584]
+    1060:	strh	wzr, [x0, #2]
+    1064:	ldr	x0, [sp, #584]
+    1068:	add	x3, x0, #0x4
+    106c:	mov	x2, #0x7                   	// #7
+    1070:	adrp	x0, 0 <grub_swap_bytes16>
+    1074:	add	x0, x0, #0x0
+    1078:	ldr	x1, [x0]
+    107c:	mov	x0, x3
+    1080:	bl	38 <grub_memcpy>
+    1084:	ldr	x0, [sp, #592]
+    1088:	ldr	x0, [x0, #296]
+    108c:	add	x1, sp, #0x28
+    1090:	bl	0 <grub_net_send_udp_packet>
+    1094:	str	w0, [sp, #604]
+    1098:	ldr	w0, [sp, #604]
+    109c:	cmp	w0, #0x0
+    10a0:	b.eq	10a8 <tftp_close+0xd0>  // b.none
+    10a4:	bl	0 <grub_print_error>
+    10a8:	ldr	x0, [sp, #592]
+    10ac:	ldr	x0, [x0, #296]
+    10b0:	bl	0 <grub_net_udp_close>
+    10b4:	ldr	x0, [sp, #592]
+    10b8:	bl	9c0 <destroy_pq>
+    10bc:	ldr	x0, [sp, #592]
+    10c0:	bl	0 <grub_free>
+    10c4:	mov	w0, #0x0                   	// #0
+    10c8:	ldp	x29, x30, [sp]
+    10cc:	add	sp, sp, #0x260
+    10d0:	ret
+    10d4:	nop
+	...
+
+00000000000010e0 <tftp_packets_pulled>:
+    10e0:	stp	x29, x30, [sp, #-48]!
+    10e4:	mov	x29, sp
+    10e8:	str	x0, [sp, #24]
+    10ec:	ldr	x0, [sp, #24]
+    10f0:	ldr	x0, [x0, #80]
+    10f4:	str	x0, [sp, #40]
+    10f8:	ldr	x0, [sp, #24]
+    10fc:	ldr	x0, [x0, #8]
+    1100:	ldr	x0, [x0, #8]
+    1104:	ldr	x0, [x0, #40]
+    1108:	cmp	x0, #0x31
+    110c:	b.ls	1118 <tftp_packets_pulled+0x38>  // b.plast
+    1110:	mov	w0, #0x0                   	// #0
+    1114:	b	1174 <tftp_packets_pulled+0x94>
+    1118:	ldr	x0, [sp, #24]
+    111c:	ldr	x0, [x0, #8]
+    1120:	ldr	x0, [x0, #8]
+    1124:	ldr	w0, [x0, #64]
+    1128:	cmp	w0, #0x0
+    112c:	b.ne	1140 <tftp_packets_pulled+0x60>  // b.any
+    1130:	ldr	x0, [sp, #24]
+    1134:	ldr	x0, [x0, #8]
+    1138:	ldr	x0, [x0, #8]
+    113c:	str	wzr, [x0, #68]
+    1140:	ldr	x0, [sp, #40]
+    1144:	ldr	x1, [x0, #24]
+    1148:	ldr	x0, [sp, #40]
+    114c:	ldr	x0, [x0, #8]
+    1150:	cmp	x1, x0
+    1154:	b.cc	1160 <tftp_packets_pulled+0x80>  // b.lo, b.ul, b.last
+    1158:	mov	w0, #0x0                   	// #0
+    115c:	b	1174 <tftp_packets_pulled+0x94>
+    1160:	ldr	x0, [sp, #40]
+    1164:	ldr	x0, [x0, #8]
+    1168:	mov	x1, x0
+    116c:	ldr	x0, [sp, #40]
+    1170:	bl	34c <ack>
+    1174:	ldp	x29, x30, [sp], #48
+    1178:	ret
+
+000000000000117c <grub_mod_init>:
+    117c:	stp	x29, x30, [sp, #-32]!
+    1180:	mov	x29, sp
+    1184:	str	x0, [sp, #24]
+    1188:	adrp	x0, 0 <grub_swap_bytes16>
+    118c:	add	x0, x0, #0x0
+    1190:	ldr	x0, [x0]
+    1194:	bl	220 <grub_net_app_level_register>
+    1198:	nop
+    119c:	ldp	x29, x30, [sp], #32
+    11a0:	ret
+    11a4:	nop
+	...
+
+00000000000011b0 <grub_mod_fini>:
+    11b0:	stp	x29, x30, [sp, #-16]!
+    11b4:	mov	x29, sp
+    11b8:	adrp	x0, 0 <grub_swap_bytes16>
+    11bc:	add	x0, x0, #0x0
+    11c0:	ldr	x0, [x0]
+    11c4:	bl	258 <grub_net_app_level_unregister>
+    11c8:	nop
+    11cc:	ldp	x29, x30, [sp], #16
+    11d0:	ret
+    11d4:	nop
+	...

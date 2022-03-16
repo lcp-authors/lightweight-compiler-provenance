@@ -1,0 +1,146 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//mdraid09_be.module_gcc_-Os:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_mdraid_detect>:
+   0:	stp	x29, x30, [sp, #-96]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	stp	x21, x22, [sp, #32]
+  10:	mov	x21, x0
+  14:	stp	x23, x24, [sp, #48]
+  18:	mov	x23, x1
+  1c:	mov	x24, x2
+  20:	bl	0 <grub_disk_get_size>
+  24:	cmn	x0, #0x1
+  28:	b.ne	34 <grub_mdraid_detect+0x34>  // b.any
+  2c:	mov	x20, #0x0                   	// #0
+  30:	b	1cc <grub_mdraid_detect+0x1cc>
+  34:	and	x22, x0, #0xffffffffffffff80
+  38:	mov	x20, x0
+  3c:	sub	x22, x22, #0x80
+  40:	mov	x0, #0x1000                	// #4096
+  44:	bl	0 <grub_malloc>
+  48:	mov	x19, x0
+  4c:	cbz	x0, 2c <grub_mdraid_detect+0x2c>
+  50:	mov	x4, x0
+  54:	mov	x1, x22
+  58:	mov	x0, x21
+  5c:	mov	x3, #0x1000                	// #4096
+  60:	mov	x2, #0x0                   	// #0
+  64:	bl	0 <grub_disk_read>
+  68:	cbnz	w0, e4 <grub_mdraid_detect+0xe4>
+  6c:	ldr	w1, [x19]
+  70:	mov	w0, #0x2ba9                	// #11177
+  74:	movk	w0, #0xfc4e, lsl #16
+  78:	cmp	w1, w0
+  7c:	b.ne	e4 <grub_mdraid_detect+0xe4>  // b.any
+  80:	ldr	w0, [x19, #4]
+  84:	cbnz	w0, e4 <grub_mdraid_detect+0xe4>
+  88:	ldr	w1, [x19, #8]
+  8c:	mov	w0, #0x5a000000            	// #1509949440
+  90:	cmp	w1, w0
+  94:	b.ne	e4 <grub_mdraid_detect+0xe4>  // b.any
+  98:	ldr	w0, [x19, #32]
+  9c:	rev	w0, w0
+  a0:	cmp	x20, x0, lsl #1
+  a4:	b.ls	e4 <grub_mdraid_detect+0xe4>  // b.plast
+  a8:	ldr	w20, [x19, #28]
+  ac:	rev	w20, w20
+  b0:	cmn	w20, #0x4
+  b4:	b.eq	f0 <grub_mdraid_detect+0xf0>  // b.none
+  b8:	sub	w0, w20, #0x4
+  bc:	cmp	w0, #0x2
+  c0:	ccmp	w20, #0x1, #0x0, hi  // hi = pmore
+  c4:	b.ls	f4 <grub_mdraid_detect+0xf4>  // b.plast
+  c8:	cmp	w20, #0xa
+  cc:	b.eq	f4 <grub_mdraid_detect+0xf4>  // b.none
+  d0:	adrp	x0, 0 <grub_mdraid_detect>
+  d4:	mov	w2, w20
+  d8:	ldr	x1, [x0]
+  dc:	mov	w0, #0x18                  	// #24
+  e0:	bl	0 <grub_error>
+  e4:	mov	x0, x19
+  e8:	bl	0 <grub_free>
+  ec:	b	2c <grub_mdraid_detect+0x2c>
+  f0:	mov	w20, #0x1                   	// #1
+  f4:	ldr	w0, [x19, #3968]
+  f8:	mov	w1, #0xffff0002            	// #-65534
+  fc:	rev	w0, w0
+ 100:	add	w0, w0, w1
+ 104:	cmp	w0, #0x1
+ 108:	b.ls	e4 <grub_mdraid_detect+0xe4>  // b.plast
+ 10c:	mov	x0, #0x10                  	// #16
+ 110:	bl	0 <grub_malloc>
+ 114:	mov	x21, x0
+ 118:	cbz	x0, e4 <grub_mdraid_detect+0xe4>
+ 11c:	ldr	w0, [x19, #20]
+ 120:	mov	x1, #0x20                  	// #32
+ 124:	rev	w0, w0
+ 128:	str	w0, [x21]
+ 12c:	ldr	w0, [x19, #52]
+ 130:	rev	w0, w0
+ 134:	str	w0, [x21, #4]
+ 138:	ldr	w0, [x19, #56]
+ 13c:	rev	w0, w0
+ 140:	str	w0, [x21, #8]
+ 144:	ldr	w0, [x19, #60]
+ 148:	rev	w0, w0
+ 14c:	str	w0, [x21, #12]
+ 150:	ldr	w0, [x19, #3968]
+ 154:	ldr	w3, [x19, #44]
+ 158:	rev	w0, w0
+ 15c:	str	xzr, [x24]
+ 160:	str	w0, [x23]
+ 164:	adrp	x0, 0 <grub_mdraid_detect>
+ 168:	str	xzr, [x23, #8]
+ 16c:	rev	w3, w3
+ 170:	ldr	x2, [x0]
+ 174:	add	x0, sp, #0x40
+ 178:	bl	0 <grub_snprintf>
+ 17c:	ldr	w0, [x19, #32]
+ 180:	ldr	w2, [x19, #40]
+ 184:	rev	w2, w2
+ 188:	cbz	w0, 194 <grub_mdraid_detect+0x194>
+ 18c:	rev	w22, w0
+ 190:	lsl	x22, x22, #1
+ 194:	ldr	w5, [x19, #260]
+ 198:	mov	w7, w20
+ 19c:	ldr	w6, [x19, #256]
+ 1a0:	mov	x4, x22
+ 1a4:	rev	w5, w5
+ 1a8:	add	x3, sp, #0x40
+ 1ac:	mov	x1, x21
+ 1b0:	rev	w6, w6
+ 1b4:	lsr	w5, w5, #9
+ 1b8:	mov	x0, #0x10                  	// #16
+ 1bc:	bl	0 <grub_diskfilter_make_raid>
+ 1c0:	mov	x20, x0
+ 1c4:	mov	x0, x19
+ 1c8:	bl	0 <grub_free>
+ 1cc:	mov	x0, x20
+ 1d0:	ldp	x19, x20, [sp, #16]
+ 1d4:	ldp	x21, x22, [sp, #32]
+ 1d8:	ldp	x23, x24, [sp, #48]
+ 1dc:	ldp	x29, x30, [sp], #96
+ 1e0:	ret
+ 1e4:	nop
+	...
+
+00000000000001f8 <grub_mod_init>:
+ 1f8:	adrp	x0, 0 <grub_mdraid_detect>
+ 1fc:	ldr	x1, [x0]
+ 200:	adrp	x0, 0 <grub_mdraid_detect>
+ 204:	ldr	x0, [x0]
+ 208:	b	0 <grub_list_push>
+ 20c:	nop
+	...
+
+0000000000000220 <grub_mod_fini>:
+ 220:	adrp	x0, 0 <grub_mdraid_detect>
+ 224:	ldr	x0, [x0]
+ 228:	b	0 <grub_list_remove>
+ 22c:	nop
+	...

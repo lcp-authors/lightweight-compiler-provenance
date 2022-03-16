@@ -1,0 +1,1367 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//fdt.module_gcc_-O3:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_cmd_devicetree>:
+       0:	stp	x29, x30, [sp, #-64]!
+       4:	adrp	x0, 0 <grub_cmd_devicetree>
+       8:	mov	x29, sp
+       c:	stp	x21, x22, [sp, #32]
+      10:	mov	x21, x2
+      14:	ldr	x22, [x0]
+      18:	stp	x19, x20, [sp, #16]
+      1c:	mov	w19, w1
+      20:	ldr	x0, [x22]
+      24:	cbz	x0, 2c <grub_cmd_devicetree+0x2c>
+      28:	bl	0 <grub_free>
+      2c:	str	xzr, [x22]
+      30:	mov	w0, #0x0                   	// #0
+      34:	cbnz	w19, 48 <grub_cmd_devicetree+0x48>
+      38:	ldp	x19, x20, [sp, #16]
+      3c:	ldp	x21, x22, [sp, #32]
+      40:	ldp	x29, x30, [sp], #64
+      44:	ret
+      48:	ldr	x0, [x21]
+      4c:	mov	w1, #0x2a                  	// #42
+      50:	bl	0 <grub_file_open>
+      54:	mov	x19, x0
+      58:	cbz	x0, 110 <grub_cmd_devicetree+0x110>
+      5c:	stp	x23, x24, [sp, #48]
+      60:	ldr	x24, [x0, #64]
+      64:	sxtw	x23, w24
+      68:	mov	x0, x23
+      6c:	bl	0 <grub_malloc>
+      70:	mov	x20, x0
+      74:	cbz	x0, 12c <grub_cmd_devicetree+0x12c>
+      78:	mov	x1, x0
+      7c:	mov	x2, x23
+      80:	mov	x0, x19
+      84:	bl	0 <grub_file_read>
+      88:	cmp	x0, x23
+      8c:	b.ge	c8 <grub_cmd_devicetree+0xc8>  // b.tcont
+      90:	adrp	x0, 0 <grub_cmd_devicetree>
+      94:	ldr	x23, [x0]
+      98:	ldr	w0, [x23]
+      9c:	cbz	w0, 154 <grub_cmd_devicetree+0x154>
+      a0:	mov	x0, x19
+      a4:	bl	0 <grub_file_close>
+      a8:	ldr	w0, [x23]
+      ac:	cbnz	w0, f0 <grub_cmd_devicetree+0xf0>
+      b0:	ldp	x23, x24, [sp, #48]
+      b4:	str	x20, [x22]
+      b8:	ldp	x19, x20, [sp, #16]
+      bc:	ldp	x21, x22, [sp, #32]
+      c0:	ldp	x29, x30, [sp], #64
+      c4:	ret
+      c8:	mov	w1, w24
+      cc:	mov	x0, x20
+      d0:	bl	980 <grub_fdt_check_header>
+      d4:	cbnz	w0, 16c <grub_cmd_devicetree+0x16c>
+      d8:	adrp	x0, 0 <grub_cmd_devicetree>
+      dc:	ldr	x23, [x0]
+      e0:	mov	x0, x19
+      e4:	bl	0 <grub_file_close>
+      e8:	ldr	w0, [x23]
+      ec:	cbz	w0, b0 <grub_cmd_devicetree+0xb0>
+      f0:	mov	x0, x20
+      f4:	bl	0 <grub_free>
+      f8:	ldr	w0, [x23]
+      fc:	ldp	x19, x20, [sp, #16]
+     100:	ldp	x21, x22, [sp, #32]
+     104:	ldp	x23, x24, [sp, #48]
+     108:	ldp	x29, x30, [sp], #64
+     10c:	ret
+     110:	adrp	x0, 0 <grub_cmd_devicetree>
+     114:	ldp	x19, x20, [sp, #16]
+     118:	ldr	x0, [x0]
+     11c:	ldp	x21, x22, [sp, #32]
+     120:	ldr	w0, [x0]
+     124:	ldp	x29, x30, [sp], #64
+     128:	ret
+     12c:	mov	x0, x19
+     130:	bl	0 <grub_file_close>
+     134:	adrp	x0, 0 <grub_cmd_devicetree>
+     138:	ldp	x19, x20, [sp, #16]
+     13c:	ldr	x0, [x0]
+     140:	ldp	x21, x22, [sp, #32]
+     144:	ldr	w0, [x0]
+     148:	ldp	x23, x24, [sp, #48]
+     14c:	ldp	x29, x30, [sp], #64
+     150:	ret
+     154:	adrp	x1, 0 <grub_cmd_devicetree>
+     158:	mov	w0, #0x15                  	// #21
+     15c:	ldr	x2, [x21]
+     160:	ldr	x1, [x1]
+     164:	bl	0 <grub_error>
+     168:	b	a0 <grub_cmd_devicetree+0xa0>
+     16c:	adrp	x1, 0 <grub_cmd_devicetree>
+     170:	mov	w0, #0x15                  	// #21
+     174:	ldr	x1, [x1]
+     178:	bl	0 <grub_error>
+     17c:	b	d8 <grub_cmd_devicetree+0xd8>
+	...
+
+00000000000001a0 <grub_fdt_load>:
+     1a0:	stp	x29, x30, [sp, #-64]!
+     1a4:	adrp	x1, 0 <grub_cmd_devicetree>
+     1a8:	mov	x29, sp
+     1ac:	stp	x21, x22, [sp, #32]
+     1b0:	ldr	x22, [x1]
+     1b4:	stp	x19, x20, [sp, #16]
+     1b8:	mov	x20, x0
+     1bc:	ldr	x0, [x22, #8]
+     1c0:	cbz	x0, 1d8 <grub_fdt_load+0x38>
+     1c4:	ldr	w1, [x0, #4]
+     1c8:	rev	w1, w1
+     1cc:	add	w1, w1, #0xfff
+     1d0:	lsr	w1, w1, #12
+     1d4:	bl	0 <grub_efi_free_pages>
+     1d8:	ldr	x21, [x22]
+     1dc:	cbz	x21, 250 <grub_fdt_load+0xb0>
+     1e0:	adrp	x2, 0 <grub_cmd_devicetree>
+     1e4:	adrp	x1, 0 <grub_cmd_devicetree>
+     1e8:	adrp	x0, 0 <grub_cmd_devicetree>
+     1ec:	ldr	w19, [x21, #4]
+     1f0:	ldr	x3, [x2]
+     1f4:	rev	w19, w19
+     1f8:	ldr	x2, [x1]
+     1fc:	add	w19, w19, w20
+     200:	ldr	x0, [x0]
+     204:	mov	w4, w19
+     208:	mov	w1, #0x3e                  	// #62
+     20c:	bl	0 <grub_real_dprintf>
+     210:	add	w0, w19, #0xfff
+     214:	lsr	w0, w0, #12
+     218:	bl	0 <grub_efi_allocate_any_pages>
+     21c:	str	x0, [x22, #8]
+     220:	cbz	x0, 2fc <grub_fdt_load+0x15c>
+     224:	mov	w2, w19
+     228:	mov	x1, x21
+     22c:	sub	x2, x2, x20
+     230:	bl	0 <grub_memmove>
+     234:	ldr	x0, [x22, #8]
+     238:	rev	w19, w19
+     23c:	str	w19, [x0, #4]
+     240:	ldp	x19, x20, [sp, #16]
+     244:	ldp	x21, x22, [sp, #32]
+     248:	ldp	x29, x30, [sp], #64
+     24c:	ret
+     250:	bl	0 <grub_efi_get_firmware_fdt>
+     254:	mov	x21, x0
+     258:	cbnz	x0, 1e0 <grub_fdt_load+0x40>
+     25c:	adrp	x2, 0 <grub_cmd_devicetree>
+     260:	adrp	x1, 0 <grub_cmd_devicetree>
+     264:	adrp	x0, 0 <grub_cmd_devicetree>
+     268:	add	w19, w20, #0x83
+     26c:	ldr	x3, [x2]
+     270:	mov	w4, w19
+     274:	ldr	x2, [x1]
+     278:	mov	w1, #0x3e                  	// #62
+     27c:	ldr	x0, [x0]
+     280:	bl	0 <grub_real_dprintf>
+     284:	mov	w0, #0x1082                	// #4226
+     288:	add	w0, w20, w0
+     28c:	lsr	w0, w0, #12
+     290:	bl	0 <grub_efi_allocate_any_pages>
+     294:	str	x0, [x22, #8]
+     298:	cbz	x0, 2fc <grub_fdt_load+0x15c>
+     29c:	mov	w1, w19
+     2a0:	bl	14c0 <grub_fdt_create_empty_tree>
+     2a4:	adrp	x1, 0 <grub_cmd_devicetree>
+     2a8:	add	x3, sp, #0x3c
+     2ac:	ldr	x0, [x22, #8]
+     2b0:	mov	w19, #0x2000000             	// #33554432
+     2b4:	ldr	x2, [x1]
+     2b8:	mov	w4, #0x4                   	// #4
+     2bc:	mov	w1, #0x0                   	// #0
+     2c0:	str	w19, [sp, #60]
+     2c4:	bl	1130 <grub_fdt_set_prop>
+     2c8:	str	w19, [sp, #60]
+     2cc:	adrp	x1, 0 <grub_cmd_devicetree>
+     2d0:	add	x3, sp, #0x3c
+     2d4:	ldr	x0, [x22, #8]
+     2d8:	mov	w4, #0x4                   	// #4
+     2dc:	ldr	x2, [x1]
+     2e0:	mov	w1, #0x0                   	// #0
+     2e4:	bl	1130 <grub_fdt_set_prop>
+     2e8:	ldr	x0, [x22, #8]
+     2ec:	ldp	x19, x20, [sp, #16]
+     2f0:	ldp	x21, x22, [sp, #32]
+     2f4:	ldp	x29, x30, [sp], #64
+     2f8:	ret
+     2fc:	mov	x0, #0x0                   	// #0
+     300:	b	240 <grub_fdt_load+0xa0>
+     304:	nop
+	...
+
+0000000000000338 <grub_fdt_install>:
+     338:	stp	x29, x30, [sp, #-48]!
+     33c:	adrp	x0, 0 <grub_cmd_devicetree>
+     340:	adrp	x2, 0 <grub_cmd_devicetree>
+     344:	mov	x29, sp
+     348:	ldr	x0, [x0]
+     34c:	str	x19, [sp, #16]
+     350:	ldr	x19, [x2]
+     354:	mov	x1, #0xb83                 	// #2947
+     358:	ldr	x2, [x0]
+     35c:	mov	x3, #0x21d5                	// #8661
+     360:	movk	x1, #0x15d9, lsl #16
+     364:	movk	x3, #0xb1b6, lsl #16
+     368:	movk	x1, #0x692c, lsl #32
+     36c:	movk	x3, #0xf19c, lsl #32
+     370:	ldr	x2, [x2, #96]
+     374:	movk	x1, #0xe0aa, lsl #48
+     378:	movk	x3, #0x41a5, lsl #48
+     37c:	stp	x3, x1, [sp, #32]
+     380:	add	x0, sp, #0x20
+     384:	ldr	x1, [x19, #8]
+     388:	ldr	x2, [x2, #192]
+     38c:	blr	x2
+     390:	cbnz	x0, 3c8 <grub_fdt_install+0x90>
+     394:	adrp	x3, 0 <grub_cmd_devicetree>
+     398:	adrp	x2, 0 <grub_cmd_devicetree>
+     39c:	adrp	x0, 0 <grub_cmd_devicetree>
+     3a0:	mov	w1, #0x5d                  	// #93
+     3a4:	ldr	x3, [x3]
+     3a8:	ldr	x2, [x2]
+     3ac:	ldr	x0, [x0]
+     3b0:	ldr	x4, [x19, #8]
+     3b4:	bl	0 <grub_real_dprintf>
+     3b8:	mov	w0, #0x0                   	// #0
+     3bc:	ldr	x19, [sp, #16]
+     3c0:	ldp	x29, x30, [sp], #48
+     3c4:	ret
+     3c8:	adrp	x1, 0 <grub_cmd_devicetree>
+     3cc:	mov	w0, #0x1d                  	// #29
+     3d0:	ldr	x1, [x1]
+     3d4:	bl	0 <grub_error>
+     3d8:	ldr	x19, [sp, #16]
+     3dc:	ldp	x29, x30, [sp], #48
+     3e0:	ret
+     3e4:	nop
+	...
+
+0000000000000418 <grub_fdt_unload>:
+     418:	stp	x29, x30, [sp, #-32]!
+     41c:	adrp	x0, 0 <grub_cmd_devicetree>
+     420:	mov	x29, sp
+     424:	str	x19, [sp, #16]
+     428:	ldr	x19, [x0]
+     42c:	ldr	x0, [x19, #8]
+     430:	cbz	x0, 44c <grub_fdt_unload+0x34>
+     434:	ldr	w1, [x0, #4]
+     438:	rev	w1, w1
+     43c:	add	w1, w1, #0xfff
+     440:	lsr	w1, w1, #12
+     444:	bl	0 <grub_efi_free_pages>
+     448:	str	xzr, [x19, #8]
+     44c:	ldr	x19, [sp, #16]
+     450:	ldp	x29, x30, [sp], #32
+     454:	ret
+	...
+
+0000000000000460 <grub_mod_init>:
+     460:	stp	x29, x30, [sp, #-16]!
+     464:	adrp	x2, 0 <grub_cmd_devicetree>
+     468:	adrp	x1, 0 <grub_cmd_devicetree>
+     46c:	adrp	x0, 0 <grub_cmd_devicetree>
+     470:	mov	x29, sp
+     474:	ldr	x3, [x2]
+     478:	mov	w4, #0x0                   	// #0
+     47c:	ldr	x1, [x1]
+     480:	mov	x2, #0x0                   	// #0
+     484:	ldr	x0, [x0]
+     488:	bl	0 <grub_register_command_prio>
+     48c:	adrp	x1, 0 <grub_cmd_devicetree>
+     490:	ldr	x1, [x1]
+     494:	str	x0, [x1, #16]
+     498:	ldp	x29, x30, [sp], #16
+     49c:	ret
+	...
+
+00000000000004c0 <grub_mod_fini>:
+     4c0:	adrp	x0, 0 <grub_cmd_devicetree>
+     4c4:	ldr	x0, [x0]
+     4c8:	ldr	x0, [x0, #16]
+     4cc:	b	0 <grub_unregister_command>
+	...
+
+00000000000004d8 <get_next_node>:
+     4d8:	stp	x29, x30, [sp, #-32]!
+     4dc:	mov	x29, sp
+     4e0:	stp	x19, x20, [sp, #16]
+     4e4:	mov	x20, x0
+     4e8:	ldr	w19, [x0, #8]
+     4ec:	ldr	w0, [x0, #36]
+     4f0:	rev	w19, w19
+     4f4:	rev	w0, w0
+     4f8:	add	x19, x19, x0
+     4fc:	add	x19, x20, x19
+     500:	cmp	x19, x1
+     504:	b.hi	510 <get_next_node+0x38>  // b.pmore
+     508:	b	588 <get_next_node+0xb0>
+     50c:	b.eq	588 <get_next_node+0xb0>  // b.none
+     510:	ldrb	w2, [x1], #1
+     514:	cmp	x19, x1
+     518:	cbnz	w2, 50c <get_next_node+0x34>
+     51c:	add	x1, x1, #0x3
+     520:	and	x2, x1, #0xfffffffffffffffc
+     524:	cmp	x19, x2
+     528:	b.ls	588 <get_next_node+0xb0>  // b.plast
+     52c:	ldr	w3, [x2]
+     530:	rev	w3, w3
+     534:	cmp	w3, #0x3
+     538:	b.eq	59c <get_next_node+0xc4>  // b.none
+     53c:	b.hi	574 <get_next_node+0x9c>  // b.pmore
+     540:	add	x1, x2, #0x4
+     544:	mov	x0, x20
+     548:	cmp	w3, #0x1
+     54c:	b.eq	5b8 <get_next_node+0xe0>  // b.none
+     550:	cmp	w3, #0x2
+     554:	b.ne	588 <get_next_node+0xb0>  // b.any
+     558:	add	x2, x2, #0x4
+     55c:	cmp	x19, x2
+     560:	csel	x2, x2, xzr, hi  // hi = pmore
+     564:	mov	x0, x2
+     568:	ldp	x19, x20, [sp, #16]
+     56c:	ldp	x29, x30, [sp], #32
+     570:	ret
+     574:	add	x2, x2, #0x4
+     578:	cmp	w3, #0x4
+     57c:	b.ne	588 <get_next_node+0xb0>  // b.any
+     580:	cmp	x2, x19
+     584:	b.cc	52c <get_next_node+0x54>  // b.lo, b.ul, b.last
+     588:	mov	x2, #0x0                   	// #0
+     58c:	mov	x0, x2
+     590:	ldp	x19, x20, [sp, #16]
+     594:	ldp	x29, x30, [sp], #32
+     598:	ret
+     59c:	ldr	w0, [x2, #4]
+     5a0:	rev	w0, w0
+     5a4:	add	w0, w0, #0x3
+     5a8:	and	x0, x0, #0xfffffffc
+     5ac:	add	x0, x0, #0xc
+     5b0:	add	x2, x2, x0
+     5b4:	b	580 <get_next_node+0xa8>
+     5b8:	bl	4d8 <get_next_node>
+     5bc:	mov	x2, x0
+     5c0:	cbnz	x0, 580 <get_next_node+0xa8>
+     5c4:	b	58c <get_next_node+0xb4>
+
+00000000000005c8 <find_prop>:
+     5c8:	stp	x29, x30, [sp, #-64]!
+     5cc:	mov	x29, sp
+     5d0:	stp	x23, x24, [sp, #48]
+     5d4:	mov	x23, x0
+     5d8:	ldr	w0, [x0, #8]
+     5dc:	stp	x21, x22, [sp, #32]
+     5e0:	mov	x24, x2
+     5e4:	ldr	w21, [x23, #36]
+     5e8:	rev	w0, w0
+     5ec:	stp	x19, x20, [sp, #16]
+     5f0:	add	x0, x23, x0
+     5f4:	add	x19, x0, w1, uxtw
+     5f8:	rev	w21, w21
+     5fc:	add	x19, x19, #0x4
+     600:	add	x21, x21, x0
+     604:	b	614 <find_prop+0x4c>
+     608:	ldrb	w3, [x1], #1
+     60c:	mov	x19, x1
+     610:	cbz	w3, 620 <find_prop+0x58>
+     614:	mov	x1, x19
+     618:	cmp	x19, x21
+     61c:	b.cc	608 <find_prop+0x40>  // b.lo, b.ul, b.last
+     620:	add	x19, x19, #0x3
+     624:	sub	x20, x21, #0x8
+     628:	and	x19, x19, #0xfffffffffffffffc
+     62c:	nop
+     630:	cmp	x19, x20
+     634:	b.cs	654 <find_prop+0x8c>  // b.hs, b.nlast
+     638:	ldr	w1, [x19]
+     63c:	rev	w1, w1
+     640:	cmp	w1, #0x3
+     644:	b.eq	670 <find_prop+0xa8>  // b.none
+     648:	add	x19, x19, #0x4
+     64c:	cmp	w1, #0x4
+     650:	b.eq	630 <find_prop+0x68>  // b.none
+     654:	mov	x19, #0x0                   	// #0
+     658:	mov	x0, x19
+     65c:	ldp	x19, x20, [sp, #16]
+     660:	ldp	x21, x22, [sp, #32]
+     664:	ldp	x23, x24, [sp, #48]
+     668:	ldp	x29, x30, [sp], #64
+     66c:	ret
+     670:	ldr	w22, [x19, #8]
+     674:	mov	x0, x24
+     678:	bl	0 <grub_strlen>
+     67c:	ldr	w1, [x23, #32]
+     680:	rev	w22, w22
+     684:	add	x3, x22, x0
+     688:	rev	w1, w1
+     68c:	cmp	x3, x1
+     690:	b.cc	6b0 <find_prop+0xe8>  // b.lo, b.ul, b.last
+     694:	ldr	w1, [x19, #4]
+     698:	rev	w1, w1
+     69c:	add	w1, w1, #0x3
+     6a0:	and	x1, x1, #0xfffffffc
+     6a4:	add	x1, x1, #0xc
+     6a8:	add	x19, x19, x1
+     6ac:	b	630 <find_prop+0x68>
+     6b0:	ldr	w1, [x23, #12]
+     6b4:	mov	x0, x24
+     6b8:	rev	w1, w1
+     6bc:	add	x1, x1, x22
+     6c0:	add	x1, x23, x1
+     6c4:	bl	0 <grub_strcmp>
+     6c8:	cbnz	w0, 694 <find_prop+0xcc>
+     6cc:	ldr	w0, [x19, #4]
+     6d0:	rev	w0, w0
+     6d4:	add	w0, w0, #0x3
+     6d8:	and	x0, x0, #0xfffffffc
+     6dc:	add	x0, x0, #0xc
+     6e0:	add	x0, x19, x0
+     6e4:	cmp	x21, x0
+     6e8:	b.hi	658 <find_prop+0x90>  // b.pmore
+     6ec:	b	654 <find_prop+0x8c>
+
+00000000000006f0 <rearrange_blocks>:
+     6f0:	stp	x29, x30, [sp, #-64]!
+     6f4:	sub	x5, x0, #0x10
+     6f8:	mov	w4, #0x10                  	// #16
+     6fc:	mov	x29, sp
+     700:	stp	x19, x20, [sp, #16]
+     704:	mov	x19, x0
+     708:	ldr	w0, [x0, #16]
+     70c:	stp	x21, x22, [sp, #32]
+     710:	rev	w3, w0
+     714:	add	x3, x3, x19
+     718:	rev	w6, w0
+     71c:	sub	w4, w4, w3
+     720:	stp	x23, x24, [sp, #48]
+     724:	nop
+     728:	add	w20, w4, w3
+     72c:	ldr	x0, [x3]
+     730:	cbnz	x0, 73c <rearrange_blocks+0x4c>
+     734:	ldr	x0, [x3, #8]
+     738:	cbz	x0, 87c <rearrange_blocks+0x18c>
+     73c:	ldr	w2, [x19, #4]
+     740:	add	x3, x3, #0x10
+     744:	rev	w2, w2
+     748:	add	x2, x5, x2
+     74c:	cmp	x3, x2
+     750:	b.ls	728 <rearrange_blocks+0x38>  // b.plast
+     754:	mov	w20, #0x27                  	// #39
+     758:	ldr	w21, [x19, #36]
+     75c:	cmp	w6, #0x28
+     760:	rev	w21, w21
+     764:	add	w21, w21, w20
+     768:	add	w21, w21, w1
+     76c:	b.ne	780 <rearrange_blocks+0x90>  // b.any
+     770:	ldr	w0, [x19, #8]
+     774:	rev	w0, w0
+     778:	cmp	w0, w20
+     77c:	b.eq	88c <rearrange_blocks+0x19c>  // b.none
+     780:	ldr	w0, [x19, #4]
+     784:	rev	w0, w0
+     788:	bl	0 <grub_malloc>
+     78c:	mov	x22, x0
+     790:	cbz	x0, 8c0 <rearrange_blocks+0x1d0>
+     794:	ldr	w1, [x19, #16]
+     798:	mov	w4, #0x10                  	// #16
+     79c:	add	x23, x0, #0x28
+     7a0:	sub	x6, x19, #0x10
+     7a4:	rev	w1, w1
+     7a8:	add	x1, x19, x1
+     7ac:	mov	x3, x1
+     7b0:	sub	w4, w4, w1
+     7b4:	nop
+     7b8:	ldr	x2, [x3]
+     7bc:	add	w5, w4, w3
+     7c0:	cbnz	x2, 7cc <rearrange_blocks+0xdc>
+     7c4:	ldr	x2, [x3, #8]
+     7c8:	cbz	x2, 884 <rearrange_blocks+0x194>
+     7cc:	ldr	w2, [x19, #4]
+     7d0:	add	x3, x3, #0x10
+     7d4:	rev	w2, w2
+     7d8:	add	x2, x6, x2
+     7dc:	cmp	x3, x2
+     7e0:	b.ls	7b8 <rearrange_blocks+0xc8>  // b.plast
+     7e4:	mov	x2, #0xffffffffffffffff    	// #-1
+     7e8:	mov	x0, x23
+     7ec:	bl	0 <grub_memmove>
+     7f0:	ldr	w1, [x19, #8]
+     7f4:	mov	w0, #0x28000000            	// #671088640
+     7f8:	ldr	w2, [x19, #36]
+     7fc:	mov	w24, #0x0                   	// #0
+     800:	str	w0, [x19, #16]
+     804:	rev	w1, w1
+     808:	add	x1, x19, x1
+     80c:	rev	w2, w2
+     810:	add	x0, x22, w20, uxtw
+     814:	bl	0 <grub_memmove>
+     818:	ldr	w1, [x19, #12]
+     81c:	rev	w20, w20
+     820:	ldr	w2, [x19, #32]
+     824:	add	x0, x22, w21, uxtw
+     828:	str	w20, [x19, #8]
+     82c:	rev	w1, w1
+     830:	add	x1, x19, x1
+     834:	rev	w2, w2
+     838:	bl	0 <grub_memmove>
+     83c:	rev	w21, w21
+     840:	ldr	w2, [x19, #4]
+     844:	mov	x1, x23
+     848:	str	w21, [x19, #12]
+     84c:	add	x0, x19, #0x28
+     850:	rev	w2, w2
+     854:	sub	w2, w2, #0x28
+     858:	bl	0 <grub_memmove>
+     85c:	mov	x0, x22
+     860:	bl	0 <grub_free>
+     864:	mov	w0, w24
+     868:	ldp	x19, x20, [sp, #16]
+     86c:	ldp	x21, x22, [sp, #32]
+     870:	ldp	x23, x24, [sp, #48]
+     874:	ldp	x29, x30, [sp], #64
+     878:	ret
+     87c:	add	w20, w20, #0x28
+     880:	b	758 <rearrange_blocks+0x68>
+     884:	sxtw	x2, w5
+     888:	b	7e8 <rearrange_blocks+0xf8>
+     88c:	ldr	w1, [x19, #12]
+     890:	mov	w24, #0x0                   	// #0
+     894:	rev	w1, w1
+     898:	cmp	w21, w1
+     89c:	b.eq	864 <rearrange_blocks+0x174>  // b.none
+     8a0:	ldr	w2, [x19, #32]
+     8a4:	add	x0, x19, w21, uxtw
+     8a8:	add	x1, x19, w1, uxtw
+     8ac:	rev	w21, w21
+     8b0:	rev	w2, w2
+     8b4:	bl	0 <grub_memmove>
+     8b8:	str	w21, [x19, #12]
+     8bc:	b	864 <rearrange_blocks+0x174>
+     8c0:	mov	w24, #0xffffffff            	// #-1
+     8c4:	b	864 <rearrange_blocks+0x174>
+
+00000000000008c8 <grub_fdt_check_header_nosize>:
+     8c8:	tst	x0, #0x3
+     8cc:	b.ne	974 <grub_fdt_check_header_nosize+0xac>  // b.any
+     8d0:	ldr	w2, [x0]
+     8d4:	mov	w1, #0xdd0                 	// #3536
+     8d8:	movk	w1, #0xedfe, lsl #16
+     8dc:	cmp	w2, w1
+     8e0:	b.ne	974 <grub_fdt_check_header_nosize+0xac>  // b.any
+     8e4:	ldr	w1, [x0, #20]
+     8e8:	rev	w1, w1
+     8ec:	cmp	w1, #0x10
+     8f0:	b.ls	974 <grub_fdt_check_header_nosize+0xac>  // b.plast
+     8f4:	ldr	w1, [x0, #24]
+     8f8:	rev	w1, w1
+     8fc:	cmp	w1, #0x11
+     900:	b.hi	974 <grub_fdt_check_header_nosize+0xac>  // b.pmore
+     904:	ldr	w2, [x0, #8]
+     908:	rev	w3, w2
+     90c:	tst	x3, #0x3
+     910:	b.ne	974 <grub_fdt_check_header_nosize+0xac>  // b.any
+     914:	ldr	w2, [x0, #36]
+     918:	rev	w2, w2
+     91c:	tst	x2, #0x3
+     920:	b.ne	974 <grub_fdt_check_header_nosize+0xac>  // b.any
+     924:	ldr	w1, [x0, #4]
+     928:	add	w2, w2, w3
+     92c:	rev	w1, w1
+     930:	cmp	w2, w1
+     934:	b.hi	974 <grub_fdt_check_header_nosize+0xac>  // b.pmore
+     938:	ldr	w2, [x0, #12]
+     93c:	ldr	w3, [x0, #32]
+     940:	rev	w2, w2
+     944:	rev	w3, w3
+     948:	add	w2, w2, w3
+     94c:	cmp	w2, w1
+     950:	b.hi	974 <grub_fdt_check_header_nosize+0xac>  // b.pmore
+     954:	ldr	w0, [x0, #16]
+     958:	rev	w0, w0
+     95c:	tst	x0, #0x7
+     960:	b.ne	974 <grub_fdt_check_header_nosize+0xac>  // b.any
+     964:	sub	x1, x1, #0x10
+     968:	cmp	x1, w0, uxtw
+     96c:	csetm	w0, cc  // cc = lo, ul, last
+     970:	ret
+     974:	mov	w0, #0xffffffff            	// #-1
+     978:	ret
+     97c:	nop
+
+0000000000000980 <grub_fdt_check_header>:
+     980:	cmp	w1, #0x27
+     984:	b.ls	a3c <grub_fdt_check_header+0xbc>  // b.plast
+     988:	ldr	w2, [x0, #4]
+     98c:	rev	w2, w2
+     990:	cmp	w1, w2
+     994:	b.cc	a3c <grub_fdt_check_header+0xbc>  // b.lo, b.ul, b.last
+     998:	tst	x0, #0x3
+     99c:	b.ne	a3c <grub_fdt_check_header+0xbc>  // b.any
+     9a0:	ldr	w3, [x0]
+     9a4:	mov	w1, #0xdd0                 	// #3536
+     9a8:	movk	w1, #0xedfe, lsl #16
+     9ac:	cmp	w3, w1
+     9b0:	b.ne	a3c <grub_fdt_check_header+0xbc>  // b.any
+     9b4:	ldr	w1, [x0, #20]
+     9b8:	rev	w1, w1
+     9bc:	cmp	w1, #0x10
+     9c0:	b.ls	a3c <grub_fdt_check_header+0xbc>  // b.plast
+     9c4:	ldr	w1, [x0, #24]
+     9c8:	rev	w1, w1
+     9cc:	cmp	w1, #0x11
+     9d0:	b.hi	a3c <grub_fdt_check_header+0xbc>  // b.pmore
+     9d4:	ldr	w1, [x0, #8]
+     9d8:	rev	w1, w1
+     9dc:	tst	x1, #0x3
+     9e0:	b.ne	a3c <grub_fdt_check_header+0xbc>  // b.any
+     9e4:	ldr	w3, [x0, #36]
+     9e8:	rev	w3, w3
+     9ec:	tst	x3, #0x3
+     9f0:	b.ne	a3c <grub_fdt_check_header+0xbc>  // b.any
+     9f4:	add	w1, w1, w3
+     9f8:	cmp	w2, w1
+     9fc:	b.cc	a3c <grub_fdt_check_header+0xbc>  // b.lo, b.ul, b.last
+     a00:	ldr	w1, [x0, #12]
+     a04:	ldr	w3, [x0, #32]
+     a08:	rev	w1, w1
+     a0c:	rev	w3, w3
+     a10:	add	w1, w1, w3
+     a14:	cmp	w2, w1
+     a18:	b.cc	a3c <grub_fdt_check_header+0xbc>  // b.lo, b.ul, b.last
+     a1c:	ldr	w0, [x0, #16]
+     a20:	rev	w0, w0
+     a24:	tst	x0, #0x7
+     a28:	b.ne	a3c <grub_fdt_check_header+0xbc>  // b.any
+     a2c:	sub	x2, x2, #0x10
+     a30:	cmp	x2, w0, uxtw
+     a34:	csetm	w0, cc  // cc = lo, ul, last
+     a38:	ret
+     a3c:	mov	w0, #0xffffffff            	// #-1
+     a40:	ret
+     a44:	nop
+
+0000000000000a48 <grub_fdt_next_node>:
+     a48:	ldr	w2, [x0, #8]
+     a4c:	ldr	w4, [x0, #36]
+     a50:	rev	w6, w2
+     a54:	add	w2, w1, w6
+     a58:	rev	w4, w4
+     a5c:	and	x2, x2, #0xfffffffc
+     a60:	add	x4, x4, w6, uxtw
+     a64:	add	x2, x0, x2
+     a68:	add	x4, x4, x0
+     a6c:	cmp	x4, x2
+     a70:	b.ls	aa0 <grub_fdt_next_node+0x58>  // b.plast
+     a74:	mov	x5, x0
+     a78:	sub	x7, x4, #0x4
+     a7c:	mov	w3, #0x1                   	// #1
+     a80:	ldr	w0, [x2]
+     a84:	rev	w0, w0
+     a88:	cmp	w0, #0x3
+     a8c:	b.eq	aa8 <grub_fdt_next_node+0x60>  // b.none
+     a90:	cmp	w0, #0x4
+     a94:	b.eq	b14 <grub_fdt_next_node+0xcc>  // b.none
+     a98:	cmp	w0, #0x1
+     a9c:	b.eq	ad8 <grub_fdt_next_node+0x90>  // b.none
+     aa0:	mov	w0, #0xffffffff            	// #-1
+     aa4:	ret
+     aa8:	cmp	x2, x7
+     aac:	b.cs	aa0 <grub_fdt_next_node+0x58>  // b.hs, b.nlast
+     ab0:	ldr	w0, [x2, #4]
+     ab4:	rev	w0, w0
+     ab8:	add	w0, w0, #0x3
+     abc:	and	x0, x0, #0xfffffffc
+     ac0:	add	x0, x0, #0xc
+     ac4:	add	x2, x2, x0
+     ac8:	cmp	x4, x2
+     acc:	mov	w3, #0x0                   	// #0
+     ad0:	b.hi	a80 <grub_fdt_next_node+0x38>  // b.pmore
+     ad4:	b	aa0 <grub_fdt_next_node+0x58>
+     ad8:	add	x1, x2, #0x4
+     adc:	cbnz	w3, b1c <grub_fdt_next_node+0xd4>
+     ae0:	ldrb	w0, [x2, #4]
+     ae4:	cmp	w0, #0x0
+     ae8:	ccmp	x4, x1, #0x0, ne  // ne = any
+     aec:	b.ls	b00 <grub_fdt_next_node+0xb8>  // b.plast
+     af0:	ldrb	w0, [x1, #1]!
+     af4:	cmp	w0, #0x0
+     af8:	ccmp	x4, x1, #0x0, ne  // ne = any
+     afc:	b.hi	af0 <grub_fdt_next_node+0xa8>  // b.pmore
+     b00:	sub	x2, x2, x5
+     b04:	cmp	x4, x1
+     b08:	sub	w2, w2, w6
+     b0c:	csinv	w0, w2, wzr, hi  // hi = pmore
+     b10:	ret
+     b14:	add	x2, x2, #0x4
+     b18:	b	ac8 <grub_fdt_next_node+0x80>
+     b1c:	stp	x29, x30, [sp, #-16]!
+     b20:	mov	x29, sp
+     b24:	mov	x0, x5
+     b28:	bl	4d8 <get_next_node>
+     b2c:	mov	x2, x0
+     b30:	cmp	x4, x2
+     b34:	mov	w3, #0x0                   	// #0
+     b38:	b.ls	b5c <grub_fdt_next_node+0x114>  // b.plast
+     b3c:	ldr	w0, [x2]
+     b40:	rev	w0, w0
+     b44:	cmp	w0, #0x3
+     b48:	b.eq	bac <grub_fdt_next_node+0x164>  // b.none
+     b4c:	cmp	w0, #0x4
+     b50:	b.eq	ba4 <grub_fdt_next_node+0x15c>  // b.none
+     b54:	cmp	w0, #0x1
+     b58:	b.eq	b68 <grub_fdt_next_node+0x120>  // b.none
+     b5c:	mov	w0, #0xffffffff            	// #-1
+     b60:	ldp	x29, x30, [sp], #16
+     b64:	ret
+     b68:	add	x1, x2, #0x4
+     b6c:	cbnz	w3, b24 <grub_fdt_next_node+0xdc>
+     b70:	ldrb	w0, [x2, #4]
+     b74:	cmp	w0, #0x0
+     b78:	ccmp	x4, x1, #0x0, ne  // ne = any
+     b7c:	b.ls	b90 <grub_fdt_next_node+0x148>  // b.plast
+     b80:	ldrb	w0, [x1, #1]!
+     b84:	cmp	w0, #0x0
+     b88:	ccmp	x4, x1, #0x0, ne  // ne = any
+     b8c:	b.hi	b80 <grub_fdt_next_node+0x138>  // b.pmore
+     b90:	sub	x2, x2, x5
+     b94:	cmp	x4, x1
+     b98:	sub	w2, w2, w6
+     b9c:	csinv	w0, w2, wzr, hi  // hi = pmore
+     ba0:	b	b60 <grub_fdt_next_node+0x118>
+     ba4:	add	x2, x2, #0x4
+     ba8:	b	b30 <grub_fdt_next_node+0xe8>
+     bac:	cmp	x2, x7
+     bb0:	b.cs	b5c <grub_fdt_next_node+0x114>  // b.hs, b.nlast
+     bb4:	ldr	w0, [x2, #4]
+     bb8:	rev	w0, w0
+     bbc:	add	w0, w0, #0x3
+     bc0:	and	x0, x0, #0xfffffffc
+     bc4:	add	x0, x0, #0xc
+     bc8:	add	x2, x2, x0
+     bcc:	b	b30 <grub_fdt_next_node+0xe8>
+
+0000000000000bd0 <grub_fdt_first_node>:
+     bd0:	mov	x5, x0
+     bd4:	tst	x1, #0x3
+     bd8:	b.ne	cb8 <grub_fdt_first_node+0xe8>  // b.any
+     bdc:	ldr	w0, [x0, #8]
+     be0:	ldr	w3, [x5, #36]
+     be4:	rev	w4, w0
+     be8:	rev	w6, w0
+     bec:	add	x4, x5, x4
+     bf0:	rev	w3, w3
+     bf4:	add	x2, x4, w1, uxtw
+     bf8:	add	x3, x3, x4
+     bfc:	cmp	x2, x3
+     c00:	b.cs	cb8 <grub_fdt_first_node+0xe8>  // b.hs, b.nlast
+     c04:	ldr	w0, [x4, w1, uxtw]
+     c08:	rev	w0, w0
+     c0c:	cmp	w0, #0x1
+     c10:	b.ne	cb8 <grub_fdt_first_node+0xe8>  // b.any
+     c14:	add	x1, x2, #0x4
+     c18:	b	c28 <grub_fdt_first_node+0x58>
+     c1c:	ldrb	w4, [x2], #1
+     c20:	mov	x1, x2
+     c24:	cbz	w4, c34 <grub_fdt_first_node+0x64>
+     c28:	mov	x2, x1
+     c2c:	cmp	x1, x3
+     c30:	b.cc	c1c <grub_fdt_first_node+0x4c>  // b.lo, b.ul, b.last
+     c34:	add	x1, x1, #0x3
+     c38:	and	x1, x1, #0xfffffffffffffffc
+     c3c:	cmp	x3, x1
+     c40:	b.ls	cb8 <grub_fdt_first_node+0xe8>  // b.plast
+     c44:	sub	x0, x3, #0x4
+     c48:	ldr	w2, [x1]
+     c4c:	rev	w2, w2
+     c50:	cmp	w2, #0x3
+     c54:	b.eq	cc0 <grub_fdt_first_node+0xf0>  // b.none
+     c58:	cmp	w2, #0x4
+     c5c:	b.eq	cac <grub_fdt_first_node+0xdc>  // b.none
+     c60:	cmp	w2, #0x1
+     c64:	mov	w0, #0xffffffff            	// #-1
+     c68:	b.eq	c70 <grub_fdt_first_node+0xa0>  // b.none
+     c6c:	ret
+     c70:	ldrb	w0, [x1, #4]
+     c74:	add	x2, x1, #0x4
+     c78:	cmp	w0, #0x0
+     c7c:	ccmp	x3, x2, #0x0, ne  // ne = any
+     c80:	b.ls	c98 <grub_fdt_first_node+0xc8>  // b.plast
+     c84:	nop
+     c88:	ldrb	w4, [x2, #1]!
+     c8c:	cmp	w4, #0x0
+     c90:	ccmp	x3, x2, #0x0, ne  // ne = any
+     c94:	b.hi	c88 <grub_fdt_first_node+0xb8>  // b.pmore
+     c98:	sub	x1, x1, x5
+     c9c:	cmp	x3, x2
+     ca0:	sub	w0, w1, w6
+     ca4:	csinv	w0, w0, wzr, hi  // hi = pmore
+     ca8:	ret
+     cac:	add	x1, x1, #0x4
+     cb0:	cmp	x3, x1
+     cb4:	b.hi	c48 <grub_fdt_first_node+0x78>  // b.pmore
+     cb8:	mov	w0, #0xffffffff            	// #-1
+     cbc:	ret
+     cc0:	cmp	x1, x0
+     cc4:	b.cs	cb8 <grub_fdt_first_node+0xe8>  // b.hs, b.nlast
+     cc8:	ldr	w2, [x1, #4]
+     ccc:	rev	w2, w2
+     cd0:	add	w2, w2, #0x3
+     cd4:	and	x2, x2, #0xfffffffc
+     cd8:	add	x2, x2, #0xc
+     cdc:	add	x1, x1, x2
+     ce0:	b	cb0 <grub_fdt_first_node+0xe0>
+     ce4:	nop
+
+0000000000000ce8 <grub_fdt_find_subnode>:
+     ce8:	tst	x1, #0x3
+     cec:	b.ne	e6c <grub_fdt_find_subnode+0x184>  // b.any
+     cf0:	stp	x29, x30, [sp, #-64]!
+     cf4:	mov	x29, sp
+     cf8:	stp	x21, x22, [sp, #32]
+     cfc:	mov	x22, x0
+     d00:	ldr	w0, [x0, #8]
+     d04:	stp	x19, x20, [sp, #16]
+     d08:	ldr	w20, [x22, #36]
+     d0c:	rev	w0, w0
+     d10:	add	x0, x0, x22
+     d14:	rev	w20, w20
+     d18:	add	x19, x0, w1, uxtw
+     d1c:	add	x20, x20, x0
+     d20:	cmp	x19, x20
+     d24:	b.cs	de0 <grub_fdt_find_subnode+0xf8>  // b.hs, b.nlast
+     d28:	ldr	w0, [x0, w1, uxtw]
+     d2c:	rev	w0, w0
+     d30:	cmp	w0, #0x1
+     d34:	b.ne	de0 <grub_fdt_find_subnode+0xf8>  // b.any
+     d38:	mov	x21, x2
+     d3c:	add	x19, x19, #0x4
+     d40:	str	x23, [sp, #48]
+     d44:	b	d54 <grub_fdt_find_subnode+0x6c>
+     d48:	ldrb	w1, [x0], #1
+     d4c:	mov	x19, x0
+     d50:	cbz	w1, d60 <grub_fdt_find_subnode+0x78>
+     d54:	mov	x0, x19
+     d58:	cmp	x19, x20
+     d5c:	b.cc	d48 <grub_fdt_find_subnode+0x60>  // b.lo, b.ul, b.last
+     d60:	add	x19, x19, #0x3
+     d64:	sub	x23, x20, #0x4
+     d68:	and	x19, x19, #0xfffffffffffffffc
+     d6c:	mov	w2, #0x0                   	// #0
+     d70:	cmp	x19, x20
+     d74:	b.cs	ddc <grub_fdt_find_subnode+0xf4>  // b.hs, b.nlast
+     d78:	ldr	w1, [x19]
+     d7c:	rev	w1, w1
+     d80:	cmp	w1, #0x3
+     d84:	b.eq	db0 <grub_fdt_find_subnode+0xc8>  // b.none
+     d88:	cmp	w1, #0x4
+     d8c:	b.eq	e50 <grub_fdt_find_subnode+0x168>  // b.none
+     d90:	cmp	w1, #0x1
+     d94:	b.eq	df4 <grub_fdt_find_subnode+0x10c>  // b.none
+     d98:	ldr	x23, [sp, #48]
+     d9c:	mov	w0, #0xffffffff            	// #-1
+     da0:	ldp	x19, x20, [sp, #16]
+     da4:	ldp	x21, x22, [sp, #32]
+     da8:	ldp	x29, x30, [sp], #64
+     dac:	ret
+     db0:	cmp	x19, x23
+     db4:	b.cs	ddc <grub_fdt_find_subnode+0xf4>  // b.hs, b.nlast
+     db8:	ldr	w0, [x19, #4]
+     dbc:	rev	w0, w0
+     dc0:	add	w0, w0, #0x3
+     dc4:	and	x0, x0, #0xfffffffc
+     dc8:	add	x0, x0, #0xc
+     dcc:	add	x19, x19, x0
+     dd0:	cmp	x20, x19
+     dd4:	mov	w2, #0x0                   	// #0
+     dd8:	b.hi	d78 <grub_fdt_find_subnode+0x90>  // b.pmore
+     ddc:	ldr	x23, [sp, #48]
+     de0:	mov	w0, #0xffffffff            	// #-1
+     de4:	ldp	x19, x20, [sp, #16]
+     de8:	ldp	x21, x22, [sp, #32]
+     dec:	ldp	x29, x30, [sp], #64
+     df0:	ret
+     df4:	add	x0, x19, #0x4
+     df8:	cbnz	w2, e58 <grub_fdt_find_subnode+0x170>
+     dfc:	ldrb	w1, [x19, #4]
+     e00:	mov	x2, x0
+     e04:	cmp	w1, #0x0
+     e08:	ccmp	x20, x0, #0x0, ne  // ne = any
+     e0c:	b.ls	e20 <grub_fdt_find_subnode+0x138>  // b.plast
+     e10:	ldrb	w1, [x2, #1]!
+     e14:	cmp	w1, #0x0
+     e18:	ccmp	x20, x2, #0x0, ne  // ne = any
+     e1c:	b.hi	e10 <grub_fdt_find_subnode+0x128>  // b.pmore
+     e20:	cmp	x20, x2
+     e24:	b.ls	ddc <grub_fdt_find_subnode+0xf4>  // b.plast
+     e28:	mov	x1, x21
+     e2c:	bl	0 <grub_strcmp>
+     e30:	mov	w2, #0x1                   	// #1
+     e34:	cbnz	w0, d70 <grub_fdt_find_subnode+0x88>
+     e38:	ldr	w0, [x22, #8]
+     e3c:	sub	x19, x19, x22
+     e40:	ldr	x23, [sp, #48]
+     e44:	rev	w0, w0
+     e48:	sub	w0, w19, w0
+     e4c:	b	da0 <grub_fdt_find_subnode+0xb8>
+     e50:	add	x19, x19, #0x4
+     e54:	b	dd0 <grub_fdt_find_subnode+0xe8>
+     e58:	mov	x1, x0
+     e5c:	mov	x0, x22
+     e60:	bl	4d8 <get_next_node>
+     e64:	mov	x19, x0
+     e68:	b	dd0 <grub_fdt_find_subnode+0xe8>
+     e6c:	mov	w0, #0xffffffff            	// #-1
+     e70:	ret
+     e74:	nop
+
+0000000000000e78 <grub_fdt_get_nodename>:
+     e78:	ldr	w2, [x0, #8]
+     e7c:	mov	w1, w1
+     e80:	add	x1, x1, #0x4
+     e84:	rev	w2, w2
+     e88:	add	x1, x1, x2
+     e8c:	add	x0, x0, x1
+     e90:	ret
+     e94:	nop
+
+0000000000000e98 <grub_fdt_add_subnode>:
+     e98:	stp	x29, x30, [sp, #-64]!
+     e9c:	mov	x29, sp
+     ea0:	stp	x19, x20, [sp, #16]
+     ea4:	mov	w19, w1
+     ea8:	mov	x20, x0
+     eac:	mov	x0, x2
+     eb0:	stp	x21, x22, [sp, #32]
+     eb4:	mov	x21, x2
+     eb8:	bl	0 <grub_strlen>
+     ebc:	ands	w2, w19, #0x3
+     ec0:	b.ne	104c <grub_fdt_add_subnode+0x1b4>  // b.any
+     ec4:	add	w1, w0, #0x4
+     ec8:	ldr	w0, [x20, #16]
+     ecc:	and	w1, w1, #0xfffffffc
+     ed0:	sub	x5, x20, #0x10
+     ed4:	rev	w0, w0
+     ed8:	add	w1, w1, #0x8
+     edc:	add	x0, x0, x20
+     ee0:	mov	w4, #0x10                  	// #16
+     ee4:	stp	x23, x24, [sp, #48]
+     ee8:	ldr	x3, [x0]
+     eec:	cbnz	x3, ef8 <grub_fdt_add_subnode+0x60>
+     ef0:	ldr	x3, [x0, #8]
+     ef4:	cbz	x3, 1054 <grub_fdt_add_subnode+0x1bc>
+     ef8:	ldr	w3, [x20, #4]
+     efc:	add	x0, x0, #0x10
+     f00:	add	w4, w4, #0x10
+     f04:	rev	w3, w3
+     f08:	add	x3, x5, x3
+     f0c:	cmp	x0, x3
+     f10:	b.ls	ee8 <grub_fdt_add_subnode+0x50>  // b.plast
+     f14:	cmp	w1, w2
+     f18:	b.hi	1048 <grub_fdt_add_subnode+0x1b0>  // b.pmore
+     f1c:	mov	x0, x20
+     f20:	bl	6f0 <rearrange_blocks>
+     f24:	tbnz	w0, #31, 1048 <grub_fdt_add_subnode+0x1b0>
+     f28:	ldr	w22, [x20, #8]
+     f2c:	mov	x0, x21
+     f30:	ldr	w23, [x20, #36]
+     f34:	bl	0 <grub_strlen>
+     f38:	rev	w22, w22
+     f3c:	mov	x1, x0
+     f40:	add	x22, x20, x22
+     f44:	rev	w23, w23
+     f48:	add	x19, x22, w19, sxtw
+     f4c:	add	x23, x23, x22
+     f50:	add	x19, x19, #0x4
+     f54:	b	f64 <grub_fdt_add_subnode+0xcc>
+     f58:	ldrb	w2, [x0], #1
+     f5c:	mov	x19, x0
+     f60:	cbz	w2, f70 <grub_fdt_add_subnode+0xd8>
+     f64:	mov	x0, x19
+     f68:	cmp	x23, x19
+     f6c:	b.hi	f58 <grub_fdt_add_subnode+0xc0>  // b.pmore
+     f70:	add	x19, x19, #0x3
+     f74:	and	x19, x19, #0xfffffffffffffffc
+     f78:	cmp	x23, x19
+     f7c:	b.ls	1048 <grub_fdt_add_subnode+0x1b0>  // b.plast
+     f80:	ldr	w0, [x19]
+     f84:	rev	w0, w0
+     f88:	cmp	w0, #0x3
+     f8c:	b.eq	1084 <grub_fdt_add_subnode+0x1ec>  // b.none
+     f90:	b.hi	1034 <grub_fdt_add_subnode+0x19c>  // b.pmore
+     f94:	sub	w3, w0, #0x1
+     f98:	mov	w0, #0xffffffff            	// #-1
+     f9c:	cmp	w3, #0x1
+     fa0:	b.hi	1020 <grub_fdt_add_subnode+0x188>  // b.pmore
+     fa4:	add	w22, w1, #0x4
+     fa8:	sub	x2, x23, x19
+     fac:	and	w22, w22, #0xfffffffc
+     fb0:	mov	x1, x19
+     fb4:	add	w22, w22, #0x8
+     fb8:	ldr	w23, [x20, #36]
+     fbc:	add	x24, x19, w22, uxtw
+     fc0:	rev	w23, w23
+     fc4:	mov	x0, x24
+     fc8:	bl	0 <grub_memmove>
+     fcc:	mov	x0, x19
+     fd0:	mov	w2, #0x1000000             	// #16777216
+     fd4:	mov	x1, x21
+     fd8:	sub	x19, x19, x20
+     fdc:	add	w22, w22, w23
+     fe0:	str	w2, [x0], #4
+     fe4:	rev	w22, w22
+     fe8:	stur	wzr, [x24, #-8]
+     fec:	bl	0 <grub_strcpy>
+     ff0:	mov	w0, #0x2000000             	// #33554432
+     ff4:	stur	w0, [x24, #-4]
+     ff8:	ldp	x23, x24, [sp, #48]
+     ffc:	str	w22, [x20, #36]
+    1000:	ldr	w0, [x20, #8]
+    1004:	rev	w0, w0
+    1008:	sub	w0, w19, w0
+    100c:	ldp	x19, x20, [sp, #16]
+    1010:	ldp	x21, x22, [sp, #32]
+    1014:	ldp	x29, x30, [sp], #64
+    1018:	ret
+    101c:	mov	w0, #0xffffffff            	// #-1
+    1020:	ldp	x19, x20, [sp, #16]
+    1024:	ldp	x21, x22, [sp, #32]
+    1028:	ldp	x23, x24, [sp, #48]
+    102c:	ldp	x29, x30, [sp], #64
+    1030:	ret
+    1034:	cmp	w0, #0x4
+    1038:	b.ne	101c <grub_fdt_add_subnode+0x184>  // b.any
+    103c:	add	x19, x19, #0x4
+    1040:	cmp	x23, x19
+    1044:	b.hi	f80 <grub_fdt_add_subnode+0xe8>  // b.pmore
+    1048:	ldp	x23, x24, [sp, #48]
+    104c:	mov	w0, #0xffffffff            	// #-1
+    1050:	b	100c <grub_fdt_add_subnode+0x174>
+    1054:	tbnz	w4, #31, f14 <grub_fdt_add_subnode+0x7c>
+    1058:	ldp	w0, w5, [x20, #32]
+    105c:	mov	w2, #0xffffffd8            	// #-40
+    1060:	ldr	w3, [x20, #4]
+    1064:	sub	w2, w2, w4
+    1068:	rev	w0, w0
+    106c:	rev	w4, w5
+    1070:	add	w0, w0, w4
+    1074:	rev	w3, w3
+    1078:	sub	w2, w2, w0
+    107c:	add	w2, w2, w3
+    1080:	b	f14 <grub_fdt_add_subnode+0x7c>
+    1084:	ldr	w0, [x19, #4]
+    1088:	rev	w0, w0
+    108c:	add	w0, w0, #0x3
+    1090:	and	x0, x0, #0xfffffffc
+    1094:	add	x0, x0, #0xc
+    1098:	add	x19, x19, x0
+    109c:	cmp	x23, x19
+    10a0:	b.hi	f80 <grub_fdt_add_subnode+0xe8>  // b.pmore
+    10a4:	b	1048 <grub_fdt_add_subnode+0x1b0>
+
+00000000000010a8 <grub_fdt_get_prop>:
+    10a8:	ldr	w6, [x0, #36]
+    10ac:	rev	w6, w6
+    10b0:	cmp	w1, w6
+    10b4:	b.cs	1128 <grub_fdt_get_prop+0x80>  // b.hs, b.nlast
+    10b8:	mov	w4, w1
+    10bc:	tst	x4, #0x3
+    10c0:	b.ne	1128 <grub_fdt_get_prop+0x80>  // b.any
+    10c4:	stp	x29, x30, [sp, #-32]!
+    10c8:	add	x4, x0, w1, uxtw
+    10cc:	mov	x29, sp
+    10d0:	str	x19, [sp, #16]
+    10d4:	mov	x19, x3
+    10d8:	ldr	w3, [x0, #8]
+    10dc:	rev	w3, w3
+    10e0:	ldr	w3, [x4, w3, uxtw]
+    10e4:	rev	w3, w3
+    10e8:	cmp	w3, #0x1
+    10ec:	b.ne	1118 <grub_fdt_get_prop+0x70>  // b.any
+    10f0:	bl	5c8 <find_prop>
+    10f4:	cbz	x0, 1118 <grub_fdt_get_prop+0x70>
+    10f8:	cbz	x19, 1108 <grub_fdt_get_prop+0x60>
+    10fc:	ldr	w1, [x0, #4]
+    1100:	rev	w1, w1
+    1104:	str	w1, [x19]
+    1108:	add	x0, x0, #0xc
+    110c:	ldr	x19, [sp, #16]
+    1110:	ldp	x29, x30, [sp], #32
+    1114:	ret
+    1118:	mov	x0, #0x0                   	// #0
+    111c:	ldr	x19, [sp, #16]
+    1120:	ldp	x29, x30, [sp], #32
+    1124:	ret
+    1128:	mov	x0, #0x0                   	// #0
+    112c:	ret
+
+0000000000001130 <grub_fdt_set_prop>:
+    1130:	stp	x29, x30, [sp, #-112]!
+    1134:	mov	x29, sp
+    1138:	stp	x19, x20, [sp, #16]
+    113c:	mov	x20, x3
+    1140:	ldr	w3, [x0, #36]
+    1144:	mov	w19, w1
+    1148:	rev	w3, w3
+    114c:	cmp	w19, w3
+    1150:	b.cs	1324 <grub_fdt_set_prop+0x1f4>  // b.hs, b.nlast
+    1154:	stp	x21, x22, [sp, #32]
+    1158:	ands	w21, w19, #0x3
+    115c:	b.ne	14b4 <grub_fdt_set_prop+0x384>  // b.any
+    1160:	ldr	w3, [x0, #8]
+    1164:	stp	x27, x28, [sp, #80]
+    1168:	mov	w28, w4
+    116c:	rev	w3, w3
+    1170:	add	x4, x0, x19
+    1174:	stp	x25, x26, [sp, #64]
+    1178:	add	x19, x19, #0x4
+    117c:	mov	x25, x0
+    1180:	ldr	w3, [x4, w3, uxtw]
+    1184:	rev	w3, w3
+    1188:	cmp	w3, #0x1
+    118c:	b.ne	14a0 <grub_fdt_set_prop+0x370>  // b.any
+    1190:	add	w27, w28, #0x3
+    1194:	mov	x22, x2
+    1198:	and	w27, w27, #0xfffffffc
+    119c:	stp	x23, x24, [sp, #48]
+    11a0:	bl	5c8 <find_prop>
+    11a4:	mov	x26, x0
+    11a8:	cbz	x0, 1478 <grub_fdt_set_prop+0x348>
+    11ac:	ldr	w0, [x0, #4]
+    11b0:	rev	w0, w0
+    11b4:	add	w0, w0, #0x3
+    11b8:	and	w7, w0, #0xfffffffc
+    11bc:	cmp	wzr, w0, lsr #2
+    11c0:	lsr	w0, w0, #2
+    11c4:	b.eq	12a0 <grub_fdt_set_prop+0x170>  // b.none
+    11c8:	add	x1, x26, #0xc
+    11cc:	sub	w2, w0, #0x1
+    11d0:	cmp	w2, #0x5
+    11d4:	ubfx	w1, w1, #2, #1
+    11d8:	b.ls	1498 <grub_fdt_set_prop+0x368>  // b.plast
+    11dc:	mov	w4, #0x0                   	// #0
+    11e0:	cbz	w1, 11f0 <grub_fdt_set_prop+0xc0>
+    11e4:	mov	w4, w1
+    11e8:	mov	w2, #0x4000000             	// #67108864
+    11ec:	str	w2, [x26, #12]
+    11f0:	mov	w3, w1
+    11f4:	sub	w2, w0, w1
+    11f8:	add	x3, x3, #0x3
+    11fc:	mov	x1, #0x0                   	// #0
+    1200:	lsr	w6, w2, #1
+    1204:	mov	x5, #0x400000004000000     	// #288230376218820608
+    1208:	add	x3, x26, x3, lsl #2
+    120c:	nop
+    1210:	str	x5, [x3, x1, lsl #3]
+    1214:	add	x1, x1, #0x1
+    1218:	cmp	w6, w1
+    121c:	b.hi	1210 <grub_fdt_set_prop+0xe0>  // b.pmore
+    1220:	and	w3, w2, #0xfffffffe
+    1224:	add	w1, w3, w4
+    1228:	cmp	w3, w2
+    122c:	b.eq	12a0 <grub_fdt_set_prop+0x170>  // b.none
+    1230:	add	x4, x26, w1, uxtw #2
+    1234:	mov	w2, #0x4000000             	// #67108864
+    1238:	add	w3, w1, #0x1
+    123c:	cmp	w3, w0
+    1240:	str	w2, [x4, #12]
+    1244:	b.cs	12a0 <grub_fdt_set_prop+0x170>  // b.hs, b.nlast
+    1248:	add	x3, x26, w3, uxtw #2
+    124c:	add	w4, w1, #0x2
+    1250:	cmp	w4, w0
+    1254:	str	w2, [x3, #12]
+    1258:	b.cs	12a0 <grub_fdt_set_prop+0x170>  // b.hs, b.nlast
+    125c:	add	x4, x26, w4, uxtw #2
+    1260:	add	w3, w1, #0x3
+    1264:	cmp	w0, w3
+    1268:	str	w2, [x4, #12]
+    126c:	b.ls	12a0 <grub_fdt_set_prop+0x170>  // b.plast
+    1270:	add	x3, x26, w3, uxtw #2
+    1274:	add	w4, w1, #0x4
+    1278:	cmp	w4, w0
+    127c:	str	w2, [x3, #12]
+    1280:	b.cs	12a0 <grub_fdt_set_prop+0x170>  // b.hs, b.nlast
+    1284:	add	x4, x26, w4, uxtw #2
+    1288:	add	w1, w1, #0x5
+    128c:	cmp	w0, w1
+    1290:	str	w2, [x4, #12]
+    1294:	b.ls	12a0 <grub_fdt_set_prop+0x170>  // b.plast
+    1298:	add	x1, x26, w1, uxtw #2
+    129c:	str	w2, [x1, #12]
+    12a0:	cmp	w7, w28
+    12a4:	b.cs	1408 <grub_fdt_set_prop+0x2d8>  // b.hs, b.nlast
+    12a8:	ldr	w23, [x26, #8]
+    12ac:	add	w4, w27, #0xc
+    12b0:	mov	w24, w4
+    12b4:	mov	x1, #0x400000004000000     	// #288230376218820608
+    12b8:	rev	w23, w23
+    12bc:	mov	w0, #0x4000000             	// #67108864
+    12c0:	mov	w3, #0x1                   	// #1
+    12c4:	str	x1, [x26]
+    12c8:	str	w0, [x26, #8]
+    12cc:	ldr	w5, [x25, #16]
+    12d0:	sub	x2, x25, #0x10
+    12d4:	mov	w0, #0x10                  	// #16
+    12d8:	rev	w5, w5
+    12dc:	add	x5, x25, x5
+    12e0:	ldr	x1, [x5]
+    12e4:	cbnz	x1, 12f0 <grub_fdt_set_prop+0x1c0>
+    12e8:	ldr	x1, [x5, #8]
+    12ec:	cbz	x1, 1448 <grub_fdt_set_prop+0x318>
+    12f0:	ldr	w1, [x25, #4]
+    12f4:	add	x5, x5, #0x10
+    12f8:	add	w0, w0, #0x10
+    12fc:	rev	w1, w1
+    1300:	add	x1, x2, x1
+    1304:	cmp	x5, x1
+    1308:	b.ls	12e0 <grub_fdt_set_prop+0x1b0>  // b.plast
+    130c:	cmp	w4, w21
+    1310:	b.ls	1334 <grub_fdt_set_prop+0x204>  // b.plast
+    1314:	ldp	x21, x22, [sp, #32]
+    1318:	ldp	x23, x24, [sp, #48]
+    131c:	ldp	x25, x26, [sp, #64]
+    1320:	ldp	x27, x28, [sp, #80]
+    1324:	mov	w0, #0xffffffff            	// #-1
+    1328:	ldp	x19, x20, [sp, #16]
+    132c:	ldp	x29, x30, [sp], #112
+    1330:	ret
+    1334:	mov	w1, w24
+    1338:	mov	x0, x25
+    133c:	str	w3, [sp, #108]
+    1340:	bl	6f0 <rearrange_blocks>
+    1344:	tbnz	w0, #31, 1314 <grub_fdt_set_prop+0x1e4>
+    1348:	ldr	w3, [sp, #108]
+    134c:	cbnz	w3, 1394 <grub_fdt_set_prop+0x264>
+    1350:	ldr	w23, [x25, #32]
+    1354:	mov	x1, x22
+    1358:	ldr	w0, [x25, #12]
+    135c:	rev	w2, w23
+    1360:	rev	w23, w23
+    1364:	rev	w0, w0
+    1368:	add	x0, x0, x2
+    136c:	add	x0, x25, x0
+    1370:	bl	0 <grub_strcpy>
+    1374:	ldr	w21, [x25, #32]
+    1378:	mov	x0, x22
+    137c:	bl	0 <grub_strlen>
+    1380:	rev	w21, w21
+    1384:	add	w21, w21, #0x1
+    1388:	add	w21, w21, w0
+    138c:	rev	w21, w21
+    1390:	str	w21, [x25, #32]
+    1394:	ldr	w0, [x25, #8]
+    1398:	rev	w23, w23
+    139c:	rev	w0, w0
+    13a0:	add	x0, x25, x0
+    13a4:	add	x19, x0, x19
+    13a8:	mov	x0, x19
+    13ac:	bl	0 <grub_strlen>
+    13b0:	ldr	w1, [x25, #8]
+    13b4:	add	x21, x0, #0x4
+    13b8:	ldr	w0, [x25, #36]
+    13bc:	and	x21, x21, #0xfffffffffffffffc
+    13c0:	add	x26, x19, x21
+    13c4:	rev	w1, w1
+    13c8:	rev	w0, w0
+    13cc:	sub	x2, x25, x26
+    13d0:	add	x1, x1, x0
+    13d4:	add	x0, x27, #0xc
+    13d8:	add	x2, x1, x2
+    13dc:	add	x0, x26, x0
+    13e0:	mov	x1, x26
+    13e4:	bl	0 <grub_memmove>
+    13e8:	ldr	w0, [x25, #36]
+    13ec:	mov	w1, #0x3000000             	// #50331648
+    13f0:	rev	w0, w0
+    13f4:	add	w0, w0, w24
+    13f8:	rev	w0, w0
+    13fc:	str	w0, [x25, #36]
+    1400:	str	w1, [x19, x21]
+    1404:	str	w23, [x26, #8]
+    1408:	add	x27, x26, x27
+    140c:	rev	w0, w28
+    1410:	str	w0, [x26, #4]
+    1414:	mov	x1, x20
+    1418:	mov	w2, w28
+    141c:	add	x0, x26, #0xc
+    1420:	str	wzr, [x27, #8]
+    1424:	bl	0 <grub_memmove>
+    1428:	mov	w0, #0x0                   	// #0
+    142c:	ldp	x19, x20, [sp, #16]
+    1430:	ldp	x21, x22, [sp, #32]
+    1434:	ldp	x23, x24, [sp, #48]
+    1438:	ldp	x25, x26, [sp, #64]
+    143c:	ldp	x27, x28, [sp, #80]
+    1440:	ldp	x29, x30, [sp], #112
+    1444:	ret
+    1448:	tbnz	w0, #31, 130c <grub_fdt_set_prop+0x1dc>
+    144c:	ldp	w1, w2, [x25, #32]
+    1450:	mov	w21, #0xffffffd8            	// #-40
+    1454:	sub	w21, w21, w0
+    1458:	rev	w2, w2
+    145c:	rev	w0, w1
+    1460:	ldr	w1, [x25, #4]
+    1464:	add	w0, w0, w2
+    1468:	sub	w21, w21, w0
+    146c:	rev	w1, w1
+    1470:	add	w21, w21, w1
+    1474:	b	130c <grub_fdt_set_prop+0x1dc>
+    1478:	mov	x0, x22
+    147c:	add	w24, w27, #0xc
+    1480:	bl	0 <grub_strlen>
+    1484:	add	x4, x0, #0x1
+    1488:	add	w4, w24, w4
+    148c:	mov	w23, #0x0                   	// #0
+    1490:	mov	w3, #0x0                   	// #0
+    1494:	b	12cc <grub_fdt_set_prop+0x19c>
+    1498:	mov	w1, #0x0                   	// #0
+    149c:	b	1230 <grub_fdt_set_prop+0x100>
+    14a0:	mov	w0, #0xffffffff            	// #-1
+    14a4:	ldp	x21, x22, [sp, #32]
+    14a8:	ldp	x25, x26, [sp, #64]
+    14ac:	ldp	x27, x28, [sp, #80]
+    14b0:	b	1328 <grub_fdt_set_prop+0x1f8>
+    14b4:	mov	w0, #0xffffffff            	// #-1
+    14b8:	ldp	x21, x22, [sp, #32]
+    14bc:	b	1328 <grub_fdt_set_prop+0x1f8>
+
+00000000000014c0 <grub_fdt_create_empty_tree>:
+    14c0:	cmp	w1, #0x47
+    14c4:	b.ls	1540 <grub_fdt_create_empty_tree+0x80>  // b.plast
+    14c8:	stp	x29, x30, [sp, #-32]!
+    14cc:	mov	w2, w1
+    14d0:	mov	x29, sp
+    14d4:	stp	x19, x20, [sp, #16]
+    14d8:	mov	x19, x0
+    14dc:	mov	w20, w1
+    14e0:	mov	w1, #0x0                   	// #0
+    14e4:	bl	0 <grub_memset>
+    14e8:	mov	x1, #0x2000000             	// #33554432
+    14ec:	mov	x6, #0x38000000            	// #939524096
+    14f0:	mov	x5, #0x28000000            	// #671088640
+    14f4:	mov	w7, #0xdd0                 	// #3536
+    14f8:	rev	w20, w20
+    14fc:	movk	x1, #0x900, lsl #48
+    1500:	mov	w2, #0x1000000             	// #16777216
+    1504:	movk	x6, #0x4800, lsl #48
+    1508:	movk	x5, #0x1100, lsl #48
+    150c:	mov	w4, #0x11000000            	// #285212672
+    1510:	mov	w3, #0x10000000            	// #268435456
+    1514:	movk	w7, #0xedfe, lsl #16
+    1518:	stp	w7, w20, [x19]
+    151c:	mov	w0, #0x0                   	// #0
+    1520:	stp	x6, x5, [x19, #8]
+    1524:	str	w4, [x19, #24]
+    1528:	str	w3, [x19, #36]
+    152c:	str	w2, [x19, #56]
+    1530:	str	x1, [x19, #64]
+    1534:	ldp	x19, x20, [sp, #16]
+    1538:	ldp	x29, x30, [sp], #32
+    153c:	ret
+    1540:	mov	w0, #0xffffffff            	// #-1
+    1544:	ret

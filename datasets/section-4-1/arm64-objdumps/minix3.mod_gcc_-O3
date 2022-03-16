@@ -1,0 +1,708 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//minix3.mod_gcc_-O3:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_mod_init-0xb08>:
+   0:	stp	x29, x30, [sp, #-16]!
+   4:	mov	x29, sp
+   8:	ldr	x0, [x0, #80]
+   c:	bl	0 <grub_free>
+  10:	mov	w0, #0x0                   	// #0
+  14:	ldp	x29, x30, [sp], #16
+  18:	ret
+  1c:	nop
+  20:	stp	x29, x30, [sp, #-144]!
+  24:	mov	x29, sp
+  28:	stp	x27, x28, [sp, #80]
+  2c:	mov	x28, x0
+  30:	ldr	w0, [x0, #40]
+  34:	str	x4, [sp, #104]
+  38:	cmp	x0, x3
+  3c:	b.cc	31c <grub_mod_init-0x7ec>  // b.lo, b.ul, b.last
+  40:	stp	x21, x22, [sp, #32]
+  44:	mov	x22, x1
+  48:	add	x1, x3, x4
+  4c:	stp	x23, x24, [sp, #48]
+  50:	cmp	x0, x1
+  54:	mov	x23, x2
+  58:	stp	x25, x26, [sp, #64]
+  5c:	mov	x26, x5
+  60:	str	x1, [sp, #112]
+  64:	b.cc	2d0 <grub_mod_init-0x838>  // b.lo, b.ul, b.last
+  68:	ldr	x1, [sp, #104]
+  6c:	mov	x0, #0x0                   	// #0
+  70:	cbz	x1, 2e4 <grub_mod_init-0x824>
+  74:	ldr	x0, [sp, #112]
+  78:	stp	x19, x20, [sp, #16]
+  7c:	ldr	x1, [x28, #128]
+  80:	sub	x20, x0, #0x1
+  84:	ubfx	x20, x20, #9, #32
+  88:	lsl	x25, x1, #9
+  8c:	udiv	x20, x20, x1
+  90:	udiv	x7, x3, x25
+  94:	add	w24, w20, #0x1
+  98:	msub	x0, x7, x25, x3
+  9c:	stp	w20, w7, [sp, #96]
+  a0:	str	x0, [sp, #120]
+  a4:	cmp	w24, w7
+  a8:	b.ls	2fc <grub_mod_init-0x80c>  // b.plast
+  ac:	add	x19, x7, #0xe
+  b0:	adrp	x0, 0 <grub_mod_init-0xb08>
+  b4:	mov	w27, w7
+  b8:	ldr	x21, [x0]
+  bc:	add	x19, x28, x19, lsl #2
+  c0:	b	188 <grub_mod_init-0x980>
+  c4:	ldr	w8, [x28, #96]
+  c8:	sub	w20, w27, #0x7
+  cc:	cmp	w8, w20
+  d0:	b.hi	274 <grub_mod_init-0x894>  // b.pmore
+  d4:	umull	x3, w8, w8
+  d8:	sub	w4, w20, w8
+  dc:	mov	w0, w8
+  e0:	sub	w20, w20, w8
+  e4:	cmp	x4, x3
+  e8:	b.cc	298 <grub_mod_init-0x870>  // b.lo, b.ul, b.last
+  ec:	msub	w20, w8, w8, w20
+  f0:	mul	x0, x0, x3
+  f4:	cmp	x0, w20, uxtw
+  f8:	b.hi	1ec <grub_mod_init-0x91c>  // b.pmore
+  fc:	adrp	x0, 0 <grub_mod_init-0xb08>
+ 100:	ldr	x1, [x0]
+ 104:	mov	w0, #0xb                   	// #11
+ 108:	bl	0 <grub_error>
+ 10c:	mov	w0, #0x0                   	// #0
+ 110:	ldr	w1, [x21]
+ 114:	cbnz	w1, 1a0 <grub_mod_init-0x968>
+ 118:	ldr	w1, [sp, #96]
+ 11c:	mov	x3, x25
+ 120:	ldr	x8, [x28, #128]
+ 124:	cmp	w1, w27
+ 128:	b.eq	1d0 <grub_mod_init-0x938>  // b.none
+ 12c:	ldr	w1, [sp, #100]
+ 130:	mov	x20, #0x0                   	// #0
+ 134:	cmp	w1, w27
+ 138:	b.eq	1c0 <grub_mod_init-0x948>  // b.none
+ 13c:	mov	w1, w0
+ 140:	mov	x4, x26
+ 144:	ldr	x0, [x28, #112]
+ 148:	mov	x2, x20
+ 14c:	mul	x1, x1, x8
+ 150:	stp	x22, x23, [x0, #48]
+ 154:	bl	0 <grub_disk_read>
+ 158:	ldr	x1, [x28, #112]
+ 15c:	ldr	w0, [x21]
+ 160:	str	xzr, [x1, #48]
+ 164:	cbnz	w0, 1a0 <grub_mod_init-0x968>
+ 168:	ldr	x1, [x28, #128]
+ 16c:	add	w27, w27, #0x1
+ 170:	cmp	w24, w27
+ 174:	add	x19, x19, #0x4
+ 178:	lsl	x25, x1, #9
+ 17c:	sub	x2, x25, x20
+ 180:	add	x26, x26, x2
+ 184:	b.ls	2fc <grub_mod_init-0x80c>  // b.plast
+ 188:	cmp	w27, #0x6
+ 18c:	b.hi	c4 <grub_mod_init-0xa44>  // b.pmore
+ 190:	ldr	w1, [x21]
+ 194:	ldr	w0, [x19]
+ 198:	cbz	w1, 118 <grub_mod_init-0x9f0>
+ 19c:	nop
+ 1a0:	ldp	x19, x20, [sp, #16]
+ 1a4:	mov	x0, #0xffffffffffffffff    	// #-1
+ 1a8:	ldp	x21, x22, [sp, #32]
+ 1ac:	ldp	x23, x24, [sp, #48]
+ 1b0:	ldp	x25, x26, [sp, #64]
+ 1b4:	ldp	x27, x28, [sp, #80]
+ 1b8:	ldp	x29, x30, [sp], #144
+ 1bc:	ret
+ 1c0:	ldr	x1, [sp, #120]
+ 1c4:	sub	x3, x3, x1
+ 1c8:	mov	x20, x1
+ 1cc:	b	13c <grub_mod_init-0x9cc>
+ 1d0:	ldr	x2, [sp, #112]
+ 1d4:	lsl	x1, x8, #9
+ 1d8:	udiv	x3, x2, x1
+ 1dc:	msub	x3, x3, x1, x2
+ 1e0:	cmp	x3, #0x0
+ 1e4:	csel	x3, x3, x1, ne  // ne = any
+ 1e8:	b	12c <grub_mod_init-0x9dc>
+ 1ec:	udiv	w2, w20, w8
+ 1f0:	ldr	w3, [x28, #92]
+ 1f4:	ldr	x0, [x28, #112]
+ 1f8:	add	x4, sp, #0x8c
+ 1fc:	udiv	w2, w2, w8
+ 200:	mul	x1, x3, x1
+ 204:	mov	x3, #0x4                   	// #4
+ 208:	lsl	x2, x2, #2
+ 20c:	bl	0 <grub_disk_read>
+ 210:	ldr	w8, [x28, #96]
+ 214:	add	x4, sp, #0x8c
+ 218:	ldr	w1, [sp, #140]
+ 21c:	mov	x3, #0x4                   	// #4
+ 220:	ldr	x0, [x28, #128]
+ 224:	udiv	w12, w20, w8
+ 228:	mul	x1, x1, x0
+ 22c:	ldr	x0, [x28, #112]
+ 230:	udiv	w2, w12, w8
+ 234:	msub	w2, w2, w8, w12
+ 238:	lsl	x2, x2, #2
+ 23c:	bl	0 <grub_disk_read>
+ 240:	ldr	w8, [x28, #96]
+ 244:	add	x4, sp, #0x8c
+ 248:	ldr	w1, [sp, #140]
+ 24c:	mov	x3, #0x4                   	// #4
+ 250:	ldr	x0, [x28, #128]
+ 254:	mul	x1, x1, x0
+ 258:	udiv	w2, w20, w8
+ 25c:	ldr	x0, [x28, #112]
+ 260:	msub	w2, w2, w8, w20
+ 264:	lsl	x2, x2, #2
+ 268:	bl	0 <grub_disk_read>
+ 26c:	ldr	w0, [sp, #140]
+ 270:	b	110 <grub_mod_init-0x9f8>
+ 274:	ldr	w8, [x28, #84]
+ 278:	ubfiz	x2, x20, #2, #32
+ 27c:	ldr	x0, [x28, #112]
+ 280:	add	x4, sp, #0x8c
+ 284:	mov	x3, #0x4                   	// #4
+ 288:	mul	x1, x8, x1
+ 28c:	bl	0 <grub_disk_read>
+ 290:	ldr	w0, [sp, #140]
+ 294:	b	110 <grub_mod_init-0x9f8>
+ 298:	ldr	w12, [x28, #88]
+ 29c:	add	x4, sp, #0x8c
+ 2a0:	udiv	w2, w20, w8
+ 2a4:	mov	x3, #0x4                   	// #4
+ 2a8:	ldr	x0, [x28, #112]
+ 2ac:	mul	x1, x12, x1
+ 2b0:	lsl	x2, x2, #2
+ 2b4:	bl	0 <grub_disk_read>
+ 2b8:	ldr	w8, [x28, #96]
+ 2bc:	add	x4, sp, #0x8c
+ 2c0:	ldr	w1, [sp, #140]
+ 2c4:	mov	x3, #0x4                   	// #4
+ 2c8:	ldr	x0, [x28, #128]
+ 2cc:	b	254 <grub_mod_init-0x8b4>
+ 2d0:	sub	x1, x0, x3
+ 2d4:	stp	x1, x0, [sp, #104]
+ 2d8:	mov	x0, #0x0                   	// #0
+ 2dc:	ldr	x1, [sp, #104]
+ 2e0:	cbnz	x1, 74 <grub_mod_init-0xa94>
+ 2e4:	ldp	x21, x22, [sp, #32]
+ 2e8:	ldp	x23, x24, [sp, #48]
+ 2ec:	ldp	x25, x26, [sp, #64]
+ 2f0:	ldp	x27, x28, [sp, #80]
+ 2f4:	ldp	x29, x30, [sp], #144
+ 2f8:	ret
+ 2fc:	ldp	x19, x20, [sp, #16]
+ 300:	ldp	x21, x22, [sp, #32]
+ 304:	ldp	x23, x24, [sp, #48]
+ 308:	ldp	x25, x26, [sp, #64]
+ 30c:	ldp	x27, x28, [sp, #80]
+ 310:	ldr	x0, [sp, #104]
+ 314:	ldp	x29, x30, [sp], #144
+ 318:	ret
+ 31c:	adrp	x1, 0 <grub_mod_init-0xb08>
+ 320:	mov	w0, #0xb                   	// #11
+ 324:	ldr	x1, [x1]
+ 328:	bl	0 <grub_error>
+ 32c:	mov	x0, #0xffffffffffffffff    	// #-1
+ 330:	b	1b4 <grub_mod_init-0x954>
+ 334:	nop
+	...
+ 350:	mov	x6, x0
+ 354:	mov	x5, x1
+ 358:	ldr	x3, [x0, #24]
+ 35c:	mov	x4, x2
+ 360:	ldp	x0, x1, [x0, #80]
+ 364:	ldr	x2, [x6, #96]
+ 368:	b	20 <grub_mod_init-0xae8>
+ 36c:	nop
+ 370:	stp	x29, x30, [sp, #-32]!
+ 374:	mov	x29, sp
+ 378:	stp	x19, x20, [sp, #16]
+ 37c:	mov	x20, x0
+ 380:	mov	x0, #0x88                  	// #136
+ 384:	bl	0 <grub_malloc>
+ 388:	mov	x19, x0
+ 38c:	cbz	x0, 43c <grub_mod_init-0x6cc>
+ 390:	mov	x4, x0
+ 394:	mov	x3, #0x20                  	// #32
+ 398:	mov	x0, x20
+ 39c:	mov	x2, #0x0                   	// #0
+ 3a0:	mov	x1, #0x2                   	// #2
+ 3a4:	bl	0 <grub_disk_read>
+ 3a8:	adrp	x0, 0 <grub_mod_init-0xb08>
+ 3ac:	ldr	x0, [x0]
+ 3b0:	ldr	w0, [x0]
+ 3b4:	cbnz	w0, 420 <grub_mod_init-0x6e8>
+ 3b8:	ldrh	w1, [x19, #24]
+ 3bc:	mov	w0, #0x4d5a                	// #19802
+ 3c0:	cmp	w1, w0
+ 3c4:	b.ne	420 <grub_mod_init-0x6e8>  // b.any
+ 3c8:	ldrh	w1, [x19, #12]
+ 3cc:	mov	w0, #0x3c                  	// #60
+ 3d0:	str	w0, [x19, #120]
+ 3d4:	cmp	w1, #0x13
+ 3d8:	b.hi	420 <grub_mod_init-0x6e8>  // b.pmore
+ 3dc:	ldrh	w0, [x19, #28]
+ 3e0:	mov	w2, #0xffff                	// #65535
+ 3e4:	str	wzr, [x19, #104]
+ 3e8:	str	x20, [x19, #112]
+ 3ec:	cmp	w0, w2
+ 3f0:	b.eq	44c <grub_mod_init-0x6bc>  // b.none
+ 3f4:	and	w2, w0, #0xfffffdff
+ 3f8:	cbz	w2, 420 <grub_mod_init-0x6e8>
+ 3fc:	tst	x0, #0x1ff
+ 400:	b.ne	420 <grub_mod_init-0x6e8>  // b.any
+ 404:	ubfx	x0, x0, #9, #7
+ 408:	add	w1, w1, #0x9
+ 40c:	str	x0, [x19, #128]
+ 410:	lsl	x0, x0, x1
+ 414:	lsr	x0, x0, #2
+ 418:	str	w0, [x19, #96]
+ 41c:	cbnz	w0, 43c <grub_mod_init-0x6cc>
+ 420:	mov	x0, x19
+ 424:	bl	0 <grub_free>
+ 428:	adrp	x1, 0 <grub_mod_init-0xb08>
+ 42c:	mov	w0, #0x9                   	// #9
+ 430:	mov	x19, #0x0                   	// #0
+ 434:	ldr	x1, [x1]
+ 438:	bl	0 <grub_error>
+ 43c:	mov	x0, x19
+ 440:	ldp	x19, x20, [sp, #16]
+ 444:	ldp	x29, x30, [sp], #32
+ 448:	ret
+ 44c:	add	w1, w1, #0x9
+ 450:	mov	x0, #0x2                   	// #2
+ 454:	str	x0, [x19, #128]
+ 458:	lsl	x1, x0, x1
+ 45c:	mov	x0, x19
+ 460:	lsr	x1, x1, #2
+ 464:	str	w1, [x19, #96]
+ 468:	ldp	x19, x20, [sp, #16]
+ 46c:	ldp	x29, x30, [sp], #32
+ 470:	ret
+ 474:	nop
+	...
+ 488:	stp	x29, x30, [sp, #-176]!
+ 48c:	mov	x29, sp
+ 490:	stp	x19, x20, [sp, #16]
+ 494:	mov	x19, x0
+ 498:	stp	x21, x22, [sp, #32]
+ 49c:	add	x21, sp, #0x70
+ 4a0:	stp	x23, x24, [sp, #48]
+ 4a4:	mov	x23, x1
+ 4a8:	stp	x25, x26, [sp, #64]
+ 4ac:	mov	x25, x1
+ 4b0:	add	x26, x0, #0x20
+ 4b4:	str	x27, [sp, #80]
+ 4b8:	ldrb	w0, [x23]
+ 4bc:	cmp	w0, #0x2f
+ 4c0:	b.ne	4d4 <grub_mod_init-0x634>  // b.any
+ 4c4:	nop
+ 4c8:	ldrb	w0, [x23, #1]!
+ 4cc:	cmp	w0, #0x2f
+ 4d0:	b.eq	4c8 <grub_mod_init-0x640>  // b.none
+ 4d4:	cbz	w0, 71c <grub_mod_init-0x3ec>
+ 4d8:	ldrh	w0, [x19, #32]
+ 4dc:	tbz	w0, #14, 708 <grub_mod_init-0x400>
+ 4e0:	mov	x24, x23
+ 4e4:	nop
+ 4e8:	ldrb	w0, [x24, #1]!
+ 4ec:	cmp	w0, #0x2f
+ 4f0:	ccmp	w0, #0x0, #0x4, ne  // ne = any
+ 4f4:	b.ne	4e8 <grub_mod_init-0x620>  // b.any
+ 4f8:	ldr	w0, [x19, #40]
+ 4fc:	cbz	w0, 5b0 <grub_mod_init-0x558>
+ 500:	sub	x27, x24, x23
+ 504:	mov	w20, #0x0                   	// #0
+ 508:	b	564 <grub_mod_init-0x5a4>
+ 50c:	ldrsw	x4, [x19, #120]
+ 510:	add	x3, x22, #0x4
+ 514:	mov	x5, x21
+ 518:	mov	x0, x19
+ 51c:	mov	x2, #0x0                   	// #0
+ 520:	mov	x1, #0x0                   	// #0
+ 524:	bl	20 <grub_mod_init-0xae8>
+ 528:	tbnz	x0, #63, 588 <grub_mod_init-0x580>
+ 52c:	ldr	w3, [x19, #120]
+ 530:	mov	x2, x27
+ 534:	mov	x1, x21
+ 538:	mov	x0, x23
+ 53c:	add	w4, w3, #0x4
+ 540:	add	w20, w20, w4
+ 544:	strb	wzr, [x21, w3, sxtw]
+ 548:	bl	0 <grub_strncmp>
+ 54c:	cbnz	w0, 558 <grub_mod_init-0x5b0>
+ 550:	ldrb	w0, [x21, x27]
+ 554:	cbz	w0, 5ec <grub_mod_init-0x51c>
+ 558:	ldr	w0, [x19, #40]
+ 55c:	cmp	w0, w20
+ 560:	b.ls	5b0 <grub_mod_init-0x558>  // b.plast
+ 564:	mov	w22, w20
+ 568:	add	x5, sp, #0x6c
+ 56c:	mov	x3, x22
+ 570:	mov	x0, x19
+ 574:	mov	x4, #0x4                   	// #4
+ 578:	mov	x2, #0x0                   	// #0
+ 57c:	mov	x1, #0x0                   	// #0
+ 580:	bl	20 <grub_mod_init-0xae8>
+ 584:	tbz	x0, #63, 50c <grub_mod_init-0x5fc>
+ 588:	adrp	x0, 0 <grub_mod_init-0xb08>
+ 58c:	ldr	x0, [x0]
+ 590:	ldr	w0, [x0]
+ 594:	ldp	x19, x20, [sp, #16]
+ 598:	ldp	x21, x22, [sp, #32]
+ 59c:	ldp	x23, x24, [sp, #48]
+ 5a0:	ldp	x25, x26, [sp, #64]
+ 5a4:	ldr	x27, [sp, #80]
+ 5a8:	ldp	x29, x30, [sp], #176
+ 5ac:	ret
+ 5b0:	adrp	x1, 0 <grub_mod_init-0xb08>
+ 5b4:	mov	x2, x25
+ 5b8:	mov	w0, #0x5                   	// #5
+ 5bc:	ldr	x1, [x1]
+ 5c0:	bl	0 <grub_error>
+ 5c4:	adrp	x0, 0 <grub_mod_init-0xb08>
+ 5c8:	ldp	x19, x20, [sp, #16]
+ 5cc:	ldr	x0, [x0]
+ 5d0:	ldp	x21, x22, [sp, #32]
+ 5d4:	ldr	w0, [x0]
+ 5d8:	ldp	x23, x24, [sp, #48]
+ 5dc:	ldp	x25, x26, [sp, #64]
+ 5e0:	ldr	x27, [sp, #80]
+ 5e4:	ldp	x29, x30, [sp], #176
+ 5e8:	ret
+ 5ec:	ldrh	w5, [x19, #6]
+ 5f0:	mov	x4, x26
+ 5f4:	ldr	w0, [sp, #108]
+ 5f8:	mov	x3, #0x40                  	// #64
+ 5fc:	ldrh	w1, [x19, #8]
+ 600:	add	w5, w5, #0x2
+ 604:	sub	w2, w0, #0x1
+ 608:	ldr	w20, [x19, #100]
+ 60c:	add	w5, w5, w1
+ 610:	str	w0, [x19, #100]
+ 614:	ldr	x6, [x19, #128]
+ 618:	sxtw	x5, w5
+ 61c:	lsr	w1, w2, #3
+ 620:	ubfiz	x2, x2, #6, #3
+ 624:	ldr	x0, [x19, #112]
+ 628:	madd	x1, x5, x6, x1
+ 62c:	bl	0 <grub_disk_read>
+ 630:	ldrh	w0, [x19, #32]
+ 634:	mov	w1, #0xa000                	// #40960
+ 638:	and	w0, w0, w1
+ 63c:	cmp	w0, w1
+ 640:	b.eq	64c <grub_mod_init-0x4bc>  // b.none
+ 644:	mov	x23, x24
+ 648:	b	4b8 <grub_mod_init-0x650>
+ 64c:	ldr	w0, [x19, #104]
+ 650:	ldr	w23, [x19, #40]
+ 654:	add	w0, w0, #0x1
+ 658:	str	w0, [x19, #104]
+ 65c:	cmp	w0, #0x8
+ 660:	b.gt	724 <grub_mod_init-0x3e4>
+ 664:	mov	w27, w23
+ 668:	add	x0, x27, #0x1
+ 66c:	bl	0 <grub_malloc>
+ 670:	mov	x22, x0
+ 674:	cbz	x0, 6f0 <grub_mod_init-0x418>
+ 678:	mov	x5, x0
+ 67c:	mov	x4, x27
+ 680:	mov	x0, x19
+ 684:	mov	x3, #0x0                   	// #0
+ 688:	mov	x2, #0x0                   	// #0
+ 68c:	mov	x1, #0x0                   	// #0
+ 690:	bl	20 <grub_mod_init-0xae8>
+ 694:	tbnz	x0, #63, 6f0 <grub_mod_init-0x418>
+ 698:	strb	wzr, [x22, w23, uxtw]
+ 69c:	ldrb	w0, [x22]
+ 6a0:	cmp	w0, #0x2f
+ 6a4:	b.eq	738 <grub_mod_init-0x3d0>  // b.none
+ 6a8:	sub	w2, w20, #0x1
+ 6ac:	lsr	w1, w2, #3
+ 6b0:	ubfiz	x2, x2, #6, #3
+ 6b4:	ldrh	w5, [x19, #6]
+ 6b8:	mov	x4, x26
+ 6bc:	ldrh	w0, [x19, #8]
+ 6c0:	mov	x3, #0x40                  	// #64
+ 6c4:	add	w5, w5, #0x2
+ 6c8:	str	w20, [x19, #100]
+ 6cc:	add	w5, w5, w0
+ 6d0:	ldr	x6, [x19, #128]
+ 6d4:	sxtw	x5, w5
+ 6d8:	ldr	x0, [x19, #112]
+ 6dc:	madd	x1, x5, x6, x1
+ 6e0:	bl	0 <grub_disk_read>
+ 6e4:	mov	x1, x22
+ 6e8:	mov	x0, x19
+ 6ec:	bl	488 <grub_mod_init-0x680>
+ 6f0:	adrp	x0, 0 <grub_mod_init-0xb08>
+ 6f4:	ldr	x0, [x0]
+ 6f8:	ldr	w0, [x0]
+ 6fc:	cbnz	w0, 594 <grub_mod_init-0x574>
+ 700:	mov	x23, x24
+ 704:	b	4b8 <grub_mod_init-0x650>
+ 708:	adrp	x1, 0 <grub_mod_init-0xb08>
+ 70c:	mov	w0, #0x4                   	// #4
+ 710:	ldr	x1, [x1]
+ 714:	bl	0 <grub_error>
+ 718:	b	594 <grub_mod_init-0x574>
+ 71c:	mov	w0, #0x0                   	// #0
+ 720:	b	594 <grub_mod_init-0x574>
+ 724:	adrp	x1, 0 <grub_mod_init-0xb08>
+ 728:	mov	w0, #0x19                  	// #25
+ 72c:	ldr	x1, [x1]
+ 730:	bl	0 <grub_error>
+ 734:	b	6f0 <grub_mod_init-0x418>
+ 738:	mov	x2, #0x0                   	// #0
+ 73c:	mov	x1, #0x0                   	// #0
+ 740:	mov	w20, #0x1                   	// #1
+ 744:	b	6b4 <grub_mod_init-0x454>
+	...
+ 768:	stp	x29, x30, [sp, #-48]!
+ 76c:	mov	x29, sp
+ 770:	stp	x21, x22, [sp, #32]
+ 774:	mov	x21, x0
+ 778:	ldr	x0, [x0, #8]
+ 77c:	stp	x19, x20, [sp, #16]
+ 780:	mov	x20, x1
+ 784:	ldr	x0, [x0]
+ 788:	bl	370 <grub_mod_init-0x798>
+ 78c:	cbz	x0, 814 <grub_mod_init-0x2f4>
+ 790:	mov	x19, x0
+ 794:	ldrh	w5, [x0, #6]
+ 798:	mov	w0, #0x1                   	// #1
+ 79c:	add	x4, x19, #0x20
+ 7a0:	add	w5, w5, #0x2
+ 7a4:	mov	x3, #0x40                  	// #64
+ 7a8:	ldrh	w1, [x19, #8]
+ 7ac:	mov	x2, #0x0                   	// #0
+ 7b0:	str	w0, [x19, #100]
+ 7b4:	add	w5, w5, w1
+ 7b8:	ldr	x1, [x19, #128]
+ 7bc:	sxtw	x5, w5
+ 7c0:	ldr	x0, [x19, #112]
+ 7c4:	mul	x1, x5, x1
+ 7c8:	bl	0 <grub_disk_read>
+ 7cc:	adrp	x0, 0 <grub_mod_init-0xb08>
+ 7d0:	ldr	x22, [x0]
+ 7d4:	ldr	w0, [x22]
+ 7d8:	cbnz	w0, 830 <grub_mod_init-0x2d8>
+ 7dc:	cbz	x20, 7ec <grub_mod_init-0x31c>
+ 7e0:	ldrb	w0, [x20]
+ 7e4:	cmp	w0, #0x2f
+ 7e8:	b.eq	84c <grub_mod_init-0x2bc>  // b.none
+ 7ec:	adrp	x1, 0 <grub_mod_init-0xb08>
+ 7f0:	mov	x2, x20
+ 7f4:	mov	w0, #0x7                   	// #7
+ 7f8:	ldr	x1, [x1]
+ 7fc:	bl	0 <grub_error>
+ 800:	ldr	w0, [x22]
+ 804:	ldp	x19, x20, [sp, #16]
+ 808:	ldp	x21, x22, [sp, #32]
+ 80c:	ldp	x29, x30, [sp], #48
+ 810:	ret
+ 814:	adrp	x0, 0 <grub_mod_init-0xb08>
+ 818:	ldp	x19, x20, [sp, #16]
+ 81c:	ldr	x0, [x0]
+ 820:	ldp	x21, x22, [sp, #32]
+ 824:	ldr	w0, [x0]
+ 828:	ldp	x29, x30, [sp], #48
+ 82c:	ret
+ 830:	mov	x0, x19
+ 834:	bl	0 <grub_free>
+ 838:	ldr	w0, [x22]
+ 83c:	ldp	x19, x20, [sp, #16]
+ 840:	ldp	x21, x22, [sp, #32]
+ 844:	ldp	x29, x30, [sp], #48
+ 848:	ret
+ 84c:	mov	x1, x20
+ 850:	mov	x0, x19
+ 854:	bl	488 <grub_mod_init-0x680>
+ 858:	ldr	w0, [x22]
+ 85c:	cbnz	w0, 830 <grub_mod_init-0x2d8>
+ 860:	ldr	w1, [x19, #40]
+ 864:	str	x1, [x21, #64]
+ 868:	str	x19, [x21, #80]
+ 86c:	ldp	x19, x20, [sp, #16]
+ 870:	ldp	x21, x22, [sp, #32]
+ 874:	ldp	x29, x30, [sp], #48
+ 878:	ret
+ 87c:	nop
+	...
+ 890:	stp	x29, x30, [sp, #-192]!
+ 894:	mov	x29, sp
+ 898:	ldr	x0, [x0]
+ 89c:	stp	x19, x20, [sp, #16]
+ 8a0:	mov	x20, x1
+ 8a4:	stp	x23, x24, [sp, #48]
+ 8a8:	mov	x23, x2
+ 8ac:	mov	x24, x3
+ 8b0:	bl	370 <grub_mod_init-0x798>
+ 8b4:	cbz	x0, aa0 <grub_mod_init-0x68>
+ 8b8:	mov	x19, x0
+ 8bc:	ldrh	w2, [x0, #6]
+ 8c0:	mov	w0, #0x1                   	// #1
+ 8c4:	stp	x21, x22, [sp, #32]
+ 8c8:	add	w2, w2, #0x2
+ 8cc:	ldrh	w1, [x19, #8]
+ 8d0:	add	x22, x19, #0x20
+ 8d4:	stp	x25, x26, [sp, #64]
+ 8d8:	mov	x4, x22
+ 8dc:	add	w2, w2, w1
+ 8e0:	ldr	x1, [x19, #128]
+ 8e4:	sxtw	x2, w2
+ 8e8:	str	w0, [x19, #100]
+ 8ec:	mov	x3, #0x40                  	// #64
+ 8f0:	ldr	x0, [x19, #112]
+ 8f4:	mul	x1, x2, x1
+ 8f8:	mov	x2, #0x0                   	// #0
+ 8fc:	bl	0 <grub_disk_read>
+ 900:	adrp	x0, 0 <grub_mod_init-0xb08>
+ 904:	ldr	x26, [x0]
+ 908:	ldr	w0, [x26]
+ 90c:	cbz	w0, 934 <grub_mod_init-0x1d4>
+ 910:	mov	x0, x19
+ 914:	bl	0 <grub_free>
+ 918:	ldr	w0, [x26]
+ 91c:	ldp	x19, x20, [sp, #16]
+ 920:	ldp	x21, x22, [sp, #32]
+ 924:	ldp	x23, x24, [sp, #48]
+ 928:	ldp	x25, x26, [sp, #64]
+ 92c:	ldp	x29, x30, [sp], #192
+ 930:	ret
+ 934:	mov	x1, x20
+ 938:	mov	x0, x19
+ 93c:	bl	488 <grub_mod_init-0x680>
+ 940:	ldr	w20, [x26]
+ 944:	cbnz	w20, 910 <grub_mod_init-0x1f8>
+ 948:	ldrh	w0, [x19, #32]
+ 94c:	tbz	w0, #14, ae4 <grub_mod_init-0x24>
+ 950:	ldr	w0, [x19, #40]
+ 954:	cbz	w0, 910 <grub_mod_init-0x1f8>
+ 958:	add	x21, sp, #0x80
+ 95c:	str	x27, [sp, #80]
+ 960:	b	974 <grub_mod_init-0x194>
+ 964:	add	w20, w20, w5
+ 968:	ldr	w0, [x19, #40]
+ 96c:	cmp	w20, w0
+ 970:	b.cs	adc <grub_mod_init-0x2c>  // b.hs, b.nlast
+ 974:	mov	x2, #0x10                  	// #16
+ 978:	mov	w1, #0x0                   	// #0
+ 97c:	ldr	w25, [x19, #100]
+ 980:	add	x0, sp, #0x70
+ 984:	mov	w27, w20
+ 988:	bl	0 <grub_memset>
+ 98c:	mov	x3, x27
+ 990:	add	x5, sp, #0x6c
+ 994:	mov	x0, x19
+ 998:	mov	x4, #0x4                   	// #4
+ 99c:	mov	x2, #0x0                   	// #0
+ 9a0:	mov	x1, #0x0                   	// #0
+ 9a4:	bl	20 <grub_mod_init-0xae8>
+ 9a8:	tbnz	x0, #63, abc <grub_mod_init-0x4c>
+ 9ac:	ldrsw	x4, [x19, #120]
+ 9b0:	add	x3, x27, #0x4
+ 9b4:	mov	x5, x21
+ 9b8:	mov	x0, x19
+ 9bc:	mov	x2, #0x0                   	// #0
+ 9c0:	mov	x1, #0x0                   	// #0
+ 9c4:	bl	20 <grub_mod_init-0xae8>
+ 9c8:	mov	x4, x22
+ 9cc:	mov	x3, #0x40                  	// #64
+ 9d0:	tbnz	x0, #63, abc <grub_mod_init-0x4c>
+ 9d4:	ldr	w1, [x19, #120]
+ 9d8:	ldr	w0, [sp, #108]
+ 9dc:	add	w5, w1, #0x4
+ 9e0:	sub	w2, w0, #0x1
+ 9e4:	strb	wzr, [x21, w1, sxtw]
+ 9e8:	lsr	w6, w2, #3
+ 9ec:	ubfiz	x2, x2, #6, #3
+ 9f0:	cbz	w0, 964 <grub_mod_init-0x1a4>
+ 9f4:	ldrh	w5, [x19, #6]
+ 9f8:	ldrh	w1, [x19, #8]
+ 9fc:	add	w5, w5, #0x2
+ a00:	str	w0, [x19, #100]
+ a04:	add	w5, w5, w1
+ a08:	ldr	x1, [x19, #128]
+ a0c:	sxtw	x5, w5
+ a10:	ldr	x0, [x19, #112]
+ a14:	madd	x1, x5, x1, x6
+ a18:	bl	0 <grub_disk_read>
+ a1c:	ldrh	w4, [x19, #32]
+ a20:	mov	x2, x24
+ a24:	ldrb	w3, [sp, #112]
+ a28:	add	x1, sp, #0x70
+ a2c:	ldr	w5, [x19, #48]
+ a30:	mov	x0, x21
+ a34:	ubfx	x4, x4, #14, #1
+ a38:	and	w3, w3, #0xfffffffc
+ a3c:	orr	w4, w4, #0x2
+ a40:	str	w5, [sp, #116]
+ a44:	orr	w4, w4, w3
+ a48:	strb	w4, [sp, #112]
+ a4c:	blr	x23
+ a50:	sub	w2, w25, #0x1
+ a54:	mov	x4, x22
+ a58:	mov	x3, #0x40                  	// #64
+ a5c:	lsr	w6, w2, #3
+ a60:	ubfiz	x2, x2, #6, #3
+ a64:	cbnz	w0, adc <grub_mod_init-0x2c>
+ a68:	ldrh	w5, [x19, #6]
+ a6c:	ldrh	w1, [x19, #8]
+ a70:	add	w5, w5, #0x2
+ a74:	str	w25, [x19, #100]
+ a78:	add	w5, w5, w1
+ a7c:	ldr	x1, [x19, #128]
+ a80:	sxtw	x5, w5
+ a84:	ldr	x0, [x19, #112]
+ a88:	madd	x1, x5, x1, x6
+ a8c:	bl	0 <grub_disk_read>
+ a90:	ldr	w0, [x19, #120]
+ a94:	add	w0, w0, #0x4
+ a98:	add	w20, w20, w0
+ a9c:	b	968 <grub_mod_init-0x1a0>
+ aa0:	adrp	x0, 0 <grub_mod_init-0xb08>
+ aa4:	ldp	x19, x20, [sp, #16]
+ aa8:	ldr	x0, [x0]
+ aac:	ldp	x23, x24, [sp, #48]
+ ab0:	ldr	w0, [x0]
+ ab4:	ldp	x29, x30, [sp], #192
+ ab8:	ret
+ abc:	ldr	w0, [x26]
+ ac0:	ldp	x19, x20, [sp, #16]
+ ac4:	ldp	x21, x22, [sp, #32]
+ ac8:	ldp	x23, x24, [sp, #48]
+ acc:	ldp	x25, x26, [sp, #64]
+ ad0:	ldr	x27, [sp, #80]
+ ad4:	ldp	x29, x30, [sp], #192
+ ad8:	ret
+ adc:	ldr	x27, [sp, #80]
+ ae0:	b	910 <grub_mod_init-0x1f8>
+ ae4:	adrp	x1, 0 <grub_mod_init-0xb08>
+ ae8:	mov	w0, #0x4                   	// #4
+ aec:	ldr	x1, [x1]
+ af0:	bl	0 <grub_error>
+ af4:	b	910 <grub_mod_init-0x1f8>
+	...
+
+0000000000000b08 <grub_mod_init>:
+ b08:	adrp	x1, 0 <grub_mod_init-0xb08>
+ b0c:	adrp	x0, 0 <grub_mod_init-0xb08>
+ b10:	ldr	x1, [x1]
+ b14:	ldr	x0, [x0]
+ b18:	b	0 <grub_list_push>
+ b1c:	nop
+	...
+
+0000000000000b30 <grub_mod_fini>:
+ b30:	adrp	x0, 0 <grub_mod_init-0xb08>
+ b34:	ldr	x0, [x0]
+ b38:	b	0 <grub_list_remove>
+ b3c:	nop
+	...

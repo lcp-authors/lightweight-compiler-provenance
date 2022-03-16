@@ -1,0 +1,208 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//bufio.mod_gcc_-Os:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_bufio_open-0x208>:
+   0:	stp	x29, x30, [sp, #-32]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	mov	x19, x0
+  10:	ldr	x20, [x0, #80]
+  14:	ldr	x0, [x20]
+  18:	bl	0 <grub_file_close>
+  1c:	mov	x0, x20
+  20:	bl	0 <grub_free>
+  24:	adrp	x0, 0 <grub_bufio_open-0x208>
+  28:	str	xzr, [x19, #8]
+  2c:	ldp	x19, x20, [sp, #16]
+  30:	ldr	x0, [x0]
+  34:	ldp	x29, x30, [sp], #32
+  38:	ldr	w0, [x0]
+  3c:	ret
+	...
+  48:	stp	x29, x30, [sp, #-80]!
+  4c:	mov	x29, sp
+  50:	stp	x19, x20, [sp, #16]
+  54:	mov	x20, x0
+  58:	stp	x23, x24, [sp, #48]
+  5c:	mov	x24, x1
+  60:	ldr	x23, [x0, #80]
+  64:	stp	x21, x22, [sp, #32]
+  68:	mov	x21, x2
+  6c:	ldr	x0, [x0, #64]
+  70:	str	x25, [sp, #64]
+  74:	cmn	x0, #0x1
+  78:	b.ne	88 <grub_bufio_open-0x180>  // b.any
+  7c:	ldr	x0, [x23]
+  80:	ldr	x0, [x0, #64]
+  84:	str	x0, [x20, #64]
+  88:	ldr	x3, [x20, #24]
+  8c:	ldr	x1, [x23, #24]
+  90:	cmp	x3, x1
+  94:	b.cc	13c <grub_bufio_open-0xcc>  // b.lo, b.ul, b.last
+  98:	ldr	x19, [x23, #16]
+  9c:	add	x19, x1, x19
+  a0:	cmp	x3, x19
+  a4:	b.cs	13c <grub_bufio_open-0xcc>  // b.hs, b.nlast
+  a8:	sub	x19, x19, x3
+  ac:	mov	x0, x24
+  b0:	cmp	x21, x19
+  b4:	add	x3, x3, #0x20
+  b8:	csel	x19, x21, x19, ls  // ls = plast
+  bc:	sub	x1, x3, x1
+  c0:	sub	x21, x21, x19
+  c4:	add	x24, x24, x19
+  c8:	mov	x2, x19
+  cc:	add	x1, x23, x1
+  d0:	bl	0 <grub_memmove>
+  d4:	cbz	x21, 120 <grub_bufio_open-0xe8>
+  d8:	ldr	x1, [x20, #24]
+  dc:	sub	x22, x21, #0x1
+  e0:	ldr	x0, [x23, #8]
+  e4:	add	x1, x19, x1
+  e8:	add	x22, x22, x1
+  ec:	neg	x0, x0
+  f0:	and	x22, x22, x0
+  f4:	cmp	x1, x22
+  f8:	b.cs	170 <grub_bufio_open-0x98>  // b.hs, b.nlast
+  fc:	ldr	x0, [x23]
+ 100:	sub	x25, x22, x1
+ 104:	bl	0 <grub_file_seek>
+ 108:	ldr	x0, [x23]
+ 10c:	mov	x2, x25
+ 110:	mov	x1, x24
+ 114:	bl	0 <grub_file_read>
+ 118:	tbz	x0, #63, 144 <grub_bufio_open-0xc4>
+ 11c:	mov	x19, #0xffffffffffffffff    	// #-1
+ 120:	mov	x0, x19
+ 124:	ldp	x19, x20, [sp, #16]
+ 128:	ldp	x21, x22, [sp, #32]
+ 12c:	ldp	x23, x24, [sp, #48]
+ 130:	ldr	x25, [sp, #64]
+ 134:	ldp	x29, x30, [sp], #80
+ 138:	ret
+ 13c:	mov	x19, #0x0                   	// #0
+ 140:	b	d4 <grub_bufio_open-0x134>
+ 144:	ldr	x1, [x20, #64]
+ 148:	cmn	x1, #0x1
+ 14c:	b.ne	15c <grub_bufio_open-0xac>  // b.any
+ 150:	ldr	x1, [x23]
+ 154:	ldr	x1, [x1, #64]
+ 158:	str	x1, [x20, #64]
+ 15c:	add	x24, x24, x0
+ 160:	add	x19, x19, x0
+ 164:	cmp	x25, x0
+ 168:	b.ne	1dc <grub_bufio_open-0x2c>  // b.any
+ 16c:	sub	x21, x21, x25
+ 170:	mov	x25, x23
+ 174:	mov	x1, x22
+ 178:	ldr	x0, [x25], #32
+ 17c:	bl	0 <grub_file_seek>
+ 180:	ldp	x0, x2, [x23]
+ 184:	mov	x1, x25
+ 188:	bl	0 <grub_file_read>
+ 18c:	tbnz	x0, #63, 11c <grub_bufio_open-0xec>
+ 190:	ldr	x1, [x20, #64]
+ 194:	stp	x0, x22, [x23, #16]
+ 198:	cmn	x1, #0x1
+ 19c:	b.ne	1ac <grub_bufio_open-0x5c>  // b.any
+ 1a0:	ldr	x1, [x23]
+ 1a4:	ldr	x1, [x1, #64]
+ 1a8:	str	x1, [x20, #64]
+ 1ac:	ldr	x1, [x20, #24]
+ 1b0:	cmp	x0, x21
+ 1b4:	sub	x22, x19, x22
+ 1b8:	csel	x21, x0, x21, ls  // ls = plast
+ 1bc:	add	x1, x1, #0x20
+ 1c0:	mov	x2, x21
+ 1c4:	add	x1, x1, x22
+ 1c8:	mov	x0, x24
+ 1cc:	add	x19, x21, x19
+ 1d0:	add	x1, x23, x1
+ 1d4:	bl	0 <grub_memmove>
+ 1d8:	b	120 <grub_bufio_open-0xe8>
+ 1dc:	ldr	x2, [x23, #8]
+ 1e0:	cmp	x0, x2
+ 1e4:	csel	x2, x0, x2, ls  // ls = plast
+ 1e8:	ldr	x0, [x20, #24]
+ 1ec:	sub	x1, x24, x2
+ 1f0:	sub	x0, x0, x2
+ 1f4:	add	x0, x0, x19
+ 1f8:	stp	x2, x0, [x23, #16]
+ 1fc:	add	x0, x23, #0x20
+ 200:	bl	0 <grub_memmove>
+ 204:	b	120 <grub_bufio_open-0xe8>
+
+0000000000000208 <grub_bufio_open>:
+ 208:	stp	x29, x30, [sp, #-48]!
+ 20c:	mov	x29, sp
+ 210:	stp	x19, x20, [sp, #16]
+ 214:	mov	x20, x1
+ 218:	str	x21, [sp, #32]
+ 21c:	mov	x21, x0
+ 220:	mov	x0, #0x68                  	// #104
+ 224:	bl	0 <grub_zalloc>
+ 228:	mov	x19, x0
+ 22c:	cbz	x0, 270 <grub_bufio_open+0x68>
+ 230:	cbz	x20, 284 <grub_bufio_open+0x7c>
+ 234:	cmp	x20, #0x100, lsl #12
+ 238:	mov	x1, #0x100000              	// #1048576
+ 23c:	csel	x1, x20, x1, ls  // ls = plast
+ 240:	ldr	x20, [x21, #64]
+ 244:	cmp	x20, x1
+ 248:	csel	x20, x20, x1, ls  // ls = plast
+ 24c:	sub	x0, x20, #0x1
+ 250:	tst	x0, x20
+ 254:	b.ne	28c <grub_bufio_open+0x84>  // b.any
+ 258:	add	x0, x20, #0x20
+ 25c:	bl	0 <grub_zalloc>
+ 260:	cbnz	x0, 298 <grub_bufio_open+0x90>
+ 264:	mov	x0, x19
+ 268:	mov	x19, #0x0                   	// #0
+ 26c:	bl	0 <grub_free>
+ 270:	mov	x0, x19
+ 274:	ldp	x19, x20, [sp, #16]
+ 278:	ldr	x21, [sp, #32]
+ 27c:	ldp	x29, x30, [sp], #48
+ 280:	ret
+ 284:	mov	x1, #0x2000                	// #8192
+ 288:	b	240 <grub_bufio_open+0x38>
+ 28c:	orr	x20, x0, x20
+ 290:	add	x20, x20, #0x1
+ 294:	b	24c <grub_bufio_open+0x44>
+ 298:	ldr	x1, [x21, #8]
+ 29c:	stp	x21, x20, [x0]
+ 2a0:	str	x1, [x19, #8]
+ 2a4:	ldr	x1, [x21, #64]
+ 2a8:	str	x0, [x19, #80]
+ 2ac:	adrp	x0, 0 <grub_bufio_open-0x208>
+ 2b0:	str	x1, [x19, #64]
+ 2b4:	ldr	x0, [x0]
+ 2b8:	str	x0, [x19, #16]
+ 2bc:	ldr	w0, [x21, #72]
+ 2c0:	str	w0, [x19, #72]
+ 2c4:	b	270 <grub_bufio_open+0x68>
+	...
+
+00000000000002d0 <grub_buffile_open>:
+ 2d0:	stp	x29, x30, [sp, #-32]!
+ 2d4:	mov	x29, sp
+ 2d8:	stp	x19, x20, [sp, #16]
+ 2dc:	mov	x19, x2
+ 2e0:	bl	0 <grub_file_open>
+ 2e4:	cbz	x0, 314 <grub_buffile_open+0x44>
+ 2e8:	mov	x1, x19
+ 2ec:	mov	x20, x0
+ 2f0:	bl	208 <grub_bufio_open>
+ 2f4:	mov	x19, x0
+ 2f8:	cbnz	x0, 304 <grub_buffile_open+0x34>
+ 2fc:	mov	x0, x20
+ 300:	bl	0 <grub_file_close>
+ 304:	mov	x0, x19
+ 308:	ldp	x19, x20, [sp, #16]
+ 30c:	ldp	x29, x30, [sp], #32
+ 310:	ret
+ 314:	mov	x19, #0x0                   	// #0
+ 318:	b	304 <grub_buffile_open+0x34>

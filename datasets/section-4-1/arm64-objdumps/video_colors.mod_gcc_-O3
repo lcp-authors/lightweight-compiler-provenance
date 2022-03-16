@@ -1,0 +1,237 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//video_colors.mod_gcc_-O3:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_video_get_named_color>:
+   0:	stp	x29, x30, [sp, #-64]!
+   4:	adrp	x3, 0 <grub_video_get_named_color>
+   8:	adrp	x2, 0 <grub_video_get_named_color>
+   c:	mov	x29, sp
+  10:	str	x23, [sp, #48]
+  14:	ldr	x23, [x3]
+  18:	stp	x19, x20, [sp, #16]
+  1c:	mov	w19, #0x0                   	// #0
+  20:	mov	x20, x23
+  24:	stp	x21, x22, [sp, #32]
+  28:	mov	x21, x0
+  2c:	mov	x22, x1
+  30:	ldr	x0, [x2]
+  34:	b	44 <grub_video_get_named_color+0x44>
+  38:	ldr	x0, [x20, #16]!
+  3c:	add	w19, w19, #0x1
+  40:	cbz	x0, 60 <grub_video_get_named_color+0x60>
+  44:	mov	x1, x21
+  48:	bl	0 <grub_strcmp>
+  4c:	cbnz	w0, 38 <grub_video_get_named_color+0x38>
+  50:	add	x19, x23, w19, sxtw #4
+  54:	mov	w0, #0x1                   	// #1
+  58:	ldr	w1, [x19, #8]
+  5c:	str	w1, [x22]
+  60:	ldp	x19, x20, [sp, #16]
+  64:	ldp	x21, x22, [sp, #32]
+  68:	ldr	x23, [sp, #48]
+  6c:	ldp	x29, x30, [sp], #64
+  70:	ret
+  74:	nop
+	...
+
+0000000000000088 <grub_video_parse_color>:
+  88:	stp	x29, x30, [sp, #-80]!
+  8c:	mov	x29, sp
+  90:	stp	x19, x20, [sp, #16]
+  94:	mov	x19, x0
+  98:	mov	x20, x1
+  9c:	stp	x21, x22, [sp, #32]
+  a0:	str	x23, [sp, #48]
+  a4:	ldrb	w0, [x0]
+  a8:	cbnz	w0, b8 <grub_video_parse_color+0x30>
+  ac:	b	27c <grub_video_parse_color+0x1f4>
+  b0:	ldrb	w0, [x19, #1]!
+  b4:	cbz	w0, 27c <grub_video_parse_color+0x1f4>
+  b8:	bl	0 <grub_isspace>
+  bc:	cbnz	w0, b0 <grub_video_parse_color+0x28>
+  c0:	ldrb	w0, [x19]
+  c4:	cmp	w0, #0x23
+  c8:	b.ne	1e0 <grub_video_parse_color+0x158>  // b.any
+  cc:	add	x3, x19, #0x1
+  d0:	mov	x1, #0x0                   	// #0
+  d4:	ldrb	w2, [x3, x1]
+  d8:	mov	w21, w1
+  dc:	add	x1, x1, #0x1
+  e0:	and	w0, w2, #0xffffffdf
+  e4:	sub	w2, w2, #0x30
+  e8:	sub	w0, w0, #0x41
+  ec:	cmp	w2, #0x9
+  f0:	and	w0, w0, #0xff
+  f4:	b.ls	d4 <grub_video_parse_color+0x4c>  // b.plast
+  f8:	cmp	w0, #0x5
+  fc:	b.ls	d4 <grub_video_parse_color+0x4c>  // b.plast
+ 100:	sub	w0, w21, #0x3
+ 104:	cmp	w0, #0x1
+ 108:	b.ls	2d0 <grub_video_parse_color+0x248>  // b.plast
+ 10c:	sub	w0, w21, #0x6
+ 110:	tst	w0, #0xfffffffd
+ 114:	b.ne	1b8 <grub_video_parse_color+0x130>  // b.any
+ 118:	ldurh	w3, [x19, #1]
+ 11c:	mov	w2, #0x10                  	// #16
+ 120:	mov	x1, #0x0                   	// #0
+ 124:	add	x0, sp, #0x48
+ 128:	strh	w3, [sp, #72]
+ 12c:	strb	wzr, [sp, #74]
+ 130:	bl	0 <grub_strtoul>
+ 134:	and	w23, w0, #0xff
+ 138:	ldurh	w3, [x19, #3]
+ 13c:	mov	w2, #0x10                  	// #16
+ 140:	mov	x1, #0x0                   	// #0
+ 144:	add	x0, sp, #0x48
+ 148:	strh	w3, [sp, #72]
+ 14c:	strb	wzr, [sp, #74]
+ 150:	bl	0 <grub_strtoul>
+ 154:	and	w22, w0, #0xff
+ 158:	ldurh	w3, [x19, #5]
+ 15c:	mov	x1, #0x0                   	// #0
+ 160:	add	x0, sp, #0x48
+ 164:	mov	w2, #0x10                  	// #16
+ 168:	strh	w3, [sp, #72]
+ 16c:	strb	wzr, [sp, #74]
+ 170:	bl	0 <grub_strtoul>
+ 174:	cmp	w21, #0x8
+ 178:	mov	w1, #0xff                  	// #255
+ 17c:	and	w21, w0, #0xff
+ 180:	b.eq	370 <grub_video_parse_color+0x2e8>  // b.none
+ 184:	adrp	x0, 0 <grub_video_get_named_color>
+ 188:	ldr	x0, [x0]
+ 18c:	ldr	w0, [x0]
+ 190:	cbnz	w0, 1cc <grub_video_parse_color+0x144>
+ 194:	strb	w23, [x20]
+ 198:	strb	w22, [x20, #1]
+ 19c:	strb	w21, [x20, #2]
+ 1a0:	strb	w1, [x20, #3]
+ 1a4:	ldp	x19, x20, [sp, #16]
+ 1a8:	ldp	x21, x22, [sp, #32]
+ 1ac:	ldr	x23, [sp, #48]
+ 1b0:	ldp	x29, x30, [sp], #80
+ 1b4:	ret
+ 1b8:	adrp	x1, 0 <grub_video_get_named_color>
+ 1bc:	mov	x2, x19
+ 1c0:	mov	w0, #0x12                  	// #18
+ 1c4:	ldr	x1, [x1]
+ 1c8:	bl	0 <grub_error>
+ 1cc:	ldp	x19, x20, [sp, #16]
+ 1d0:	ldp	x21, x22, [sp, #32]
+ 1d4:	ldr	x23, [sp, #48]
+ 1d8:	ldp	x29, x30, [sp], #80
+ 1dc:	ret
+ 1e0:	sub	w0, w0, #0x30
+ 1e4:	cmp	w0, #0x9
+ 1e8:	b.hi	27c <grub_video_parse_color+0x1f4>  // b.pmore
+ 1ec:	mov	w2, #0x0                   	// #0
+ 1f0:	mov	x1, #0x0                   	// #0
+ 1f4:	mov	x0, x19
+ 1f8:	bl	0 <grub_strtoul>
+ 1fc:	mov	w1, #0x2c                  	// #44
+ 200:	and	w23, w0, #0xff
+ 204:	mov	x0, x19
+ 208:	bl	0 <grub_strchr>
+ 20c:	cbz	x0, 1b8 <grub_video_parse_color+0x130>
+ 210:	add	x21, x0, #0x1
+ 214:	mov	w2, #0x0                   	// #0
+ 218:	mov	x1, #0x0                   	// #0
+ 21c:	mov	x0, x21
+ 220:	bl	0 <grub_strtoul>
+ 224:	and	w22, w0, #0xff
+ 228:	mov	w1, #0x2c                  	// #44
+ 22c:	mov	x0, x21
+ 230:	bl	0 <grub_strchr>
+ 234:	cbz	x0, 1b8 <grub_video_parse_color+0x130>
+ 238:	add	x19, x0, #0x1
+ 23c:	mov	w2, #0x0                   	// #0
+ 240:	mov	x1, #0x0                   	// #0
+ 244:	mov	x0, x19
+ 248:	bl	0 <grub_strtoul>
+ 24c:	and	w21, w0, #0xff
+ 250:	mov	w1, #0x2c                  	// #44
+ 254:	mov	x0, x19
+ 258:	bl	0 <grub_strchr>
+ 25c:	mov	w1, #0xff                  	// #255
+ 260:	cbz	x0, 184 <grub_video_parse_color+0xfc>
+ 264:	mov	x1, #0x0                   	// #0
+ 268:	add	x0, x0, #0x1
+ 26c:	mov	w2, #0x0                   	// #0
+ 270:	bl	0 <grub_strtoul>
+ 274:	and	w1, w0, #0xff
+ 278:	b	184 <grub_video_parse_color+0xfc>
+ 27c:	adrp	x1, 0 <grub_video_get_named_color>
+ 280:	adrp	x0, 0 <grub_video_get_named_color>
+ 284:	mov	w21, #0x0                   	// #0
+ 288:	ldr	x23, [x1]
+ 28c:	ldr	x0, [x0]
+ 290:	mov	x22, x23
+ 294:	b	2a4 <grub_video_parse_color+0x21c>
+ 298:	ldr	x0, [x22, #16]!
+ 29c:	add	w21, w21, #0x1
+ 2a0:	cbz	x0, 1b8 <grub_video_parse_color+0x130>
+ 2a4:	mov	x1, x19
+ 2a8:	bl	0 <grub_strcmp>
+ 2ac:	cbnz	w0, 298 <grub_video_parse_color+0x210>
+ 2b0:	mov	x0, #0x8                   	// #8
+ 2b4:	add	x21, x0, w21, sxtw #4
+ 2b8:	add	x0, x23, x21
+ 2bc:	ldrb	w23, [x23, x21]
+ 2c0:	ldrb	w22, [x0, #1]
+ 2c4:	ldrb	w21, [x0, #2]
+ 2c8:	ldrb	w1, [x0, #3]
+ 2cc:	b	184 <grub_video_parse_color+0xfc>
+ 2d0:	ldrb	w3, [x19, #1]
+ 2d4:	mov	w2, #0x10                  	// #16
+ 2d8:	mov	x1, #0x0                   	// #0
+ 2dc:	add	x0, sp, #0x48
+ 2e0:	strb	w3, [sp, #72]
+ 2e4:	strb	w3, [sp, #73]
+ 2e8:	strb	wzr, [sp, #74]
+ 2ec:	bl	0 <grub_strtoul>
+ 2f0:	ldrb	w3, [x19, #2]
+ 2f4:	mov	w2, #0x10                  	// #16
+ 2f8:	mov	x1, #0x0                   	// #0
+ 2fc:	and	w23, w0, #0xff
+ 300:	add	x0, sp, #0x48
+ 304:	strb	w3, [sp, #72]
+ 308:	strb	w3, [sp, #73]
+ 30c:	strb	wzr, [sp, #74]
+ 310:	bl	0 <grub_strtoul>
+ 314:	ldrb	w3, [x19, #3]
+ 318:	mov	x1, #0x0                   	// #0
+ 31c:	and	w22, w0, #0xff
+ 320:	mov	w2, #0x10                  	// #16
+ 324:	add	x0, sp, #0x48
+ 328:	strb	w3, [sp, #72]
+ 32c:	strb	w3, [sp, #73]
+ 330:	strb	wzr, [sp, #74]
+ 334:	bl	0 <grub_strtoul>
+ 338:	cmp	w21, #0x4
+ 33c:	mov	w1, #0xff                  	// #255
+ 340:	and	w21, w0, #0xff
+ 344:	b.ne	184 <grub_video_parse_color+0xfc>  // b.any
+ 348:	ldrb	w3, [x19, #4]
+ 34c:	mov	x1, #0x0                   	// #0
+ 350:	add	x0, sp, #0x48
+ 354:	mov	w2, #0x10                  	// #16
+ 358:	strb	w3, [sp, #72]
+ 35c:	strb	w3, [sp, #73]
+ 360:	strb	wzr, [sp, #74]
+ 364:	bl	0 <grub_strtoul>
+ 368:	and	w1, w0, #0xff
+ 36c:	b	184 <grub_video_parse_color+0xfc>
+ 370:	ldurh	w3, [x19, #7]
+ 374:	mov	x1, #0x0                   	// #0
+ 378:	add	x0, sp, #0x48
+ 37c:	mov	w2, #0x10                  	// #16
+ 380:	strh	w3, [sp, #72]
+ 384:	strb	wzr, [sp, #74]
+ 388:	bl	0 <grub_strtoul>
+ 38c:	and	w1, w0, #0xff
+ 390:	b	184 <grub_video_parse_color+0xfc>
+ 394:	nop
+	...

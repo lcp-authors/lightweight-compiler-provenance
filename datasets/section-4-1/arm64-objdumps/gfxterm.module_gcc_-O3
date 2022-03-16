@@ -1,0 +1,2393 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//gfxterm.module_gcc_-O3:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_virtual_screen_getwh>:
+       0:	adrp	x0, 0 <grub_virtual_screen_getwh>
+       4:	ldr	x0, [x0]
+       8:	ldrh	w1, [x0, #28]
+       c:	ldr	w0, [x0, #24]
+      10:	bfi	w0, w1, #16, #16
+      14:	ret
+	...
+
+0000000000000020 <grub_virtual_screen_getxy>:
+      20:	adrp	x0, 0 <grub_virtual_screen_getwh>
+      24:	ldr	x0, [x0]
+      28:	ldrh	w1, [x0, #36]
+      2c:	ldr	w0, [x0, #32]
+      30:	bfi	w0, w1, #16, #16
+      34:	ret
+	...
+
+0000000000000040 <grub_virtual_screen_free>:
+      40:	stp	x29, x30, [sp, #-48]!
+      44:	adrp	x0, 0 <grub_virtual_screen_getwh>
+      48:	mov	x29, sp
+      4c:	stp	x21, x22, [sp, #32]
+      50:	ldr	x21, [x0]
+      54:	ldr	x0, [x21, #72]
+      58:	str	wzr, [x21, #84]
+      5c:	cbz	x0, a8 <grub_virtual_screen_free+0x68>
+      60:	ldp	w2, w3, [x21, #24]
+      64:	mul	w2, w2, w3
+      68:	cbz	w2, a4 <grub_virtual_screen_free+0x64>
+      6c:	mov	w22, #0x28                  	// #40
+      70:	stp	x19, x20, [sp, #16]
+      74:	mov	w19, #0x0                   	// #0
+      78:	umaddl	x20, w19, w22, x0
+      7c:	ldrh	w1, [x20, #6]
+      80:	and	w3, w1, #0xfffff807
+      84:	ubfx	x1, x1, #3, #8
+      88:	cmp	w1, #0x2
+      8c:	b.hi	d0 <grub_virtual_screen_free+0x90>  // b.pmore
+      90:	strh	w3, [x20, #6]
+      94:	add	w19, w19, #0x1
+      98:	cmp	w2, w19
+      9c:	b.hi	78 <grub_virtual_screen_free+0x38>  // b.pmore
+      a0:	ldp	x19, x20, [sp, #16]
+      a4:	bl	0 <grub_free>
+      a8:	mov	x2, #0x58                  	// #88
+      ac:	mov	w1, #0x0                   	// #0
+      b0:	mov	x0, x21
+      b4:	bl	0 <grub_memset>
+      b8:	ldr	x0, [x21, #88]
+      bc:	bl	0 <grub_video_delete_render_target>
+      c0:	str	xzr, [x21, #88]
+      c4:	ldp	x21, x22, [sp, #32]
+      c8:	ldp	x29, x30, [sp], #48
+      cc:	ret
+      d0:	ldr	x0, [x20, #24]
+      d4:	add	w19, w19, #0x1
+      d8:	bl	0 <grub_free>
+      dc:	ldp	w2, w3, [x21, #24]
+      e0:	ldrh	w1, [x20, #6]
+      e4:	ldr	x0, [x21, #72]
+      e8:	mul	w2, w2, w3
+      ec:	and	w1, w1, #0xfffff807
+      f0:	strh	w1, [x20, #6]
+      f4:	cmp	w2, w19
+      f8:	b.hi	78 <grub_virtual_screen_free+0x38>  // b.pmore
+      fc:	ldp	x19, x20, [sp, #16]
+     100:	b	a4 <grub_virtual_screen_free+0x64>
+     104:	nop
+	...
+
+0000000000000110 <dirty_region_redraw>:
+     110:	stp	x29, x30, [sp, #-96]!
+     114:	adrp	x0, 0 <grub_virtual_screen_getwh>
+     118:	mov	x29, sp
+     11c:	stp	x19, x20, [sp, #16]
+     120:	ldr	x19, [x0]
+     124:	ldr	w20, [x19, #96]
+     128:	cmn	w20, #0x1
+     12c:	b.eq	284 <dirty_region_redraw+0x174>  // b.none
+     130:	stp	x21, x22, [sp, #32]
+     134:	ldr	w21, [x19, #100]
+     138:	cmn	w21, #0x1
+     13c:	b.eq	290 <dirty_region_redraw+0x180>  // b.none
+     140:	ldr	w6, [x19, #104]
+     144:	cmn	w6, #0x1
+     148:	b.eq	290 <dirty_region_redraw+0x180>  // b.none
+     14c:	stp	x23, x24, [sp, #48]
+     150:	ldr	w23, [x19, #108]
+     154:	cmn	w23, #0x1
+     158:	b.eq	2ec <dirty_region_redraw+0x1dc>  // b.none
+     15c:	ldr	w0, [x19, #112]
+     160:	sub	w6, w6, w20
+     164:	sub	w23, w23, w21
+     168:	add	w22, w6, #0x1
+     16c:	add	w23, w23, #0x1
+     170:	cbz	w0, 180 <dirty_region_redraw+0x70>
+     174:	ldr	x0, [x19, #120]
+     178:	cbz	x0, 180 <dirty_region_redraw+0x70>
+     17c:	blr	x0
+     180:	ldr	x0, [x19, #128]
+     184:	bl	0 <grub_video_set_active_render_target>
+     188:	add	x0, sp, #0x50
+     18c:	add	x3, sp, #0x5c
+     190:	add	x2, x0, #0x8
+     194:	add	x1, x0, #0x4
+     198:	bl	0 <grub_video_get_viewport>
+     19c:	ldp	w0, w1, [x19, #136]
+     1a0:	ldp	w2, w3, [x19, #144]
+     1a4:	bl	0 <grub_video_set_viewport>
+     1a8:	adrp	x0, 0 <grub_virtual_screen_getwh>
+     1ac:	ldr	x24, [x0]
+     1b0:	ldr	x0, [x24]
+     1b4:	cbz	x0, 2d0 <dirty_region_redraw+0x1c0>
+     1b8:	mov	w3, w21
+     1bc:	mov	w2, w20
+     1c0:	mov	w1, #0x0                   	// #0
+     1c4:	mov	w7, w23
+     1c8:	mov	w6, w22
+     1cc:	mov	w5, w21
+     1d0:	mov	w4, w20
+     1d4:	stp	x25, x26, [sp, #64]
+     1d8:	bl	0 <grub_video_blit_bitmap>
+     1dc:	ldr	x0, [x24]
+     1e0:	add	w3, w20, w22
+     1e4:	ldr	w26, [x19, #68]
+     1e8:	add	w25, w21, w23
+     1ec:	ldp	w1, w2, [x0]
+     1f0:	cmp	w3, w1
+     1f4:	b.cc	22c <dirty_region_redraw+0x11c>  // b.lo, b.ul, b.last
+     1f8:	cmp	w21, w2
+     1fc:	b.cs	22c <dirty_region_redraw+0x11c>  // b.hs, b.nlast
+     200:	cmp	w2, w25
+     204:	sub	w2, w2, w21
+     208:	csel	w4, w2, w23, ls  // ls = plast
+     20c:	cmp	w20, w1
+     210:	sub	w3, w3, w1
+     214:	mov	w2, w21
+     218:	csel	w1, w20, w1, cs  // cs = hs, nlast
+     21c:	mov	w0, w26
+     220:	bl	0 <grub_video_fill_rect>
+     224:	ldr	x0, [x24]
+     228:	ldr	w2, [x0, #4]
+     22c:	cmp	w2, w25
+     230:	b.ls	2a0 <dirty_region_redraw+0x190>  // b.plast
+     234:	ldp	x25, x26, [sp, #64]
+     238:	mov	w7, w23
+     23c:	ldr	w1, [x24, #8]
+     240:	mov	w6, w22
+     244:	ldp	w4, w5, [x19, #8]
+     248:	mov	w3, w21
+     24c:	mov	w2, w20
+     250:	sub	w4, w20, w4
+     254:	sub	w5, w21, w5
+     258:	ldr	x0, [x19, #88]
+     25c:	cbz	w1, 2c4 <dirty_region_redraw+0x1b4>
+     260:	mov	w1, #0x1                   	// #1
+     264:	bl	0 <grub_video_blit_render_target>
+     268:	ldp	w0, w1, [sp, #80]
+     26c:	ldp	w2, w3, [sp, #88]
+     270:	bl	0 <grub_video_set_viewport>
+     274:	ldr	x0, [x19, #128]
+     278:	bl	0 <grub_video_set_active_render_target>
+     27c:	ldp	x21, x22, [sp, #32]
+     280:	ldp	x23, x24, [sp, #48]
+     284:	ldp	x19, x20, [sp, #16]
+     288:	ldp	x29, x30, [sp], #96
+     28c:	ret
+     290:	ldp	x19, x20, [sp, #16]
+     294:	ldp	x21, x22, [sp, #32]
+     298:	ldp	x29, x30, [sp], #96
+     29c:	ret
+     2a0:	cmp	w21, w2
+     2a4:	sub	w4, w25, w2
+     2a8:	mov	w0, w26
+     2ac:	csel	w2, w21, w2, cs  // cs = hs, nlast
+     2b0:	mov	w3, w22
+     2b4:	mov	w1, w20
+     2b8:	bl	0 <grub_video_fill_rect>
+     2bc:	ldp	x25, x26, [sp, #64]
+     2c0:	b	238 <dirty_region_redraw+0x128>
+     2c4:	mov	w1, #0x0                   	// #0
+     2c8:	bl	0 <grub_video_blit_render_target>
+     2cc:	b	268 <dirty_region_redraw+0x158>
+     2d0:	ldr	w0, [x19, #68]
+     2d4:	mov	w4, w23
+     2d8:	mov	w3, w22
+     2dc:	mov	w2, w21
+     2e0:	mov	w1, w20
+     2e4:	bl	0 <grub_video_fill_rect>
+     2e8:	b	238 <dirty_region_redraw+0x128>
+     2ec:	ldp	x19, x20, [sp, #16]
+     2f0:	ldp	x21, x22, [sp, #32]
+     2f4:	ldp	x23, x24, [sp, #48]
+     2f8:	ldp	x29, x30, [sp], #96
+     2fc:	ret
+	...
+
+0000000000000310 <grub_gfxterm_getcharwidth>:
+     310:	stp	x29, x30, [sp, #-32]!
+     314:	adrp	x0, 0 <grub_virtual_screen_getwh>
+     318:	mov	x29, sp
+     31c:	str	x19, [sp, #16]
+     320:	ldr	x19, [x0]
+     324:	ldr	x0, [x19, #48]
+     328:	bl	0 <grub_font_get_constructed_device_width>
+     32c:	mov	w2, w0
+     330:	mov	x0, #0x1                   	// #1
+     334:	cbz	w2, 348 <grub_gfxterm_getcharwidth+0x38>
+     338:	ldr	w3, [x19, #16]
+     33c:	sub	w1, w3, #0x1
+     340:	add	w0, w1, w2
+     344:	udiv	w0, w0, w3
+     348:	ldr	x19, [sp, #16]
+     34c:	ldp	x29, x30, [sp], #32
+     350:	ret
+     354:	nop
+	...
+
+0000000000000360 <grub_gfxterm_term_fini>:
+     360:	stp	x29, x30, [sp, #-64]!
+     364:	mov	x29, sp
+     368:	stp	x21, x22, [sp, #32]
+     36c:	bl	40 <grub_virtual_screen_free>
+     370:	bl	0 <grub_video_restore>
+     374:	adrp	x0, 0 <grub_virtual_screen_getwh>
+     378:	ldr	x22, [x0]
+     37c:	ldp	w2, w3, [x22, #24]
+     380:	mul	w2, w2, w3
+     384:	cbz	w2, 3e0 <grub_gfxterm_term_fini+0x80>
+     388:	ldr	x1, [x22, #72]
+     38c:	stp	x23, x24, [sp, #48]
+     390:	mov	x24, #0xffffff800000        	// #281474968322048
+     394:	mov	w23, #0x28                  	// #40
+     398:	movk	x24, #0xf807, lsl #48
+     39c:	stp	x19, x20, [sp, #16]
+     3a0:	mov	w19, #0x0                   	// #0
+     3a4:	nop
+     3a8:	umull	x20, w19, w23
+     3ac:	add	x21, x1, x20
+     3b0:	ldrh	w0, [x21, #6]
+     3b4:	ubfx	x0, x0, #3, #8
+     3b8:	cmp	w0, #0x2
+     3bc:	b.hi	3fc <grub_gfxterm_term_fini+0x9c>  // b.pmore
+     3c0:	ldr	x0, [x1, x20]
+     3c4:	add	w19, w19, #0x1
+     3c8:	cmp	w2, w19
+     3cc:	and	x0, x0, x24
+     3d0:	str	x0, [x1, x20]
+     3d4:	b.hi	3a8 <grub_gfxterm_term_fini+0x48>  // b.pmore
+     3d8:	ldp	x19, x20, [sp, #16]
+     3dc:	ldp	x23, x24, [sp, #48]
+     3e0:	adrp	x0, 0 <grub_virtual_screen_getwh>
+     3e4:	ldp	x21, x22, [sp, #32]
+     3e8:	ldr	x0, [x0]
+     3ec:	str	wzr, [x0]
+     3f0:	mov	w0, #0x0                   	// #0
+     3f4:	ldp	x29, x30, [sp], #64
+     3f8:	ret
+     3fc:	ldr	x0, [x21, #24]
+     400:	add	w19, w19, #0x1
+     404:	bl	0 <grub_free>
+     408:	ldrh	w0, [x21, #6]
+     40c:	ldr	x1, [x22, #72]
+     410:	and	w0, w0, #0xfffff807
+     414:	ldp	w2, w3, [x22, #24]
+     418:	strh	w0, [x21, #6]
+     41c:	ldr	x0, [x1, x20]
+     420:	mul	w2, w2, w3
+     424:	and	x0, x0, x24
+     428:	str	x0, [x1, x20]
+     42c:	cmp	w2, w19
+     430:	b.hi	3a8 <grub_gfxterm_term_fini+0x48>  // b.pmore
+     434:	b	3d8 <grub_gfxterm_term_fini+0x78>
+	...
+
+0000000000000448 <dirty_region_add_real>:
+     448:	adrp	x4, 0 <grub_virtual_screen_getwh>
+     44c:	ldr	x4, [x4]
+     450:	ldr	w5, [x4, #96]
+     454:	cmn	w5, #0x1
+     458:	b.eq	4d4 <dirty_region_add_real+0x8c>  // b.none
+     45c:	ldr	w6, [x4, #100]
+     460:	cmn	w6, #0x1
+     464:	b.eq	4d4 <dirty_region_add_real+0x8c>  // b.none
+     468:	ldr	w7, [x4, #104]
+     46c:	cmn	w7, #0x1
+     470:	b.eq	4d4 <dirty_region_add_real+0x8c>  // b.none
+     474:	ldr	w8, [x4, #108]
+     478:	cmn	w8, #0x1
+     47c:	b.eq	4d4 <dirty_region_add_real+0x8c>  // b.none
+     480:	cmp	w5, w0
+     484:	b.le	48c <dirty_region_add_real+0x44>
+     488:	str	w0, [x4, #96]
+     48c:	cmp	w1, w6
+     490:	b.ge	498 <dirty_region_add_real+0x50>  // b.tcont
+     494:	str	w1, [x4, #100]
+     498:	add	w5, w2, w0
+     49c:	sub	w5, w5, #0x1
+     4a0:	cmp	w5, w7
+     4a4:	b.le	4b4 <dirty_region_add_real+0x6c>
+     4a8:	sub	w2, w2, #0x1
+     4ac:	add	w2, w2, w0
+     4b0:	str	w2, [x4, #104]
+     4b4:	add	w0, w3, w1
+     4b8:	sub	w0, w0, #0x1
+     4bc:	cmp	w0, w8
+     4c0:	b.le	4d0 <dirty_region_add_real+0x88>
+     4c4:	sub	w3, w3, #0x1
+     4c8:	add	w3, w3, w1
+     4cc:	str	w3, [x4, #108]
+     4d0:	ret
+     4d4:	sub	w2, w2, #0x1
+     4d8:	sub	w3, w3, #0x1
+     4dc:	add	w2, w2, w0
+     4e0:	add	w3, w3, w1
+     4e4:	stp	w0, w1, [x4, #96]
+     4e8:	stp	w2, w3, [x4, #104]
+     4ec:	ret
+	...
+
+00000000000004f8 <scroll_up>:
+     4f8:	stp	x29, x30, [sp, #-80]!
+     4fc:	adrp	x0, 0 <grub_virtual_screen_getwh>
+     500:	mov	x29, sp
+     504:	stp	x19, x20, [sp, #16]
+     508:	ldr	x20, [x0]
+     50c:	stp	x21, x22, [sp, #32]
+     510:	stp	x23, x24, [sp, #48]
+     514:	ldr	w1, [x20, #24]
+     518:	ldr	x0, [x20, #72]
+     51c:	str	x25, [sp, #64]
+     520:	cbz	w1, 698 <scroll_up+0x1a0>
+     524:	mov	w19, #0x0                   	// #0
+     528:	mov	w22, #0x28                  	// #40
+     52c:	nop
+     530:	umaddl	x21, w19, w22, x0
+     534:	ldrh	w2, [x21, #6]
+     538:	and	w3, w2, #0xfffff807
+     53c:	ubfx	x2, x2, #3, #8
+     540:	cmp	w2, #0x2
+     544:	b.hi	66c <scroll_up+0x174>  // b.pmore
+     548:	strh	w3, [x21, #6]
+     54c:	add	w19, w19, #0x1
+     550:	cmp	w19, w1
+     554:	b.cc	530 <scroll_up+0x38>  // b.lo, b.ul, b.last
+     558:	mov	w2, #0x28                  	// #40
+     55c:	mov	w3, w1
+     560:	umaddl	x1, w1, w2, x0
+     564:	ldr	w2, [x20, #28]
+     568:	mov	w24, #0x28                  	// #40
+     56c:	mov	w25, #0x20                  	// #32
+     570:	sub	w2, w2, #0x1
+     574:	mul	x2, x2, x3
+     578:	add	x2, x2, x2, lsl #2
+     57c:	lsl	x2, x2, #3
+     580:	bl	0 <grub_memmove>
+     584:	ldp	w0, w21, [x20, #24]
+     588:	sub	w21, w21, #0x1
+     58c:	mul	w21, w21, w0
+     590:	add	w0, w0, w21
+     594:	cmp	w21, w0
+     598:	b.cc	5d0 <scroll_up+0xd8>  // b.lo, b.ul, b.last
+     59c:	b	648 <scroll_up+0x150>
+     5a0:	strh	w4, [x19, #6]
+     5a4:	add	w21, w21, #0x1
+     5a8:	bl	0 <grub_memset>
+     5ac:	ldr	w0, [x23, x22]
+     5b0:	bfxil	w0, w25, #0, #23
+     5b4:	str	w0, [x23, x22]
+     5b8:	ldp	w0, w2, [x20, #24]
+     5bc:	ldp	w3, w1, [x20, #60]
+     5c0:	stp	w3, w1, [x19, #32]
+     5c4:	mul	w0, w0, w2
+     5c8:	cmp	w0, w21
+     5cc:	b.ls	648 <scroll_up+0x150>  // b.plast
+     5d0:	ldr	x23, [x20, #72]
+     5d4:	umull	x22, w21, w24
+     5d8:	mov	x2, #0x20                  	// #32
+     5dc:	mov	w1, #0x0                   	// #0
+     5e0:	add	x19, x23, x22
+     5e4:	mov	x0, x19
+     5e8:	ldrh	w3, [x19, #6]
+     5ec:	and	w4, w3, #0xfffff807
+     5f0:	ubfx	x3, x3, #3, #8
+     5f4:	cmp	w3, #0x2
+     5f8:	b.ls	5a0 <scroll_up+0xa8>  // b.plast
+     5fc:	ldr	x0, [x19, #24]
+     600:	add	w21, w21, #0x1
+     604:	bl	0 <grub_free>
+     608:	ldrh	w0, [x19, #6]
+     60c:	mov	x2, #0x20                  	// #32
+     610:	mov	w1, #0x0                   	// #0
+     614:	and	w0, w0, #0xfffff807
+     618:	strh	w0, [x19, #6]
+     61c:	mov	x0, x19
+     620:	bl	0 <grub_memset>
+     624:	ldr	w0, [x23, x22]
+     628:	bfxil	w0, w25, #0, #23
+     62c:	str	w0, [x23, x22]
+     630:	ldp	w2, w0, [x20, #24]
+     634:	ldp	w3, w1, [x20, #60]
+     638:	stp	w3, w1, [x19, #32]
+     63c:	mul	w0, w0, w2
+     640:	cmp	w0, w21
+     644:	b.hi	5d0 <scroll_up+0xd8>  // b.pmore
+     648:	ldr	w0, [x20, #80]
+     64c:	ldp	x21, x22, [sp, #32]
+     650:	add	w0, w0, #0x1
+     654:	ldp	x23, x24, [sp, #48]
+     658:	ldr	x25, [sp, #64]
+     65c:	str	w0, [x20, #80]
+     660:	ldp	x19, x20, [sp, #16]
+     664:	ldp	x29, x30, [sp], #80
+     668:	ret
+     66c:	ldr	x0, [x21, #24]
+     670:	add	w19, w19, #0x1
+     674:	bl	0 <grub_free>
+     678:	ldrh	w2, [x21, #6]
+     67c:	ldr	w1, [x20, #24]
+     680:	and	w2, w2, #0xfffff807
+     684:	ldr	x0, [x20, #72]
+     688:	strh	w2, [x21, #6]
+     68c:	cmp	w19, w1
+     690:	b.cc	530 <scroll_up+0x38>  // b.lo, b.ul, b.last
+     694:	b	558 <scroll_up+0x60>
+     698:	mov	x1, x0
+     69c:	mov	x3, #0x0                   	// #0
+     6a0:	b	564 <scroll_up+0x6c>
+     6a4:	nop
+	...
+
+00000000000006b0 <grub_virtual_screen_setcolorstate>:
+     6b0:	stp	x29, x30, [sp, #-48]!
+     6b4:	cmp	w1, #0x1
+     6b8:	mov	x29, sp
+     6bc:	stp	x19, x20, [sp, #16]
+     6c0:	b.eq	74c <grub_virtual_screen_setcolorstate+0x9c>  // b.none
+     6c4:	cmp	w1, #0x2
+     6c8:	b.eq	774 <grub_virtual_screen_setcolorstate+0xc4>  // b.none
+     6cc:	adrp	x0, 0 <grub_virtual_screen_getwh>
+     6d0:	ldr	x20, [x0]
+     6d4:	cbz	w1, 768 <grub_virtual_screen_setcolorstate+0xb8>
+     6d8:	ldrb	w19, [x20, #57]
+     6dc:	add	x0, sp, #0x28
+     6e0:	bl	0 <grub_video_get_active_render_target>
+     6e4:	ldr	x0, [x20, #88]
+     6e8:	bl	0 <grub_video_set_active_render_target>
+     6ec:	and	w0, w19, #0xf
+     6f0:	bl	0 <grub_video_map_color>
+     6f4:	str	w0, [x20, #60]
+     6f8:	cmp	wzr, w19, lsr #4
+     6fc:	lsr	w0, w19, #4
+     700:	b.ne	730 <grub_virtual_screen_setcolorstate+0x80>  // b.any
+     704:	mov	w3, #0x0                   	// #0
+     708:	mov	w2, #0x0                   	// #0
+     70c:	mov	w1, #0x0                   	// #0
+     710:	mov	w0, #0x0                   	// #0
+     714:	bl	0 <grub_video_map_rgba>
+     718:	str	w0, [x20, #64]
+     71c:	ldr	x0, [sp, #40]
+     720:	bl	0 <grub_video_set_active_render_target>
+     724:	ldp	x19, x20, [sp, #16]
+     728:	ldp	x29, x30, [sp], #48
+     72c:	ret
+     730:	bl	0 <grub_video_map_color>
+     734:	str	w0, [x20, #64]
+     738:	ldr	x0, [sp, #40]
+     73c:	bl	0 <grub_video_set_active_render_target>
+     740:	ldp	x19, x20, [sp, #16]
+     744:	ldp	x29, x30, [sp], #48
+     748:	ret
+     74c:	adrp	x1, 0 <grub_virtual_screen_getwh>
+     750:	adrp	x0, 0 <grub_virtual_screen_getwh>
+     754:	ldr	x1, [x1]
+     758:	ldr	x20, [x0]
+     75c:	ldrb	w19, [x1]
+     760:	strb	w19, [x20, #57]
+     764:	b	6dc <grub_virtual_screen_setcolorstate+0x2c>
+     768:	ldrb	w19, [x20, #56]
+     76c:	strb	w19, [x20, #57]
+     770:	b	6dc <grub_virtual_screen_setcolorstate+0x2c>
+     774:	adrp	x1, 0 <grub_virtual_screen_getwh>
+     778:	adrp	x0, 0 <grub_virtual_screen_getwh>
+     77c:	ldr	x1, [x1]
+     780:	ldr	x20, [x0]
+     784:	ldrb	w19, [x1]
+     788:	strb	w19, [x20, #57]
+     78c:	b	6dc <grub_virtual_screen_setcolorstate+0x2c>
+	...
+
+00000000000007a8 <grub_gfxterm_setcursor>:
+     7a8:	stp	x29, x30, [sp, #-96]!
+     7ac:	adrp	x0, 0 <grub_virtual_screen_getwh>
+     7b0:	mov	x29, sp
+     7b4:	stp	x19, x20, [sp, #16]
+     7b8:	ldr	x19, [x0]
+     7bc:	ldr	w0, [x19, #40]
+     7c0:	cmp	w0, w1
+     7c4:	b.eq	824 <grub_gfxterm_setcursor+0x7c>  // b.none
+     7c8:	ldr	w3, [x19, #80]
+     7cc:	mov	w20, w1
+     7d0:	stp	x21, x22, [sp, #32]
+     7d4:	ldr	w21, [x19, #36]
+     7d8:	ldp	w1, w22, [x19, #28]
+     7dc:	add	w3, w21, w3
+     7e0:	cmp	w3, w1
+     7e4:	cbz	w0, 830 <grub_gfxterm_setcursor+0x88>
+     7e8:	b.cs	81c <grub_gfxterm_setcursor+0x74>  // b.hs, b.nlast
+     7ec:	ldr	w0, [x19, #24]
+     7f0:	ldr	x2, [x19, #72]
+     7f4:	stp	x25, x26, [sp, #64]
+     7f8:	mul	w0, w21, w0
+     7fc:	add	x0, x0, w22, uxtw
+     800:	add	x0, x0, x0, lsl #2
+     804:	lsl	x0, x0, #3
+     808:	add	x25, x2, x0
+     80c:	ldr	w0, [x2, x0]
+     810:	tst	x0, #0x7fffff
+     814:	b.ne	8e0 <grub_gfxterm_setcursor+0x138>  // b.any
+     818:	ldp	x25, x26, [sp, #64]
+     81c:	ldp	x21, x22, [sp, #32]
+     820:	str	w20, [x19, #40]
+     824:	ldp	x19, x20, [sp, #16]
+     828:	ldp	x29, x30, [sp], #96
+     82c:	ret
+     830:	b.cs	81c <grub_gfxterm_setcursor+0x74>  // b.hs, b.nlast
+     834:	ldr	w2, [x19, #24]
+     838:	ldr	x4, [x19, #72]
+     83c:	stp	x25, x26, [sp, #64]
+     840:	mul	w2, w21, w2
+     844:	stp	x23, x24, [sp, #48]
+     848:	ldr	x0, [x19, #48]
+     84c:	add	x2, x2, w22, uxtw
+     850:	add	x2, x2, x2, lsl #2
+     854:	lsl	x2, x2, #3
+     858:	add	x26, x4, x2
+     85c:	ldr	w2, [x4, x2]
+     860:	tst	x2, #0x7fffff
+     864:	b.ne	9bc <grub_gfxterm_setcursor+0x214>  // b.any
+     868:	ldp	w21, w2, [x19, #16]
+     86c:	ldrsh	w1, [x0, #32]
+     870:	sub	w0, w2, #0x2
+     874:	ldr	w24, [x19, #60]
+     878:	cmp	w0, w1
+     87c:	mul	w22, w21, w22
+     880:	csel	w1, w0, w1, ls  // ls = plast
+     884:	ldr	x0, [x19, #88]
+     888:	madd	w23, w2, w3, w1
+     88c:	bl	0 <grub_video_set_active_render_target>
+     890:	mov	w0, w24
+     894:	mov	w2, w23
+     898:	mov	w1, w22
+     89c:	mov	w3, w21
+     8a0:	mov	w4, #0x2                   	// #2
+     8a4:	bl	0 <grub_video_fill_rect>
+     8a8:	ldr	x0, [x19, #128]
+     8ac:	bl	0 <grub_video_set_active_render_target>
+     8b0:	cbz	w21, a9c <grub_gfxterm_setcursor+0x2f4>
+     8b4:	ldr	w0, [x19, #156]
+     8b8:	ldp	w9, w10, [x19, #8]
+     8bc:	cbnz	w0, af0 <grub_gfxterm_setcursor+0x348>
+     8c0:	add	w1, w23, w10
+     8c4:	mov	w2, w21
+     8c8:	add	w0, w22, w9
+     8cc:	mov	w3, #0x2                   	// #2
+     8d0:	bl	448 <dirty_region_add_real>
+     8d4:	ldp	x23, x24, [sp, #48]
+     8d8:	ldp	x25, x26, [sp, #64]
+     8dc:	b	81c <grub_gfxterm_setcursor+0x74>
+     8e0:	ldr	x0, [x19, #48]
+     8e4:	mov	x1, x25
+     8e8:	stp	x23, x24, [sp, #48]
+     8ec:	bl	0 <grub_font_construct_glyph>
+     8f0:	mov	x24, x0
+     8f4:	cbz	x0, b28 <grub_gfxterm_setcursor+0x380>
+     8f8:	ldrh	w1, [x0, #16]
+     8fc:	ldr	x2, [x19, #48]
+     900:	stp	x27, x28, [sp, #80]
+     904:	ldr	w0, [x19, #16]
+     908:	ldrsh	w27, [x2, #32]
+     90c:	mov	w23, w0
+     910:	cbz	w1, 928 <grub_gfxterm_setcursor+0x180>
+     914:	sub	w23, w0, #0x1
+     918:	add	w23, w23, w1
+     91c:	udiv	w23, w23, w0
+     920:	and	w23, w23, #0xff
+     924:	mul	w23, w23, w0
+     928:	mul	w22, w0, w22
+     92c:	ldr	w1, [x19, #80]
+     930:	ldr	x0, [x19, #88]
+     934:	add	w21, w21, w1
+     938:	ldr	w26, [x19, #20]
+     93c:	ldr	w28, [x25, #36]
+     940:	ldr	w25, [x25, #32]
+     944:	bl	0 <grub_video_set_active_render_target>
+     948:	mov	w4, w26
+     94c:	mov	w3, w23
+     950:	mul	w21, w21, w26
+     954:	mov	w1, w22
+     958:	mov	w0, w28
+     95c:	mov	w2, w21
+     960:	bl	0 <grub_video_fill_rect>
+     964:	add	w3, w27, w21
+     968:	mov	w1, w25
+     96c:	mov	w2, w22
+     970:	mov	x0, x24
+     974:	bl	0 <grub_font_draw_glyph>
+     978:	ldr	x0, [x19, #128]
+     97c:	bl	0 <grub_video_set_active_render_target>
+     980:	cmp	w23, #0x0
+     984:	ccmp	w26, #0x0, #0x4, ne  // ne = any
+     988:	b.eq	b10 <grub_gfxterm_setcursor+0x368>  // b.none
+     98c:	ldr	w0, [x19, #156]
+     990:	ldp	w9, w10, [x19, #8]
+     994:	cbnz	w0, ad0 <grub_gfxterm_setcursor+0x328>
+     998:	mov	w3, w26
+     99c:	mov	w2, w23
+     9a0:	add	w1, w21, w10
+     9a4:	add	w0, w22, w9
+     9a8:	bl	448 <dirty_region_add_real>
+     9ac:	ldp	x23, x24, [sp, #48]
+     9b0:	ldp	x25, x26, [sp, #64]
+     9b4:	ldp	x27, x28, [sp, #80]
+     9b8:	b	81c <grub_gfxterm_setcursor+0x74>
+     9bc:	mov	x1, x26
+     9c0:	bl	0 <grub_font_construct_glyph>
+     9c4:	mov	x24, x0
+     9c8:	cbz	x0, b40 <grub_gfxterm_setcursor+0x398>
+     9cc:	ldrh	w1, [x0, #16]
+     9d0:	ldr	x2, [x19, #48]
+     9d4:	stp	x27, x28, [sp, #80]
+     9d8:	ldr	w0, [x19, #16]
+     9dc:	ldrsh	w27, [x2, #32]
+     9e0:	mov	w23, w0
+     9e4:	cbz	w1, 9fc <grub_gfxterm_setcursor+0x254>
+     9e8:	sub	w23, w0, #0x1
+     9ec:	add	w23, w23, w1
+     9f0:	udiv	w23, w23, w0
+     9f4:	and	w23, w23, #0xff
+     9f8:	mul	w23, w23, w0
+     9fc:	mul	w22, w0, w22
+     a00:	ldr	w1, [x19, #80]
+     a04:	ldr	x0, [x19, #88]
+     a08:	add	w21, w21, w1
+     a0c:	ldr	w25, [x19, #20]
+     a10:	ldr	w28, [x26, #36]
+     a14:	ldr	w26, [x26, #32]
+     a18:	bl	0 <grub_video_set_active_render_target>
+     a1c:	mov	w4, w25
+     a20:	mov	w3, w23
+     a24:	mul	w21, w21, w25
+     a28:	mov	w1, w22
+     a2c:	mov	w0, w28
+     a30:	mov	w2, w21
+     a34:	bl	0 <grub_video_fill_rect>
+     a38:	add	w3, w27, w21
+     a3c:	mov	w1, w26
+     a40:	mov	w2, w22
+     a44:	mov	x0, x24
+     a48:	bl	0 <grub_font_draw_glyph>
+     a4c:	ldr	x0, [x19, #128]
+     a50:	bl	0 <grub_video_set_active_render_target>
+     a54:	cmp	w23, #0x0
+     a58:	ccmp	w25, #0x0, #0x4, ne  // ne = any
+     a5c:	b.eq	b20 <grub_gfxterm_setcursor+0x378>  // b.none
+     a60:	ldr	w0, [x19, #156]
+     a64:	ldp	w9, w10, [x19, #8]
+     a68:	cbnz	w0, ab0 <grub_gfxterm_setcursor+0x308>
+     a6c:	mov	w3, w25
+     a70:	mov	w2, w23
+     a74:	add	w1, w21, w10
+     a78:	add	w0, w22, w9
+     a7c:	bl	448 <dirty_region_add_real>
+     a80:	ldp	x27, x28, [sp, #80]
+     a84:	ldr	w3, [x19, #36]
+     a88:	ldr	w1, [x19, #80]
+     a8c:	ldr	w0, [x19, #28]
+     a90:	add	w3, w3, w1
+     a94:	cmp	w3, w0
+     a98:	b.cc	aa4 <grub_gfxterm_setcursor+0x2fc>  // b.lo, b.ul, b.last
+     a9c:	ldp	x23, x24, [sp, #48]
+     aa0:	b	818 <grub_gfxterm_setcursor+0x70>
+     aa4:	ldr	w22, [x19, #32]
+     aa8:	ldr	x0, [x19, #48]
+     aac:	b	868 <grub_gfxterm_setcursor+0xc0>
+     ab0:	ldp	w2, w3, [x19, #144]
+     ab4:	mov	w0, #0x0                   	// #0
+     ab8:	mov	w1, #0x0                   	// #0
+     abc:	bl	448 <dirty_region_add_real>
+     ac0:	str	wzr, [x19, #156]
+     ac4:	mov	w0, #0x1                   	// #1
+     ac8:	str	w0, [x19, #112]
+     acc:	b	a6c <grub_gfxterm_setcursor+0x2c4>
+     ad0:	ldp	w2, w3, [x19, #144]
+     ad4:	mov	w0, #0x0                   	// #0
+     ad8:	mov	w1, #0x0                   	// #0
+     adc:	bl	448 <dirty_region_add_real>
+     ae0:	str	wzr, [x19, #156]
+     ae4:	mov	w0, #0x1                   	// #1
+     ae8:	str	w0, [x19, #112]
+     aec:	b	998 <grub_gfxterm_setcursor+0x1f0>
+     af0:	ldp	w2, w3, [x19, #144]
+     af4:	mov	w0, #0x0                   	// #0
+     af8:	mov	w1, #0x0                   	// #0
+     afc:	bl	448 <dirty_region_add_real>
+     b00:	str	wzr, [x19, #156]
+     b04:	mov	w0, #0x1                   	// #1
+     b08:	str	w0, [x19, #112]
+     b0c:	b	8c0 <grub_gfxterm_setcursor+0x118>
+     b10:	ldp	x23, x24, [sp, #48]
+     b14:	ldp	x25, x26, [sp, #64]
+     b18:	ldp	x27, x28, [sp, #80]
+     b1c:	b	81c <grub_gfxterm_setcursor+0x74>
+     b20:	ldp	x27, x28, [sp, #80]
+     b24:	b	a84 <grub_gfxterm_setcursor+0x2dc>
+     b28:	adrp	x0, 0 <grub_virtual_screen_getwh>
+     b2c:	ldp	x23, x24, [sp, #48]
+     b30:	ldr	x0, [x0]
+     b34:	ldp	x25, x26, [sp, #64]
+     b38:	str	wzr, [x0]
+     b3c:	b	81c <grub_gfxterm_setcursor+0x74>
+     b40:	adrp	x0, 0 <grub_virtual_screen_getwh>
+     b44:	ldr	x0, [x0]
+     b48:	str	wzr, [x0]
+     b4c:	b	a84 <grub_gfxterm_setcursor+0x2dc>
+	...
+
+0000000000000b60 <grub_gfxterm_gotoxy>:
+     b60:	stp	x29, x30, [sp, #-112]!
+     b64:	adrp	x0, 0 <grub_virtual_screen_getwh>
+     b68:	mov	x29, sp
+     b6c:	stp	x19, x20, [sp, #16]
+     b70:	ldr	x19, [x0]
+     b74:	stp	x21, x22, [sp, #32]
+     b78:	and	w21, w1, #0xffff
+     b7c:	mov	w22, w21
+     b80:	lsr	w1, w1, #16
+     b84:	ldr	w0, [x19, #24]
+     b88:	cmp	w21, w0
+     b8c:	b.cc	b9c <grub_gfxterm_gotoxy+0x3c>  // b.lo, b.ul, b.last
+     b90:	sub	w21, w0, #0x1
+     b94:	and	w21, w21, #0xffff
+     b98:	mov	w22, w21
+     b9c:	ldr	w2, [x19, #28]
+     ba0:	ldr	w3, [x19, #40]
+     ba4:	sub	w20, w2, #0x1
+     ba8:	cmp	w1, w2
+     bac:	and	w20, w20, #0xffff
+     bb0:	csel	w20, w20, w1, cs  // cs = hs, nlast
+     bb4:	cbnz	w3, bcc <grub_gfxterm_gotoxy+0x6c>
+     bb8:	stp	w21, w20, [x19, #32]
+     bbc:	ldp	x19, x20, [sp, #16]
+     bc0:	ldp	x21, x22, [sp, #32]
+     bc4:	ldp	x29, x30, [sp], #112
+     bc8:	ret
+     bcc:	ldr	w1, [x19, #80]
+     bd0:	stp	x23, x24, [sp, #48]
+     bd4:	ldr	w23, [x19, #36]
+     bd8:	stp	x25, x26, [sp, #64]
+     bdc:	add	w1, w23, w1
+     be0:	cmp	w2, w1
+     be4:	b.ls	c18 <grub_gfxterm_gotoxy+0xb8>  // b.plast
+     be8:	mul	w0, w0, w23
+     bec:	ldr	w25, [x19, #32]
+     bf0:	ldr	x2, [x19, #72]
+     bf4:	stp	x27, x28, [sp, #80]
+     bf8:	add	x0, x0, w25, uxtw
+     bfc:	add	x0, x0, x0, lsl #2
+     c00:	lsl	x0, x0, #3
+     c04:	add	x28, x2, x0
+     c08:	ldr	w0, [x2, x0]
+     c0c:	tst	x0, #0x7fffff
+     c10:	b.ne	df0 <grub_gfxterm_gotoxy+0x290>  // b.any
+     c14:	ldp	x27, x28, [sp, #80]
+     c18:	stp	w21, w20, [x19, #32]
+     c1c:	ldr	w4, [x19, #80]
+     c20:	ldr	w0, [x19, #28]
+     c24:	add	w4, w20, w4
+     c28:	cmp	w4, w0
+     c2c:	b.cs	dd8 <grub_gfxterm_gotoxy+0x278>  // b.hs, b.nlast
+     c30:	ldr	w3, [x19, #24]
+     c34:	ldr	x2, [x19, #72]
+     c38:	ldr	x0, [x19, #48]
+     c3c:	mul	w3, w20, w3
+     c40:	add	x3, x3, w21, uxth
+     c44:	add	x3, x3, x3, lsl #2
+     c48:	lsl	x3, x3, #3
+     c4c:	add	x25, x2, x3
+     c50:	ldr	w2, [x2, x3]
+     c54:	tst	x2, #0x7fffff
+     c58:	b.ne	cdc <grub_gfxterm_gotoxy+0x17c>  // b.any
+     c5c:	ldp	w21, w1, [x19, #16]
+     c60:	ldrsh	w0, [x0, #32]
+     c64:	sub	w20, w1, #0x2
+     c68:	ldr	w23, [x19, #60]
+     c6c:	cmp	w20, w0
+     c70:	mul	w22, w21, w22
+     c74:	csel	w20, w20, w0, ls  // ls = plast
+     c78:	ldr	x0, [x19, #88]
+     c7c:	madd	w20, w1, w4, w20
+     c80:	bl	0 <grub_video_set_active_render_target>
+     c84:	mov	w0, w23
+     c88:	mov	w2, w20
+     c8c:	mov	w1, w22
+     c90:	mov	w3, w21
+     c94:	mov	w4, #0x2                   	// #2
+     c98:	bl	0 <grub_video_fill_rect>
+     c9c:	ldr	x0, [x19, #128]
+     ca0:	bl	0 <grub_video_set_active_render_target>
+     ca4:	cbz	w21, dd8 <grub_gfxterm_gotoxy+0x278>
+     ca8:	ldr	w0, [x19, #156]
+     cac:	ldp	w9, w10, [x19, #8]
+     cb0:	cbnz	w0, f00 <grub_gfxterm_gotoxy+0x3a0>
+     cb4:	mov	w2, w21
+     cb8:	add	w1, w20, w10
+     cbc:	add	w0, w22, w9
+     cc0:	mov	w3, #0x2                   	// #2
+     cc4:	ldp	x19, x20, [sp, #16]
+     cc8:	ldp	x21, x22, [sp, #32]
+     ccc:	ldp	x23, x24, [sp, #48]
+     cd0:	ldp	x25, x26, [sp, #64]
+     cd4:	ldp	x29, x30, [sp], #112
+     cd8:	b	448 <dirty_region_add_real>
+     cdc:	mov	x1, x25
+     ce0:	bl	0 <grub_font_construct_glyph>
+     ce4:	mov	x23, x0
+     ce8:	cbz	x0, f28 <grub_gfxterm_gotoxy+0x3c8>
+     cec:	ldrh	w2, [x0, #16]
+     cf0:	ldr	x1, [x19, #48]
+     cf4:	stp	x27, x28, [sp, #80]
+     cf8:	ldr	w0, [x19, #16]
+     cfc:	ldrsh	w26, [x1, #32]
+     d00:	mov	w22, w0
+     d04:	cbz	w2, d1c <grub_gfxterm_gotoxy+0x1bc>
+     d08:	sub	w22, w0, #0x1
+     d0c:	add	w22, w22, w2
+     d10:	udiv	w22, w22, w0
+     d14:	and	w22, w22, #0xff
+     d18:	mul	w22, w22, w0
+     d1c:	mul	w21, w0, w21
+     d20:	ldr	w2, [x19, #80]
+     d24:	ldr	x0, [x19, #88]
+     d28:	add	w20, w20, w2
+     d2c:	ldr	w24, [x19, #20]
+     d30:	ldr	w27, [x25, #36]
+     d34:	ldr	w25, [x25, #32]
+     d38:	bl	0 <grub_video_set_active_render_target>
+     d3c:	mov	w4, w24
+     d40:	mov	w3, w22
+     d44:	mul	w20, w20, w24
+     d48:	mov	w1, w21
+     d4c:	mov	w0, w27
+     d50:	mov	w2, w20
+     d54:	bl	0 <grub_video_fill_rect>
+     d58:	add	w3, w26, w20
+     d5c:	mov	w1, w25
+     d60:	mov	w2, w21
+     d64:	mov	x0, x23
+     d68:	bl	0 <grub_font_draw_glyph>
+     d6c:	ldr	x0, [x19, #128]
+     d70:	bl	0 <grub_video_set_active_render_target>
+     d74:	cmp	w22, #0x0
+     d78:	ccmp	w24, #0x0, #0x4, ne  // ne = any
+     d7c:	b.eq	f20 <grub_gfxterm_gotoxy+0x3c0>  // b.none
+     d80:	ldr	w0, [x19, #156]
+     d84:	ldp	w9, w10, [x19, #8]
+     d88:	cbz	w0, da8 <grub_gfxterm_gotoxy+0x248>
+     d8c:	ldp	w2, w3, [x19, #144]
+     d90:	mov	w0, #0x0                   	// #0
+     d94:	mov	w1, #0x0                   	// #0
+     d98:	bl	448 <dirty_region_add_real>
+     d9c:	str	wzr, [x19, #156]
+     da0:	mov	w0, #0x1                   	// #1
+     da4:	str	w0, [x19, #112]
+     da8:	mov	w3, w24
+     dac:	mov	w2, w22
+     db0:	add	w1, w20, w10
+     db4:	add	w0, w21, w9
+     db8:	bl	448 <dirty_region_add_real>
+     dbc:	ldp	x27, x28, [sp, #80]
+     dc0:	ldr	w4, [x19, #36]
+     dc4:	ldr	w1, [x19, #80]
+     dc8:	ldr	w0, [x19, #28]
+     dcc:	add	w4, w4, w1
+     dd0:	cmp	w4, w0
+     dd4:	b.cc	ed4 <grub_gfxterm_gotoxy+0x374>  // b.lo, b.ul, b.last
+     dd8:	ldp	x19, x20, [sp, #16]
+     ddc:	ldp	x21, x22, [sp, #32]
+     de0:	ldp	x23, x24, [sp, #48]
+     de4:	ldp	x25, x26, [sp, #64]
+     de8:	ldp	x29, x30, [sp], #112
+     dec:	ret
+     df0:	ldr	x0, [x19, #48]
+     df4:	mov	x1, x28
+     df8:	bl	0 <grub_font_construct_glyph>
+     dfc:	mov	x27, x0
+     e00:	cbz	x0, f38 <grub_gfxterm_gotoxy+0x3d8>
+     e04:	ldrh	w0, [x0, #16]
+     e08:	ldr	x1, [x19, #48]
+     e0c:	ldr	w2, [x19, #16]
+     e10:	ldrsh	w5, [x1, #32]
+     e14:	mov	w24, w2
+     e18:	cbz	w0, e30 <grub_gfxterm_gotoxy+0x2d0>
+     e1c:	sub	w24, w2, #0x1
+     e20:	add	w24, w24, w0
+     e24:	udiv	w24, w24, w2
+     e28:	and	w24, w24, #0xff
+     e2c:	mul	w24, w24, w2
+     e30:	ldr	w0, [x19, #80]
+     e34:	mul	w25, w25, w2
+     e38:	ldr	w6, [x28, #36]
+     e3c:	add	w23, w23, w0
+     e40:	ldr	w26, [x19, #20]
+     e44:	ldr	x0, [x19, #88]
+     e48:	stp	w6, w5, [sp, #104]
+     e4c:	ldr	w28, [x28, #32]
+     e50:	mul	w23, w23, w26
+     e54:	bl	0 <grub_video_set_active_render_target>
+     e58:	ldr	w6, [sp, #104]
+     e5c:	mov	w4, w26
+     e60:	mov	w3, w24
+     e64:	mov	w2, w23
+     e68:	mov	w0, w6
+     e6c:	mov	w1, w25
+     e70:	bl	0 <grub_video_fill_rect>
+     e74:	ldr	w5, [sp, #108]
+     e78:	mov	w1, w28
+     e7c:	mov	w2, w25
+     e80:	mov	x0, x27
+     e84:	add	w3, w5, w23
+     e88:	bl	0 <grub_font_draw_glyph>
+     e8c:	ldr	x0, [x19, #128]
+     e90:	bl	0 <grub_video_set_active_render_target>
+     e94:	cmp	w24, #0x0
+     e98:	ccmp	w26, #0x0, #0x4, ne  // ne = any
+     e9c:	b.eq	ec0 <grub_gfxterm_gotoxy+0x360>  // b.none
+     ea0:	ldr	w0, [x19, #156]
+     ea4:	ldp	w9, w10, [x19, #8]
+     ea8:	cbnz	w0, ee0 <grub_gfxterm_gotoxy+0x380>
+     eac:	mov	w3, w26
+     eb0:	mov	w2, w24
+     eb4:	add	w1, w23, w10
+     eb8:	add	w0, w25, w9
+     ebc:	bl	448 <dirty_region_add_real>
+     ec0:	ldr	w0, [x19, #40]
+     ec4:	stp	w21, w20, [x19, #32]
+     ec8:	cbz	w0, f4c <grub_gfxterm_gotoxy+0x3ec>
+     ecc:	ldp	x27, x28, [sp, #80]
+     ed0:	b	c1c <grub_gfxterm_gotoxy+0xbc>
+     ed4:	ldr	w22, [x19, #32]
+     ed8:	ldr	x0, [x19, #48]
+     edc:	b	c5c <grub_gfxterm_gotoxy+0xfc>
+     ee0:	ldp	w2, w3, [x19, #144]
+     ee4:	mov	w0, #0x0                   	// #0
+     ee8:	mov	w1, #0x0                   	// #0
+     eec:	bl	448 <dirty_region_add_real>
+     ef0:	str	wzr, [x19, #156]
+     ef4:	mov	w0, #0x1                   	// #1
+     ef8:	str	w0, [x19, #112]
+     efc:	b	eac <grub_gfxterm_gotoxy+0x34c>
+     f00:	ldp	w2, w3, [x19, #144]
+     f04:	mov	w0, #0x0                   	// #0
+     f08:	mov	w1, #0x0                   	// #0
+     f0c:	bl	448 <dirty_region_add_real>
+     f10:	str	wzr, [x19, #156]
+     f14:	mov	w0, #0x1                   	// #1
+     f18:	str	w0, [x19, #112]
+     f1c:	b	cb4 <grub_gfxterm_gotoxy+0x154>
+     f20:	ldp	x27, x28, [sp, #80]
+     f24:	b	dc0 <grub_gfxterm_gotoxy+0x260>
+     f28:	adrp	x0, 0 <grub_virtual_screen_getwh>
+     f2c:	ldr	x0, [x0]
+     f30:	str	wzr, [x0]
+     f34:	b	dc0 <grub_gfxterm_gotoxy+0x260>
+     f38:	adrp	x1, 0 <grub_virtual_screen_getwh>
+     f3c:	ldr	w0, [x19, #40]
+     f40:	ldr	x1, [x1]
+     f44:	str	wzr, [x1]
+     f48:	b	ec4 <grub_gfxterm_gotoxy+0x364>
+     f4c:	ldp	x23, x24, [sp, #48]
+     f50:	ldp	x25, x26, [sp, #64]
+     f54:	ldp	x27, x28, [sp, #80]
+     f58:	b	bbc <grub_gfxterm_gotoxy+0x5c>
+     f5c:	nop
+	...
+
+0000000000000f70 <grub_gfxterm_putchar>:
+     f70:	stp	x29, x30, [sp, #-96]!
+     f74:	adrp	x0, 0 <grub_virtual_screen_getwh>
+     f78:	mov	x29, sp
+     f7c:	stp	x19, x20, [sp, #16]
+     f80:	ldr	x19, [x0]
+     f84:	ldr	w0, [x19, #84]
+     f88:	cbz	w0, fe8 <grub_gfxterm_putchar+0x78>
+     f8c:	ldr	w0, [x1]
+     f90:	stp	x21, x22, [sp, #32]
+     f94:	mov	x21, x1
+     f98:	and	w2, w0, #0x7fffff
+     f9c:	cmp	w2, #0x7
+     fa0:	b.eq	fe4 <grub_gfxterm_putchar+0x74>  // b.none
+     fa4:	ldr	w1, [x19, #40]
+     fa8:	cbnz	w1, 11ac <grub_gfxterm_putchar+0x23c>
+     fac:	and	w1, w0, #0x7fffff
+     fb0:	and	w1, w1, #0xfffffffd
+     fb4:	cmp	w1, #0x8
+     fb8:	ccmp	w2, #0xd, #0x4, ne  // ne = any
+     fbc:	b.ne	12d8 <grub_gfxterm_putchar+0x368>  // b.any
+     fc0:	ubfx	x0, x0, #0, #23
+     fc4:	cmp	w0, #0xa
+     fc8:	b.eq	14b4 <grub_gfxterm_putchar+0x544>  // b.none
+     fcc:	cmp	w0, #0xd
+     fd0:	b.eq	14ac <grub_gfxterm_putchar+0x53c>  // b.none
+     fd4:	cmp	w0, #0x8
+     fd8:	b.eq	1498 <grub_gfxterm_putchar+0x528>  // b.none
+     fdc:	ldr	w0, [x19, #40]
+     fe0:	cbnz	w0, ff4 <grub_gfxterm_putchar+0x84>
+     fe4:	ldp	x21, x22, [sp, #32]
+     fe8:	ldp	x19, x20, [sp, #16]
+     fec:	ldp	x29, x30, [sp], #96
+     ff0:	ret
+     ff4:	ldr	w20, [x19, #36]
+     ff8:	ldr	w3, [x19, #80]
+     ffc:	ldr	w0, [x19, #28]
+    1000:	add	w3, w20, w3
+    1004:	cmp	w3, w0
+    1008:	b.cs	fe4 <grub_gfxterm_putchar+0x74>  // b.hs, b.nlast
+    100c:	ldr	w2, [x19, #24]
+    1010:	ldr	w21, [x19, #32]
+    1014:	ldr	x4, [x19, #72]
+    1018:	stp	x23, x24, [sp, #48]
+    101c:	mul	w2, w20, w2
+    1020:	ldr	x0, [x19, #48]
+    1024:	add	x2, x2, w21, uxtw
+    1028:	add	x2, x2, x2, lsl #2
+    102c:	lsl	x2, x2, #3
+    1030:	add	x24, x4, x2
+    1034:	ldr	w1, [x4, x2]
+    1038:	tst	x1, #0x7fffff
+    103c:	b.eq	1130 <grub_gfxterm_putchar+0x1c0>  // b.none
+    1040:	mov	x1, x24
+    1044:	bl	0 <grub_font_construct_glyph>
+    1048:	mov	x23, x0
+    104c:	cbz	x0, 1640 <grub_gfxterm_putchar+0x6d0>
+    1050:	ldrh	w1, [x0, #16]
+    1054:	ldr	x2, [x19, #48]
+    1058:	stp	x25, x26, [sp, #64]
+    105c:	ldr	w0, [x19, #16]
+    1060:	stp	x27, x28, [sp, #80]
+    1064:	ldrsh	w26, [x2, #32]
+    1068:	mov	w22, w0
+    106c:	cbz	w1, 1084 <grub_gfxterm_putchar+0x114>
+    1070:	sub	w22, w0, #0x1
+    1074:	add	w22, w22, w1
+    1078:	udiv	w22, w22, w0
+    107c:	and	w22, w22, #0xff
+    1080:	mul	w22, w22, w0
+    1084:	mul	w21, w21, w0
+    1088:	ldr	w1, [x19, #80]
+    108c:	ldr	x0, [x19, #88]
+    1090:	add	w20, w20, w1
+    1094:	ldr	w25, [x19, #20]
+    1098:	ldr	w27, [x24, #36]
+    109c:	ldr	w24, [x24, #32]
+    10a0:	bl	0 <grub_video_set_active_render_target>
+    10a4:	mov	w4, w25
+    10a8:	mov	w3, w22
+    10ac:	mul	w20, w20, w25
+    10b0:	mov	w1, w21
+    10b4:	mov	w0, w27
+    10b8:	mov	w2, w20
+    10bc:	bl	0 <grub_video_fill_rect>
+    10c0:	add	w3, w26, w20
+    10c4:	mov	w1, w24
+    10c8:	mov	w2, w21
+    10cc:	mov	x0, x23
+    10d0:	bl	0 <grub_font_draw_glyph>
+    10d4:	ldr	x0, [x19, #128]
+    10d8:	bl	0 <grub_video_set_active_render_target>
+    10dc:	cmp	w22, #0x0
+    10e0:	ccmp	w25, #0x0, #0x4, ne  // ne = any
+    10e4:	b.eq	1688 <grub_gfxterm_putchar+0x718>  // b.none
+    10e8:	ldr	w0, [x19, #156]
+    10ec:	ldp	w9, w10, [x19, #8]
+    10f0:	cbnz	w0, 16b4 <grub_gfxterm_putchar+0x744>
+    10f4:	mov	w3, w25
+    10f8:	mov	w2, w22
+    10fc:	add	w1, w20, w10
+    1100:	add	w0, w21, w9
+    1104:	bl	448 <dirty_region_add_real>
+    1108:	ldp	x25, x26, [sp, #64]
+    110c:	ldp	x27, x28, [sp, #80]
+    1110:	ldr	w3, [x19, #36]
+    1114:	ldr	w1, [x19, #80]
+    1118:	ldr	w0, [x19, #28]
+    111c:	add	w3, w3, w1
+    1120:	cmp	w3, w0
+    1124:	b.cs	1514 <grub_gfxterm_putchar+0x5a4>  // b.hs, b.nlast
+    1128:	ldr	w21, [x19, #32]
+    112c:	ldr	x0, [x19, #48]
+    1130:	ldp	w22, w1, [x19, #16]
+    1134:	ldrsh	w0, [x0, #32]
+    1138:	sub	w20, w1, #0x2
+    113c:	ldr	w23, [x19, #60]
+    1140:	cmp	w20, w0
+    1144:	mul	w21, w22, w21
+    1148:	csel	w20, w20, w0, ls  // ls = plast
+    114c:	ldr	x0, [x19, #88]
+    1150:	madd	w20, w1, w3, w20
+    1154:	bl	0 <grub_video_set_active_render_target>
+    1158:	mov	w0, w23
+    115c:	mov	w2, w20
+    1160:	mov	w1, w21
+    1164:	mov	w3, w22
+    1168:	mov	w4, #0x2                   	// #2
+    116c:	bl	0 <grub_video_fill_rect>
+    1170:	ldr	x0, [x19, #128]
+    1174:	bl	0 <grub_video_set_active_render_target>
+    1178:	cbz	w22, 1514 <grub_gfxterm_putchar+0x5a4>
+    117c:	ldr	w0, [x19, #156]
+    1180:	ldp	w9, w10, [x19, #8]
+    1184:	cbnz	w0, 1620 <grub_gfxterm_putchar+0x6b0>
+    1188:	mov	w2, w22
+    118c:	add	w1, w20, w10
+    1190:	add	w0, w21, w9
+    1194:	mov	w3, #0x2                   	// #2
+    1198:	ldp	x19, x20, [sp, #16]
+    119c:	ldp	x21, x22, [sp, #32]
+    11a0:	ldp	x23, x24, [sp, #48]
+    11a4:	ldp	x29, x30, [sp], #96
+    11a8:	b	448 <dirty_region_add_real>
+    11ac:	ldr	w20, [x19, #36]
+    11b0:	ldr	w1, [x19, #80]
+    11b4:	ldr	w3, [x19, #28]
+    11b8:	add	w1, w20, w1
+    11bc:	cmp	w1, w3
+    11c0:	b.cs	fac <grub_gfxterm_putchar+0x3c>  // b.hs, b.nlast
+    11c4:	ldr	w3, [x19, #24]
+    11c8:	stp	x25, x26, [sp, #64]
+    11cc:	ldr	w25, [x19, #32]
+    11d0:	ldr	x4, [x19, #72]
+    11d4:	mul	w3, w20, w3
+    11d8:	add	x3, x3, w25, uxtw
+    11dc:	add	x3, x3, x3, lsl #2
+    11e0:	lsl	x3, x3, #3
+    11e4:	add	x26, x4, x3
+    11e8:	ldr	w3, [x4, x3]
+    11ec:	tst	x3, #0x7fffff
+    11f0:	b.eq	1520 <grub_gfxterm_putchar+0x5b0>  // b.none
+    11f4:	ldr	x0, [x19, #48]
+    11f8:	mov	x1, x26
+    11fc:	stp	x23, x24, [sp, #48]
+    1200:	bl	0 <grub_font_construct_glyph>
+    1204:	mov	x23, x0
+    1208:	cbz	x0, 1650 <grub_gfxterm_putchar+0x6e0>
+    120c:	ldrh	w1, [x0, #16]
+    1210:	ldr	x2, [x19, #48]
+    1214:	stp	x27, x28, [sp, #80]
+    1218:	ldr	w0, [x19, #16]
+    121c:	ldrsh	w27, [x2, #32]
+    1220:	mov	w22, w0
+    1224:	cbz	w1, 123c <grub_gfxterm_putchar+0x2cc>
+    1228:	sub	w22, w0, #0x1
+    122c:	add	w22, w22, w1
+    1230:	udiv	w22, w22, w0
+    1234:	and	w22, w22, #0xff
+    1238:	mul	w22, w22, w0
+    123c:	mul	w25, w25, w0
+    1240:	ldr	w1, [x19, #80]
+    1244:	ldr	x0, [x19, #88]
+    1248:	add	w20, w20, w1
+    124c:	ldr	w24, [x19, #20]
+    1250:	ldr	w28, [x26, #36]
+    1254:	ldr	w26, [x26, #32]
+    1258:	bl	0 <grub_video_set_active_render_target>
+    125c:	mov	w4, w24
+    1260:	mov	w3, w22
+    1264:	mul	w20, w20, w24
+    1268:	mov	w1, w25
+    126c:	mov	w0, w28
+    1270:	mov	w2, w20
+    1274:	bl	0 <grub_video_fill_rect>
+    1278:	add	w3, w27, w20
+    127c:	mov	w1, w26
+    1280:	mov	w2, w25
+    1284:	mov	x0, x23
+    1288:	bl	0 <grub_font_draw_glyph>
+    128c:	ldr	x0, [x19, #128]
+    1290:	bl	0 <grub_video_set_active_render_target>
+    1294:	cmp	w22, #0x0
+    1298:	ccmp	w24, #0x0, #0x4, ne  // ne = any
+    129c:	b.eq	12c0 <grub_gfxterm_putchar+0x350>  // b.none
+    12a0:	ldr	w0, [x19, #156]
+    12a4:	ldp	w9, w10, [x19, #8]
+    12a8:	cbnz	w0, 1694 <grub_gfxterm_putchar+0x724>
+    12ac:	mov	w3, w24
+    12b0:	mov	w2, w22
+    12b4:	add	w1, w20, w10
+    12b8:	add	w0, w25, w9
+    12bc:	bl	448 <dirty_region_add_real>
+    12c0:	ldr	w0, [x21]
+    12c4:	ldp	x23, x24, [sp, #48]
+    12c8:	and	w2, w0, #0x7fffff
+    12cc:	ldp	x25, x26, [sp, #64]
+    12d0:	ldp	x27, x28, [sp, #80]
+    12d4:	b	fac <grub_gfxterm_putchar+0x3c>
+    12d8:	ldr	x0, [x19, #48]
+    12dc:	mov	x1, x21
+    12e0:	stp	x23, x24, [sp, #48]
+    12e4:	stp	x25, x26, [sp, #64]
+    12e8:	bl	0 <grub_font_get_constructed_device_width>
+    12ec:	cbz	w0, 1670 <grub_gfxterm_putchar+0x700>
+    12f0:	ldr	w1, [x19, #16]
+    12f4:	sub	w22, w1, #0x1
+    12f8:	add	w22, w22, w0
+    12fc:	udiv	w22, w22, w1
+    1300:	and	w23, w22, #0xff
+    1304:	and	w22, w22, #0xff
+    1308:	ldp	w0, w1, [x19, #32]
+    130c:	ldr	w2, [x19, #24]
+    1310:	add	w3, w0, w22
+    1314:	cmp	w3, w2
+    1318:	b.ls	1334 <grub_gfxterm_putchar+0x3c4>  // b.plast
+    131c:	ldr	w3, [x19, #28]
+    1320:	sub	w3, w3, #0x1
+    1324:	cmp	w3, w1
+    1328:	b.ls	1610 <grub_gfxterm_putchar+0x6a0>  // b.plast
+    132c:	add	w1, w1, #0x1
+    1330:	str	w1, [x19, #36]
+    1334:	mul	w1, w1, w2
+    1338:	ldr	x20, [x19, #72]
+    133c:	add	x0, x1, w0, uxtw
+    1340:	add	x0, x0, x0, lsl #2
+    1344:	add	x20, x20, x0, lsl #3
+    1348:	ldrh	w0, [x20, #6]
+    134c:	ubfx	x0, x0, #3, #8
+    1350:	cmp	w0, #0x2
+    1354:	b.hi	167c <grub_gfxterm_putchar+0x70c>  // b.pmore
+    1358:	ldrh	w3, [x20, #6]
+    135c:	mov	x1, x21
+    1360:	mov	x0, x20
+    1364:	mov	x2, #0x20                  	// #32
+    1368:	and	w3, w3, #0xfffff807
+    136c:	strh	w3, [x20, #6]
+    1370:	bl	0 <grub_memmove>
+    1374:	ldrh	w0, [x21, #6]
+    1378:	ubfx	x0, x0, #3, #8
+    137c:	cmp	w0, #0x2
+    1380:	b.ls	1500 <grub_gfxterm_putchar+0x590>  // b.plast
+    1384:	ubfiz	x0, x0, #2, #8
+    1388:	bl	0 <grub_malloc>
+    138c:	str	x0, [x20, #24]
+    1390:	cbz	x0, 13a8 <grub_gfxterm_putchar+0x438>
+    1394:	ldrh	w2, [x21, #6]
+    1398:	ldr	x1, [x21, #24]
+    139c:	ubfx	x2, x2, #3, #8
+    13a0:	lsl	x2, x2, #2
+    13a4:	bl	0 <grub_memmove>
+    13a8:	adrp	x2, 0 <grub_virtual_screen_getwh>
+    13ac:	cmp	w23, #0x1
+    13b0:	ldp	w1, w0, [x19, #60]
+    13b4:	stp	w1, w0, [x20, #32]
+    13b8:	ldr	x23, [x2]
+    13bc:	ldp	w2, w3, [x19, #24]
+    13c0:	str	wzr, [x23]
+    13c4:	b.ls	1418 <grub_gfxterm_putchar+0x4a8>  // b.plast
+    13c8:	mul	w1, w2, w3
+    13cc:	mov	x25, #0xffffff800000        	// #281474968322048
+    13d0:	add	x20, x20, #0x28
+    13d4:	mov	w21, #0x1                   	// #1
+    13d8:	mov	w24, #0x28                  	// #40
+    13dc:	movk	x25, #0xf807, lsl #48
+    13e0:	ldr	x0, [x19, #72]
+    13e4:	umaddl	x0, w1, w24, x0
+    13e8:	cmp	x20, x0
+    13ec:	b.cs	1418 <grub_gfxterm_putchar+0x4a8>  // b.hs, b.nlast
+    13f0:	ldrh	w0, [x20, #6]
+    13f4:	ubfx	x0, x0, #3, #8
+    13f8:	cmp	w0, #0x2
+    13fc:	b.hi	146c <grub_gfxterm_putchar+0x4fc>  // b.pmore
+    1400:	ldr	x0, [x20]
+    1404:	add	w21, w21, #0x1
+    1408:	cmp	w21, w22
+    140c:	and	x0, x0, x25
+    1410:	str	x0, [x20], #40
+    1414:	b.cc	13e0 <grub_gfxterm_putchar+0x470>  // b.lo, b.ul, b.last
+    1418:	ldp	w21, w20, [x19, #32]
+    141c:	ldr	w0, [x19, #80]
+    1420:	add	w0, w20, w0
+    1424:	cmp	w0, w3
+    1428:	b.cs	1450 <grub_gfxterm_putchar+0x4e0>  // b.hs, b.nlast
+    142c:	mul	w0, w20, w2
+    1430:	ldr	x3, [x19, #72]
+    1434:	add	x0, x0, w21, uxtw
+    1438:	add	x0, x0, x0, lsl #2
+    143c:	lsl	x0, x0, #3
+    1440:	add	x25, x3, x0
+    1444:	ldr	w0, [x3, x0]
+    1448:	tst	x0, #0x7fffff
+    144c:	b.ne	1538 <grub_gfxterm_putchar+0x5c8>  // b.any
+    1450:	add	w22, w22, w21
+    1454:	cmp	w22, w2
+    1458:	b.cs	14d4 <grub_gfxterm_putchar+0x564>  // b.hs, b.nlast
+    145c:	ldp	x23, x24, [sp, #48]
+    1460:	ldp	x25, x26, [sp, #64]
+    1464:	str	w22, [x19, #32]
+    1468:	b	fdc <grub_gfxterm_putchar+0x6c>
+    146c:	ldr	x0, [x20, #24]
+    1470:	add	w21, w21, #0x1
+    1474:	bl	0 <grub_free>
+    1478:	ldr	x0, [x20]
+    147c:	cmp	w22, w21
+    1480:	ldp	w2, w3, [x19, #24]
+    1484:	and	x0, x0, x25
+    1488:	str	x0, [x20], #40
+    148c:	b.ls	1418 <grub_gfxterm_putchar+0x4a8>  // b.plast
+    1490:	mul	w1, w2, w3
+    1494:	b	13e0 <grub_gfxterm_putchar+0x470>
+    1498:	ldr	w0, [x19, #32]
+    149c:	cbz	w0, fdc <grub_gfxterm_putchar+0x6c>
+    14a0:	sub	w0, w0, #0x1
+    14a4:	str	w0, [x19, #32]
+    14a8:	b	fdc <grub_gfxterm_putchar+0x6c>
+    14ac:	str	wzr, [x19, #32]
+    14b0:	b	fdc <grub_gfxterm_putchar+0x6c>
+    14b4:	ldr	w1, [x19, #28]
+    14b8:	ldr	w0, [x19, #36]
+    14bc:	sub	w1, w1, #0x1
+    14c0:	cmp	w0, w1
+    14c4:	b.cs	1530 <grub_gfxterm_putchar+0x5c0>  // b.hs, b.nlast
+    14c8:	add	w0, w0, #0x1
+    14cc:	str	w0, [x19, #36]
+    14d0:	b	fdc <grub_gfxterm_putchar+0x6c>
+    14d4:	ldr	w1, [x19, #28]
+    14d8:	ldr	w0, [x19, #36]
+    14dc:	str	wzr, [x19, #32]
+    14e0:	sub	w1, w1, #0x1
+    14e4:	cmp	w0, w1
+    14e8:	b.cs	1528 <grub_gfxterm_putchar+0x5b8>  // b.hs, b.nlast
+    14ec:	add	w0, w0, #0x1
+    14f0:	ldp	x23, x24, [sp, #48]
+    14f4:	ldp	x25, x26, [sp, #64]
+    14f8:	str	w0, [x19, #36]
+    14fc:	b	fdc <grub_gfxterm_putchar+0x6c>
+    1500:	add	x1, x21, #0x18
+    1504:	add	x0, x20, #0x18
+    1508:	mov	x2, #0x8                   	// #8
+    150c:	bl	0 <grub_memmove>
+    1510:	b	13a8 <grub_gfxterm_putchar+0x438>
+    1514:	ldp	x21, x22, [sp, #32]
+    1518:	ldp	x23, x24, [sp, #48]
+    151c:	b	fe8 <grub_gfxterm_putchar+0x78>
+    1520:	ldp	x25, x26, [sp, #64]
+    1524:	b	fac <grub_gfxterm_putchar+0x3c>
+    1528:	ldp	x23, x24, [sp, #48]
+    152c:	ldp	x25, x26, [sp, #64]
+    1530:	bl	4f8 <scroll_up>
+    1534:	b	fdc <grub_gfxterm_putchar+0x6c>
+    1538:	ldr	x0, [x19, #48]
+    153c:	mov	x1, x25
+    1540:	bl	0 <grub_font_construct_glyph>
+    1544:	mov	x24, x0
+    1548:	cbz	x0, 16d4 <grub_gfxterm_putchar+0x764>
+    154c:	ldrh	w1, [x0, #16]
+    1550:	ldr	x2, [x19, #48]
+    1554:	stp	x27, x28, [sp, #80]
+    1558:	ldr	w0, [x19, #16]
+    155c:	ldrsh	w27, [x2, #32]
+    1560:	mov	w23, w0
+    1564:	cbz	w1, 157c <grub_gfxterm_putchar+0x60c>
+    1568:	sub	w23, w0, #0x1
+    156c:	add	w23, w23, w1
+    1570:	udiv	w23, w23, w0
+    1574:	and	w23, w23, #0xff
+    1578:	mul	w23, w23, w0
+    157c:	mul	w21, w21, w0
+    1580:	ldr	w1, [x19, #80]
+    1584:	ldr	x0, [x19, #88]
+    1588:	add	w20, w20, w1
+    158c:	ldr	w26, [x19, #20]
+    1590:	ldr	w28, [x25, #36]
+    1594:	ldr	w25, [x25, #32]
+    1598:	bl	0 <grub_video_set_active_render_target>
+    159c:	mov	w4, w26
+    15a0:	mov	w3, w23
+    15a4:	mul	w20, w20, w26
+    15a8:	mov	w1, w21
+    15ac:	mov	w0, w28
+    15b0:	mov	w2, w20
+    15b4:	bl	0 <grub_video_fill_rect>
+    15b8:	add	w3, w27, w20
+    15bc:	mov	w1, w25
+    15c0:	mov	w2, w21
+    15c4:	mov	x0, x24
+    15c8:	bl	0 <grub_font_draw_glyph>
+    15cc:	ldr	x0, [x19, #128]
+    15d0:	bl	0 <grub_video_set_active_render_target>
+    15d4:	cmp	w23, #0x0
+    15d8:	ccmp	w26, #0x0, #0x4, ne  // ne = any
+    15dc:	b.eq	1600 <grub_gfxterm_putchar+0x690>  // b.none
+    15e0:	ldr	w0, [x19, #156]
+    15e4:	ldp	w9, w10, [x19, #8]
+    15e8:	cbnz	w0, 16e4 <grub_gfxterm_putchar+0x774>
+    15ec:	mov	w3, w26
+    15f0:	mov	w2, w23
+    15f4:	add	w1, w20, w10
+    15f8:	add	w0, w21, w9
+    15fc:	bl	448 <dirty_region_add_real>
+    1600:	ldr	w2, [x19, #24]
+    1604:	ldr	w21, [x19, #32]
+    1608:	ldp	x27, x28, [sp, #80]
+    160c:	b	1450 <grub_gfxterm_putchar+0x4e0>
+    1610:	bl	4f8 <scroll_up>
+    1614:	ldr	w2, [x19, #24]
+    1618:	ldp	w0, w1, [x19, #32]
+    161c:	b	1334 <grub_gfxterm_putchar+0x3c4>
+    1620:	ldp	w2, w3, [x19, #144]
+    1624:	mov	w0, #0x0                   	// #0
+    1628:	mov	w1, #0x0                   	// #0
+    162c:	bl	448 <dirty_region_add_real>
+    1630:	str	wzr, [x19, #156]
+    1634:	mov	w0, #0x1                   	// #1
+    1638:	str	w0, [x19, #112]
+    163c:	b	1188 <grub_gfxterm_putchar+0x218>
+    1640:	adrp	x0, 0 <grub_virtual_screen_getwh>
+    1644:	ldr	x0, [x0]
+    1648:	str	wzr, [x0]
+    164c:	b	1110 <grub_gfxterm_putchar+0x1a0>
+    1650:	adrp	x1, 0 <grub_virtual_screen_getwh>
+    1654:	ldr	w0, [x21]
+    1658:	ldp	x23, x24, [sp, #48]
+    165c:	and	w2, w0, #0x7fffff
+    1660:	ldr	x1, [x1]
+    1664:	ldp	x25, x26, [sp, #64]
+    1668:	str	wzr, [x1]
+    166c:	b	fac <grub_gfxterm_putchar+0x3c>
+    1670:	mov	w22, #0x1                   	// #1
+    1674:	mov	w23, w22
+    1678:	b	1308 <grub_gfxterm_putchar+0x398>
+    167c:	ldr	x0, [x20, #24]
+    1680:	bl	0 <grub_free>
+    1684:	b	1358 <grub_gfxterm_putchar+0x3e8>
+    1688:	ldp	x25, x26, [sp, #64]
+    168c:	ldp	x27, x28, [sp, #80]
+    1690:	b	1110 <grub_gfxterm_putchar+0x1a0>
+    1694:	ldp	w2, w3, [x19, #144]
+    1698:	mov	w0, #0x0                   	// #0
+    169c:	mov	w1, #0x0                   	// #0
+    16a0:	bl	448 <dirty_region_add_real>
+    16a4:	str	wzr, [x19, #156]
+    16a8:	mov	w0, #0x1                   	// #1
+    16ac:	str	w0, [x19, #112]
+    16b0:	b	12ac <grub_gfxterm_putchar+0x33c>
+    16b4:	ldp	w2, w3, [x19, #144]
+    16b8:	mov	w0, #0x0                   	// #0
+    16bc:	mov	w1, #0x0                   	// #0
+    16c0:	bl	448 <dirty_region_add_real>
+    16c4:	str	wzr, [x19, #156]
+    16c8:	mov	w0, #0x1                   	// #1
+    16cc:	str	w0, [x19, #112]
+    16d0:	b	10f4 <grub_gfxterm_putchar+0x184>
+    16d4:	ldr	w2, [x19, #24]
+    16d8:	ldr	w21, [x19, #32]
+    16dc:	str	wzr, [x23]
+    16e0:	b	1450 <grub_gfxterm_putchar+0x4e0>
+    16e4:	ldp	w2, w3, [x19, #144]
+    16e8:	mov	w0, #0x0                   	// #0
+    16ec:	mov	w1, #0x0                   	// #0
+    16f0:	bl	448 <dirty_region_add_real>
+    16f4:	str	wzr, [x19, #156]
+    16f8:	mov	w0, #0x1                   	// #1
+    16fc:	str	w0, [x19, #112]
+    1700:	b	15ec <grub_gfxterm_putchar+0x67c>
+    1704:	nop
+	...
+
+0000000000001718 <grub_gfxterm_refresh>:
+    1718:	stp	x29, x30, [sp, #-128]!
+    171c:	adrp	x0, 0 <grub_virtual_screen_getwh>
+    1720:	mov	x29, sp
+    1724:	stp	x19, x20, [sp, #16]
+    1728:	ldr	x19, [x0]
+    172c:	ldr	w0, [x19, #80]
+    1730:	cbz	w0, 1910 <grub_gfxterm_refresh+0x1f8>
+    1734:	adrp	x1, 0 <grub_virtual_screen_getwh>
+    1738:	stp	x21, x22, [sp, #32]
+    173c:	ldr	x1, [x1]
+    1740:	stp	x23, x24, [sp, #48]
+    1744:	ldr	x1, [x1]
+    1748:	cbz	x1, 1b40 <grub_gfxterm_refresh+0x428>
+    174c:	ldr	x0, [x19, #88]
+    1750:	bl	0 <grub_video_set_active_render_target>
+    1754:	ldr	w2, [x19, #20]
+    1758:	mov	w1, #0x0                   	// #0
+    175c:	ldr	w3, [x19, #80]
+    1760:	ldr	w0, [x19, #64]
+    1764:	mneg	w2, w3, w2
+    1768:	bl	0 <grub_video_scroll>
+    176c:	ldp	w9, w10, [x19]
+    1770:	cmp	w9, #0x0
+    1774:	ccmp	w10, #0x0, #0x4, ne  // ne = any
+    1778:	b.eq	179c <grub_gfxterm_refresh+0x84>  // b.none
+    177c:	ldr	w0, [x19, #156]
+    1780:	ldp	w11, w12, [x19, #8]
+    1784:	cbnz	w0, 1d34 <grub_gfxterm_refresh+0x61c>
+    1788:	mov	w3, w10
+    178c:	mov	w2, w9
+    1790:	mov	w1, w12
+    1794:	mov	w0, w11
+    1798:	bl	448 <dirty_region_add_real>
+    179c:	ldr	w3, [x19, #28]
+    17a0:	ldr	w21, [x19, #80]
+    17a4:	str	wzr, [x19, #80]
+    17a8:	cmp	w21, w3
+    17ac:	csel	w21, w21, w3, ls  // ls = plast
+    17b0:	sub	w21, w3, w21
+    17b4:	cmp	w3, w21
+    17b8:	b.ls	1900 <grub_gfxterm_refresh+0x1e8>  // b.plast
+    17bc:	ldr	w2, [x19, #24]
+    17c0:	adrp	x23, 0 <grub_virtual_screen_getwh>
+    17c4:	nop
+    17c8:	mov	w22, #0x0                   	// #0
+    17cc:	cbz	w2, 1968 <grub_gfxterm_refresh+0x250>
+    17d0:	stp	x25, x26, [sp, #64]
+    17d4:	stp	x27, x28, [sp, #80]
+    17d8:	ldr	w0, [x19, #80]
+    17dc:	add	w0, w21, w0
+    17e0:	cmp	w0, w3
+    17e4:	b.cs	18e0 <grub_gfxterm_refresh+0x1c8>  // b.hs, b.nlast
+    17e8:	mul	w0, w2, w21
+    17ec:	ldr	x4, [x19, #72]
+    17f0:	add	x0, x0, w22, uxtw
+    17f4:	add	x0, x0, x0, lsl #2
+    17f8:	lsl	x0, x0, #3
+    17fc:	add	x24, x4, x0
+    1800:	ldr	w0, [x4, x0]
+    1804:	tst	x0, #0x7fffff
+    1808:	b.eq	18e0 <grub_gfxterm_refresh+0x1c8>  // b.none
+    180c:	ldr	x0, [x19, #48]
+    1810:	mov	x1, x24
+    1814:	bl	0 <grub_font_construct_glyph>
+    1818:	mov	x26, x0
+    181c:	cbz	x0, 1938 <grub_gfxterm_refresh+0x220>
+    1820:	ldrh	w0, [x0, #16]
+    1824:	ldr	x3, [x19, #48]
+    1828:	ldr	w2, [x19, #16]
+    182c:	ldrsh	w6, [x3, #32]
+    1830:	mov	w20, w2
+    1834:	cbz	w0, 184c <grub_gfxterm_refresh+0x134>
+    1838:	sub	w20, w2, #0x1
+    183c:	add	w20, w20, w0
+    1840:	udiv	w20, w20, w2
+    1844:	and	w20, w20, #0xff
+    1848:	mul	w20, w20, w2
+    184c:	ldr	w7, [x24, #36]
+    1850:	mul	w27, w2, w22
+    1854:	ldr	x0, [x19, #88]
+    1858:	stp	w7, w6, [sp, #104]
+    185c:	ldr	w25, [x19, #80]
+    1860:	ldr	w28, [x19, #20]
+    1864:	ldr	w24, [x24, #32]
+    1868:	add	w25, w21, w25
+    186c:	bl	0 <grub_video_set_active_render_target>
+    1870:	ldr	w7, [sp, #104]
+    1874:	mov	w4, w28
+    1878:	mul	w25, w25, w28
+    187c:	mov	w3, w20
+    1880:	mov	w0, w7
+    1884:	mov	w1, w27
+    1888:	mov	w2, w25
+    188c:	bl	0 <grub_video_fill_rect>
+    1890:	ldr	w6, [sp, #108]
+    1894:	mov	w1, w24
+    1898:	mov	w2, w27
+    189c:	mov	x0, x26
+    18a0:	add	w3, w6, w25
+    18a4:	bl	0 <grub_font_draw_glyph>
+    18a8:	ldr	x0, [x19, #128]
+    18ac:	bl	0 <grub_video_set_active_render_target>
+    18b0:	cmp	w20, #0x0
+    18b4:	ccmp	w28, #0x0, #0x4, ne  // ne = any
+    18b8:	b.eq	18dc <grub_gfxterm_refresh+0x1c4>  // b.none
+    18bc:	ldr	w0, [x19, #156]
+    18c0:	ldp	w9, w10, [x19, #8]
+    18c4:	cbnz	w0, 1948 <grub_gfxterm_refresh+0x230>
+    18c8:	mov	w3, w28
+    18cc:	mov	w2, w20
+    18d0:	add	w1, w25, w10
+    18d4:	add	w0, w27, w9
+    18d8:	bl	448 <dirty_region_add_real>
+    18dc:	ldp	w2, w3, [x19, #24]
+    18e0:	add	w22, w22, #0x1
+    18e4:	cmp	w22, w2
+    18e8:	b.cc	17d8 <grub_gfxterm_refresh+0xc0>  // b.lo, b.ul, b.last
+    18ec:	ldp	x25, x26, [sp, #64]
+    18f0:	ldp	x27, x28, [sp, #80]
+    18f4:	add	w21, w21, #0x1
+    18f8:	cmp	w21, w3
+    18fc:	b.cc	17c8 <grub_gfxterm_refresh+0xb0>  // b.lo, b.ul, b.last
+    1900:	ldr	w0, [x19, #40]
+    1904:	cbnz	w0, 1994 <grub_gfxterm_refresh+0x27c>
+    1908:	ldp	x21, x22, [sp, #32]
+    190c:	ldp	x23, x24, [sp, #48]
+    1910:	bl	110 <dirty_region_redraw>
+    1914:	bl	0 <grub_video_swap_buffers>
+    1918:	ldr	w0, [x19, #152]
+    191c:	cbnz	w0, 1978 <grub_gfxterm_refresh+0x260>
+    1920:	mov	x0, #0xffffffffffffffff    	// #-1
+    1924:	stp	x0, x0, [x19, #96]
+    1928:	str	wzr, [x19, #112]
+    192c:	ldp	x19, x20, [sp, #16]
+    1930:	ldp	x29, x30, [sp], #128
+    1934:	ret
+    1938:	ldr	x0, [x23]
+    193c:	ldp	w2, w3, [x19, #24]
+    1940:	str	wzr, [x0]
+    1944:	b	18e0 <grub_gfxterm_refresh+0x1c8>
+    1948:	ldp	w2, w3, [x19, #144]
+    194c:	mov	w0, #0x0                   	// #0
+    1950:	mov	w1, #0x0                   	// #0
+    1954:	bl	448 <dirty_region_add_real>
+    1958:	str	wzr, [x19, #156]
+    195c:	mov	w0, #0x1                   	// #1
+    1960:	str	w0, [x19, #112]
+    1964:	b	18c8 <grub_gfxterm_refresh+0x1b0>
+    1968:	add	w21, w21, #0x1
+    196c:	cmp	w3, w21
+    1970:	b.hi	18f4 <grub_gfxterm_refresh+0x1dc>  // b.pmore
+    1974:	b	1900 <grub_gfxterm_refresh+0x1e8>
+    1978:	bl	110 <dirty_region_redraw>
+    197c:	str	wzr, [x19, #112]
+    1980:	mov	x0, #0xffffffffffffffff    	// #-1
+    1984:	stp	x0, x0, [x19, #96]
+    1988:	ldp	x19, x20, [sp, #16]
+    198c:	ldp	x29, x30, [sp], #128
+    1990:	ret
+    1994:	ldr	w20, [x19, #36]
+    1998:	ldr	w4, [x19, #80]
+    199c:	add	w4, w20, w4
+    19a0:	cmp	w4, w3
+    19a4:	b.cs	1908 <grub_gfxterm_refresh+0x1f0>  // b.hs, b.nlast
+    19a8:	ldr	w0, [x19, #24]
+    19ac:	ldr	w23, [x19, #32]
+    19b0:	ldr	x2, [x19, #72]
+    19b4:	mul	w0, w20, w0
+    19b8:	add	x0, x0, w23, uxtw
+    19bc:	add	x0, x0, x0, lsl #2
+    19c0:	lsl	x0, x0, #3
+    19c4:	add	x24, x2, x0
+    19c8:	ldr	w0, [x2, x0]
+    19cc:	tst	x0, #0x7fffff
+    19d0:	b.eq	1ac0 <grub_gfxterm_refresh+0x3a8>  // b.none
+    19d4:	ldr	x0, [x19, #48]
+    19d8:	mov	x1, x24
+    19dc:	bl	0 <grub_font_construct_glyph>
+    19e0:	mov	x22, x0
+    19e4:	cbz	x0, 1d80 <grub_gfxterm_refresh+0x668>
+    19e8:	ldrh	w1, [x0, #16]
+    19ec:	ldr	x2, [x19, #48]
+    19f0:	stp	x25, x26, [sp, #64]
+    19f4:	ldr	w0, [x19, #16]
+    19f8:	stp	x27, x28, [sp, #80]
+    19fc:	ldrsh	w26, [x2, #32]
+    1a00:	mov	w21, w0
+    1a04:	cbz	w1, 1a1c <grub_gfxterm_refresh+0x304>
+    1a08:	sub	w21, w0, #0x1
+    1a0c:	add	w21, w21, w1
+    1a10:	udiv	w21, w21, w0
+    1a14:	and	w21, w21, #0xff
+    1a18:	mul	w21, w21, w0
+    1a1c:	mul	w23, w23, w0
+    1a20:	ldr	w1, [x19, #80]
+    1a24:	ldr	x0, [x19, #88]
+    1a28:	add	w20, w20, w1
+    1a2c:	ldr	w25, [x19, #20]
+    1a30:	ldr	w27, [x24, #36]
+    1a34:	ldr	w24, [x24, #32]
+    1a38:	bl	0 <grub_video_set_active_render_target>
+    1a3c:	mov	w4, w25
+    1a40:	mov	w3, w21
+    1a44:	mul	w20, w20, w25
+    1a48:	mov	w1, w23
+    1a4c:	mov	w0, w27
+    1a50:	mov	w2, w20
+    1a54:	bl	0 <grub_video_fill_rect>
+    1a58:	add	w3, w26, w20
+    1a5c:	mov	w1, w24
+    1a60:	mov	w2, w23
+    1a64:	mov	x0, x22
+    1a68:	bl	0 <grub_font_draw_glyph>
+    1a6c:	ldr	x0, [x19, #128]
+    1a70:	bl	0 <grub_video_set_active_render_target>
+    1a74:	cmp	w21, #0x0
+    1a78:	ccmp	w25, #0x0, #0x4, ne  // ne = any
+    1a7c:	b.eq	1aa0 <grub_gfxterm_refresh+0x388>  // b.none
+    1a80:	ldr	w0, [x19, #156]
+    1a84:	ldp	w9, w10, [x19, #8]
+    1a88:	cbnz	w0, 1da0 <grub_gfxterm_refresh+0x688>
+    1a8c:	mov	w3, w25
+    1a90:	mov	w2, w21
+    1a94:	add	w1, w20, w10
+    1a98:	add	w0, w23, w9
+    1a9c:	bl	448 <dirty_region_add_real>
+    1aa0:	ldp	x25, x26, [sp, #64]
+    1aa4:	ldp	x27, x28, [sp, #80]
+    1aa8:	ldr	w4, [x19, #36]
+    1aac:	ldr	w1, [x19, #80]
+    1ab0:	ldr	w0, [x19, #28]
+    1ab4:	add	w4, w4, w1
+    1ab8:	cmp	w4, w0
+    1abc:	b.cs	1908 <grub_gfxterm_refresh+0x1f0>  // b.hs, b.nlast
+    1ac0:	ldr	x0, [x19, #48]
+    1ac4:	ldp	w21, w2, [x19, #16]
+    1ac8:	ldrsh	w0, [x0, #32]
+    1acc:	sub	w20, w2, #0x2
+    1ad0:	ldr	w22, [x19, #32]
+    1ad4:	cmp	w20, w0
+    1ad8:	ldr	w23, [x19, #60]
+    1adc:	csel	w20, w20, w0, ls  // ls = plast
+    1ae0:	ldr	x0, [x19, #88]
+    1ae4:	mul	w22, w21, w22
+    1ae8:	madd	w20, w2, w4, w20
+    1aec:	bl	0 <grub_video_set_active_render_target>
+    1af0:	mov	w0, w23
+    1af4:	mov	w2, w20
+    1af8:	mov	w1, w22
+    1afc:	mov	w3, w21
+    1b00:	mov	w4, #0x2                   	// #2
+    1b04:	bl	0 <grub_video_fill_rect>
+    1b08:	ldr	x0, [x19, #128]
+    1b0c:	bl	0 <grub_video_set_active_render_target>
+    1b10:	cbz	w21, 1908 <grub_gfxterm_refresh+0x1f0>
+    1b14:	ldr	w0, [x19, #156]
+    1b18:	ldp	w9, w10, [x19, #8]
+    1b1c:	cbnz	w0, 1d54 <grub_gfxterm_refresh+0x63c>
+    1b20:	mov	w2, w21
+    1b24:	add	w0, w22, w9
+    1b28:	add	w1, w20, w10
+    1b2c:	mov	w3, #0x2                   	// #2
+    1b30:	bl	448 <dirty_region_add_real>
+    1b34:	ldp	x21, x22, [sp, #32]
+    1b38:	ldp	x23, x24, [sp, #48]
+    1b3c:	b	1910 <grub_gfxterm_refresh+0x1f8>
+    1b40:	ldr	w20, [x19, #36]
+    1b44:	ldr	w1, [x19, #28]
+    1b48:	add	w0, w0, w20
+    1b4c:	cmp	w0, w1
+    1b50:	b.cs	1c58 <grub_gfxterm_refresh+0x540>  // b.hs, b.nlast
+    1b54:	ldr	w0, [x19, #24]
+    1b58:	ldr	w23, [x19, #32]
+    1b5c:	ldr	x2, [x19, #72]
+    1b60:	mul	w0, w20, w0
+    1b64:	add	x0, x0, w23, uxtw
+    1b68:	add	x0, x0, x0, lsl #2
+    1b6c:	lsl	x0, x0, #3
+    1b70:	add	x24, x2, x0
+    1b74:	ldr	w0, [x2, x0]
+    1b78:	tst	x0, #0x7fffff
+    1b7c:	b.eq	1c58 <grub_gfxterm_refresh+0x540>  // b.none
+    1b80:	ldr	x0, [x19, #48]
+    1b84:	mov	x1, x24
+    1b88:	bl	0 <grub_font_construct_glyph>
+    1b8c:	mov	x22, x0
+    1b90:	cbz	x0, 1dc0 <grub_gfxterm_refresh+0x6a8>
+    1b94:	ldrh	w1, [x0, #16]
+    1b98:	ldr	x2, [x19, #48]
+    1b9c:	stp	x25, x26, [sp, #64]
+    1ba0:	ldr	w0, [x19, #16]
+    1ba4:	stp	x27, x28, [sp, #80]
+    1ba8:	ldrsh	w26, [x2, #32]
+    1bac:	mov	w21, w0
+    1bb0:	cbz	w1, 1bc8 <grub_gfxterm_refresh+0x4b0>
+    1bb4:	sub	w21, w0, #0x1
+    1bb8:	add	w21, w21, w1
+    1bbc:	udiv	w21, w21, w0
+    1bc0:	and	w21, w21, #0xff
+    1bc4:	mul	w21, w21, w0
+    1bc8:	mul	w23, w23, w0
+    1bcc:	ldr	w1, [x19, #80]
+    1bd0:	ldr	x0, [x19, #88]
+    1bd4:	add	w20, w20, w1
+    1bd8:	ldr	w25, [x19, #20]
+    1bdc:	ldr	w27, [x24, #36]
+    1be0:	ldr	w24, [x24, #32]
+    1be4:	bl	0 <grub_video_set_active_render_target>
+    1be8:	mov	w4, w25
+    1bec:	mov	w3, w21
+    1bf0:	mul	w20, w20, w25
+    1bf4:	mov	w1, w23
+    1bf8:	mov	w0, w27
+    1bfc:	mov	w2, w20
+    1c00:	bl	0 <grub_video_fill_rect>
+    1c04:	add	w3, w26, w20
+    1c08:	mov	w1, w24
+    1c0c:	mov	w2, w23
+    1c10:	mov	x0, x22
+    1c14:	bl	0 <grub_font_draw_glyph>
+    1c18:	ldr	x0, [x19, #128]
+    1c1c:	bl	0 <grub_video_set_active_render_target>
+    1c20:	cmp	w21, #0x0
+    1c24:	ccmp	w25, #0x0, #0x4, ne  // ne = any
+    1c28:	b.eq	1d74 <grub_gfxterm_refresh+0x65c>  // b.none
+    1c2c:	ldr	w0, [x19, #156]
+    1c30:	ldp	w9, w10, [x19, #8]
+    1c34:	cbnz	w0, 1dd0 <grub_gfxterm_refresh+0x6b8>
+    1c38:	mov	w3, w25
+    1c3c:	mov	w2, w21
+    1c40:	add	w1, w20, w10
+    1c44:	add	w0, w23, w9
+    1c48:	bl	448 <dirty_region_add_real>
+    1c4c:	ldp	x25, x26, [sp, #64]
+    1c50:	ldp	x27, x28, [sp, #80]
+    1c54:	nop
+    1c58:	add	x1, sp, #0x70
+    1c5c:	ldr	x0, [x19, #128]
+    1c60:	add	x23, x1, #0x8
+    1c64:	add	x22, x1, #0x4
+    1c68:	add	x24, sp, #0x7c
+    1c6c:	bl	0 <grub_video_set_active_render_target>
+    1c70:	ldr	w20, [x19, #68]
+    1c74:	ldr	w0, [x19, #152]
+    1c78:	cmp	w0, #0x0
+    1c7c:	cset	w21, ne  // ne = any
+    1c80:	mov	x3, x24
+    1c84:	mov	x2, x23
+    1c88:	mov	x1, x22
+    1c8c:	add	x0, sp, #0x70
+    1c90:	bl	0 <grub_video_get_viewport>
+    1c94:	ldp	w2, w3, [x19, #144]
+    1c98:	ldp	w0, w1, [x19, #136]
+    1c9c:	bl	0 <grub_video_set_viewport>
+    1ca0:	ldr	w5, [x19, #20]
+    1ca4:	mov	w0, w20
+    1ca8:	ldr	w4, [x19, #80]
+    1cac:	ldp	w1, w2, [x19, #8]
+    1cb0:	ldr	w3, [x19]
+    1cb4:	mul	w4, w5, w4
+    1cb8:	bl	0 <grub_video_fill_rect>
+    1cbc:	ldr	x0, [x19, #128]
+    1cc0:	bl	0 <grub_video_set_active_render_target>
+    1cc4:	bl	110 <dirty_region_redraw>
+    1cc8:	ldr	w3, [x19, #80]
+    1ccc:	mov	w1, #0x0                   	// #0
+    1cd0:	ldr	w2, [x19, #20]
+    1cd4:	mov	w0, w20
+    1cd8:	mneg	w2, w3, w2
+    1cdc:	bl	0 <grub_video_scroll>
+    1ce0:	ldp	w0, w1, [sp, #112]
+    1ce4:	ldp	w2, w3, [sp, #120]
+    1ce8:	bl	0 <grub_video_set_viewport>
+    1cec:	cbnz	w21, 1d28 <grub_gfxterm_refresh+0x610>
+    1cf0:	ldr	x0, [x19, #88]
+    1cf4:	mov	x1, #0xffffffffffffffff    	// #-1
+    1cf8:	stp	x1, x1, [x19, #96]
+    1cfc:	str	wzr, [x19, #112]
+    1d00:	bl	0 <grub_video_set_active_render_target>
+    1d04:	ldr	w2, [x19, #20]
+    1d08:	mov	w1, #0x0                   	// #0
+    1d0c:	ldr	w3, [x19, #80]
+    1d10:	ldr	w0, [x19, #64]
+    1d14:	mneg	w2, w3, w2
+    1d18:	bl	0 <grub_video_scroll>
+    1d1c:	ldr	x0, [x19, #128]
+    1d20:	bl	0 <grub_video_set_active_render_target>
+    1d24:	b	179c <grub_gfxterm_refresh+0x84>
+    1d28:	mov	w21, #0x0                   	// #0
+    1d2c:	bl	0 <grub_video_swap_buffers>
+    1d30:	b	1c80 <grub_gfxterm_refresh+0x568>
+    1d34:	ldp	w2, w3, [x19, #144]
+    1d38:	mov	w0, #0x0                   	// #0
+    1d3c:	mov	w1, #0x0                   	// #0
+    1d40:	bl	448 <dirty_region_add_real>
+    1d44:	str	wzr, [x19, #156]
+    1d48:	mov	w0, #0x1                   	// #1
+    1d4c:	str	w0, [x19, #112]
+    1d50:	b	1788 <grub_gfxterm_refresh+0x70>
+    1d54:	ldp	w2, w3, [x19, #144]
+    1d58:	mov	w0, #0x0                   	// #0
+    1d5c:	mov	w1, #0x0                   	// #0
+    1d60:	bl	448 <dirty_region_add_real>
+    1d64:	str	wzr, [x19, #156]
+    1d68:	mov	w0, #0x1                   	// #1
+    1d6c:	str	w0, [x19, #112]
+    1d70:	b	1b20 <grub_gfxterm_refresh+0x408>
+    1d74:	ldp	x25, x26, [sp, #64]
+    1d78:	ldp	x27, x28, [sp, #80]
+    1d7c:	b	1c58 <grub_gfxterm_refresh+0x540>
+    1d80:	adrp	x1, 0 <grub_virtual_screen_getwh>
+    1d84:	ldr	w0, [x19, #80]
+    1d88:	ldr	w4, [x19, #36]
+    1d8c:	ldr	x1, [x1]
+    1d90:	add	w4, w4, w0
+    1d94:	ldr	w0, [x19, #28]
+    1d98:	str	wzr, [x1]
+    1d9c:	b	1ab8 <grub_gfxterm_refresh+0x3a0>
+    1da0:	ldp	w2, w3, [x19, #144]
+    1da4:	mov	w0, #0x0                   	// #0
+    1da8:	mov	w1, #0x0                   	// #0
+    1dac:	bl	448 <dirty_region_add_real>
+    1db0:	str	wzr, [x19, #156]
+    1db4:	mov	w0, #0x1                   	// #1
+    1db8:	str	w0, [x19, #112]
+    1dbc:	b	1a8c <grub_gfxterm_refresh+0x374>
+    1dc0:	adrp	x0, 0 <grub_virtual_screen_getwh>
+    1dc4:	ldr	x0, [x0]
+    1dc8:	str	wzr, [x0]
+    1dcc:	b	1c58 <grub_gfxterm_refresh+0x540>
+    1dd0:	ldp	w2, w3, [x19, #144]
+    1dd4:	mov	w0, #0x0                   	// #0
+    1dd8:	mov	w1, #0x0                   	// #0
+    1ddc:	bl	448 <dirty_region_add_real>
+    1de0:	str	wzr, [x19, #156]
+    1de4:	mov	w0, #0x1                   	// #1
+    1de8:	str	w0, [x19, #112]
+    1dec:	b	1c38 <grub_gfxterm_refresh+0x520>
+	...
+
+0000000000001e08 <grub_gfxterm_cls>:
+    1e08:	stp	x29, x30, [sp, #-80]!
+    1e0c:	adrp	x1, 0 <grub_virtual_screen_getwh>
+    1e10:	mov	x29, sp
+    1e14:	stp	x19, x20, [sp, #16]
+    1e18:	ldr	x19, [x1]
+    1e1c:	stp	x23, x24, [sp, #48]
+    1e20:	mov	x24, x0
+    1e24:	ldp	w1, w0, [x19, #24]
+    1e28:	mul	w0, w0, w1
+    1e2c:	cbz	w0, 1ed4 <grub_gfxterm_cls+0xcc>
+    1e30:	stp	x21, x22, [sp, #32]
+    1e34:	mov	w21, #0x0                   	// #0
+    1e38:	stp	x25, x26, [sp, #64]
+    1e3c:	mov	w26, #0x28                  	// #40
+    1e40:	mov	w25, #0x20                  	// #32
+    1e44:	b	1e78 <grub_gfxterm_cls+0x70>
+    1e48:	add	w21, w21, #0x1
+    1e4c:	strh	w4, [x20, #6]
+    1e50:	bl	0 <grub_memset>
+    1e54:	ldr	w0, [x23, x22]
+    1e58:	bfxil	w0, w25, #0, #23
+    1e5c:	str	w0, [x23, x22]
+    1e60:	ldp	w0, w2, [x19, #24]
+    1e64:	ldp	w3, w1, [x19, #60]
+    1e68:	stp	w3, w1, [x20, #32]
+    1e6c:	mul	w0, w0, w2
+    1e70:	cmp	w21, w0
+    1e74:	b.cs	1ecc <grub_gfxterm_cls+0xc4>  // b.hs, b.nlast
+    1e78:	ldr	x23, [x19, #72]
+    1e7c:	umull	x22, w21, w26
+    1e80:	mov	x2, #0x20                  	// #32
+    1e84:	mov	w1, #0x0                   	// #0
+    1e88:	add	x20, x23, x22
+    1e8c:	mov	x0, x20
+    1e90:	ldrh	w3, [x20, #6]
+    1e94:	and	w4, w3, #0xfffff807
+    1e98:	ubfx	x3, x3, #3, #8
+    1e9c:	cmp	w3, #0x2
+    1ea0:	b.ls	1e48 <grub_gfxterm_cls+0x40>  // b.plast
+    1ea4:	ldr	x0, [x20, #24]
+    1ea8:	add	w21, w21, #0x1
+    1eac:	bl	0 <grub_free>
+    1eb0:	ldrh	w0, [x20, #6]
+    1eb4:	mov	x2, #0x20                  	// #32
+    1eb8:	mov	w1, #0x0                   	// #0
+    1ebc:	and	w0, w0, #0xfffff807
+    1ec0:	strh	w0, [x20, #6]
+    1ec4:	mov	x0, x20
+    1ec8:	b	1e50 <grub_gfxterm_cls+0x48>
+    1ecc:	ldp	x21, x22, [sp, #32]
+    1ed0:	ldp	x25, x26, [sp, #64]
+    1ed4:	str	xzr, [x19, #32]
+    1ed8:	ldr	x0, [x19, #88]
+    1edc:	bl	0 <grub_video_set_active_render_target>
+    1ee0:	ldp	w3, w4, [x19]
+    1ee4:	mov	w2, #0x0                   	// #0
+    1ee8:	ldr	w0, [x19, #64]
+    1eec:	mov	w1, #0x0                   	// #0
+    1ef0:	bl	0 <grub_video_fill_rect>
+    1ef4:	ldr	x0, [x19, #128]
+    1ef8:	bl	0 <grub_video_set_active_render_target>
+    1efc:	ldp	w9, w10, [x19]
+    1f00:	cmp	w9, #0x0
+    1f04:	ccmp	w10, #0x0, #0x4, ne  // ne = any
+    1f08:	b.eq	1f2c <grub_gfxterm_cls+0x124>  // b.none
+    1f0c:	ldr	w0, [x19, #156]
+    1f10:	ldp	w11, w12, [x19, #8]
+    1f14:	cbnz	w0, 1f40 <grub_gfxterm_cls+0x138>
+    1f18:	mov	w3, w10
+    1f1c:	mov	w2, w9
+    1f20:	mov	w1, w12
+    1f24:	mov	w0, w11
+    1f28:	bl	448 <dirty_region_add_real>
+    1f2c:	mov	x0, x24
+    1f30:	ldp	x19, x20, [sp, #16]
+    1f34:	ldp	x23, x24, [sp, #48]
+    1f38:	ldp	x29, x30, [sp], #80
+    1f3c:	b	1718 <grub_gfxterm_refresh>
+    1f40:	ldp	w2, w3, [x19, #144]
+    1f44:	mov	w0, #0x0                   	// #0
+    1f48:	mov	w1, #0x0                   	// #0
+    1f4c:	bl	448 <dirty_region_add_real>
+    1f50:	str	wzr, [x19, #156]
+    1f54:	mov	w0, #0x1                   	// #1
+    1f58:	str	w0, [x19, #112]
+    1f5c:	b	1f18 <grub_gfxterm_cls+0x110>
+	...
+
+0000000000001f68 <grub_gfxterm_schedule_repaint>:
+    1f68:	adrp	x0, 0 <grub_virtual_screen_getwh>
+    1f6c:	mov	w1, #0x1                   	// #1
+    1f70:	ldr	x0, [x0]
+    1f74:	str	w1, [x0, #156]
+    1f78:	ret
+    1f7c:	nop
+	...
+
+0000000000001f88 <grub_gfxterm_set_window>:
+    1f88:	stp	x29, x30, [sp, #-128]!
+    1f8c:	mov	x29, sp
+    1f90:	stp	x19, x20, [sp, #16]
+    1f94:	mov	w20, #0x0                   	// #0
+    1f98:	stp	x21, x22, [sp, #32]
+    1f9c:	mov	w22, w3
+    1fa0:	mov	w21, w4
+    1fa4:	stp	x23, x24, [sp, #48]
+    1fa8:	mov	x23, x0
+    1fac:	mov	w24, #0x20                  	// #32
+    1fb0:	stp	x25, x26, [sp, #64]
+    1fb4:	mov	w26, w7
+    1fb8:	mov	w25, w2
+    1fbc:	stp	x27, x28, [sp, #80]
+    1fc0:	lsl	w28, w7, #1
+    1fc4:	mov	x27, x6
+    1fc8:	stp	w1, w5, [sp, #96]
+    1fcc:	bl	40 <grub_virtual_screen_free>
+    1fd0:	adrp	x1, 0 <grub_virtual_screen_getwh>
+    1fd4:	ldr	x19, [x1]
+    1fd8:	str	x23, [x19, #128]
+    1fdc:	bl	40 <grub_virtual_screen_free>
+    1fe0:	sub	w0, w22, w28
+    1fe4:	sub	w28, w21, w28
+    1fe8:	stp	w0, w28, [x19]
+    1fec:	stp	w26, w26, [x19, #8]
+    1ff0:	str	x27, [x19, #48]
+    1ff4:	nop
+    1ff8:	mov	w1, w24
+    1ffc:	mov	x0, x27
+    2000:	add	w24, w24, #0x1
+    2004:	bl	0 <grub_font_get_glyph>
+    2008:	cbz	x0, 2018 <grub_gfxterm_set_window+0x90>
+    200c:	ldrh	w0, [x0, #16]
+    2010:	cmp	w20, w0
+    2014:	csel	w20, w20, w0, cs  // cs = hs, nlast
+    2018:	cmp	w24, #0x7f
+    201c:	b.ne	1ff8 <grub_gfxterm_set_window+0x70>  // b.any
+    2020:	ldr	x0, [x19, #48]
+    2024:	cmp	w20, #0x0
+    2028:	mov	w1, #0x8                   	// #8
+    202c:	csel	w20, w20, w1, ne  // ne = any
+    2030:	str	w20, [x19, #16]
+    2034:	ldrsh	w2, [x0, #30]
+    2038:	cbz	w2, 20a8 <grub_gfxterm_set_window+0x120>
+    203c:	str	w2, [x19, #20]
+    2040:	ldp	w0, w1, [x19]
+    2044:	mov	w26, #0x28                  	// #40
+    2048:	mov	w3, #0x1                   	// #1
+    204c:	str	xzr, [x19, #32]
+    2050:	str	w3, [x19, #40]
+    2054:	udiv	w20, w0, w20
+    2058:	str	wzr, [x19, #80]
+    205c:	udiv	w0, w1, w2
+    2060:	stp	w20, w0, [x19, #24]
+    2064:	mul	w20, w20, w0
+    2068:	umull	x0, w20, w26
+    206c:	bl	0 <grub_malloc>
+    2070:	str	x0, [x19, #72]
+    2074:	adrp	x1, 0 <grub_virtual_screen_getwh>
+    2078:	ldr	x23, [x1]
+    207c:	str	x23, [sp, #104]
+    2080:	ldr	w20, [x23]
+    2084:	cbz	w20, 20b8 <grub_gfxterm_set_window+0x130>
+    2088:	mov	w0, w20
+    208c:	ldp	x19, x20, [sp, #16]
+    2090:	ldp	x21, x22, [sp, #32]
+    2094:	ldp	x23, x24, [sp, #48]
+    2098:	ldp	x25, x26, [sp, #64]
+    209c:	ldp	x27, x28, [sp, #80]
+    20a0:	ldp	x29, x30, [sp], #128
+    20a4:	ret
+    20a8:	mov	w0, #0x10                  	// #16
+    20ac:	mov	w2, w0
+    20b0:	str	w0, [x19, #20]
+    20b4:	b	2040 <grub_gfxterm_set_window+0xb8>
+    20b8:	mov	x0, x19
+    20bc:	ldr	w2, [x19, #4]
+    20c0:	mov	w3, #0x22                  	// #34
+    20c4:	ldr	w1, [x0], #88
+    20c8:	bl	0 <grub_video_create_render_target>
+    20cc:	ldr	w20, [x23]
+    20d0:	cbnz	w20, 2088 <grub_gfxterm_set_window+0x100>
+    20d4:	ldr	x0, [x19, #88]
+    20d8:	mov	w28, #0x20                  	// #32
+    20dc:	bl	0 <grub_video_set_active_render_target>
+    20e0:	mov	w1, #0x707                 	// #1799
+    20e4:	strh	w1, [x19, #56]
+    20e8:	add	x0, sp, #0x78
+    20ec:	bl	0 <grub_video_get_active_render_target>
+    20f0:	ldr	x0, [x19, #88]
+    20f4:	bl	0 <grub_video_set_active_render_target>
+    20f8:	mov	w0, #0x7                   	// #7
+    20fc:	bl	0 <grub_video_map_color>
+    2100:	mov	w4, w0
+    2104:	mov	w3, #0x0                   	// #0
+    2108:	mov	w2, #0x0                   	// #0
+    210c:	mov	w1, #0x0                   	// #0
+    2110:	mov	w0, #0x0                   	// #0
+    2114:	str	w4, [x19, #60]
+    2118:	bl	0 <grub_video_map_rgba>
+    211c:	mov	w1, w0
+    2120:	ldr	x0, [sp, #120]
+    2124:	str	w1, [x19, #64]
+    2128:	bl	0 <grub_video_set_active_render_target>
+    212c:	ldr	x0, [x19, #128]
+    2130:	bl	0 <grub_video_set_active_render_target>
+    2134:	adrp	x0, 0 <grub_virtual_screen_getwh>
+    2138:	ldr	x3, [x0]
+    213c:	ldrb	w1, [x3, #13]
+    2140:	ldrb	w2, [x3, #14]
+    2144:	ldrb	w0, [x3, #12]
+    2148:	ldrb	w3, [x3, #15]
+    214c:	bl	0 <grub_video_map_rgba>
+    2150:	str	w0, [x19, #68]
+    2154:	ldp	w2, w1, [x19, #24]
+    2158:	mul	w1, w1, w2
+    215c:	cbz	w1, 21b0 <grub_gfxterm_set_window+0x228>
+    2160:	ldr	x27, [x19, #72]
+    2164:	umull	x24, w20, w26
+    2168:	mov	x2, #0x20                  	// #32
+    216c:	mov	w1, #0x0                   	// #0
+    2170:	add	x23, x27, x24
+    2174:	add	w20, w20, #0x1
+    2178:	mov	x0, x23
+    217c:	ldrh	w6, [x23, #6]
+    2180:	and	w6, w6, #0xfffff807
+    2184:	strh	w6, [x23, #6]
+    2188:	bl	0 <grub_memset>
+    218c:	ldr	w0, [x27, x24]
+    2190:	bfxil	w0, w28, #0, #23
+    2194:	str	w0, [x27, x24]
+    2198:	ldp	w0, w2, [x19, #24]
+    219c:	ldp	w4, w1, [x19, #60]
+    21a0:	stp	w4, w1, [x23, #32]
+    21a4:	mul	w0, w0, w2
+    21a8:	cmp	w20, w0
+    21ac:	b.cc	2160 <grub_gfxterm_set_window+0x1d8>  // b.lo, b.ul, b.last
+    21b0:	ldr	x0, [sp, #104]
+    21b4:	ldr	w20, [x0]
+    21b8:	cbnz	w20, 2088 <grub_gfxterm_set_window+0x100>
+    21bc:	ldp	w0, w3, [sp, #96]
+    21c0:	mov	w1, #0x1                   	// #1
+    21c4:	mov	x2, #0xffffffffffffffff    	// #-1
+    21c8:	str	w1, [x19, #84]
+    21cc:	stp	x2, x2, [x19, #96]
+    21d0:	str	wzr, [x19, #112]
+    21d4:	stp	w0, w25, [x19, #136]
+    21d8:	mov	w0, w20
+    21dc:	stp	w22, w21, [x19, #144]
+    21e0:	stp	w3, w1, [x19, #152]
+    21e4:	ldp	x19, x20, [sp, #16]
+    21e8:	ldp	x21, x22, [sp, #32]
+    21ec:	ldp	x23, x24, [sp, #48]
+    21f0:	ldp	x25, x26, [sp, #64]
+    21f4:	ldp	x27, x28, [sp, #80]
+    21f8:	ldp	x29, x30, [sp], #128
+    21fc:	ret
+	...
+
+0000000000002218 <grub_gfxterm_fullscreen>:
+    2218:	stp	x29, x30, [sp, #-128]!
+    221c:	mov	x29, sp
+    2220:	add	x0, sp, #0x30
+    2224:	bl	0 <grub_video_get_info>
+    2228:	cbz	w0, 2234 <grub_gfxterm_fullscreen+0x1c>
+    222c:	ldp	x29, x30, [sp], #128
+    2230:	ret
+    2234:	mov	x0, #0x0                   	// #0
+    2238:	stp	x19, x20, [sp, #16]
+    223c:	str	x21, [sp, #32]
+    2240:	bl	0 <grub_video_set_active_render_target>
+    2244:	adrp	x1, 0 <grub_virtual_screen_getwh>
+    2248:	ldr	w19, [sp, #56]
+    224c:	mov	w0, #0x90                  	// #144
+    2250:	ldr	x3, [x1]
+    2254:	and	w19, w19, w0
+    2258:	cmp	w19, #0x10
+    225c:	cset	w21, eq  // eq = none
+    2260:	ldrb	w1, [x3, #13]
+    2264:	ldrb	w2, [x3, #14]
+    2268:	ldrb	w0, [x3, #12]
+    226c:	ldrb	w3, [x3, #15]
+    2270:	bl	0 <grub_video_map_rgba>
+    2274:	mov	w20, w0
+    2278:	ldp	w3, w4, [sp, #48]
+    227c:	mov	w2, #0x0                   	// #0
+    2280:	mov	w1, #0x0                   	// #0
+    2284:	bl	0 <grub_video_fill_rect>
+    2288:	cmp	w19, #0x10
+    228c:	b.eq	22f0 <grub_gfxterm_fullscreen+0xd8>  // b.none
+    2290:	adrp	x0, 0 <grub_virtual_screen_getwh>
+    2294:	ldr	x0, [x0]
+    2298:	bl	0 <grub_env_get>
+    229c:	cmp	x0, #0x0
+    22a0:	adrp	x1, 0 <grub_virtual_screen_getwh>
+    22a4:	ldr	x1, [x1]
+    22a8:	csel	x0, x0, x1, ne  // ne = any
+    22ac:	bl	0 <grub_font_get>
+    22b0:	mov	x6, x0
+    22b4:	cbz	x0, 230c <grub_gfxterm_fullscreen+0xf4>
+    22b8:	adrp	x0, 0 <grub_virtual_screen_getwh>
+    22bc:	mov	w5, w21
+    22c0:	ldp	w3, w4, [sp, #48]
+    22c4:	mov	w7, #0xa                   	// #10
+    22c8:	ldr	x8, [x0]
+    22cc:	mov	w2, #0x0                   	// #0
+    22d0:	mov	w1, #0x0                   	// #0
+    22d4:	mov	x0, #0x0                   	// #0
+    22d8:	str	xzr, [x8, #120]
+    22dc:	bl	1f88 <grub_gfxterm_set_window>
+    22e0:	ldp	x19, x20, [sp, #16]
+    22e4:	ldr	x21, [sp, #32]
+    22e8:	ldp	x29, x30, [sp], #128
+    22ec:	ret
+    22f0:	bl	0 <grub_video_swap_buffers>
+    22f4:	ldp	w3, w4, [sp, #48]
+    22f8:	mov	w0, w20
+    22fc:	mov	w2, #0x0                   	// #0
+    2300:	mov	w1, #0x0                   	// #0
+    2304:	bl	0 <grub_video_fill_rect>
+    2308:	b	2290 <grub_gfxterm_fullscreen+0x78>
+    230c:	adrp	x1, 0 <grub_virtual_screen_getwh>
+    2310:	mov	w0, #0x17                  	// #23
+    2314:	ldr	x1, [x1]
+    2318:	bl	0 <grub_error>
+    231c:	ldp	x19, x20, [sp, #16]
+    2320:	ldr	x21, [sp, #32]
+    2324:	b	222c <grub_gfxterm_fullscreen+0x14>
+	...
+
+0000000000002350 <grub_gfxterm_term_init>:
+    2350:	stp	x29, x30, [sp, #-32]!
+    2354:	adrp	x0, 0 <grub_virtual_screen_getwh>
+    2358:	mov	x29, sp
+    235c:	ldr	x0, [x0]
+    2360:	stp	x19, x20, [sp, #16]
+    2364:	bl	0 <grub_env_get>
+    2368:	cbz	x0, 2378 <grub_gfxterm_term_init+0x28>
+    236c:	mov	x1, x0
+    2370:	ldrb	w0, [x0]
+    2374:	cbnz	w0, 23c4 <grub_gfxterm_term_init+0x74>
+    2378:	adrp	x0, 0 <grub_virtual_screen_getwh>
+    237c:	mov	w2, #0x0                   	// #0
+    2380:	mov	w1, #0x40                  	// #64
+    2384:	ldr	x0, [x0]
+    2388:	bl	0 <grub_video_set_mode>
+    238c:	mov	w19, w0
+    2390:	cbz	w19, 23a4 <grub_gfxterm_term_init+0x54>
+    2394:	mov	w0, w19
+    2398:	ldp	x19, x20, [sp, #16]
+    239c:	ldp	x29, x30, [sp], #32
+    23a0:	ret
+    23a4:	bl	2218 <grub_gfxterm_fullscreen>
+    23a8:	mov	w19, w0
+    23ac:	cbz	w0, 2394 <grub_gfxterm_term_init+0x44>
+    23b0:	bl	0 <grub_video_restore>
+    23b4:	mov	w0, w19
+    23b8:	ldp	x19, x20, [sp, #16]
+    23bc:	ldp	x29, x30, [sp], #32
+    23c0:	ret
+    23c4:	adrp	x0, 0 <grub_virtual_screen_getwh>
+    23c8:	ldr	x0, [x0]
+    23cc:	bl	0 <grub_xasprintf>
+    23d0:	mov	x20, x0
+    23d4:	cbz	x0, 23f8 <grub_gfxterm_term_init+0xa8>
+    23d8:	mov	w2, #0x0                   	// #0
+    23dc:	mov	w1, #0x40                  	// #64
+    23e0:	bl	0 <grub_video_set_mode>
+    23e4:	mov	w19, w0
+    23e8:	mov	x0, x20
+    23ec:	bl	0 <grub_free>
+    23f0:	cbnz	w19, 2394 <grub_gfxterm_term_init+0x44>
+    23f4:	b	23a4 <grub_gfxterm_term_init+0x54>
+    23f8:	adrp	x0, 0 <grub_virtual_screen_getwh>
+    23fc:	ldr	x0, [x0]
+    2400:	ldr	w19, [x0]
+    2404:	b	2394 <grub_gfxterm_term_init+0x44>
+	...
+
+0000000000002428 <grub_gfxterm_video_update_color>:
+    2428:	stp	x29, x30, [sp, #-48]!
+    242c:	mov	x29, sp
+    2430:	add	x0, sp, #0x28
+    2434:	stp	x19, x20, [sp, #16]
+    2438:	bl	0 <grub_video_get_active_render_target>
+    243c:	adrp	x0, 0 <grub_virtual_screen_getwh>
+    2440:	ldr	x20, [x0]
+    2444:	ldr	x0, [x20, #88]
+    2448:	bl	0 <grub_video_set_active_render_target>
+    244c:	adrp	x0, 0 <grub_virtual_screen_getwh>
+    2450:	ldr	x19, [x0]
+    2454:	ldrb	w2, [x19, #14]
+    2458:	ldrb	w3, [x19, #15]
+    245c:	ldrb	w1, [x19, #13]
+    2460:	ldrb	w0, [x19, #12]
+    2464:	bl	0 <grub_video_map_rgba>
+    2468:	mov	w1, w0
+    246c:	ldr	x0, [sp, #40]
+    2470:	str	w1, [x20, #64]
+    2474:	bl	0 <grub_video_set_active_render_target>
+    2478:	ldrb	w1, [x19, #13]
+    247c:	ldrb	w2, [x19, #14]
+    2480:	ldrb	w3, [x19, #15]
+    2484:	ldrb	w0, [x19, #12]
+    2488:	bl	0 <grub_video_map_rgba>
+    248c:	str	w0, [x20, #68]
+    2490:	ldp	x19, x20, [sp, #16]
+    2494:	ldp	x29, x30, [sp], #48
+    2498:	ret
+    249c:	nop
+	...
+
+00000000000024b0 <grub_gfxterm_get_dimensions>:
+    24b0:	adrp	x2, 0 <grub_virtual_screen_getwh>
+    24b4:	ldr	x2, [x2]
+    24b8:	ldr	w3, [x2, #144]
+    24bc:	str	w3, [x0]
+    24c0:	ldr	w0, [x2, #148]
+    24c4:	str	w0, [x1]
+    24c8:	ret
+    24cc:	nop
+	...
+
+00000000000024d8 <grub_mod_init>:
+    24d8:	stp	x29, x30, [sp, #-32]!
+    24dc:	adrp	x0, 0 <grub_virtual_screen_getwh>
+    24e0:	mov	x29, sp
+    24e4:	stp	x19, x20, [sp, #16]
+    24e8:	ldr	x19, [x0]
+    24ec:	ldr	x0, [x19]
+    24f0:	cbz	x0, 2510 <grub_mod_init+0x38>
+    24f4:	adrp	x1, 0 <grub_virtual_screen_getwh>
+    24f8:	adrp	x0, 0 <grub_virtual_screen_getwh>
+    24fc:	ldp	x19, x20, [sp, #16]
+    2500:	ldp	x29, x30, [sp], #32
+    2504:	ldr	x1, [x1]
+    2508:	ldr	x0, [x0]
+    250c:	b	0 <grub_list_push>
+    2510:	adrp	x0, 0 <grub_virtual_screen_getwh>
+    2514:	ldr	x20, [x0]
+    2518:	ldr	x1, [x20, #24]
+    251c:	cbz	x1, 252c <grub_mod_init+0x54>
+    2520:	mov	x0, x20
+    2524:	blr	x1
+    2528:	cbnz	w0, 2540 <grub_mod_init+0x68>
+    252c:	mov	x1, x20
+    2530:	mov	x0, x19
+    2534:	ldp	x19, x20, [sp, #16]
+    2538:	ldp	x29, x30, [sp], #32
+    253c:	b	0 <grub_list_push>
+    2540:	ldp	x19, x20, [sp, #16]
+    2544:	ldp	x29, x30, [sp], #32
+    2548:	ret
+    254c:	nop
+	...
+
+0000000000002568 <grub_mod_fini>:
+    2568:	stp	x29, x30, [sp, #-32]!
+    256c:	adrp	x0, 0 <grub_virtual_screen_getwh>
+    2570:	mov	x29, sp
+    2574:	str	x19, [sp, #16]
+    2578:	ldr	x19, [x0]
+    257c:	mov	x0, x19
+    2580:	bl	0 <grub_list_remove>
+    2584:	mov	x0, x19
+    2588:	ldr	x19, [sp, #16]
+    258c:	ldp	x29, x30, [sp], #32
+    2590:	b	0 <grub_list_remove>
+    2594:	nop
+	...

@@ -1,0 +1,290 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//loopback.module_gcc_-O1:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_loopback_iterate>:
+   0:	cbnz	w2, 48 <grub_loopback_iterate+0x48>
+   4:	stp	x29, x30, [sp, #-48]!
+   8:	mov	x29, sp
+   c:	stp	x19, x20, [sp, #16]
+  10:	str	x21, [sp, #32]
+  14:	mov	x20, x0
+  18:	mov	x21, x1
+  1c:	adrp	x0, 0 <grub_loopback_iterate>
+  20:	ldr	x0, [x0]
+  24:	ldr	x19, [x0]
+  28:	cbz	x19, 50 <grub_loopback_iterate+0x50>
+  2c:	mov	x1, x21
+  30:	ldr	x0, [x19]
+  34:	blr	x20
+  38:	cbnz	w0, 58 <grub_loopback_iterate+0x58>
+  3c:	ldr	x19, [x19, #16]
+  40:	cbnz	x19, 2c <grub_loopback_iterate+0x2c>
+  44:	b	5c <grub_loopback_iterate+0x5c>
+  48:	mov	w0, #0x0                   	// #0
+  4c:	ret
+  50:	mov	w0, #0x0                   	// #0
+  54:	b	5c <grub_loopback_iterate+0x5c>
+  58:	mov	w0, #0x1                   	// #1
+  5c:	ldp	x19, x20, [sp, #16]
+  60:	ldr	x21, [sp, #32]
+  64:	ldp	x29, x30, [sp], #48
+  68:	ret
+  6c:	nop
+	...
+
+0000000000000078 <grub_loopback_write>:
+  78:	stp	x29, x30, [sp, #-16]!
+  7c:	mov	x29, sp
+  80:	adrp	x0, 0 <grub_loopback_iterate>
+  84:	ldr	x1, [x0]
+  88:	mov	w0, #0x18                  	// #24
+  8c:	bl	0 <grub_error>
+  90:	ldp	x29, x30, [sp], #16
+  94:	ret
+	...
+
+00000000000000a0 <grub_loopback_read>:
+  a0:	stp	x29, x30, [sp, #-64]!
+  a4:	mov	x29, sp
+  a8:	stp	x19, x20, [sp, #16]
+  ac:	stp	x21, x22, [sp, #32]
+  b0:	stp	x23, x24, [sp, #48]
+  b4:	mov	x19, x1
+  b8:	mov	x20, x2
+  bc:	mov	x21, x3
+  c0:	ldr	x0, [x0, #64]
+  c4:	ldr	x22, [x0, #8]
+  c8:	lsl	x1, x1, #9
+  cc:	mov	x0, x22
+  d0:	bl	0 <grub_file_seek>
+  d4:	lsl	x23, x20, #9
+  d8:	mov	x2, x23
+  dc:	mov	x1, x21
+  e0:	mov	x0, x22
+  e4:	bl	0 <grub_file_read>
+  e8:	adrp	x0, 0 <grub_loopback_iterate>
+  ec:	ldr	x0, [x0]
+  f0:	ldr	w24, [x0]
+  f4:	cbnz	w24, 10c <grub_loopback_read+0x6c>
+  f8:	add	x19, x19, x20
+  fc:	lsl	x2, x19, #9
+ 100:	ldr	x1, [x22, #64]
+ 104:	cmp	x1, x19, lsl #9
+ 108:	b.cc	124 <grub_loopback_read+0x84>  // b.lo, b.ul, b.last
+ 10c:	mov	w0, w24
+ 110:	ldp	x19, x20, [sp, #16]
+ 114:	ldp	x21, x22, [sp, #32]
+ 118:	ldp	x23, x24, [sp, #48]
+ 11c:	ldp	x29, x30, [sp], #64
+ 120:	ret
+ 124:	sub	x0, x23, x2
+ 128:	add	x0, x0, x1
+ 12c:	sub	x2, x2, x1
+ 130:	mov	w1, #0x0                   	// #0
+ 134:	add	x0, x21, x0
+ 138:	bl	0 <grub_memset>
+ 13c:	b	10c <grub_loopback_read+0x6c>
+	...
+
+0000000000000148 <grub_loopback_open>:
+ 148:	stp	x29, x30, [sp, #-48]!
+ 14c:	mov	x29, sp
+ 150:	stp	x19, x20, [sp, #16]
+ 154:	str	x21, [sp, #32]
+ 158:	mov	x20, x0
+ 15c:	mov	x21, x1
+ 160:	adrp	x0, 0 <grub_loopback_iterate>
+ 164:	ldr	x0, [x0]
+ 168:	ldr	x19, [x0]
+ 16c:	cbz	x19, 188 <grub_loopback_open+0x40>
+ 170:	mov	x1, x20
+ 174:	ldr	x0, [x19]
+ 178:	bl	0 <grub_strcmp>
+ 17c:	cbz	w0, 19c <grub_loopback_open+0x54>
+ 180:	ldr	x19, [x19, #16]
+ 184:	cbnz	x19, 170 <grub_loopback_open+0x28>
+ 188:	adrp	x0, 0 <grub_loopback_iterate>
+ 18c:	ldr	x1, [x0]
+ 190:	mov	w0, #0xc                   	// #12
+ 194:	bl	0 <grub_error>
+ 198:	b	1d0 <grub_loopback_open+0x88>
+ 19c:	ldr	x0, [x19, #8]
+ 1a0:	ldr	x0, [x0, #64]
+ 1a4:	add	x1, x0, #0x1ff
+ 1a8:	lsr	x1, x1, #9
+ 1ac:	cmn	x0, #0x1
+ 1b0:	csel	x0, x1, x0, ne  // ne = any
+ 1b4:	str	x0, [x21, #16]
+ 1b8:	mov	w0, #0x4000                	// #16384
+ 1bc:	str	w0, [x21, #28]
+ 1c0:	ldr	x0, [x19, #24]
+ 1c4:	str	x0, [x21, #32]
+ 1c8:	str	x19, [x21, #64]
+ 1cc:	mov	w0, #0x0                   	// #0
+ 1d0:	ldp	x19, x20, [sp, #16]
+ 1d4:	ldr	x21, [sp, #32]
+ 1d8:	ldp	x29, x30, [sp], #48
+ 1dc:	ret
+	...
+
+00000000000001f0 <grub_cmd_loopback>:
+ 1f0:	stp	x29, x30, [sp, #-48]!
+ 1f4:	mov	x29, sp
+ 1f8:	stp	x19, x20, [sp, #16]
+ 1fc:	ldr	x0, [x0, #8]
+ 200:	cmp	w1, #0x0
+ 204:	b.le	2b0 <grub_cmd_loopback+0xc0>
+ 208:	mov	x20, x2
+ 20c:	ldr	w0, [x0]
+ 210:	cbnz	w0, 2c8 <grub_cmd_loopback+0xd8>
+ 214:	cmp	w1, #0x1
+ 218:	b.le	320 <grub_cmd_loopback+0x130>
+ 21c:	str	x21, [sp, #32]
+ 220:	mov	w1, #0x20002               	// #131074
+ 224:	ldr	x0, [x2, #8]
+ 228:	bl	0 <grub_file_open>
+ 22c:	mov	x21, x0
+ 230:	cbz	x0, 338 <grub_cmd_loopback+0x148>
+ 234:	adrp	x0, 0 <grub_loopback_iterate>
+ 238:	ldr	x0, [x0]
+ 23c:	ldr	x19, [x0]
+ 240:	cbz	x19, 25c <grub_cmd_loopback+0x6c>
+ 244:	ldr	x1, [x20]
+ 248:	ldr	x0, [x19]
+ 24c:	bl	0 <grub_strcmp>
+ 250:	cbz	w0, 39c <grub_cmd_loopback+0x1ac>
+ 254:	ldr	x19, [x19, #16]
+ 258:	cbnz	x19, 244 <grub_cmd_loopback+0x54>
+ 25c:	mov	x0, #0x20                  	// #32
+ 260:	bl	0 <grub_malloc>
+ 264:	mov	x19, x0
+ 268:	cbz	x0, 354 <grub_cmd_loopback+0x164>
+ 26c:	ldr	x0, [x20]
+ 270:	bl	0 <grub_strdup>
+ 274:	str	x0, [x19]
+ 278:	cbz	x0, 34c <grub_cmd_loopback+0x15c>
+ 27c:	str	x21, [x19, #8]
+ 280:	adrp	x0, 0 <grub_loopback_iterate>
+ 284:	ldr	x0, [x0]
+ 288:	ldr	x1, [x0, #8]
+ 28c:	add	x2, x1, #0x1
+ 290:	str	x2, [x0, #8]
+ 294:	str	x1, [x19, #24]
+ 298:	ldr	x1, [x0]
+ 29c:	str	x1, [x19, #16]
+ 2a0:	str	x19, [x0]
+ 2a4:	mov	w19, #0x0                   	// #0
+ 2a8:	ldr	x21, [sp, #32]
+ 2ac:	b	3b0 <grub_cmd_loopback+0x1c0>
+ 2b0:	adrp	x0, 0 <grub_loopback_iterate>
+ 2b4:	ldr	x1, [x0]
+ 2b8:	mov	w0, #0x12                  	// #18
+ 2bc:	bl	0 <grub_error>
+ 2c0:	mov	w19, w0
+ 2c4:	b	3b0 <grub_cmd_loopback+0x1c0>
+ 2c8:	str	x21, [sp, #32]
+ 2cc:	ldr	x21, [x2]
+ 2d0:	adrp	x0, 0 <grub_loopback_iterate>
+ 2d4:	ldr	x0, [x0]
+ 2d8:	ldr	x19, [x0]
+ 2dc:	cbz	x19, 304 <grub_cmd_loopback+0x114>
+ 2e0:	adrp	x0, 0 <grub_loopback_iterate>
+ 2e4:	ldr	x20, [x0]
+ 2e8:	mov	x1, x21
+ 2ec:	ldr	x0, [x19]
+ 2f0:	bl	0 <grub_strcmp>
+ 2f4:	cbz	w0, 370 <grub_cmd_loopback+0x180>
+ 2f8:	add	x20, x19, #0x10
+ 2fc:	ldr	x19, [x19, #16]
+ 300:	cbnz	x19, 2e8 <grub_cmd_loopback+0xf8>
+ 304:	adrp	x0, 0 <grub_loopback_iterate>
+ 308:	ldr	x1, [x0]
+ 30c:	mov	w0, #0xd                   	// #13
+ 310:	bl	0 <grub_error>
+ 314:	mov	w19, w0
+ 318:	ldr	x21, [sp, #32]
+ 31c:	b	3b0 <grub_cmd_loopback+0x1c0>
+ 320:	adrp	x0, 0 <grub_loopback_iterate>
+ 324:	ldr	x1, [x0]
+ 328:	mov	w0, #0x12                  	// #18
+ 32c:	bl	0 <grub_error>
+ 330:	mov	w19, w0
+ 334:	b	3b0 <grub_cmd_loopback+0x1c0>
+ 338:	adrp	x0, 0 <grub_loopback_iterate>
+ 33c:	ldr	x0, [x0]
+ 340:	ldr	w19, [x0]
+ 344:	ldr	x21, [sp, #32]
+ 348:	b	3b0 <grub_cmd_loopback+0x1c0>
+ 34c:	mov	x0, x19
+ 350:	bl	0 <grub_free>
+ 354:	adrp	x0, 0 <grub_loopback_iterate>
+ 358:	ldr	x0, [x0]
+ 35c:	ldr	w19, [x0]
+ 360:	mov	x0, x21
+ 364:	bl	0 <grub_file_close>
+ 368:	ldr	x21, [sp, #32]
+ 36c:	b	3b0 <grub_cmd_loopback+0x1c0>
+ 370:	ldr	x0, [x19, #16]
+ 374:	str	x0, [x20]
+ 378:	ldr	x0, [x19]
+ 37c:	bl	0 <grub_free>
+ 380:	ldr	x0, [x19, #8]
+ 384:	bl	0 <grub_file_close>
+ 388:	mov	x0, x19
+ 38c:	bl	0 <grub_free>
+ 390:	mov	w19, #0x0                   	// #0
+ 394:	ldr	x21, [sp, #32]
+ 398:	b	3b0 <grub_cmd_loopback+0x1c0>
+ 39c:	ldr	x0, [x19, #8]
+ 3a0:	bl	0 <grub_file_close>
+ 3a4:	str	x21, [x19, #8]
+ 3a8:	mov	w19, #0x0                   	// #0
+ 3ac:	ldr	x21, [sp, #32]
+ 3b0:	mov	w0, w19
+ 3b4:	ldp	x19, x20, [sp, #16]
+ 3b8:	ldp	x29, x30, [sp], #48
+ 3bc:	ret
+	...
+
+00000000000003e8 <grub_mod_init>:
+ 3e8:	stp	x29, x30, [sp, #-16]!
+ 3ec:	mov	x29, sp
+ 3f0:	adrp	x0, 0 <grub_loopback_iterate>
+ 3f4:	ldr	x5, [x0]
+ 3f8:	adrp	x0, 0 <grub_loopback_iterate>
+ 3fc:	ldr	x4, [x0]
+ 400:	adrp	x0, 0 <grub_loopback_iterate>
+ 404:	ldr	x3, [x0]
+ 408:	mov	w2, #0x0                   	// #0
+ 40c:	adrp	x0, 0 <grub_loopback_iterate>
+ 410:	ldr	x1, [x0]
+ 414:	adrp	x0, 0 <grub_loopback_iterate>
+ 418:	ldr	x0, [x0]
+ 41c:	bl	0 <grub_register_extcmd>
+ 420:	adrp	x1, 0 <grub_loopback_iterate>
+ 424:	ldr	x1, [x1]
+ 428:	str	x0, [x1, #16]
+ 42c:	adrp	x0, 0 <grub_loopback_iterate>
+ 430:	ldr	x0, [x0]
+ 434:	bl	0 <grub_disk_dev_register>
+ 438:	ldp	x29, x30, [sp], #16
+ 43c:	ret
+	...
+
+0000000000000478 <grub_mod_fini>:
+ 478:	stp	x29, x30, [sp, #-16]!
+ 47c:	mov	x29, sp
+ 480:	adrp	x0, 0 <grub_loopback_iterate>
+ 484:	ldr	x0, [x0]
+ 488:	ldr	x0, [x0, #16]
+ 48c:	bl	0 <grub_unregister_extcmd>
+ 490:	adrp	x0, 0 <grub_loopback_iterate>
+ 494:	ldr	x0, [x0]
+ 498:	bl	0 <grub_disk_dev_unregister>
+ 49c:	ldp	x29, x30, [sp], #16
+ 4a0:	ret
+ 4a4:	nop
+	...

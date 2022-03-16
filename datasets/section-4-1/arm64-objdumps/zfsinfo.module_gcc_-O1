@@ -1,0 +1,796 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//zfsinfo.module_gcc_-O1:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <get_bootpath>:
+   0:	stp	x29, x30, [sp, #-80]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	stp	x21, x22, [sp, #32]
+  10:	mov	x22, x0
+  14:	mov	x20, x1
+  18:	mov	x21, x2
+  1c:	adrp	x1, 0 <get_bootpath>
+  20:	ldr	x1, [x1]
+  24:	bl	0 <grub_zfs_nvlist_lookup_string>
+  28:	cbz	x0, 90 <get_bootpath+0x90>
+  2c:	mov	x19, x0
+  30:	adrp	x0, 0 <get_bootpath>
+  34:	ldr	x1, [x0]
+  38:	mov	x0, x19
+  3c:	bl	0 <grub_strcmp>
+  40:	cbz	w0, ac <get_bootpath+0xac>
+  44:	adrp	x0, 0 <get_bootpath>
+  48:	ldr	x1, [x0]
+  4c:	mov	x0, x19
+  50:	bl	0 <grub_strcmp>
+  54:	mov	w1, w0
+  58:	mov	w0, #0x0                   	// #0
+  5c:	cbnz	w1, 9c <get_bootpath+0x9c>
+  60:	stp	x23, x24, [sp, #48]
+  64:	adrp	x0, 0 <get_bootpath>
+  68:	ldr	x1, [x0]
+  6c:	mov	x0, x22
+  70:	bl	0 <grub_zfs_nvlist_lookup_nvlist_array_get_nelm>
+  74:	mov	w24, w0
+  78:	cmp	w0, #0x0
+  7c:	b.le	16c <get_bootpath+0x16c>
+  80:	str	x25, [sp, #64]
+  84:	mov	x23, #0x0                   	// #0
+  88:	adrp	x25, 0 <get_bootpath>
+  8c:	b	114 <get_bootpath+0x114>
+  90:	adrp	x0, 0 <get_bootpath>
+  94:	ldr	x0, [x0]
+  98:	ldr	w0, [x0]
+  9c:	ldp	x19, x20, [sp, #16]
+  a0:	ldp	x21, x22, [sp, #32]
+  a4:	ldp	x29, x30, [sp], #80
+  a8:	ret
+  ac:	adrp	x0, 0 <get_bootpath>
+  b0:	ldr	x1, [x0]
+  b4:	mov	x0, x22
+  b8:	bl	0 <grub_zfs_nvlist_lookup_string>
+  bc:	str	x0, [x20]
+  c0:	adrp	x0, 0 <get_bootpath>
+  c4:	ldr	x1, [x0]
+  c8:	mov	x0, x22
+  cc:	bl	0 <grub_zfs_nvlist_lookup_string>
+  d0:	str	x0, [x21]
+  d4:	ldr	x2, [x20]
+  d8:	cmp	x0, #0x0
+  dc:	mov	w0, #0x0                   	// #0
+  e0:	ccmp	x2, #0x0, #0x4, ne  // ne = any
+  e4:	b.ne	9c <get_bootpath+0x9c>  // b.any
+  e8:	mov	x0, x2
+  ec:	bl	0 <grub_free>
+  f0:	ldr	x0, [x21]
+  f4:	bl	0 <grub_free>
+  f8:	str	xzr, [x20]
+  fc:	str	xzr, [x21]
+ 100:	mov	w0, #0x0                   	// #0
+ 104:	b	9c <get_bootpath+0x9c>
+ 108:	add	x23, x23, #0x1
+ 10c:	cmp	w24, w23
+ 110:	b.le	15c <get_bootpath+0x15c>
+ 114:	mov	x2, x23
+ 118:	ldr	x1, [x25]
+ 11c:	mov	x0, x22
+ 120:	bl	0 <grub_zfs_nvlist_lookup_nvlist_array>
+ 124:	mov	x19, x0
+ 128:	mov	x2, x21
+ 12c:	mov	x1, x20
+ 130:	bl	0 <get_bootpath>
+ 134:	mov	x0, x19
+ 138:	bl	0 <grub_free>
+ 13c:	ldr	x1, [x20]
+ 140:	cbz	x1, 108 <get_bootpath+0x108>
+ 144:	ldr	x0, [x21]
+ 148:	cbz	x0, 108 <get_bootpath+0x108>
+ 14c:	mov	w0, #0x0                   	// #0
+ 150:	ldp	x23, x24, [sp, #48]
+ 154:	ldr	x25, [sp, #64]
+ 158:	b	9c <get_bootpath+0x9c>
+ 15c:	mov	w0, #0x0                   	// #0
+ 160:	ldp	x23, x24, [sp, #48]
+ 164:	ldr	x25, [sp, #64]
+ 168:	b	9c <get_bootpath+0x9c>
+ 16c:	mov	w0, #0x0                   	// #0
+ 170:	ldp	x23, x24, [sp, #48]
+ 174:	b	9c <get_bootpath+0x9c>
+	...
+
+00000000000001b0 <grub_cmd_zfs_bootfs>:
+ 1b0:	sub	sp, sp, #0x70
+ 1b4:	stp	x29, x30, [sp, #16]
+ 1b8:	add	x29, sp, #0x10
+ 1bc:	stp	x19, x20, [sp, #32]
+ 1c0:	str	xzr, [sp, #104]
+ 1c4:	str	xzr, [sp, #96]
+ 1c8:	str	xzr, [sp, #88]
+ 1cc:	cmp	w1, #0x0
+ 1d0:	b.le	21c <grub_cmd_zfs_bootfs+0x6c>
+ 1d4:	stp	x21, x22, [sp, #48]
+ 1d8:	str	x23, [sp, #64]
+ 1dc:	mov	w23, w1
+ 1e0:	mov	x20, x2
+ 1e4:	ldr	x0, [x2]
+ 1e8:	bl	0 <grub_file_get_device_name>
+ 1ec:	mov	x21, x0
+ 1f0:	adrp	x0, 0 <get_bootpath>
+ 1f4:	ldr	x0, [x0]
+ 1f8:	ldr	w19, [x0]
+ 1fc:	cbz	w19, 234 <grub_cmd_zfs_bootfs+0x84>
+ 200:	ldp	x21, x22, [sp, #48]
+ 204:	ldr	x23, [sp, #64]
+ 208:	mov	w0, w19
+ 20c:	ldp	x19, x20, [sp, #32]
+ 210:	ldp	x29, x30, [sp, #16]
+ 214:	add	sp, sp, #0x70
+ 218:	ret
+ 21c:	adrp	x0, 0 <get_bootpath>
+ 220:	ldr	x1, [x0]
+ 224:	mov	w0, #0x12                  	// #18
+ 228:	bl	0 <grub_error>
+ 22c:	mov	w19, w0
+ 230:	b	208 <grub_cmd_zfs_bootfs+0x58>
+ 234:	mov	x0, x21
+ 238:	bl	0 <grub_device_open>
+ 23c:	mov	x22, x0
+ 240:	mov	x0, x21
+ 244:	bl	0 <grub_free>
+ 248:	cbz	x22, 288 <grub_cmd_zfs_bootfs+0xd8>
+ 24c:	add	x1, sp, #0x68
+ 250:	mov	x0, x22
+ 254:	bl	0 <grub_zfs_fetch_nvlist>
+ 258:	mov	w19, w0
+ 25c:	mov	w1, #0x29                  	// #41
+ 260:	ldr	x0, [x20]
+ 264:	bl	0 <grub_strchr>
+ 268:	add	x1, x0, #0x1
+ 26c:	cbz	x0, 2a0 <grub_cmd_zfs_bootfs+0xf0>
+ 270:	cbz	w19, 2a8 <grub_cmd_zfs_bootfs+0xf8>
+ 274:	mov	x0, x22
+ 278:	bl	0 <grub_device_close>
+ 27c:	ldp	x21, x22, [sp, #48]
+ 280:	ldr	x23, [sp, #64]
+ 284:	b	208 <grub_cmd_zfs_bootfs+0x58>
+ 288:	adrp	x0, 0 <get_bootpath>
+ 28c:	ldr	x0, [x0]
+ 290:	ldr	w19, [x0]
+ 294:	ldp	x21, x22, [sp, #48]
+ 298:	ldr	x23, [sp, #64]
+ 29c:	b	208 <grub_cmd_zfs_bootfs+0x58>
+ 2a0:	ldr	x1, [x20]
+ 2a4:	b	270 <grub_cmd_zfs_bootfs+0xc0>
+ 2a8:	add	x2, sp, #0x50
+ 2ac:	mov	x0, x22
+ 2b0:	bl	0 <grub_zfs_getmdnobj>
+ 2b4:	mov	w19, w0
+ 2b8:	mov	x0, x22
+ 2bc:	bl	0 <grub_device_close>
+ 2c0:	cbnz	w19, 430 <grub_cmd_zfs_bootfs+0x280>
+ 2c4:	adrp	x0, 0 <get_bootpath>
+ 2c8:	ldr	x1, [x0]
+ 2cc:	ldr	x0, [sp, #104]
+ 2d0:	bl	0 <grub_zfs_nvlist_lookup_string>
+ 2d4:	mov	x21, x0
+ 2d8:	cbz	x0, 3a0 <grub_cmd_zfs_bootfs+0x1f0>
+ 2dc:	adrp	x0, 0 <get_bootpath>
+ 2e0:	ldr	x1, [x0]
+ 2e4:	ldr	x0, [sp, #104]
+ 2e8:	bl	0 <grub_zfs_nvlist_lookup_nvlist>
+ 2ec:	mov	x22, x0
+ 2f0:	cbz	x0, 300 <grub_cmd_zfs_bootfs+0x150>
+ 2f4:	add	x2, sp, #0x58
+ 2f8:	add	x1, sp, #0x60
+ 2fc:	bl	0 <get_bootpath>
+ 300:	mov	x0, x22
+ 304:	bl	0 <grub_free>
+ 308:	ldr	x0, [sp, #104]
+ 30c:	bl	0 <grub_free>
+ 310:	ldr	x2, [sp, #80]
+ 314:	ldr	x4, [sp, #96]
+ 318:	cbz	x4, 3dc <grub_cmd_zfs_bootfs+0x22c>
+ 31c:	adrp	x0, 0 <get_bootpath>
+ 320:	ldr	x3, [x0]
+ 324:	adrp	x0, 0 <get_bootpath>
+ 328:	ldr	x5, [x0]
+ 32c:	ldr	x7, [sp, #88]
+ 330:	cbz	x7, 3f0 <grub_cmd_zfs_bootfs+0x240>
+ 334:	adrp	x0, 0 <get_bootpath>
+ 338:	ldr	x6, [x0]
+ 33c:	adrp	x0, 0 <get_bootpath>
+ 340:	ldr	x0, [x0]
+ 344:	str	x0, [sp]
+ 348:	mov	x1, x21
+ 34c:	adrp	x0, 0 <get_bootpath>
+ 350:	ldr	x0, [x0]
+ 354:	bl	0 <grub_xasprintf>
+ 358:	mov	x22, x0
+ 35c:	cbz	x0, 404 <grub_cmd_zfs_bootfs+0x254>
+ 360:	cmp	w23, #0x1
+ 364:	b.le	41c <grub_cmd_zfs_bootfs+0x26c>
+ 368:	mov	x1, x0
+ 36c:	ldr	x0, [x20, #8]
+ 370:	bl	0 <grub_env_set>
+ 374:	mov	x0, x22
+ 378:	bl	0 <grub_free>
+ 37c:	mov	x0, x21
+ 380:	bl	0 <grub_free>
+ 384:	ldr	x0, [sp, #96]
+ 388:	bl	0 <grub_free>
+ 38c:	ldr	x0, [sp, #88]
+ 390:	bl	0 <grub_free>
+ 394:	ldp	x21, x22, [sp, #48]
+ 398:	ldr	x23, [sp, #64]
+ 39c:	b	208 <grub_cmd_zfs_bootfs+0x58>
+ 3a0:	adrp	x0, 0 <get_bootpath>
+ 3a4:	ldr	x0, [x0]
+ 3a8:	ldr	w0, [x0]
+ 3ac:	cbz	w0, 3c8 <grub_cmd_zfs_bootfs+0x218>
+ 3b0:	adrp	x0, 0 <get_bootpath>
+ 3b4:	ldr	x0, [x0]
+ 3b8:	ldr	w19, [x0]
+ 3bc:	ldp	x21, x22, [sp, #48]
+ 3c0:	ldr	x23, [sp, #64]
+ 3c4:	b	208 <grub_cmd_zfs_bootfs+0x58>
+ 3c8:	adrp	x0, 0 <get_bootpath>
+ 3cc:	ldr	x1, [x0]
+ 3d0:	mov	w0, #0x9                   	// #9
+ 3d4:	bl	0 <grub_error>
+ 3d8:	b	3b0 <grub_cmd_zfs_bootfs+0x200>
+ 3dc:	adrp	x0, 0 <get_bootpath>
+ 3e0:	ldr	x4, [x0]
+ 3e4:	mov	x3, x4
+ 3e8:	mov	x5, x4
+ 3ec:	b	32c <grub_cmd_zfs_bootfs+0x17c>
+ 3f0:	adrp	x0, 0 <get_bootpath>
+ 3f4:	ldr	x7, [x0]
+ 3f8:	mov	x6, x7
+ 3fc:	mov	x0, x7
+ 400:	b	344 <grub_cmd_zfs_bootfs+0x194>
+ 404:	adrp	x0, 0 <get_bootpath>
+ 408:	ldr	x0, [x0]
+ 40c:	ldr	w19, [x0]
+ 410:	ldp	x21, x22, [sp, #48]
+ 414:	ldr	x23, [sp, #64]
+ 418:	b	208 <grub_cmd_zfs_bootfs+0x58>
+ 41c:	mov	x1, x0
+ 420:	adrp	x0, 0 <get_bootpath>
+ 424:	ldr	x0, [x0]
+ 428:	bl	0 <grub_printf>
+ 42c:	b	374 <grub_cmd_zfs_bootfs+0x1c4>
+ 430:	ldp	x21, x22, [sp, #48]
+ 434:	ldr	x23, [sp, #64]
+ 438:	b	208 <grub_cmd_zfs_bootfs+0x58>
+ 43c:	nop
+	...
+
+0000000000000498 <print_state>:
+ 498:	stp	x29, x30, [sp, #-64]!
+ 49c:	mov	x29, sp
+ 4a0:	stp	x19, x20, [sp, #16]
+ 4a4:	stp	x21, x22, [sp, #32]
+ 4a8:	mov	x22, x0
+ 4ac:	cmp	w1, #0x0
+ 4b0:	b.le	4d4 <print_state+0x3c>
+ 4b4:	mov	w20, w1
+ 4b8:	mov	w19, #0x0                   	// #0
+ 4bc:	adrp	x21, 0 <get_bootpath>
+ 4c0:	ldr	x0, [x21]
+ 4c4:	bl	0 <grub_printf>
+ 4c8:	add	w19, w19, #0x1
+ 4cc:	cmp	w20, w19
+ 4d0:	b.ne	4c0 <print_state+0x28>  // b.any
+ 4d4:	add	x2, sp, #0x38
+ 4d8:	adrp	x0, 0 <get_bootpath>
+ 4dc:	ldr	x1, [x0]
+ 4e0:	mov	x0, x22
+ 4e4:	bl	0 <grub_zfs_nvlist_lookup_uint64>
+ 4e8:	mov	w19, #0x1                   	// #1
+ 4ec:	cbnz	w0, 568 <print_state+0xd0>
+ 4f0:	add	x2, sp, #0x38
+ 4f4:	adrp	x0, 0 <get_bootpath>
+ 4f8:	ldr	x1, [x0]
+ 4fc:	mov	x0, x22
+ 500:	bl	0 <grub_zfs_nvlist_lookup_uint64>
+ 504:	cbnz	w0, 57c <print_state+0xe4>
+ 508:	add	x2, sp, #0x38
+ 50c:	adrp	x0, 0 <get_bootpath>
+ 510:	ldr	x1, [x0]
+ 514:	mov	x0, x22
+ 518:	bl	0 <grub_zfs_nvlist_lookup_uint64>
+ 51c:	cbnz	w0, 590 <print_state+0xf8>
+ 520:	add	x2, sp, #0x38
+ 524:	adrp	x0, 0 <get_bootpath>
+ 528:	ldr	x1, [x0]
+ 52c:	mov	x0, x22
+ 530:	bl	0 <grub_zfs_nvlist_lookup_uint64>
+ 534:	cbnz	w0, 5b8 <print_state+0x120>
+ 538:	cbnz	w19, 5c8 <print_state+0x130>
+ 53c:	adrp	x0, 0 <get_bootpath>
+ 540:	ldr	x0, [x0]
+ 544:	ldr	x1, [x0]
+ 548:	adrp	x0, 0 <get_bootpath>
+ 54c:	ldr	x0, [x0]
+ 550:	blr	x1
+ 554:	mov	w0, #0x0                   	// #0
+ 558:	ldp	x19, x20, [sp, #16]
+ 55c:	ldp	x21, x22, [sp, #32]
+ 560:	ldp	x29, x30, [sp], #64
+ 564:	ret
+ 568:	adrp	x0, 0 <get_bootpath>
+ 56c:	ldr	x0, [x0]
+ 570:	bl	0 <grub_puts_>
+ 574:	mov	w19, #0x0                   	// #0
+ 578:	b	4f0 <print_state+0x58>
+ 57c:	adrp	x0, 0 <get_bootpath>
+ 580:	ldr	x0, [x0]
+ 584:	bl	0 <grub_puts_>
+ 588:	mov	w19, #0x0                   	// #0
+ 58c:	b	508 <print_state+0x70>
+ 590:	adrp	x0, 0 <get_bootpath>
+ 594:	ldr	x0, [x0]
+ 598:	bl	0 <grub_puts_>
+ 59c:	add	x2, sp, #0x38
+ 5a0:	adrp	x0, 0 <get_bootpath>
+ 5a4:	ldr	x1, [x0]
+ 5a8:	mov	x0, x22
+ 5ac:	bl	0 <grub_zfs_nvlist_lookup_uint64>
+ 5b0:	cbz	w0, 53c <print_state+0xa4>
+ 5b4:	mov	w19, #0x0                   	// #0
+ 5b8:	adrp	x0, 0 <get_bootpath>
+ 5bc:	ldr	x0, [x0]
+ 5c0:	bl	0 <grub_puts_>
+ 5c4:	b	538 <print_state+0xa0>
+ 5c8:	adrp	x0, 0 <get_bootpath>
+ 5cc:	ldr	x0, [x0]
+ 5d0:	bl	0 <grub_puts_>
+ 5d4:	b	53c <print_state+0xa4>
+	...
+
+0000000000000630 <print_vdev_info>:
+ 630:	stp	x29, x30, [sp, #-128]!
+ 634:	mov	x29, sp
+ 638:	stp	x19, x20, [sp, #16]
+ 63c:	stp	x21, x22, [sp, #32]
+ 640:	mov	x21, x0
+ 644:	mov	w19, w1
+ 648:	adrp	x1, 0 <get_bootpath>
+ 64c:	ldr	x1, [x1]
+ 650:	bl	0 <grub_zfs_nvlist_lookup_string>
+ 654:	cbz	x0, 7d0 <print_vdev_info+0x1a0>
+ 658:	stp	x23, x24, [sp, #48]
+ 65c:	mov	x23, x0
+ 660:	adrp	x0, 0 <get_bootpath>
+ 664:	ldr	x1, [x0]
+ 668:	mov	x0, x23
+ 66c:	bl	0 <grub_strcmp>
+ 670:	mov	w20, w0
+ 674:	cbnz	w0, 840 <print_vdev_info+0x210>
+ 678:	stp	x25, x26, [sp, #64]
+ 67c:	cmp	w19, #0x0
+ 680:	b.le	a1c <print_vdev_info+0x3ec>
+ 684:	mov	w22, w0
+ 688:	adrp	x25, 0 <get_bootpath>
+ 68c:	ldr	x0, [x25]
+ 690:	bl	0 <grub_printf>
+ 694:	mov	w24, w22
+ 698:	add	w22, w22, #0x1
+ 69c:	cmp	w19, w22
+ 6a0:	b.ne	68c <print_vdev_info+0x5c>  // b.any
+ 6a4:	adrp	x0, 0 <get_bootpath>
+ 6a8:	ldr	x0, [x0]
+ 6ac:	bl	0 <grub_puts_>
+ 6b0:	mov	w1, w22
+ 6b4:	mov	x0, x21
+ 6b8:	bl	498 <print_state>
+ 6bc:	adrp	x0, 0 <get_bootpath>
+ 6c0:	ldr	x1, [x0]
+ 6c4:	mov	x0, x21
+ 6c8:	bl	0 <grub_zfs_nvlist_lookup_string>
+ 6cc:	mov	x25, x0
+ 6d0:	mov	w22, w20
+ 6d4:	adrp	x26, 0 <get_bootpath>
+ 6d8:	ldr	x0, [x26]
+ 6dc:	bl	0 <grub_printf>
+ 6e0:	cmp	w22, w24
+ 6e4:	add	w22, w22, #0x1
+ 6e8:	b.ne	6d8 <print_vdev_info+0xa8>  // b.any
+ 6ec:	cbz	x25, 810 <print_vdev_info+0x1e0>
+ 6f0:	mov	x1, x25
+ 6f4:	adrp	x0, 0 <get_bootpath>
+ 6f8:	ldr	x0, [x0]
+ 6fc:	bl	0 <grub_printf_>
+ 700:	adrp	x0, 0 <get_bootpath>
+ 704:	ldr	x1, [x0]
+ 708:	mov	x0, x21
+ 70c:	bl	0 <grub_zfs_nvlist_lookup_string>
+ 710:	mov	x26, x0
+ 714:	cmp	w19, #0x0
+ 718:	b.le	738 <print_vdev_info+0x108>
+ 71c:	mov	w22, w20
+ 720:	adrp	x24, 0 <get_bootpath>
+ 724:	ldr	x0, [x24]
+ 728:	bl	0 <grub_printf>
+ 72c:	add	w22, w22, #0x1
+ 730:	cmp	w19, w22
+ 734:	b.ne	724 <print_vdev_info+0xf4>  // b.any
+ 738:	cbz	x26, 820 <print_vdev_info+0x1f0>
+ 73c:	mov	x1, x26
+ 740:	adrp	x0, 0 <get_bootpath>
+ 744:	ldr	x0, [x0]
+ 748:	bl	0 <grub_printf_>
+ 74c:	adrp	x0, 0 <get_bootpath>
+ 750:	ldr	x1, [x0]
+ 754:	mov	x0, x21
+ 758:	bl	0 <grub_zfs_nvlist_lookup_string>
+ 75c:	mov	x22, x0
+ 760:	cmp	w19, #0x0
+ 764:	b.le	780 <print_vdev_info+0x150>
+ 768:	adrp	x21, 0 <get_bootpath>
+ 76c:	ldr	x0, [x21]
+ 770:	bl	0 <grub_printf>
+ 774:	add	w20, w20, #0x1
+ 778:	cmp	w19, w20
+ 77c:	b.ne	76c <print_vdev_info+0x13c>  // b.any
+ 780:	cbz	x22, 830 <print_vdev_info+0x200>
+ 784:	mov	x1, x22
+ 788:	adrp	x0, 0 <get_bootpath>
+ 78c:	ldr	x0, [x0]
+ 790:	bl	0 <grub_printf_>
+ 794:	mov	x0, x25
+ 798:	bl	0 <grub_free>
+ 79c:	mov	x0, x22
+ 7a0:	bl	0 <grub_free>
+ 7a4:	mov	x0, x26
+ 7a8:	bl	0 <grub_free>
+ 7ac:	mov	x0, x23
+ 7b0:	bl	0 <grub_free>
+ 7b4:	mov	w0, #0x0                   	// #0
+ 7b8:	ldp	x23, x24, [sp, #48]
+ 7bc:	ldp	x25, x26, [sp, #64]
+ 7c0:	ldp	x19, x20, [sp, #16]
+ 7c4:	ldp	x21, x22, [sp, #32]
+ 7c8:	ldp	x29, x30, [sp], #128
+ 7cc:	ret
+ 7d0:	cmp	w19, #0x0
+ 7d4:	b.le	7f4 <print_vdev_info+0x1c4>
+ 7d8:	mov	w20, #0x0                   	// #0
+ 7dc:	adrp	x21, 0 <get_bootpath>
+ 7e0:	ldr	x0, [x21]
+ 7e4:	bl	0 <grub_printf>
+ 7e8:	add	w20, w20, #0x1
+ 7ec:	cmp	w19, w20
+ 7f0:	b.ne	7e0 <print_vdev_info+0x1b0>  // b.any
+ 7f4:	adrp	x0, 0 <get_bootpath>
+ 7f8:	ldr	x0, [x0]
+ 7fc:	bl	0 <grub_puts_>
+ 800:	adrp	x0, 0 <get_bootpath>
+ 804:	ldr	x0, [x0]
+ 808:	ldr	w0, [x0]
+ 80c:	b	7c0 <print_vdev_info+0x190>
+ 810:	adrp	x0, 0 <get_bootpath>
+ 814:	ldr	x0, [x0]
+ 818:	bl	0 <grub_puts_>
+ 81c:	b	700 <print_vdev_info+0xd0>
+ 820:	adrp	x0, 0 <get_bootpath>
+ 824:	ldr	x0, [x0]
+ 828:	bl	0 <grub_puts_>
+ 82c:	b	74c <print_vdev_info+0x11c>
+ 830:	adrp	x0, 0 <get_bootpath>
+ 834:	ldr	x0, [x0]
+ 838:	bl	0 <grub_puts_>
+ 83c:	b	794 <print_vdev_info+0x164>
+ 840:	adrp	x0, 0 <get_bootpath>
+ 844:	ldr	x1, [x0]
+ 848:	mov	x0, x23
+ 84c:	bl	0 <grub_strcmp>
+ 850:	mov	w20, w0
+ 854:	adrp	x0, 0 <get_bootpath>
+ 858:	ldr	x1, [x0]
+ 85c:	mov	x0, x23
+ 860:	bl	0 <grub_strcmp>
+ 864:	mov	w22, w0
+ 868:	mov	x0, x23
+ 86c:	bl	0 <grub_free>
+ 870:	cmp	w20, #0x0
+ 874:	ccmp	w22, #0x0, #0x4, ne  // ne = any
+ 878:	b.eq	8bc <print_vdev_info+0x28c>  // b.none
+ 87c:	mov	w20, #0x0                   	// #0
+ 880:	adrp	x21, 0 <get_bootpath>
+ 884:	cmp	w19, #0x0
+ 888:	b.le	8a0 <print_vdev_info+0x270>
+ 88c:	ldr	x0, [x21]
+ 890:	bl	0 <grub_printf>
+ 894:	add	w20, w20, #0x1
+ 898:	cmp	w19, w20
+ 89c:	b.ne	88c <print_vdev_info+0x25c>  // b.any
+ 8a0:	mov	x1, x23
+ 8a4:	adrp	x0, 0 <get_bootpath>
+ 8a8:	ldr	x0, [x0]
+ 8ac:	bl	0 <grub_printf_>
+ 8b0:	mov	w0, #0x0                   	// #0
+ 8b4:	ldp	x23, x24, [sp, #48]
+ 8b8:	b	7c0 <print_vdev_info+0x190>
+ 8bc:	stp	x25, x26, [sp, #64]
+ 8c0:	adrp	x0, 0 <get_bootpath>
+ 8c4:	ldr	x1, [x0]
+ 8c8:	mov	x0, x21
+ 8cc:	bl	0 <grub_zfs_nvlist_lookup_nvlist_array_get_nelm>
+ 8d0:	mov	w25, w0
+ 8d4:	cbz	w20, 900 <print_vdev_info+0x2d0>
+ 8d8:	add	x2, sp, #0x78
+ 8dc:	adrp	x0, 0 <get_bootpath>
+ 8e0:	ldr	x1, [x0]
+ 8e4:	mov	x0, x21
+ 8e8:	bl	0 <grub_zfs_nvlist_lookup_uint64>
+ 8ec:	ldr	x1, [sp, #120]
+ 8f0:	adrp	x0, 0 <get_bootpath>
+ 8f4:	ldr	x0, [x0]
+ 8f8:	bl	0 <grub_printf_>
+ 8fc:	b	90c <print_vdev_info+0x2dc>
+ 900:	adrp	x0, 0 <get_bootpath>
+ 904:	ldr	x0, [x0]
+ 908:	bl	0 <grub_puts_>
+ 90c:	cmp	w19, #0x0
+ 910:	b.le	930 <print_vdev_info+0x300>
+ 914:	mov	w20, #0x0                   	// #0
+ 918:	adrp	x22, 0 <get_bootpath>
+ 91c:	ldr	x0, [x22]
+ 920:	bl	0 <grub_printf>
+ 924:	add	w20, w20, #0x1
+ 928:	cmp	w19, w20
+ 92c:	b.ne	91c <print_vdev_info+0x2ec>  // b.any
+ 930:	cmp	w25, #0x0
+ 934:	b.le	9ec <print_vdev_info+0x3bc>
+ 938:	stp	x27, x28, [sp, #80]
+ 93c:	mov	w1, w25
+ 940:	adrp	x0, 0 <get_bootpath>
+ 944:	ldr	x0, [x0]
+ 948:	bl	0 <grub_printf_>
+ 94c:	mov	w1, w19
+ 950:	mov	x0, x21
+ 954:	bl	498 <print_state>
+ 958:	mov	x24, #0x0                   	// #0
+ 95c:	adrp	x27, 0 <get_bootpath>
+ 960:	adrp	x22, 0 <get_bootpath>
+ 964:	adrp	x28, 0 <get_bootpath>
+ 968:	add	w0, w19, #0x1
+ 96c:	str	w0, [sp, #108]
+ 970:	mov	w26, w24
+ 974:	mov	x2, x24
+ 978:	ldr	x1, [x27]
+ 97c:	mov	x0, x21
+ 980:	bl	0 <grub_zfs_nvlist_lookup_nvlist_array>
+ 984:	mov	x23, x0
+ 988:	cmp	w19, #0x0
+ 98c:	b.le	9a8 <print_vdev_info+0x378>
+ 990:	mov	w20, #0x0                   	// #0
+ 994:	ldr	x0, [x22]
+ 998:	bl	0 <grub_printf>
+ 99c:	add	w20, w20, #0x1
+ 9a0:	cmp	w19, w20
+ 9a4:	b.ne	994 <print_vdev_info+0x364>  // b.any
+ 9a8:	cbz	x23, a08 <print_vdev_info+0x3d8>
+ 9ac:	mov	w1, w26
+ 9b0:	ldr	x0, [x28]
+ 9b4:	bl	0 <grub_printf_>
+ 9b8:	ldr	w1, [sp, #108]
+ 9bc:	mov	x0, x23
+ 9c0:	bl	630 <print_vdev_info>
+ 9c4:	mov	x0, x23
+ 9c8:	bl	0 <grub_free>
+ 9cc:	add	x24, x24, #0x1
+ 9d0:	cmp	w25, w24
+ 9d4:	b.gt	970 <print_vdev_info+0x340>
+ 9d8:	mov	w0, #0x0                   	// #0
+ 9dc:	ldp	x23, x24, [sp, #48]
+ 9e0:	ldp	x25, x26, [sp, #64]
+ 9e4:	ldp	x27, x28, [sp, #80]
+ 9e8:	b	7c0 <print_vdev_info+0x190>
+ 9ec:	adrp	x0, 0 <get_bootpath>
+ 9f0:	ldr	x0, [x0]
+ 9f4:	bl	0 <grub_puts_>
+ 9f8:	mov	w0, #0x0                   	// #0
+ 9fc:	ldp	x23, x24, [sp, #48]
+ a00:	ldp	x25, x26, [sp, #64]
+ a04:	b	7c0 <print_vdev_info+0x190>
+ a08:	mov	w1, w26
+ a0c:	adrp	x0, 0 <get_bootpath>
+ a10:	ldr	x0, [x0]
+ a14:	bl	0 <grub_printf_>
+ a18:	b	9cc <print_vdev_info+0x39c>
+ a1c:	adrp	x0, 0 <get_bootpath>
+ a20:	ldr	x0, [x0]
+ a24:	bl	0 <grub_puts_>
+ a28:	mov	w1, w19
+ a2c:	mov	x0, x21
+ a30:	bl	498 <print_state>
+ a34:	adrp	x0, 0 <get_bootpath>
+ a38:	ldr	x1, [x0]
+ a3c:	mov	x0, x21
+ a40:	bl	0 <grub_zfs_nvlist_lookup_string>
+ a44:	mov	x25, x0
+ a48:	b	6ec <print_vdev_info+0xbc>
+ a4c:	nop
+	...
+
+0000000000000b20 <grub_cmd_zfsinfo>:
+ b20:	stp	x29, x30, [sp, #-64]!
+ b24:	mov	x29, sp
+ b28:	stp	x19, x20, [sp, #16]
+ b2c:	str	xzr, [sp, #56]
+ b30:	cmp	w1, #0x0
+ b34:	b.le	c3c <grub_cmd_zfsinfo+0x11c>
+ b38:	mov	x19, x2
+ b3c:	ldr	x20, [x2]
+ b40:	ldrb	w0, [x20]
+ b44:	cmp	w0, #0x28
+ b48:	b.eq	c54 <grub_cmd_zfsinfo+0x134>  // b.none
+ b4c:	ldr	x0, [x19]
+ b50:	bl	0 <grub_strdup>
+ b54:	mov	x19, x0
+ b58:	cbz	x0, c90 <grub_cmd_zfsinfo+0x170>
+ b5c:	mov	x0, x19
+ b60:	bl	0 <grub_device_open>
+ b64:	mov	x20, x0
+ b68:	mov	x0, x19
+ b6c:	bl	0 <grub_free>
+ b70:	cbz	x20, cac <grub_cmd_zfsinfo+0x18c>
+ b74:	add	x1, sp, #0x38
+ b78:	mov	x0, x20
+ b7c:	bl	0 <grub_zfs_fetch_nvlist>
+ b80:	mov	w19, w0
+ b84:	mov	x0, x20
+ b88:	bl	0 <grub_device_close>
+ b8c:	cbnz	w19, c9c <grub_cmd_zfsinfo+0x17c>
+ b90:	adrp	x0, 0 <get_bootpath>
+ b94:	ldr	x1, [x0]
+ b98:	ldr	x0, [sp, #56]
+ b9c:	bl	0 <grub_zfs_nvlist_lookup_string>
+ ba0:	mov	x1, x0
+ ba4:	cbz	x0, cbc <grub_cmd_zfsinfo+0x19c>
+ ba8:	adrp	x0, 0 <get_bootpath>
+ bac:	ldr	x0, [x0]
+ bb0:	bl	0 <grub_printf_>
+ bb4:	add	x2, sp, #0x30
+ bb8:	adrp	x0, 0 <get_bootpath>
+ bbc:	ldr	x1, [x0]
+ bc0:	ldr	x0, [sp, #56]
+ bc4:	bl	0 <grub_zfs_nvlist_lookup_uint64>
+ bc8:	cbnz	w0, ccc <grub_cmd_zfsinfo+0x1ac>
+ bcc:	adrp	x0, 0 <get_bootpath>
+ bd0:	ldr	x0, [x0]
+ bd4:	bl	0 <grub_puts_>
+ bd8:	add	x2, sp, #0x28
+ bdc:	adrp	x0, 0 <get_bootpath>
+ be0:	ldr	x1, [x0]
+ be4:	ldr	x0, [sp, #56]
+ be8:	bl	0 <grub_zfs_nvlist_lookup_uint64>
+ bec:	cbz	w0, ce0 <grub_cmd_zfsinfo+0x1c0>
+ bf0:	ldr	x0, [sp, #40]
+ bf4:	cmp	x0, #0x7
+ bf8:	b.ls	cf0 <grub_cmd_zfsinfo+0x1d0>  // b.plast
+ bfc:	adrp	x0, 0 <get_bootpath>
+ c00:	ldr	x0, [x0]
+ c04:	bl	0 <grub_puts_>
+ c08:	adrp	x0, 0 <get_bootpath>
+ c0c:	ldr	x1, [x0]
+ c10:	ldr	x0, [sp, #56]
+ c14:	bl	0 <grub_zfs_nvlist_lookup_nvlist>
+ c18:	mov	x20, x0
+ c1c:	cbz	x0, d04 <grub_cmd_zfsinfo+0x1e4>
+ c20:	mov	w1, #0x1                   	// #1
+ c24:	bl	630 <print_vdev_info>
+ c28:	mov	x0, x20
+ c2c:	bl	0 <grub_free>
+ c30:	ldr	x0, [sp, #56]
+ c34:	bl	0 <grub_free>
+ c38:	b	c9c <grub_cmd_zfsinfo+0x17c>
+ c3c:	adrp	x0, 0 <get_bootpath>
+ c40:	ldr	x1, [x0]
+ c44:	mov	w0, #0x12                  	// #18
+ c48:	bl	0 <grub_error>
+ c4c:	mov	w19, w0
+ c50:	b	c9c <grub_cmd_zfsinfo+0x17c>
+ c54:	mov	x0, x20
+ c58:	bl	0 <grub_strlen>
+ c5c:	add	x20, x20, x0
+ c60:	ldurb	w0, [x20, #-1]
+ c64:	cmp	w0, #0x29
+ c68:	b.ne	b4c <grub_cmd_zfsinfo+0x2c>  // b.any
+ c6c:	ldr	x0, [x19]
+ c70:	add	x0, x0, #0x1
+ c74:	bl	0 <grub_strdup>
+ c78:	mov	x19, x0
+ c7c:	cbz	x0, c90 <grub_cmd_zfsinfo+0x170>
+ c80:	bl	0 <grub_strlen>
+ c84:	add	x0, x19, x0
+ c88:	sturb	wzr, [x0, #-1]
+ c8c:	b	b5c <grub_cmd_zfsinfo+0x3c>
+ c90:	adrp	x0, 0 <get_bootpath>
+ c94:	ldr	x0, [x0]
+ c98:	ldr	w19, [x0]
+ c9c:	mov	w0, w19
+ ca0:	ldp	x19, x20, [sp, #16]
+ ca4:	ldp	x29, x30, [sp], #64
+ ca8:	ret
+ cac:	adrp	x0, 0 <get_bootpath>
+ cb0:	ldr	x0, [x0]
+ cb4:	ldr	w19, [x0]
+ cb8:	b	c9c <grub_cmd_zfsinfo+0x17c>
+ cbc:	adrp	x0, 0 <get_bootpath>
+ cc0:	ldr	x0, [x0]
+ cc4:	bl	0 <grub_puts_>
+ cc8:	b	bb4 <grub_cmd_zfsinfo+0x94>
+ ccc:	ldr	x1, [sp, #48]
+ cd0:	adrp	x0, 0 <get_bootpath>
+ cd4:	ldr	x0, [x0]
+ cd8:	bl	0 <grub_printf_>
+ cdc:	b	bd8 <grub_cmd_zfsinfo+0xb8>
+ ce0:	adrp	x0, 0 <get_bootpath>
+ ce4:	ldr	x0, [x0]
+ ce8:	bl	0 <grub_puts_>
+ cec:	b	c08 <grub_cmd_zfsinfo+0xe8>
+ cf0:	adrp	x1, 0 <get_bootpath>
+ cf4:	ldr	x1, [x1]
+ cf8:	ldr	x0, [x1, x0, lsl #3]
+ cfc:	bl	0 <grub_puts_>
+ d00:	b	c08 <grub_cmd_zfsinfo+0xe8>
+ d04:	adrp	x0, 0 <get_bootpath>
+ d08:	ldr	x0, [x0]
+ d0c:	bl	0 <grub_puts_>
+ d10:	b	c28 <grub_cmd_zfsinfo+0x108>
+ d14:	nop
+	...
+
+0000000000000d88 <grub_mod_init>:
+ d88:	stp	x29, x30, [sp, #-32]!
+ d8c:	mov	x29, sp
+ d90:	str	x19, [sp, #16]
+ d94:	mov	w4, #0x0                   	// #0
+ d98:	adrp	x0, 0 <get_bootpath>
+ d9c:	ldr	x3, [x0]
+ da0:	adrp	x0, 0 <get_bootpath>
+ da4:	ldr	x2, [x0]
+ da8:	adrp	x0, 0 <get_bootpath>
+ dac:	ldr	x1, [x0]
+ db0:	adrp	x0, 0 <get_bootpath>
+ db4:	ldr	x0, [x0]
+ db8:	bl	0 <grub_register_command_prio>
+ dbc:	adrp	x1, 0 <get_bootpath>
+ dc0:	ldr	x19, [x1]
+ dc4:	str	x0, [x19]
+ dc8:	mov	w4, #0x0                   	// #0
+ dcc:	adrp	x0, 0 <get_bootpath>
+ dd0:	ldr	x3, [x0]
+ dd4:	adrp	x0, 0 <get_bootpath>
+ dd8:	ldr	x2, [x0]
+ ddc:	adrp	x0, 0 <get_bootpath>
+ de0:	ldr	x1, [x0]
+ de4:	adrp	x0, 0 <get_bootpath>
+ de8:	ldr	x0, [x0]
+ dec:	bl	0 <grub_register_command_prio>
+ df0:	str	x0, [x19, #8]
+ df4:	ldr	x19, [sp, #16]
+ df8:	ldp	x29, x30, [sp], #32
+ dfc:	ret
+	...
+
+0000000000000e48 <grub_mod_fini>:
+ e48:	stp	x29, x30, [sp, #-32]!
+ e4c:	mov	x29, sp
+ e50:	str	x19, [sp, #16]
+ e54:	adrp	x0, 0 <get_bootpath>
+ e58:	ldr	x19, [x0]
+ e5c:	ldr	x0, [x19]
+ e60:	bl	0 <grub_unregister_command>
+ e64:	ldr	x0, [x19, #8]
+ e68:	bl	0 <grub_unregister_command>
+ e6c:	ldr	x19, [sp, #16]
+ e70:	ldp	x29, x30, [sp], #32
+ e74:	ret
+	...

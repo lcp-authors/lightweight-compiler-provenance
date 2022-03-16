@@ -1,0 +1,1525 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//png.module_gcc_-O1:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_png_build_huff_table>:
+       0:	ldr	w1, [x0, #28]
+       4:	cmp	w1, #0x0
+       8:	b.le	50 <grub_png_build_huff_table+0x50>
+       c:	mov	x1, #0x0                   	// #0
+      10:	mov	w4, #0x0                   	// #0
+      14:	mov	w3, #0x0                   	// #0
+      18:	ldr	x6, [x0, #8]
+      1c:	ldr	w7, [x6, x1, lsl #2]
+      20:	add	w5, w7, w3
+      24:	mov	w2, w4
+      28:	add	w4, w4, w7
+      2c:	str	w5, [x6, x1, lsl #2]
+      30:	ldr	x6, [x0, #16]
+      34:	sub	w2, w2, w3
+      38:	str	w2, [x6, x1, lsl #2]
+      3c:	lsl	w3, w5, #1
+      40:	add	x1, x1, #0x1
+      44:	ldr	w2, [x0, #28]
+      48:	cmp	w2, w1
+      4c:	b.gt	18 <grub_png_build_huff_table+0x18>
+      50:	ret
+
+0000000000000054 <grub_png_output_byte>:
+      54:	stp	x29, x30, [sp, #-32]!
+      58:	mov	x29, sp
+      5c:	stp	x19, x20, [sp, #16]
+      60:	mov	x19, x0
+      64:	ldr	w0, [x0, #44]
+      68:	sub	w0, w0, #0x1
+      6c:	str	w0, [x19, #44]
+      70:	tbnz	w0, #31, 98 <grub_png_output_byte+0x44>
+      74:	and	w1, w1, #0xff
+      78:	add	x0, x19, #0x8, lsl #12
+      7c:	ldr	w0, [x0, #2464]
+      80:	cbnz	w0, c0 <grub_png_output_byte+0x6c>
+      84:	cmp	w1, #0x4
+      88:	b.hi	ac <grub_png_output_byte+0x58>  // b.pmore
+      8c:	add	x0, x19, #0x8, lsl #12
+      90:	str	w1, [x0, #2468]
+      94:	b	d4 <grub_png_output_byte+0x80>
+      98:	adrp	x0, 0 <grub_png_build_huff_table>
+      9c:	ldr	x1, [x0]
+      a0:	mov	w0, #0x4                   	// #4
+      a4:	bl	0 <grub_error>
+      a8:	b	fc <grub_png_output_byte+0xa8>
+      ac:	adrp	x0, 0 <grub_png_build_huff_table>
+      b0:	ldr	x1, [x0]
+      b4:	mov	w0, #0x4                   	// #4
+      b8:	bl	0 <grub_error>
+      bc:	b	fc <grub_png_output_byte+0xa8>
+      c0:	add	x2, x19, #0x8, lsl #12
+      c4:	ldr	x0, [x2, #2456]
+      c8:	add	x3, x0, #0x1
+      cc:	str	x3, [x2, #2456]
+      d0:	strb	w1, [x0]
+      d4:	add	x0, x19, #0x8, lsl #12
+      d8:	ldr	w1, [x0, #2464]
+      dc:	add	w2, w1, #0x1
+      e0:	str	w2, [x0, #2464]
+      e4:	ldr	w0, [x19, #60]
+      e8:	cmp	w1, w0
+      ec:	b.eq	108 <grub_png_output_byte+0xb4>  // b.none
+      f0:	adrp	x0, 0 <grub_png_build_huff_table>
+      f4:	ldr	x0, [x0]
+      f8:	ldr	w0, [x0]
+      fc:	ldp	x19, x20, [sp, #16]
+     100:	ldp	x29, x30, [sp], #32
+     104:	ret
+     108:	sxtw	x1, w0
+     10c:	add	x0, x19, #0x8, lsl #12
+     110:	ldr	x20, [x0, #2456]
+     114:	sub	x20, x20, x1
+     118:	ldr	w2, [x0, #2472]
+     11c:	sub	x4, x20, x1
+     120:	mov	x0, #0x0                   	// #0
+     124:	cbnz	w2, 180 <grub_png_output_byte+0x12c>
+     128:	add	x1, x19, #0x8, lsl #12
+     12c:	ldr	w1, [x1, #2468]
+     130:	cmp	w1, #0x3
+     134:	b.eq	1f4 <grub_png_output_byte+0x1a0>  // b.none
+     138:	b.gt	1a0 <grub_png_output_byte+0x14c>
+     13c:	cmp	w1, #0x1
+     140:	b.eq	268 <grub_png_output_byte+0x214>  // b.none
+     144:	cmp	w1, #0x2
+     148:	b.ne	2a4 <grub_png_output_byte+0x250>  // b.any
+     14c:	ldr	w2, [x19, #60]
+     150:	mov	x1, #0x0                   	// #0
+     154:	cmp	w2, #0x0
+     158:	b.le	2a4 <grub_png_output_byte+0x250>
+     15c:	ldrb	w2, [x20, x1]
+     160:	ldrb	w3, [x4, x1]
+     164:	add	w2, w2, w3
+     168:	strb	w2, [x20, x1]
+     16c:	add	x1, x1, #0x1
+     170:	ldr	w2, [x19, #60]
+     174:	cmp	w2, w1
+     178:	b.gt	15c <grub_png_output_byte+0x108>
+     17c:	b	2a4 <grub_png_output_byte+0x250>
+     180:	mov	x0, x1
+     184:	bl	0 <grub_zalloc>
+     188:	mov	x4, x0
+     18c:	cbnz	x0, 128 <grub_png_output_byte+0xd4>
+     190:	adrp	x0, 0 <grub_png_build_huff_table>
+     194:	ldr	x0, [x0]
+     198:	ldr	w0, [x0]
+     19c:	b	fc <grub_png_output_byte+0xa8>
+     1a0:	cmp	w1, #0x4
+     1a4:	b.ne	2a4 <grub_png_output_byte+0x250>  // b.any
+     1a8:	ldr	w1, [x19, #36]
+     1ac:	mov	x12, x4
+     1b0:	mov	x7, x20
+     1b4:	mov	w9, #0x0                   	// #0
+     1b8:	cmp	w1, #0x0
+     1bc:	b.le	1e0 <grub_png_output_byte+0x18c>
+     1c0:	ldrb	w1, [x7]
+     1c4:	ldrb	w2, [x12], #1
+     1c8:	add	w1, w1, w2
+     1cc:	strb	w1, [x7], #1
+     1d0:	add	w9, w9, #0x1
+     1d4:	ldr	w1, [x19, #36]
+     1d8:	cmp	w1, w9
+     1dc:	b.gt	1c0 <grub_png_output_byte+0x16c>
+     1e0:	ldr	w1, [x19, #60]
+     1e4:	cmp	w1, w9
+     1e8:	b.le	2a4 <grub_png_output_byte+0x250>
+     1ec:	mov	x1, #0x0                   	// #0
+     1f0:	b	2d4 <grub_png_output_byte+0x280>
+     1f4:	ldr	w1, [x19, #36]
+     1f8:	mov	x3, x20
+     1fc:	mov	w5, #0x0                   	// #0
+     200:	cmp	w1, #0x0
+     204:	b.le	228 <grub_png_output_byte+0x1d4>
+     208:	ldrb	w1, [x4], #1
+     20c:	ldrb	w2, [x3]
+     210:	add	w1, w2, w1, lsr #1
+     214:	strb	w1, [x3], #1
+     218:	add	w5, w5, #0x1
+     21c:	ldr	w1, [x19, #36]
+     220:	cmp	w1, w5
+     224:	b.gt	208 <grub_png_output_byte+0x1b4>
+     228:	ldr	w1, [x19, #60]
+     22c:	cmp	w1, w5
+     230:	b.le	2a4 <grub_png_output_byte+0x250>
+     234:	mov	x1, #0x0                   	// #0
+     238:	ldrb	w2, [x4, x1]
+     23c:	ldrb	w6, [x20, x1]
+     240:	add	w2, w2, w6
+     244:	ldrb	w6, [x3, x1]
+     248:	add	w2, w6, w2, asr #1
+     24c:	strb	w2, [x3, x1]
+     250:	add	x1, x1, #0x1
+     254:	add	w2, w5, w1
+     258:	ldr	w6, [x19, #60]
+     25c:	cmp	w6, w2
+     260:	b.gt	238 <grub_png_output_byte+0x1e4>
+     264:	b	2a4 <grub_png_output_byte+0x250>
+     268:	ldr	w5, [x19, #36]
+     26c:	add	x3, x20, w5, sxtw
+     270:	ldr	w1, [x19, #60]
+     274:	cmp	w5, w1
+     278:	b.ge	2a4 <grub_png_output_byte+0x250>  // b.tcont
+     27c:	mov	x1, #0x0                   	// #0
+     280:	ldrb	w2, [x3, x1]
+     284:	ldrb	w4, [x20, x1]
+     288:	add	w2, w2, w4
+     28c:	strb	w2, [x3, x1]
+     290:	add	x1, x1, #0x1
+     294:	add	w2, w5, w1
+     298:	ldr	w4, [x19, #60]
+     29c:	cmp	w4, w2
+     2a0:	b.gt	280 <grub_png_output_byte+0x22c>
+     2a4:	bl	0 <grub_free>
+     2a8:	add	x19, x19, #0x8, lsl #12
+     2ac:	str	wzr, [x19, #2464]
+     2b0:	str	wzr, [x19, #2472]
+     2b4:	b	f0 <grub_png_output_byte+0x9c>
+     2b8:	add	w8, w10, w8
+     2bc:	strb	w8, [x7, x1]
+     2c0:	add	x1, x1, #0x1
+     2c4:	add	w2, w9, w1
+     2c8:	ldr	w3, [x19, #60]
+     2cc:	cmp	w3, w2
+     2d0:	b.le	2a4 <grub_png_output_byte+0x250>
+     2d4:	ldrb	w8, [x20, x1]
+     2d8:	ldrb	w11, [x12, x1]
+     2dc:	ldrb	w6, [x4, x1]
+     2e0:	subs	w5, w11, w6
+     2e4:	sub	w2, w8, w6
+     2e8:	add	w3, w5, w2
+     2ec:	sub	w10, w6, w11
+     2f0:	csel	w5, w10, w5, mi  // mi = first
+     2f4:	sub	w10, w6, w8
+     2f8:	cmp	w2, #0x0
+     2fc:	csel	w2, w10, w2, lt  // lt = tstop
+     300:	cmp	w3, #0x0
+     304:	cneg	w3, w3, lt  // lt = tstop
+     308:	ldrb	w10, [x7, x1]
+     30c:	cmp	w3, w2
+     310:	csel	w13, w3, w2, le
+     314:	cmp	w13, w5
+     318:	b.ge	2b8 <grub_png_output_byte+0x264>  // b.tcont
+     31c:	cmp	w3, w2
+     320:	csel	w8, w11, w6, ge  // ge = tcont
+     324:	b	2b8 <grub_png_output_byte+0x264>
+	...
+
+0000000000000340 <grub_png_insert_huff_item>:
+     340:	cbz	w2, 400 <grub_png_insert_huff_item+0xc0>
+     344:	ldr	w6, [x0, #28]
+     348:	cmp	w6, w2
+     34c:	b.lt	3e0 <grub_png_insert_huff_item+0xa0>  // b.tstop
+     350:	mov	w5, #0x0                   	// #0
+     354:	b.le	3a8 <grub_png_insert_huff_item+0x68>
+     358:	ldr	x7, [x0, #8]
+     35c:	sxtw	x3, w2
+     360:	mov	w5, #0x0                   	// #0
+     364:	ldr	w4, [x7, x3, lsl #2]
+     368:	add	w5, w5, w4
+     36c:	add	x3, x3, #0x1
+     370:	cmp	w6, w3
+     374:	b.gt	364 <grub_png_insert_huff_item+0x24>
+     378:	cmp	w5, #0x0
+     37c:	b.le	3a8 <grub_png_insert_huff_item+0x68>
+     380:	mov	w4, #0x0                   	// #0
+     384:	ldr	x6, [x0]
+     388:	ldr	w3, [x0, #24]
+     38c:	sub	w3, w3, w4
+     390:	add	x7, x6, w3, sxtw #2
+     394:	ldur	w7, [x7, #-4]
+     398:	str	w7, [x6, w3, sxtw #2]
+     39c:	add	w4, w4, #0x1
+     3a0:	cmp	w4, w5
+     3a4:	b.ne	384 <grub_png_insert_huff_item+0x44>  // b.any
+     3a8:	ldr	w3, [x0, #24]
+     3ac:	sub	w5, w3, w5
+     3b0:	ldr	x3, [x0]
+     3b4:	str	w1, [x3, w5, sxtw #2]
+     3b8:	ldr	w1, [x0, #24]
+     3bc:	add	w1, w1, #0x1
+     3c0:	str	w1, [x0, #24]
+     3c4:	sbfiz	x2, x2, #2, #32
+     3c8:	sub	x2, x2, #0x4
+     3cc:	ldr	x1, [x0, #8]
+     3d0:	ldr	w0, [x1, x2]
+     3d4:	add	w0, w0, #0x1
+     3d8:	str	w0, [x1, x2]
+     3dc:	ret
+     3e0:	stp	x29, x30, [sp, #-16]!
+     3e4:	mov	x29, sp
+     3e8:	adrp	x0, 0 <grub_png_build_huff_table>
+     3ec:	ldr	x1, [x0]
+     3f0:	mov	w0, #0x4                   	// #4
+     3f4:	bl	0 <grub_error>
+     3f8:	ldp	x29, x30, [sp], #16
+     3fc:	ret
+     400:	ret
+     404:	nop
+	...
+
+0000000000000410 <grub_png_get_dword>:
+     410:	stp	x29, x30, [sp, #-32]!
+     414:	mov	x29, sp
+     418:	str	wzr, [sp, #28]
+     41c:	mov	x2, #0x4                   	// #4
+     420:	add	x1, sp, #0x1c
+     424:	ldr	x0, [x0]
+     428:	bl	0 <grub_file_read>
+     42c:	ldr	w0, [sp, #28]
+     430:	rev	w0, w0
+     434:	ldp	x29, x30, [sp], #32
+     438:	ret
+
+000000000000043c <grub_png_get_byte>:
+     43c:	stp	x29, x30, [sp, #-64]!
+     440:	mov	x29, sp
+     444:	stp	x19, x20, [sp, #16]
+     448:	mov	x19, x0
+     44c:	ldr	w0, [x0, #80]
+     450:	cbz	w0, 4c0 <grub_png_get_byte+0x84>
+     454:	ldr	w0, [x19, #84]
+     458:	cbnz	w0, 4c0 <grub_png_get_byte+0x84>
+     45c:	str	x21, [sp, #32]
+     460:	mov	w21, #0x4154                	// #16724
+     464:	movk	w21, #0x4944, lsl #16
+     468:	mov	x0, x19
+     46c:	bl	410 <grub_png_get_dword>
+     470:	ldr	x1, [x19]
+     474:	ldr	w0, [x19, #24]
+     478:	ldr	x1, [x1, #24]
+     47c:	cmp	x1, x0
+     480:	b.ne	4f8 <grub_png_get_byte+0xbc>  // b.any
+     484:	mov	x0, x19
+     488:	bl	410 <grub_png_get_dword>
+     48c:	mov	w20, w0
+     490:	mov	x0, x19
+     494:	bl	410 <grub_png_get_dword>
+     498:	cmp	w0, w21
+     49c:	b.ne	514 <grub_png_get_byte+0xd8>  // b.any
+     4a0:	ldr	x0, [x19]
+     4a4:	ldr	x1, [x0, #24]
+     4a8:	add	w1, w1, #0x4
+     4ac:	add	w1, w1, w20
+     4b0:	str	w1, [x19, #24]
+     4b4:	cbz	w20, 468 <grub_png_get_byte+0x2c>
+     4b8:	str	w20, [x19, #84]
+     4bc:	ldr	x21, [sp, #32]
+     4c0:	strb	wzr, [sp, #63]
+     4c4:	mov	x2, #0x1                   	// #1
+     4c8:	add	x1, sp, #0x3f
+     4cc:	ldr	x0, [x19]
+     4d0:	bl	0 <grub_file_read>
+     4d4:	ldr	w0, [x19, #80]
+     4d8:	cbz	w0, 4e8 <grub_png_get_byte+0xac>
+     4dc:	ldr	w0, [x19, #84]
+     4e0:	sub	w0, w0, #0x1
+     4e4:	str	w0, [x19, #84]
+     4e8:	ldrb	w0, [sp, #63]
+     4ec:	ldp	x19, x20, [sp, #16]
+     4f0:	ldp	x29, x30, [sp], #64
+     4f4:	ret
+     4f8:	adrp	x0, 0 <grub_png_build_huff_table>
+     4fc:	ldr	x1, [x0]
+     500:	mov	w0, #0x4                   	// #4
+     504:	bl	0 <grub_error>
+     508:	mov	w0, #0x0                   	// #0
+     50c:	ldr	x21, [sp, #32]
+     510:	b	4ec <grub_png_get_byte+0xb0>
+     514:	adrp	x0, 0 <grub_png_build_huff_table>
+     518:	ldr	x1, [x0]
+     51c:	mov	w0, #0x4                   	// #4
+     520:	bl	0 <grub_error>
+     524:	mov	w0, #0x0                   	// #0
+     528:	ldr	x21, [sp, #32]
+     52c:	b	4ec <grub_png_get_byte+0xb0>
+	...
+
+0000000000000540 <grub_png_get_bits>:
+     540:	stp	x29, x30, [sp, #-80]!
+     544:	mov	x29, sp
+     548:	stp	x19, x20, [sp, #16]
+     54c:	stp	x21, x22, [sp, #32]
+     550:	mov	x20, x0
+     554:	mov	w19, w1
+     558:	ldr	w0, [x0, #16]
+     55c:	cbz	w0, 628 <grub_png_get_bits+0xe8>
+     560:	adrp	x0, 0 <grub_png_build_huff_table>
+     564:	ldr	x0, [x0]
+     568:	ldr	w0, [x0]
+     56c:	cbnz	w0, 650 <grub_png_get_bits+0x110>
+     570:	ldr	w1, [x20, #16]
+     574:	cmp	w19, w1
+     578:	csel	w2, w19, w1, le
+     57c:	ldr	w0, [x20, #20]
+     580:	mov	w22, #0x1                   	// #1
+     584:	lsl	w22, w22, w2
+     588:	sub	w22, w22, #0x1
+     58c:	and	w22, w22, w0
+     590:	subs	w19, w19, w2
+     594:	b.eq	604 <grub_png_get_bits+0xc4>  // b.none
+     598:	stp	x23, x24, [sp, #48]
+     59c:	str	x25, [sp, #64]
+     5a0:	mov	w21, #0x0                   	// #0
+     5a4:	mov	w23, #0x8                   	// #8
+     5a8:	adrp	x24, 0 <grub_png_build_huff_table>
+     5ac:	mov	w25, #0x1                   	// #1
+     5b0:	add	w21, w21, w2
+     5b4:	mov	x0, x20
+     5b8:	bl	43c <grub_png_get_byte>
+     5bc:	and	w0, w0, #0xff
+     5c0:	str	w0, [x20, #20]
+     5c4:	str	w23, [x20, #16]
+     5c8:	ldr	x1, [x24]
+     5cc:	ldr	w1, [x1]
+     5d0:	cbnz	w1, 644 <grub_png_get_bits+0x104>
+     5d4:	cmp	w19, #0x8
+     5d8:	csel	w2, w19, w23, le
+     5dc:	lsl	w1, w25, w2
+     5e0:	sub	w1, w1, #0x1
+     5e4:	and	w1, w1, w0
+     5e8:	lsl	w1, w1, w21
+     5ec:	add	w22, w22, w1
+     5f0:	subs	w19, w19, w2
+     5f4:	b.ne	5b0 <grub_png_get_bits+0x70>  // b.any
+     5f8:	mov	w1, #0x8                   	// #8
+     5fc:	ldp	x23, x24, [sp, #48]
+     600:	ldr	x25, [sp, #64]
+     604:	sub	w1, w1, w2
+     608:	str	w1, [x20, #16]
+     60c:	asr	w0, w0, w2
+     610:	str	w0, [x20, #20]
+     614:	mov	w0, w22
+     618:	ldp	x19, x20, [sp, #16]
+     61c:	ldp	x21, x22, [sp, #32]
+     620:	ldp	x29, x30, [sp], #80
+     624:	ret
+     628:	mov	x0, x20
+     62c:	bl	43c <grub_png_get_byte>
+     630:	and	w0, w0, #0xff
+     634:	str	w0, [x20, #20]
+     638:	mov	w0, #0x8                   	// #8
+     63c:	str	w0, [x20, #16]
+     640:	b	560 <grub_png_get_bits+0x20>
+     644:	ldp	x23, x24, [sp, #48]
+     648:	ldr	x25, [sp, #64]
+     64c:	b	614 <grub_png_get_bits+0xd4>
+     650:	mov	w22, #0x0                   	// #0
+     654:	b	614 <grub_png_get_bits+0xd4>
+	...
+
+0000000000000660 <grub_png_get_huff_code>:
+     660:	stp	x29, x30, [sp, #-64]!
+     664:	mov	x29, sp
+     668:	stp	x21, x22, [sp, #32]
+     66c:	mov	x22, x0
+     670:	ldr	w0, [x1, #28]
+     674:	cmp	w0, #0x0
+     678:	b.le	704 <grub_png_get_huff_code+0xa4>
+     67c:	stp	x19, x20, [sp, #16]
+     680:	str	x23, [sp, #48]
+     684:	mov	x21, x1
+     688:	mov	x20, #0x0                   	// #0
+     68c:	mov	w0, #0x0                   	// #0
+     690:	mov	w23, #0x1                   	// #1
+     694:	lsl	w19, w0, #1
+     698:	mov	w1, w23
+     69c:	mov	x0, x22
+     6a0:	bl	540 <grub_png_get_bits>
+     6a4:	add	w0, w19, w0
+     6a8:	lsl	x2, x20, #2
+     6ac:	ldr	x1, [x21, #8]
+     6b0:	ldr	w1, [x1, x20, lsl #2]
+     6b4:	cmp	w1, w0
+     6b8:	b.gt	6dc <grub_png_get_huff_code+0x7c>
+     6bc:	add	x20, x20, #0x1
+     6c0:	ldr	w1, [x21, #28]
+     6c4:	cmp	w1, w20
+     6c8:	b.gt	694 <grub_png_get_huff_code+0x34>
+     6cc:	mov	w0, #0x0                   	// #0
+     6d0:	ldp	x19, x20, [sp, #16]
+     6d4:	ldr	x23, [sp, #48]
+     6d8:	b	6f8 <grub_png_get_huff_code+0x98>
+     6dc:	ldr	x1, [x21, #16]
+     6e0:	ldr	w1, [x1, x2]
+     6e4:	add	w0, w0, w1
+     6e8:	ldr	x1, [x21]
+     6ec:	ldr	w0, [x1, w0, sxtw #2]
+     6f0:	ldp	x19, x20, [sp, #16]
+     6f4:	ldr	x23, [sp, #48]
+     6f8:	ldp	x21, x22, [sp, #32]
+     6fc:	ldp	x29, x30, [sp], #64
+     700:	ret
+     704:	mov	w0, #0x0                   	// #0
+     708:	b	6f8 <grub_png_get_huff_code+0x98>
+
+000000000000070c <grub_png_read_dynamic_block>:
+     70c:	stp	x29, x30, [sp, #-80]!
+     710:	mov	x29, sp
+     714:	stp	x19, x20, [sp, #16]
+     718:	mov	x20, x0
+     71c:	adrp	x0, 0 <grub_png_build_huff_table>
+     720:	ldr	x0, [x0]
+     724:	ldr	w0, [x0]
+     728:	cbnz	w0, 874 <grub_png_read_dynamic_block+0x168>
+     72c:	stp	x21, x22, [sp, #32]
+     730:	stp	x23, x24, [sp, #48]
+     734:	str	x25, [sp, #64]
+     738:	add	x25, x20, #0x950
+     73c:	add	x21, x20, #0x8, lsl #12
+     740:	mov	w22, #0x7fff                	// #32767
+     744:	b	784 <grub_png_read_dynamic_block+0x78>
+     748:	and	w1, w0, #0xff
+     74c:	ldrsw	x0, [x21, #2448]
+     750:	add	x0, x20, x0
+     754:	strb	w1, [x0, #2448]
+     758:	mov	x0, x20
+     75c:	bl	54 <grub_png_output_byte>
+     760:	ldr	w0, [x21, #2448]
+     764:	add	w0, w0, #0x1
+     768:	cmp	w0, w22
+     76c:	csel	w0, w0, wzr, le
+     770:	str	w0, [x21, #2448]
+     774:	adrp	x0, 0 <grub_png_build_huff_table>
+     778:	ldr	x0, [x0]
+     77c:	ldr	w0, [x0]
+     780:	cbnz	w0, 868 <grub_png_read_dynamic_block+0x15c>
+     784:	mov	x1, x25
+     788:	mov	x0, x20
+     78c:	bl	660 <grub_png_get_huff_code>
+     790:	cmp	w0, #0xff
+     794:	b.le	748 <grub_png_read_dynamic_block+0x3c>
+     798:	cmp	w0, #0x100
+     79c:	b.eq	88c <grub_png_read_dynamic_block+0x180>  // b.none
+     7a0:	sub	w0, w0, #0x101
+     7a4:	adrp	x1, 0 <grub_png_build_huff_table>
+     7a8:	ldr	x1, [x1]
+     7ac:	ldr	w23, [x1, w0, sxtw #2]
+     7b0:	add	x1, x1, #0x80
+     7b4:	ldrb	w1, [x1, w0, sxtw]
+     7b8:	cbnz	w1, 848 <grub_png_read_dynamic_block+0x13c>
+     7bc:	add	x1, x20, #0x970
+     7c0:	mov	x0, x20
+     7c4:	bl	660 <grub_png_get_huff_code>
+     7c8:	adrp	x1, 0 <grub_png_build_huff_table>
+     7cc:	ldr	x1, [x1]
+     7d0:	add	x2, x1, #0xa0
+     7d4:	ldr	w19, [x2, w0, sxtw #2]
+     7d8:	add	x1, x1, #0x118
+     7dc:	ldrb	w1, [x1, w0, sxtw]
+     7e0:	cbnz	w1, 858 <grub_png_read_dynamic_block+0x14c>
+     7e4:	ldr	w0, [x21, #2448]
+     7e8:	subs	w19, w0, w19
+     7ec:	add	w0, w19, #0x8, lsl #12
+     7f0:	csel	w19, w0, w19, mi  // mi = first
+     7f4:	cmp	w23, #0x0
+     7f8:	b.le	774 <grub_png_read_dynamic_block+0x68>
+     7fc:	mov	w24, #0x0                   	// #0
+     800:	add	x0, x20, w19, sxtw
+     804:	ldrb	w1, [x0, #2448]
+     808:	ldrsw	x0, [x21, #2448]
+     80c:	add	x0, x20, x0
+     810:	strb	w1, [x0, #2448]
+     814:	mov	x0, x20
+     818:	bl	54 <grub_png_output_byte>
+     81c:	ldr	w1, [x21, #2448]
+     820:	add	w1, w1, #0x1
+     824:	cmp	w1, w22
+     828:	csel	w1, w1, wzr, le
+     82c:	str	w1, [x21, #2448]
+     830:	add	w19, w19, #0x1
+     834:	cmp	w19, w22
+     838:	csel	w19, w19, w24, le
+     83c:	subs	w23, w23, #0x1
+     840:	b.ne	800 <grub_png_read_dynamic_block+0xf4>  // b.any
+     844:	b	774 <grub_png_read_dynamic_block+0x68>
+     848:	mov	x0, x20
+     84c:	bl	540 <grub_png_get_bits>
+     850:	add	w23, w23, w0
+     854:	b	7bc <grub_png_read_dynamic_block+0xb0>
+     858:	mov	x0, x20
+     85c:	bl	540 <grub_png_get_bits>
+     860:	add	w19, w19, w0
+     864:	b	7e4 <grub_png_read_dynamic_block+0xd8>
+     868:	ldp	x21, x22, [sp, #32]
+     86c:	ldp	x23, x24, [sp, #48]
+     870:	ldr	x25, [sp, #64]
+     874:	adrp	x0, 0 <grub_png_build_huff_table>
+     878:	ldr	x0, [x0]
+     87c:	ldr	w0, [x0]
+     880:	ldp	x19, x20, [sp, #16]
+     884:	ldp	x29, x30, [sp], #80
+     888:	ret
+     88c:	ldp	x21, x22, [sp, #32]
+     890:	ldp	x23, x24, [sp, #48]
+     894:	ldr	x25, [sp, #64]
+     898:	b	874 <grub_png_read_dynamic_block+0x168>
+     89c:	nop
+	...
+
+00000000000008b0 <grub_video_reader_png>:
+     8b0:	stp	x29, x30, [sp, #-368]!
+     8b4:	mov	x29, sp
+     8b8:	stp	x21, x22, [sp, #32]
+     8bc:	mov	x21, x0
+     8c0:	mov	x0, x1
+     8c4:	mov	x2, #0x0                   	// #0
+     8c8:	mov	w1, #0x31                  	// #49
+     8cc:	bl	0 <grub_buffile_open>
+     8d0:	cbz	x0, 950 <grub_video_reader_png+0xa0>
+     8d4:	stp	x19, x20, [sp, #16]
+     8d8:	mov	x20, x0
+     8dc:	mov	x0, #0x89b0                	// #35248
+     8e0:	bl	0 <grub_zalloc>
+     8e4:	mov	x19, x0
+     8e8:	cbz	x0, 91c <grub_video_reader_png+0x6c>
+     8ec:	str	x20, [x0]
+     8f0:	str	x21, [x0, #8]
+     8f4:	mov	x2, #0x8                   	// #8
+     8f8:	add	x1, sp, #0xa0
+     8fc:	mov	x0, x20
+     900:	bl	0 <grub_file_read>
+     904:	cmp	x0, #0x8
+     908:	b.eq	960 <grub_video_reader_png+0xb0>  // b.none
+     90c:	ldr	x0, [x19, #72]
+     910:	bl	0 <grub_free>
+     914:	mov	x0, x19
+     918:	bl	0 <grub_free>
+     91c:	adrp	x0, 0 <grub_png_build_huff_table>
+     920:	ldr	x0, [x0]
+     924:	ldr	w0, [x0]
+     928:	cbnz	w0, 16ec <grub_video_reader_png+0xe3c>
+     92c:	mov	x0, x20
+     930:	bl	0 <grub_file_close>
+     934:	adrp	x0, 0 <grub_png_build_huff_table>
+     938:	ldr	x0, [x0]
+     93c:	ldr	w0, [x0]
+     940:	ldp	x19, x20, [sp, #16]
+     944:	ldp	x21, x22, [sp, #32]
+     948:	ldp	x29, x30, [sp], #368
+     94c:	ret
+     950:	adrp	x0, 0 <grub_png_build_huff_table>
+     954:	ldr	x0, [x0]
+     958:	ldr	w0, [x0]
+     95c:	b	944 <grub_video_reader_png+0x94>
+     960:	adrp	x0, 0 <grub_png_build_huff_table>
+     964:	ldr	x1, [x0]
+     968:	mov	x2, #0x8                   	// #8
+     96c:	add	x1, x1, #0x138
+     970:	add	x0, sp, #0xa0
+     974:	bl	0 <grub_memcmp>
+     978:	str	w0, [sp, #112]
+     97c:	cbnz	w0, 994 <grub_video_reader_png+0xe4>
+     980:	stp	x23, x24, [sp, #48]
+     984:	stp	x25, x26, [sp, #64]
+     988:	mov	w22, #0x4452                	// #17490
+     98c:	movk	w22, #0x4948, lsl #16
+     990:	b	f2c <grub_video_reader_png+0x67c>
+     994:	adrp	x0, 0 <grub_png_build_huff_table>
+     998:	ldr	x1, [x0]
+     99c:	mov	w0, #0x4                   	// #4
+     9a0:	bl	0 <grub_error>
+     9a4:	b	90c <grub_video_reader_png+0x5c>
+     9a8:	mov	w2, #0x5445                	// #21573
+     9ac:	movk	w2, #0x504c, lsl #16
+     9b0:	cmp	w1, w2
+     9b4:	b.ne	1680 <grub_video_reader_png+0xdd0>  // b.any
+     9b8:	cbz	w25, f08 <grub_video_reader_png+0x658>
+     9bc:	stp	x27, x28, [sp, #80]
+     9c0:	add	x23, x19, #0x650
+     9c4:	mov	w24, #0x3                   	// #3
+     9c8:	mov	w26, #0x0                   	// #0
+     9cc:	mov	x0, x19
+     9d0:	bl	43c <grub_png_get_byte>
+     9d4:	strb	w0, [x23]
+     9d8:	mov	x0, x19
+     9dc:	bl	43c <grub_png_get_byte>
+     9e0:	strb	w0, [x23, #1]
+     9e4:	mov	x0, x19
+     9e8:	bl	43c <grub_png_get_byte>
+     9ec:	strb	w0, [x23, #2]
+     9f0:	add	w26, w26, #0x1
+     9f4:	cmp	w25, w24
+     9f8:	cset	w1, hi  // hi = pmore
+     9fc:	cmp	w26, #0xff
+     a00:	cset	w0, ls  // ls = plast
+     a04:	mov	w27, w24
+     a08:	add	w24, w24, #0x3
+     a0c:	add	x23, x23, #0x3
+     a10:	tst	w1, w0
+     a14:	b.ne	9cc <grub_video_reader_png+0x11c>  // b.any
+     a18:	cmp	w25, w27
+     a1c:	b.ls	a34 <grub_video_reader_png+0x184>  // b.plast
+     a20:	mov	x0, x19
+     a24:	bl	43c <grub_png_get_byte>
+     a28:	add	w27, w27, #0x1
+     a2c:	cmp	w25, w27
+     a30:	b.ne	a20 <grub_video_reader_png+0x170>  // b.any
+     a34:	mov	x0, x19
+     a38:	bl	410 <grub_png_get_dword>
+     a3c:	ldp	x27, x28, [sp, #80]
+     a40:	b	f08 <grub_video_reader_png+0x658>
+     a44:	mov	x0, x19
+     a48:	bl	410 <grub_png_get_dword>
+     a4c:	str	w0, [x19, #28]
+     a50:	mov	x0, x19
+     a54:	bl	410 <grub_png_get_dword>
+     a58:	str	w0, [x19, #32]
+     a5c:	cbz	w0, a68 <grub_video_reader_png+0x1b8>
+     a60:	ldr	w0, [x19, #28]
+     a64:	cbnz	w0, a7c <grub_video_reader_png+0x1cc>
+     a68:	adrp	x0, 0 <grub_png_build_huff_table>
+     a6c:	ldr	x1, [x0]
+     a70:	mov	w0, #0x4                   	// #4
+     a74:	bl	0 <grub_error>
+     a78:	b	f08 <grub_video_reader_png+0x658>
+     a7c:	mov	x0, x19
+     a80:	bl	43c <grub_png_get_byte>
+     a84:	and	w23, w0, #0xff
+     a88:	cmp	w23, #0x10
+     a8c:	cset	w0, eq  // eq = none
+     a90:	str	w0, [x19, #40]
+     a94:	mov	x0, x19
+     a98:	bl	43c <grub_png_get_byte>
+     a9c:	and	w0, w0, #0xff
+     aa0:	tst	w0, #0xfffffff9
+     aa4:	ccmp	w0, #0x3, #0x4, ne  // ne = any
+     aa8:	b.ne	ae4 <grub_video_reader_png+0x234>  // b.any
+     aac:	cmp	w0, #0x3
+     ab0:	b.eq	af8 <grub_video_reader_png+0x248>  // b.none
+     ab4:	ldr	w1, [x19, #40]
+     ab8:	cbz	w1, b28 <grub_video_reader_png+0x278>
+     abc:	ldr	w1, [x19, #56]
+     ac0:	cbnz	w1, b14 <grub_video_reader_png+0x264>
+     ac4:	ands	w2, w0, #0x4
+     ac8:	mov	w3, #0x4                   	// #4
+     acc:	csinc	w3, w3, wzr, eq  // eq = none
+     ad0:	tbz	w0, #1, c4c <grub_video_reader_png+0x39c>
+     ad4:	mov	w0, #0x3                   	// #3
+     ad8:	str	w0, [x19, #36]
+     adc:	ldr	w1, [sp, #112]
+     ae0:	b	b44 <grub_video_reader_png+0x294>
+     ae4:	adrp	x0, 0 <grub_png_build_huff_table>
+     ae8:	ldr	x1, [x0]
+     aec:	mov	w0, #0x4                   	// #4
+     af0:	bl	0 <grub_error>
+     af4:	b	f08 <grub_video_reader_png+0x658>
+     af8:	mov	w1, #0x1                   	// #1
+     afc:	str	w1, [x19, #56]
+     b00:	ldr	w1, [x19, #40]
+     b04:	cbnz	w1, b14 <grub_video_reader_png+0x264>
+     b08:	mov	w2, #0x0                   	// #0
+     b0c:	mov	w3, #0x4                   	// #4
+     b10:	b	b34 <grub_video_reader_png+0x284>
+     b14:	adrp	x0, 0 <grub_png_build_huff_table>
+     b18:	ldr	x1, [x0]
+     b1c:	mov	w0, #0x4                   	// #4
+     b20:	bl	0 <grub_error>
+     b24:	b	f08 <grub_video_reader_png+0x658>
+     b28:	mov	w3, #0x1                   	// #1
+     b2c:	and	w2, w0, #0x4
+     b30:	tbz	w0, #2, b08 <grub_video_reader_png+0x258>
+     b34:	ldr	w1, [x19, #56]
+     b38:	cbz	w1, ad0 <grub_video_reader_png+0x220>
+     b3c:	mov	w0, #0x1                   	// #1
+     b40:	str	w0, [x19, #36]
+     b44:	sub	w0, w23, #0x8
+     b48:	and	w0, w0, #0xfffffff7
+     b4c:	tst	w0, #0xff
+     b50:	b.eq	b68 <grub_video_reader_png+0x2b8>  // b.none
+     b54:	cmp	w23, #0x4
+     b58:	b.ne	c60 <grub_video_reader_png+0x3b0>  // b.any
+     b5c:	ldr	w0, [x19, #48]
+     b60:	orr	w1, w1, w0
+     b64:	cbz	w1, c60 <grub_video_reader_png+0x3b0>
+     b68:	cbz	w2, b78 <grub_video_reader_png+0x2c8>
+     b6c:	ldr	w0, [x19, #36]
+     b70:	add	w0, w0, #0x1
+     b74:	str	w0, [x19, #36]
+     b78:	ldr	w2, [x19, #32]
+     b7c:	ldr	w1, [x19, #28]
+     b80:	ldr	x0, [x19, #8]
+     b84:	bl	0 <grub_video_bitmap_create>
+     b88:	cbnz	w0, f08 <grub_video_reader_png+0x658>
+     b8c:	ldr	w0, [x19, #40]
+     b90:	cbz	w0, 16fc <grub_video_reader_png+0xe4c>
+     b94:	ldr	w1, [x19, #36]
+     b98:	lsl	w1, w1, #1
+     b9c:	str	w1, [x19, #36]
+     ba0:	str	w23, [x19, #64]
+     ba4:	ldr	w0, [x19, #28]
+     ba8:	mul	w1, w1, w0
+     bac:	mul	w0, w23, w0
+     bb0:	add	w0, w0, #0x7
+     bb4:	lsr	w0, w0, #3
+     bb8:	cmp	w23, #0x5
+     bbc:	csel	w0, w0, w1, lt  // lt = tstop
+     bc0:	str	w0, [x19, #60]
+     bc4:	ldr	w1, [x19, #32]
+     bc8:	ldr	w0, [x19, #60]
+     bcc:	mul	w0, w1, w0
+     bd0:	bl	0 <grub_malloc>
+     bd4:	str	x0, [x19, #72]
+     bd8:	adrp	x1, 0 <grub_png_build_huff_table>
+     bdc:	ldr	x1, [x1]
+     be0:	ldr	w1, [x1]
+     be4:	cbnz	w1, 16b0 <grub_video_reader_png+0xe00>
+     be8:	add	x1, x19, #0x8, lsl #12
+     bec:	str	x0, [x1, #2456]
+     bf0:	ldr	w1, [x19, #60]
+     bf4:	ldr	w0, [x19, #32]
+     bf8:	madd	w0, w1, w0, w0
+     bfc:	str	w0, [x19, #44]
+     c00:	add	x0, x19, #0x8, lsl #12
+     c04:	str	wzr, [x0, #2464]
+     c08:	mov	w1, #0x1                   	// #1
+     c0c:	str	w1, [x0, #2472]
+     c10:	mov	x0, x19
+     c14:	bl	43c <grub_png_get_byte>
+     c18:	and	w0, w0, #0xff
+     c1c:	cbnz	w0, c74 <grub_video_reader_png+0x3c4>
+     c20:	mov	x0, x19
+     c24:	bl	43c <grub_png_get_byte>
+     c28:	and	w0, w0, #0xff
+     c2c:	cbnz	w0, c88 <grub_video_reader_png+0x3d8>
+     c30:	mov	x0, x19
+     c34:	bl	43c <grub_png_get_byte>
+     c38:	and	w0, w0, #0xff
+     c3c:	cbnz	w0, c9c <grub_video_reader_png+0x3ec>
+     c40:	mov	x0, x19
+     c44:	bl	410 <grub_png_get_dword>
+     c48:	b	f08 <grub_video_reader_png+0x658>
+     c4c:	mov	w0, #0x1                   	// #1
+     c50:	str	w0, [x19, #48]
+     c54:	str	w0, [x19, #36]
+     c58:	ldr	w1, [sp, #112]
+     c5c:	b	b44 <grub_video_reader_png+0x294>
+     c60:	adrp	x0, 0 <grub_png_build_huff_table>
+     c64:	ldr	x1, [x0]
+     c68:	mov	w0, #0x4                   	// #4
+     c6c:	bl	0 <grub_error>
+     c70:	b	f08 <grub_video_reader_png+0x658>
+     c74:	adrp	x0, 0 <grub_png_build_huff_table>
+     c78:	ldr	x1, [x0]
+     c7c:	mov	w0, #0x4                   	// #4
+     c80:	bl	0 <grub_error>
+     c84:	b	f08 <grub_video_reader_png+0x658>
+     c88:	adrp	x0, 0 <grub_png_build_huff_table>
+     c8c:	ldr	x1, [x0]
+     c90:	mov	w0, #0x4                   	// #4
+     c94:	bl	0 <grub_error>
+     c98:	b	f08 <grub_video_reader_png+0x658>
+     c9c:	adrp	x0, 0 <grub_png_build_huff_table>
+     ca0:	ldr	x1, [x0]
+     ca4:	mov	w0, #0x4                   	// #4
+     ca8:	bl	0 <grub_error>
+     cac:	b	f08 <grub_video_reader_png+0x658>
+     cb0:	mov	w0, #0x1                   	// #1
+     cb4:	str	w0, [x19, #80]
+     cb8:	str	w25, [x19, #84]
+     cbc:	str	wzr, [x19, #16]
+     cc0:	mov	x0, x19
+     cc4:	bl	43c <grub_png_get_byte>
+     cc8:	and	w23, w0, #0xff
+     ccc:	mov	x0, x19
+     cd0:	bl	43c <grub_png_get_byte>
+     cd4:	and	w0, w0, #0xff
+     cd8:	and	w23, w23, #0xf
+     cdc:	cmp	w23, #0x8
+     ce0:	b.ne	cf4 <grub_video_reader_png+0x444>  // b.any
+     ce4:	tbnz	w0, #5, d08 <grub_video_reader_png+0x458>
+     ce8:	stp	x27, x28, [sp, #80]
+     cec:	add	x27, sp, #0xa8
+     cf0:	b	ec0 <grub_video_reader_png+0x610>
+     cf4:	adrp	x0, 0 <grub_png_build_huff_table>
+     cf8:	ldr	x1, [x0]
+     cfc:	mov	w0, #0x4                   	// #4
+     d00:	bl	0 <grub_error>
+     d04:	b	f04 <grub_video_reader_png+0x654>
+     d08:	adrp	x0, 0 <grub_png_build_huff_table>
+     d0c:	ldr	x1, [x0]
+     d10:	mov	w0, #0x4                   	// #4
+     d14:	bl	0 <grub_error>
+     d18:	b	f04 <grub_video_reader_png+0x654>
+     d1c:	str	wzr, [x19, #16]
+     d20:	mov	x0, x19
+     d24:	bl	43c <grub_png_get_byte>
+     d28:	and	w24, w0, #0xff
+     d2c:	mov	x0, x19
+     d30:	bl	43c <grub_png_get_byte>
+     d34:	ubfiz	w0, w0, #8, #8
+     d38:	add	w24, w24, w0
+     d3c:	and	w24, w24, #0xffff
+     d40:	mov	x0, x19
+     d44:	bl	43c <grub_png_get_byte>
+     d48:	mov	x0, x19
+     d4c:	bl	43c <grub_png_get_byte>
+     d50:	cbz	w24, ea8 <grub_video_reader_png+0x5f8>
+     d54:	mov	w23, #0x0                   	// #0
+     d58:	mov	x0, x19
+     d5c:	bl	43c <grub_png_get_byte>
+     d60:	mov	w1, w0
+     d64:	mov	x0, x19
+     d68:	bl	54 <grub_png_output_byte>
+     d6c:	add	w0, w23, #0x1
+     d70:	and	w23, w0, #0xffff
+     d74:	cmp	w24, w0, uxth
+     d78:	b.ne	d58 <grub_video_reader_png+0x4a8>  // b.any
+     d7c:	b	ea8 <grub_video_reader_png+0x5f8>
+     d80:	add	x24, x19, #0x950
+     d84:	add	x0, x19, #0x4d8
+     d88:	add	x1, x19, #0x58
+     d8c:	str	x1, [x19, #2384]
+     d90:	str	x0, [x24, #8]
+     d94:	add	x1, x19, #0x518
+     d98:	str	x1, [x24, #16]
+     d9c:	str	wzr, [x24, #24]
+     da0:	mov	w1, #0x10                  	// #16
+     da4:	str	w1, [x24, #28]
+     da8:	mov	x2, #0x40                  	// #64
+     dac:	mov	w1, #0x0                   	// #0
+     db0:	bl	0 <grub_memset>
+     db4:	ldr	w23, [sp, #112]
+     db8:	mov	w25, #0x8                   	// #8
+     dbc:	mov	w2, w25
+     dc0:	mov	w1, w23
+     dc4:	mov	x0, x24
+     dc8:	bl	340 <grub_png_insert_huff_item>
+     dcc:	add	w23, w23, #0x1
+     dd0:	cmp	w23, #0x90
+     dd4:	b.ne	dbc <grub_video_reader_png+0x50c>  // b.any
+     dd8:	mov	w25, #0x9                   	// #9
+     ddc:	mov	w2, w25
+     de0:	mov	w1, w23
+     de4:	mov	x0, x24
+     de8:	bl	340 <grub_png_insert_huff_item>
+     dec:	add	w23, w23, #0x1
+     df0:	cmp	w23, #0x100
+     df4:	b.ne	ddc <grub_video_reader_png+0x52c>  // b.any
+     df8:	mov	w25, #0x7                   	// #7
+     dfc:	mov	w2, w25
+     e00:	mov	w1, w23
+     e04:	mov	x0, x24
+     e08:	bl	340 <grub_png_insert_huff_item>
+     e0c:	add	w23, w23, #0x1
+     e10:	cmp	w23, #0x118
+     e14:	b.ne	dfc <grub_video_reader_png+0x54c>  // b.any
+     e18:	mov	w25, #0x8                   	// #8
+     e1c:	mov	w2, w25
+     e20:	mov	w1, w23
+     e24:	mov	x0, x24
+     e28:	bl	340 <grub_png_insert_huff_item>
+     e2c:	add	w23, w23, #0x1
+     e30:	cmp	w23, #0x120
+     e34:	b.ne	e1c <grub_video_reader_png+0x56c>  // b.any
+     e38:	mov	x0, x24
+     e3c:	bl	0 <grub_png_build_huff_table>
+     e40:	add	x24, x19, #0x970
+     e44:	add	x0, x19, #0x5d0
+     e48:	add	x1, x19, #0x558
+     e4c:	str	x1, [x19, #2416]
+     e50:	str	x0, [x24, #8]
+     e54:	add	x1, x19, #0x610
+     e58:	str	x1, [x24, #16]
+     e5c:	str	wzr, [x24, #24]
+     e60:	mov	w1, #0x10                  	// #16
+     e64:	str	w1, [x24, #28]
+     e68:	mov	x2, #0x40                  	// #64
+     e6c:	mov	w1, #0x0                   	// #0
+     e70:	bl	0 <grub_memset>
+     e74:	ldr	w23, [sp, #112]
+     e78:	mov	w25, #0x5                   	// #5
+     e7c:	mov	w2, w25
+     e80:	mov	w1, w23
+     e84:	mov	x0, x24
+     e88:	bl	340 <grub_png_insert_huff_item>
+     e8c:	add	w23, w23, #0x1
+     e90:	cmp	w23, #0x1e
+     e94:	b.ne	e7c <grub_video_reader_png+0x5cc>  // b.any
+     e98:	mov	x0, x24
+     e9c:	bl	0 <grub_png_build_huff_table>
+     ea0:	mov	x0, x19
+     ea4:	bl	70c <grub_png_read_dynamic_block>
+     ea8:	adrp	x0, 0 <grub_png_build_huff_table>
+     eac:	ldr	x0, [x0]
+     eb0:	ldr	w0, [x0]
+     eb4:	ldr	w1, [sp, #100]
+     eb8:	orr	w0, w1, w0
+     ebc:	cbnz	w0, 12f8 <grub_video_reader_png+0xa48>
+     ec0:	mov	w1, #0x1                   	// #1
+     ec4:	mov	x0, x19
+     ec8:	bl	540 <grub_png_get_bits>
+     ecc:	str	w0, [sp, #100]
+     ed0:	mov	w1, #0x2                   	// #2
+     ed4:	mov	x0, x19
+     ed8:	bl	540 <grub_png_get_bits>
+     edc:	cmp	w0, #0x1
+     ee0:	b.eq	d80 <grub_video_reader_png+0x4d0>  // b.none
+     ee4:	cmp	w0, #0x2
+     ee8:	b.eq	1014 <grub_video_reader_png+0x764>  // b.none
+     eec:	cbz	w0, d1c <grub_video_reader_png+0x46c>
+     ef0:	adrp	x0, 0 <grub_png_build_huff_table>
+     ef4:	ldr	x1, [x0]
+     ef8:	mov	w0, #0x4                   	// #4
+     efc:	bl	0 <grub_error>
+     f00:	ldp	x27, x28, [sp, #80]
+     f04:	str	wzr, [x19, #80]
+     f08:	adrp	x0, 0 <grub_png_build_huff_table>
+     f0c:	ldr	x0, [x0]
+     f10:	ldr	w0, [x0]
+     f14:	cbnz	w0, 16e0 <grub_video_reader_png+0xe30>
+     f18:	ldr	x1, [x19]
+     f1c:	ldr	w0, [x19, #24]
+     f20:	ldr	x1, [x1, #24]
+     f24:	cmp	x1, x0
+     f28:	b.ne	1694 <grub_video_reader_png+0xde4>  // b.any
+     f2c:	mov	x0, x19
+     f30:	bl	410 <grub_png_get_dword>
+     f34:	mov	w25, w0
+     f38:	mov	x0, x19
+     f3c:	bl	410 <grub_png_get_dword>
+     f40:	mov	w1, w0
+     f44:	ldr	x0, [x19]
+     f48:	ldr	x2, [x0, #24]
+     f4c:	add	w2, w2, #0x4
+     f50:	add	w2, w2, w25
+     f54:	str	w2, [x19, #24]
+     f58:	cmp	w1, w22
+     f5c:	b.eq	a44 <grub_video_reader_png+0x194>  // b.none
+     f60:	b.hi	9a8 <grub_video_reader_png+0xf8>  // b.pmore
+     f64:	mov	w2, #0x4154                	// #16724
+     f68:	movk	w2, #0x4944, lsl #16
+     f6c:	cmp	w1, w2
+     f70:	b.eq	cb0 <grub_video_reader_png+0x400>  // b.none
+     f74:	mov	w2, #0x4e44                	// #20036
+     f78:	movk	w2, #0x4945, lsl #16
+     f7c:	cmp	w1, w2
+     f80:	b.ne	1680 <grub_video_reader_png+0xdd0>  // b.any
+     f84:	ldr	x22, [x19, #72]
+     f88:	cbz	x22, 16bc <grub_video_reader_png+0xe0c>
+     f8c:	ldr	x0, [x19, #8]
+     f90:	ldr	x0, [x0]
+     f94:	ldr	x24, [x0, #80]
+     f98:	ldr	w0, [x19, #40]
+     f9c:	add	x22, x22, w0, sxtw
+     fa0:	ldr	w1, [x19, #64]
+     fa4:	cmp	w1, #0x4
+     fa8:	b.le	1310 <grub_video_reader_png+0xa60>
+     fac:	ldr	w1, [x19, #56]
+     fb0:	cbnz	w1, 1468 <grub_video_reader_png+0xbb8>
+     fb4:	ldr	w1, [x19, #48]
+     fb8:	cbnz	w1, 14e8 <grub_video_reader_png+0xc38>
+     fbc:	ldr	w0, [x19, #28]
+     fc0:	ldr	w1, [x19, #32]
+     fc4:	mul	w0, w0, w1
+     fc8:	ldr	w1, [x19, #36]
+     fcc:	mul	w0, w0, w1
+     fd0:	mov	x1, #0x0                   	// #0
+     fd4:	cmp	wzr, w0, lsr #1
+     fd8:	b.eq	14dc <grub_video_reader_png+0xc2c>  // b.none
+     fdc:	lsl	x0, x1, #1
+     fe0:	ldrb	w0, [x22, x0]
+     fe4:	strb	w0, [x24, x1]
+     fe8:	add	x1, x1, #0x1
+     fec:	ldr	w0, [x19, #28]
+     ff0:	ldr	w2, [x19, #32]
+     ff4:	mul	w0, w0, w2
+     ff8:	ldr	w2, [x19, #36]
+     ffc:	mul	w0, w0, w2
+    1000:	cmp	w1, w0, lsr #1
+    1004:	b.cc	fdc <grub_video_reader_png+0x72c>  // b.lo, b.ul, b.last
+    1008:	ldp	x23, x24, [sp, #48]
+    100c:	ldp	x25, x26, [sp, #64]
+    1010:	b	90c <grub_video_reader_png+0x5c>
+    1014:	mov	w1, #0x5                   	// #5
+    1018:	mov	x0, x19
+    101c:	bl	540 <grub_png_get_bits>
+    1020:	add	w26, w0, #0x101
+    1024:	mov	w1, #0x5                   	// #5
+    1028:	mov	x0, x19
+    102c:	bl	540 <grub_png_get_bits>
+    1030:	add	w23, w0, #0x1
+    1034:	str	w23, [sp, #104]
+    1038:	mov	w1, #0x4                   	// #4
+    103c:	mov	x0, x19
+    1040:	bl	540 <grub_png_get_bits>
+    1044:	str	w0, [sp, #116]
+    1048:	add	w24, w0, #0x4
+    104c:	cmp	w26, #0x120
+    1050:	ccmp	w23, #0x1e, #0x0, le
+    1054:	ccmp	w24, #0x13, #0x0, le
+    1058:	b.le	1078 <grub_video_reader_png+0x7c8>
+    105c:	adrp	x0, 0 <grub_png_build_huff_table>
+    1060:	ldr	x1, [x0]
+    1064:	mov	w0, #0x4                   	// #4
+    1068:	bl	0 <grub_error>
+    106c:	mov	x0, x19
+    1070:	bl	70c <grub_png_read_dynamic_block>
+    1074:	b	ea8 <grub_video_reader_png+0x5f8>
+    1078:	add	x0, sp, #0x120
+    107c:	str	x0, [sp, #192]
+    1080:	add	x0, sp, #0xe0
+    1084:	str	x0, [sp, #200]
+    1088:	add	x0, sp, #0x100
+    108c:	str	x0, [sp, #208]
+    1090:	str	wzr, [sp, #216]
+    1094:	mov	w0, #0x8                   	// #8
+    1098:	str	w0, [sp, #220]
+    109c:	mov	x2, #0x20                  	// #32
+    10a0:	mov	w1, #0x0                   	// #0
+    10a4:	add	x0, sp, #0xe0
+    10a8:	bl	0 <grub_memset>
+    10ac:	cmp	w24, #0x0
+    10b0:	b.le	11e0 <grub_video_reader_png+0x930>
+    10b4:	mov	x23, #0x0                   	// #0
+    10b8:	mov	w28, #0x3                   	// #3
+    10bc:	adrp	x25, 0 <grub_png_build_huff_table>
+    10c0:	mov	w1, w28
+    10c4:	mov	x0, x19
+    10c8:	bl	540 <grub_png_get_bits>
+    10cc:	ldr	x1, [x25]
+    10d0:	add	x1, x1, #0x140
+    10d4:	ldrb	w1, [x23, x1]
+    10d8:	strb	w0, [x27, w1, sxtw]
+    10dc:	add	x23, x23, #0x1
+    10e0:	cmp	w24, w23
+    10e4:	b.gt	10c0 <grub_video_reader_png+0x810>
+    10e8:	ldr	w0, [sp, #116]
+    10ec:	add	w0, w0, #0x4
+    10f0:	cmp	w0, #0x12
+    10f4:	b.gt	111c <grub_video_reader_png+0x86c>
+    10f8:	sxtw	x0, w0
+    10fc:	adrp	x2, 0 <grub_png_build_huff_table>
+    1100:	ldr	x1, [x2]
+    1104:	add	x1, x1, #0x140
+    1108:	ldrb	w1, [x0, x1]
+    110c:	strb	wzr, [x27, w1, sxtw]
+    1110:	add	x0, x0, #0x1
+    1114:	cmp	w0, #0x12
+    1118:	b.le	1100 <grub_video_reader_png+0x850>
+    111c:	add	x24, sp, #0xa8
+    1120:	ldr	w23, [sp, #112]
+    1124:	ldrb	w2, [x24], #1
+    1128:	mov	w1, w23
+    112c:	add	x0, sp, #0xc0
+    1130:	bl	340 <grub_png_insert_huff_item>
+    1134:	add	w23, w23, #0x1
+    1138:	cmp	w23, #0x13
+    113c:	b.ne	1124 <grub_video_reader_png+0x874>  // b.any
+    1140:	add	x0, sp, #0xc0
+    1144:	bl	0 <grub_png_build_huff_table>
+    1148:	add	x24, x19, #0x950
+    114c:	str	x24, [sp, #136]
+    1150:	add	x0, x19, #0x4d8
+    1154:	add	x1, x19, #0x58
+    1158:	str	x1, [x19, #2384]
+    115c:	str	x0, [x19, #2392]
+    1160:	add	x1, x19, #0x518
+    1164:	str	x1, [x19, #2400]
+    1168:	str	wzr, [x19, #2408]
+    116c:	mov	w23, #0x10                  	// #16
+    1170:	str	w23, [x19, #2412]
+    1174:	mov	x2, #0x40                  	// #64
+    1178:	mov	w1, #0x0                   	// #0
+    117c:	bl	0 <grub_memset>
+    1180:	add	x25, x19, #0x970
+    1184:	str	x25, [sp, #144]
+    1188:	add	x0, x19, #0x5d0
+    118c:	add	x1, x19, #0x558
+    1190:	str	x1, [x19, #2416]
+    1194:	str	x0, [x19, #2424]
+    1198:	add	x1, x19, #0x610
+    119c:	str	x1, [x19, #2432]
+    11a0:	str	wzr, [x19, #2440]
+    11a4:	str	w23, [x19, #2444]
+    11a8:	mov	x2, #0x40                  	// #64
+    11ac:	mov	w1, #0x0                   	// #0
+    11b0:	bl	0 <grub_memset>
+    11b4:	ldr	w0, [sp, #104]
+    11b8:	add	w0, w26, w0
+    11bc:	str	w0, [sp, #116]
+    11c0:	cmp	w0, #0x0
+    11c4:	b.le	12e4 <grub_video_reader_png+0xa34>
+    11c8:	ldr	w23, [sp, #112]
+    11cc:	str	w23, [sp, #152]
+    11d0:	adrp	x28, 0 <grub_png_build_huff_table>
+    11d4:	str	x24, [sp, #120]
+    11d8:	str	x25, [sp, #128]
+    11dc:	b	1240 <grub_video_reader_png+0x990>
+    11e0:	ldr	w0, [sp, #112]
+    11e4:	b	10f8 <grub_video_reader_png+0x848>
+    11e8:	ldr	x0, [sp, #120]
+    11ec:	str	x0, [sp, #104]
+    11f0:	mov	w25, w23
+    11f4:	add	x1, sp, #0xc0
+    11f8:	mov	x0, x19
+    11fc:	bl	660 <grub_png_get_huff_code>
+    1200:	mov	w24, w0
+    1204:	cmp	w0, #0xf
+    1208:	b.le	1264 <grub_video_reader_png+0x9b4>
+    120c:	cmp	w0, #0x10
+    1210:	b.eq	127c <grub_video_reader_png+0x9cc>  // b.none
+    1214:	cmp	w0, #0x11
+    1218:	b.eq	12cc <grub_video_reader_png+0xa1c>  // b.none
+    121c:	mov	w1, #0x7                   	// #7
+    1220:	mov	x0, x19
+    1224:	bl	540 <grub_png_get_bits>
+    1228:	add	w0, w0, #0xa
+    122c:	add	w23, w23, w0
+    1230:	add	w23, w23, #0x1
+    1234:	ldr	w0, [sp, #116]
+    1238:	cmp	w23, w0
+    123c:	b.ge	12e4 <grub_video_reader_png+0xa34>  // b.tcont
+    1240:	ldr	x0, [x28]
+    1244:	ldr	w0, [x0]
+    1248:	cbnz	w0, 106c <grub_video_reader_png+0x7bc>
+    124c:	cmp	w26, w23
+    1250:	b.gt	11e8 <grub_video_reader_png+0x938>
+    1254:	sub	w25, w23, w26
+    1258:	ldr	x0, [sp, #128]
+    125c:	str	x0, [sp, #104]
+    1260:	b	11f4 <grub_video_reader_png+0x944>
+    1264:	mov	w2, w0
+    1268:	mov	w1, w25
+    126c:	ldr	x0, [sp, #104]
+    1270:	bl	340 <grub_png_insert_huff_item>
+    1274:	str	w24, [sp, #152]
+    1278:	b	1230 <grub_video_reader_png+0x980>
+    127c:	mov	w1, #0x2                   	// #2
+    1280:	mov	x0, x19
+    1284:	bl	540 <grub_png_get_bits>
+    1288:	str	w0, [sp, #156]
+    128c:	cmn	w0, #0x2
+    1290:	b.lt	12c4 <grub_video_reader_png+0xa14>  // b.tstop
+    1294:	add	w24, w25, #0x3
+    1298:	add	w24, w24, w0
+    129c:	mov	w1, w25
+    12a0:	add	w25, w25, #0x1
+    12a4:	ldr	w2, [sp, #152]
+    12a8:	ldr	x0, [sp, #104]
+    12ac:	bl	340 <grub_png_insert_huff_item>
+    12b0:	cmp	w24, w25
+    12b4:	b.ne	129c <grub_video_reader_png+0x9ec>  // b.any
+    12b8:	ldr	w0, [sp, #156]
+    12bc:	add	w23, w0, w23
+    12c0:	add	w23, w23, #0x3
+    12c4:	sub	w23, w23, #0x1
+    12c8:	b	1230 <grub_video_reader_png+0x980>
+    12cc:	mov	w1, #0x3                   	// #3
+    12d0:	mov	x0, x19
+    12d4:	bl	540 <grub_png_get_bits>
+    12d8:	add	w0, w0, #0x2
+    12dc:	add	w23, w23, w0
+    12e0:	b	1230 <grub_video_reader_png+0x980>
+    12e4:	ldr	x0, [sp, #136]
+    12e8:	bl	0 <grub_png_build_huff_table>
+    12ec:	ldr	x0, [sp, #144]
+    12f0:	bl	0 <grub_png_build_huff_table>
+    12f4:	b	106c <grub_video_reader_png+0x7bc>
+    12f8:	mov	x0, x19
+    12fc:	bl	410 <grub_png_get_dword>
+    1300:	mov	x0, x19
+    1304:	bl	410 <grub_png_get_dword>
+    1308:	ldp	x27, x28, [sp, #80]
+    130c:	b	f04 <grub_video_reader_png+0x654>
+    1310:	mov	w23, #0x1                   	// #1
+    1314:	lsl	w23, w23, w1
+    1318:	sub	w23, w23, #0x1
+    131c:	ldr	w0, [x19, #48]
+    1320:	cbz	w0, 13a4 <grub_video_reader_png+0xaf4>
+    1324:	adrp	x0, 0 <grub_png_build_huff_table>
+    1328:	ldr	x0, [x0]
+    132c:	ldr	w2, [x0]
+    1330:	str	w2, [sp, #256]
+    1334:	ldrb	w0, [x0, #4]
+    1338:	strb	w0, [sp, #260]
+    133c:	mov	w0, #0x1                   	// #1
+    1340:	lsl	w0, w0, w1
+    1344:	cbz	w0, 1388 <grub_video_reader_png+0xad8>
+    1348:	add	x2, sp, #0x100
+    134c:	ldrb	w3, [x2, w1, sxtw]
+    1350:	add	x1, sp, #0x120
+    1354:	sub	w0, w0, #0x1
+    1358:	add	x0, x0, x0, lsl #1
+    135c:	add	x2, sp, #0x123
+    1360:	add	x2, x0, x2
+    1364:	mov	w0, #0x0                   	// #0
+    1368:	strb	w0, [x1]
+    136c:	strb	w0, [x1, #1]
+    1370:	strb	w0, [x1, #2]
+    1374:	add	w0, w3, w0
+    1378:	and	w0, w0, #0xff
+    137c:	add	x1, x1, #0x3
+    1380:	cmp	x1, x2
+    1384:	b.ne	1368 <grub_video_reader_png+0xab8>  // b.any
+    1388:	ldr	w0, [x19, #32]
+    138c:	mov	w6, #0x0                   	// #0
+    1390:	mov	w7, #0x8                   	// #8
+    1394:	cbnz	w0, 143c <grub_video_reader_png+0xb8c>
+    1398:	ldp	x23, x24, [sp, #48]
+    139c:	ldp	x25, x26, [sp, #64]
+    13a0:	b	90c <grub_video_reader_png+0x5c>
+    13a4:	mov	w0, #0x3                   	// #3
+    13a8:	lsl	w1, w0, w1
+    13ac:	sxtw	x2, w1
+    13b0:	add	x1, x19, #0x650
+    13b4:	add	x0, sp, #0x120
+    13b8:	bl	0 <grub_memmove>
+    13bc:	b	1388 <grub_video_reader_png+0xad8>
+    13c0:	add	x5, x5, #0x1
+    13c4:	add	w1, w1, #0x8
+    13c8:	add	w3, w3, #0x1
+    13cc:	add	x2, x2, #0x3
+    13d0:	ldr	w0, [x19, #28]
+    13d4:	cmp	w3, w0
+    13d8:	b.cs	141c <grub_video_reader_png+0xb6c>  // b.hs, b.nlast
+    13dc:	ldrb	w0, [x5]
+    13e0:	asr	w0, w0, w1
+    13e4:	and	w0, w0, w23
+    13e8:	ubfiz	x4, x0, #1, #8
+    13ec:	add	x0, x4, w0, uxtb
+    13f0:	add	x0, x19, x0
+    13f4:	ldrb	w4, [x0, #1618]
+    13f8:	strb	w4, [x2, #2]
+    13fc:	ldrb	w4, [x0, #1617]
+    1400:	strb	w4, [x2, #1]
+    1404:	ldrb	w0, [x0, #1616]
+    1408:	strb	w0, [x2]
+    140c:	ldr	w0, [x19, #64]
+    1410:	subs	w1, w1, w0
+    1414:	b.pl	13c8 <grub_video_reader_png+0xb18>  // b.nfrst
+    1418:	b	13c0 <grub_video_reader_png+0xb10>
+    141c:	add	w6, w6, #0x1
+    1420:	add	w0, w0, w0, lsl #1
+    1424:	add	x24, x24, x0
+    1428:	ldrsw	x0, [x19, #60]
+    142c:	add	x22, x22, x0
+    1430:	ldr	w0, [x19, #32]
+    1434:	cmp	w6, w0
+    1438:	b.cs	145c <grub_video_reader_png+0xbac>  // b.hs, b.nlast
+    143c:	ldr	w1, [x19, #64]
+    1440:	sub	w1, w7, w1
+    1444:	ldr	w0, [x19, #28]
+    1448:	cbz	w0, 141c <grub_video_reader_png+0xb6c>
+    144c:	mov	x2, x24
+    1450:	mov	x5, x22
+    1454:	mov	w3, #0x0                   	// #0
+    1458:	b	13dc <grub_video_reader_png+0xb2c>
+    145c:	ldp	x23, x24, [sp, #48]
+    1460:	ldp	x25, x26, [sp, #64]
+    1464:	b	90c <grub_video_reader_png+0x5c>
+    1468:	ldr	w0, [x19, #28]
+    146c:	ldr	w1, [x19, #32]
+    1470:	mul	w0, w0, w1
+    1474:	cbz	w0, 16c8 <grub_video_reader_png+0xe18>
+    1478:	mov	w1, #0x0                   	// #0
+    147c:	ldrb	w0, [x22]
+    1480:	add	x0, x0, x0, lsl #1
+    1484:	add	x0, x19, x0
+    1488:	ldrb	w0, [x0, #1618]
+    148c:	strb	w0, [x24, #2]
+    1490:	ldrb	w0, [x22]
+    1494:	add	x0, x0, x0, lsl #1
+    1498:	add	x0, x19, x0
+    149c:	ldrb	w0, [x0, #1617]
+    14a0:	strb	w0, [x24, #1]
+    14a4:	ldrb	w0, [x22], #1
+    14a8:	add	x0, x0, x0, lsl #1
+    14ac:	add	x0, x19, x0
+    14b0:	ldrb	w0, [x0, #1616]
+    14b4:	strb	w0, [x24], #3
+    14b8:	add	w1, w1, #0x1
+    14bc:	ldr	w0, [x19, #28]
+    14c0:	ldr	w2, [x19, #32]
+    14c4:	mul	w0, w0, w2
+    14c8:	cmp	w1, w0
+    14cc:	b.cc	147c <grub_video_reader_png+0xbcc>  // b.lo, b.ul, b.last
+    14d0:	ldp	x23, x24, [sp, #48]
+    14d4:	ldp	x25, x26, [sp, #64]
+    14d8:	b	90c <grub_video_reader_png+0x5c>
+    14dc:	ldp	x23, x24, [sp, #48]
+    14e0:	ldp	x25, x26, [sp, #64]
+    14e4:	b	90c <grub_video_reader_png+0x5c>
+    14e8:	ldr	w1, [x19, #36]
+    14ec:	cmp	w1, #0x2
+    14f0:	b.eq	15cc <grub_video_reader_png+0xd1c>  // b.none
+    14f4:	cmp	w1, #0x4
+    14f8:	b.eq	1510 <grub_video_reader_png+0xc60>  // b.none
+    14fc:	cmp	w1, #0x1
+    1500:	b.eq	1574 <grub_video_reader_png+0xcc4>  // b.none
+    1504:	ldp	x23, x24, [sp, #48]
+    1508:	ldp	x25, x26, [sp, #64]
+    150c:	b	90c <grub_video_reader_png+0x5c>
+    1510:	ldr	w0, [x19, #28]
+    1514:	ldr	w1, [x19, #32]
+    1518:	mul	w0, w0, w1
+    151c:	mov	w1, #0x0                   	// #0
+    1520:	cbz	w0, 1568 <grub_video_reader_png+0xcb8>
+    1524:	ldrb	w0, [x22, #3]
+    1528:	strb	w0, [x24, #3]
+    152c:	strb	w0, [x24, #2]
+    1530:	ldrb	w0, [x22, #3]
+    1534:	strb	w0, [x24, #1]
+    1538:	ldrb	w0, [x22, #1]
+    153c:	strb	w0, [x24], #4
+    1540:	add	w1, w1, #0x1
+    1544:	add	x22, x22, #0x4
+    1548:	ldr	w0, [x19, #28]
+    154c:	ldr	w2, [x19, #32]
+    1550:	mul	w0, w0, w2
+    1554:	cmp	w1, w0
+    1558:	b.cc	1524 <grub_video_reader_png+0xc74>  // b.lo, b.ul, b.last
+    155c:	ldp	x23, x24, [sp, #48]
+    1560:	ldp	x25, x26, [sp, #64]
+    1564:	b	90c <grub_video_reader_png+0x5c>
+    1568:	ldp	x23, x24, [sp, #48]
+    156c:	ldp	x25, x26, [sp, #64]
+    1570:	b	90c <grub_video_reader_png+0x5c>
+    1574:	ldr	w0, [x19, #28]
+    1578:	ldr	w1, [x19, #32]
+    157c:	mul	w0, w0, w1
+    1580:	mov	w1, #0x0                   	// #0
+    1584:	cbz	w0, 15c0 <grub_video_reader_png+0xd10>
+    1588:	ldrb	w0, [x22]
+    158c:	strb	w0, [x24, #2]
+    1590:	strb	w0, [x24, #1]
+    1594:	ldrb	w0, [x22], #1
+    1598:	strb	w0, [x24], #3
+    159c:	add	w1, w1, #0x1
+    15a0:	ldr	w0, [x19, #28]
+    15a4:	ldr	w2, [x19, #32]
+    15a8:	mul	w0, w0, w2
+    15ac:	cmp	w1, w0
+    15b0:	b.cc	1588 <grub_video_reader_png+0xcd8>  // b.lo, b.ul, b.last
+    15b4:	ldp	x23, x24, [sp, #48]
+    15b8:	ldp	x25, x26, [sp, #64]
+    15bc:	b	90c <grub_video_reader_png+0x5c>
+    15c0:	ldp	x23, x24, [sp, #48]
+    15c4:	ldp	x25, x26, [sp, #64]
+    15c8:	b	90c <grub_video_reader_png+0x5c>
+    15cc:	cbnz	w0, 1630 <grub_video_reader_png+0xd80>
+    15d0:	ldr	w0, [x19, #28]
+    15d4:	ldr	w1, [x19, #32]
+    15d8:	mul	w0, w0, w1
+    15dc:	mov	w1, #0x0                   	// #0
+    15e0:	cbz	w0, 1624 <grub_video_reader_png+0xd74>
+    15e4:	ldrb	w0, [x22, #1]
+    15e8:	strb	w0, [x24, #3]
+    15ec:	strb	w0, [x24, #2]
+    15f0:	ldrb	w0, [x22, #1]
+    15f4:	strb	w0, [x24, #1]
+    15f8:	ldrb	w0, [x22], #2
+    15fc:	strb	w0, [x24], #4
+    1600:	add	w1, w1, #0x1
+    1604:	ldr	w0, [x19, #28]
+    1608:	ldr	w2, [x19, #32]
+    160c:	mul	w0, w0, w2
+    1610:	cmp	w1, w0
+    1614:	b.cc	15e4 <grub_video_reader_png+0xd34>  // b.lo, b.ul, b.last
+    1618:	ldp	x23, x24, [sp, #48]
+    161c:	ldp	x25, x26, [sp, #64]
+    1620:	b	90c <grub_video_reader_png+0x5c>
+    1624:	ldp	x23, x24, [sp, #48]
+    1628:	ldp	x25, x26, [sp, #64]
+    162c:	b	90c <grub_video_reader_png+0x5c>
+    1630:	ldr	w0, [x19, #28]
+    1634:	ldr	w1, [x19, #32]
+    1638:	mul	w0, w0, w1
+    163c:	cbz	w0, 16d4 <grub_video_reader_png+0xe24>
+    1640:	mov	w1, #0x0                   	// #0
+    1644:	ldrb	w0, [x22, #1]
+    1648:	strb	w0, [x24, #2]
+    164c:	strb	w0, [x24, #1]
+    1650:	ldrb	w0, [x22, #1]
+    1654:	strb	w0, [x24], #4
+    1658:	add	w1, w1, #0x1
+    165c:	add	x22, x22, #0x2
+    1660:	ldr	w0, [x19, #28]
+    1664:	ldr	w2, [x19, #32]
+    1668:	mul	w0, w0, w2
+    166c:	cmp	w1, w0
+    1670:	b.cc	1644 <grub_video_reader_png+0xd94>  // b.lo, b.ul, b.last
+    1674:	ldp	x23, x24, [sp, #48]
+    1678:	ldp	x25, x26, [sp, #64]
+    167c:	b	90c <grub_video_reader_png+0x5c>
+    1680:	ldr	x1, [x0, #24]
+    1684:	add	x1, x1, #0x4
+    1688:	add	x1, x1, w25, uxtw
+    168c:	bl	0 <grub_file_seek>
+    1690:	b	f08 <grub_video_reader_png+0x658>
+    1694:	adrp	x0, 0 <grub_png_build_huff_table>
+    1698:	ldr	x1, [x0]
+    169c:	mov	w0, #0x4                   	// #4
+    16a0:	bl	0 <grub_error>
+    16a4:	ldp	x23, x24, [sp, #48]
+    16a8:	ldp	x25, x26, [sp, #64]
+    16ac:	b	90c <grub_video_reader_png+0x5c>
+    16b0:	ldp	x23, x24, [sp, #48]
+    16b4:	ldp	x25, x26, [sp, #64]
+    16b8:	b	90c <grub_video_reader_png+0x5c>
+    16bc:	ldp	x23, x24, [sp, #48]
+    16c0:	ldp	x25, x26, [sp, #64]
+    16c4:	b	90c <grub_video_reader_png+0x5c>
+    16c8:	ldp	x23, x24, [sp, #48]
+    16cc:	ldp	x25, x26, [sp, #64]
+    16d0:	b	90c <grub_video_reader_png+0x5c>
+    16d4:	ldp	x23, x24, [sp, #48]
+    16d8:	ldp	x25, x26, [sp, #64]
+    16dc:	b	90c <grub_video_reader_png+0x5c>
+    16e0:	ldp	x23, x24, [sp, #48]
+    16e4:	ldp	x25, x26, [sp, #64]
+    16e8:	b	90c <grub_video_reader_png+0x5c>
+    16ec:	ldr	x0, [x21]
+    16f0:	bl	0 <grub_video_bitmap_destroy>
+    16f4:	str	xzr, [x21]
+    16f8:	b	92c <grub_video_reader_png+0x7c>
+    16fc:	str	w23, [x19, #64]
+    1700:	ldr	w0, [x19, #28]
+    1704:	ldr	w1, [x19, #36]
+    1708:	mul	w1, w1, w0
+    170c:	mul	w0, w23, w0
+    1710:	add	w0, w0, #0x7
+    1714:	lsr	w0, w0, #3
+    1718:	cmp	w23, #0x5
+    171c:	csel	w0, w0, w1, lt  // lt = tstop
+    1720:	str	w0, [x19, #60]
+    1724:	ldr	w0, [x19, #48]
+    1728:	cbnz	w0, bc4 <grub_video_reader_png+0x314>
+    172c:	ldr	w0, [x19, #56]
+    1730:	cbnz	w0, bc4 <grub_video_reader_png+0x314>
+    1734:	str	xzr, [x19, #72]
+    1738:	ldr	x0, [x19, #8]
+    173c:	ldr	x0, [x0]
+    1740:	ldr	x1, [x0, #80]
+    1744:	add	x0, x19, #0x8, lsl #12
+    1748:	str	x1, [x0, #2456]
+    174c:	b	bf0 <grub_video_reader_png+0x340>
+	...
+
+00000000000017c8 <grub_mod_init>:
+    17c8:	stp	x29, x30, [sp, #-16]!
+    17cc:	mov	x29, sp
+    17d0:	adrp	x0, 0 <grub_png_build_huff_table>
+    17d4:	ldr	x0, [x0]
+    17d8:	bl	0 <grub_video_bitmap_reader_register>
+    17dc:	ldp	x29, x30, [sp], #16
+    17e0:	ret
+    17e4:	nop
+	...
+
+00000000000017f0 <grub_mod_fini>:
+    17f0:	stp	x29, x30, [sp, #-16]!
+    17f4:	mov	x29, sp
+    17f8:	adrp	x0, 0 <grub_png_build_huff_table>
+    17fc:	ldr	x0, [x0]
+    1800:	bl	0 <grub_video_bitmap_reader_unregister>
+    1804:	ldp	x29, x30, [sp], #16
+    1808:	ret
+    180c:	nop
+	...

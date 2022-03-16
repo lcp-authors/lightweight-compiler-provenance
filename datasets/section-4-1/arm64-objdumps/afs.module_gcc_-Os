@@ -1,0 +1,992 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//afs.module_gcc_-Os:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <bfs_strcmp>:
+   0:	sub	x6, x0, #0x1
+   4:	mov	x3, #0x0                   	// #0
+   8:	ldrb	w4, [x1, x3]
+   c:	add	x5, x0, x3
+  10:	cmp	x2, x3
+  14:	cbz	w4, 44 <bfs_strcmp+0x44>
+  18:	b.ne	24 <bfs_strcmp+0x24>  // b.any
+  1c:	mov	w1, #0x0                   	// #0
+  20:	b	38 <bfs_strcmp+0x38>
+  24:	add	x3, x3, #0x1
+  28:	ldrb	w7, [x6, x3]
+  2c:	cmp	w7, w4
+  30:	b.eq	8 <bfs_strcmp+0x8>  // b.none
+  34:	ldrb	w1, [x5]
+  38:	sxtb	w1, w1
+  3c:	sub	w0, w1, w4, sxtb
+  40:	ret
+  44:	b.ne	34 <bfs_strcmp+0x34>  // b.any
+  48:	b	1c <bfs_strcmp+0x1c>
+
+000000000000004c <grub_bfs_close>:
+  4c:	stp	x29, x30, [sp, #-16]!
+  50:	mov	x29, sp
+  54:	ldr	x0, [x0, #80]
+  58:	bl	0 <grub_free>
+  5c:	mov	w0, #0x0                   	// #0
+  60:	ldp	x29, x30, [sp], #16
+  64:	ret
+
+0000000000000068 <grub_bfs_dir_iter>:
+  68:	stp	x29, x30, [sp, #-288]!
+  6c:	mov	x3, #0xec                  	// #236
+  70:	mov	x29, sp
+  74:	stp	x19, x20, [sp, #16]
+  78:	mov	x20, x0
+  7c:	ldr	w0, [x2, #68]
+  80:	ldr	x5, [x2]
+  84:	sub	w0, w0, #0x9
+  88:	mov	x19, x2
+  8c:	add	x4, sp, #0x30
+  90:	lsl	x1, x1, x0
+  94:	mov	x2, #0x0                   	// #0
+  98:	ldr	x0, [x5]
+  9c:	bl	0 <grub_disk_read>
+  a0:	cbz	w0, b8 <grub_bfs_dir_iter+0x50>
+  a4:	bl	0 <grub_print_error>
+  a8:	mov	w0, #0x0                   	// #0
+  ac:	ldp	x19, x20, [sp, #16]
+  b0:	ldp	x29, x30, [sp], #288
+  b4:	ret
+  b8:	ldrb	w0, [sp, #32]
+  bc:	mov	x1, #0x4240                	// #16960
+  c0:	mov	x2, #0x0                   	// #0
+  c4:	movk	x1, #0xf, lsl #16
+  c8:	orr	w0, w0, #0x2
+  cc:	strb	w0, [sp, #32]
+  d0:	ldr	x0, [sp, #88]
+  d4:	bl	0 <grub_divmod64>
+  d8:	str	w0, [sp, #36]
+  dc:	ldr	w0, [sp, #68]
+  e0:	ldp	x3, x2, [x19, #8]
+  e4:	and	w0, w0, #0xe000
+  e8:	cmp	w0, #0x4, lsl #12
+  ec:	ldrb	w0, [sp, #32]
+  f0:	cset	w1, eq  // eq = none
+  f4:	bfxil	w0, w1, #0, #1
+  f8:	strb	w0, [sp, #32]
+  fc:	add	x1, sp, #0x20
+ 100:	mov	x0, x20
+ 104:	blr	x3
+ 108:	b	ac <grub_bfs_dir_iter+0x44>
+
+000000000000010c <mount>:
+ 10c:	stp	x29, x30, [sp, #-32]!
+ 110:	mov	x4, x1
+ 114:	mov	x3, #0x7c                  	// #124
+ 118:	mov	x29, sp
+ 11c:	mov	x2, #0x0                   	// #0
+ 120:	str	x19, [sp, #16]
+ 124:	mov	x19, x1
+ 128:	mov	x1, #0x2                   	// #2
+ 12c:	bl	0 <grub_disk_read>
+ 130:	cmp	w0, #0xb
+ 134:	b.ne	150 <mount+0x44>  // b.any
+ 138:	adrp	x0, 0 <bfs_strcmp>
+ 13c:	ldr	x19, [sp, #16]
+ 140:	ldp	x29, x30, [sp], #32
+ 144:	ldr	x1, [x0]
+ 148:	mov	w0, #0x9                   	// #9
+ 14c:	b	0 <grub_error>
+ 150:	cbnz	w0, 1b4 <mount+0xa8>
+ 154:	ldr	w2, [x19, #32]
+ 158:	mov	w1, #0x5331                	// #21297
+ 15c:	movk	w1, #0x4146, lsl #16
+ 160:	cmp	w2, w1
+ 164:	b.ne	138 <mount+0x2c>  // b.any
+ 168:	ldr	w2, [x19, #68]
+ 16c:	mov	w1, #0x1031                	// #4145
+ 170:	movk	w1, #0xdd12, lsl #16
+ 174:	cmp	w2, w1
+ 178:	b.ne	138 <mount+0x2c>  // b.any
+ 17c:	ldr	w2, [x19, #112]
+ 180:	mov	w1, #0x830e                	// #33550
+ 184:	movk	w1, #0x15b6, lsl #16
+ 188:	cmp	w2, w1
+ 18c:	b.ne	138 <mount+0x2c>  // b.any
+ 190:	ldr	w3, [x19, #40]
+ 194:	cbz	w3, 138 <mount+0x2c>
+ 198:	ldr	w2, [x19, #44]
+ 19c:	mov	w1, #0x1                   	// #1
+ 1a0:	lsl	w1, w1, w2
+ 1a4:	cmp	w3, w1
+ 1a8:	b.ne	138 <mount+0x2c>  // b.any
+ 1ac:	cmp	w2, #0x8
+ 1b0:	b.ls	138 <mount+0x2c>  // b.plast
+ 1b4:	ldr	x19, [sp, #16]
+ 1b8:	ldp	x29, x30, [sp], #32
+ 1bc:	ret
+	...
+
+00000000000001c8 <grub_bfs_label>:
+ 1c8:	stp	x29, x30, [sp, #-160]!
+ 1cc:	mov	x29, sp
+ 1d0:	ldr	x0, [x0]
+ 1d4:	stp	x19, x20, [sp, #16]
+ 1d8:	mov	x20, x1
+ 1dc:	str	xzr, [x1]
+ 1e0:	add	x1, sp, #0x20
+ 1e4:	bl	10c <mount>
+ 1e8:	mov	w19, w0
+ 1ec:	cbnz	w0, 200 <grub_bfs_label+0x38>
+ 1f0:	mov	x1, #0x20                  	// #32
+ 1f4:	add	x0, sp, x1
+ 1f8:	bl	0 <grub_strndup>
+ 1fc:	str	x0, [x20]
+ 200:	mov	w0, w19
+ 204:	ldp	x19, x20, [sp, #16]
+ 208:	ldp	x29, x30, [sp], #160
+ 20c:	ret
+
+0000000000000210 <read_extent.constprop.0>:
+ 210:	mov	x6, x2
+ 214:	ldr	w7, [x1, #76]
+ 218:	ldr	w1, [x1, #44]
+ 21c:	mov	x2, x3
+ 220:	sub	w8, w7, #0x9
+ 224:	mov	x3, x5
+ 228:	ldr	w7, [x6]
+ 22c:	sub	w1, w1, #0x9
+ 230:	ldrh	w6, [x6, #4]
+ 234:	lsl	w7, w7, w8
+ 238:	lsl	x1, x6, x1
+ 23c:	add	x1, x7, x1
+ 240:	b	0 <grub_disk_read>
+
+0000000000000244 <read_bfs_file>:
+ 244:	stp	x29, x30, [sp, #-144]!
+ 248:	mov	x29, sp
+ 24c:	stp	x19, x20, [sp, #16]
+ 250:	stp	x21, x22, [sp, #32]
+ 254:	stp	x23, x24, [sp, #48]
+ 258:	stp	x25, x26, [sp, #64]
+ 25c:	stp	x27, x28, [sp, #80]
+ 260:	stp	x6, x7, [sp, #96]
+ 264:	cbz	x5, 694 <read_bfs_file+0x450>
+ 268:	mov	x22, x2
+ 26c:	mov	x24, x0
+ 270:	ldur	x2, [x2, #212]
+ 274:	add	x0, x5, x3
+ 278:	mov	x20, x3
+ 27c:	mov	x21, x5
+ 280:	cmp	x0, x2
+ 284:	b.ls	2b0 <read_bfs_file+0x6c>  // b.plast
+ 288:	adrp	x0, 0 <bfs_strcmp>
+ 28c:	ldr	x1, [x0]
+ 290:	mov	w0, #0xb                   	// #11
+ 294:	ldp	x19, x20, [sp, #16]
+ 298:	ldp	x21, x22, [sp, #32]
+ 29c:	ldp	x23, x24, [sp, #48]
+ 2a0:	ldp	x25, x26, [sp, #64]
+ 2a4:	ldp	x27, x28, [sp, #80]
+ 2a8:	ldp	x29, x30, [sp], #144
+ 2ac:	b	0 <grub_error>
+ 2b0:	ldur	x0, [x22, #172]
+ 2b4:	mov	x25, x1
+ 2b8:	ldr	w2, [x1, #44]
+ 2bc:	mov	x23, x4
+ 2c0:	lsl	x0, x0, x2
+ 2c4:	cmp	x3, x0
+ 2c8:	b.cs	35c <read_bfs_file+0x118>  // b.hs, b.nlast
+ 2cc:	add	x27, x22, #0x4c
+ 2d0:	add	x6, x22, #0xac
+ 2d4:	mov	x28, #0x0                   	// #0
+ 2d8:	ldrh	w0, [x27, #6]
+ 2dc:	mov	x3, x28
+ 2e0:	ldr	w2, [x25, #44]
+ 2e4:	lsl	x0, x0, x2
+ 2e8:	add	x28, x28, x0
+ 2ec:	cmp	x28, x20
+ 2f0:	b.ls	350 <read_bfs_file+0x10c>  // b.plast
+ 2f4:	sub	x26, x28, x20
+ 2f8:	mov	x4, x23
+ 2fc:	ldr	x0, [sp, #96]
+ 300:	cmp	x26, x21
+ 304:	str	x0, [x24, #48]
+ 308:	csel	x26, x26, x21, ls  // ls = plast
+ 30c:	ldr	x0, [sp, #104]
+ 310:	str	x0, [x24, #56]
+ 314:	mov	x5, x26
+ 318:	sub	x3, x20, x3
+ 31c:	mov	x2, x27
+ 320:	mov	x1, x25
+ 324:	mov	x0, x24
+ 328:	str	x6, [sp, #112]
+ 32c:	bl	210 <read_extent.constprop.0>
+ 330:	str	xzr, [x24, #48]
+ 334:	mov	w19, w0
+ 338:	cbnz	w0, 3bc <read_bfs_file+0x178>
+ 33c:	add	x20, x20, x26
+ 340:	add	x23, x23, x26
+ 344:	subs	x21, x21, x26
+ 348:	ldr	x6, [sp, #112]
+ 34c:	b.eq	694 <read_bfs_file+0x450>  // b.none
+ 350:	add	x27, x27, #0x8
+ 354:	cmp	x6, x27
+ 358:	b.ne	2d8 <read_bfs_file+0x94>  // b.any
+ 35c:	ldur	x19, [x22, #172]
+ 360:	ldr	w0, [x25, #44]
+ 364:	lsl	x19, x19, x0
+ 368:	cmp	x19, x20
+ 36c:	b.ls	380 <read_bfs_file+0x13c>  // b.plast
+ 370:	adrp	x0, 0 <bfs_strcmp>
+ 374:	ldr	x1, [x0]
+ 378:	mov	w0, #0x9                   	// #9
+ 37c:	b	294 <read_bfs_file+0x50>
+ 380:	ldur	x2, [x22, #188]
+ 384:	lsl	x2, x2, x0
+ 388:	cmp	x20, x2
+ 38c:	b.cs	410 <read_bfs_file+0x1cc>  // b.hs, b.nlast
+ 390:	ldrh	w26, [x22, #186]
+ 394:	sub	w0, w0, #0x3
+ 398:	lsl	x26, x26, x0
+ 39c:	lsl	x28, x26, #3
+ 3a0:	mov	x0, x28
+ 3a4:	bl	0 <grub_malloc>
+ 3a8:	mov	x27, x0
+ 3ac:	cbnz	x0, 3dc <read_bfs_file+0x198>
+ 3b0:	adrp	x0, 0 <bfs_strcmp>
+ 3b4:	ldr	x0, [x0]
+ 3b8:	ldr	w19, [x0]
+ 3bc:	mov	w0, w19
+ 3c0:	ldp	x19, x20, [sp, #16]
+ 3c4:	ldp	x21, x22, [sp, #32]
+ 3c8:	ldp	x23, x24, [sp, #48]
+ 3cc:	ldp	x25, x26, [sp, #64]
+ 3d0:	ldp	x27, x28, [sp, #80]
+ 3d4:	ldp	x29, x30, [sp], #144
+ 3d8:	ret
+ 3dc:	mov	x4, x0
+ 3e0:	mov	x5, x28
+ 3e4:	add	x2, x22, #0xb4
+ 3e8:	mov	x1, x25
+ 3ec:	mov	x0, x24
+ 3f0:	mov	x3, #0x0                   	// #0
+ 3f4:	bl	210 <read_extent.constprop.0>
+ 3f8:	mov	w7, #0x0                   	// #0
+ 3fc:	mov	w2, w7
+ 400:	cmp	x26, w7, uxtw
+ 404:	b.hi	430 <read_bfs_file+0x1ec>  // b.pmore
+ 408:	mov	x0, x27
+ 40c:	bl	0 <grub_free>
+ 410:	ldur	x2, [x22, #188]
+ 414:	ldr	w0, [x25, #44]
+ 418:	lsl	x2, x2, x0
+ 41c:	cmp	x2, x20
+ 420:	b.ls	4c4 <read_bfs_file+0x280>  // b.plast
+ 424:	adrp	x0, 0 <bfs_strcmp>
+ 428:	ldr	x1, [x0]
+ 42c:	b	378 <read_bfs_file+0x134>
+ 430:	add	x2, x27, x2, lsl #3
+ 434:	ldr	w0, [x25, #44]
+ 438:	ldrh	w6, [x2, #6]
+ 43c:	lsl	x6, x6, x0
+ 440:	add	x6, x6, x19
+ 444:	cmp	x6, x20
+ 448:	b.ls	4b8 <read_bfs_file+0x274>  // b.plast
+ 44c:	sub	x28, x6, x20
+ 450:	sub	x3, x20, x19
+ 454:	ldr	x0, [sp, #96]
+ 458:	cmp	x28, x21
+ 45c:	str	x0, [x24, #48]
+ 460:	csel	x28, x28, x21, ls  // ls = plast
+ 464:	ldr	x0, [sp, #104]
+ 468:	str	x0, [x24, #56]
+ 46c:	mov	x5, x28
+ 470:	mov	x4, x23
+ 474:	mov	x1, x25
+ 478:	mov	x0, x24
+ 47c:	str	x6, [sp, #112]
+ 480:	str	w7, [sp, #120]
+ 484:	bl	210 <read_extent.constprop.0>
+ 488:	str	xzr, [x24, #48]
+ 48c:	mov	w19, w0
+ 490:	ldr	w7, [sp, #120]
+ 494:	ldr	x6, [sp, #112]
+ 498:	cbz	w0, 4a8 <read_bfs_file+0x264>
+ 49c:	mov	x0, x27
+ 4a0:	bl	0 <grub_free>
+ 4a4:	b	3bc <read_bfs_file+0x178>
+ 4a8:	add	x20, x20, x28
+ 4ac:	add	x23, x23, x28
+ 4b0:	subs	x21, x21, x28
+ 4b4:	b.eq	49c <read_bfs_file+0x258>  // b.none
+ 4b8:	add	w7, w7, #0x1
+ 4bc:	mov	x19, x6
+ 4c0:	b	3fc <read_bfs_file+0x1b8>
+ 4c4:	ldrh	w27, [x22, #202]
+ 4c8:	sub	w0, w0, #0x3
+ 4cc:	lsl	x0, x27, x0
+ 4d0:	str	x0, [sp, #112]
+ 4d4:	lsl	x19, x0, #3
+ 4d8:	mov	x0, x19
+ 4dc:	bl	0 <grub_malloc>
+ 4e0:	mov	x27, x0
+ 4e4:	cbz	x0, 3b0 <read_bfs_file+0x16c>
+ 4e8:	ldr	w0, [x25, #44]
+ 4ec:	mov	w28, #0x1                   	// #1
+ 4f0:	add	w0, w0, #0x2
+ 4f4:	lsl	w0, w28, w0
+ 4f8:	sxtw	x0, w0
+ 4fc:	bl	0 <grub_malloc>
+ 500:	mov	x26, x0
+ 504:	cbnz	x0, 514 <read_bfs_file+0x2d0>
+ 508:	mov	x0, x27
+ 50c:	bl	0 <grub_free>
+ 510:	b	3b0 <read_bfs_file+0x16c>
+ 514:	mov	x5, x19
+ 518:	mov	x4, x27
+ 51c:	add	x2, x22, #0xc4
+ 520:	mov	x1, x25
+ 524:	mov	x0, x24
+ 528:	mov	x3, #0x0                   	// #0
+ 52c:	bl	210 <read_extent.constprop.0>
+ 530:	mov	w19, w0
+ 534:	cbz	w0, 548 <read_bfs_file+0x304>
+ 538:	mov	x0, x27
+ 53c:	bl	0 <grub_free>
+ 540:	mov	x0, x26
+ 544:	b	4a0 <read_bfs_file+0x25c>
+ 548:	mov	w10, w28
+ 54c:	mov	x9, #0x0                   	// #0
+ 550:	mov	x11, #0xffffffffffffffff    	// #-1
+ 554:	ldr	w0, [x25, #44]
+ 558:	ldur	x28, [x22, #188]
+ 55c:	sub	w3, w0, #0x1
+ 560:	add	w12, w0, #0x2
+ 564:	lsl	w3, w10, w3
+ 568:	sub	w2, w3, #0x1
+ 56c:	sub	x28, x20, x28
+ 570:	lsl	w7, w10, w12
+ 574:	sxtw	x2, w2
+ 578:	sub	w7, w7, #0x1
+ 57c:	lsr	x12, x28, x12
+ 580:	and	x12, x12, x2
+ 584:	lsl	w2, w0, #1
+ 588:	sxtw	x7, w7
+ 58c:	ldr	x1, [sp, #112]
+ 590:	add	w2, w2, #0x1
+ 594:	and	x7, x7, x28
+ 598:	lsr	x28, x28, x2
+ 59c:	cmp	x1, x28
+ 5a0:	b.cs	5c0 <read_bfs_file+0x37c>  // b.hs, b.nlast
+ 5a4:	mov	x0, x27
+ 5a8:	bl	0 <grub_free>
+ 5ac:	mov	x0, x26
+ 5b0:	bl	0 <grub_free>
+ 5b4:	adrp	x0, 0 <bfs_strcmp>
+ 5b8:	ldr	x1, [x0]
+ 5bc:	b	378 <read_bfs_file+0x134>
+ 5c0:	cmp	x28, x11
+ 5c4:	b.eq	61c <read_bfs_file+0x3d8>  // b.none
+ 5c8:	add	x2, x27, x28, lsl #3
+ 5cc:	sub	w0, w0, #0x3
+ 5d0:	ldrh	w9, [x2, #6]
+ 5d4:	lsl	x9, x9, x0
+ 5d8:	cmp	x9, w3, uxtw
+ 5dc:	b.ls	5e4 <read_bfs_file+0x3a0>  // b.plast
+ 5e0:	sxtw	x9, w3
+ 5e4:	lsl	x5, x9, #3
+ 5e8:	mov	x4, x26
+ 5ec:	mov	x1, x25
+ 5f0:	mov	x0, x24
+ 5f4:	mov	x3, #0x0                   	// #0
+ 5f8:	stp	x9, x7, [sp, #120]
+ 5fc:	str	x12, [sp, #136]
+ 600:	bl	210 <read_extent.constprop.0>
+ 604:	mov	w10, #0x1                   	// #1
+ 608:	mov	w19, w0
+ 60c:	ldp	x9, x7, [sp, #120]
+ 610:	ldr	x12, [sp, #136]
+ 614:	cbnz	w0, 538 <read_bfs_file+0x2f4>
+ 618:	mov	x11, x28
+ 61c:	cmp	x12, x9
+ 620:	b.hi	5a4 <read_bfs_file+0x360>  // b.pmore
+ 624:	ldr	w5, [x25, #44]
+ 628:	mov	x4, x23
+ 62c:	ldr	x0, [sp, #96]
+ 630:	add	w5, w5, #0x2
+ 634:	str	x0, [x24, #48]
+ 638:	mov	x3, x7
+ 63c:	lsl	w5, w10, w5
+ 640:	add	x2, x26, x12, lsl #3
+ 644:	sxtw	x5, w5
+ 648:	mov	x1, x25
+ 64c:	sub	x5, x5, x7
+ 650:	stp	x9, x11, [sp, #120]
+ 654:	cmp	x5, x21
+ 658:	ldr	x0, [sp, #104]
+ 65c:	str	x0, [x24, #56]
+ 660:	csel	x28, x5, x21, ls  // ls = plast
+ 664:	mov	x0, x24
+ 668:	mov	x5, x28
+ 66c:	bl	210 <read_extent.constprop.0>
+ 670:	str	xzr, [x24, #48]
+ 674:	mov	w19, w0
+ 678:	mov	w10, #0x1                   	// #1
+ 67c:	ldp	x9, x11, [sp, #120]
+ 680:	cbnz	w0, 538 <read_bfs_file+0x2f4>
+ 684:	add	x20, x20, x28
+ 688:	add	x23, x23, x28
+ 68c:	subs	x21, x21, x28
+ 690:	b.ne	554 <read_bfs_file+0x310>  // b.any
+ 694:	mov	w19, #0x0                   	// #0
+ 698:	b	3bc <read_bfs_file+0x178>
+ 69c:	nop
+	...
+
+00000000000006c8 <grub_bfs_read>:
+ 6c8:	stp	x29, x30, [sp, #-32]!
+ 6cc:	mov	x4, x1
+ 6d0:	mov	x5, x2
+ 6d4:	mov	x29, sp
+ 6d8:	ldr	x8, [x0, #8]
+ 6dc:	ldp	x1, x6, [x0, #80]
+ 6e0:	ldr	x3, [x0, #24]
+ 6e4:	ldr	x7, [x0, #96]
+ 6e8:	ldr	x0, [x8]
+ 6ec:	str	x19, [sp, #16]
+ 6f0:	mov	x19, x2
+ 6f4:	add	x2, x1, #0x7c
+ 6f8:	bl	244 <read_bfs_file>
+ 6fc:	cmp	w0, #0x0
+ 700:	csinv	x0, x19, xzr, eq  // eq = none
+ 704:	ldr	x19, [sp, #16]
+ 708:	ldp	x29, x30, [sp], #32
+ 70c:	ret
+
+0000000000000710 <read_symlink>:
+ 710:	stp	x29, x30, [sp, #-48]!
+ 714:	mov	x29, sp
+ 718:	str	x21, [sp, #32]
+ 71c:	ldur	x21, [x0, #228]
+ 720:	stp	x19, x20, [sp, #16]
+ 724:	mov	x20, x0
+ 728:	add	x0, x21, #0x1
+ 72c:	bl	0 <grub_malloc>
+ 730:	mov	x19, x0
+ 734:	cbz	x0, 768 <read_symlink+0x58>
+ 738:	mov	x4, x0
+ 73c:	mov	x5, x21
+ 740:	ldp	x0, x1, [x20]
+ 744:	add	x2, x20, #0x10
+ 748:	mov	x7, #0x0                   	// #0
+ 74c:	mov	x6, #0x0                   	// #0
+ 750:	mov	x3, #0x0                   	// #0
+ 754:	bl	244 <read_bfs_file>
+ 758:	cbz	w0, 77c <read_symlink+0x6c>
+ 75c:	mov	x0, x19
+ 760:	mov	x19, #0x0                   	// #0
+ 764:	bl	0 <grub_free>
+ 768:	mov	x0, x19
+ 76c:	ldp	x19, x20, [sp, #16]
+ 770:	ldr	x21, [sp, #32]
+ 774:	ldp	x29, x30, [sp], #48
+ 778:	ret
+ 77c:	strb	wzr, [x19, x21]
+ 780:	b	768 <read_symlink+0x58>
+
+0000000000000784 <read_b_node>:
+ 784:	stp	x29, x30, [sp, #-128]!
+ 788:	mov	x29, sp
+ 78c:	stp	x19, x20, [sp, #16]
+ 790:	mov	x20, x7
+ 794:	stp	x21, x22, [sp, #32]
+ 798:	mov	x22, x5
+ 79c:	mov	x21, x6
+ 7a0:	stp	x23, x24, [sp, #48]
+ 7a4:	mov	x24, x0
+ 7a8:	mov	x23, x4
+ 7ac:	stp	x25, x26, [sp, #64]
+ 7b0:	mov	x25, x1
+ 7b4:	mov	x26, x2
+ 7b8:	stp	x27, x28, [sp, #80]
+ 7bc:	mov	x27, x3
+ 7c0:	str	xzr, [x4]
+ 7c4:	add	x4, sp, #0x60
+ 7c8:	str	xzr, [x5]
+ 7cc:	mov	x5, #0x20                  	// #32
+ 7d0:	str	xzr, [x6]
+ 7d4:	mov	x6, #0x0                   	// #0
+ 7d8:	str	xzr, [x7]
+ 7dc:	mov	x7, #0x0                   	// #0
+ 7e0:	bl	244 <read_bfs_file>
+ 7e4:	mov	w28, w0
+ 7e8:	cbnz	w0, 81c <read_b_node+0x98>
+ 7ec:	ldp	w28, w1, [sp, #120]
+ 7f0:	mov	w5, #0xa                   	// #10
+ 7f4:	add	x1, x1, #0x23
+ 7f8:	and	x1, x1, #0xfffffffffffffffc
+ 7fc:	umaddl	x28, w28, w5, x1
+ 800:	mov	x0, x28
+ 804:	bl	0 <grub_malloc>
+ 808:	mov	x19, x0
+ 80c:	cbnz	x0, 83c <read_b_node+0xb8>
+ 810:	adrp	x0, 0 <bfs_strcmp>
+ 814:	ldr	x0, [x0]
+ 818:	ldr	w28, [x0]
+ 81c:	mov	w0, w28
+ 820:	ldp	x19, x20, [sp, #16]
+ 824:	ldp	x21, x22, [sp, #32]
+ 828:	ldp	x23, x24, [sp, #48]
+ 82c:	ldp	x25, x26, [sp, #64]
+ 830:	ldp	x27, x28, [sp, #80]
+ 834:	ldp	x29, x30, [sp], #128
+ 838:	ret
+ 83c:	mov	x5, x28
+ 840:	mov	x4, x0
+ 844:	mov	x3, x27
+ 848:	mov	x2, x26
+ 84c:	mov	x1, x25
+ 850:	mov	x0, x24
+ 854:	mov	x7, #0x0                   	// #0
+ 858:	mov	x6, #0x0                   	// #0
+ 85c:	bl	244 <read_bfs_file>
+ 860:	mov	w28, w0
+ 864:	cbz	w0, 874 <read_b_node+0xf0>
+ 868:	mov	x0, x19
+ 86c:	bl	0 <grub_free>
+ 870:	b	81c <read_b_node+0x98>
+ 874:	ldr	w4, [sp, #124]
+ 878:	add	x0, x19, #0x20
+ 87c:	str	x19, [x23]
+ 880:	add	x4, x4, #0x23
+ 884:	str	x0, [x22]
+ 888:	and	x4, x4, #0xfffffffffffffffc
+ 88c:	add	x19, x19, x4
+ 890:	ldr	w4, [sp, #120]
+ 894:	str	x19, [x21]
+ 898:	add	x19, x19, x4, lsl #1
+ 89c:	str	x19, [x20]
+ 8a0:	b	81c <read_b_node+0x98>
+ 8a4:	nop
+	...
+
+00000000000008b0 <lookup_file>:
+ 8b0:	stp	x29, x30, [sp, #-160]!
+ 8b4:	mov	x7, #0x0                   	// #0
+ 8b8:	mov	x6, #0x0                   	// #0
+ 8bc:	mov	x29, sp
+ 8c0:	stp	x23, x24, [sp, #48]
+ 8c4:	add	x4, sp, #0x80
+ 8c8:	mov	x23, x2
+ 8cc:	stp	x25, x26, [sp, #64]
+ 8d0:	add	x26, x0, #0x10
+ 8d4:	mov	x2, x26
+ 8d8:	ldp	x24, x25, [x0]
+ 8dc:	mov	x5, #0x20                  	// #32
+ 8e0:	stp	x19, x20, [sp, #16]
+ 8e4:	mov	x19, x0
+ 8e8:	stp	x21, x22, [sp, #32]
+ 8ec:	mov	x21, x1
+ 8f0:	mov	x22, x3
+ 8f4:	mov	x1, x25
+ 8f8:	mov	x0, x24
+ 8fc:	mov	x3, #0x0                   	// #0
+ 900:	stp	x27, x28, [sp, #80]
+ 904:	bl	244 <read_bfs_file>
+ 908:	cbnz	w0, a08 <lookup_file+0x158>
+ 90c:	ldr	w20, [sp, #140]
+ 910:	mov	w27, #0x1                   	// #1
+ 914:	ldur	x28, [sp, #132]
+ 918:	sub	w20, w20, #0x1
+ 91c:	add	x7, sp, #0x78
+ 920:	add	x6, sp, #0x70
+ 924:	add	x5, sp, #0x68
+ 928:	add	x4, sp, #0x60
+ 92c:	mov	x3, x28
+ 930:	mov	x2, x26
+ 934:	mov	x1, x25
+ 938:	mov	x0, x24
+ 93c:	bl	784 <read_b_node>
+ 940:	cbnz	w0, a08 <lookup_file+0x158>
+ 944:	ldr	x8, [sp, #96]
+ 948:	ldr	w11, [x8, #24]
+ 94c:	cbnz	w11, 978 <lookup_file+0xc8>
+ 950:	mov	x0, x8
+ 954:	bl	0 <grub_free>
+ 958:	adrp	x0, 0 <bfs_strcmp>
+ 95c:	mov	x2, x21
+ 960:	ldr	x1, [x0]
+ 964:	mov	w0, #0x5                   	// #5
+ 968:	bl	0 <grub_error>
+ 96c:	cbnz	w0, a08 <lookup_file+0x158>
+ 970:	mov	x21, #0x0                   	// #0
+ 974:	b	9ec <lookup_file+0x13c>
+ 978:	mov	w0, #0x0                   	// #0
+ 97c:	mov	w12, w0
+ 980:	add	w0, w0, #0x1
+ 984:	lsr	w9, w11, w0
+ 988:	cbnz	w9, 97c <lookup_file+0xcc>
+ 98c:	ldp	x14, x13, [sp, #104]
+ 990:	lsl	w10, w27, w12
+ 994:	orr	w10, w10, w9
+ 998:	cmp	w11, w10
+ 99c:	b.ls	a2c <lookup_file+0x17c>  // b.plast
+ 9a0:	sub	w0, w10, #0x1
+ 9a4:	ldrh	w2, [x13, w10, uxtw #1]
+ 9a8:	ldr	w1, [x8, #28]
+ 9ac:	mov	w15, w10
+ 9b0:	ldrh	w0, [x13, x0, lsl #1]
+ 9b4:	cmp	w1, w2
+ 9b8:	b.hi	9c0 <lookup_file+0x110>  // b.pmore
+ 9bc:	and	w2, w1, #0xffff
+ 9c0:	sub	w2, w2, w0
+ 9c4:	mov	x1, x21
+ 9c8:	add	x0, x14, w0, uxth
+ 9cc:	sxtw	x2, w2
+ 9d0:	bl	0 <bfs_strcmp>
+ 9d4:	orr	w1, w0, w20
+ 9d8:	cbnz	w1, a24 <lookup_file+0x174>
+ 9dc:	ldr	x0, [sp, #120]
+ 9e0:	ldr	x21, [x0, x15, lsl #3]
+ 9e4:	mov	x0, x8
+ 9e8:	bl	0 <grub_free>
+ 9ec:	mov	x0, #0x100                 	// #256
+ 9f0:	bl	0 <grub_malloc>
+ 9f4:	str	x0, [x23]
+ 9f8:	cbnz	x0, ae0 <lookup_file+0x230>
+ 9fc:	adrp	x0, 0 <bfs_strcmp>
+ a00:	ldr	x0, [x0]
+ a04:	ldr	w0, [x0]
+ a08:	ldp	x19, x20, [sp, #16]
+ a0c:	ldp	x21, x22, [sp, #32]
+ a10:	ldp	x23, x24, [sp, #48]
+ a14:	ldp	x25, x26, [sp, #64]
+ a18:	ldp	x27, x28, [sp, #80]
+ a1c:	ldp	x29, x30, [sp], #160
+ a20:	ret
+ a24:	cmp	w0, #0x0
+ a28:	csel	w9, w9, w10, gt
+ a2c:	sub	w12, w12, #0x1
+ a30:	cmn	w12, #0x1
+ a34:	b.ne	990 <lookup_file+0xe0>  // b.any
+ a38:	cbnz	w9, ab0 <lookup_file+0x200>
+ a3c:	ldrh	w2, [x13]
+ a40:	ldr	w0, [x8, #28]
+ a44:	cmp	w0, w2
+ a48:	b.hi	a50 <lookup_file+0x1a0>  // b.pmore
+ a4c:	and	w2, w0, #0xffff
+ a50:	mov	x1, x21
+ a54:	and	x2, x2, #0xffff
+ a58:	mov	x0, x14
+ a5c:	bl	0 <bfs_strcmp>
+ a60:	orr	w1, w20, w0
+ a64:	cbnz	w1, a74 <lookup_file+0x1c4>
+ a68:	ldr	x0, [sp, #120]
+ a6c:	ldr	x21, [x0]
+ a70:	b	9e4 <lookup_file+0x134>
+ a74:	cmp	w0, #0x0
+ a78:	ccmp	w20, #0x0, #0x4, gt
+ a7c:	b.eq	a98 <lookup_file+0x1e8>  // b.none
+ a80:	ldr	x0, [sp, #120]
+ a84:	ldr	x28, [x0]
+ a88:	mov	x0, x8
+ a8c:	sub	w20, w20, #0x1
+ a90:	bl	0 <grub_free>
+ a94:	b	91c <lookup_file+0x6c>
+ a98:	cbz	w20, acc <lookup_file+0x21c>
+ a9c:	cmp	w11, #0x1
+ aa0:	b.ls	acc <lookup_file+0x21c>  // b.plast
+ aa4:	ldr	x0, [sp, #120]
+ aa8:	ldr	x28, [x0, #8]
+ aac:	b	a88 <lookup_file+0x1d8>
+ ab0:	cbz	w20, acc <lookup_file+0x21c>
+ ab4:	add	w9, w9, #0x1
+ ab8:	cmp	w11, w9
+ abc:	b.ls	acc <lookup_file+0x21c>  // b.plast
+ ac0:	ldr	x0, [sp, #120]
+ ac4:	ldr	x28, [x0, w9, uxtw #3]
+ ac8:	b	a88 <lookup_file+0x1d8>
+ acc:	ldr	x28, [x8, #16]
+ ad0:	mov	x0, x8
+ ad4:	cmn	x28, #0x1
+ ad8:	b.eq	954 <lookup_file+0xa4>  // b.none
+ adc:	b	a8c <lookup_file+0x1dc>
+ ae0:	ldr	x1, [x19]
+ ae4:	str	x1, [x0]
+ ae8:	ldr	x1, [x19, #8]
+ aec:	str	x1, [x0, #8]
+ af0:	add	x20, x0, #0x10
+ af4:	mov	x3, #0xec                  	// #236
+ af8:	ldr	x0, [x19, #8]
+ afc:	mov	x4, x20
+ b00:	mov	x2, #0x0                   	// #0
+ b04:	ldr	w1, [x0, #44]
+ b08:	ldr	x0, [x19]
+ b0c:	sub	w1, w1, #0x9
+ b10:	lsl	x1, x21, x1
+ b14:	bl	0 <grub_disk_read>
+ b18:	cbz	w0, b28 <lookup_file+0x278>
+ b1c:	ldr	x0, [x23]
+ b20:	bl	0 <grub_free>
+ b24:	b	9fc <lookup_file+0x14c>
+ b28:	ldr	w1, [x20, #20]
+ b2c:	and	w1, w1, #0xe000
+ b30:	cmp	w1, #0x4, lsl #12
+ b34:	b.eq	b4c <lookup_file+0x29c>  // b.none
+ b38:	cmp	w1, #0xa, lsl #12
+ b3c:	mov	w1, #0x3                   	// #3
+ b40:	csinc	w1, w1, wzr, eq  // eq = none
+ b44:	str	w1, [x22]
+ b48:	b	a08 <lookup_file+0x158>
+ b4c:	mov	w1, #0x2                   	// #2
+ b50:	b	b44 <lookup_file+0x294>
+ b54:	nop
+	...
+
+0000000000000b68 <find_file>:
+ b68:	stp	x29, x30, [sp, #-336]!
+ b6c:	mov	x29, sp
+ b70:	stp	x19, x20, [sp, #16]
+ b74:	mov	x19, x2
+ b78:	mov	x20, x1
+ b7c:	mov	x2, #0xf0                  	// #240
+ b80:	mov	w1, #0x0                   	// #0
+ b84:	stp	x21, x22, [sp, #32]
+ b88:	mov	x22, x3
+ b8c:	add	x21, sp, #0x50
+ b90:	stp	x23, x24, [sp, #48]
+ b94:	mov	w24, w4
+ b98:	mov	x23, x0
+ b9c:	add	x0, sp, #0x60
+ ba0:	bl	0 <memset>
+ ba4:	add	x2, x19, #0x74
+ ba8:	mov	x1, x19
+ bac:	add	x4, x21, #0x10
+ bb0:	mov	x0, x20
+ bb4:	mov	x5, #0xec                  	// #236
+ bb8:	mov	x3, #0x0                   	// #0
+ bbc:	stp	x20, x19, [sp, #80]
+ bc0:	bl	210 <read_extent.constprop.0>
+ bc4:	mov	w19, w0
+ bc8:	cbnz	w0, c1c <find_file+0xb4>
+ bcc:	adrp	x0, 0 <bfs_strcmp>
+ bd0:	mov	w5, w24
+ bd4:	add	x2, sp, #0x48
+ bd8:	mov	x1, x21
+ bdc:	ldr	x4, [x0]
+ be0:	adrp	x0, 0 <bfs_strcmp>
+ be4:	ldr	x3, [x0]
+ be8:	mov	x0, x23
+ bec:	bl	0 <grub_fshelp_find_file_lookup>
+ bf0:	mov	w19, w0
+ bf4:	cbnz	w0, c0c <find_file+0xa4>
+ bf8:	ldr	x1, [sp, #72]
+ bfc:	mov	x0, x22
+ c00:	mov	x2, #0xec                  	// #236
+ c04:	add	x1, x1, #0x10
+ c08:	bl	0 <grub_memmove>
+ c0c:	ldr	x0, [sp, #72]
+ c10:	cmp	x0, x21
+ c14:	b.eq	c1c <find_file+0xb4>  // b.none
+ c18:	bl	0 <grub_free>
+ c1c:	mov	w0, w19
+ c20:	ldp	x19, x20, [sp, #16]
+ c24:	ldp	x21, x22, [sp, #32]
+ c28:	ldp	x23, x24, [sp, #48]
+ c2c:	ldp	x29, x30, [sp], #336
+ c30:	ret
+ c34:	nop
+	...
+
+0000000000000c48 <grub_bfs_dir>:
+ c48:	sub	sp, sp, #0x220
+ c4c:	stp	x29, x30, [sp]
+ c50:	mov	x29, sp
+ c54:	stp	x19, x20, [sp, #16]
+ c58:	mov	x20, x0
+ c5c:	mov	x19, x3
+ c60:	add	x0, sp, #0xb0
+ c64:	stp	x21, x22, [sp, #32]
+ c68:	mov	x22, x2
+ c6c:	mov	x21, x1
+ c70:	mov	x2, #0x80                  	// #128
+ c74:	mov	w1, #0x0                   	// #0
+ c78:	stp	x23, x24, [sp, #48]
+ c7c:	bl	0 <memset>
+ c80:	ldr	x0, [x20]
+ c84:	str	x19, [sp, #168]
+ c88:	add	x19, sp, #0xb0
+ c8c:	stp	x20, x22, [sp, #152]
+ c90:	mov	x1, x19
+ c94:	bl	10c <mount>
+ c98:	cbnz	w0, e14 <grub_bfs_dir+0x1cc>
+ c9c:	ldr	x1, [x20]
+ ca0:	add	x3, sp, #0x130
+ ca4:	mov	x2, x19
+ ca8:	mov	x0, x21
+ cac:	mov	w4, #0x2                   	// #2
+ cb0:	bl	b68 <find_file>
+ cb4:	cbnz	w0, e14 <grub_bfs_dir+0x1cc>
+ cb8:	ldr	x22, [x20]
+ cbc:	add	x4, sp, #0x58
+ cc0:	add	x2, sp, #0x130
+ cc4:	mov	x1, x19
+ cc8:	mov	x0, x22
+ ccc:	mov	x7, #0x0                   	// #0
+ cd0:	mov	x6, #0x0                   	// #0
+ cd4:	mov	x5, #0x20                  	// #32
+ cd8:	mov	x3, #0x0                   	// #0
+ cdc:	bl	244 <read_bfs_file>
+ ce0:	cbnz	w0, e08 <grub_bfs_dir+0x1c0>
+ ce4:	ldr	w21, [sp, #100]
+ ce8:	ldur	x20, [sp, #92]
+ cec:	sub	w21, w21, #0x1
+ cf0:	cbnz	w21, d4c <grub_bfs_dir+0x104>
+ cf4:	add	x23, sp, #0xb0
+ cf8:	add	x7, sp, #0x78
+ cfc:	add	x6, sp, #0x50
+ d00:	add	x5, sp, #0x48
+ d04:	add	x4, sp, #0x40
+ d08:	mov	x3, x20
+ d0c:	add	x2, sp, #0x130
+ d10:	mov	x1, x23
+ d14:	mov	x0, x22
+ d18:	bl	784 <read_b_node>
+ d1c:	mov	w19, w0
+ d20:	cbnz	w0, e08 <grub_bfs_dir+0x1c0>
+ d24:	mov	w3, #0x0                   	// #0
+ d28:	ldr	x0, [sp, #64]
+ d2c:	ldr	w1, [x0, #24]
+ d30:	cmp	w19, w1
+ d34:	b.cc	db8 <grub_bfs_dir+0x170>  // b.lo, b.ul, b.last
+ d38:	ldr	x20, [x0, #8]
+ d3c:	bl	0 <grub_free>
+ d40:	cmn	x20, #0x1
+ d44:	b.ne	cf8 <grub_bfs_dir+0xb0>  // b.any
+ d48:	b	e08 <grub_bfs_dir+0x1c0>
+ d4c:	add	x4, sp, #0x78
+ d50:	mov	x3, x20
+ d54:	add	x2, sp, #0x130
+ d58:	mov	x1, x19
+ d5c:	mov	x0, x22
+ d60:	mov	x7, #0x0                   	// #0
+ d64:	mov	x6, #0x0                   	// #0
+ d68:	mov	x5, #0x20                  	// #32
+ d6c:	bl	244 <read_bfs_file>
+ d70:	cbnz	w0, e08 <grub_bfs_dir+0x1c0>
+ d74:	ldp	w0, w3, [sp, #144]
+ d78:	add	x4, sp, #0x50
+ d7c:	add	x2, sp, #0x130
+ d80:	mov	x1, x19
+ d84:	add	x3, x3, #0x23
+ d88:	sub	w21, w21, #0x1
+ d8c:	and	x3, x3, #0xfffffffffffffffc
+ d90:	mov	x7, #0x0                   	// #0
+ d94:	add	x3, x3, w0, uxtw #1
+ d98:	mov	x6, #0x0                   	// #0
+ d9c:	add	x3, x3, x20
+ da0:	mov	x0, x22
+ da4:	mov	x5, #0x8                   	// #8
+ da8:	bl	244 <read_bfs_file>
+ dac:	cbnz	w0, e08 <grub_bfs_dir+0x1c0>
+ db0:	ldr	x20, [sp, #80]
+ db4:	b	cf0 <grub_bfs_dir+0xa8>
+ db8:	ldr	x2, [sp, #80]
+ dbc:	mov	w1, w19
+ dc0:	ldr	w0, [x0, #28]
+ dc4:	ldrh	w20, [x2, w19, uxtw #1]
+ dc8:	cmp	w0, w20
+ dcc:	b.hi	dd4 <grub_bfs_dir+0x18c>  // b.pmore
+ dd0:	and	w20, w0, #0xffff
+ dd4:	ldr	x0, [sp, #72]
+ dd8:	and	x21, x20, #0xffff
+ ddc:	add	x2, sp, #0x98
+ de0:	ldrb	w24, [x0, x21]
+ de4:	strb	wzr, [x0, x21]
+ de8:	ldr	x0, [sp, #120]
+ dec:	ldr	x1, [x0, x1, lsl #3]
+ df0:	ldr	x0, [sp, #72]
+ df4:	add	x0, x0, w3, uxth
+ df8:	bl	68 <grub_bfs_dir_iter>
+ dfc:	cbz	w0, e2c <grub_bfs_dir+0x1e4>
+ e00:	ldr	x0, [sp, #64]
+ e04:	bl	0 <grub_free>
+ e08:	adrp	x0, 0 <bfs_strcmp>
+ e0c:	ldr	x0, [x0]
+ e10:	ldr	w0, [x0]
+ e14:	ldp	x29, x30, [sp]
+ e18:	ldp	x19, x20, [sp, #16]
+ e1c:	ldp	x21, x22, [sp, #32]
+ e20:	ldp	x23, x24, [sp, #48]
+ e24:	add	sp, sp, #0x220
+ e28:	ret
+ e2c:	ldr	x0, [sp, #72]
+ e30:	add	w19, w19, #0x1
+ e34:	mov	w3, w20
+ e38:	strb	w24, [x0, x21]
+ e3c:	b	d28 <grub_bfs_dir+0xe0>
+	...
+
+0000000000000e48 <grub_bfs_open>:
+ e48:	stp	x29, x30, [sp, #-416]!
+ e4c:	mov	x29, sp
+ e50:	stp	x19, x20, [sp, #16]
+ e54:	mov	x20, x0
+ e58:	ldr	x0, [x0, #8]
+ e5c:	ldr	x0, [x0]
+ e60:	str	x21, [sp, #32]
+ e64:	mov	x21, x1
+ e68:	add	x1, sp, #0x30
+ e6c:	bl	10c <mount>
+ e70:	mov	w19, w0
+ e74:	cbnz	w0, eb8 <grub_bfs_open+0x70>
+ e78:	ldr	x0, [x20, #8]
+ e7c:	add	x3, sp, #0xb0
+ e80:	add	x2, sp, #0x30
+ e84:	mov	w4, #0x1                   	// #1
+ e88:	ldr	x1, [x0]
+ e8c:	mov	x0, x21
+ e90:	bl	b68 <find_file>
+ e94:	mov	w19, w0
+ e98:	cbnz	w0, eb8 <grub_bfs_open+0x70>
+ e9c:	mov	x0, #0x168                 	// #360
+ ea0:	bl	0 <grub_zalloc>
+ ea4:	mov	x21, x0
+ ea8:	cbnz	x0, ecc <grub_bfs_open+0x84>
+ eac:	adrp	x0, 0 <bfs_strcmp>
+ eb0:	ldr	x0, [x0]
+ eb4:	ldr	w19, [x0]
+ eb8:	mov	w0, w19
+ ebc:	ldp	x19, x20, [sp, #16]
+ ec0:	ldr	x21, [sp, #32]
+ ec4:	ldp	x29, x30, [sp], #416
+ ec8:	ret
+ ecc:	add	x1, sp, #0x30
+ ed0:	mov	x2, #0x7c                  	// #124
+ ed4:	bl	0 <memcpy>
+ ed8:	add	x1, sp, #0xb0
+ edc:	add	x0, x21, #0x7c
+ ee0:	mov	x2, #0xec                  	// #236
+ ee4:	bl	0 <grub_memmove>
+ ee8:	add	x0, sp, #0x200
+ eec:	str	x21, [x20, #80]
+ ef0:	ldur	x0, [x0, #-124]
+ ef4:	str	x0, [x20, #64]
+ ef8:	b	eb8 <grub_bfs_open+0x70>
+ efc:	nop
+	...
+
+0000000000000f08 <grub_mod_init>:
+ f08:	adrp	x0, 0 <bfs_strcmp>
+ f0c:	ldr	x1, [x0]
+ f10:	adrp	x0, 0 <bfs_strcmp>
+ f14:	ldr	x0, [x0]
+ f18:	b	0 <grub_list_push>
+ f1c:	nop
+	...
+
+0000000000000f30 <grub_mod_fini>:
+ f30:	adrp	x0, 0 <bfs_strcmp>
+ f34:	ldr	x0, [x0]
+ f38:	b	0 <grub_list_remove>
+ f3c:	nop
+	...

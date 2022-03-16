@@ -1,0 +1,844 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//gettext.module_gcc_-O2:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_gettext_delete_list>:
+   0:	stp	x29, x30, [sp, #-48]!
+   4:	mov	x29, sp
+   8:	str	x21, [sp, #32]
+   c:	ldr	x21, [x0, #40]
+  10:	cbz	x21, 80 <grub_gettext_delete_list+0x80>
+  14:	stp	x19, x20, [sp, #16]
+  18:	mov	x20, x0
+  1c:	ldr	x0, [x0, #24]
+  20:	str	xzr, [x20, #40]
+  24:	cbz	x0, 4c <grub_gettext_delete_list+0x4c>
+  28:	mov	x19, #0x0                   	// #0
+  2c:	nop
+  30:	lsl	x0, x19, #4
+  34:	add	x19, x19, #0x1
+  38:	ldr	x0, [x21, x0]
+  3c:	bl	0 <grub_free>
+  40:	ldr	x0, [x20, #24]
+  44:	cmp	x0, x19
+  48:	b.hi	30 <grub_gettext_delete_list+0x30>  // b.pmore
+  4c:	mov	x0, x21
+  50:	bl	0 <grub_free>
+  54:	ldr	x0, [x20]
+  58:	cbz	x0, 60 <grub_gettext_delete_list+0x60>
+  5c:	bl	0 <grub_file_close>
+  60:	ldr	x21, [sp, #32]
+  64:	str	xzr, [x20]
+  68:	mov	x0, x20
+  6c:	mov	x2, #0x30                  	// #48
+  70:	ldp	x19, x20, [sp, #16]
+  74:	mov	w1, #0x0                   	// #0
+  78:	ldp	x29, x30, [sp], #48
+  7c:	b	0 <grub_memset>
+  80:	ldr	x21, [sp, #32]
+  84:	ldp	x29, x30, [sp], #48
+  88:	ret
+  8c:	nop
+
+0000000000000090 <grub_gettext_pread>:
+  90:	cbnz	x2, 9c <grub_gettext_pread+0xc>
+  94:	mov	w0, #0x0                   	// #0
+  98:	ret
+  9c:	stp	x29, x30, [sp, #-48]!
+  a0:	mov	x29, sp
+  a4:	stp	x19, x20, [sp, #16]
+  a8:	mov	x19, x2
+  ac:	mov	x20, x0
+  b0:	str	x21, [sp, #32]
+  b4:	mov	x21, x1
+  b8:	mov	x1, x3
+  bc:	bl	0 <grub_file_seek>
+  c0:	cmn	x0, #0x1
+  c4:	b.eq	11c <grub_gettext_pread+0x8c>  // b.none
+  c8:	mov	x1, x21
+  cc:	mov	x0, x20
+  d0:	mov	x2, x19
+  d4:	bl	0 <grub_file_read>
+  d8:	cmp	x0, x19
+  dc:	b.eq	108 <grub_gettext_pread+0x78>  // b.none
+  e0:	adrp	x0, 0 <grub_gettext_delete_list>
+  e4:	ldr	x19, [x0]
+  e8:	ldr	w0, [x19]
+  ec:	cbnz	w0, 10c <grub_gettext_pread+0x7c>
+  f0:	adrp	x1, 0 <grub_gettext_delete_list>
+  f4:	mov	w0, #0xe                   	// #14
+  f8:	ldr	x1, [x1]
+  fc:	bl	0 <grub_error>
+ 100:	ldr	w0, [x19]
+ 104:	b	10c <grub_gettext_pread+0x7c>
+ 108:	mov	w0, #0x0                   	// #0
+ 10c:	ldp	x19, x20, [sp, #16]
+ 110:	ldr	x21, [sp, #32]
+ 114:	ldp	x29, x30, [sp], #48
+ 118:	ret
+ 11c:	adrp	x0, 0 <grub_gettext_delete_list>
+ 120:	ldp	x19, x20, [sp, #16]
+ 124:	ldr	x0, [x0]
+ 128:	ldr	x21, [sp, #32]
+ 12c:	ldr	w0, [x0]
+ 130:	ldp	x29, x30, [sp], #48
+ 134:	ret
+	...
+
+0000000000000148 <grub_mofile_open>:
+ 148:	stp	x29, x30, [sp, #-80]!
+ 14c:	mov	x29, sp
+ 150:	stp	x19, x20, [sp, #16]
+ 154:	mov	x20, x0
+ 158:	mov	x0, x1
+ 15c:	stp	x21, x22, [sp, #32]
+ 160:	mov	x22, x1
+ 164:	mov	w1, #0x35                  	// #53
+ 168:	bl	0 <grub_file_open>
+ 16c:	cbz	x0, 238 <grub_mofile_open+0xf0>
+ 170:	mov	x21, x0
+ 174:	add	x1, sp, #0x38
+ 178:	mov	x3, #0x0                   	// #0
+ 17c:	mov	x2, #0x14                  	// #20
+ 180:	bl	90 <grub_gettext_pread>
+ 184:	mov	w19, w0
+ 188:	cbnz	w0, 28c <grub_mofile_open+0x144>
+ 18c:	ldr	w1, [sp, #56]
+ 190:	mov	w0, #0x12de                	// #4830
+ 194:	movk	w0, #0x9504, lsl #16
+ 198:	cmp	w1, w0
+ 19c:	b.ne	258 <grub_mofile_open+0x110>  // b.any
+ 1a0:	ldr	w19, [sp, #60]
+ 1a4:	cbnz	w19, 2a8 <grub_mofile_open+0x160>
+ 1a8:	ldp	w0, w2, [sp, #64]
+ 1ac:	str	x0, [x20, #24]
+ 1b0:	ldr	w1, [sp, #72]
+ 1b4:	stp	x2, x1, [x20, #8]
+ 1b8:	str	wzr, [x20, #32]
+ 1bc:	cbz	x0, 1dc <grub_mofile_open+0x94>
+ 1c0:	mov	w1, #0x1                   	// #1
+ 1c4:	nop
+ 1c8:	mov	w2, w1
+ 1cc:	add	w1, w1, #0x1
+ 1d0:	lsr	x3, x0, x2
+ 1d4:	cbnz	x3, 1c8 <grub_mofile_open+0x80>
+ 1d8:	str	w2, [x20, #32]
+ 1dc:	lsl	x0, x0, #4
+ 1e0:	bl	0 <grub_zalloc>
+ 1e4:	str	x0, [x20, #40]
+ 1e8:	cbz	x0, 230 <grub_mofile_open+0xe8>
+ 1ec:	adrp	x1, 0 <grub_gettext_delete_list>
+ 1f0:	adrp	x0, 0 <grub_gettext_delete_list>
+ 1f4:	ldr	x1, [x1]
+ 1f8:	ldr	x2, [x0]
+ 1fc:	ldr	x0, [x1]
+ 200:	str	x21, [x20]
+ 204:	cmp	x0, x2
+ 208:	b.eq	21c <grub_mofile_open+0xd4>  // b.none
+ 20c:	adrp	x3, 0 <grub_gettext_delete_list>
+ 210:	str	x2, [x1]
+ 214:	ldr	x1, [x3]
+ 218:	str	x0, [x1]
+ 21c:	mov	w0, w19
+ 220:	ldp	x19, x20, [sp, #16]
+ 224:	ldp	x21, x22, [sp, #32]
+ 228:	ldp	x29, x30, [sp], #80
+ 22c:	ret
+ 230:	mov	x0, x21
+ 234:	bl	0 <grub_file_close>
+ 238:	adrp	x0, 0 <grub_gettext_delete_list>
+ 23c:	ldp	x21, x22, [sp, #32]
+ 240:	ldr	x0, [x0]
+ 244:	ldr	w19, [x0]
+ 248:	mov	w0, w19
+ 24c:	ldp	x19, x20, [sp, #16]
+ 250:	ldp	x29, x30, [sp], #80
+ 254:	ret
+ 258:	mov	x0, x21
+ 25c:	bl	0 <grub_file_close>
+ 260:	adrp	x1, 0 <grub_gettext_delete_list>
+ 264:	mov	x2, x22
+ 268:	mov	w0, #0x4                   	// #4
+ 26c:	ldr	x1, [x1]
+ 270:	bl	0 <grub_error>
+ 274:	mov	w19, w0
+ 278:	mov	w0, w19
+ 27c:	ldp	x19, x20, [sp, #16]
+ 280:	ldp	x21, x22, [sp, #32]
+ 284:	ldp	x29, x30, [sp], #80
+ 288:	ret
+ 28c:	mov	x0, x21
+ 290:	bl	0 <grub_file_close>
+ 294:	mov	w0, w19
+ 298:	ldp	x19, x20, [sp, #16]
+ 29c:	ldp	x21, x22, [sp, #32]
+ 2a0:	ldp	x29, x30, [sp], #80
+ 2a4:	ret
+ 2a8:	mov	x0, x21
+ 2ac:	bl	0 <grub_file_close>
+ 2b0:	adrp	x1, 0 <grub_gettext_delete_list>
+ 2b4:	mov	x2, x22
+ 2b8:	mov	w0, #0x4                   	// #4
+ 2bc:	ldr	x1, [x1]
+ 2c0:	bl	0 <grub_error>
+ 2c4:	mov	w19, w0
+ 2c8:	b	21c <grub_mofile_open+0xd4>
+ 2cc:	nop
+	...
+
+0000000000000300 <grub_mofile_open_lang>:
+ 300:	stp	x29, x30, [sp, #-80]!
+ 304:	adrp	x4, 0 <grub_gettext_delete_list>
+ 308:	mov	x29, sp
+ 30c:	stp	x19, x20, [sp, #16]
+ 310:	mov	x20, x0
+ 314:	ldr	x0, [x4]
+ 318:	stp	x21, x22, [sp, #32]
+ 31c:	mov	x22, x3
+ 320:	stp	x23, x24, [sp, #48]
+ 324:	mov	x24, x1
+ 328:	mov	x23, x2
+ 32c:	bl	0 <grub_xasprintf>
+ 330:	cbz	x0, 414 <grub_mofile_open_lang+0x114>
+ 334:	mov	x1, x0
+ 338:	mov	x19, x0
+ 33c:	mov	x0, x20
+ 340:	bl	148 <grub_mofile_open>
+ 344:	mov	w21, w0
+ 348:	mov	x0, x19
+ 34c:	bl	0 <grub_free>
+ 350:	cbnz	w21, 370 <grub_mofile_open_lang+0x70>
+ 354:	mov	w19, #0x0                   	// #0
+ 358:	mov	w0, w19
+ 35c:	ldp	x19, x20, [sp, #16]
+ 360:	ldp	x21, x22, [sp, #32]
+ 364:	ldp	x23, x24, [sp, #48]
+ 368:	ldp	x29, x30, [sp], #80
+ 36c:	ret
+ 370:	adrp	x1, 0 <grub_gettext_delete_list>
+ 374:	adrp	x0, 0 <grub_gettext_delete_list>
+ 378:	str	x25, [sp, #64]
+ 37c:	mov	x3, x22
+ 380:	ldr	x25, [x1]
+ 384:	mov	x2, x23
+ 388:	ldr	x0, [x0]
+ 38c:	mov	x1, x24
+ 390:	str	wzr, [x25]
+ 394:	bl	0 <grub_xasprintf>
+ 398:	mov	x19, x0
+ 39c:	cbz	x0, 438 <grub_mofile_open_lang+0x138>
+ 3a0:	mov	x1, x0
+ 3a4:	mov	x0, x20
+ 3a8:	bl	148 <grub_mofile_open>
+ 3ac:	mov	w21, w0
+ 3b0:	mov	x0, x19
+ 3b4:	bl	0 <grub_free>
+ 3b8:	cbz	w21, 458 <grub_mofile_open_lang+0x158>
+ 3bc:	adrp	x0, 0 <grub_gettext_delete_list>
+ 3c0:	mov	x3, x22
+ 3c4:	mov	x2, x23
+ 3c8:	mov	x1, x24
+ 3cc:	ldr	x0, [x0]
+ 3d0:	str	wzr, [x25]
+ 3d4:	bl	0 <grub_xasprintf>
+ 3d8:	mov	x21, x0
+ 3dc:	cbz	x0, 438 <grub_mofile_open_lang+0x138>
+ 3e0:	mov	x1, x0
+ 3e4:	mov	x0, x20
+ 3e8:	bl	148 <grub_mofile_open>
+ 3ec:	mov	w19, w0
+ 3f0:	mov	x0, x21
+ 3f4:	bl	0 <grub_free>
+ 3f8:	mov	w0, w19
+ 3fc:	ldp	x19, x20, [sp, #16]
+ 400:	ldp	x21, x22, [sp, #32]
+ 404:	ldp	x23, x24, [sp, #48]
+ 408:	ldr	x25, [sp, #64]
+ 40c:	ldp	x29, x30, [sp], #80
+ 410:	ret
+ 414:	adrp	x0, 0 <grub_gettext_delete_list>
+ 418:	ldp	x21, x22, [sp, #32]
+ 41c:	ldr	x0, [x0]
+ 420:	ldp	x23, x24, [sp, #48]
+ 424:	ldr	w19, [x0]
+ 428:	mov	w0, w19
+ 42c:	ldp	x19, x20, [sp, #16]
+ 430:	ldp	x29, x30, [sp], #80
+ 434:	ret
+ 438:	ldr	w19, [x25]
+ 43c:	ldp	x21, x22, [sp, #32]
+ 440:	mov	w0, w19
+ 444:	ldp	x19, x20, [sp, #16]
+ 448:	ldp	x23, x24, [sp, #48]
+ 44c:	ldr	x25, [sp, #64]
+ 450:	ldp	x29, x30, [sp], #80
+ 454:	ret
+ 458:	ldr	x25, [sp, #64]
+ 45c:	b	354 <grub_mofile_open_lang+0x54>
+	...
+
+0000000000000480 <grub_gettext_init_ext>:
+ 480:	stp	x29, x30, [sp, #-64]!
+ 484:	mov	x29, sp
+ 488:	stp	x19, x20, [sp, #16]
+ 48c:	mov	x19, x1
+ 490:	mov	x20, x3
+ 494:	stp	x21, x22, [sp, #32]
+ 498:	mov	x22, x2
+ 49c:	stp	x23, x24, [sp, #48]
+ 4a0:	mov	x23, x0
+ 4a4:	bl	0 <grub_gettext_delete_list>
+ 4a8:	cbz	x19, 538 <grub_gettext_init_ext+0xb8>
+ 4ac:	ldrb	w0, [x19]
+ 4b0:	mov	w21, #0x0                   	// #0
+ 4b4:	cbz	w0, 500 <grub_gettext_init_ext+0x80>
+ 4b8:	cbz	x22, 518 <grub_gettext_init_ext+0x98>
+ 4bc:	ldrb	w0, [x22]
+ 4c0:	cbz	w0, 518 <grub_gettext_init_ext+0x98>
+ 4c4:	adrp	x0, 0 <grub_gettext_delete_list>
+ 4c8:	ldr	x20, [x0]
+ 4cc:	mov	x3, x19
+ 4d0:	mov	x2, x20
+ 4d4:	mov	x1, x22
+ 4d8:	mov	x0, x23
+ 4dc:	bl	300 <grub_mofile_open_lang>
+ 4e0:	mov	w21, w0
+ 4e4:	cbnz	w0, 554 <grub_gettext_init_ext+0xd4>
+ 4e8:	ldrb	w0, [x19]
+ 4ec:	cmp	w0, #0x65
+ 4f0:	b.ne	500 <grub_gettext_init_ext+0x80>  // b.any
+ 4f4:	ldrb	w0, [x19, #1]
+ 4f8:	cmp	w0, #0x6e
+ 4fc:	b.eq	5a4 <grub_gettext_init_ext+0x124>  // b.none
+ 500:	mov	w0, w21
+ 504:	ldp	x19, x20, [sp, #16]
+ 508:	ldp	x21, x22, [sp, #32]
+ 50c:	ldp	x23, x24, [sp, #48]
+ 510:	ldp	x29, x30, [sp], #64
+ 514:	ret
+ 518:	mov	w21, #0x0                   	// #0
+ 51c:	cbz	x20, 500 <grub_gettext_init_ext+0x80>
+ 520:	ldrb	w0, [x20]
+ 524:	cbz	w0, 500 <grub_gettext_init_ext+0x80>
+ 528:	adrp	x0, 0 <grub_gettext_delete_list>
+ 52c:	mov	x22, x20
+ 530:	ldr	x20, [x0]
+ 534:	b	4cc <grub_gettext_init_ext+0x4c>
+ 538:	mov	w21, #0x0                   	// #0
+ 53c:	mov	w0, w21
+ 540:	ldp	x19, x20, [sp, #16]
+ 544:	ldp	x21, x22, [sp, #32]
+ 548:	ldp	x23, x24, [sp, #48]
+ 54c:	ldp	x29, x30, [sp], #64
+ 550:	ret
+ 554:	mov	x0, x19
+ 558:	bl	0 <grub_strdup>
+ 55c:	mov	x24, x0
+ 560:	cbz	x0, 598 <grub_gettext_init_ext+0x118>
+ 564:	mov	w1, #0x5f                  	// #95
+ 568:	bl	0 <grub_strchr>
+ 56c:	cbz	x0, 598 <grub_gettext_init_ext+0x118>
+ 570:	adrp	x3, 0 <grub_gettext_delete_list>
+ 574:	strb	wzr, [x0]
+ 578:	mov	x2, x20
+ 57c:	mov	x1, x22
+ 580:	ldr	x4, [x3]
+ 584:	mov	x0, x23
+ 588:	mov	x3, x24
+ 58c:	str	wzr, [x4]
+ 590:	bl	300 <grub_mofile_open_lang>
+ 594:	mov	w21, w0
+ 598:	mov	x0, x24
+ 59c:	bl	0 <grub_free>
+ 5a0:	b	4e8 <grub_gettext_init_ext+0x68>
+ 5a4:	ldrb	w0, [x19, #2]
+ 5a8:	cmp	w0, #0x5f
+ 5ac:	ccmp	w0, #0x0, #0x4, ne  // ne = any
+ 5b0:	b.ne	500 <grub_gettext_init_ext+0x80>  // b.any
+ 5b4:	adrp	x0, 0 <grub_gettext_delete_list>
+ 5b8:	mov	w21, #0x0                   	// #0
+ 5bc:	ldr	x0, [x0]
+ 5c0:	str	wzr, [x0]
+ 5c4:	b	500 <grub_gettext_init_ext+0x80>
+	...
+
+00000000000005e0 <grub_gettext_env_write_lang>:
+ 5e0:	stp	x29, x30, [sp, #-32]!
+ 5e4:	adrp	x0, 0 <grub_gettext_delete_list>
+ 5e8:	mov	x29, sp
+ 5ec:	ldr	x0, [x0]
+ 5f0:	stp	x19, x20, [sp, #16]
+ 5f4:	mov	x19, x1
+ 5f8:	bl	0 <grub_env_get>
+ 5fc:	mov	x20, x0
+ 600:	adrp	x1, 0 <grub_gettext_delete_list>
+ 604:	ldr	x0, [x1]
+ 608:	bl	0 <grub_env_get>
+ 60c:	mov	x3, x0
+ 610:	adrp	x4, 0 <grub_gettext_delete_list>
+ 614:	mov	x2, x20
+ 618:	mov	x1, x19
+ 61c:	ldr	x20, [x4]
+ 620:	add	x0, x20, #0x8
+ 624:	bl	480 <grub_gettext_init_ext>
+ 628:	cbnz	w0, 660 <grub_gettext_env_write_lang+0x80>
+ 62c:	adrp	x0, 0 <grub_gettext_delete_list>
+ 630:	ldr	x0, [x0]
+ 634:	bl	0 <grub_env_get>
+ 638:	mov	x2, x0
+ 63c:	mov	x1, x19
+ 640:	add	x0, x20, #0x38
+ 644:	mov	x3, #0x0                   	// #0
+ 648:	bl	480 <grub_gettext_init_ext>
+ 64c:	cbnz	w0, 668 <grub_gettext_env_write_lang+0x88>
+ 650:	mov	x0, x19
+ 654:	ldp	x19, x20, [sp, #16]
+ 658:	ldp	x29, x30, [sp], #32
+ 65c:	b	0 <grub_strdup>
+ 660:	bl	0 <grub_print_error>
+ 664:	b	62c <grub_gettext_env_write_lang+0x4c>
+ 668:	bl	0 <grub_print_error>
+ 66c:	mov	x0, x19
+ 670:	ldp	x19, x20, [sp, #16]
+ 674:	ldp	x29, x30, [sp], #32
+ 678:	b	0 <grub_strdup>
+ 67c:	nop
+	...
+
+00000000000006a0 <read_secondary>:
+ 6a0:	stp	x29, x30, [sp, #-32]!
+ 6a4:	adrp	x0, 0 <grub_gettext_delete_list>
+ 6a8:	mov	x29, sp
+ 6ac:	ldr	x0, [x0]
+ 6b0:	str	x19, [sp, #16]
+ 6b4:	mov	x19, x1
+ 6b8:	bl	0 <grub_env_get>
+ 6bc:	mov	x1, x0
+ 6c0:	adrp	x4, 0 <grub_gettext_delete_list>
+ 6c4:	mov	x2, x19
+ 6c8:	mov	x3, #0x0                   	// #0
+ 6cc:	ldr	x0, [x4]
+ 6d0:	add	x0, x0, #0x38
+ 6d4:	bl	480 <grub_gettext_init_ext>
+ 6d8:	cbnz	w0, 6ec <read_secondary+0x4c>
+ 6dc:	mov	x0, x19
+ 6e0:	ldr	x19, [sp, #16]
+ 6e4:	ldp	x29, x30, [sp], #32
+ 6e8:	b	0 <grub_strdup>
+ 6ec:	bl	0 <grub_print_error>
+ 6f0:	mov	x0, x19
+ 6f4:	ldr	x19, [sp, #16]
+ 6f8:	ldp	x29, x30, [sp], #32
+ 6fc:	b	0 <grub_strdup>
+	...
+
+0000000000000710 <read_main>:
+ 710:	stp	x29, x30, [sp, #-32]!
+ 714:	adrp	x0, 0 <grub_gettext_delete_list>
+ 718:	mov	x29, sp
+ 71c:	ldr	x0, [x0]
+ 720:	stp	x19, x20, [sp, #16]
+ 724:	mov	x19, x1
+ 728:	bl	0 <grub_env_get>
+ 72c:	mov	x20, x0
+ 730:	adrp	x1, 0 <grub_gettext_delete_list>
+ 734:	ldr	x0, [x1]
+ 738:	bl	0 <grub_env_get>
+ 73c:	mov	x3, x0
+ 740:	adrp	x4, 0 <grub_gettext_delete_list>
+ 744:	mov	x1, x20
+ 748:	mov	x2, x19
+ 74c:	ldr	x0, [x4]
+ 750:	add	x0, x0, #0x8
+ 754:	bl	480 <grub_gettext_init_ext>
+ 758:	cbnz	w0, 76c <read_main+0x5c>
+ 75c:	mov	x0, x19
+ 760:	ldp	x19, x20, [sp, #16]
+ 764:	ldp	x29, x30, [sp], #32
+ 768:	b	0 <grub_strdup>
+ 76c:	bl	0 <grub_print_error>
+ 770:	mov	x0, x19
+ 774:	ldp	x19, x20, [sp, #16]
+ 778:	ldp	x29, x30, [sp], #32
+ 77c:	b	0 <grub_strdup>
+	...
+
+0000000000000798 <grub_gettext_getstr_from_position.isra.0>:
+ 798:	stp	x29, x30, [sp, #-64]!
+ 79c:	add	x3, x1, x2, lsl #3
+ 7a0:	mov	x2, #0x8                   	// #8
+ 7a4:	mov	x29, sp
+ 7a8:	stp	x19, x20, [sp, #16]
+ 7ac:	mov	x20, x0
+ 7b0:	add	x1, sp, #0x38
+ 7b4:	ldr	x0, [x0]
+ 7b8:	bl	90 <grub_gettext_pread>
+ 7bc:	cbnz	w0, 80c <grub_gettext_getstr_from_position.isra.0+0x74>
+ 7c0:	stp	x21, x22, [sp, #32]
+ 7c4:	ldp	w21, w22, [sp, #56]
+ 7c8:	add	x0, x21, #0x1
+ 7cc:	bl	0 <grub_malloc>
+ 7d0:	mov	x19, x0
+ 7d4:	cbz	x0, 808 <grub_gettext_getstr_from_position.isra.0+0x70>
+ 7d8:	mov	x1, x0
+ 7dc:	mov	x3, x22
+ 7e0:	ldr	x0, [x20]
+ 7e4:	mov	x2, x21
+ 7e8:	bl	90 <grub_gettext_pread>
+ 7ec:	cbnz	w0, 820 <grub_gettext_getstr_from_position.isra.0+0x88>
+ 7f0:	strb	wzr, [x19, x21]
+ 7f4:	ldp	x21, x22, [sp, #32]
+ 7f8:	mov	x0, x19
+ 7fc:	ldp	x19, x20, [sp, #16]
+ 800:	ldp	x29, x30, [sp], #64
+ 804:	ret
+ 808:	ldp	x21, x22, [sp, #32]
+ 80c:	mov	x19, #0x0                   	// #0
+ 810:	mov	x0, x19
+ 814:	ldp	x19, x20, [sp, #16]
+ 818:	ldp	x29, x30, [sp], #64
+ 81c:	ret
+ 820:	mov	x0, x19
+ 824:	mov	x19, #0x0                   	// #0
+ 828:	bl	0 <grub_free>
+ 82c:	ldp	x21, x22, [sp, #32]
+ 830:	b	7f8 <grub_gettext_getstr_from_position.isra.0+0x60>
+ 834:	nop
+
+0000000000000838 <grub_gettext_getstring_from_position>:
+ 838:	stp	x29, x30, [sp, #-48]!
+ 83c:	mov	x2, x1
+ 840:	mov	x29, sp
+ 844:	str	x21, [sp, #32]
+ 848:	ldr	x21, [x0, #40]
+ 84c:	stp	x19, x20, [sp, #16]
+ 850:	lsl	x20, x1, #4
+ 854:	ldr	x1, [x21, x20]
+ 858:	cbz	x1, 870 <grub_gettext_getstring_from_position+0x38>
+ 85c:	mov	x0, x1
+ 860:	ldp	x19, x20, [sp, #16]
+ 864:	ldr	x21, [sp, #32]
+ 868:	ldp	x29, x30, [sp], #48
+ 86c:	ret
+ 870:	ldr	x1, [x0, #8]
+ 874:	mov	x19, x0
+ 878:	bl	798 <grub_gettext_getstr_from_position.isra.0>
+ 87c:	ldr	x1, [x19, #40]
+ 880:	str	x0, [x21, x20]
+ 884:	ldr	x21, [sp, #32]
+ 888:	ldr	x1, [x1, x20]
+ 88c:	ldp	x19, x20, [sp, #16]
+ 890:	mov	x0, x1
+ 894:	ldp	x29, x30, [sp], #48
+ 898:	ret
+ 89c:	nop
+
+00000000000008a0 <grub_gettext_gettranslation_from_position>:
+ 8a0:	stp	x29, x30, [sp, #-48]!
+ 8a4:	mov	x2, x1
+ 8a8:	mov	x29, sp
+ 8ac:	stp	x19, x20, [sp, #16]
+ 8b0:	ldr	x20, [x0, #40]
+ 8b4:	str	x21, [sp, #32]
+ 8b8:	lsl	x21, x1, #4
+ 8bc:	add	x20, x20, x21
+ 8c0:	ldr	x1, [x20, #8]
+ 8c4:	cbz	x1, 8dc <grub_gettext_gettranslation_from_position+0x3c>
+ 8c8:	mov	x0, x1
+ 8cc:	ldp	x19, x20, [sp, #16]
+ 8d0:	ldr	x21, [sp, #32]
+ 8d4:	ldp	x29, x30, [sp], #48
+ 8d8:	ret
+ 8dc:	ldr	x1, [x0, #16]
+ 8e0:	mov	x19, x0
+ 8e4:	bl	798 <grub_gettext_getstr_from_position.isra.0>
+ 8e8:	ldr	x1, [x19, #40]
+ 8ec:	str	x0, [x20, #8]
+ 8f0:	ldp	x19, x20, [sp, #16]
+ 8f4:	add	x21, x1, x21
+ 8f8:	ldr	x1, [x21, #8]
+ 8fc:	ldr	x21, [sp, #32]
+ 900:	mov	x0, x1
+ 904:	ldp	x29, x30, [sp], #48
+ 908:	ret
+ 90c:	nop
+
+0000000000000910 <grub_gettext_translate_real>:
+ 910:	stp	x29, x30, [sp, #-80]!
+ 914:	mov	x29, sp
+ 918:	stp	x21, x22, [sp, #32]
+ 91c:	ldr	x21, [x0, #40]
+ 920:	cbz	x21, 9f8 <grub_gettext_translate_real+0xe8>
+ 924:	ldr	x21, [x0]
+ 928:	stp	x25, x26, [sp, #64]
+ 92c:	mov	x26, x0
+ 930:	cbz	x21, a08 <grub_gettext_translate_real+0xf8>
+ 934:	adrp	x0, 0 <grub_gettext_delete_list>
+ 938:	mov	x21, #0x0                   	// #0
+ 93c:	ldr	x25, [x0]
+ 940:	ldr	w0, [x25, #104]
+ 944:	cmp	w0, #0x2
+ 948:	b.gt	a08 <grub_gettext_translate_real+0xf8>
+ 94c:	add	w0, w0, #0x1
+ 950:	stp	x19, x20, [sp, #16]
+ 954:	stp	x23, x24, [sp, #48]
+ 958:	mov	x24, x1
+ 95c:	str	w0, [x25, #104]
+ 960:	bl	0 <grub_error_push>
+ 964:	ldr	w20, [x26, #32]
+ 968:	tbnz	w20, #31, a20 <grub_gettext_translate_real+0x110>
+ 96c:	mov	x22, #0x0                   	// #0
+ 970:	mov	w23, #0x1                   	// #1
+ 974:	b	980 <grub_gettext_translate_real+0x70>
+ 978:	cmn	w20, #0x1
+ 97c:	b.eq	a1c <grub_gettext_translate_real+0x10c>  // b.none
+ 980:	lsl	w19, w23, w20
+ 984:	mov	x0, x26
+ 988:	ldr	x2, [x26, #24]
+ 98c:	sxtw	x19, w19
+ 990:	orr	x19, x19, x22
+ 994:	sub	w20, w20, #0x1
+ 998:	mov	x1, x19
+ 99c:	cmp	x2, x19
+ 9a0:	b.ls	978 <grub_gettext_translate_real+0x68>  // b.plast
+ 9a4:	bl	838 <grub_gettext_getstring_from_position>
+ 9a8:	mov	x21, x0
+ 9ac:	mov	x1, x24
+ 9b0:	cbz	x0, a60 <grub_gettext_translate_real+0x150>
+ 9b4:	bl	0 <grub_strcmp>
+ 9b8:	cmp	w0, #0x0
+ 9bc:	b.gt	978 <grub_gettext_translate_real+0x68>
+ 9c0:	mov	x22, x19
+ 9c4:	b.ne	978 <grub_gettext_translate_real+0x68>  // b.any
+ 9c8:	mov	x1, x19
+ 9cc:	mov	x0, x26
+ 9d0:	bl	8a0 <grub_gettext_gettranslation_from_position>
+ 9d4:	mov	x21, x0
+ 9d8:	cbz	x0, a60 <grub_gettext_translate_real+0x150>
+ 9dc:	bl	0 <grub_error_pop>
+ 9e0:	ldr	w0, [x25, #104]
+ 9e4:	ldp	x19, x20, [sp, #16]
+ 9e8:	sub	w0, w0, #0x1
+ 9ec:	ldp	x23, x24, [sp, #48]
+ 9f0:	str	w0, [x25, #104]
+ 9f4:	ldp	x25, x26, [sp, #64]
+ 9f8:	mov	x0, x21
+ 9fc:	ldp	x21, x22, [sp, #32]
+ a00:	ldp	x29, x30, [sp], #80
+ a04:	ret
+ a08:	mov	x0, x21
+ a0c:	ldp	x21, x22, [sp, #32]
+ a10:	ldp	x25, x26, [sp, #64]
+ a14:	ldp	x29, x30, [sp], #80
+ a18:	ret
+ a1c:	cbnz	x22, a78 <grub_gettext_translate_real+0x168>
+ a20:	ldr	x0, [x26, #24]
+ a24:	cbz	x0, a78 <grub_gettext_translate_real+0x168>
+ a28:	mov	x0, x26
+ a2c:	mov	x1, #0x0                   	// #0
+ a30:	bl	838 <grub_gettext_getstring_from_position>
+ a34:	mov	x21, x0
+ a38:	cbz	x0, a60 <grub_gettext_translate_real+0x150>
+ a3c:	mov	x1, x24
+ a40:	bl	0 <grub_strcmp>
+ a44:	cbnz	w0, a78 <grub_gettext_translate_real+0x168>
+ a48:	mov	x0, x26
+ a4c:	mov	x1, #0x0                   	// #0
+ a50:	bl	8a0 <grub_gettext_gettranslation_from_position>
+ a54:	mov	x21, x0
+ a58:	cbnz	x0, 9dc <grub_gettext_translate_real+0xcc>
+ a5c:	nop
+ a60:	adrp	x0, 0 <grub_gettext_delete_list>
+ a64:	ldr	x0, [x0]
+ a68:	str	wzr, [x0]
+ a6c:	bl	0 <grub_error_pop>
+ a70:	ldr	w0, [x25, #104]
+ a74:	b	a84 <grub_gettext_translate_real+0x174>
+ a78:	bl	0 <grub_error_pop>
+ a7c:	mov	x21, #0x0                   	// #0
+ a80:	ldr	w0, [x25, #104]
+ a84:	sub	w0, w0, #0x1
+ a88:	ldp	x19, x20, [sp, #16]
+ a8c:	ldp	x23, x24, [sp, #48]
+ a90:	str	w0, [x25, #104]
+ a94:	mov	x0, x21
+ a98:	ldp	x21, x22, [sp, #32]
+ a9c:	ldp	x25, x26, [sp, #64]
+ aa0:	ldp	x29, x30, [sp], #80
+ aa4:	ret
+	...
+
+0000000000000ab8 <grub_gettext_translate>:
+ ab8:	stp	x29, x30, [sp, #-32]!
+ abc:	mov	x29, sp
+ ac0:	stp	x19, x20, [sp, #16]
+ ac4:	mov	x19, x0
+ ac8:	ldrb	w0, [x0]
+ acc:	cbnz	w0, ae0 <grub_gettext_translate+0x28>
+ ad0:	mov	x0, x19
+ ad4:	ldp	x19, x20, [sp, #16]
+ ad8:	ldp	x29, x30, [sp], #32
+ adc:	ret
+ ae0:	adrp	x0, 0 <grub_gettext_delete_list>
+ ae4:	mov	x1, x19
+ ae8:	ldr	x20, [x0]
+ aec:	add	x0, x20, #0x8
+ af0:	bl	910 <grub_gettext_translate_real>
+ af4:	cbnz	x0, ad4 <grub_gettext_translate+0x1c>
+ af8:	add	x0, x20, #0x38
+ afc:	mov	x1, x19
+ b00:	bl	910 <grub_gettext_translate_real>
+ b04:	cbnz	x0, ad4 <grub_gettext_translate+0x1c>
+ b08:	b	ad0 <grub_gettext_translate+0x18>
+ b0c:	nop
+	...
+
+0000000000000b18 <grub_cmd_translate>:
+ b18:	cmp	w1, #0x1
+ b1c:	b.eq	b30 <grub_cmd_translate+0x18>  // b.none
+ b20:	adrp	x1, 0 <grub_gettext_delete_list>
+ b24:	mov	w0, #0x12                  	// #18
+ b28:	ldr	x1, [x1]
+ b2c:	b	0 <grub_error>
+ b30:	stp	x29, x30, [sp, #-16]!
+ b34:	mov	x29, sp
+ b38:	ldr	x0, [x2]
+ b3c:	bl	ab8 <grub_gettext_translate>
+ b40:	mov	x1, x0
+ b44:	adrp	x2, 0 <grub_gettext_delete_list>
+ b48:	ldr	x0, [x2]
+ b4c:	bl	0 <grub_printf>
+ b50:	mov	w0, #0x0                   	// #0
+ b54:	ldp	x29, x30, [sp], #16
+ b58:	ret
+ b5c:	nop
+	...
+
+0000000000000b70 <grub_gettext_reread_prefix>:
+ b70:	stp	x29, x30, [sp, #-32]!
+ b74:	adrp	x1, 0 <grub_gettext_delete_list>
+ b78:	mov	x29, sp
+ b7c:	stp	x19, x20, [sp, #16]
+ b80:	mov	x20, x0
+ b84:	ldr	x0, [x1]
+ b88:	bl	0 <grub_env_get>
+ b8c:	mov	x19, x0
+ b90:	adrp	x1, 0 <grub_gettext_delete_list>
+ b94:	ldr	x0, [x1]
+ b98:	bl	0 <grub_env_get>
+ b9c:	mov	x2, x0
+ ba0:	adrp	x4, 0 <grub_gettext_delete_list>
+ ba4:	mov	x3, x20
+ ba8:	mov	x1, x19
+ bac:	ldr	x0, [x4]
+ bb0:	add	x0, x0, #0x8
+ bb4:	bl	480 <grub_gettext_init_ext>
+ bb8:	cbnz	w0, bc8 <grub_gettext_reread_prefix+0x58>
+ bbc:	ldp	x19, x20, [sp, #16]
+ bc0:	ldp	x29, x30, [sp], #32
+ bc4:	ret
+ bc8:	ldp	x19, x20, [sp, #16]
+ bcc:	ldp	x29, x30, [sp], #32
+ bd0:	b	0 <grub_print_error>
+ bd4:	nop
+	...
+
+0000000000000bf0 <grub_mod_init>:
+ bf0:	stp	x29, x30, [sp, #-64]!
+ bf4:	adrp	x0, 0 <grub_gettext_delete_list>
+ bf8:	mov	x29, sp
+ bfc:	stp	x21, x22, [sp, #32]
+ c00:	ldr	x22, [x0]
+ c04:	stp	x19, x20, [sp, #16]
+ c08:	mov	x0, x22
+ c0c:	str	x23, [sp, #48]
+ c10:	bl	0 <grub_env_get>
+ c14:	mov	x19, x0
+ c18:	adrp	x1, 0 <grub_gettext_delete_list>
+ c1c:	ldr	x21, [x1]
+ c20:	mov	x0, x21
+ c24:	bl	0 <grub_env_get>
+ c28:	adrp	x1, 0 <grub_gettext_delete_list>
+ c2c:	mov	x20, x0
+ c30:	ldr	x0, [x1]
+ c34:	bl	0 <grub_env_get>
+ c38:	mov	x3, x0
+ c3c:	adrp	x4, 0 <grub_gettext_delete_list>
+ c40:	mov	x2, x20
+ c44:	mov	x1, x19
+ c48:	ldr	x23, [x4]
+ c4c:	add	x0, x23, #0x8
+ c50:	bl	480 <grub_gettext_init_ext>
+ c54:	cbnz	w0, d0c <grub_mod_init+0x11c>
+ c58:	adrp	x0, 0 <grub_gettext_delete_list>
+ c5c:	ldr	x20, [x0]
+ c60:	mov	x0, x20
+ c64:	bl	0 <grub_env_get>
+ c68:	mov	x1, x19
+ c6c:	mov	x2, x0
+ c70:	mov	x3, #0x0                   	// #0
+ c74:	add	x0, x23, #0x38
+ c78:	bl	480 <grub_gettext_init_ext>
+ c7c:	cbnz	w0, d14 <grub_mod_init+0x124>
+ c80:	adrp	x2, 0 <grub_gettext_delete_list>
+ c84:	mov	x0, x21
+ c88:	mov	x1, #0x0                   	// #0
+ c8c:	ldr	x2, [x2]
+ c90:	bl	0 <grub_register_variable_hook>
+ c94:	adrp	x2, 0 <grub_gettext_delete_list>
+ c98:	mov	x0, x20
+ c9c:	mov	x1, #0x0                   	// #0
+ ca0:	ldr	x2, [x2]
+ ca4:	bl	0 <grub_register_variable_hook>
+ ca8:	adrp	x3, 0 <grub_gettext_delete_list>
+ cac:	adrp	x2, 0 <grub_gettext_delete_list>
+ cb0:	adrp	x1, 0 <grub_gettext_delete_list>
+ cb4:	adrp	x0, 0 <grub_gettext_delete_list>
+ cb8:	ldr	x3, [x3]
+ cbc:	mov	w4, #0x1                   	// #1
+ cc0:	ldr	x2, [x2]
+ cc4:	ldr	x1, [x1]
+ cc8:	ldr	x0, [x0]
+ ccc:	bl	0 <grub_register_command_prio>
+ cd0:	adrp	x2, 0 <grub_gettext_delete_list>
+ cd4:	mov	x1, #0x0                   	// #0
+ cd8:	mov	x0, x22
+ cdc:	ldr	x2, [x2]
+ ce0:	bl	0 <grub_register_variable_hook>
+ ce4:	mov	x0, x22
+ ce8:	bl	0 <grub_env_export>
+ cec:	mov	x0, x21
+ cf0:	bl	0 <grub_env_export>
+ cf4:	mov	x0, x20
+ cf8:	ldp	x19, x20, [sp, #16]
+ cfc:	ldp	x21, x22, [sp, #32]
+ d00:	ldr	x23, [sp, #48]
+ d04:	ldp	x29, x30, [sp], #64
+ d08:	b	0 <grub_env_export>
+ d0c:	bl	0 <grub_print_error>
+ d10:	b	c58 <grub_mod_init+0x68>
+ d14:	bl	0 <grub_print_error>
+ d18:	b	c80 <grub_mod_init+0x90>
+ d1c:	nop
+	...
+
+0000000000000d80 <grub_mod_fini>:
+ d80:	stp	x29, x30, [sp, #-32]!
+ d84:	adrp	x0, 0 <grub_gettext_delete_list>
+ d88:	mov	x29, sp
+ d8c:	str	x19, [sp, #16]
+ d90:	ldr	x19, [x0]
+ d94:	add	x0, x19, #0x8
+ d98:	bl	0 <grub_gettext_delete_list>
+ d9c:	add	x0, x19, #0x38
+ da0:	bl	0 <grub_gettext_delete_list>
+ da4:	adrp	x0, 0 <grub_gettext_delete_list>
+ da8:	ldr	x1, [x19]
+ dac:	ldr	x0, [x0]
+ db0:	ldr	x19, [sp, #16]
+ db4:	str	x1, [x0]
+ db8:	ldp	x29, x30, [sp], #32
+ dbc:	ret
+	...

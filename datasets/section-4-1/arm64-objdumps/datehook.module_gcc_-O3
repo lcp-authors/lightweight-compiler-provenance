@@ -1,0 +1,128 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//datehook.module_gcc_-O3:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_read_hook_datetime>:
+   0:	stp	x29, x30, [sp, #-80]!
+   4:	adrp	x1, 0 <grub_read_hook_datetime>
+   8:	mov	x29, sp
+   c:	stp	x21, x22, [sp, #32]
+  10:	ldr	x21, [x1]
+  14:	stp	x19, x20, [sp, #16]
+  18:	mov	x20, x0
+  1c:	add	x0, sp, #0x48
+  20:	strb	wzr, [x21]
+  24:	bl	0 <grub_get_datetime>
+  28:	cbnz	w0, 64 <grub_read_hook_datetime+0x64>
+  2c:	adrp	x0, 0 <grub_read_hook_datetime>
+  30:	str	x23, [sp, #48]
+  34:	mov	x19, #0x0                   	// #0
+  38:	ldr	x23, [x0]
+  3c:	nop
+  40:	mov	w22, w19
+  44:	ldr	x1, [x23, x19, lsl #3]
+  48:	add	x19, x19, #0x1
+  4c:	ldr	x0, [x20]
+  50:	bl	0 <grub_strcmp>
+  54:	cbz	w0, 78 <grub_read_hook_datetime+0x78>
+  58:	cmp	x19, #0x7
+  5c:	b.ne	40 <grub_read_hook_datetime+0x40>  // b.any
+  60:	ldr	x23, [sp, #48]
+  64:	mov	x0, x21
+  68:	ldp	x19, x20, [sp, #16]
+  6c:	ldp	x21, x22, [sp, #32]
+  70:	ldp	x29, x30, [sp], #80
+  74:	ret
+  78:	cmp	w22, #0x3
+  7c:	b.eq	e8 <grub_read_hook_datetime+0xe8>  // b.none
+  80:	b.gt	d0 <grub_read_hook_datetime+0xd0>
+  84:	cmp	w22, #0x1
+  88:	b.eq	108 <grub_read_hook_datetime+0x108>  // b.none
+  8c:	cmp	w22, #0x2
+  90:	b.ne	c4 <grub_read_hook_datetime+0xc4>  // b.any
+  94:	ldrb	w3, [sp, #75]
+  98:	adrp	x2, 0 <grub_read_hook_datetime>
+  9c:	mov	x0, x21
+  a0:	mov	x1, #0x6                   	// #6
+  a4:	ldr	x2, [x2]
+  a8:	bl	0 <grub_snprintf>
+  ac:	mov	x0, x21
+  b0:	ldp	x19, x20, [sp, #16]
+  b4:	ldp	x21, x22, [sp, #32]
+  b8:	ldr	x23, [sp, #48]
+  bc:	ldp	x29, x30, [sp], #80
+  c0:	ret
+  c4:	cbnz	w22, f8 <grub_read_hook_datetime+0xf8>
+  c8:	ldrh	w3, [sp, #72]
+  cc:	b	98 <grub_read_hook_datetime+0x98>
+  d0:	cmp	w22, #0x4
+  d4:	b.eq	f0 <grub_read_hook_datetime+0xf0>  // b.none
+  d8:	cmp	w22, #0x5
+  dc:	b.ne	f8 <grub_read_hook_datetime+0xf8>  // b.any
+  e0:	ldrb	w3, [sp, #78]
+  e4:	b	98 <grub_read_hook_datetime+0x98>
+  e8:	ldrb	w3, [sp, #76]
+  ec:	b	98 <grub_read_hook_datetime+0x98>
+  f0:	ldrb	w3, [sp, #77]
+  f4:	b	98 <grub_read_hook_datetime+0x98>
+  f8:	add	x0, sp, #0x48
+  fc:	bl	0 <grub_get_weekday_name>
+ 100:	ldr	x23, [sp, #48]
+ 104:	b	68 <grub_read_hook_datetime+0x68>
+ 108:	ldrb	w3, [sp, #74]
+ 10c:	b	98 <grub_read_hook_datetime+0x98>
+	...
+
+0000000000000128 <grub_mod_init>:
+ 128:	stp	x29, x30, [sp, #-48]!
+ 12c:	adrp	x1, 0 <grub_read_hook_datetime>
+ 130:	adrp	x0, 0 <grub_read_hook_datetime>
+ 134:	mov	x29, sp
+ 138:	stp	x21, x22, [sp, #32]
+ 13c:	ldr	x22, [x1]
+ 140:	stp	x19, x20, [sp, #16]
+ 144:	mov	x19, #0x0                   	// #0
+ 148:	ldr	x21, [x0]
+ 14c:	nop
+ 150:	mov	x1, x21
+ 154:	ldr	x20, [x22, x19, lsl #3]
+ 158:	mov	x2, #0x0                   	// #0
+ 15c:	add	x19, x19, #0x1
+ 160:	mov	x0, x20
+ 164:	bl	0 <grub_register_variable_hook>
+ 168:	mov	x0, x20
+ 16c:	bl	0 <grub_env_export>
+ 170:	cmp	x19, #0x7
+ 174:	b.ne	150 <grub_mod_init+0x28>  // b.any
+ 178:	ldp	x19, x20, [sp, #16]
+ 17c:	ldp	x21, x22, [sp, #32]
+ 180:	ldp	x29, x30, [sp], #48
+ 184:	ret
+	...
+
+0000000000000198 <grub_mod_fini>:
+ 198:	stp	x29, x30, [sp, #-48]!
+ 19c:	adrp	x0, 0 <grub_read_hook_datetime>
+ 1a0:	mov	x29, sp
+ 1a4:	str	x21, [sp, #32]
+ 1a8:	ldr	x21, [x0]
+ 1ac:	stp	x19, x20, [sp, #16]
+ 1b0:	mov	x19, #0x0                   	// #0
+ 1b4:	nop
+ 1b8:	ldr	x20, [x21, x19, lsl #3]
+ 1bc:	mov	x2, #0x0                   	// #0
+ 1c0:	mov	x1, #0x0                   	// #0
+ 1c4:	add	x19, x19, #0x1
+ 1c8:	mov	x0, x20
+ 1cc:	bl	0 <grub_register_variable_hook>
+ 1d0:	mov	x0, x20
+ 1d4:	bl	0 <grub_env_unset>
+ 1d8:	cmp	x19, #0x7
+ 1dc:	b.ne	1b8 <grub_mod_fini+0x20>  // b.any
+ 1e0:	ldp	x19, x20, [sp, #16]
+ 1e4:	ldr	x21, [sp, #32]
+ 1e8:	ldp	x29, x30, [sp], #48
+ 1ec:	ret
+	...

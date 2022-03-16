@@ -1,0 +1,54 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//crtbegin.o_clang_-O3:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <deregister_tm_clones>:
+   0:	adrp	x0, 0 <deregister_tm_clones>
+   4:	add	x0, x0, #0x0
+   8:	adrp	x1, 0 <__TMC_END__>
+   c:	add	x1, x1, #0x0
+  10:	cmp	x1, x0
+  14:	b.eq	2c <deregister_tm_clones+0x2c>  // b.none
+  18:	adrp	x1, 0 <deregister_tm_clones>
+  1c:	ldr	x1, [x1]
+  20:	cbz	x1, 2c <deregister_tm_clones+0x2c>
+  24:	mov	x16, x1
+  28:	br	x16
+  2c:	ret
+
+0000000000000030 <register_tm_clones>:
+  30:	adrp	x0, 0 <deregister_tm_clones>
+  34:	add	x0, x0, #0x0
+  38:	adrp	x1, 0 <__TMC_END__>
+  3c:	add	x1, x1, #0x0
+  40:	sub	x1, x1, x0
+  44:	lsr	x2, x1, #63
+  48:	add	x1, x2, x1, asr #3
+  4c:	cmp	xzr, x1, asr #1
+  50:	asr	x1, x1, #1
+  54:	b.eq	6c <register_tm_clones+0x3c>  // b.none
+  58:	adrp	x2, 0 <deregister_tm_clones>
+  5c:	ldr	x2, [x2]
+  60:	cbz	x2, 6c <register_tm_clones+0x3c>
+  64:	mov	x16, x2
+  68:	br	x16
+  6c:	ret
+
+0000000000000070 <__do_global_dtors_aux>:
+  70:	stp	x29, x30, [sp, #-32]!
+  74:	mov	x29, sp
+  78:	str	x19, [sp, #16]
+  7c:	adrp	x19, 0 <deregister_tm_clones>
+  80:	ldrb	w0, [x19]
+  84:	cbnz	w0, 94 <__do_global_dtors_aux+0x24>
+  88:	bl	0 <deregister_tm_clones>
+  8c:	mov	w0, #0x1                   	// #1
+  90:	strb	w0, [x19]
+  94:	ldr	x19, [sp, #16]
+  98:	ldp	x29, x30, [sp], #32
+  9c:	ret
+
+00000000000000a0 <frame_dummy>:
+  a0:	b	30 <register_tm_clones>

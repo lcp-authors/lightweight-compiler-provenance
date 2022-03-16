@@ -1,0 +1,1260 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//jpeg.module_gcc_-O2:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_jpeg_get_marker>:
+       0:	stp	x29, x30, [sp, #-48]!
+       4:	mov	x2, #0x1                   	// #1
+       8:	mov	x29, sp
+       c:	str	x19, [sp, #16]
+      10:	mov	x19, x0
+      14:	ldr	x0, [x0]
+      18:	add	x1, sp, #0x2f
+      1c:	strb	wzr, [sp, #47]
+      20:	bl	0 <grub_file_read>
+      24:	ldrb	w0, [sp, #47]
+      28:	cmp	w0, #0xff
+      2c:	b.eq	50 <grub_jpeg_get_marker+0x50>  // b.none
+      30:	adrp	x1, 0 <grub_jpeg_get_marker>
+      34:	mov	w0, #0x4                   	// #4
+      38:	ldr	x1, [x1]
+      3c:	bl	0 <grub_error>
+      40:	mov	w0, #0x0                   	// #0
+      44:	ldr	x19, [sp, #16]
+      48:	ldp	x29, x30, [sp], #48
+      4c:	ret
+      50:	ldr	x0, [x19]
+      54:	add	x1, sp, #0x2f
+      58:	mov	x2, #0x1                   	// #1
+      5c:	strb	wzr, [sp, #47]
+      60:	bl	0 <grub_file_read>
+      64:	ldrb	w0, [sp, #47]
+      68:	ldr	x19, [sp, #16]
+      6c:	ldp	x29, x30, [sp], #48
+      70:	ret
+      74:	nop
+	...
+
+0000000000000080 <grub_jpeg_get_bit>:
+      80:	stp	x29, x30, [sp, #-48]!
+      84:	mov	x29, sp
+      88:	stp	x19, x20, [sp, #16]
+      8c:	mov	x19, x0
+      90:	ldr	w20, [x0, #2308]
+      94:	cbz	w20, bc <grub_jpeg_get_bit+0x3c>
+      98:	ldr	w0, [x0, #2312]
+      9c:	asr	w1, w20, #1
+      a0:	tst	w20, w0
+      a4:	str	w1, [x19, #2308]
+      a8:	cset	w20, ne  // ne = any
+      ac:	mov	w0, w20
+      b0:	ldp	x19, x20, [sp, #16]
+      b4:	ldp	x29, x30, [sp], #48
+      b8:	ret
+      bc:	ldr	x0, [x0]
+      c0:	add	x1, sp, #0x2f
+      c4:	mov	x2, #0x1                   	// #1
+      c8:	strb	wzr, [sp, #47]
+      cc:	bl	0 <grub_file_read>
+      d0:	ldrb	w0, [sp, #47]
+      d4:	str	w0, [x19, #2312]
+      d8:	cmp	w0, #0xff
+      dc:	b.eq	ec <grub_jpeg_get_bit+0x6c>  // b.none
+      e0:	mov	w1, #0x40                  	// #64
+      e4:	mov	w20, #0x80                  	// #128
+      e8:	b	a0 <grub_jpeg_get_bit+0x20>
+      ec:	ldr	x0, [x19]
+      f0:	add	x1, sp, #0x2f
+      f4:	mov	x2, #0x1                   	// #1
+      f8:	strb	wzr, [sp, #47]
+      fc:	bl	0 <grub_file_read>
+     100:	ldrb	w0, [sp, #47]
+     104:	cbnz	w0, 110 <grub_jpeg_get_bit+0x90>
+     108:	ldr	w0, [x19, #2312]
+     10c:	b	e0 <grub_jpeg_get_bit+0x60>
+     110:	adrp	x1, 0 <grub_jpeg_get_marker>
+     114:	mov	w0, #0x4                   	// #4
+     118:	ldr	x1, [x1]
+     11c:	bl	0 <grub_error>
+     120:	b	ac <grub_jpeg_get_bit+0x2c>
+     124:	nop
+	...
+
+0000000000000130 <grub_jpeg_get_huff_code>:
+     130:	stp	x29, x30, [sp, #-64]!
+     134:	mov	x29, sp
+     138:	stp	x21, x22, [sp, #32]
+     13c:	sbfiz	x21, x1, #6, #32
+     140:	add	x21, x21, #0x140
+     144:	mov	x22, x0
+     148:	add	x21, x0, x21
+     14c:	str	x23, [sp, #48]
+     150:	sxtw	x23, w1
+     154:	stp	x19, x20, [sp, #16]
+     158:	mov	x20, #0x0                   	// #0
+     15c:	mov	w19, #0x0                   	// #0
+     160:	mov	x0, x22
+     164:	bl	80 <grub_jpeg_get_bit>
+     168:	ldr	w2, [x21, x20, lsl #2]
+     16c:	cmp	w0, #0x0
+     170:	lsl	w19, w19, #1
+     174:	mov	w0, w20
+     178:	cinc	w19, w19, ne  // ne = any
+     17c:	add	x20, x20, #0x1
+     180:	cmp	w2, w19
+     184:	b.gt	1b8 <grub_jpeg_get_huff_code+0x88>
+     188:	cmp	x20, #0x10
+     18c:	b.ne	160 <grub_jpeg_get_huff_code+0x30>  // b.any
+     190:	adrp	x1, 0 <grub_jpeg_get_marker>
+     194:	mov	w0, #0x4                   	// #4
+     198:	ldr	x1, [x1]
+     19c:	bl	0 <grub_error>
+     1a0:	mov	w0, #0x0                   	// #0
+     1a4:	ldp	x19, x20, [sp, #16]
+     1a8:	ldp	x21, x22, [sp, #32]
+     1ac:	ldr	x23, [sp, #48]
+     1b0:	ldp	x29, x30, [sp], #64
+     1b4:	ret
+     1b8:	lsl	x2, x23, #4
+     1bc:	add	x1, x23, #0x4
+     1c0:	add	x0, x2, w0, uxtw
+     1c4:	add	x0, x0, #0x10
+     1c8:	ldr	x1, [x22, x1, lsl #3]
+     1cc:	ldr	w0, [x22, x0, lsl #2]
+     1d0:	ldp	x21, x22, [sp, #32]
+     1d4:	add	w19, w19, w0
+     1d8:	ldr	x23, [sp, #48]
+     1dc:	ldrb	w0, [x1, w19, sxtw]
+     1e0:	ldp	x19, x20, [sp, #16]
+     1e4:	ldp	x29, x30, [sp], #64
+     1e8:	ret
+     1ec:	nop
+	...
+
+00000000000001f8 <grub_jpeg_get_number.part.0>:
+     1f8:	stp	x29, x30, [sp, #-64]!
+     1fc:	mov	x29, sp
+     200:	stp	x19, x20, [sp, #16]
+     204:	stp	x21, x22, [sp, #32]
+     208:	mov	w21, w1
+     20c:	mov	x22, x0
+     210:	str	x23, [sp, #48]
+     214:	bl	80 <grub_jpeg_get_bit>
+     218:	cmp	w21, #0x1
+     21c:	mov	w23, w0
+     220:	mov	w19, w0
+     224:	b.le	250 <grub_jpeg_get_number.part.0+0x58>
+     228:	mov	w20, #0x1                   	// #1
+     22c:	nop
+     230:	lsl	w19, w19, #1
+     234:	mov	x0, x22
+     238:	add	w20, w20, #0x1
+     23c:	bl	80 <grub_jpeg_get_bit>
+     240:	cmp	w0, #0x0
+     244:	cinc	w19, w19, ne  // ne = any
+     248:	cmp	w20, w21
+     24c:	b.ne	230 <grub_jpeg_get_number.part.0+0x38>  // b.any
+     250:	mov	w1, #0x1                   	// #1
+     254:	cmp	w23, #0x0
+     258:	lsl	w21, w1, w21
+     25c:	sub	w21, w1, w21
+     260:	add	w0, w19, w21
+     264:	csel	w0, w0, w19, eq  // eq = none
+     268:	ldp	x19, x20, [sp, #16]
+     26c:	ldp	x21, x22, [sp, #32]
+     270:	ldr	x23, [sp, #48]
+     274:	ldp	x29, x30, [sp], #64
+     278:	ret
+     27c:	nop
+
+0000000000000280 <grub_jpeg_decode_du>:
+     280:	stp	x29, x30, [sp, #-96]!
+     284:	mov	x29, sp
+     288:	stp	x19, x20, [sp, #16]
+     28c:	mov	x20, x2
+     290:	mov	x2, #0x100                 	// #256
+     294:	stp	x23, x24, [sp, #48]
+     298:	sxtw	x23, w1
+     29c:	mov	x24, x0
+     2a0:	mov	w1, #0x0                   	// #0
+     2a4:	mov	x0, x20
+     2a8:	stp	x21, x22, [sp, #32]
+     2ac:	stp	x25, x26, [sp, #64]
+     2b0:	stp	x27, x28, [sp, #80]
+     2b4:	bl	0 <grub_memset>
+     2b8:	add	x2, x23, w23, sxtw #1
+     2bc:	mov	x0, x24
+     2c0:	add	x2, x24, x2, lsl #2
+     2c4:	ldr	w1, [x2, #708]
+     2c8:	ldr	w21, [x2, #704]
+     2cc:	ldr	w22, [x2, #712]
+     2d0:	bl	130 <grub_jpeg_get_huff_code>
+     2d4:	mov	w1, w0
+     2d8:	cbz	w0, 2e8 <grub_jpeg_decode_du+0x68>
+     2dc:	mov	x0, x24
+     2e0:	bl	1f8 <grub_jpeg_get_number.part.0>
+     2e4:	mov	w1, w0
+     2e8:	add	x0, x24, x23, lsl #2
+     2ec:	sxtw	x21, w21
+     2f0:	mov	w25, #0x1                   	// #1
+     2f4:	adrp	x23, 0 <grub_jpeg_get_marker>
+     2f8:	add	x2, x24, x21, lsl #6
+     2fc:	ldr	w3, [x0, #2292]
+     300:	mov	x21, x2
+     304:	add	w1, w1, w3
+     308:	str	w1, [x0, #2292]
+     30c:	ldrb	w0, [x2, #576]
+     310:	mul	w1, w0, w1
+     314:	str	w1, [x20]
+     318:	mov	w1, w22
+     31c:	mov	x0, x24
+     320:	bl	130 <grub_jpeg_get_huff_code>
+     324:	mov	w19, w0
+     328:	mov	x0, x24
+     32c:	cbz	w19, 368 <grub_jpeg_decode_du+0xe8>
+     330:	ands	w1, w19, #0xf
+     334:	b.eq	340 <grub_jpeg_decode_du+0xc0>  // b.none
+     338:	bl	1f8 <grub_jpeg_get_number.part.0>
+     33c:	mov	w1, w0
+     340:	add	w19, w25, w19, asr #4
+     344:	ldr	x0, [x23]
+     348:	add	x2, x21, w19, uxtw
+     34c:	add	w25, w19, #0x1
+     350:	cmp	w25, #0x3f
+     354:	ldrb	w2, [x2, #576]
+     358:	ldrb	w0, [x0, w19, uxtw]
+     35c:	mul	w2, w2, w1
+     360:	str	w2, [x20, x0, lsl #2]
+     364:	b.ls	318 <grub_jpeg_decode_du+0x98>  // b.plast
+     368:	add	x25, x20, #0x20
+     36c:	mov	x0, x20
+     370:	mov	w24, #0x8b                  	// #139
+     374:	mov	w23, #0xfffffe27            	// #-473
+     378:	mov	w22, #0xc4                  	// #196
+     37c:	mov	w21, #0x12d                 	// #301
+     380:	mov	w30, #0xe6                  	// #230
+     384:	mov	w19, #0x290                 	// #656
+     388:	mov	w18, #0x1f6                 	// #502
+     38c:	mov	w17, #0x64                  	// #100
+     390:	mov	w16, #0x4c                  	// #76
+     394:	mov	w15, #0x20e                 	// #526
+     398:	mov	w14, #0x313                 	// #787
+     39c:	b	3cc <grub_jpeg_decode_du+0x14c>
+     3a0:	str	w9, [x0]
+     3a4:	add	x0, x0, #0x4
+     3a8:	str	w3, [x0, #28]
+     3ac:	str	w10, [x0, #60]
+     3b0:	str	w7, [x0, #92]
+     3b4:	str	w6, [x0, #124]
+     3b8:	str	w2, [x0, #156]
+     3bc:	str	w8, [x0, #188]
+     3c0:	str	w1, [x0, #220]
+     3c4:	cmp	x0, x25
+     3c8:	b.eq	4ec <grub_jpeg_decode_du+0x26c>  // b.none
+     3cc:	ldr	w12, [x0, #64]
+     3d0:	ldr	w9, [x0, #192]
+     3d4:	ldr	w1, [x0, #32]
+     3d8:	ldr	w3, [x0, #96]
+     3dc:	add	w10, w12, w9
+     3e0:	ldr	w2, [x0, #128]
+     3e4:	orr	w5, w1, w12
+     3e8:	ldr	w11, [x0, #160]
+     3ec:	add	w26, w1, w1, lsl #1
+     3f0:	orr	w4, w3, w2
+     3f4:	orr	w5, w5, w4
+     3f8:	mul	w4, w10, w24
+     3fc:	madd	w10, w12, w22, w4
+     400:	add	w27, w1, w11
+     404:	ldr	w12, [x0, #224]
+     408:	add	w8, w3, w11
+     40c:	mul	w28, w3, w14
+     410:	lsl	w26, w26, #7
+     414:	add	w3, w3, w12
+     418:	mul	w7, w11, w15
+     41c:	mul	w13, w27, w17
+     420:	orr	w11, w11, w9
+     424:	add	w27, w3, w27
+     428:	add	w1, w1, w12
+     42c:	mul	w6, w8, w19
+     430:	orr	w5, w5, w11
+     434:	ldr	w11, [x0]
+     438:	madd	w9, w9, w23, w4
+     43c:	sub	w8, w28, w6
+     440:	mul	w1, w1, w30
+     444:	mul	w27, w27, w21
+     448:	sub	w7, w7, w6
+     44c:	mul	w3, w3, w18
+     450:	add	w4, w2, w11
+     454:	mul	w6, w12, w16
+     458:	sub	w2, w11, w2
+     45c:	sub	w13, w13, w27
+     460:	lsl	w4, w4, #8
+     464:	sub	w27, w3, w27
+     468:	lsl	w2, w2, #8
+     46c:	sub	w6, w6, w1
+     470:	sub	w1, w26, w1
+     474:	add	w28, w2, w9
+     478:	add	w26, w4, w10
+     47c:	sub	w2, w2, w9
+     480:	sub	w4, w4, w10
+     484:	sub	w7, w7, w13
+     488:	sub	w6, w6, w27
+     48c:	sub	w8, w8, w27
+     490:	sub	w1, w1, w13
+     494:	add	w10, w2, w7
+     498:	add	w3, w28, w8
+     49c:	add	w9, w26, w1
+     4a0:	sub	w2, w2, w7
+     4a4:	sub	w1, w26, w1
+     4a8:	add	w7, w4, w6
+     4ac:	sub	w8, w28, w8
+     4b0:	sub	w6, w4, w6
+     4b4:	orr	w5, w5, w12
+     4b8:	cbnz	w5, 3a0 <grub_jpeg_decode_du+0x120>
+     4bc:	lsl	w1, w11, #8
+     4c0:	str	w1, [x0]
+     4c4:	str	w1, [x0, #32]
+     4c8:	add	x0, x0, #0x4
+     4cc:	str	w1, [x0, #60]
+     4d0:	str	w1, [x0, #92]
+     4d4:	str	w1, [x0, #124]
+     4d8:	str	w1, [x0, #156]
+     4dc:	str	w1, [x0, #188]
+     4e0:	str	w1, [x0, #220]
+     4e4:	cmp	x0, x25
+     4e8:	b.ne	3cc <grub_jpeg_decode_du+0x14c>  // b.any
+     4ec:	add	x10, x20, #0x100
+     4f0:	mov	x0, x20
+     4f4:	mov	w22, #0x8b                  	// #139
+     4f8:	mov	w21, #0xfffffe27            	// #-473
+     4fc:	mov	w19, #0xc4                  	// #196
+     500:	mov	w18, #0x12d                 	// #301
+     504:	mov	w17, #0xe6                  	// #230
+     508:	mov	w16, #0x290                 	// #656
+     50c:	mov	w15, #0x1f6                 	// #502
+     510:	mov	w14, #0x64                  	// #100
+     514:	mov	w13, #0x4c                  	// #76
+     518:	mov	w12, #0x20e                 	// #526
+     51c:	mov	w11, #0x313                 	// #787
+     520:	b	540 <grub_jpeg_decode_du+0x2c0>
+     524:	stp	w7, w4, [x0]
+     528:	stp	w25, w5, [x0, #8]
+     52c:	stp	w6, w2, [x0, #16]
+     530:	stp	w1, w3, [x0, #24]
+     534:	add	x0, x0, #0x20
+     538:	cmp	x0, x10
+     53c:	b.eq	664 <grub_jpeg_decode_du+0x3e4>  // b.none
+     540:	ldp	w2, w7, [x0, #12]
+     544:	ldp	w9, w30, [x0, #20]
+     548:	orr	w6, w2, w7
+     54c:	ldp	w3, w24, [x0, #4]
+     550:	add	w4, w2, w9
+     554:	ldr	w23, [x0, #28]
+     558:	mul	w1, w2, w11
+     55c:	mul	w5, w9, w12
+     560:	add	w27, w3, w9
+     564:	mul	w4, w4, w16
+     568:	add	w26, w24, w30
+     56c:	orr	w8, w3, w24
+     570:	add	w2, w2, w23
+     574:	orr	w9, w9, w30
+     578:	add	w28, w3, w3, lsl #1
+     57c:	orr	w8, w8, w6
+     580:	sub	w5, w5, w4
+     584:	add	w3, w3, w23
+     588:	sub	w4, w1, w4
+     58c:	add	w1, w2, w27
+     590:	orr	w8, w8, w9
+     594:	ldr	w9, [x0]
+     598:	mul	w6, w26, w22
+     59c:	madd	w26, w24, w19, w6
+     5a0:	lsl	w28, w28, #7
+     5a4:	madd	w30, w30, w21, w6
+     5a8:	add	w24, w7, w9
+     5ac:	mul	w25, w27, w14
+     5b0:	sub	w7, w9, w7
+     5b4:	mul	w27, w1, w18
+     5b8:	lsl	w24, w24, #8
+     5bc:	mul	w3, w3, w17
+     5c0:	lsl	w7, w7, #8
+     5c4:	mul	w1, w2, w15
+     5c8:	sub	w25, w25, w27
+     5cc:	mul	w6, w23, w13
+     5d0:	sub	w5, w5, w25
+     5d4:	sub	w1, w1, w27
+     5d8:	sub	w2, w7, w30
+     5dc:	sub	w6, w6, w3
+     5e0:	sub	w3, w28, w3
+     5e4:	add	w27, w24, w26
+     5e8:	sub	w6, w6, w1
+     5ec:	sub	w3, w3, w25
+     5f0:	sub	w24, w24, w26
+     5f4:	sub	w1, w4, w1
+     5f8:	add	w26, w7, w30
+     5fc:	add	w25, w2, w5
+     600:	add	w4, w26, w1
+     604:	add	w7, w27, w3
+     608:	sub	w2, w2, w5
+     60c:	sub	w3, w27, w3
+     610:	add	w5, w24, w6
+     614:	sub	w1, w26, w1
+     618:	sub	w6, w24, w6
+     61c:	orr	w8, w8, w23
+     620:	asr	w7, w7, #19
+     624:	asr	w3, w3, #19
+     628:	asr	w4, w4, #19
+     62c:	asr	w1, w1, #19
+     630:	asr	w25, w25, #19
+     634:	asr	w2, w2, #19
+     638:	asr	w5, w5, #19
+     63c:	asr	w6, w6, #19
+     640:	cbnz	w8, 524 <grub_jpeg_decode_du+0x2a4>
+     644:	asr	w1, w9, #11
+     648:	stp	w1, w1, [x0]
+     64c:	stp	w1, w1, [x0, #8]
+     650:	stp	w1, w1, [x0, #16]
+     654:	stp	w1, w1, [x0, #24]
+     658:	add	x0, x0, #0x20
+     65c:	cmp	x0, x10
+     660:	b.ne	540 <grub_jpeg_decode_du+0x2c0>  // b.any
+     664:	mov	x2, x20
+     668:	mov	w0, #0xff                  	// #255
+     66c:	nop
+     670:	ldr	w1, [x2]
+     674:	add	w1, w1, #0x80
+     678:	cmp	w1, #0xff
+     67c:	csel	w1, w1, w0, le
+     680:	cmp	w1, #0x0
+     684:	csel	w1, w1, wzr, ge  // ge = tcont
+     688:	str	w1, [x2], #4
+     68c:	cmp	x10, x2
+     690:	b.ne	670 <grub_jpeg_decode_du+0x3f0>  // b.any
+     694:	ldp	x19, x20, [sp, #16]
+     698:	ldp	x21, x22, [sp, #32]
+     69c:	ldp	x23, x24, [sp, #48]
+     6a0:	ldp	x25, x26, [sp, #64]
+     6a4:	ldp	x27, x28, [sp, #80]
+     6a8:	ldp	x29, x30, [sp], #96
+     6ac:	ret
+	...
+
+00000000000006b8 <grub_video_reader_jpeg>:
+     6b8:	stp	x29, x30, [sp, #-192]!
+     6bc:	mov	x2, #0x0                   	// #0
+     6c0:	mov	x29, sp
+     6c4:	str	x0, [sp, #144]
+     6c8:	mov	x0, x1
+     6cc:	mov	w1, #0x31                  	// #49
+     6d0:	bl	0 <grub_buffile_open>
+     6d4:	str	x0, [sp, #136]
+     6d8:	cbz	x0, d68 <grub_video_reader_jpeg+0x6b0>
+     6dc:	mov	x0, #0x910                 	// #2320
+     6e0:	stp	x25, x26, [sp, #64]
+     6e4:	stp	x27, x28, [sp, #80]
+     6e8:	bl	0 <grub_zalloc>
+     6ec:	mov	x26, x0
+     6f0:	cbz	x0, a94 <grub_video_reader_jpeg+0x3dc>
+     6f4:	stp	x19, x20, [sp, #16]
+     6f8:	ldr	x1, [sp, #136]
+     6fc:	str	x1, [x0]
+     700:	ldr	x1, [sp, #144]
+     704:	str	x1, [x0, #8]
+     708:	bl	0 <grub_jpeg_get_marker>
+     70c:	and	w0, w0, #0xff
+     710:	cmp	w0, #0xd8
+     714:	b.ne	1078 <grub_video_reader_jpeg+0x9c0>  // b.any
+     718:	adrp	x0, 0 <grub_jpeg_get_marker>
+     71c:	ldr	x28, [x0]
+     720:	ldr	w0, [x28]
+     724:	cbnz	w0, b10 <grub_video_reader_jpeg+0x458>
+     728:	stp	x21, x22, [sp, #32]
+     72c:	stp	x23, x24, [sp, #48]
+     730:	mov	x0, x26
+     734:	bl	0 <grub_jpeg_get_marker>
+     738:	and	w19, w0, #0xff
+     73c:	ldr	w1, [x28]
+     740:	cbnz	w1, b08 <grub_video_reader_jpeg+0x450>
+     744:	adrp	x1, 0 <grub_jpeg_get_marker>
+     748:	adrp	x2, 0 <grub_jpeg_get_marker>
+     74c:	adrp	x0, 0 <grub_jpeg_get_marker>
+     750:	mov	w4, w19
+     754:	ldr	x3, [x1]
+     758:	mov	w1, #0x2d0                 	// #720
+     75c:	ldr	x2, [x2]
+     760:	ldr	x0, [x0]
+     764:	bl	0 <grub_real_dprintf>
+     768:	cmp	w19, #0xd9
+     76c:	b.eq	b08 <grub_video_reader_jpeg+0x450>  // b.none
+     770:	b.hi	c20 <grub_video_reader_jpeg+0x568>  // b.pmore
+     774:	cmp	w19, #0xc4
+     778:	b.eq	e74 <grub_video_reader_jpeg+0x7bc>  // b.none
+     77c:	b.ls	b5c <grub_video_reader_jpeg+0x4a4>  // b.plast
+     780:	add	w19, w19, #0x30
+     784:	and	w19, w19, #0xff
+     788:	cmp	w19, #0x7
+     78c:	b.hi	e28 <grub_video_reader_jpeg+0x770>  // b.pmore
+     790:	ldp	w3, w2, [x26, #24]
+     794:	mov	w19, #0x8                   	// #8
+     798:	ldr	w1, [x26, #2280]
+     79c:	ldr	w21, [x26, #2276]
+     7a0:	sub	w22, w3, #0x1
+     7a4:	sub	w2, w2, #0x1
+     7a8:	add	w4, w1, #0x3
+     7ac:	add	w6, w21, #0x3
+     7b0:	ldr	w0, [x26, #2284]
+     7b4:	lsl	w21, w19, w21
+     7b8:	add	w2, w2, w21
+     7bc:	lsl	w19, w19, w1
+     7c0:	add	w22, w22, w19
+     7c4:	lsr	w2, w2, w6
+     7c8:	ldr	w1, [x26, #2288]
+     7cc:	lsr	w4, w22, w4
+     7d0:	str	w4, [sp, #108]
+     7d4:	str	w2, [sp, #152]
+     7d8:	cmp	w1, w2
+     7dc:	b.cs	1288 <grub_video_reader_jpeg+0xbd0>  // b.hs, b.nlast
+     7e0:	add	w5, w19, w19, lsl #1
+     7e4:	mul	w4, w19, w4
+     7e8:	sub	w23, w2, #0x1
+     7ec:	mov	w2, w0
+     7f0:	stp	x28, x5, [sp, #120]
+     7f4:	mov	w5, w3
+     7f8:	mov	w28, w0
+     7fc:	mov	w3, w1
+     800:	str	w4, [sp, #156]
+     804:	ldr	w0, [sp, #108]
+     808:	cbz	w0, 1274 <grub_video_reader_jpeg+0xbbc>
+     80c:	cmp	w2, #0x0
+     810:	ccmp	w28, #0x0, #0x0, ne  // ne = any
+     814:	b.eq	1270 <grub_video_reader_jpeg+0xbb8>  // b.none
+     818:	ldr	w0, [sp, #108]
+     81c:	mov	w20, #0x0                   	// #0
+     820:	sub	w0, w28, w0
+     824:	stp	w0, w28, [sp, #112]
+     828:	ldr	w0, [x26, #2276]
+     82c:	mov	w3, #0x1                   	// #1
+     830:	lsl	w1, w3, w0
+     834:	cbz	w1, 8b8 <grub_video_reader_jpeg+0x200>
+     838:	ldr	w1, [x26, #2280]
+     83c:	mov	w25, w3
+     840:	str	w23, [sp, #104]
+     844:	mov	w23, w20
+     848:	mov	w20, w19
+     84c:	mov	w24, #0x0                   	// #0
+     850:	mov	x22, #0x2e4                 	// #740
+     854:	nop
+     858:	lsl	w19, w24, #1
+     85c:	lsl	w2, w25, w1
+     860:	mov	w27, #0x0                   	// #0
+     864:	cbz	w2, 89c <grub_video_reader_jpeg+0x1e4>
+     868:	add	w2, w27, w19
+     86c:	mov	w3, #0x100                 	// #256
+     870:	mov	x0, x26
+     874:	mov	w1, #0x0                   	// #0
+     878:	add	w27, w27, #0x1
+     87c:	umaddl	x2, w2, w3, x22
+     880:	add	x2, x26, x2
+     884:	bl	280 <grub_jpeg_decode_du>
+     888:	ldr	w1, [x26, #2280]
+     88c:	lsl	w0, w25, w1
+     890:	cmp	w27, w0
+     894:	b.cc	868 <grub_video_reader_jpeg+0x1b0>  // b.lo, b.ul, b.last
+     898:	ldr	w0, [x26, #2276]
+     89c:	add	w24, w24, #0x1
+     8a0:	lsl	w2, w25, w0
+     8a4:	cmp	w24, w2
+     8a8:	b.cc	858 <grub_video_reader_jpeg+0x1a0>  // b.lo, b.ul, b.last
+     8ac:	mov	w19, w20
+     8b0:	mov	w20, w23
+     8b4:	ldr	w23, [sp, #104]
+     8b8:	ldr	w0, [x26, #2304]
+     8bc:	cmp	w0, #0x2
+     8c0:	b.gt	ac0 <grub_video_reader_jpeg+0x408>
+     8c4:	ldr	x0, [sp, #120]
+     8c8:	ldr	w1, [x0]
+     8cc:	cbnz	w1, aec <grub_video_reader_jpeg+0x434>
+     8d0:	ldr	w0, [x26, #2288]
+     8d4:	mov	w7, w21
+     8d8:	cmp	w0, w23
+     8dc:	b.ne	8e8 <grub_video_reader_jpeg+0x230>  // b.any
+     8e0:	ldr	w7, [x26, #28]
+     8e4:	msub	w7, w21, w23, w7
+     8e8:	ldr	w0, [sp, #108]
+     8ec:	mov	w4, w19
+     8f0:	ldr	w1, [sp, #116]
+     8f4:	sub	w0, w0, #0x1
+     8f8:	sub	w1, w1, w28
+     8fc:	cmp	w0, w1
+     900:	b.eq	d5c <grub_video_reader_jpeg+0x6a4>  // b.none
+     904:	ldr	x2, [x26, #16]
+     908:	cbz	w7, a4c <grub_video_reader_jpeg+0x394>
+     90c:	sub	w1, w4, #0x1
+     910:	mov	w5, #0x0                   	// #0
+     914:	add	x1, x1, #0x1
+     918:	mov	w10, #0xff                  	// #255
+     91c:	mov	w13, #0x58                  	// #88
+     920:	mov	w12, #0xb7                  	// #183
+     924:	add	x1, x1, x1, lsl #1
+     928:	mov	w11, #0x1c6                 	// #454
+     92c:	nop
+     930:	cbz	w4, a2c <grub_video_reader_jpeg+0x374>
+     934:	lsr	w9, w5, #3
+     938:	ubfiz	w14, w5, #3, #3
+     93c:	mov	x6, x2
+     940:	mov	w8, #0x0                   	// #0
+     944:	lsl	w9, w9, #1
+     948:	b	96c <grub_video_reader_jpeg+0x2b4>
+     94c:	and	w3, w16, #0xff
+     950:	strb	w3, [x6]
+     954:	strb	w3, [x6, #1]
+     958:	add	w8, w8, #0x1
+     95c:	strb	w3, [x6, #2]
+     960:	cmp	w8, w4
+     964:	add	x6, x6, #0x3
+     968:	b.eq	a28 <grub_video_reader_jpeg+0x370>  // b.none
+     96c:	add	w0, w9, w8, lsr #3
+     970:	and	w3, w8, #0x7
+     974:	add	w3, w3, w14
+     978:	ldr	w15, [x26, #2304]
+     97c:	ubfiz	x0, x0, #6, #31
+     980:	add	x0, x0, x3
+     984:	cmp	w15, #0x2
+     988:	add	x0, x26, x0, lsl #2
+     98c:	ldr	w16, [x0, #740]
+     990:	b.le	94c <grub_video_reader_jpeg+0x294>
+     994:	ldr	w3, [x26, #2276]
+     998:	mov	w15, #0x167                 	// #359
+     99c:	ldr	w0, [x26, #2280]
+     9a0:	add	x6, x6, #0x3
+     9a4:	lsr	w3, w5, w3
+     9a8:	lsr	w0, w8, w0
+     9ac:	add	w8, w8, #0x1
+     9b0:	add	w3, w0, w3, lsl #3
+     9b4:	add	x3, x26, x3, lsl #2
+     9b8:	ldr	w0, [x3, #1764]
+     9bc:	ldr	w3, [x3, #2020]
+     9c0:	sub	w0, w0, #0x80
+     9c4:	sub	w3, w3, #0x80
+     9c8:	mul	w15, w0, w15
+     9cc:	mul	w0, w0, w12
+     9d0:	madd	w0, w3, w13, w0
+     9d4:	add	w15, w16, w15, asr #8
+     9d8:	mul	w3, w3, w11
+     9dc:	cmp	w15, #0xff
+     9e0:	csel	w15, w15, w10, le
+     9e4:	sub	w0, w16, w0, asr #8
+     9e8:	cmp	w15, #0x0
+     9ec:	add	w3, w16, w3, asr #8
+     9f0:	csel	w15, w15, wzr, ge  // ge = tcont
+     9f4:	cmp	w0, #0xff
+     9f8:	csel	w0, w0, w10, le
+     9fc:	sturb	w15, [x6, #-3]
+     a00:	cmp	w0, #0x0
+     a04:	csel	w0, w0, wzr, ge  // ge = tcont
+     a08:	cmp	w3, #0xff
+     a0c:	csel	w3, w3, w10, le
+     a10:	sturb	w0, [x6, #-2]
+     a14:	cmp	w3, #0x0
+     a18:	csel	w3, w3, wzr, ge  // ge = tcont
+     a1c:	sturb	w3, [x6, #-1]
+     a20:	cmp	w8, w4
+     a24:	b.ne	96c <grub_video_reader_jpeg+0x2b4>  // b.any
+     a28:	add	x2, x2, x1
+     a2c:	ldr	w0, [x26, #24]
+     a30:	add	w5, w5, #0x1
+     a34:	cmp	w5, w7
+     a38:	sub	w0, w0, w4
+     a3c:	add	w0, w0, w0, lsl #1
+     a40:	add	x2, x2, x0
+     a44:	b.ne	930 <grub_video_reader_jpeg+0x278>  // b.any
+     a48:	ldr	x2, [x26, #16]
+     a4c:	sub	w28, w28, #0x1
+     a50:	ldr	x0, [sp, #128]
+     a54:	add	x2, x2, x0
+     a58:	ldr	w0, [sp, #112]
+     a5c:	str	x2, [x26, #16]
+     a60:	cmp	w28, w0
+     a64:	b.eq	d7c <grub_video_reader_jpeg+0x6c4>  // b.none
+     a68:	ldr	w0, [x26, #2284]
+     a6c:	add	w20, w20, w19
+     a70:	cmp	w0, #0x0
+     a74:	ccmp	w28, #0x0, #0x0, ne  // ne = any
+     a78:	b.ne	828 <grub_video_reader_jpeg+0x170>  // b.any
+     a7c:	ldr	w0, [x26, #24]
+     a80:	mov	w28, #0x0                   	// #0
+     a84:	mov	w5, w0
+     a88:	ldr	w0, [x26, #2288]
+     a8c:	mov	w3, w0
+     a90:	b	d8c <grub_video_reader_jpeg+0x6d4>
+     a94:	adrp	x0, 0 <grub_jpeg_get_marker>
+     a98:	ldr	x28, [x0]
+     a9c:	ldr	w0, [x28]
+     aa0:	cbnz	w0, b3c <grub_video_reader_jpeg+0x484>
+     aa4:	ldr	x0, [sp, #136]
+     aa8:	bl	0 <grub_file_close>
+     aac:	ldr	w0, [x28]
+     ab0:	ldp	x25, x26, [sp, #64]
+     ab4:	ldp	x27, x28, [sp, #80]
+     ab8:	ldp	x29, x30, [sp], #192
+     abc:	ret
+     ac0:	add	x2, x26, #0x7e4
+     ac4:	mov	x0, x26
+     ac8:	mov	w1, #0x1                   	// #1
+     acc:	bl	280 <grub_jpeg_decode_du>
+     ad0:	mov	x0, x26
+     ad4:	mov	w1, #0x2                   	// #2
+     ad8:	add	x2, x26, #0x6e4
+     adc:	bl	280 <grub_jpeg_decode_du>
+     ae0:	ldr	x0, [sp, #120]
+     ae4:	ldr	w1, [x0]
+     ae8:	cbz	w1, 8d0 <grub_video_reader_jpeg+0x218>
+     aec:	ldr	x28, [sp, #120]
+     af0:	mov	w0, w1
+     af4:	str	wzr, [x26, #2292]
+     af8:	str	xzr, [x26, #2296]
+     afc:	str	wzr, [x26, #2308]
+     b00:	cbz	w0, 730 <grub_video_reader_jpeg+0x78>
+     b04:	nop
+     b08:	ldp	x21, x22, [sp, #32]
+     b0c:	ldp	x23, x24, [sp, #48]
+     b10:	add	x19, x26, #0x20
+     b14:	add	x20, x26, #0x40
+     b18:	ldr	x0, [x19], #8
+     b1c:	bl	0 <grub_free>
+     b20:	cmp	x20, x19
+     b24:	b.ne	b18 <grub_video_reader_jpeg+0x460>  // b.any
+     b28:	mov	x0, x26
+     b2c:	bl	0 <grub_free>
+     b30:	ldr	w0, [x28]
+     b34:	ldp	x19, x20, [sp, #16]
+     b38:	cbz	w0, aa4 <grub_video_reader_jpeg+0x3ec>
+     b3c:	stp	x19, x20, [sp, #16]
+     b40:	ldr	x19, [sp, #144]
+     b44:	ldr	x0, [x19]
+     b48:	bl	0 <grub_video_bitmap_destroy>
+     b4c:	mov	x0, x19
+     b50:	ldp	x19, x20, [sp, #16]
+     b54:	str	xzr, [x0]
+     b58:	b	aa4 <grub_video_reader_jpeg+0x3ec>
+     b5c:	cmp	w19, #0xc0
+     b60:	b.ne	e28 <grub_video_reader_jpeg+0x770>  // b.any
+     b64:	ldr	x0, [x26]
+     b68:	add	x20, sp, #0xb0
+     b6c:	mov	x1, x20
+     b70:	mov	x2, #0x2                   	// #2
+     b74:	ldr	x24, [x0, #24]
+     b78:	strh	wzr, [sp, #176]
+     b7c:	bl	0 <grub_file_read>
+     b80:	ldrh	w23, [sp, #176]
+     b84:	ldr	x0, [x26]
+     b88:	mov	x1, x20
+     b8c:	mov	x2, #0x1                   	// #1
+     b90:	strb	wzr, [sp, #176]
+     b94:	bl	0 <grub_file_read>
+     b98:	ldrb	w0, [sp, #176]
+     b9c:	cmp	w0, #0x8
+     ba0:	b.ne	dd8 <grub_video_reader_jpeg+0x720>  // b.any
+     ba4:	ldr	x0, [x26]
+     ba8:	mov	x1, x20
+     bac:	mov	x2, #0x2                   	// #2
+     bb0:	strh	wzr, [sp, #176]
+     bb4:	bl	0 <grub_file_read>
+     bb8:	ldrh	w3, [sp, #176]
+     bbc:	mov	x1, x20
+     bc0:	ldr	x0, [x26]
+     bc4:	mov	x2, #0x2                   	// #2
+     bc8:	lsr	w4, w3, #8
+     bcc:	orr	w3, w4, w3, lsl #8
+     bd0:	and	w3, w3, #0xffff
+     bd4:	str	w3, [x26, #28]
+     bd8:	strh	wzr, [sp, #176]
+     bdc:	bl	0 <grub_file_read>
+     be0:	ldrh	w0, [sp, #176]
+     be4:	ldr	w2, [x26, #28]
+     be8:	lsr	w1, w0, #8
+     bec:	cmp	w2, #0x0
+     bf0:	orr	w0, w1, w0, lsl #8
+     bf4:	and	w0, w0, #0xffff
+     bf8:	str	w0, [x26, #24]
+     bfc:	ccmp	w0, #0x0, #0x4, ne  // ne = any
+     c00:	b.ne	1168 <grub_video_reader_jpeg+0xab0>  // b.any
+     c04:	adrp	x1, 0 <grub_jpeg_get_marker>
+     c08:	mov	w0, #0x4                   	// #4
+     c0c:	ldr	x1, [x1]
+     c10:	bl	0 <grub_error>
+     c14:	ldr	w0, [x28]
+     c18:	cbz	w0, 730 <grub_video_reader_jpeg+0x78>
+     c1c:	b	b08 <grub_video_reader_jpeg+0x450>
+     c20:	cmp	w19, #0xdb
+     c24:	b.eq	fcc <grub_video_reader_jpeg+0x914>  // b.none
+     c28:	cmp	w19, #0xdd
+     c2c:	b.ne	c78 <grub_video_reader_jpeg+0x5c0>  // b.any
+     c30:	ldr	x0, [x26]
+     c34:	add	x1, sp, #0xb0
+     c38:	mov	x2, #0x2                   	// #2
+     c3c:	strh	wzr, [sp, #176]
+     c40:	bl	0 <grub_file_read>
+     c44:	ldrh	w0, [sp, #176]
+     c48:	lsr	w1, w0, #8
+     c4c:	orr	w0, w1, w0, lsl #8
+     c50:	sxth	w0, w0
+     c54:	cmp	w0, #0x4
+     c58:	b.eq	df4 <grub_video_reader_jpeg+0x73c>  // b.none
+     c5c:	adrp	x1, 0 <grub_jpeg_get_marker>
+     c60:	mov	w0, #0x4                   	// #4
+     c64:	ldr	x1, [x1]
+     c68:	bl	0 <grub_error>
+     c6c:	ldr	w0, [x28]
+     c70:	cbz	w0, 730 <grub_video_reader_jpeg+0x78>
+     c74:	b	b08 <grub_video_reader_jpeg+0x450>
+     c78:	cmp	w19, #0xda
+     c7c:	b.ne	e28 <grub_video_reader_jpeg+0x770>  // b.any
+     c80:	ldr	x0, [x26]
+     c84:	add	x20, sp, #0xb0
+     c88:	mov	x1, x20
+     c8c:	mov	x2, #0x2                   	// #2
+     c90:	ldr	x24, [x0, #24]
+     c94:	strh	wzr, [sp, #176]
+     c98:	bl	0 <grub_file_read>
+     c9c:	ldrh	w23, [sp, #176]
+     ca0:	ldr	x0, [x26]
+     ca4:	mov	x1, x20
+     ca8:	mov	x2, #0x1                   	// #1
+     cac:	strb	wzr, [sp, #176]
+     cb0:	bl	0 <grub_file_read>
+     cb4:	ldrb	w22, [sp, #176]
+     cb8:	and	w0, w22, #0xfffffffd
+     cbc:	cmp	w0, #0x1
+     cc0:	b.ne	1118 <grub_video_reader_jpeg+0xa60>  // b.any
+     cc4:	str	w22, [x26, #2304]
+     cc8:	mov	w21, #0x0                   	// #0
+     ccc:	cbnz	w22, d0c <grub_video_reader_jpeg+0x654>
+     cd0:	b	1094 <grub_video_reader_jpeg+0x9dc>
+     cd4:	ldr	x0, [x26]
+     cd8:	strb	wzr, [sp, #176]
+     cdc:	bl	0 <grub_file_read>
+     ce0:	sbfiz	x1, x19, #1, #32
+     ce4:	ldrb	w0, [sp, #176]
+     ce8:	add	x19, x1, w19, sxtw
+     cec:	cmp	w22, w21
+     cf0:	and	w1, w0, #0xf
+     cf4:	add	x19, x26, x19, lsl #2
+     cf8:	asr	w0, w0, #4
+     cfc:	add	w1, w1, #0x2
+     d00:	str	w0, [x19, #708]
+     d04:	str	w1, [x19, #712]
+     d08:	b.eq	1094 <grub_video_reader_jpeg+0x9dc>  // b.none
+     d0c:	ldr	x0, [x26]
+     d10:	mov	x1, x20
+     d14:	mov	x2, #0x1                   	// #1
+     d18:	strb	wzr, [sp, #176]
+     d1c:	add	w21, w21, #0x1
+     d20:	bl	0 <grub_file_read>
+     d24:	ldrb	w19, [sp, #176]
+     d28:	mov	x1, x20
+     d2c:	mov	x2, #0x1                   	// #1
+     d30:	sub	w19, w19, #0x1
+     d34:	cmp	w19, #0x2
+     d38:	b.ls	cd4 <grub_video_reader_jpeg+0x61c>  // b.plast
+     d3c:	adrp	x1, 0 <grub_jpeg_get_marker>
+     d40:	mov	w0, #0x4                   	// #4
+     d44:	ldr	x1, [x1]
+     d48:	bl	0 <grub_error>
+     d4c:	cbz	w0, 790 <grub_video_reader_jpeg+0xd8>
+     d50:	ldr	w0, [x28]
+     d54:	cbz	w0, 730 <grub_video_reader_jpeg+0x78>
+     d58:	b	b08 <grub_video_reader_jpeg+0x450>
+     d5c:	ldr	w4, [x26, #24]
+     d60:	sub	w4, w4, w20
+     d64:	b	904 <grub_video_reader_jpeg+0x24c>
+     d68:	adrp	x0, 0 <grub_jpeg_get_marker>
+     d6c:	ldr	x0, [x0]
+     d70:	ldr	w0, [x0]
+     d74:	ldp	x29, x30, [sp], #192
+     d78:	ret
+     d7c:	ldr	w0, [x26, #24]
+     d80:	mov	w5, w0
+     d84:	ldr	w0, [x26, #2288]
+     d88:	mov	w3, w0
+     d8c:	ldr	w1, [sp, #152]
+     d90:	add	w0, w3, #0x1
+     d94:	mul	w4, w21, w5
+     d98:	mov	w3, w0
+     d9c:	cmp	w1, w0
+     da0:	str	w0, [x26, #2288]
+     da4:	ldr	w0, [sp, #156]
+     da8:	sub	w4, w4, w0
+     dac:	add	w4, w4, w4, lsl #1
+     db0:	add	x2, x2, x4
+     db4:	str	x2, [x26, #16]
+     db8:	b.ls	dcc <grub_video_reader_jpeg+0x714>  // b.plast
+     dbc:	ldr	w2, [x26, #2284]
+     dc0:	cmp	w2, #0x0
+     dc4:	ccmp	w28, #0x0, #0x0, ne  // ne = any
+     dc8:	b.ne	804 <grub_video_reader_jpeg+0x14c>  // b.any
+     dcc:	ldr	x28, [sp, #120]
+     dd0:	ldr	w0, [x28]
+     dd4:	b	af4 <grub_video_reader_jpeg+0x43c>
+     dd8:	adrp	x1, 0 <grub_jpeg_get_marker>
+     ddc:	mov	w0, #0x4                   	// #4
+     de0:	ldr	x1, [x1]
+     de4:	bl	0 <grub_error>
+     de8:	ldr	w0, [x28]
+     dec:	cbz	w0, 730 <grub_video_reader_jpeg+0x78>
+     df0:	b	b08 <grub_video_reader_jpeg+0x450>
+     df4:	ldr	x0, [x26]
+     df8:	add	x1, sp, #0xb0
+     dfc:	mov	x2, #0x2                   	// #2
+     e00:	strh	wzr, [sp, #176]
+     e04:	bl	0 <grub_file_read>
+     e08:	ldrh	w1, [sp, #176]
+     e0c:	ldr	w0, [x28]
+     e10:	lsr	w2, w1, #8
+     e14:	orr	w1, w2, w1, lsl #8
+     e18:	and	w1, w1, #0xffff
+     e1c:	str	w1, [x26, #2284]
+     e20:	cbz	w0, 730 <grub_video_reader_jpeg+0x78>
+     e24:	b	b08 <grub_video_reader_jpeg+0x450>
+     e28:	ldr	x0, [x26]
+     e2c:	add	x1, sp, #0xb0
+     e30:	mov	x2, #0x2                   	// #2
+     e34:	strh	wzr, [sp, #176]
+     e38:	bl	0 <grub_file_read>
+     e3c:	ldrh	w0, [sp, #176]
+     e40:	ldr	w2, [x28]
+     e44:	lsr	w1, w0, #8
+     e48:	orr	w0, w1, w0, lsl #8
+     e4c:	and	w1, w0, #0xffff
+     e50:	cbnz	w2, b08 <grub_video_reader_jpeg+0x450>
+     e54:	ldr	x0, [x26]
+     e58:	and	x1, x1, #0xffff
+     e5c:	sub	x1, x1, #0x2
+     e60:	ldr	x2, [x0, #24]
+     e64:	add	x1, x1, x2
+     e68:	bl	0 <grub_file_seek>
+     e6c:	ldr	w0, [x28]
+     e70:	b	d54 <grub_video_reader_jpeg+0x69c>
+     e74:	ldr	x0, [x26]
+     e78:	add	x20, sp, #0xb0
+     e7c:	mov	x1, x20
+     e80:	mov	x2, #0x2                   	// #2
+     e84:	ldr	x19, [x0, #24]
+     e88:	strh	wzr, [sp, #176]
+     e8c:	bl	0 <grub_file_read>
+     e90:	ldrh	w1, [sp, #176]
+     e94:	ldr	x0, [x26]
+     e98:	lsr	w21, w1, #8
+     e9c:	orr	w21, w21, w1, lsl #8
+     ea0:	ldr	x1, [x0, #24]
+     ea4:	add	w21, w19, w21, uxth
+     ea8:	add	x2, x1, #0x11
+     eac:	cmp	x21, x2
+     eb0:	b.cc	fa8 <grub_video_reader_jpeg+0x8f0>  // b.lo, b.ul, b.last
+     eb4:	add	x22, sp, #0xc0
+     eb8:	add	x1, sp, #0xaf
+     ebc:	mov	x2, #0x1                   	// #1
+     ec0:	strb	wzr, [sp, #175]
+     ec4:	bl	0 <grub_file_read>
+     ec8:	ldrb	w0, [sp, #175]
+     ecc:	tst	w0, #0xe
+     ed0:	and	w23, w0, #0xf
+     ed4:	ubfx	x19, x0, #4, #1
+     ed8:	b.ne	114c <grub_video_reader_jpeg+0xa94>  // b.any
+     edc:	ldr	x0, [x26]
+     ee0:	mov	x1, x20
+     ee4:	mov	x2, #0x10                  	// #16
+     ee8:	bl	0 <grub_file_read>
+     eec:	cmp	x0, #0x10
+     ef0:	b.ne	d50 <grub_video_reader_jpeg+0x698>  // b.any
+     ef4:	mov	x0, x20
+     ef8:	mov	w2, #0x0                   	// #0
+     efc:	nop
+     f00:	ldrb	w1, [x0], #1
+     f04:	add	w2, w2, w1
+     f08:	cmp	x22, x0
+     f0c:	b.ne	f00 <grub_video_reader_jpeg+0x848>  // b.any
+     f10:	add	w19, w23, w19, lsl #1
+     f14:	sxtw	x23, w2
+     f18:	mov	x0, x23
+     f1c:	bl	0 <grub_malloc>
+     f20:	sxtw	x19, w19
+     f24:	ldr	w2, [x28]
+     f28:	add	x3, x19, #0x4
+     f2c:	mov	x1, x0
+     f30:	str	x0, [x26, x3, lsl #3]
+     f34:	cbnz	w2, b08 <grub_video_reader_jpeg+0x450>
+     f38:	ldr	x0, [x26]
+     f3c:	mov	x2, x23
+     f40:	bl	0 <grub_file_read>
+     f44:	cmp	x0, x23
+     f48:	b.ne	d50 <grub_video_reader_jpeg+0x698>  // b.any
+     f4c:	add	x19, x26, x19, lsl #6
+     f50:	mov	x1, #0x1                   	// #1
+     f54:	add	x5, x19, #0x13c
+     f58:	add	x19, x19, #0x3c
+     f5c:	mov	w3, #0x0                   	// #0
+     f60:	mov	w0, #0x0                   	// #0
+     f64:	nop
+     f68:	add	x4, x20, x1
+     f6c:	sub	w2, w3, w0
+     f70:	ldurb	w4, [x4, #-1]
+     f74:	add	w0, w4, w0
+     f78:	str	w0, [x5, x1, lsl #2]
+     f7c:	str	w2, [x19, x1, lsl #2]
+     f80:	add	x1, x1, #0x1
+     f84:	lsl	w0, w0, #1
+     f88:	add	w3, w3, w4
+     f8c:	cmp	x1, #0x11
+     f90:	b.ne	f68 <grub_video_reader_jpeg+0x8b0>  // b.any
+     f94:	ldr	x0, [x26]
+     f98:	ldr	x1, [x0, #24]
+     f9c:	add	x2, x1, #0x11
+     fa0:	cmp	x21, x2
+     fa4:	b.cs	eb8 <grub_video_reader_jpeg+0x800>  // b.hs, b.nlast
+     fa8:	cmp	x21, x1
+     fac:	b.eq	d50 <grub_video_reader_jpeg+0x698>  // b.none
+     fb0:	adrp	x1, 0 <grub_jpeg_get_marker>
+     fb4:	mov	w0, #0x4                   	// #4
+     fb8:	ldr	x1, [x1]
+     fbc:	bl	0 <grub_error>
+     fc0:	ldr	w0, [x28]
+     fc4:	cbz	w0, 730 <grub_video_reader_jpeg+0x78>
+     fc8:	b	b08 <grub_video_reader_jpeg+0x450>
+     fcc:	ldr	x0, [x26]
+     fd0:	add	x20, sp, #0xb0
+     fd4:	mov	x1, x20
+     fd8:	mov	x2, #0x2                   	// #2
+     fdc:	ldr	x19, [x0, #24]
+     fe0:	strh	wzr, [sp, #176]
+     fe4:	bl	0 <grub_file_read>
+     fe8:	ldrh	w0, [sp, #176]
+     fec:	lsr	w1, w0, #8
+     ff0:	orr	w0, w1, w0, lsl #8
+     ff4:	add	w19, w19, w0, uxth
+     ff8:	b	1038 <grub_video_reader_jpeg+0x980>
+     ffc:	strb	wzr, [sp, #176]
+    1000:	bl	0 <grub_file_read>
+    1004:	ldrb	w0, [sp, #176]
+    1008:	mov	x2, #0x40                  	// #64
+    100c:	cmp	w0, #0xf
+    1010:	b.gt	dd8 <grub_video_reader_jpeg+0x720>
+    1014:	ubfiz	x1, x0, #6, #8
+    1018:	cmp	w0, #0x1
+    101c:	add	x1, x1, #0x240
+    1020:	b.gt	1130 <grub_video_reader_jpeg+0xa78>
+    1024:	ldr	x0, [x26]
+    1028:	add	x1, x26, x1
+    102c:	bl	0 <grub_file_read>
+    1030:	cmp	x0, #0x40
+    1034:	b.ne	d50 <grub_video_reader_jpeg+0x698>  // b.any
+    1038:	ldr	x0, [x26]
+    103c:	mov	x1, x20
+    1040:	mov	x2, #0x1                   	// #1
+    1044:	ldr	x3, [x0, #24]
+    1048:	add	x4, x3, #0x41
+    104c:	cmp	x4, x19
+    1050:	b.ls	ffc <grub_video_reader_jpeg+0x944>  // b.plast
+    1054:	cmp	x3, x19
+    1058:	b.eq	d50 <grub_video_reader_jpeg+0x698>  // b.none
+    105c:	adrp	x1, 0 <grub_jpeg_get_marker>
+    1060:	mov	w0, #0x4                   	// #4
+    1064:	ldr	x1, [x1]
+    1068:	bl	0 <grub_error>
+    106c:	ldr	w0, [x28]
+    1070:	cbz	w0, 730 <grub_video_reader_jpeg+0x78>
+    1074:	b	b08 <grub_video_reader_jpeg+0x450>
+    1078:	adrp	x1, 0 <grub_jpeg_get_marker>
+    107c:	mov	w0, #0x4                   	// #4
+    1080:	ldr	x1, [x1]
+    1084:	bl	0 <grub_error>
+    1088:	adrp	x0, 0 <grub_jpeg_get_marker>
+    108c:	ldr	x28, [x0]
+    1090:	b	b10 <grub_video_reader_jpeg+0x458>
+    1094:	ldr	x0, [x26]
+    1098:	mov	x1, x20
+    109c:	mov	x2, #0x1                   	// #1
+    10a0:	strb	wzr, [sp, #176]
+    10a4:	bl	0 <grub_file_read>
+    10a8:	ldr	x0, [x26]
+    10ac:	mov	x1, x20
+    10b0:	mov	x2, #0x2                   	// #2
+    10b4:	strh	wzr, [sp, #176]
+    10b8:	bl	0 <grub_file_read>
+    10bc:	ldr	x1, [x26]
+    10c0:	lsr	w0, w23, #8
+    10c4:	orr	w23, w0, w23, lsl #8
+    10c8:	ldr	x0, [x1, #24]
+    10cc:	add	w24, w24, w23, uxth
+    10d0:	cmp	x0, x24
+    10d4:	b.ne	1100 <grub_video_reader_jpeg+0xa48>  // b.any
+    10d8:	ldp	w1, w2, [x26, #24]
+    10dc:	mov	w3, #0x4                   	// #4
+    10e0:	ldr	x0, [x26, #8]
+    10e4:	bl	0 <grub_video_bitmap_create>
+    10e8:	cbnz	w0, 127c <grub_video_reader_jpeg+0xbc4>
+    10ec:	ldr	x0, [x26, #8]
+    10f0:	ldr	x0, [x0]
+    10f4:	ldr	x0, [x0, #80]
+    10f8:	str	x0, [x26, #16]
+    10fc:	b	790 <grub_video_reader_jpeg+0xd8>
+    1100:	adrp	x1, 0 <grub_jpeg_get_marker>
+    1104:	mov	w0, #0x4                   	// #4
+    1108:	ldr	x1, [x1]
+    110c:	bl	0 <grub_error>
+    1110:	cbnz	w0, d50 <grub_video_reader_jpeg+0x698>
+    1114:	b	790 <grub_video_reader_jpeg+0xd8>
+    1118:	adrp	x1, 0 <grub_jpeg_get_marker>
+    111c:	mov	w0, #0x4                   	// #4
+    1120:	ldr	x1, [x1]
+    1124:	bl	0 <grub_error>
+    1128:	cbnz	w0, d50 <grub_video_reader_jpeg+0x698>
+    112c:	b	790 <grub_video_reader_jpeg+0xd8>
+    1130:	adrp	x1, 0 <grub_jpeg_get_marker>
+    1134:	mov	w0, #0x4                   	// #4
+    1138:	ldr	x1, [x1]
+    113c:	bl	0 <grub_error>
+    1140:	ldr	w0, [x28]
+    1144:	cbz	w0, 730 <grub_video_reader_jpeg+0x78>
+    1148:	b	b08 <grub_video_reader_jpeg+0x450>
+    114c:	adrp	x1, 0 <grub_jpeg_get_marker>
+    1150:	mov	w0, #0x4                   	// #4
+    1154:	ldr	x1, [x1]
+    1158:	bl	0 <grub_error>
+    115c:	ldr	w0, [x28]
+    1160:	cbz	w0, 730 <grub_video_reader_jpeg+0x78>
+    1164:	b	b08 <grub_video_reader_jpeg+0x450>
+    1168:	ldr	x0, [x26]
+    116c:	mov	x1, x20
+    1170:	mov	x2, #0x1                   	// #1
+    1174:	strb	wzr, [sp, #176]
+    1178:	bl	0 <grub_file_read>
+    117c:	ldrb	w22, [sp, #176]
+    1180:	and	w0, w22, #0xfffffffd
+    1184:	cmp	w0, #0x1
+    1188:	b.ne	12e4 <grub_video_reader_jpeg+0xc2c>  // b.any
+    118c:	str	w22, [x26, #2304]
+    1190:	mov	w21, #0x0                   	// #0
+    1194:	cbnz	w22, 120c <grub_video_reader_jpeg+0xb54>
+    1198:	b	1290 <grub_video_reader_jpeg+0xbd8>
+    119c:	and	w3, w0, #0xf
+    11a0:	lsr	w0, w0, #4
+    11a4:	sub	w2, w0, #0x1
+    11a8:	sub	w1, w3, #0x1
+    11ac:	and	w2, w2, #0xff
+    11b0:	and	w1, w1, #0xff
+    11b4:	cmp	w2, #0x1
+    11b8:	ccmp	w1, #0x1, #0x2, ls  // ls = plast
+    11bc:	b.hi	1254 <grub_video_reader_jpeg+0xb9c>  // b.pmore
+    11c0:	cmp	w3, #0x2
+    11c4:	cset	w1, eq  // eq = none
+    11c8:	cmp	w0, #0x2
+    11cc:	cset	w0, eq  // eq = none
+    11d0:	str	w1, [x26, #2276]
+    11d4:	str	w0, [x26, #2280]
+    11d8:	ldr	x0, [x26]
+    11dc:	mov	x1, x20
+    11e0:	mov	x2, #0x1                   	// #1
+    11e4:	strb	wzr, [sp, #176]
+    11e8:	add	w21, w21, #0x1
+    11ec:	bl	0 <grub_file_read>
+    11f0:	sbfiz	x1, x19, #1, #32
+    11f4:	ldrb	w0, [sp, #176]
+    11f8:	add	x19, x1, w19, sxtw
+    11fc:	cmp	w22, w21
+    1200:	add	x19, x26, x19, lsl #2
+    1204:	str	w0, [x19, #704]
+    1208:	b.eq	1290 <grub_video_reader_jpeg+0xbd8>  // b.none
+    120c:	ldr	x0, [x26]
+    1210:	mov	x1, x20
+    1214:	mov	x2, #0x1                   	// #1
+    1218:	strb	wzr, [sp, #176]
+    121c:	bl	0 <grub_file_read>
+    1220:	ldrb	w19, [sp, #176]
+    1224:	mov	x1, x20
+    1228:	mov	x2, #0x1                   	// #1
+    122c:	sub	w19, w19, #0x1
+    1230:	cmp	w19, #0x2
+    1234:	b.hi	12c8 <grub_video_reader_jpeg+0xc10>  // b.pmore
+    1238:	ldr	x0, [x26]
+    123c:	strb	wzr, [sp, #176]
+    1240:	bl	0 <grub_file_read>
+    1244:	ldrb	w0, [sp, #176]
+    1248:	cbz	w19, 119c <grub_video_reader_jpeg+0xae4>
+    124c:	cmp	w0, #0x11
+    1250:	b.eq	11d8 <grub_video_reader_jpeg+0xb20>  // b.none
+    1254:	adrp	x1, 0 <grub_jpeg_get_marker>
+    1258:	mov	w0, #0x4                   	// #4
+    125c:	ldr	x1, [x1]
+    1260:	bl	0 <grub_error>
+    1264:	ldr	w0, [x28]
+    1268:	cbz	w0, 730 <grub_video_reader_jpeg+0x78>
+    126c:	b	b08 <grub_video_reader_jpeg+0x450>
+    1270:	mov	w28, #0x0                   	// #0
+    1274:	ldr	x2, [x26, #16]
+    1278:	b	d8c <grub_video_reader_jpeg+0x6d4>
+    127c:	ldr	w0, [x28]
+    1280:	cbnz	w0, d50 <grub_video_reader_jpeg+0x698>
+    1284:	b	790 <grub_video_reader_jpeg+0xd8>
+    1288:	ldr	w0, [x28]
+    128c:	b	af4 <grub_video_reader_jpeg+0x43c>
+    1290:	ldr	x1, [x26]
+    1294:	lsr	w0, w23, #8
+    1298:	orr	w23, w0, w23, lsl #8
+    129c:	ldr	x0, [x1, #24]
+    12a0:	add	w24, w24, w23, uxth
+    12a4:	cmp	x0, x24
+    12a8:	b.eq	d50 <grub_video_reader_jpeg+0x698>  // b.none
+    12ac:	adrp	x1, 0 <grub_jpeg_get_marker>
+    12b0:	mov	w0, #0x4                   	// #4
+    12b4:	ldr	x1, [x1]
+    12b8:	bl	0 <grub_error>
+    12bc:	ldr	w0, [x28]
+    12c0:	cbz	w0, 730 <grub_video_reader_jpeg+0x78>
+    12c4:	b	b08 <grub_video_reader_jpeg+0x450>
+    12c8:	adrp	x1, 0 <grub_jpeg_get_marker>
+    12cc:	mov	w0, #0x4                   	// #4
+    12d0:	ldr	x1, [x1]
+    12d4:	bl	0 <grub_error>
+    12d8:	ldr	w0, [x28]
+    12dc:	cbz	w0, 730 <grub_video_reader_jpeg+0x78>
+    12e0:	b	b08 <grub_video_reader_jpeg+0x450>
+    12e4:	adrp	x1, 0 <grub_jpeg_get_marker>
+    12e8:	mov	w0, #0x4                   	// #4
+    12ec:	ldr	x1, [x1]
+    12f0:	bl	0 <grub_error>
+    12f4:	ldr	w0, [x28]
+    12f8:	cbz	w0, 730 <grub_video_reader_jpeg+0x78>
+    12fc:	b	b08 <grub_video_reader_jpeg+0x450>
+	...
+
+0000000000001388 <grub_mod_init>:
+    1388:	stp	x29, x30, [sp, #-32]!
+    138c:	adrp	x0, 0 <grub_jpeg_get_marker>
+    1390:	mov	x29, sp
+    1394:	str	x19, [sp, #16]
+    1398:	ldr	x19, [x0]
+    139c:	mov	x0, x19
+    13a0:	bl	0 <grub_video_bitmap_reader_register>
+    13a4:	add	x0, x19, #0x18
+    13a8:	ldr	x19, [sp, #16]
+    13ac:	ldp	x29, x30, [sp], #32
+    13b0:	b	0 <grub_video_bitmap_reader_register>
+    13b4:	nop
+	...
+
+00000000000013c0 <grub_mod_fini>:
+    13c0:	stp	x29, x30, [sp, #-32]!
+    13c4:	adrp	x0, 0 <grub_jpeg_get_marker>
+    13c8:	mov	x29, sp
+    13cc:	str	x19, [sp, #16]
+    13d0:	ldr	x19, [x0]
+    13d4:	add	x0, x19, #0x18
+    13d8:	bl	0 <grub_video_bitmap_reader_unregister>
+    13dc:	mov	x0, x19
+    13e0:	ldr	x19, [sp, #16]
+    13e4:	ldp	x29, x30, [sp], #32
+    13e8:	b	0 <grub_video_bitmap_reader_unregister>
+    13ec:	nop
+	...

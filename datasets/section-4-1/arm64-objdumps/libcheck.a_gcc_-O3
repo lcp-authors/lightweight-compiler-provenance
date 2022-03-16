@@ -1,0 +1,5028 @@
+In archive /home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//libcheck.a_gcc_-O3:
+
+check.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <suite_create>:
+   0:	stp	x29, x30, [sp, #-32]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	mov	x19, x0
+  10:	mov	x0, #0x10                  	// #16
+  14:	bl	0 <emalloc>
+  18:	mov	x20, x0
+  1c:	cmp	x19, #0x0
+  20:	adrp	x0, 0 <suite_create>
+  24:	add	x0, x0, #0x0
+  28:	csel	x19, x0, x19, eq  // eq = none
+  2c:	str	x19, [x20]
+  30:	bl	0 <check_list_create>
+  34:	mov	x1, x0
+  38:	str	x1, [x20, #8]
+  3c:	mov	x0, x20
+  40:	ldp	x19, x20, [sp, #16]
+  44:	ldp	x29, x30, [sp], #32
+  48:	ret
+  4c:	nop
+
+0000000000000050 <suite_tcase>:
+  50:	cbz	x0, c8 <suite_tcase+0x78>
+  54:	stp	x29, x30, [sp, #-32]!
+  58:	mov	x29, sp
+  5c:	stp	x19, x20, [sp, #16]
+  60:	mov	x20, x1
+  64:	ldr	x19, [x0, #8]
+  68:	mov	x0, x19
+  6c:	bl	0 <check_list_front>
+  70:	b	94 <suite_tcase+0x44>
+  74:	bl	0 <check_list_val>
+  78:	mov	x2, x0
+  7c:	mov	x0, x20
+  80:	ldr	x1, [x2]
+  84:	bl	0 <strcmp>
+  88:	cbz	w0, b8 <suite_tcase+0x68>
+  8c:	mov	x0, x19
+  90:	bl	0 <check_list_advance>
+  94:	mov	x0, x19
+  98:	bl	0 <check_list_at_end>
+  9c:	mov	w2, w0
+  a0:	mov	x0, x19
+  a4:	cbz	w2, 74 <suite_tcase+0x24>
+  a8:	mov	w0, #0x0                   	// #0
+  ac:	ldp	x19, x20, [sp, #16]
+  b0:	ldp	x29, x30, [sp], #32
+  b4:	ret
+  b8:	mov	w0, #0x1                   	// #1
+  bc:	ldp	x19, x20, [sp, #16]
+  c0:	ldp	x29, x30, [sp], #32
+  c4:	ret
+  c8:	mov	w0, #0x0                   	// #0
+  cc:	ret
+
+00000000000000d0 <tcase_create>:
+  d0:	stp	x29, x30, [sp, #-64]!
+  d4:	mov	x29, sp
+  d8:	stp	x19, x20, [sp, #16]
+  dc:	mov	x20, x0
+  e0:	mov	x0, #0x48                  	// #72
+  e4:	str	d8, [sp, #32]
+  e8:	bl	0 <emalloc>
+  ec:	mov	x19, x0
+  f0:	cmp	x20, #0x0
+  f4:	adrp	x1, 0 <suite_create>
+  f8:	add	x1, x1, #0x0
+  fc:	csel	x20, x1, x20, eq  // eq = none
+ 100:	fmov	d8, #4.000000000000000000e+00
+ 104:	str	x20, [x19]
+ 108:	adrp	x0, 0 <suite_create>
+ 10c:	add	x0, x0, #0x0
+ 110:	bl	0 <getenv>
+ 114:	cbz	x0, 150 <tcase_create+0x80>
+ 118:	mov	x20, x0
+ 11c:	add	x1, sp, #0x38
+ 120:	str	xzr, [sp, #56]
+ 124:	bl	0 <strtod>
+ 128:	fcmpe	d0, #0.0
+ 12c:	fmov	d8, d0
+ 130:	b.lt	200 <tcase_create+0x130>  // b.tstop
+ 134:	ldr	x0, [sp, #56]
+ 138:	cmp	x0, x20
+ 13c:	b.eq	200 <tcase_create+0x130>  // b.none
+ 140:	ldrb	w0, [x0]
+ 144:	fmov	d0, #4.000000000000000000e+00
+ 148:	cmp	w0, #0x0
+ 14c:	fcsel	d8, d8, d0, eq  // eq = none
+ 150:	adrp	x0, 0 <suite_create>
+ 154:	add	x0, x0, #0x0
+ 158:	bl	0 <getenv>
+ 15c:	mov	x20, x0
+ 160:	cbz	x0, 190 <tcase_create+0xc0>
+ 164:	add	x1, sp, #0x38
+ 168:	str	xzr, [sp, #56]
+ 16c:	bl	0 <strtod>
+ 170:	fcmpe	d0, #0.0
+ 174:	b.lt	190 <tcase_create+0xc0>  // b.tstop
+ 178:	ldr	x0, [sp, #56]
+ 17c:	cmp	x0, x20
+ 180:	b.eq	190 <tcase_create+0xc0>  // b.none
+ 184:	ldrb	w0, [x0]
+ 188:	cbnz	w0, 190 <tcase_create+0xc0>
+ 18c:	fmul	d8, d8, d0
+ 190:	frintm	d1, d8
+ 194:	mov	x0, #0xcd6500000000        	// #225833675390976
+ 198:	movk	x0, #0x41cd, lsl #48
+ 19c:	fmov	d0, x0
+ 1a0:	fcvtms	x0, d8
+ 1a4:	fsub	d8, d8, d1
+ 1a8:	str	x0, [x19, #8]
+ 1ac:	fmul	d8, d8, d0
+ 1b0:	fcvtzs	d8, d8
+ 1b4:	str	d8, [x19, #16]
+ 1b8:	bl	0 <check_list_create>
+ 1bc:	str	x0, [x19, #24]
+ 1c0:	bl	0 <check_list_create>
+ 1c4:	str	x0, [x19, #32]
+ 1c8:	bl	0 <check_list_create>
+ 1cc:	str	x0, [x19, #48]
+ 1d0:	bl	0 <check_list_create>
+ 1d4:	str	x0, [x19, #40]
+ 1d8:	bl	0 <check_list_create>
+ 1dc:	str	x0, [x19, #56]
+ 1e0:	bl	0 <check_list_create>
+ 1e4:	mov	x1, x0
+ 1e8:	ldr	d8, [sp, #32]
+ 1ec:	mov	x0, x19
+ 1f0:	str	x1, [x19, #64]
+ 1f4:	ldp	x19, x20, [sp, #16]
+ 1f8:	ldp	x29, x30, [sp], #64
+ 1fc:	ret
+ 200:	fmov	d8, #4.000000000000000000e+00
+ 204:	b	150 <tcase_create+0x80>
+
+0000000000000208 <tag_string_to_list>:
+ 208:	stp	x29, x30, [sp, #-48]!
+ 20c:	mov	x29, sp
+ 210:	stp	x19, x20, [sp, #16]
+ 214:	mov	x20, x0
+ 218:	bl	0 <check_list_create>
+ 21c:	mov	x19, x0
+ 220:	cbz	x20, 274 <tag_string_to_list+0x6c>
+ 224:	mov	x0, x20
+ 228:	adrp	x20, 0 <suite_create>
+ 22c:	add	x20, x20, #0x0
+ 230:	str	x21, [sp, #32]
+ 234:	bl	0 <strdup>
+ 238:	mov	x21, x0
+ 23c:	mov	x1, x20
+ 240:	bl	0 <strtok>
+ 244:	cbz	x0, 268 <tag_string_to_list+0x60>
+ 248:	bl	0 <strdup>
+ 24c:	mov	x1, x0
+ 250:	mov	x0, x19
+ 254:	bl	0 <check_list_add_end>
+ 258:	mov	x1, x20
+ 25c:	mov	x0, #0x0                   	// #0
+ 260:	bl	0 <strtok>
+ 264:	cbnz	x0, 248 <tag_string_to_list+0x40>
+ 268:	mov	x0, x21
+ 26c:	bl	0 <free>
+ 270:	ldr	x21, [sp, #32]
+ 274:	mov	x0, x19
+ 278:	ldp	x19, x20, [sp, #16]
+ 27c:	ldp	x29, x30, [sp], #48
+ 280:	ret
+ 284:	nop
+
+0000000000000288 <tcase_set_tags>:
+ 288:	stp	x29, x30, [sp, #-48]!
+ 28c:	mov	x29, sp
+ 290:	stp	x19, x20, [sp, #16]
+ 294:	mov	x19, x0
+ 298:	ldr	x0, [x0, #64]
+ 29c:	stp	x21, x22, [sp, #32]
+ 2a0:	mov	x21, x1
+ 2a4:	cbz	x0, 2bc <tcase_set_tags+0x34>
+ 2a8:	adrp	x1, 0 <free>
+ 2ac:	add	x1, x1, #0x0
+ 2b0:	bl	0 <check_list_apply>
+ 2b4:	ldr	x0, [x19, #64]
+ 2b8:	bl	0 <check_list_free>
+ 2bc:	bl	0 <check_list_create>
+ 2c0:	mov	x20, x0
+ 2c4:	cbz	x21, 310 <tcase_set_tags+0x88>
+ 2c8:	mov	x0, x21
+ 2cc:	adrp	x21, 0 <suite_create>
+ 2d0:	bl	0 <strdup>
+ 2d4:	add	x21, x21, #0x0
+ 2d8:	mov	x22, x0
+ 2dc:	mov	x1, x21
+ 2e0:	bl	0 <strtok>
+ 2e4:	cbz	x0, 308 <tcase_set_tags+0x80>
+ 2e8:	bl	0 <strdup>
+ 2ec:	mov	x1, x0
+ 2f0:	mov	x0, x20
+ 2f4:	bl	0 <check_list_add_end>
+ 2f8:	mov	x1, x21
+ 2fc:	mov	x0, #0x0                   	// #0
+ 300:	bl	0 <strtok>
+ 304:	cbnz	x0, 2e8 <tcase_set_tags+0x60>
+ 308:	mov	x0, x22
+ 30c:	bl	0 <free>
+ 310:	ldp	x21, x22, [sp, #32]
+ 314:	str	x20, [x19, #64]
+ 318:	ldp	x19, x20, [sp, #16]
+ 31c:	ldp	x29, x30, [sp], #48
+ 320:	ret
+ 324:	nop
+
+0000000000000328 <tcase_matching_tag>:
+ 328:	cbz	x1, 3d0 <tcase_matching_tag+0xa8>
+ 32c:	stp	x29, x30, [sp, #-48]!
+ 330:	mov	x29, sp
+ 334:	stp	x19, x20, [sp, #16]
+ 338:	mov	x20, x0
+ 33c:	mov	x0, x1
+ 340:	str	x21, [sp, #32]
+ 344:	mov	x21, x1
+ 348:	bl	0 <check_list_front>
+ 34c:	mov	x0, x21
+ 350:	bl	0 <check_list_at_end>
+ 354:	cbnz	w0, 3bc <tcase_matching_tag+0x94>
+ 358:	ldr	x0, [x20, #64]
+ 35c:	bl	0 <check_list_front>
+ 360:	b	390 <tcase_matching_tag+0x68>
+ 364:	ldr	x0, [x20, #64]
+ 368:	bl	0 <check_list_val>
+ 36c:	mov	x19, x0
+ 370:	mov	x0, x21
+ 374:	bl	0 <check_list_val>
+ 378:	mov	x1, x0
+ 37c:	mov	x0, x19
+ 380:	bl	0 <strcmp>
+ 384:	cbz	w0, 3a8 <tcase_matching_tag+0x80>
+ 388:	ldr	x0, [x20, #64]
+ 38c:	bl	0 <check_list_advance>
+ 390:	ldr	x0, [x20, #64]
+ 394:	bl	0 <check_list_at_end>
+ 398:	cbz	w0, 364 <tcase_matching_tag+0x3c>
+ 39c:	mov	x0, x21
+ 3a0:	bl	0 <check_list_advance>
+ 3a4:	b	34c <tcase_matching_tag+0x24>
+ 3a8:	mov	w0, #0x1                   	// #1
+ 3ac:	ldp	x19, x20, [sp, #16]
+ 3b0:	ldr	x21, [sp, #32]
+ 3b4:	ldp	x29, x30, [sp], #48
+ 3b8:	ret
+ 3bc:	mov	w0, #0x0                   	// #0
+ 3c0:	ldp	x19, x20, [sp, #16]
+ 3c4:	ldr	x21, [sp, #32]
+ 3c8:	ldp	x29, x30, [sp], #48
+ 3cc:	ret
+ 3d0:	mov	w0, #0x0                   	// #0
+ 3d4:	ret
+
+00000000000003d8 <suite_add_tcase>:
+ 3d8:	cmp	x0, #0x0
+ 3dc:	ccmp	x1, #0x0, #0x4, ne  // ne = any
+ 3e0:	b.ne	3e8 <suite_add_tcase+0x10>  // b.any
+ 3e4:	ret
+ 3e8:	stp	x29, x30, [sp, #-32]!
+ 3ec:	mov	x29, sp
+ 3f0:	stp	x19, x20, [sp, #16]
+ 3f4:	mov	x19, x0
+ 3f8:	mov	x20, x1
+ 3fc:	ldr	x0, [x0, #8]
+ 400:	bl	0 <check_list_contains>
+ 404:	cbnz	w0, 41c <suite_add_tcase+0x44>
+ 408:	mov	x1, x20
+ 40c:	ldr	x0, [x19, #8]
+ 410:	ldp	x19, x20, [sp, #16]
+ 414:	ldp	x29, x30, [sp], #32
+ 418:	b	0 <check_list_add_end>
+ 41c:	ldp	x19, x20, [sp, #16]
+ 420:	ldp	x29, x30, [sp], #32
+ 424:	ret
+
+0000000000000428 <_tcase_add_test>:
+ 428:	cmp	x0, #0x0
+ 42c:	ccmp	x1, #0x0, #0x4, ne  // ne = any
+ 430:	b.ne	438 <_tcase_add_test+0x10>  // b.any
+ 434:	ret
+ 438:	stp	x29, x30, [sp, #-64]!
+ 43c:	mov	x29, sp
+ 440:	stp	x19, x20, [sp, #16]
+ 444:	mov	x20, x1
+ 448:	mov	x19, x0
+ 44c:	mov	x0, #0x18                  	// #24
+ 450:	stp	x21, x22, [sp, #32]
+ 454:	mov	w21, w2
+ 458:	mov	w22, w5
+ 45c:	stp	x23, x24, [sp, #48]
+ 460:	mov	w24, w3
+ 464:	mov	w23, w4
+ 468:	bl	0 <emalloc>
+ 46c:	mov	x1, x0
+ 470:	strb	w24, [x0, #20]
+ 474:	ldr	x0, [x19, #24]
+ 478:	str	x20, [x1]
+ 47c:	stp	w23, w22, [x1, #8]
+ 480:	str	w21, [x1, #16]
+ 484:	ldp	x19, x20, [sp, #16]
+ 488:	ldp	x21, x22, [sp, #32]
+ 48c:	ldp	x23, x24, [sp, #48]
+ 490:	ldp	x29, x30, [sp], #64
+ 494:	b	0 <check_list_add_end>
+
+0000000000000498 <tcase_add_unchecked_fixture>:
+ 498:	stp	x29, x30, [sp, #-48]!
+ 49c:	mov	x29, sp
+ 4a0:	stp	x19, x20, [sp, #16]
+ 4a4:	mov	x19, x2
+ 4a8:	stp	x21, x22, [sp, #32]
+ 4ac:	mov	x21, x0
+ 4b0:	cbz	x1, 4d8 <tcase_add_unchecked_fixture+0x40>
+ 4b4:	mov	x20, x1
+ 4b8:	mov	x0, #0x10                  	// #16
+ 4bc:	ldr	x22, [x21, #32]
+ 4c0:	bl	0 <emalloc>
+ 4c4:	mov	x1, x0
+ 4c8:	mov	x0, x22
+ 4cc:	str	wzr, [x1]
+ 4d0:	str	x20, [x1, #8]
+ 4d4:	bl	0 <check_list_add_end>
+ 4d8:	cbz	x19, 508 <tcase_add_unchecked_fixture+0x70>
+ 4dc:	mov	x0, #0x10                  	// #16
+ 4e0:	ldr	x20, [x21, #40]
+ 4e4:	bl	0 <emalloc>
+ 4e8:	mov	x1, x0
+ 4ec:	ldp	x21, x22, [sp, #32]
+ 4f0:	mov	x0, x20
+ 4f4:	str	wzr, [x1]
+ 4f8:	str	x19, [x1, #8]
+ 4fc:	ldp	x19, x20, [sp, #16]
+ 500:	ldp	x29, x30, [sp], #48
+ 504:	b	0 <check_list_add_front>
+ 508:	ldp	x19, x20, [sp, #16]
+ 50c:	ldp	x21, x22, [sp, #32]
+ 510:	ldp	x29, x30, [sp], #48
+ 514:	ret
+
+0000000000000518 <tcase_add_checked_fixture>:
+ 518:	stp	x29, x30, [sp, #-48]!
+ 51c:	mov	x29, sp
+ 520:	stp	x19, x20, [sp, #16]
+ 524:	mov	x19, x2
+ 528:	stp	x21, x22, [sp, #32]
+ 52c:	mov	x21, x0
+ 530:	cbz	x1, 55c <tcase_add_checked_fixture+0x44>
+ 534:	mov	x20, x1
+ 538:	mov	x0, #0x10                  	// #16
+ 53c:	ldr	x22, [x21, #48]
+ 540:	bl	0 <emalloc>
+ 544:	mov	x1, x0
+ 548:	mov	w2, #0x1                   	// #1
+ 54c:	mov	x0, x22
+ 550:	str	w2, [x1]
+ 554:	str	x20, [x1, #8]
+ 558:	bl	0 <check_list_add_end>
+ 55c:	cbz	x19, 590 <tcase_add_checked_fixture+0x78>
+ 560:	mov	x0, #0x10                  	// #16
+ 564:	ldr	x20, [x21, #56]
+ 568:	bl	0 <emalloc>
+ 56c:	mov	x1, x0
+ 570:	mov	w2, #0x1                   	// #1
+ 574:	ldp	x21, x22, [sp, #32]
+ 578:	mov	x0, x20
+ 57c:	str	w2, [x1]
+ 580:	str	x19, [x1, #8]
+ 584:	ldp	x19, x20, [sp, #16]
+ 588:	ldp	x29, x30, [sp], #48
+ 58c:	b	0 <check_list_add_front>
+ 590:	ldp	x19, x20, [sp, #16]
+ 594:	ldp	x21, x22, [sp, #32]
+ 598:	ldp	x29, x30, [sp], #48
+ 59c:	ret
+
+00000000000005a0 <tcase_set_timeout>:
+ 5a0:	fcmpe	d0, #0.0
+ 5a4:	b.ge	5ac <tcase_set_timeout+0xc>  // b.tcont
+ 5a8:	ret
+ 5ac:	stp	x29, x30, [sp, #-64]!
+ 5b0:	mov	x29, sp
+ 5b4:	str	d8, [sp, #32]
+ 5b8:	fmov	d8, d0
+ 5bc:	stp	x19, x20, [sp, #16]
+ 5c0:	mov	x19, x0
+ 5c4:	adrp	x0, 0 <suite_create>
+ 5c8:	add	x0, x0, #0x0
+ 5cc:	bl	0 <getenv>
+ 5d0:	mov	x20, x0
+ 5d4:	cbz	x0, 604 <tcase_set_timeout+0x64>
+ 5d8:	add	x1, sp, #0x38
+ 5dc:	str	xzr, [sp, #56]
+ 5e0:	bl	0 <strtod>
+ 5e4:	fcmpe	d0, #0.0
+ 5e8:	b.lt	604 <tcase_set_timeout+0x64>  // b.tstop
+ 5ec:	ldr	x0, [sp, #56]
+ 5f0:	cmp	x0, x20
+ 5f4:	b.eq	604 <tcase_set_timeout+0x64>  // b.none
+ 5f8:	ldrb	w0, [x0]
+ 5fc:	cbnz	w0, 604 <tcase_set_timeout+0x64>
+ 600:	fmul	d8, d8, d0
+ 604:	frintm	d1, d8
+ 608:	mov	x0, #0xcd6500000000        	// #225833675390976
+ 60c:	movk	x0, #0x41cd, lsl #48
+ 610:	fmov	d0, x0
+ 614:	fcvtms	x0, d8
+ 618:	fsub	d8, d8, d1
+ 61c:	str	x0, [x19, #8]
+ 620:	fmul	d8, d8, d0
+ 624:	fcvtzs	d8, d8
+ 628:	str	d8, [x19, #16]
+ 62c:	ldp	x19, x20, [sp, #16]
+ 630:	ldr	d8, [sp, #32]
+ 634:	ldp	x29, x30, [sp], #64
+ 638:	ret
+ 63c:	nop
+
+0000000000000640 <tcase_fn_start>:
+ 640:	stp	x29, x30, [sp, #-48]!
+ 644:	mov	x29, sp
+ 648:	stp	x19, x20, [sp, #16]
+ 64c:	mov	x20, x1
+ 650:	mov	x19, x0
+ 654:	mov	w0, #0x2                   	// #2
+ 658:	str	x21, [sp, #32]
+ 65c:	mov	w21, w2
+ 660:	bl	0 <send_ctx_info>
+ 664:	mov	w1, w21
+ 668:	mov	x0, x20
+ 66c:	bl	0 <send_loc_info>
+ 670:	adrp	x0, 0 <suite_create>
+ 674:	ldr	x21, [sp, #32]
+ 678:	str	x19, [x0]
+ 67c:	ldp	x19, x20, [sp, #16]
+ 680:	ldp	x29, x30, [sp], #48
+ 684:	ret
+
+0000000000000688 <tcase_name>:
+ 688:	adrp	x0, 0 <suite_create>
+ 68c:	ldr	x0, [x0]
+ 690:	ret
+ 694:	nop
+
+0000000000000698 <_mark_point>:
+ 698:	b	0 <send_loc_info>
+ 69c:	nop
+
+00000000000006a0 <_ck_assert_failed>:
+ 6a0:	mov	x12, #0x2110                	// #8464
+ 6a4:	sub	sp, sp, x12
+ 6a8:	add	x8, sp, #0x2, lsl #12
+ 6ac:	stp	x29, x30, [sp]
+ 6b0:	mov	x29, sp
+ 6b4:	str	x19, [sp, #16]
+ 6b8:	mov	x19, x2
+ 6bc:	str	q0, [x8, #96]
+ 6c0:	str	q1, [x8, #112]
+ 6c4:	str	q2, [x8, #128]
+ 6c8:	str	q3, [x8, #144]
+ 6cc:	str	q4, [x8, #160]
+ 6d0:	str	q5, [x8, #176]
+ 6d4:	str	q6, [x8, #192]
+ 6d8:	str	q7, [x8, #208]
+ 6dc:	str	x3, [sp, #8424]
+ 6e0:	str	x4, [sp, #8432]
+ 6e4:	str	x5, [sp, #8440]
+ 6e8:	str	x6, [sp, #8448]
+ 6ec:	str	x7, [sp, #8456]
+ 6f0:	bl	0 <send_loc_info>
+ 6f4:	ldr	x2, [sp, #8424]
+ 6f8:	mov	x4, #0x20e0                	// #8416
+ 6fc:	mov	w0, #0xffffff80            	// #-128
+ 700:	add	x3, sp, x4
+ 704:	mov	w1, #0xffffffe0            	// #-32
+ 708:	mov	x5, #0x2110                	// #8464
+ 70c:	add	x4, sp, x5
+ 710:	stp	x4, x4, [sp, #64]
+ 714:	str	x3, [sp, #80]
+ 718:	stp	w1, w0, [sp, #88]
+ 71c:	cbz	x2, 744 <_ck_assert_failed+0xa4>
+ 720:	ldp	x6, x7, [sp, #64]
+ 724:	add	x19, sp, #0x60
+ 728:	ldp	x4, x5, [sp, #80]
+ 72c:	mov	x0, x19
+ 730:	add	x3, sp, #0x20
+ 734:	mov	x1, #0x2000                	// #8192
+ 738:	stp	x6, x7, [sp, #32]
+ 73c:	stp	x4, x5, [sp, #48]
+ 740:	bl	0 <vsnprintf>
+ 744:	mov	x0, x19
+ 748:	bl	0 <send_failure_info>
+ 74c:	adrp	x0, 0 <suite_create>
+ 750:	ldr	w0, [x0]
+ 754:	cmp	w0, #0x1
+ 758:	b.eq	76c <_ck_assert_failed+0xcc>  // b.none
+ 75c:	adrp	x0, 0 <error_jmp_buffer>
+ 760:	mov	w1, #0x1                   	// #1
+ 764:	add	x0, x0, #0x0
+ 768:	bl	0 <longjmp>
+ 76c:	bl	0 <_exit>
+
+0000000000000770 <srunner_create>:
+ 770:	stp	x29, x30, [sp, #-32]!
+ 774:	mov	x29, sp
+ 778:	stp	x19, x20, [sp, #16]
+ 77c:	mov	x20, x0
+ 780:	mov	x0, #0x40                  	// #64
+ 784:	bl	0 <emalloc>
+ 788:	mov	x19, x0
+ 78c:	bl	0 <check_list_create>
+ 790:	str	x0, [x19]
+ 794:	cbz	x20, 7a0 <srunner_create+0x30>
+ 798:	mov	x1, x20
+ 79c:	bl	0 <check_list_add_end>
+ 7a0:	mov	x0, #0xc                   	// #12
+ 7a4:	bl	0 <emalloc>
+ 7a8:	str	x0, [x19, #8]
+ 7ac:	str	xzr, [x0]
+ 7b0:	str	wzr, [x0, #8]
+ 7b4:	bl	0 <check_list_create>
+ 7b8:	mov	x1, x0
+ 7bc:	stp	x1, xzr, [x19, #16]
+ 7c0:	mov	x0, x19
+ 7c4:	stp	xzr, xzr, [x19, #32]
+ 7c8:	str	xzr, [x19, #48]
+ 7cc:	str	wzr, [x19, #56]
+ 7d0:	ldp	x19, x20, [sp, #16]
+ 7d4:	ldp	x29, x30, [sp], #32
+ 7d8:	ret
+ 7dc:	nop
+
+00000000000007e0 <srunner_add_suite>:
+ 7e0:	cbz	x1, 7ec <srunner_add_suite+0xc>
+ 7e4:	ldr	x0, [x0]
+ 7e8:	b	0 <check_list_add_end>
+ 7ec:	ret
+
+00000000000007f0 <srunner_free>:
+ 7f0:	cbz	x0, 994 <srunner_free+0x1a4>
+ 7f4:	stp	x29, x30, [sp, #-64]!
+ 7f8:	mov	x29, sp
+ 7fc:	stp	x23, x24, [sp, #48]
+ 800:	mov	x23, x0
+ 804:	ldr	x0, [x0, #8]
+ 808:	stp	x19, x20, [sp, #16]
+ 80c:	adrp	x20, 0 <free>
+ 810:	stp	x21, x22, [sp, #32]
+ 814:	add	x20, x20, #0x0
+ 818:	bl	0 <free>
+ 81c:	ldr	x24, [x23]
+ 820:	mov	x0, x24
+ 824:	bl	0 <check_list_front>
+ 828:	mov	x0, x24
+ 82c:	bl	0 <check_list_at_end>
+ 830:	cbnz	w0, 920 <srunner_free+0x130>
+ 834:	nop
+ 838:	mov	x0, x24
+ 83c:	bl	0 <check_list_val>
+ 840:	mov	x21, x0
+ 844:	cbz	x0, 90c <srunner_free+0x11c>
+ 848:	ldr	x22, [x0, #8]
+ 84c:	mov	x0, x22
+ 850:	bl	0 <check_list_front>
+ 854:	b	8e8 <srunner_free+0xf8>
+ 858:	bl	0 <check_list_val>
+ 85c:	mov	x19, x0
+ 860:	ldr	x0, [x0, #24]
+ 864:	mov	x1, x20
+ 868:	bl	0 <check_list_apply>
+ 86c:	ldr	x0, [x19, #32]
+ 870:	mov	x1, x20
+ 874:	bl	0 <check_list_apply>
+ 878:	ldr	x0, [x19, #48]
+ 87c:	mov	x1, x20
+ 880:	bl	0 <check_list_apply>
+ 884:	ldr	x0, [x19, #40]
+ 888:	mov	x1, x20
+ 88c:	bl	0 <check_list_apply>
+ 890:	ldr	x0, [x19, #56]
+ 894:	mov	x1, x20
+ 898:	bl	0 <check_list_apply>
+ 89c:	ldr	x0, [x19, #64]
+ 8a0:	mov	x1, x20
+ 8a4:	bl	0 <check_list_apply>
+ 8a8:	ldr	x0, [x19, #24]
+ 8ac:	bl	0 <check_list_free>
+ 8b0:	ldr	x0, [x19, #32]
+ 8b4:	bl	0 <check_list_free>
+ 8b8:	ldr	x0, [x19, #48]
+ 8bc:	bl	0 <check_list_free>
+ 8c0:	ldr	x0, [x19, #40]
+ 8c4:	bl	0 <check_list_free>
+ 8c8:	ldr	x0, [x19, #56]
+ 8cc:	bl	0 <check_list_free>
+ 8d0:	ldr	x0, [x19, #64]
+ 8d4:	bl	0 <check_list_free>
+ 8d8:	mov	x0, x19
+ 8dc:	bl	0 <free>
+ 8e0:	mov	x0, x22
+ 8e4:	bl	0 <check_list_advance>
+ 8e8:	mov	x0, x22
+ 8ec:	bl	0 <check_list_at_end>
+ 8f0:	mov	w1, w0
+ 8f4:	mov	x0, x22
+ 8f8:	cbz	w1, 858 <srunner_free+0x68>
+ 8fc:	ldr	x0, [x21, #8]
+ 900:	bl	0 <check_list_free>
+ 904:	mov	x0, x21
+ 908:	bl	0 <free>
+ 90c:	mov	x0, x24
+ 910:	bl	0 <check_list_advance>
+ 914:	mov	x0, x24
+ 918:	bl	0 <check_list_at_end>
+ 91c:	cbz	w0, 838 <srunner_free+0x48>
+ 920:	ldr	x0, [x23]
+ 924:	bl	0 <check_list_free>
+ 928:	ldr	x20, [x23, #16]
+ 92c:	mov	x0, x20
+ 930:	bl	0 <check_list_front>
+ 934:	b	960 <srunner_free+0x170>
+ 938:	bl	0 <check_list_val>
+ 93c:	mov	x19, x0
+ 940:	ldr	x0, [x0, #8]
+ 944:	bl	0 <free>
+ 948:	ldr	x0, [x19, #48]
+ 94c:	bl	0 <free>
+ 950:	mov	x0, x19
+ 954:	bl	0 <free>
+ 958:	mov	x0, x20
+ 95c:	bl	0 <check_list_advance>
+ 960:	mov	x0, x20
+ 964:	bl	0 <check_list_at_end>
+ 968:	mov	w1, w0
+ 96c:	mov	x0, x20
+ 970:	cbz	w1, 938 <srunner_free+0x148>
+ 974:	ldr	x0, [x23, #16]
+ 978:	bl	0 <check_list_free>
+ 97c:	mov	x0, x23
+ 980:	ldp	x19, x20, [sp, #16]
+ 984:	ldp	x21, x22, [sp, #32]
+ 988:	ldp	x23, x24, [sp, #48]
+ 98c:	ldp	x29, x30, [sp], #64
+ 990:	b	0 <free>
+ 994:	ret
+
+0000000000000998 <srunner_ntests_failed>:
+ 998:	ldr	x1, [x0, #8]
+ 99c:	ldp	w2, w0, [x1, #4]
+ 9a0:	add	w0, w2, w0
+ 9a4:	ret
+
+00000000000009a8 <srunner_ntests_run>:
+ 9a8:	ldr	x0, [x0, #8]
+ 9ac:	ldr	w0, [x0]
+ 9b0:	ret
+ 9b4:	nop
+
+00000000000009b8 <srunner_failures>:
+ 9b8:	stp	x29, x30, [sp, #-48]!
+ 9bc:	mov	x29, sp
+ 9c0:	ldr	x1, [x0, #8]
+ 9c4:	stp	x19, x20, [sp, #16]
+ 9c8:	mov	x19, x0
+ 9cc:	mov	w20, #0x0                   	// #0
+ 9d0:	ldp	w0, w1, [x1, #4]
+ 9d4:	str	x21, [sp, #32]
+ 9d8:	add	w0, w0, w1
+ 9dc:	sbfiz	x0, x0, #3, #32
+ 9e0:	bl	0 <emalloc>
+ 9e4:	ldr	x19, [x19, #16]
+ 9e8:	mov	x21, x0
+ 9ec:	mov	x0, x19
+ 9f0:	bl	0 <check_list_front>
+ 9f4:	mov	x0, x19
+ 9f8:	bl	0 <check_list_at_end>
+ 9fc:	mov	w1, w0
+ a00:	mov	x0, x19
+ a04:	cbnz	w1, a40 <srunner_failures+0x88>
+ a08:	bl	0 <check_list_val>
+ a0c:	mov	x1, x0
+ a10:	mov	x0, x19
+ a14:	ldr	w2, [x1]
+ a18:	cmp	w2, #0x1
+ a1c:	b.eq	a28 <srunner_failures+0x70>  // b.none
+ a20:	str	x1, [x21, w20, sxtw #3]
+ a24:	add	w20, w20, #0x1
+ a28:	bl	0 <check_list_advance>
+ a2c:	mov	x0, x19
+ a30:	bl	0 <check_list_at_end>
+ a34:	mov	w1, w0
+ a38:	mov	x0, x19
+ a3c:	cbz	w1, a08 <srunner_failures+0x50>
+ a40:	mov	x0, x21
+ a44:	ldp	x19, x20, [sp, #16]
+ a48:	ldr	x21, [sp, #32]
+ a4c:	ldp	x29, x30, [sp], #48
+ a50:	ret
+ a54:	nop
+
+0000000000000a58 <srunner_results>:
+ a58:	stp	x29, x30, [sp, #-48]!
+ a5c:	mov	x29, sp
+ a60:	stp	x19, x20, [sp, #16]
+ a64:	mov	x19, x0
+ a68:	ldr	x0, [x0, #8]
+ a6c:	ldrsw	x0, [x0]
+ a70:	str	x21, [sp, #32]
+ a74:	lsl	x0, x0, #3
+ a78:	bl	0 <emalloc>
+ a7c:	ldr	x19, [x19, #16]
+ a80:	mov	x21, x0
+ a84:	mov	x20, x0
+ a88:	mov	x0, x19
+ a8c:	bl	0 <check_list_front>
+ a90:	b	aa4 <srunner_results+0x4c>
+ a94:	bl	0 <check_list_val>
+ a98:	str	x0, [x20], #8
+ a9c:	mov	x0, x19
+ aa0:	bl	0 <check_list_advance>
+ aa4:	mov	x0, x19
+ aa8:	bl	0 <check_list_at_end>
+ aac:	mov	w1, w0
+ ab0:	mov	x0, x19
+ ab4:	cbz	w1, a94 <srunner_results+0x3c>
+ ab8:	mov	x0, x21
+ abc:	ldp	x19, x20, [sp, #16]
+ ac0:	ldr	x21, [sp, #32]
+ ac4:	ldp	x29, x30, [sp], #48
+ ac8:	ret
+ acc:	nop
+
+0000000000000ad0 <tr_create>:
+ ad0:	stp	x29, x30, [sp, #-16]!
+ ad4:	mov	x0, #0x38                  	// #56
+ ad8:	mov	x29, sp
+ adc:	bl	0 <emalloc>
+ ae0:	stp	xzr, xzr, [x0]
+ ae4:	mov	w2, #0xffffffff            	// #-1
+ ae8:	str	w2, [x0, #16]
+ aec:	str	w2, [x0, #24]
+ af0:	stp	xzr, xzr, [x0, #32]
+ af4:	str	xzr, [x0, #48]
+ af8:	ldp	x29, x30, [sp], #16
+ afc:	ret
+
+0000000000000b00 <tr_free>:
+ b00:	stp	x29, x30, [sp, #-32]!
+ b04:	mov	x29, sp
+ b08:	str	x19, [sp, #16]
+ b0c:	mov	x19, x0
+ b10:	ldr	x0, [x0, #8]
+ b14:	bl	0 <free>
+ b18:	ldr	x0, [x19, #48]
+ b1c:	bl	0 <free>
+ b20:	mov	x0, x19
+ b24:	ldr	x19, [sp, #16]
+ b28:	ldp	x29, x30, [sp], #32
+ b2c:	b	0 <free>
+
+0000000000000b30 <tr_msg>:
+ b30:	ldr	x0, [x0, #48]
+ b34:	ret
+
+0000000000000b38 <tr_lno>:
+ b38:	ldr	w0, [x0, #16]
+ b3c:	ret
+
+0000000000000b40 <tr_lfile>:
+ b40:	ldr	x0, [x0, #8]
+ b44:	ret
+
+0000000000000b48 <tr_rtype>:
+ b48:	ldr	w0, [x0]
+ b4c:	ret
+
+0000000000000b50 <tr_ctx>:
+ b50:	ldr	w0, [x0, #4]
+ b54:	ret
+
+0000000000000b58 <tr_tcname>:
+ b58:	ldr	x0, [x0, #32]
+ b5c:	ret
+
+0000000000000b60 <set_fork_status>:
+ b60:	cmp	w0, #0x2
+ b64:	b.hi	b74 <set_fork_status+0x14>  // b.pmore
+ b68:	adrp	x1, 0 <suite_create>
+ b6c:	str	w0, [x1]
+ b70:	ret
+ b74:	stp	x29, x30, [sp, #-16]!
+ b78:	adrp	x1, 0 <suite_create>
+ b7c:	adrp	x0, 0 <suite_create>
+ b80:	mov	x29, sp
+ b84:	add	x1, x1, #0x0
+ b88:	add	x0, x0, #0x0
+ b8c:	mov	w2, #0x24a                 	// #586
+ b90:	bl	0 <eprintf>
+ b94:	nop
+
+0000000000000b98 <cur_fork_status>:
+ b98:	adrp	x0, 0 <suite_create>
+ b9c:	ldr	w0, [x0]
+ ba0:	ret
+ ba4:	nop
+
+0000000000000ba8 <check_get_clockid>:
+ ba8:	stp	x29, x30, [sp, #-32]!
+ bac:	mov	x1, #0x0                   	// #0
+ bb0:	mov	w0, #0x1                   	// #1
+ bb4:	mov	x29, sp
+ bb8:	add	x2, sp, #0x18
+ bbc:	bl	0 <timer_create>
+ bc0:	cbz	w0, bd8 <check_get_clockid+0x30>
+ bc4:	adrp	x1, 0 <suite_create>
+ bc8:	mov	w0, #0x0                   	// #0
+ bcc:	str	wzr, [x1]
+ bd0:	ldp	x29, x30, [sp], #32
+ bd4:	ret
+ bd8:	ldr	x0, [sp, #24]
+ bdc:	bl	0 <timer_delete>
+ be0:	adrp	x1, 0 <suite_create>
+ be4:	mov	w2, #0x1                   	// #1
+ be8:	mov	w0, w2
+ bec:	str	w2, [x1]
+ bf0:	ldp	x29, x30, [sp], #32
+ bf4:	ret
+
+check_error.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <eprintf>:
+   0:	stp	x29, x30, [sp, #-288]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	adrp	x20, 0 <stderr>
+  10:	mov	x19, x0
+  14:	ldr	x0, [x20]
+  18:	stp	x21, x22, [sp, #32]
+  1c:	mov	x21, x1
+  20:	mov	w22, w2
+  24:	str	q0, [sp, #112]
+  28:	str	q1, [sp, #128]
+  2c:	str	q2, [sp, #144]
+  30:	str	q3, [sp, #160]
+  34:	str	q4, [sp, #176]
+  38:	str	q5, [sp, #192]
+  3c:	str	q6, [sp, #208]
+  40:	str	q7, [sp, #224]
+  44:	stp	x3, x4, [sp, #248]
+  48:	stp	x5, x6, [sp, #264]
+  4c:	str	x7, [sp, #280]
+  50:	bl	0 <fflush>
+  54:	ldr	x0, [x20]
+  58:	mov	w3, w22
+  5c:	mov	x2, x21
+  60:	adrp	x1, 0 <eprintf>
+  64:	add	x1, x1, #0x0
+  68:	bl	0 <fprintf>
+  6c:	add	x1, sp, #0x120
+  70:	stp	x1, x1, [sp, #80]
+  74:	add	x2, sp, #0xf0
+  78:	mov	w4, #0xffffffd8            	// #-40
+  7c:	mov	w3, #0xffffff80            	// #-128
+  80:	str	x2, [sp, #96]
+  84:	mov	x1, x19
+  88:	stp	w4, w3, [sp, #104]
+  8c:	add	x2, sp, #0x30
+  90:	ldp	x4, x5, [sp, #80]
+  94:	stp	x4, x5, [sp, #48]
+  98:	ldp	x4, x5, [sp, #96]
+  9c:	stp	x4, x5, [sp, #64]
+  a0:	ldr	x0, [x20]
+  a4:	bl	0 <vfprintf>
+  a8:	ldrb	w0, [x19]
+  ac:	cbz	w0, c8 <eprintf+0xc8>
+  b0:	mov	x0, x19
+  b4:	bl	0 <strlen>
+  b8:	add	x19, x19, x0
+  bc:	ldurb	w0, [x19, #-1]
+  c0:	cmp	w0, #0x3a
+  c4:	b.eq	dc <eprintf+0xdc>  // b.none
+  c8:	ldr	x1, [x20]
+  cc:	mov	w0, #0xa                   	// #10
+  d0:	bl	0 <fputc>
+  d4:	mov	w0, #0x2                   	// #2
+  d8:	bl	0 <exit>
+  dc:	bl	0 <__errno_location>
+  e0:	ldr	w0, [x0]
+  e4:	ldr	x19, [x20]
+  e8:	bl	0 <strerror>
+  ec:	mov	x2, x0
+  f0:	adrp	x1, 0 <eprintf>
+  f4:	mov	x0, x19
+  f8:	add	x1, x1, #0x0
+  fc:	bl	0 <fprintf>
+ 100:	b	c8 <eprintf+0xc8>
+ 104:	nop
+
+0000000000000108 <emalloc>:
+ 108:	stp	x29, x30, [sp, #-32]!
+ 10c:	mov	x29, sp
+ 110:	str	x19, [sp, #16]
+ 114:	mov	x19, x0
+ 118:	bl	0 <malloc>
+ 11c:	cbz	x0, 12c <emalloc+0x24>
+ 120:	ldr	x19, [sp, #16]
+ 124:	ldp	x29, x30, [sp], #32
+ 128:	ret
+ 12c:	adrp	x1, 0 <eprintf>
+ 130:	adrp	x0, 0 <eprintf>
+ 134:	mov	x3, x19
+ 138:	add	x1, x1, #0x0
+ 13c:	add	x0, x0, #0x0
+ 140:	mov	w2, #0x3e                  	// #62
+ 144:	bl	0 <eprintf>
+
+0000000000000148 <erealloc>:
+ 148:	stp	x29, x30, [sp, #-32]!
+ 14c:	mov	x29, sp
+ 150:	str	x19, [sp, #16]
+ 154:	mov	x19, x1
+ 158:	bl	0 <realloc>
+ 15c:	cbz	x0, 16c <erealloc+0x24>
+ 160:	ldr	x19, [sp, #16]
+ 164:	ldp	x29, x30, [sp], #32
+ 168:	ret
+ 16c:	adrp	x1, 0 <eprintf>
+ 170:	adrp	x0, 0 <eprintf>
+ 174:	mov	x3, x19
+ 178:	add	x1, x1, #0x0
+ 17c:	add	x0, x0, #0x0
+ 180:	mov	w2, #0x48                  	// #72
+ 184:	bl	0 <eprintf>
+
+check_list.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <check_list_create>:
+   0:	stp	x29, x30, [sp, #-32]!
+   4:	mov	x0, #0x18                  	// #24
+   8:	mov	x29, sp
+   c:	str	x19, [sp, #16]
+  10:	bl	0 <emalloc>
+  14:	adrp	x1, 0 <check_list_create>
+  18:	mov	x19, x0
+  1c:	mov	x0, #0x8                   	// #8
+  20:	ldr	d0, [x1]
+  24:	str	d0, [x19]
+  28:	bl	0 <emalloc>
+  2c:	mvni	v0.2s, #0x0
+  30:	mov	x1, x0
+  34:	str	x1, [x19, #16]
+  38:	mov	x0, x19
+  3c:	str	d0, [x19, #8]
+  40:	ldr	x19, [sp, #16]
+  44:	ldp	x29, x30, [sp], #32
+  48:	ret
+  4c:	nop
+
+0000000000000050 <check_list_add_front>:
+  50:	cbz	x0, d4 <check_list_add_front+0x84>
+  54:	stp	x29, x30, [sp, #-32]!
+  58:	mov	x29, sp
+  5c:	ldp	w2, w3, [x0]
+  60:	stp	x19, x20, [sp, #16]
+  64:	mov	x20, x1
+  68:	mov	x19, x0
+  6c:	cmp	w2, w3
+  70:	ldr	x1, [x0, #16]
+  74:	b.cs	b0 <check_list_add_front+0x60>  // b.hs, b.nlast
+  78:	ubfiz	x2, x2, #3, #32
+  7c:	add	x0, x1, #0x8
+  80:	bl	0 <memmove>
+  84:	ldr	x2, [x19, #16]
+  88:	ldr	w1, [x19]
+  8c:	ldr	w0, [x19, #12]
+  90:	add	w1, w1, #0x1
+  94:	str	w1, [x19]
+  98:	add	w0, w0, #0x1
+  9c:	stp	wzr, w0, [x19, #8]
+  a0:	str	x20, [x2]
+  a4:	ldp	x19, x20, [sp, #16]
+  a8:	ldp	x29, x30, [sp], #32
+  ac:	ret
+  b0:	lsl	w3, w3, #1
+  b4:	str	w3, [x19, #4]
+  b8:	mov	x0, x1
+  bc:	lsl	x1, x3, #3
+  c0:	bl	0 <erealloc>
+  c4:	mov	x1, x0
+  c8:	ldr	w2, [x19]
+  cc:	str	x0, [x19, #16]
+  d0:	b	78 <check_list_add_front+0x28>
+  d4:	ret
+
+00000000000000d8 <check_list_add_end>:
+  d8:	cbz	x0, 144 <check_list_add_end+0x6c>
+  dc:	stp	x29, x30, [sp, #-32]!
+  e0:	mov	x29, sp
+  e4:	stp	x19, x20, [sp, #16]
+  e8:	mov	x20, x1
+  ec:	mov	x19, x0
+  f0:	ldp	w1, w2, [x0]
+  f4:	ldr	x0, [x0, #16]
+  f8:	cmp	w1, w2
+  fc:	b.cs	128 <check_list_add_end+0x50>  // b.hs, b.nlast
+ 100:	ldr	w2, [x19, #12]
+ 104:	add	w1, w1, #0x1
+ 108:	str	w1, [x19]
+ 10c:	add	w1, w2, #0x1
+ 110:	dup	v0.2s, w1
+ 114:	str	d0, [x19, #8]
+ 118:	str	x20, [x0, w1, sxtw #3]
+ 11c:	ldp	x19, x20, [sp, #16]
+ 120:	ldp	x29, x30, [sp], #32
+ 124:	ret
+ 128:	lsl	w2, w2, #1
+ 12c:	str	w2, [x19, #4]
+ 130:	lsl	x1, x2, #3
+ 134:	bl	0 <erealloc>
+ 138:	str	x0, [x19, #16]
+ 13c:	ldr	w1, [x19]
+ 140:	b	100 <check_list_add_end+0x28>
+ 144:	ret
+
+0000000000000148 <check_list_at_end>:
+ 148:	ldr	w1, [x0, #8]
+ 14c:	cmn	w1, #0x1
+ 150:	b.eq	164 <check_list_at_end+0x1c>  // b.none
+ 154:	ldr	w0, [x0, #12]
+ 158:	cmp	w1, w0
+ 15c:	cset	w0, gt
+ 160:	ret
+ 164:	mov	w0, #0x1                   	// #1
+ 168:	ret
+ 16c:	nop
+
+0000000000000170 <check_list_front>:
+ 170:	ldr	w1, [x0, #8]
+ 174:	cmn	w1, #0x1
+ 178:	b.eq	180 <check_list_front+0x10>  // b.none
+ 17c:	str	wzr, [x0, #8]
+ 180:	ret
+ 184:	nop
+
+0000000000000188 <check_list_free>:
+ 188:	cbz	x0, 1b4 <check_list_free+0x2c>
+ 18c:	stp	x29, x30, [sp, #-32]!
+ 190:	mov	x29, sp
+ 194:	str	x19, [sp, #16]
+ 198:	mov	x19, x0
+ 19c:	ldr	x0, [x0, #16]
+ 1a0:	bl	0 <free>
+ 1a4:	mov	x0, x19
+ 1a8:	ldr	x19, [sp, #16]
+ 1ac:	ldp	x29, x30, [sp], #32
+ 1b0:	b	0 <free>
+ 1b4:	ret
+
+00000000000001b8 <check_list_val>:
+ 1b8:	cbz	x0, 1e0 <check_list_val+0x28>
+ 1bc:	ldr	w1, [x0, #8]
+ 1c0:	cmn	w1, #0x1
+ 1c4:	b.eq	1e0 <check_list_val+0x28>  // b.none
+ 1c8:	ldr	w2, [x0, #12]
+ 1cc:	cmp	w1, w2
+ 1d0:	b.gt	1e0 <check_list_val+0x28>
+ 1d4:	ldr	x0, [x0, #16]
+ 1d8:	ldr	x0, [x0, w1, sxtw #3]
+ 1dc:	ret
+ 1e0:	mov	x0, #0x0                   	// #0
+ 1e4:	ret
+
+00000000000001e8 <check_list_advance>:
+ 1e8:	cbz	x0, 20c <check_list_advance+0x24>
+ 1ec:	ldr	w1, [x0, #8]
+ 1f0:	cmn	w1, #0x1
+ 1f4:	b.eq	20c <check_list_advance+0x24>  // b.none
+ 1f8:	ldr	w2, [x0, #12]
+ 1fc:	cmp	w1, w2
+ 200:	b.gt	20c <check_list_advance+0x24>
+ 204:	add	w1, w1, #0x1
+ 208:	str	w1, [x0, #8]
+ 20c:	ret
+
+0000000000000210 <check_list_apply>:
+ 210:	cmp	x0, #0x0
+ 214:	ccmp	x1, #0x0, #0x4, ne  // ne = any
+ 218:	b.eq	290 <check_list_apply+0x80>  // b.none
+ 21c:	stp	x29, x30, [sp, #-32]!
+ 220:	mov	x29, sp
+ 224:	stp	x19, x20, [sp, #16]
+ 228:	mov	x19, x0
+ 22c:	ldr	w0, [x0, #8]
+ 230:	cmn	w0, #0x1
+ 234:	b.eq	284 <check_list_apply+0x74>  // b.none
+ 238:	ldr	w0, [x19, #12]
+ 23c:	mov	x20, x1
+ 240:	mov	w2, #0x0                   	// #0
+ 244:	str	wzr, [x19, #8]
+ 248:	cmp	w2, w0
+ 24c:	b.gt	284 <check_list_apply+0x74>
+ 250:	ldr	x0, [x19, #16]
+ 254:	ldr	x0, [x0, w2, sxtw #3]
+ 258:	blr	x20
+ 25c:	ldr	w2, [x19, #8]
+ 260:	cmn	w2, #0x1
+ 264:	b.eq	284 <check_list_apply+0x74>  // b.none
+ 268:	ldr	w0, [x19, #12]
+ 26c:	cmp	w2, w0
+ 270:	b.gt	284 <check_list_apply+0x74>
+ 274:	add	w2, w2, #0x1
+ 278:	str	w2, [x19, #8]
+ 27c:	cmn	w2, #0x1
+ 280:	b.ne	248 <check_list_apply+0x38>  // b.any
+ 284:	ldp	x19, x20, [sp, #16]
+ 288:	ldp	x29, x30, [sp], #32
+ 28c:	ret
+ 290:	ret
+ 294:	nop
+
+0000000000000298 <check_list_contains>:
+ 298:	ldr	w2, [x0, #8]
+ 29c:	cmn	w2, #0x1
+ 2a0:	b.eq	2d8 <check_list_contains+0x40>  // b.none
+ 2a4:	ldr	w4, [x0, #12]
+ 2a8:	mov	x2, #0x0                   	// #0
+ 2ac:	str	wzr, [x0, #8]
+ 2b0:	cmp	w4, w2
+ 2b4:	b.lt	2d8 <check_list_contains+0x40>  // b.tstop
+ 2b8:	ldr	x3, [x0, #16]
+ 2bc:	ldr	x3, [x3, x2, lsl #3]
+ 2c0:	add	x2, x2, #0x1
+ 2c4:	cmp	x1, x3
+ 2c8:	b.eq	2e0 <check_list_contains+0x48>  // b.none
+ 2cc:	str	w2, [x0, #8]
+ 2d0:	cmp	w4, w2
+ 2d4:	b.ge	2b8 <check_list_contains+0x20>  // b.tcont
+ 2d8:	mov	w0, #0x0                   	// #0
+ 2dc:	ret
+ 2e0:	mov	w0, #0x1                   	// #1
+ 2e4:	ret
+
+check_log.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <xml_lfun>:
+   0:	stp	x29, x30, [sp, #-128]!
+   4:	adrp	x2, 0 <xml_lfun>
+   8:	mov	x29, sp
+   c:	ldrb	w0, [x2]
+  10:	stp	x19, x20, [sp, #16]
+  14:	mov	w19, w4
+  18:	add	x20, x2, #0x0
+  1c:	stp	x21, x22, [sp, #32]
+  20:	mov	x21, x1
+  24:	mov	x22, x3
+  28:	cbz	w0, dc <xml_lfun+0xdc>
+  2c:	cmp	w19, #0x3
+  30:	b.eq	124 <xml_lfun+0x124>  // b.none
+  34:	b.ls	6c <xml_lfun+0x6c>  // b.plast
+  38:	cmp	w19, #0x6
+  3c:	b.eq	5c <xml_lfun+0x5c>  // b.none
+  40:	b.ls	a4 <xml_lfun+0xa4>  // b.plast
+  44:	cmp	w19, #0x7
+  48:	b.ne	200 <xml_lfun+0x200>  // b.any
+  4c:	mov	x1, x22
+  50:	mov	x0, x21
+  54:	mov	w2, #0x3                   	// #3
+  58:	bl	0 <tr_xmlprint>
+  5c:	ldp	x19, x20, [sp, #16]
+  60:	ldp	x21, x22, [sp, #32]
+  64:	ldp	x29, x30, [sp], #128
+  68:	ret
+  6c:	cmp	w19, #0x1
+  70:	b.eq	170 <xml_lfun+0x170>  // b.none
+  74:	cmp	w19, #0x2
+  78:	b.eq	5c <xml_lfun+0x5c>  // b.none
+  7c:	cbnz	w19, 200 <xml_lfun+0x200>
+  80:	mov	x2, x20
+  84:	mov	x0, x21
+  88:	adrp	x1, 0 <xml_lfun>
+  8c:	add	x1, x1, #0x0
+  90:	bl	0 <fprintf>
+  94:	ldp	x19, x20, [sp, #16]
+  98:	ldp	x21, x22, [sp, #32]
+  9c:	ldp	x29, x30, [sp], #128
+  a0:	ret
+  a4:	cmp	w19, #0x4
+  a8:	b.eq	5c <xml_lfun+0x5c>  // b.none
+  ac:	cmp	w19, #0x5
+  b0:	b.ne	200 <xml_lfun+0x200>  // b.any
+  b4:	mov	x3, x21
+  b8:	mov	x2, #0xb                   	// #11
+  bc:	mov	x1, #0x1                   	// #1
+  c0:	adrp	x0, 0 <xml_lfun>
+  c4:	add	x0, x0, #0x0
+  c8:	bl	0 <fwrite>
+  cc:	ldp	x19, x20, [sp, #16]
+  d0:	ldp	x21, x22, [sp, #32]
+  d4:	ldp	x29, x30, [sp], #128
+  d8:	ret
+  dc:	mov	x1, #0x0                   	// #0
+  e0:	add	x0, sp, #0x30
+  e4:	bl	0 <gettimeofday>
+  e8:	bl	0 <check_get_clockid>
+  ec:	add	x1, x20, #0x18
+  f0:	bl	0 <clock_gettime>
+  f4:	add	x0, sp, #0x30
+  f8:	add	x1, sp, #0x40
+  fc:	bl	0 <localtime_r>
+ 100:	cbz	x0, 2c <xml_lfun+0x2c>
+ 104:	add	x3, sp, #0x40
+ 108:	mov	x0, x20
+ 10c:	adrp	x2, 0 <xml_lfun>
+ 110:	mov	x1, #0x14                  	// #20
+ 114:	add	x2, x2, #0x0
+ 118:	bl	0 <strftime>
+ 11c:	cmp	w19, #0x3
+ 120:	b.ne	34 <xml_lfun+0x34>  // b.any
+ 124:	mov	x3, x21
+ 128:	mov	x2, #0x15                  	// #21
+ 12c:	mov	x1, #0x1                   	// #1
+ 130:	adrp	x0, 0 <xml_lfun>
+ 134:	add	x0, x0, #0x0
+ 138:	bl	0 <fwrite>
+ 13c:	ldr	x1, [x22]
+ 140:	mov	x0, x21
+ 144:	bl	0 <fprint_xml_esc>
+ 148:	mov	x3, x21
+ 14c:	mov	x2, #0x9                   	// #9
+ 150:	mov	x1, #0x1                   	// #1
+ 154:	adrp	x0, 0 <xml_lfun>
+ 158:	add	x0, x0, #0x0
+ 15c:	bl	0 <fwrite>
+ 160:	ldp	x19, x20, [sp, #16]
+ 164:	ldp	x21, x22, [sp, #32]
+ 168:	ldp	x29, x30, [sp], #128
+ 16c:	ret
+ 170:	stp	xzr, xzr, [sp, #64]
+ 174:	bl	0 <check_get_clockid>
+ 178:	add	x1, sp, #0x40
+ 17c:	bl	0 <clock_gettime>
+ 180:	ldp	x5, x2, [sp, #64]
+ 184:	mov	x7, #0xf7cf                	// #63439
+ 188:	movk	x7, #0xe353, lsl #16
+ 18c:	mov	x3, #0x4240                	// #16960
+ 190:	movk	x7, #0x9ba5, lsl #32
+ 194:	movk	x3, #0xf, lsl #16
+ 198:	movk	x7, #0x20c4, lsl #48
+ 19c:	mov	x6, #0x34db                	// #13531
+ 1a0:	ldp	x4, x8, [x20, #24]
+ 1a4:	smulh	x9, x2, x7
+ 1a8:	movk	x6, #0xd7b6, lsl #16
+ 1ac:	mov	x0, x21
+ 1b0:	movk	x6, #0xde82, lsl #32
+ 1b4:	adrp	x1, 0 <xml_lfun>
+ 1b8:	asr	x9, x9, #7
+ 1bc:	movk	x6, #0x431b, lsl #48
+ 1c0:	sub	x9, x9, x2, asr #63
+ 1c4:	add	x1, x1, #0x0
+ 1c8:	sub	x2, x5, x4
+ 1cc:	smulh	x4, x8, x7
+ 1d0:	asr	x8, x8, #63
+ 1d4:	madd	x2, x2, x3, x9
+ 1d8:	sub	x4, x8, x4, asr #7
+ 1dc:	add	x4, x2, x4
+ 1e0:	umulh	x2, x4, x6
+ 1e4:	lsr	x2, x2, #18
+ 1e8:	msub	x3, x2, x3, x4
+ 1ec:	bl	0 <fprintf>
+ 1f0:	ldp	x19, x20, [sp, #16]
+ 1f4:	ldp	x21, x22, [sp, #32]
+ 1f8:	ldp	x29, x30, [sp], #128
+ 1fc:	ret
+ 200:	adrp	x1, 0 <xml_lfun>
+ 204:	adrp	x0, 0 <xml_lfun>
+ 208:	add	x1, x1, #0x0
+ 20c:	add	x0, x0, #0x0
+ 210:	mov	w2, #0x14f                 	// #335
+ 214:	bl	0 <eprintf>
+
+0000000000000218 <stdout_lfun>:
+ 218:	mov	x6, x0
+ 21c:	cmp	w4, #0x3
+ 220:	mov	x0, x1
+ 224:	b.eq	284 <stdout_lfun+0x6c>  // b.none
+ 228:	b.hi	23c <stdout_lfun+0x24>  // b.pmore
+ 22c:	cmp	w4, #0x2
+ 230:	b.ne	280 <stdout_lfun+0x68>  // b.any
+ 234:	cbnz	w2, 298 <stdout_lfun+0x80>
+ 238:	ret
+ 23c:	cmp	w4, #0x4
+ 240:	b.ne	250 <stdout_lfun+0x38>  // b.any
+ 244:	cbz	w2, 238 <stdout_lfun+0x20>
+ 248:	mov	x1, x6
+ 24c:	b	0 <srunner_fprint>
+ 250:	sub	w4, w4, #0x5
+ 254:	cmp	w4, #0x2
+ 258:	b.ls	27c <stdout_lfun+0x64>  // b.plast
+ 25c:	stp	x29, x30, [sp, #-16]!
+ 260:	adrp	x1, 0 <xml_lfun>
+ 264:	adrp	x0, 0 <xml_lfun>
+ 268:	mov	x29, sp
+ 26c:	add	x1, x1, #0x0
+ 270:	add	x0, x0, #0x0
+ 274:	mov	w2, #0xdc                  	// #220
+ 278:	bl	0 <eprintf>
+ 27c:	ret
+ 280:	ret
+ 284:	cbz	w2, 238 <stdout_lfun+0x20>
+ 288:	ldr	x2, [x3]
+ 28c:	adrp	x1, 0 <xml_lfun>
+ 290:	add	x1, x1, #0x0
+ 294:	b	0 <fprintf>
+ 298:	mov	x3, x1
+ 29c:	adrp	x0, 0 <xml_lfun>
+ 2a0:	mov	x2, #0x11                  	// #17
+ 2a4:	add	x0, x0, #0x0
+ 2a8:	mov	x1, #0x1                   	// #1
+ 2ac:	b	0 <fwrite>
+
+00000000000002b0 <tap_lfun>:
+ 2b0:	stp	x29, x30, [sp, #-32]!
+ 2b4:	cmp	w4, #0x6
+ 2b8:	mov	x29, sp
+ 2bc:	str	x19, [sp, #16]
+ 2c0:	mov	x19, x1
+ 2c4:	b.hi	2fc <tap_lfun+0x4c>  // b.pmore
+ 2c8:	cmp	w4, #0x1
+ 2cc:	b.hi	36c <tap_lfun+0xbc>  // b.pmore
+ 2d0:	cbz	w4, 364 <tap_lfun+0xb4>
+ 2d4:	adrp	x2, 0 <xml_lfun>
+ 2d8:	mov	x0, x19
+ 2dc:	adrp	x1, 0 <xml_lfun>
+ 2e0:	add	x1, x1, #0x0
+ 2e4:	ldr	w2, [x2]
+ 2e8:	bl	0 <fprintf>
+ 2ec:	mov	x0, x19
+ 2f0:	ldr	x19, [sp, #16]
+ 2f4:	ldp	x29, x30, [sp], #32
+ 2f8:	b	0 <fflush>
+ 2fc:	cmp	w4, #0x7
+ 300:	b.ne	378 <tap_lfun+0xc8>  // b.any
+ 304:	adrp	x8, 0 <xml_lfun>
+ 308:	add	x8, x8, #0x0
+ 30c:	ldp	x5, x6, [x3, #32]
+ 310:	adrp	x0, 0 <xml_lfun>
+ 314:	ldr	w1, [x3]
+ 318:	add	x0, x0, #0x0
+ 31c:	ldr	w9, [x8, #40]
+ 320:	adrp	x2, 0 <xml_lfun>
+ 324:	ldr	x4, [x3, #8]
+ 328:	cmp	w1, #0x1
+ 32c:	ldr	x7, [x3, #48]
+ 330:	add	w9, w9, #0x1
+ 334:	add	x2, x2, #0x0
+ 338:	mov	w3, w9
+ 33c:	csel	x2, x2, x0, eq  // eq = none
+ 340:	adrp	x1, 0 <xml_lfun>
+ 344:	mov	x0, x19
+ 348:	add	x1, x1, #0x0
+ 34c:	str	w9, [x8, #40]
+ 350:	bl	0 <fprintf>
+ 354:	mov	x0, x19
+ 358:	ldr	x19, [sp, #16]
+ 35c:	ldp	x29, x30, [sp], #32
+ 360:	b	0 <fflush>
+ 364:	adrp	x0, 0 <xml_lfun>
+ 368:	str	wzr, [x0]
+ 36c:	ldr	x19, [sp, #16]
+ 370:	ldp	x29, x30, [sp], #32
+ 374:	ret
+ 378:	adrp	x1, 0 <xml_lfun>
+ 37c:	adrp	x0, 0 <xml_lfun>
+ 380:	add	x1, x1, #0x0
+ 384:	add	x0, x0, #0x0
+ 388:	mov	w2, #0x17c                 	// #380
+ 38c:	bl	0 <eprintf>
+
+0000000000000390 <lfile_lfun>:
+ 390:	stp	x29, x30, [sp, #-32]!
+ 394:	cmp	w4, #0x4
+ 398:	mov	x29, sp
+ 39c:	stp	x19, x20, [sp, #16]
+ 3a0:	mov	x19, x1
+ 3a4:	b.eq	3f8 <lfile_lfun+0x68>  // b.none
+ 3a8:	b.hi	3d0 <lfile_lfun+0x40>  // b.pmore
+ 3ac:	cmp	w4, #0x3
+ 3b0:	b.ne	42c <lfile_lfun+0x9c>  // b.any
+ 3b4:	ldp	x19, x20, [sp, #16]
+ 3b8:	mov	x0, x1
+ 3bc:	ldp	x29, x30, [sp], #32
+ 3c0:	adrp	x1, 0 <xml_lfun>
+ 3c4:	ldr	x2, [x3]
+ 3c8:	add	x1, x1, #0x0
+ 3cc:	b	0 <fprintf>
+ 3d0:	cmp	w4, #0x6
+ 3d4:	b.ls	42c <lfile_lfun+0x9c>  // b.plast
+ 3d8:	cmp	w4, #0x7
+ 3dc:	b.ne	438 <lfile_lfun+0xa8>  // b.any
+ 3e0:	mov	x0, x19
+ 3e4:	mov	x1, x3
+ 3e8:	ldp	x19, x20, [sp, #16]
+ 3ec:	mov	w2, #0x3                   	// #3
+ 3f0:	ldp	x29, x30, [sp], #32
+ 3f4:	b	0 <tr_fprint>
+ 3f8:	mov	x20, x0
+ 3fc:	mov	x3, x1
+ 400:	mov	x2, #0x1c                  	// #28
+ 404:	mov	x1, #0x1                   	// #1
+ 408:	adrp	x0, 0 <xml_lfun>
+ 40c:	add	x0, x0, #0x0
+ 410:	bl	0 <fwrite>
+ 414:	mov	x1, x20
+ 418:	mov	x0, x19
+ 41c:	ldp	x19, x20, [sp, #16]
+ 420:	mov	w2, #0x1                   	// #1
+ 424:	ldp	x29, x30, [sp], #32
+ 428:	b	0 <srunner_fprint>
+ 42c:	ldp	x19, x20, [sp, #16]
+ 430:	ldp	x29, x30, [sp], #32
+ 434:	ret
+ 438:	adrp	x1, 0 <xml_lfun>
+ 43c:	adrp	x0, 0 <xml_lfun>
+ 440:	add	x1, x1, #0x0
+ 444:	add	x0, x0, #0x0
+ 448:	mov	w2, #0x103                 	// #259
+ 44c:	bl	0 <eprintf>
+
+0000000000000450 <srunner_open_file.part.0>:
+ 450:	stp	x29, x30, [sp, #-16]!
+ 454:	mov	x3, x0
+ 458:	adrp	x1, 0 <xml_lfun>
+ 45c:	mov	x29, sp
+ 460:	adrp	x0, 0 <xml_lfun>
+ 464:	add	x1, x1, #0x0
+ 468:	add	x0, x0, #0x0
+ 46c:	mov	w2, #0x1cd                 	// #461
+ 470:	bl	0 <eprintf>
+ 474:	nop
+
+0000000000000478 <srunner_set_log>:
+ 478:	ldr	x2, [x0, #24]
+ 47c:	cbz	x2, 484 <srunner_set_log+0xc>
+ 480:	ret
+ 484:	str	x1, [x0, #24]
+ 488:	ret
+ 48c:	nop
+
+0000000000000490 <srunner_has_log>:
+ 490:	ldr	x0, [x0, #24]
+ 494:	cbz	x0, 4a4 <srunner_has_log+0x14>
+ 498:	cmp	x0, #0x0
+ 49c:	cset	w0, ne  // ne = any
+ 4a0:	ret
+ 4a4:	stp	x29, x30, [sp, #-16]!
+ 4a8:	adrp	x0, 0 <xml_lfun>
+ 4ac:	add	x0, x0, #0x0
+ 4b0:	mov	x29, sp
+ 4b4:	bl	0 <getenv>
+ 4b8:	cmp	x0, #0x0
+ 4bc:	cset	w0, ne  // ne = any
+ 4c0:	ldp	x29, x30, [sp], #16
+ 4c4:	ret
+
+00000000000004c8 <srunner_log_fname>:
+ 4c8:	ldr	x0, [x0, #24]
+ 4cc:	cbz	x0, 4d4 <srunner_log_fname+0xc>
+ 4d0:	ret
+ 4d4:	adrp	x0, 0 <xml_lfun>
+ 4d8:	add	x0, x0, #0x0
+ 4dc:	b	0 <getenv>
+
+00000000000004e0 <srunner_set_xml>:
+ 4e0:	ldr	x2, [x0, #32]
+ 4e4:	cbz	x2, 4ec <srunner_set_xml+0xc>
+ 4e8:	ret
+ 4ec:	str	x1, [x0, #32]
+ 4f0:	ret
+ 4f4:	nop
+
+00000000000004f8 <srunner_has_xml>:
+ 4f8:	ldr	x0, [x0, #32]
+ 4fc:	cbz	x0, 50c <srunner_has_xml+0x14>
+ 500:	cmp	x0, #0x0
+ 504:	cset	w0, ne  // ne = any
+ 508:	ret
+ 50c:	stp	x29, x30, [sp, #-16]!
+ 510:	adrp	x0, 0 <xml_lfun>
+ 514:	add	x0, x0, #0x0
+ 518:	mov	x29, sp
+ 51c:	bl	0 <getenv>
+ 520:	cmp	x0, #0x0
+ 524:	cset	w0, ne  // ne = any
+ 528:	ldp	x29, x30, [sp], #16
+ 52c:	ret
+
+0000000000000530 <srunner_xml_fname>:
+ 530:	ldr	x0, [x0, #32]
+ 534:	cbz	x0, 53c <srunner_xml_fname+0xc>
+ 538:	ret
+ 53c:	adrp	x0, 0 <xml_lfun>
+ 540:	add	x0, x0, #0x0
+ 544:	b	0 <getenv>
+
+0000000000000548 <srunner_set_tap>:
+ 548:	ldr	x2, [x0, #40]
+ 54c:	cbz	x2, 554 <srunner_set_tap+0xc>
+ 550:	ret
+ 554:	str	x1, [x0, #40]
+ 558:	ret
+ 55c:	nop
+
+0000000000000560 <srunner_has_tap>:
+ 560:	ldr	x0, [x0, #40]
+ 564:	cbz	x0, 574 <srunner_has_tap+0x14>
+ 568:	cmp	x0, #0x0
+ 56c:	cset	w0, ne  // ne = any
+ 570:	ret
+ 574:	stp	x29, x30, [sp, #-16]!
+ 578:	adrp	x0, 0 <xml_lfun>
+ 57c:	add	x0, x0, #0x0
+ 580:	mov	x29, sp
+ 584:	bl	0 <getenv>
+ 588:	cmp	x0, #0x0
+ 58c:	cset	w0, ne  // ne = any
+ 590:	ldp	x29, x30, [sp], #16
+ 594:	ret
+
+0000000000000598 <srunner_tap_fname>:
+ 598:	ldr	x0, [x0, #40]
+ 59c:	cbz	x0, 5a4 <srunner_tap_fname+0xc>
+ 5a0:	ret
+ 5a4:	adrp	x0, 0 <xml_lfun>
+ 5a8:	add	x0, x0, #0x0
+ 5ac:	b	0 <getenv>
+
+00000000000005b0 <srunner_register_lfun>:
+ 5b0:	stp	x29, x30, [sp, #-64]!
+ 5b4:	mov	x29, sp
+ 5b8:	stp	x19, x20, [sp, #16]
+ 5bc:	mov	w20, w4
+ 5c0:	stp	x21, x22, [sp, #32]
+ 5c4:	mov	w21, w2
+ 5c8:	mov	x22, x3
+ 5cc:	stp	x23, x24, [sp, #48]
+ 5d0:	mov	x24, x0
+ 5d4:	mov	x23, x1
+ 5d8:	mov	x0, #0x18                  	// #24
+ 5dc:	bl	0 <emalloc>
+ 5e0:	cmp	w20, #0x4
+ 5e4:	mov	x19, x0
+ 5e8:	b.eq	610 <srunner_register_lfun+0x60>  // b.none
+ 5ec:	ldr	x0, [x24, #48]
+ 5f0:	stp	x23, x22, [x19]
+ 5f4:	mov	x1, x19
+ 5f8:	stp	w21, w20, [x19, #16]
+ 5fc:	ldp	x19, x20, [sp, #16]
+ 600:	ldp	x21, x22, [sp, #32]
+ 604:	ldp	x23, x24, [sp, #48]
+ 608:	ldp	x29, x30, [sp], #64
+ 60c:	b	0 <check_list_add_end>
+ 610:	bl	0 <get_env_printmode>
+ 614:	mov	w20, w0
+ 618:	b	5ec <srunner_register_lfun+0x3c>
+ 61c:	nop
+
+0000000000000620 <log_srunner_start>:
+ 620:	stp	x29, x30, [sp, #-48]!
+ 624:	mov	x29, sp
+ 628:	stp	x19, x20, [sp, #16]
+ 62c:	ldr	x20, [x0, #48]
+ 630:	str	x21, [sp, #32]
+ 634:	mov	x21, x0
+ 638:	mov	x0, x20
+ 63c:	bl	0 <check_list_front>
+ 640:	b	67c <log_srunner_start+0x5c>
+ 644:	bl	0 <check_list_val>
+ 648:	mov	x19, x0
+ 64c:	ldr	x0, [x0]
+ 650:	bl	0 <fflush>
+ 654:	ldp	x1, x5, [x19]
+ 658:	mov	x0, x21
+ 65c:	ldr	w2, [x19, #20]
+ 660:	mov	w4, #0x2                   	// #2
+ 664:	mov	x3, #0x0                   	// #0
+ 668:	blr	x5
+ 66c:	ldr	x0, [x19]
+ 670:	bl	0 <fflush>
+ 674:	mov	x0, x20
+ 678:	bl	0 <check_list_advance>
+ 67c:	mov	x0, x20
+ 680:	bl	0 <check_list_at_end>
+ 684:	mov	w1, w0
+ 688:	mov	x0, x20
+ 68c:	cbz	w1, 644 <log_srunner_start+0x24>
+ 690:	ldp	x19, x20, [sp, #16]
+ 694:	ldr	x21, [sp, #32]
+ 698:	ldp	x29, x30, [sp], #48
+ 69c:	ret
+
+00000000000006a0 <log_srunner_end>:
+ 6a0:	stp	x29, x30, [sp, #-48]!
+ 6a4:	mov	x29, sp
+ 6a8:	stp	x19, x20, [sp, #16]
+ 6ac:	ldr	x20, [x0, #48]
+ 6b0:	str	x21, [sp, #32]
+ 6b4:	mov	x21, x0
+ 6b8:	mov	x0, x20
+ 6bc:	bl	0 <check_list_front>
+ 6c0:	b	6fc <log_srunner_end+0x5c>
+ 6c4:	bl	0 <check_list_val>
+ 6c8:	mov	x19, x0
+ 6cc:	ldr	x0, [x0]
+ 6d0:	bl	0 <fflush>
+ 6d4:	ldp	x1, x5, [x19]
+ 6d8:	mov	x0, x21
+ 6dc:	ldr	w2, [x19, #20]
+ 6e0:	mov	w4, #0x4                   	// #4
+ 6e4:	mov	x3, #0x0                   	// #0
+ 6e8:	blr	x5
+ 6ec:	ldr	x0, [x19]
+ 6f0:	bl	0 <fflush>
+ 6f4:	mov	x0, x20
+ 6f8:	bl	0 <check_list_advance>
+ 6fc:	mov	x0, x20
+ 700:	bl	0 <check_list_at_end>
+ 704:	mov	w1, w0
+ 708:	mov	x0, x20
+ 70c:	cbz	w1, 6c4 <log_srunner_end+0x24>
+ 710:	ldp	x19, x20, [sp, #16]
+ 714:	ldr	x21, [sp, #32]
+ 718:	ldp	x29, x30, [sp], #48
+ 71c:	ret
+
+0000000000000720 <log_suite_start>:
+ 720:	stp	x29, x30, [sp, #-48]!
+ 724:	mov	x29, sp
+ 728:	stp	x19, x20, [sp, #16]
+ 72c:	ldr	x20, [x0, #48]
+ 730:	stp	x21, x22, [sp, #32]
+ 734:	mov	x21, x0
+ 738:	mov	x22, x1
+ 73c:	mov	x0, x20
+ 740:	bl	0 <check_list_front>
+ 744:	b	780 <log_suite_start+0x60>
+ 748:	bl	0 <check_list_val>
+ 74c:	mov	x19, x0
+ 750:	ldr	x0, [x0]
+ 754:	bl	0 <fflush>
+ 758:	ldp	x1, x5, [x19]
+ 75c:	mov	x3, x22
+ 760:	ldr	w2, [x19, #20]
+ 764:	mov	x0, x21
+ 768:	mov	w4, #0x3                   	// #3
+ 76c:	blr	x5
+ 770:	ldr	x0, [x19]
+ 774:	bl	0 <fflush>
+ 778:	mov	x0, x20
+ 77c:	bl	0 <check_list_advance>
+ 780:	mov	x0, x20
+ 784:	bl	0 <check_list_at_end>
+ 788:	mov	w1, w0
+ 78c:	mov	x0, x20
+ 790:	cbz	w1, 748 <log_suite_start+0x28>
+ 794:	ldp	x19, x20, [sp, #16]
+ 798:	ldp	x21, x22, [sp, #32]
+ 79c:	ldp	x29, x30, [sp], #48
+ 7a0:	ret
+ 7a4:	nop
+
+00000000000007a8 <log_suite_end>:
+ 7a8:	stp	x29, x30, [sp, #-48]!
+ 7ac:	mov	x29, sp
+ 7b0:	stp	x19, x20, [sp, #16]
+ 7b4:	ldr	x20, [x0, #48]
+ 7b8:	stp	x21, x22, [sp, #32]
+ 7bc:	mov	x21, x0
+ 7c0:	mov	x22, x1
+ 7c4:	mov	x0, x20
+ 7c8:	bl	0 <check_list_front>
+ 7cc:	b	808 <log_suite_end+0x60>
+ 7d0:	bl	0 <check_list_val>
+ 7d4:	mov	x19, x0
+ 7d8:	ldr	x0, [x0]
+ 7dc:	bl	0 <fflush>
+ 7e0:	ldp	x1, x5, [x19]
+ 7e4:	mov	x3, x22
+ 7e8:	ldr	w2, [x19, #20]
+ 7ec:	mov	x0, x21
+ 7f0:	mov	w4, #0x5                   	// #5
+ 7f4:	blr	x5
+ 7f8:	ldr	x0, [x19]
+ 7fc:	bl	0 <fflush>
+ 800:	mov	x0, x20
+ 804:	bl	0 <check_list_advance>
+ 808:	mov	x0, x20
+ 80c:	bl	0 <check_list_at_end>
+ 810:	mov	w1, w0
+ 814:	mov	x0, x20
+ 818:	cbz	w1, 7d0 <log_suite_end+0x28>
+ 81c:	ldp	x19, x20, [sp, #16]
+ 820:	ldp	x21, x22, [sp, #32]
+ 824:	ldp	x29, x30, [sp], #48
+ 828:	ret
+ 82c:	nop
+
+0000000000000830 <log_test_start>:
+ 830:	stp	x29, x30, [sp, #-160]!
+ 834:	mov	x29, sp
+ 838:	ldr	x4, [x2]
+ 83c:	adrp	x2, 0 <xml_lfun>
+ 840:	ldr	x3, [x1]
+ 844:	add	x2, x2, #0x0
+ 848:	ldr	x4, [x4]
+ 84c:	str	x21, [sp, #32]
+ 850:	mov	x21, x0
+ 854:	mov	x1, #0x63                  	// #99
+ 858:	add	x0, sp, #0x38
+ 85c:	stp	x19, x20, [sp, #16]
+ 860:	bl	0 <snprintf>
+ 864:	ldr	x20, [x21, #48]
+ 868:	mov	x0, x20
+ 86c:	bl	0 <check_list_front>
+ 870:	b	8ac <log_test_start+0x7c>
+ 874:	bl	0 <check_list_val>
+ 878:	mov	x19, x0
+ 87c:	ldr	x0, [x0]
+ 880:	bl	0 <fflush>
+ 884:	ldp	x1, x5, [x19]
+ 888:	add	x3, sp, #0x38
+ 88c:	ldr	w2, [x19, #20]
+ 890:	mov	x0, x21
+ 894:	mov	w4, #0x6                   	// #6
+ 898:	blr	x5
+ 89c:	ldr	x0, [x19]
+ 8a0:	bl	0 <fflush>
+ 8a4:	mov	x0, x20
+ 8a8:	bl	0 <check_list_advance>
+ 8ac:	mov	x0, x20
+ 8b0:	bl	0 <check_list_at_end>
+ 8b4:	mov	w1, w0
+ 8b8:	mov	x0, x20
+ 8bc:	cbz	w1, 874 <log_test_start+0x44>
+ 8c0:	ldp	x19, x20, [sp, #16]
+ 8c4:	ldr	x21, [sp, #32]
+ 8c8:	ldp	x29, x30, [sp], #160
+ 8cc:	ret
+
+00000000000008d0 <log_test_end>:
+ 8d0:	stp	x29, x30, [sp, #-48]!
+ 8d4:	mov	x29, sp
+ 8d8:	stp	x19, x20, [sp, #16]
+ 8dc:	ldr	x20, [x0, #48]
+ 8e0:	stp	x21, x22, [sp, #32]
+ 8e4:	mov	x21, x0
+ 8e8:	mov	x22, x1
+ 8ec:	mov	x0, x20
+ 8f0:	bl	0 <check_list_front>
+ 8f4:	b	930 <log_test_end+0x60>
+ 8f8:	bl	0 <check_list_val>
+ 8fc:	mov	x19, x0
+ 900:	ldr	x0, [x0]
+ 904:	bl	0 <fflush>
+ 908:	ldp	x1, x5, [x19]
+ 90c:	mov	x3, x22
+ 910:	ldr	w2, [x19, #20]
+ 914:	mov	x0, x21
+ 918:	mov	w4, #0x7                   	// #7
+ 91c:	blr	x5
+ 920:	ldr	x0, [x19]
+ 924:	bl	0 <fflush>
+ 928:	mov	x0, x20
+ 92c:	bl	0 <check_list_advance>
+ 930:	mov	x0, x20
+ 934:	bl	0 <check_list_at_end>
+ 938:	mov	w1, w0
+ 93c:	mov	x0, x20
+ 940:	cbz	w1, 8f8 <log_test_end+0x28>
+ 944:	ldp	x19, x20, [sp, #16]
+ 948:	ldp	x21, x22, [sp, #32]
+ 94c:	ldp	x29, x30, [sp], #48
+ 950:	ret
+ 954:	nop
+
+0000000000000958 <srunner_open_lfile>:
+ 958:	stp	x29, x30, [sp, #-48]!
+ 95c:	mov	x29, sp
+ 960:	stp	x19, x20, [sp, #16]
+ 964:	ldr	x19, [x0, #24]
+ 968:	cbz	x19, 9b4 <srunner_open_lfile+0x5c>
+ 96c:	ldrb	w0, [x19]
+ 970:	cmp	w0, #0x2d
+ 974:	b.ne	994 <srunner_open_lfile+0x3c>  // b.any
+ 978:	ldrb	w0, [x19, #1]
+ 97c:	cbnz	w0, 994 <srunner_open_lfile+0x3c>
+ 980:	adrp	x0, 0 <stdout>
+ 984:	ldr	x0, [x0]
+ 988:	ldp	x19, x20, [sp, #16]
+ 98c:	ldp	x29, x30, [sp], #48
+ 990:	ret
+ 994:	adrp	x1, 0 <xml_lfun>
+ 998:	mov	x0, x19
+ 99c:	add	x1, x1, #0x0
+ 9a0:	bl	0 <fopen>
+ 9a4:	cbnz	x0, 988 <srunner_open_lfile+0x30>
+ 9a8:	mov	x0, x19
+ 9ac:	str	x21, [sp, #32]
+ 9b0:	bl	450 <srunner_open_file.part.0>
+ 9b4:	str	x21, [sp, #32]
+ 9b8:	adrp	x21, 0 <xml_lfun>
+ 9bc:	add	x21, x21, #0x0
+ 9c0:	mov	x20, x0
+ 9c4:	mov	x0, x21
+ 9c8:	bl	0 <getenv>
+ 9cc:	cbnz	x0, 9e0 <srunner_open_lfile+0x88>
+ 9d0:	ldp	x19, x20, [sp, #16]
+ 9d4:	ldr	x21, [sp, #32]
+ 9d8:	ldp	x29, x30, [sp], #48
+ 9dc:	ret
+ 9e0:	ldr	x19, [x20, #24]
+ 9e4:	cbnz	x19, 9fc <srunner_open_lfile+0xa4>
+ 9e8:	mov	x0, x21
+ 9ec:	bl	0 <getenv>
+ 9f0:	mov	x19, x0
+ 9f4:	ldr	x21, [sp, #32]
+ 9f8:	b	96c <srunner_open_lfile+0x14>
+ 9fc:	ldr	x21, [sp, #32]
+ a00:	b	96c <srunner_open_lfile+0x14>
+ a04:	nop
+
+0000000000000a08 <srunner_open_xmlfile>:
+ a08:	stp	x29, x30, [sp, #-48]!
+ a0c:	mov	x29, sp
+ a10:	stp	x19, x20, [sp, #16]
+ a14:	ldr	x19, [x0, #32]
+ a18:	cbz	x19, a64 <srunner_open_xmlfile+0x5c>
+ a1c:	ldrb	w0, [x19]
+ a20:	cmp	w0, #0x2d
+ a24:	b.ne	a44 <srunner_open_xmlfile+0x3c>  // b.any
+ a28:	ldrb	w0, [x19, #1]
+ a2c:	cbnz	w0, a44 <srunner_open_xmlfile+0x3c>
+ a30:	adrp	x0, 0 <stdout>
+ a34:	ldr	x0, [x0]
+ a38:	ldp	x19, x20, [sp, #16]
+ a3c:	ldp	x29, x30, [sp], #48
+ a40:	ret
+ a44:	adrp	x1, 0 <xml_lfun>
+ a48:	mov	x0, x19
+ a4c:	add	x1, x1, #0x0
+ a50:	bl	0 <fopen>
+ a54:	cbnz	x0, a38 <srunner_open_xmlfile+0x30>
+ a58:	mov	x0, x19
+ a5c:	str	x21, [sp, #32]
+ a60:	bl	450 <srunner_open_file.part.0>
+ a64:	str	x21, [sp, #32]
+ a68:	adrp	x21, 0 <xml_lfun>
+ a6c:	add	x21, x21, #0x0
+ a70:	mov	x20, x0
+ a74:	mov	x0, x21
+ a78:	bl	0 <getenv>
+ a7c:	cbnz	x0, a90 <srunner_open_xmlfile+0x88>
+ a80:	ldp	x19, x20, [sp, #16]
+ a84:	ldr	x21, [sp, #32]
+ a88:	ldp	x29, x30, [sp], #48
+ a8c:	ret
+ a90:	ldr	x19, [x20, #32]
+ a94:	cbnz	x19, aac <srunner_open_xmlfile+0xa4>
+ a98:	mov	x0, x21
+ a9c:	bl	0 <getenv>
+ aa0:	mov	x19, x0
+ aa4:	ldr	x21, [sp, #32]
+ aa8:	b	a1c <srunner_open_xmlfile+0x14>
+ aac:	ldr	x21, [sp, #32]
+ ab0:	b	a1c <srunner_open_xmlfile+0x14>
+ ab4:	nop
+
+0000000000000ab8 <srunner_open_tapfile>:
+ ab8:	stp	x29, x30, [sp, #-48]!
+ abc:	mov	x29, sp
+ ac0:	stp	x19, x20, [sp, #16]
+ ac4:	ldr	x19, [x0, #40]
+ ac8:	cbz	x19, b14 <srunner_open_tapfile+0x5c>
+ acc:	ldrb	w0, [x19]
+ ad0:	cmp	w0, #0x2d
+ ad4:	b.ne	af4 <srunner_open_tapfile+0x3c>  // b.any
+ ad8:	ldrb	w0, [x19, #1]
+ adc:	cbnz	w0, af4 <srunner_open_tapfile+0x3c>
+ ae0:	adrp	x0, 0 <stdout>
+ ae4:	ldr	x0, [x0]
+ ae8:	ldp	x19, x20, [sp, #16]
+ aec:	ldp	x29, x30, [sp], #48
+ af0:	ret
+ af4:	adrp	x1, 0 <xml_lfun>
+ af8:	mov	x0, x19
+ afc:	add	x1, x1, #0x0
+ b00:	bl	0 <fopen>
+ b04:	cbnz	x0, ae8 <srunner_open_tapfile+0x30>
+ b08:	mov	x0, x19
+ b0c:	str	x21, [sp, #32]
+ b10:	bl	450 <srunner_open_file.part.0>
+ b14:	str	x21, [sp, #32]
+ b18:	adrp	x21, 0 <xml_lfun>
+ b1c:	add	x21, x21, #0x0
+ b20:	mov	x20, x0
+ b24:	mov	x0, x21
+ b28:	bl	0 <getenv>
+ b2c:	cbnz	x0, b40 <srunner_open_tapfile+0x88>
+ b30:	ldp	x19, x20, [sp, #16]
+ b34:	ldr	x21, [sp, #32]
+ b38:	ldp	x29, x30, [sp], #48
+ b3c:	ret
+ b40:	ldr	x19, [x20, #40]
+ b44:	cbnz	x19, b5c <srunner_open_tapfile+0xa4>
+ b48:	mov	x0, x21
+ b4c:	bl	0 <getenv>
+ b50:	mov	x19, x0
+ b54:	ldr	x21, [sp, #32]
+ b58:	b	acc <srunner_open_tapfile+0x14>
+ b5c:	ldr	x21, [sp, #32]
+ b60:	b	acc <srunner_open_tapfile+0x14>
+ b64:	nop
+
+0000000000000b68 <srunner_init_logging>:
+ b68:	stp	x29, x30, [sp, #-64]!
+ b6c:	mov	x29, sp
+ b70:	stp	x19, x20, [sp, #16]
+ b74:	mov	x19, x0
+ b78:	mov	w20, w1
+ b7c:	stp	x21, x22, [sp, #32]
+ b80:	adrp	x22, 0 <stdout>
+ b84:	stp	x23, x24, [sp, #48]
+ b88:	bl	0 <check_list_create>
+ b8c:	mov	x1, x0
+ b90:	str	x1, [x19, #48]
+ b94:	mov	x0, #0x18                  	// #24
+ b98:	ldr	x23, [x22]
+ b9c:	bl	0 <emalloc>
+ ba0:	mov	w2, w20
+ ba4:	cmp	w20, #0x4
+ ba8:	mov	x21, x0
+ bac:	b.eq	e6c <srunner_init_logging+0x304>  // b.none
+ bb0:	ldr	x0, [x19, #48]
+ bb4:	adrp	x1, 218 <stdout_lfun>
+ bb8:	add	x1, x1, #0x0
+ bbc:	stp	x23, x1, [x21]
+ bc0:	mov	x1, x21
+ bc4:	stp	wzr, w2, [x21, #16]
+ bc8:	bl	0 <check_list_add_end>
+ bcc:	ldr	x21, [x19, #24]
+ bd0:	cbz	x21, e40 <srunner_init_logging+0x2d8>
+ bd4:	ldrb	w0, [x21]
+ bd8:	cmp	w0, #0x2d
+ bdc:	b.ne	d30 <srunner_init_logging+0x1c8>  // b.any
+ be0:	ldrb	w24, [x21, #1]
+ be4:	cbnz	w24, d30 <srunner_init_logging+0x1c8>
+ be8:	ldr	x23, [x22]
+ bec:	cbnz	x23, d54 <srunner_init_logging+0x1ec>
+ bf0:	ldr	x21, [x19, #32]
+ bf4:	cbz	x21, d90 <srunner_init_logging+0x228>
+ bf8:	ldrb	w0, [x21]
+ bfc:	cmp	w0, #0x2d
+ c00:	b.eq	dc4 <srunner_init_logging+0x25c>  // b.none
+ c04:	mov	x0, x21
+ c08:	adrp	x1, 0 <xml_lfun>
+ c0c:	add	x1, x1, #0x0
+ c10:	bl	0 <fopen>
+ c14:	mov	x23, x0
+ c18:	cbz	x0, e90 <srunner_init_logging+0x328>
+ c1c:	ldr	x0, [x22]
+ c20:	cmp	x0, x23
+ c24:	cset	w24, ne  // ne = any
+ c28:	mov	x0, #0x18                  	// #24
+ c2c:	bl	0 <emalloc>
+ c30:	cmp	w20, #0x4
+ c34:	mov	x21, x0
+ c38:	mov	w2, w20
+ c3c:	b.eq	e78 <srunner_init_logging+0x310>  // b.none
+ c40:	ldr	x0, [x19, #48]
+ c44:	adrp	x1, 0 <xml_lfun>
+ c48:	add	x1, x1, #0x0
+ c4c:	stp	x23, x1, [x21]
+ c50:	mov	x1, x21
+ c54:	stp	w24, w2, [x21, #16]
+ c58:	bl	0 <check_list_add_end>
+ c5c:	ldr	x21, [x19, #40]
+ c60:	cbz	x21, ddc <srunner_init_logging+0x274>
+ c64:	ldrb	w0, [x21]
+ c68:	cmp	w0, #0x2d
+ c6c:	b.eq	e10 <srunner_init_logging+0x2a8>  // b.none
+ c70:	mov	x0, x21
+ c74:	adrp	x1, 0 <xml_lfun>
+ c78:	add	x1, x1, #0x0
+ c7c:	bl	0 <fopen>
+ c80:	mov	x23, x0
+ c84:	cbz	x0, e90 <srunner_init_logging+0x328>
+ c88:	ldr	x0, [x22]
+ c8c:	cmp	x0, x23
+ c90:	mov	x0, #0x18                  	// #24
+ c94:	cset	w24, ne  // ne = any
+ c98:	bl	0 <emalloc>
+ c9c:	mov	x21, x0
+ ca0:	cmp	w20, #0x4
+ ca4:	b.eq	e34 <srunner_init_logging+0x2cc>  // b.none
+ ca8:	ldr	x0, [x19, #48]
+ cac:	adrp	x1, 2b0 <tap_lfun>
+ cb0:	add	x1, x1, #0x0
+ cb4:	stp	x23, x1, [x21]
+ cb8:	mov	x1, x21
+ cbc:	stp	w24, w20, [x21, #16]
+ cc0:	bl	0 <check_list_add_end>
+ cc4:	ldr	x21, [x19, #48]
+ cc8:	mov	x0, x21
+ ccc:	bl	0 <check_list_front>
+ cd0:	b	d10 <srunner_init_logging+0x1a8>
+ cd4:	mov	x0, x21
+ cd8:	bl	0 <check_list_val>
+ cdc:	mov	x20, x0
+ ce0:	ldr	x0, [x0]
+ ce4:	bl	0 <fflush>
+ ce8:	ldp	x1, x5, [x20]
+ cec:	mov	x0, x19
+ cf0:	ldr	w2, [x20, #20]
+ cf4:	mov	w4, #0x0                   	// #0
+ cf8:	mov	x3, #0x0                   	// #0
+ cfc:	blr	x5
+ d00:	ldr	x0, [x20]
+ d04:	bl	0 <fflush>
+ d08:	mov	x0, x21
+ d0c:	bl	0 <check_list_advance>
+ d10:	mov	x0, x21
+ d14:	bl	0 <check_list_at_end>
+ d18:	cbz	w0, cd4 <srunner_init_logging+0x16c>
+ d1c:	ldp	x19, x20, [sp, #16]
+ d20:	ldp	x21, x22, [sp, #32]
+ d24:	ldp	x23, x24, [sp, #48]
+ d28:	ldp	x29, x30, [sp], #64
+ d2c:	ret
+ d30:	mov	x0, x21
+ d34:	adrp	x1, 0 <xml_lfun>
+ d38:	add	x1, x1, #0x0
+ d3c:	bl	0 <fopen>
+ d40:	mov	x23, x0
+ d44:	cbz	x0, e90 <srunner_init_logging+0x328>
+ d48:	ldr	x0, [x22]
+ d4c:	cmp	x0, x23
+ d50:	cset	w24, ne  // ne = any
+ d54:	mov	x0, #0x18                  	// #24
+ d58:	bl	0 <emalloc>
+ d5c:	cmp	w20, #0x4
+ d60:	mov	x21, x0
+ d64:	mov	w2, w20
+ d68:	b.eq	e84 <srunner_init_logging+0x31c>  // b.none
+ d6c:	ldr	x0, [x19, #48]
+ d70:	adrp	x1, 390 <lfile_lfun>
+ d74:	add	x1, x1, #0x0
+ d78:	stp	x23, x1, [x21]
+ d7c:	mov	x1, x21
+ d80:	stp	w24, w2, [x21, #16]
+ d84:	bl	0 <check_list_add_end>
+ d88:	ldr	x21, [x19, #32]
+ d8c:	cbnz	x21, bf8 <srunner_init_logging+0x90>
+ d90:	adrp	x23, 0 <xml_lfun>
+ d94:	add	x23, x23, #0x0
+ d98:	mov	x0, x23
+ d9c:	bl	0 <getenv>
+ da0:	cbz	x0, c5c <srunner_init_logging+0xf4>
+ da4:	ldr	x21, [x19, #32]
+ da8:	cbnz	x21, bf8 <srunner_init_logging+0x90>
+ dac:	mov	x0, x23
+ db0:	bl	0 <getenv>
+ db4:	mov	x21, x0
+ db8:	ldrb	w0, [x21]
+ dbc:	cmp	w0, #0x2d
+ dc0:	b.ne	c04 <srunner_init_logging+0x9c>  // b.any
+ dc4:	ldrb	w24, [x21, #1]
+ dc8:	cbnz	w24, c04 <srunner_init_logging+0x9c>
+ dcc:	ldr	x23, [x22]
+ dd0:	cbnz	x23, c28 <srunner_init_logging+0xc0>
+ dd4:	ldr	x21, [x19, #40]
+ dd8:	cbnz	x21, c64 <srunner_init_logging+0xfc>
+ ddc:	adrp	x23, 0 <xml_lfun>
+ de0:	add	x23, x23, #0x0
+ de4:	mov	x0, x23
+ de8:	bl	0 <getenv>
+ dec:	cbz	x0, cc4 <srunner_init_logging+0x15c>
+ df0:	ldr	x21, [x19, #40]
+ df4:	cbnz	x21, c64 <srunner_init_logging+0xfc>
+ df8:	mov	x0, x23
+ dfc:	bl	0 <getenv>
+ e00:	mov	x21, x0
+ e04:	ldrb	w0, [x21]
+ e08:	cmp	w0, #0x2d
+ e0c:	b.ne	c70 <srunner_init_logging+0x108>  // b.any
+ e10:	ldrb	w24, [x21, #1]
+ e14:	cbnz	w24, c70 <srunner_init_logging+0x108>
+ e18:	ldr	x23, [x22]
+ e1c:	cbz	x23, cc4 <srunner_init_logging+0x15c>
+ e20:	mov	x0, #0x18                  	// #24
+ e24:	bl	0 <emalloc>
+ e28:	cmp	w20, #0x4
+ e2c:	mov	x21, x0
+ e30:	b.ne	ca8 <srunner_init_logging+0x140>  // b.any
+ e34:	bl	0 <get_env_printmode>
+ e38:	mov	w20, w0
+ e3c:	b	ca8 <srunner_init_logging+0x140>
+ e40:	adrp	x23, 0 <xml_lfun>
+ e44:	add	x23, x23, #0x0
+ e48:	mov	x0, x23
+ e4c:	bl	0 <getenv>
+ e50:	cbz	x0, bf0 <srunner_init_logging+0x88>
+ e54:	ldr	x21, [x19, #24]
+ e58:	cbnz	x21, bd4 <srunner_init_logging+0x6c>
+ e5c:	mov	x0, x23
+ e60:	bl	0 <getenv>
+ e64:	mov	x21, x0
+ e68:	b	bd4 <srunner_init_logging+0x6c>
+ e6c:	bl	0 <get_env_printmode>
+ e70:	mov	w2, w0
+ e74:	b	bb0 <srunner_init_logging+0x48>
+ e78:	bl	0 <get_env_printmode>
+ e7c:	mov	w2, w0
+ e80:	b	c40 <srunner_init_logging+0xd8>
+ e84:	bl	0 <get_env_printmode>
+ e88:	mov	w2, w0
+ e8c:	b	d6c <srunner_init_logging+0x204>
+ e90:	mov	x0, x21
+ e94:	bl	450 <srunner_open_file.part.0>
+
+0000000000000e98 <srunner_end_logging>:
+ e98:	stp	x29, x30, [sp, #-48]!
+ e9c:	mov	x29, sp
+ ea0:	stp	x19, x20, [sp, #16]
+ ea4:	ldr	x20, [x0, #48]
+ ea8:	str	x21, [sp, #32]
+ eac:	mov	x21, x0
+ eb0:	mov	x0, x20
+ eb4:	bl	0 <check_list_front>
+ eb8:	b	ef8 <srunner_end_logging+0x60>
+ ebc:	mov	x0, x20
+ ec0:	bl	0 <check_list_val>
+ ec4:	mov	x19, x0
+ ec8:	ldr	x0, [x0]
+ ecc:	bl	0 <fflush>
+ ed0:	ldp	x1, x5, [x19]
+ ed4:	mov	x0, x21
+ ed8:	ldr	w2, [x19, #20]
+ edc:	mov	w4, #0x1                   	// #1
+ ee0:	mov	x3, #0x0                   	// #0
+ ee4:	blr	x5
+ ee8:	ldr	x0, [x19]
+ eec:	bl	0 <fflush>
+ ef0:	mov	x0, x20
+ ef4:	bl	0 <check_list_advance>
+ ef8:	mov	x0, x20
+ efc:	bl	0 <check_list_at_end>
+ f00:	cbz	w0, ebc <srunner_end_logging+0x24>
+ f04:	ldr	x20, [x21, #48]
+ f08:	mov	x0, x20
+ f0c:	bl	0 <check_list_front>
+ f10:	b	f44 <srunner_end_logging+0xac>
+ f14:	mov	x0, x20
+ f18:	bl	0 <check_list_val>
+ f1c:	ldr	w1, [x0, #16]
+ f20:	mov	x19, x0
+ f24:	cbz	w1, f34 <srunner_end_logging+0x9c>
+ f28:	ldr	x0, [x0]
+ f2c:	bl	0 <fclose>
+ f30:	cbnz	w0, f6c <srunner_end_logging+0xd4>
+ f34:	mov	x0, x19
+ f38:	bl	0 <free>
+ f3c:	mov	x0, x20
+ f40:	bl	0 <check_list_advance>
+ f44:	mov	x0, x20
+ f48:	bl	0 <check_list_at_end>
+ f4c:	cbz	w0, f14 <srunner_end_logging+0x7c>
+ f50:	mov	x0, x20
+ f54:	bl	0 <check_list_free>
+ f58:	ldp	x19, x20, [sp, #16]
+ f5c:	str	xzr, [x21, #48]
+ f60:	ldr	x21, [sp, #32]
+ f64:	ldp	x29, x30, [sp], #48
+ f68:	ret
+ f6c:	adrp	x1, 0 <xml_lfun>
+ f70:	adrp	x0, 0 <xml_lfun>
+ f74:	add	x1, x1, #0x0
+ f78:	add	x0, x0, #0x0
+ f7c:	mov	w2, #0x224                 	// #548
+ f80:	bl	0 <eprintf>
+
+check_msg.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <get_pipe.part.0>:
+   0:	stp	x29, x30, [sp, #-16]!
+   4:	adrp	x1, 0 <get_pipe.part.0>
+   8:	adrp	x0, 0 <get_pipe.part.0>
+   c:	mov	x29, sp
+  10:	add	x1, x1, #0x0
+  14:	add	x0, x0, #0x0
+  18:	mov	w2, #0x50                  	// #80
+  1c:	bl	0 <eprintf>
+
+0000000000000020 <send_failure_info>:
+  20:	stp	x29, x30, [sp, #-32]!
+  24:	mov	x29, sp
+  28:	bl	0 <strdup>
+  2c:	str	x0, [sp, #24]
+  30:	adrp	x1, 0 <get_pipe.part.0>
+  34:	ldr	x0, [x1]
+  38:	cbz	x0, 58 <send_failure_info+0x38>
+  3c:	add	x2, sp, #0x18
+  40:	mov	w1, #0x1                   	// #1
+  44:	bl	0 <ppack>
+  48:	ldr	x0, [sp, #24]
+  4c:	bl	0 <free>
+  50:	ldp	x29, x30, [sp], #32
+  54:	ret
+  58:	add	x2, x1, #0x0
+  5c:	ldr	x0, [x2, #8]
+  60:	cbnz	x0, 3c <send_failure_info+0x1c>
+  64:	bl	0 <get_pipe.part.0>
+
+0000000000000068 <send_duration_info>:
+  68:	stp	x29, x30, [sp, #-32]!
+  6c:	adrp	x1, 0 <get_pipe.part.0>
+  70:	mov	x29, sp
+  74:	str	w0, [sp, #24]
+  78:	ldr	x0, [x1]
+  7c:	cbz	x0, 94 <send_duration_info+0x2c>
+  80:	add	x2, sp, #0x18
+  84:	mov	w1, #0x3                   	// #3
+  88:	bl	0 <ppack>
+  8c:	ldp	x29, x30, [sp], #32
+  90:	ret
+  94:	add	x2, x1, #0x0
+  98:	ldr	x0, [x2, #8]
+  9c:	cbnz	x0, 80 <send_duration_info+0x18>
+  a0:	bl	0 <get_pipe.part.0>
+  a4:	nop
+
+00000000000000a8 <send_loc_info>:
+  a8:	stp	x29, x30, [sp, #-48]!
+  ac:	mov	x29, sp
+  b0:	str	x19, [sp, #16]
+  b4:	mov	w19, w1
+  b8:	bl	0 <strdup>
+  bc:	str	w19, [sp, #32]
+  c0:	adrp	x1, 0 <get_pipe.part.0>
+  c4:	add	x2, x1, #0x0
+  c8:	str	x0, [sp, #40]
+  cc:	ldr	x1, [x1]
+  d0:	cbz	x1, f8 <send_loc_info+0x50>
+  d4:	add	x2, sp, #0x20
+  d8:	mov	x0, x1
+  dc:	mov	w1, #0x2                   	// #2
+  e0:	bl	0 <ppack>
+  e4:	ldr	x0, [sp, #40]
+  e8:	bl	0 <free>
+  ec:	ldr	x19, [sp, #16]
+  f0:	ldp	x29, x30, [sp], #48
+  f4:	ret
+  f8:	ldr	x1, [x2, #8]
+  fc:	cbnz	x1, d4 <send_loc_info+0x2c>
+ 100:	bl	0 <get_pipe.part.0>
+ 104:	nop
+
+0000000000000108 <send_ctx_info>:
+ 108:	stp	x29, x30, [sp, #-32]!
+ 10c:	adrp	x1, 0 <get_pipe.part.0>
+ 110:	mov	x29, sp
+ 114:	str	w0, [sp, #24]
+ 118:	ldr	x0, [x1]
+ 11c:	cbz	x0, 134 <send_ctx_info+0x2c>
+ 120:	add	x2, sp, #0x18
+ 124:	mov	w1, #0x0                   	// #0
+ 128:	bl	0 <ppack>
+ 12c:	ldp	x29, x30, [sp], #32
+ 130:	ret
+ 134:	add	x2, x1, #0x0
+ 138:	ldr	x0, [x2, #8]
+ 13c:	cbnz	x0, 120 <send_ctx_info+0x18>
+ 140:	bl	0 <get_pipe.part.0>
+ 144:	nop
+
+0000000000000148 <teardown_messaging>:
+ 148:	stp	x29, x30, [sp, #-32]!
+ 14c:	mov	x29, sp
+ 150:	stp	x19, x20, [sp, #16]
+ 154:	adrp	x20, 0 <get_pipe.part.0>
+ 158:	add	x19, x20, #0x0
+ 15c:	ldr	x0, [x20]
+ 160:	cbz	x0, 190 <teardown_messaging+0x48>
+ 164:	bl	0 <fclose>
+ 168:	str	xzr, [x20]
+ 16c:	ldr	x0, [x19, #16]
+ 170:	cbz	x0, 184 <teardown_messaging+0x3c>
+ 174:	bl	0 <unlink>
+ 178:	ldr	x0, [x19, #16]
+ 17c:	bl	0 <free>
+ 180:	str	xzr, [x19, #16]
+ 184:	ldp	x19, x20, [sp, #16]
+ 188:	ldp	x29, x30, [sp], #32
+ 18c:	ret
+ 190:	ldr	x0, [x19, #8]
+ 194:	cbz	x0, 1c4 <teardown_messaging+0x7c>
+ 198:	bl	0 <fclose>
+ 19c:	str	xzr, [x19, #8]
+ 1a0:	ldr	x0, [x19, #24]
+ 1a4:	cbz	x0, 184 <teardown_messaging+0x3c>
+ 1a8:	bl	0 <unlink>
+ 1ac:	ldr	x0, [x19, #24]
+ 1b0:	bl	0 <free>
+ 1b4:	str	xzr, [x19, #24]
+ 1b8:	ldp	x19, x20, [sp, #16]
+ 1bc:	ldp	x29, x30, [sp], #32
+ 1c0:	ret
+ 1c4:	adrp	x1, 0 <get_pipe.part.0>
+ 1c8:	adrp	x0, 0 <get_pipe.part.0>
+ 1cc:	add	x1, x1, #0x0
+ 1d0:	add	x0, x0, #0x0
+ 1d4:	mov	w2, #0x16a                 	// #362
+ 1d8:	bl	0 <eprintf>
+ 1dc:	nop
+
+00000000000001e0 <open_tmp_file>:
+ 1e0:	stp	x29, x30, [sp, #-32]!
+ 1e4:	adrp	x1, 0 <get_pipe.part.0>
+ 1e8:	mov	x29, sp
+ 1ec:	stp	x19, x20, [sp, #16]
+ 1f0:	mov	x19, x0
+ 1f4:	add	x0, x1, #0x0
+ 1f8:	mov	x20, #0x0                   	// #0
+ 1fc:	str	xzr, [x19]
+ 200:	bl	0 <getenv>
+ 204:	cmp	x0, #0x0
+ 208:	adrp	x1, 0 <get_pipe.part.0>
+ 20c:	add	x1, x1, #0x0
+ 210:	csel	x1, x1, x0, eq  // eq = none
+ 214:	adrp	x0, 0 <get_pipe.part.0>
+ 218:	add	x0, x0, #0x0
+ 21c:	bl	0 <ck_strdup_printf>
+ 220:	str	x0, [x19]
+ 224:	bl	0 <mkstemp>
+ 228:	tbnz	w0, #31, 25c <open_tmp_file+0x7c>
+ 22c:	adrp	x1, 0 <get_pipe.part.0>
+ 230:	add	x1, x1, #0x0
+ 234:	bl	0 <fdopen>
+ 238:	mov	x20, x0
+ 23c:	ldr	x0, [x19]
+ 240:	bl	0 <unlink>
+ 244:	cmp	x20, #0x0
+ 248:	ccmp	w0, #0x0, #0x4, ne  // ne = any
+ 24c:	b.ne	25c <open_tmp_file+0x7c>  // b.any
+ 250:	ldr	x0, [x19]
+ 254:	bl	0 <free>
+ 258:	str	xzr, [x19]
+ 25c:	mov	x0, x20
+ 260:	ldp	x19, x20, [sp, #16]
+ 264:	ldp	x29, x30, [sp], #32
+ 268:	ret
+ 26c:	nop
+
+0000000000000270 <receive_test_result>:
+ 270:	stp	x29, x30, [sp, #-48]!
+ 274:	mov	x29, sp
+ 278:	stp	x21, x22, [sp, #32]
+ 27c:	adrp	x21, 0 <get_pipe.part.0>
+ 280:	mov	w22, w0
+ 284:	stp	x19, x20, [sp, #16]
+ 288:	add	x20, x21, #0x0
+ 28c:	ldr	x19, [x21]
+ 290:	cbz	x19, 3f8 <receive_test_result+0x188>
+ 294:	mov	x0, x19
+ 298:	bl	0 <rewind>
+ 29c:	mov	x0, x19
+ 2a0:	bl	0 <punpack>
+ 2a4:	mov	x19, x0
+ 2a8:	cbz	x0, 46c <receive_test_result+0x1fc>
+ 2ac:	ldr	x0, [x21]
+ 2b0:	cbz	x0, 3a8 <receive_test_result+0x138>
+ 2b4:	bl	0 <fclose>
+ 2b8:	str	xzr, [x21]
+ 2bc:	ldr	x0, [x20, #16]
+ 2c0:	cbz	x0, 2d4 <receive_test_result+0x64>
+ 2c4:	bl	0 <unlink>
+ 2c8:	ldr	x0, [x20, #16]
+ 2cc:	bl	0 <free>
+ 2d0:	str	xzr, [x20, #16]
+ 2d4:	ldr	x0, [x20, #8]
+ 2d8:	cbz	x0, 3d0 <receive_test_result+0x160>
+ 2dc:	add	x0, x20, #0x10
+ 2e0:	bl	1e0 <open_tmp_file>
+ 2e4:	str	x0, [x21]
+ 2e8:	cbz	x0, 484 <receive_test_result+0x214>
+ 2ec:	bl	0 <tr_create>
+ 2f0:	mov	x20, x0
+ 2f4:	ldr	x1, [x19, #40]
+ 2f8:	cmp	w22, #0x0
+ 2fc:	ccmp	x1, #0x0, #0x0, eq  // eq = none
+ 300:	b.eq	404 <receive_test_result+0x194>  // b.none
+ 304:	ldr	w0, [x19, #4]
+ 308:	cbz	w0, 358 <receive_test_result+0xe8>
+ 30c:	str	w0, [x20, #4]
+ 310:	cmp	w0, #0x2
+ 314:	str	x1, [x20, #48]
+ 318:	str	xzr, [x19, #40]
+ 31c:	b.eq	370 <receive_test_result+0x100>  // b.none
+ 320:	ldr	w1, [x19, #16]
+ 324:	ldr	x0, [x19, #8]
+ 328:	str	x0, [x20, #8]
+ 32c:	str	w1, [x20, #16]
+ 330:	mov	w0, #0xffffffff            	// #-1
+ 334:	str	xzr, [x19, #8]
+ 338:	str	w0, [x19, #16]
+ 33c:	mov	x0, x19
+ 340:	bl	0 <rcvmsg_free>
+ 344:	mov	x0, x20
+ 348:	ldp	x19, x20, [sp, #16]
+ 34c:	ldp	x21, x22, [sp, #32]
+ 350:	ldp	x29, x30, [sp], #48
+ 354:	ret
+ 358:	ldr	w0, [x19]
+ 35c:	str	w0, [x20, #4]
+ 360:	str	x1, [x20, #48]
+ 364:	cmp	w0, #0x2
+ 368:	str	xzr, [x19, #40]
+ 36c:	b.ne	320 <receive_test_result+0xb0>  // b.any
+ 370:	ldr	w1, [x19, #32]
+ 374:	ldr	x0, [x19, #24]
+ 378:	str	x0, [x20, #8]
+ 37c:	str	w1, [x20, #16]
+ 380:	mov	w0, #0xffffffff            	// #-1
+ 384:	str	xzr, [x19, #24]
+ 388:	str	w0, [x19, #32]
+ 38c:	mov	x0, x19
+ 390:	bl	0 <rcvmsg_free>
+ 394:	mov	x0, x20
+ 398:	ldp	x19, x20, [sp, #16]
+ 39c:	ldp	x21, x22, [sp, #32]
+ 3a0:	ldp	x29, x30, [sp], #48
+ 3a4:	ret
+ 3a8:	ldr	x0, [x20, #8]
+ 3ac:	cbz	x0, 49c <receive_test_result+0x22c>
+ 3b0:	bl	0 <fclose>
+ 3b4:	str	xzr, [x20, #8]
+ 3b8:	ldr	x0, [x20, #24]
+ 3bc:	cbz	x0, 3d0 <receive_test_result+0x160>
+ 3c0:	bl	0 <unlink>
+ 3c4:	ldr	x0, [x20, #24]
+ 3c8:	bl	0 <free>
+ 3cc:	str	xzr, [x20, #24]
+ 3d0:	add	x0, x20, #0x18
+ 3d4:	bl	1e0 <open_tmp_file>
+ 3d8:	str	x0, [x20, #8]
+ 3dc:	cbnz	x0, 2ec <receive_test_result+0x7c>
+ 3e0:	adrp	x1, 0 <get_pipe.part.0>
+ 3e4:	adrp	x0, 0 <get_pipe.part.0>
+ 3e8:	add	x1, x1, #0x0
+ 3ec:	add	x0, x0, #0x0
+ 3f0:	mov	w2, #0x13d                 	// #317
+ 3f4:	bl	0 <eprintf>
+ 3f8:	ldr	x19, [x20, #8]
+ 3fc:	cbnz	x19, 294 <receive_test_result+0x24>
+ 400:	bl	0 <get_pipe.part.0>
+ 404:	ldr	w0, [x19]
+ 408:	cmp	w0, #0x1
+ 40c:	b.ne	438 <receive_test_result+0x1c8>  // b.any
+ 410:	ldr	w1, [x19, #16]
+ 414:	ldr	x2, [x19, #8]
+ 418:	str	w0, [x20, #4]
+ 41c:	str	x2, [x20, #8]
+ 420:	mov	w0, #0xffffffff            	// #-1
+ 424:	str	w1, [x20, #16]
+ 428:	str	xzr, [x20, #48]
+ 42c:	str	xzr, [x19, #8]
+ 430:	str	w0, [x19, #16]
+ 434:	b	33c <receive_test_result+0xcc>
+ 438:	ldr	w2, [x19, #32]
+ 43c:	mov	w4, #0x2                   	// #2
+ 440:	ldr	w1, [x19, #48]
+ 444:	mov	w0, #0xffffffff            	// #-1
+ 448:	ldr	x3, [x19, #24]
+ 44c:	str	w4, [x20, #4]
+ 450:	str	x3, [x20, #8]
+ 454:	str	w2, [x20, #16]
+ 458:	str	w1, [x20, #24]
+ 45c:	str	xzr, [x20, #48]
+ 460:	str	xzr, [x19, #24]
+ 464:	str	w0, [x19, #32]
+ 468:	b	33c <receive_test_result+0xcc>
+ 46c:	adrp	x1, 0 <get_pipe.part.0>
+ 470:	adrp	x0, 0 <get_pipe.part.0>
+ 474:	add	x1, x1, #0x0
+ 478:	add	x0, x0, #0x0
+ 47c:	mov	w2, #0x85                  	// #133
+ 480:	bl	0 <eprintf>
+ 484:	adrp	x1, 0 <get_pipe.part.0>
+ 488:	adrp	x0, 0 <get_pipe.part.0>
+ 48c:	add	x1, x1, #0x0
+ 490:	add	x0, x0, #0x0
+ 494:	mov	w2, #0x146                 	// #326
+ 498:	bl	0 <eprintf>
+ 49c:	adrp	x1, 0 <get_pipe.part.0>
+ 4a0:	adrp	x0, 0 <get_pipe.part.0>
+ 4a4:	add	x1, x1, #0x0
+ 4a8:	add	x0, x0, #0x0
+ 4ac:	mov	w2, #0x16a                 	// #362
+ 4b0:	bl	0 <eprintf>
+ 4b4:	nop
+
+00000000000004b8 <setup_messaging>:
+ 4b8:	stp	x29, x30, [sp, #-48]!
+ 4bc:	mov	x29, sp
+ 4c0:	stp	x19, x20, [sp, #16]
+ 4c4:	adrp	x20, 0 <get_pipe.part.0>
+ 4c8:	add	x19, x20, #0x0
+ 4cc:	ldr	x0, [x19, #8]
+ 4d0:	cbz	x0, 590 <setup_messaging+0xd8>
+ 4d4:	ldr	x0, [x20]
+ 4d8:	str	x21, [sp, #32]
+ 4dc:	cbnz	x0, 5bc <setup_messaging+0x104>
+ 4e0:	adrp	x0, 0 <get_pipe.part.0>
+ 4e4:	add	x0, x0, #0x0
+ 4e8:	str	xzr, [x19, #16]
+ 4ec:	bl	0 <getenv>
+ 4f0:	adrp	x1, 0 <get_pipe.part.0>
+ 4f4:	cmp	x0, #0x0
+ 4f8:	add	x1, x1, #0x0
+ 4fc:	adrp	x2, 0 <get_pipe.part.0>
+ 500:	csel	x1, x1, x0, eq  // eq = none
+ 504:	add	x0, x2, #0x0
+ 508:	bl	0 <ck_strdup_printf>
+ 50c:	str	x0, [x19, #16]
+ 510:	bl	0 <mkstemp>
+ 514:	tbnz	w0, #31, 574 <setup_messaging+0xbc>
+ 518:	adrp	x1, 0 <get_pipe.part.0>
+ 51c:	add	x1, x1, #0x0
+ 520:	bl	0 <fdopen>
+ 524:	mov	x21, x0
+ 528:	ldr	x0, [x19, #16]
+ 52c:	bl	0 <unlink>
+ 530:	cmp	w0, #0x0
+ 534:	ccmp	x21, #0x0, #0x4, ne  // ne = any
+ 538:	b.ne	560 <setup_messaging+0xa8>  // b.any
+ 53c:	ldr	x0, [x19, #16]
+ 540:	bl	0 <free>
+ 544:	str	x21, [x20]
+ 548:	str	xzr, [x19, #16]
+ 54c:	cbz	x21, 578 <setup_messaging+0xc0>
+ 550:	ldr	x21, [sp, #32]
+ 554:	ldp	x19, x20, [sp, #16]
+ 558:	ldp	x29, x30, [sp], #48
+ 55c:	ret
+ 560:	str	x21, [x20]
+ 564:	ldp	x19, x20, [sp, #16]
+ 568:	ldr	x21, [sp, #32]
+ 56c:	ldp	x29, x30, [sp], #48
+ 570:	ret
+ 574:	str	xzr, [x20]
+ 578:	adrp	x1, 0 <get_pipe.part.0>
+ 57c:	adrp	x0, 0 <get_pipe.part.0>
+ 580:	add	x1, x1, #0x0
+ 584:	add	x0, x0, #0x0
+ 588:	mov	w2, #0x146                 	// #326
+ 58c:	bl	0 <eprintf>
+ 590:	add	x0, x19, #0x18
+ 594:	bl	1e0 <open_tmp_file>
+ 598:	str	x0, [x19, #8]
+ 59c:	cbnz	x0, 554 <setup_messaging+0x9c>
+ 5a0:	adrp	x1, 0 <get_pipe.part.0>
+ 5a4:	adrp	x0, 0 <get_pipe.part.0>
+ 5a8:	add	x1, x1, #0x0
+ 5ac:	add	x0, x0, #0x0
+ 5b0:	mov	w2, #0x13d                 	// #317
+ 5b4:	str	x21, [sp, #32]
+ 5b8:	bl	0 <eprintf>
+ 5bc:	adrp	x1, 0 <get_pipe.part.0>
+ 5c0:	adrp	x0, 0 <get_pipe.part.0>
+ 5c4:	add	x1, x1, #0x0
+ 5c8:	add	x0, x0, #0x0
+ 5cc:	mov	w2, #0x14d                 	// #333
+ 5d0:	bl	0 <eprintf>
+
+check_pack.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <upack_ctx>:
+   0:	ldr	x3, [x0]
+   4:	ldr	w2, [x3], #4
+   8:	str	x3, [x0]
+   c:	rev	w0, w2
+  10:	str	w0, [x1]
+  14:	ret
+
+0000000000000018 <upack_duration>:
+  18:	ldr	x3, [x0]
+  1c:	ldr	w2, [x3], #4
+  20:	str	x3, [x0]
+  24:	rev	w0, w2
+  28:	str	w0, [x1]
+  2c:	ret
+
+0000000000000030 <pack_duration>:
+  30:	stp	x29, x30, [sp, #-32]!
+  34:	mov	x29, sp
+  38:	stp	x19, x20, [sp, #16]
+  3c:	mov	x20, x0
+  40:	mov	x19, x1
+  44:	mov	x0, #0x8                   	// #8
+  48:	bl	0 <emalloc>
+  4c:	mov	x2, x0
+  50:	str	x2, [x20]
+  54:	mov	w1, #0x3000000             	// #50331648
+  58:	mov	w0, #0x8                   	// #8
+  5c:	str	w1, [x2]
+  60:	ldr	w1, [x19]
+  64:	rev	w1, w1
+  68:	str	w1, [x2, #4]
+  6c:	ldp	x19, x20, [sp, #16]
+  70:	ldp	x29, x30, [sp], #32
+  74:	ret
+
+0000000000000078 <pack_ctx>:
+  78:	stp	x29, x30, [sp, #-32]!
+  7c:	mov	x29, sp
+  80:	stp	x19, x20, [sp, #16]
+  84:	mov	x20, x0
+  88:	mov	x19, x1
+  8c:	mov	x0, #0x8                   	// #8
+  90:	bl	0 <emalloc>
+  94:	mov	x2, x0
+  98:	str	x2, [x20]
+  9c:	mov	w0, #0x8                   	// #8
+  a0:	str	wzr, [x2]
+  a4:	ldr	w1, [x19]
+  a8:	rev	w1, w1
+  ac:	str	w1, [x2, #4]
+  b0:	ldp	x19, x20, [sp, #16]
+  b4:	ldp	x29, x30, [sp], #32
+  b8:	ret
+  bc:	nop
+
+00000000000000c0 <pack_loc>:
+  c0:	stp	x29, x30, [sp, #-64]!
+  c4:	mov	x29, sp
+  c8:	stp	x21, x22, [sp, #32]
+  cc:	mov	x22, x0
+  d0:	ldr	x0, [x1, #8]
+  d4:	stp	x19, x20, [sp, #16]
+  d8:	mov	x20, x1
+  dc:	str	x23, [sp, #48]
+  e0:	cbz	x0, 16c <pack_loc+0xac>
+  e4:	bl	0 <strlen>
+  e8:	add	w21, w0, #0xc
+  ec:	sxtw	x0, w21
+  f0:	bl	0 <emalloc>
+  f4:	str	x0, [x22]
+  f8:	mov	w1, #0x2000000             	// #33554432
+  fc:	str	w1, [x0]
+ 100:	mov	x19, x0
+ 104:	ldr	x23, [x20, #8]
+ 108:	cbz	x23, 160 <pack_loc+0xa0>
+ 10c:	mov	x0, x23
+ 110:	bl	0 <strlen>
+ 114:	rev	w1, w0
+ 118:	str	w1, [x19, #4]
+ 11c:	add	x22, x19, #0x8
+ 120:	cmp	w0, #0x0
+ 124:	b.le	13c <pack_loc+0x7c>
+ 128:	sxtw	x2, w0
+ 12c:	mov	x1, x23
+ 130:	mov	x0, x22
+ 134:	add	x22, x22, x2
+ 138:	bl	0 <memcpy>
+ 13c:	ldr	w1, [x20]
+ 140:	mov	w0, w21
+ 144:	rev	w1, w1
+ 148:	str	w1, [x22]
+ 14c:	ldp	x19, x20, [sp, #16]
+ 150:	ldp	x21, x22, [sp, #32]
+ 154:	ldr	x23, [sp, #48]
+ 158:	ldp	x29, x30, [sp], #64
+ 15c:	ret
+ 160:	add	x22, x0, #0x8
+ 164:	str	wzr, [x0, #4]
+ 168:	b	13c <pack_loc+0x7c>
+ 16c:	mov	x0, #0xc                   	// #12
+ 170:	mov	w21, w0
+ 174:	b	f0 <pack_loc+0x30>
+
+0000000000000178 <ppack_cleanup>:
+ 178:	b	0 <pthread_mutex_unlock>
+ 17c:	nop
+
+0000000000000180 <upack_loc>:
+ 180:	stp	x29, x30, [sp, #-64]!
+ 184:	mov	x29, sp
+ 188:	stp	x19, x20, [sp, #16]
+ 18c:	mov	x19, x0
+ 190:	ldr	x0, [x0]
+ 194:	stp	x21, x22, [sp, #32]
+ 198:	mov	x21, x1
+ 19c:	ldr	w20, [x0], #4
+ 1a0:	str	x0, [x19]
+ 1a4:	rev	w20, w20
+ 1a8:	cmp	w20, #0x0
+ 1ac:	b.le	210 <upack_loc+0x90>
+ 1b0:	add	w0, w20, #0x1
+ 1b4:	str	x23, [sp, #48]
+ 1b8:	sxtw	x23, w20
+ 1bc:	sxtw	x0, w0
+ 1c0:	bl	0 <emalloc>
+ 1c4:	ldr	x1, [x19]
+ 1c8:	mov	x22, x0
+ 1cc:	mov	x2, x23
+ 1d0:	bl	0 <memcpy>
+ 1d4:	strb	wzr, [x22, w20, sxtw]
+ 1d8:	ldr	x0, [x19]
+ 1dc:	add	x0, x0, x23
+ 1e0:	ldr	x23, [sp, #48]
+ 1e4:	str	x0, [x19]
+ 1e8:	str	x22, [x21, #8]
+ 1ec:	ldr	x1, [x19]
+ 1f0:	ldr	w0, [x1], #4
+ 1f4:	str	x1, [x19]
+ 1f8:	rev	w0, w0
+ 1fc:	ldp	x19, x20, [sp, #16]
+ 200:	str	w0, [x21]
+ 204:	ldp	x21, x22, [sp, #32]
+ 208:	ldp	x29, x30, [sp], #64
+ 20c:	ret
+ 210:	mov	x0, #0x1                   	// #1
+ 214:	bl	0 <emalloc>
+ 218:	mov	x22, x0
+ 21c:	strb	wzr, [x0]
+ 220:	b	1e8 <upack_loc+0x68>
+ 224:	nop
+
+0000000000000228 <pack_fail>:
+ 228:	stp	x29, x30, [sp, #-48]!
+ 22c:	mov	x29, sp
+ 230:	stp	x21, x22, [sp, #32]
+ 234:	mov	x22, x0
+ 238:	ldr	x0, [x1]
+ 23c:	stp	x19, x20, [sp, #16]
+ 240:	mov	x20, x1
+ 244:	cbz	x0, 2c4 <pack_fail+0x9c>
+ 248:	bl	0 <strlen>
+ 24c:	add	w21, w0, #0x8
+ 250:	sxtw	x0, w21
+ 254:	bl	0 <emalloc>
+ 258:	str	x0, [x22]
+ 25c:	mov	w1, #0x1000000             	// #16777216
+ 260:	str	w1, [x0]
+ 264:	mov	x19, x0
+ 268:	ldr	x20, [x20]
+ 26c:	cbz	x20, 2ac <pack_fail+0x84>
+ 270:	mov	x0, x20
+ 274:	bl	0 <strlen>
+ 278:	rev	w1, w0
+ 27c:	str	w1, [x19, #4]
+ 280:	cmp	w0, #0x0
+ 284:	b.le	298 <pack_fail+0x70>
+ 288:	sxtw	x2, w0
+ 28c:	mov	x1, x20
+ 290:	add	x0, x19, #0x8
+ 294:	bl	0 <memcpy>
+ 298:	mov	w0, w21
+ 29c:	ldp	x19, x20, [sp, #16]
+ 2a0:	ldp	x21, x22, [sp, #32]
+ 2a4:	ldp	x29, x30, [sp], #48
+ 2a8:	ret
+ 2ac:	str	wzr, [x0, #4]
+ 2b0:	mov	w0, w21
+ 2b4:	ldp	x19, x20, [sp, #16]
+ 2b8:	ldp	x21, x22, [sp, #32]
+ 2bc:	ldp	x29, x30, [sp], #48
+ 2c0:	ret
+ 2c4:	mov	x0, #0x8                   	// #8
+ 2c8:	mov	w21, w0
+ 2cc:	b	254 <pack_fail+0x2c>
+
+00000000000002d0 <upack_fail>:
+ 2d0:	stp	x29, x30, [sp, #-64]!
+ 2d4:	mov	x29, sp
+ 2d8:	stp	x19, x20, [sp, #16]
+ 2dc:	mov	x19, x0
+ 2e0:	ldr	x0, [x0]
+ 2e4:	stp	x21, x22, [sp, #32]
+ 2e8:	mov	x22, x1
+ 2ec:	ldr	w20, [x0], #4
+ 2f0:	str	x0, [x19]
+ 2f4:	rev	w20, w20
+ 2f8:	cmp	w20, #0x0
+ 2fc:	b.le	34c <upack_fail+0x7c>
+ 300:	add	w0, w20, #0x1
+ 304:	str	x23, [sp, #48]
+ 308:	sxtw	x23, w20
+ 30c:	sxtw	x0, w0
+ 310:	bl	0 <emalloc>
+ 314:	ldr	x1, [x19]
+ 318:	mov	x21, x0
+ 31c:	mov	x2, x23
+ 320:	bl	0 <memcpy>
+ 324:	strb	wzr, [x21, w20, sxtw]
+ 328:	ldr	x0, [x19]
+ 32c:	add	x0, x0, x23
+ 330:	ldr	x23, [sp, #48]
+ 334:	str	x0, [x19]
+ 338:	ldp	x19, x20, [sp, #16]
+ 33c:	str	x21, [x22]
+ 340:	ldp	x21, x22, [sp, #32]
+ 344:	ldp	x29, x30, [sp], #64
+ 348:	ret
+ 34c:	mov	x0, #0x1                   	// #1
+ 350:	bl	0 <emalloc>
+ 354:	strb	wzr, [x0]
+ 358:	mov	x21, x0
+ 35c:	ldp	x19, x20, [sp, #16]
+ 360:	str	x21, [x22]
+ 364:	ldp	x21, x22, [sp, #32]
+ 368:	ldp	x29, x30, [sp], #64
+ 36c:	ret
+
+0000000000000370 <check_set_max_msg_size>:
+ 370:	adrp	x1, 0 <upack_ctx>
+ 374:	str	x0, [x1]
+ 378:	ret
+ 37c:	nop
+
+0000000000000380 <pack>:
+ 380:	mov	w3, w0
+ 384:	mov	x0, x1
+ 388:	cbz	x1, 3b8 <pack+0x38>
+ 38c:	mov	x1, x2
+ 390:	cbz	x2, 3b0 <pack+0x30>
+ 394:	cmp	w3, #0x3
+ 398:	b.hi	3c0 <pack+0x40>  // b.pmore
+ 39c:	adrp	x2, 0 <upack_ctx>
+ 3a0:	add	x2, x2, #0x0
+ 3a4:	ldr	x2, [x2, w3, uxtw #3]
+ 3a8:	mov	x16, x2
+ 3ac:	br	x16
+ 3b0:	mov	w0, #0x0                   	// #0
+ 3b4:	ret
+ 3b8:	mov	w0, #0xffffffff            	// #-1
+ 3bc:	ret
+ 3c0:	stp	x29, x30, [sp, #-16]!
+ 3c4:	adrp	x1, 0 <upack_ctx>
+ 3c8:	adrp	x0, 0 <upack_ctx>
+ 3cc:	mov	x29, sp
+ 3d0:	add	x1, x1, #0x0
+ 3d4:	add	x0, x0, #0x0
+ 3d8:	mov	w2, #0x7e                  	// #126
+ 3dc:	bl	0 <eprintf>
+
+00000000000003e0 <upack>:
+ 3e0:	stp	x29, x30, [sp, #-48]!
+ 3e4:	mov	x29, sp
+ 3e8:	str	x0, [sp, #40]
+ 3ec:	cbz	x0, 43c <upack+0x5c>
+ 3f0:	str	x19, [sp, #16]
+ 3f4:	mov	x19, x0
+ 3f8:	ldr	w3, [x0], #4
+ 3fc:	str	x0, [sp, #40]
+ 400:	rev	w3, w3
+ 404:	str	w3, [x2]
+ 408:	cmp	w3, #0x3
+ 40c:	b.hi	444 <upack+0x64>  // b.pmore
+ 410:	adrp	x2, 0 <upack_ctx>
+ 414:	add	x2, x2, #0x0
+ 418:	add	x2, x2, #0x20
+ 41c:	add	x0, sp, #0x28
+ 420:	ldr	x2, [x2, w3, uxtw #3]
+ 424:	blr	x2
+ 428:	ldr	x0, [sp, #40]
+ 42c:	sub	w0, w0, w19
+ 430:	ldr	x19, [sp, #16]
+ 434:	ldp	x29, x30, [sp], #48
+ 438:	ret
+ 43c:	mov	w0, #0xffffffff            	// #-1
+ 440:	b	434 <upack+0x54>
+ 444:	adrp	x1, 0 <upack_ctx>
+ 448:	adrp	x0, 0 <upack_ctx>
+ 44c:	add	x1, x1, #0x0
+ 450:	add	x0, x0, #0x0
+ 454:	mov	w2, #0x8e                  	// #142
+ 458:	bl	0 <eprintf>
+ 45c:	nop
+
+0000000000000460 <ppack>:
+ 460:	stp	x29, x30, [sp, #-320]!
+ 464:	mov	x29, sp
+ 468:	stp	x19, x20, [sp, #16]
+ 46c:	stp	x21, x22, [sp, #32]
+ 470:	str	x0, [sp, #64]
+ 474:	str	xzr, [sp, #88]
+ 478:	cbz	x2, 594 <ppack+0x134>
+ 47c:	mov	w3, w1
+ 480:	cmp	w1, #0x3
+ 484:	b.hi	5cc <ppack+0x16c>  // b.pmore
+ 488:	mov	x1, x2
+ 48c:	adrp	x2, 0 <upack_ctx>
+ 490:	add	x2, x2, #0x0
+ 494:	add	x0, sp, #0x58
+ 498:	ldr	x2, [x2, w3, uxtw #3]
+ 49c:	blr	x2
+ 4a0:	sxtw	x0, w0
+ 4a4:	str	x0, [sp, #56]
+ 4a8:	adrp	x0, 0 <upack_ctx>
+ 4ac:	add	x0, x0, #0x0
+ 4b0:	bl	0 <getenv>
+ 4b4:	cbz	x0, 560 <ppack+0x100>
+ 4b8:	mov	w2, #0xa                   	// #10
+ 4bc:	mov	x1, #0x0                   	// #0
+ 4c0:	bl	0 <strtoul>
+ 4c4:	cbz	x0, 560 <ppack+0x100>
+ 4c8:	ldr	x1, [sp, #56]
+ 4cc:	cmp	x1, x0
+ 4d0:	b.hi	5b4 <ppack+0x154>  // b.pmore
+ 4d4:	adrp	x0, 0 <upack_ctx>
+ 4d8:	add	x0, x0, #0x0
+ 4dc:	mov	w1, #0x0                   	// #0
+ 4e0:	str	x0, [sp, #72]
+ 4e4:	add	x0, sp, #0x60
+ 4e8:	bl	0 <__sigsetjmp>
+ 4ec:	cbnz	w0, 578 <ppack+0x118>
+ 4f0:	adrp	x19, 0 <upack_ctx>
+ 4f4:	add	x19, x19, #0x0
+ 4f8:	add	x0, sp, #0x60
+ 4fc:	add	x19, x19, #0x8
+ 500:	bl	0 <__pthread_register_cancel>
+ 504:	mov	x0, x19
+ 508:	bl	0 <pthread_mutex_lock>
+ 50c:	ldp	x21, x22, [sp, #56]
+ 510:	mov	x1, #0x1                   	// #1
+ 514:	ldr	x0, [sp, #88]
+ 518:	mov	x3, x22
+ 51c:	mov	x2, x21
+ 520:	bl	0 <fwrite>
+ 524:	mov	x20, x0
+ 528:	mov	x0, x22
+ 52c:	bl	0 <fflush>
+ 530:	mov	x0, x19
+ 534:	bl	0 <pthread_mutex_unlock>
+ 538:	add	x0, sp, #0x60
+ 53c:	bl	0 <__pthread_unregister_cancel>
+ 540:	cmp	x21, x20
+ 544:	b.ne	59c <ppack+0x13c>  // b.any
+ 548:	ldr	x0, [sp, #88]
+ 54c:	bl	0 <free>
+ 550:	ldp	x19, x20, [sp, #16]
+ 554:	ldp	x21, x22, [sp, #32]
+ 558:	ldp	x29, x30, [sp], #320
+ 55c:	ret
+ 560:	adrp	x0, 0 <upack_ctx>
+ 564:	mov	x1, #0x1000                	// #4096
+ 568:	ldr	x0, [x0]
+ 56c:	cmp	x0, #0x0
+ 570:	csel	x0, x0, x1, ne  // ne = any
+ 574:	b	4c8 <ppack+0x68>
+ 578:	ldr	x1, [sp, #72]
+ 57c:	adrp	x0, 0 <upack_ctx>
+ 580:	add	x0, x0, #0x0
+ 584:	add	x0, x0, #0x8
+ 588:	blr	x1
+ 58c:	add	x0, sp, #0x60
+ 590:	bl	0 <__pthread_unwind_next>
+ 594:	mov	w0, #0x0                   	// #0
+ 598:	b	4a0 <ppack+0x40>
+ 59c:	adrp	x1, 0 <upack_ctx>
+ 5a0:	adrp	x0, 0 <upack_ctx>
+ 5a4:	add	x1, x1, #0x0
+ 5a8:	add	x0, x0, #0x0
+ 5ac:	mov	w2, #0x14f                 	// #335
+ 5b0:	bl	0 <eprintf>
+ 5b4:	adrp	x1, 0 <upack_ctx>
+ 5b8:	adrp	x0, 0 <upack_ctx>
+ 5bc:	add	x1, x1, #0x0
+ 5c0:	add	x0, x0, #0x0
+ 5c4:	mov	w2, #0x146                 	// #326
+ 5c8:	bl	0 <eprintf>
+ 5cc:	adrp	x1, 0 <upack_ctx>
+ 5d0:	adrp	x0, 0 <upack_ctx>
+ 5d4:	add	x1, x1, #0x0
+ 5d8:	add	x0, x0, #0x0
+ 5dc:	mov	w2, #0x7e                  	// #126
+ 5e0:	bl	0 <eprintf>
+ 5e4:	nop
+
+00000000000005e8 <rcvmsg_free>:
+ 5e8:	stp	x29, x30, [sp, #-32]!
+ 5ec:	mov	x29, sp
+ 5f0:	str	x19, [sp, #16]
+ 5f4:	mov	x19, x0
+ 5f8:	ldr	x0, [x0, #8]
+ 5fc:	bl	0 <free>
+ 600:	ldr	x0, [x19, #24]
+ 604:	bl	0 <free>
+ 608:	ldr	x0, [x19, #40]
+ 60c:	bl	0 <free>
+ 610:	mov	x0, x19
+ 614:	ldr	x19, [sp, #16]
+ 618:	ldp	x29, x30, [sp], #32
+ 61c:	b	0 <free>
+
+0000000000000620 <punpack>:
+ 620:	stp	x29, x30, [sp, #-128]!
+ 624:	mov	x29, sp
+ 628:	stp	x19, x20, [sp, #16]
+ 62c:	adrp	x19, 0 <upack_ctx>
+ 630:	add	x19, x19, #0x0
+ 634:	stp	x21, x22, [sp, #32]
+ 638:	stp	x23, x24, [sp, #48]
+ 63c:	stp	x25, x26, [sp, #64]
+ 640:	mov	x25, x0
+ 644:	mov	x0, #0x38                  	// #56
+ 648:	str	x27, [sp, #80]
+ 64c:	bl	0 <emalloc>
+ 650:	mov	x22, x0
+ 654:	mov	w1, #0xffffffff            	// #-1
+ 658:	mov	x0, x19
+ 65c:	str	xzr, [x22]
+ 660:	str	xzr, [x22, #8]
+ 664:	str	w1, [x22, #16]
+ 668:	str	xzr, [x22, #24]
+ 66c:	str	w1, [x22, #32]
+ 670:	str	xzr, [x22, #40]
+ 674:	str	w1, [x22, #48]
+ 678:	bl	0 <getenv>
+ 67c:	cbz	x0, 690 <punpack+0x70>
+ 680:	mov	w2, #0xa                   	// #10
+ 684:	mov	x1, #0x0                   	// #0
+ 688:	bl	0 <strtoul>
+ 68c:	cbnz	x0, 8b0 <punpack+0x290>
+ 690:	adrp	x0, 0 <upack_ctx>
+ 694:	mov	x1, #0x2000                	// #8192
+ 698:	ldr	x0, [x0]
+ 69c:	cmp	x0, #0x0
+ 6a0:	lsl	x0, x0, #1
+ 6a4:	csel	x0, x0, x1, ne  // ne = any
+ 6a8:	bl	0 <emalloc>
+ 6ac:	mov	x26, x0
+ 6b0:	mov	x0, x19
+ 6b4:	bl	0 <getenv>
+ 6b8:	cbz	x0, 6cc <punpack+0xac>
+ 6bc:	mov	w2, #0xa                   	// #10
+ 6c0:	mov	x1, #0x0                   	// #0
+ 6c4:	bl	0 <strtoul>
+ 6c8:	cbnz	x0, 8a8 <punpack+0x288>
+ 6cc:	adrp	x0, 0 <upack_ctx>
+ 6d0:	mov	x2, #0x2000                	// #8192
+ 6d4:	ldr	x0, [x0]
+ 6d8:	cmp	x0, #0x0
+ 6dc:	sbfiz	x0, x0, #1, #31
+ 6e0:	csel	x2, x0, x2, ne  // ne = any
+ 6e4:	mov	x3, x25
+ 6e8:	mov	x1, #0x1                   	// #1
+ 6ec:	mov	x0, x26
+ 6f0:	bl	0 <fread>
+ 6f4:	mov	x23, x0
+ 6f8:	mov	x0, x25
+ 6fc:	mov	w21, w23
+ 700:	bl	0 <ferror>
+ 704:	cbnz	w0, 950 <punpack+0x330>
+ 708:	adrp	x24, 0 <upack_ctx>
+ 70c:	add	x24, x24, #0x0
+ 710:	add	x24, x24, #0x20
+ 714:	nop
+ 718:	cmp	w21, #0x0
+ 71c:	b.le	7d0 <punpack+0x1b0>
+ 720:	str	x26, [sp, #104]
+ 724:	cbz	x26, 904 <punpack+0x2e4>
+ 728:	mov	x0, x26
+ 72c:	ldr	w20, [x0], #4
+ 730:	str	x0, [sp, #104]
+ 734:	rev	w20, w20
+ 738:	cmp	w20, #0x3
+ 73c:	b.hi	934 <punpack+0x314>  // b.pmore
+ 740:	ldr	x2, [x24, w20, uxtw #3]
+ 744:	add	x1, sp, #0x70
+ 748:	add	x0, sp, #0x68
+ 74c:	blr	x2
+ 750:	ldr	x19, [sp, #104]
+ 754:	sub	x19, x19, x26
+ 758:	cmn	w19, #0x1
+ 75c:	b.eq	904 <punpack+0x2e4>  // b.none
+ 760:	cbnz	w20, 818 <punpack+0x1f8>
+ 764:	ldr	w0, [x22]
+ 768:	ldr	w20, [sp, #112]
+ 76c:	cbnz	w0, 800 <punpack+0x1e0>
+ 770:	str	w20, [x22]
+ 774:	subs	w21, w21, w19
+ 778:	b.mi	91c <punpack+0x2fc>  // b.first
+ 77c:	sxtw	x20, w21
+ 780:	add	x1, x26, w19, sxtw
+ 784:	mov	x2, x20
+ 788:	mov	x0, x26
+ 78c:	bl	0 <memmove>
+ 790:	sxtw	x19, w19
+ 794:	cmp	w23, #0x0
+ 798:	b.le	718 <punpack+0xf8>
+ 79c:	mov	x2, x19
+ 7a0:	mov	x3, x25
+ 7a4:	mov	x1, #0x1                   	// #1
+ 7a8:	add	x0, x26, x20
+ 7ac:	bl	0 <fread>
+ 7b0:	mov	x19, x0
+ 7b4:	mov	w23, w19
+ 7b8:	mov	x0, x25
+ 7bc:	bl	0 <ferror>
+ 7c0:	cbnz	w0, 950 <punpack+0x330>
+ 7c4:	add	w21, w21, w19
+ 7c8:	cmp	w21, #0x0
+ 7cc:	b.gt	720 <punpack+0x100>
+ 7d0:	mov	x0, x26
+ 7d4:	bl	0 <free>
+ 7d8:	ldr	w0, [x22]
+ 7dc:	cbz	w0, 8d8 <punpack+0x2b8>
+ 7e0:	mov	x0, x22
+ 7e4:	ldp	x19, x20, [sp, #16]
+ 7e8:	ldp	x21, x22, [sp, #32]
+ 7ec:	ldp	x23, x24, [sp, #48]
+ 7f0:	ldp	x25, x26, [sp, #64]
+ 7f4:	ldr	x27, [sp, #80]
+ 7f8:	ldp	x29, x30, [sp], #128
+ 7fc:	ret
+ 800:	ldr	x0, [x22, #8]
+ 804:	bl	0 <free>
+ 808:	str	xzr, [x22, #8]
+ 80c:	mov	w0, #0xffffffff            	// #-1
+ 810:	str	w0, [x22, #16]
+ 814:	b	770 <punpack+0x150>
+ 818:	cmp	w20, #0x2
+ 81c:	b.eq	83c <punpack+0x21c>  // b.none
+ 820:	cmp	w20, #0x1
+ 824:	b.eq	854 <punpack+0x234>  // b.none
+ 828:	cmp	w20, #0x3
+ 82c:	b.ne	774 <punpack+0x154>  // b.any
+ 830:	ldr	w0, [sp, #112]
+ 834:	str	w0, [x22, #48]
+ 838:	b	774 <punpack+0x154>
+ 83c:	ldr	w0, [x22, #4]
+ 840:	ldr	x20, [sp, #120]
+ 844:	cbz	w0, 878 <punpack+0x258>
+ 848:	mov	x0, x20
+ 84c:	bl	0 <free>
+ 850:	b	774 <punpack+0x154>
+ 854:	ldr	x0, [x22, #40]
+ 858:	ldr	x20, [sp, #112]
+ 85c:	cbnz	x0, 848 <punpack+0x228>
+ 860:	mov	x0, x20
+ 864:	bl	0 <strdup>
+ 868:	ldr	w1, [x22]
+ 86c:	str	w1, [x22, #4]
+ 870:	str	x0, [x22, #40]
+ 874:	b	848 <punpack+0x228>
+ 878:	ldr	w0, [x22]
+ 87c:	ldr	w27, [sp, #112]
+ 880:	cmp	w0, #0x2
+ 884:	b.eq	8b8 <punpack+0x298>  // b.none
+ 888:	ldr	x0, [x22, #8]
+ 88c:	bl	0 <free>
+ 890:	str	w27, [x22, #16]
+ 894:	mov	x0, x20
+ 898:	bl	0 <strdup>
+ 89c:	ldr	x20, [sp, #120]
+ 8a0:	str	x0, [x22, #8]
+ 8a4:	b	848 <punpack+0x228>
+ 8a8:	sbfiz	x2, x0, #1, #31
+ 8ac:	b	6e4 <punpack+0xc4>
+ 8b0:	lsl	x0, x0, #1
+ 8b4:	b	6a8 <punpack+0x88>
+ 8b8:	ldr	x0, [x22, #24]
+ 8bc:	bl	0 <free>
+ 8c0:	str	w27, [x22, #32]
+ 8c4:	mov	x0, x20
+ 8c8:	bl	0 <strdup>
+ 8cc:	str	x0, [x22, #24]
+ 8d0:	ldr	x20, [sp, #120]
+ 8d4:	b	848 <punpack+0x228>
+ 8d8:	mov	x0, x22
+ 8dc:	mov	x22, #0x0                   	// #0
+ 8e0:	bl	0 <free>
+ 8e4:	mov	x0, x22
+ 8e8:	ldp	x19, x20, [sp, #16]
+ 8ec:	ldp	x21, x22, [sp, #32]
+ 8f0:	ldp	x23, x24, [sp, #48]
+ 8f4:	ldp	x25, x26, [sp, #64]
+ 8f8:	ldr	x27, [sp, #80]
+ 8fc:	ldp	x29, x30, [sp], #128
+ 900:	ret
+ 904:	adrp	x1, 0 <upack_ctx>
+ 908:	adrp	x0, 0 <upack_ctx>
+ 90c:	add	x1, x1, #0x0
+ 910:	add	x0, x0, #0x0
+ 914:	mov	w2, #0x16a                 	// #362
+ 918:	bl	0 <eprintf>
+ 91c:	adrp	x1, 0 <upack_ctx>
+ 920:	adrp	x0, 0 <upack_ctx>
+ 924:	add	x1, x1, #0x0
+ 928:	add	x0, x0, #0x0
+ 92c:	mov	w2, #0x1e6                 	// #486
+ 930:	bl	0 <eprintf>
+ 934:	adrp	x1, 0 <upack_ctx>
+ 938:	adrp	x0, 0 <upack_ctx>
+ 93c:	mov	w3, w20
+ 940:	add	x1, x1, #0x0
+ 944:	add	x0, x0, #0x0
+ 948:	mov	w2, #0x8e                  	// #142
+ 94c:	bl	0 <eprintf>
+ 950:	adrp	x1, 0 <upack_ctx>
+ 954:	adrp	x0, 0 <upack_ctx>
+ 958:	add	x1, x1, #0x0
+ 95c:	add	x0, x0, #0x0
+ 960:	mov	w2, #0x15a                 	// #346
+ 964:	bl	0 <eprintf>
+
+check_print.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <srunner_fprint>:
+   0:	stp	x29, x30, [sp, #-80]!
+   4:	cmp	w2, #0x4
+   8:	mov	x29, sp
+   c:	stp	x19, x20, [sp, #16]
+  10:	mov	x20, x1
+  14:	stp	x21, x22, [sp, #32]
+  18:	stp	x23, x24, [sp, #48]
+  1c:	mov	x23, x0
+  20:	stp	x25, x26, [sp, #64]
+  24:	b.eq	12c <srunner_fprint+0x12c>  // b.none
+  28:	mov	w19, w2
+  2c:	cbnz	w2, 184 <srunner_fprint+0x184>
+  30:	mov	w19, #0x0                   	// #0
+  34:	ldr	x22, [x20, #16]
+  38:	adrp	x26, 0 <srunner_fprint>
+  3c:	adrp	x25, 0 <srunner_fprint>
+  40:	adrp	x24, 0 <srunner_fprint>
+  44:	add	x25, x25, #0x0
+  48:	add	x24, x24, #0x0
+  4c:	mov	x0, x22
+  50:	bl	0 <check_list_front>
+  54:	b	84 <srunner_fprint+0x84>
+  58:	mov	x0, x20
+  5c:	bl	0 <tr_str>
+  60:	mov	x20, x0
+  64:	mov	x1, x25
+  68:	mov	x2, x20
+  6c:	mov	x0, x23
+  70:	bl	0 <fprintf>
+  74:	mov	x0, x20
+  78:	bl	0 <free>
+  7c:	mov	x0, x22
+  80:	bl	0 <check_list_advance>
+  84:	mov	x0, x22
+  88:	bl	0 <check_list_at_end>
+  8c:	cbnz	w0, 114 <srunner_fprint+0x114>
+  90:	mov	x0, x22
+  94:	bl	0 <check_list_val>
+  98:	cmp	w19, #0x4
+  9c:	mov	x20, x0
+  a0:	b.eq	c0 <srunner_fprint+0xc0>  // b.none
+  a4:	cmp	w19, #0x2
+  a8:	b.hi	58 <srunner_fprint+0x58>  // b.pmore
+  ac:	ldr	w0, [x0]
+  b0:	cmp	w0, #0x1
+  b4:	ccmp	w19, #0x2, #0x0, ne  // ne = any
+  b8:	b.ne	7c <srunner_fprint+0x7c>  // b.any
+  bc:	b	58 <srunner_fprint+0x58>
+  c0:	mov	x0, x24
+  c4:	bl	0 <getenv>
+  c8:	mov	x21, x0
+  cc:	cbz	x0, 1b0 <srunner_fprint+0x1b0>
+  d0:	add	x1, x26, #0x0
+  d4:	bl	0 <strcmp>
+  d8:	cbz	w0, 7c <srunner_fprint+0x7c>
+  dc:	adrp	x1, 0 <srunner_fprint>
+  e0:	mov	x0, x21
+  e4:	add	x1, x1, #0x0
+  e8:	bl	0 <strcmp>
+  ec:	cbz	w0, 7c <srunner_fprint+0x7c>
+  f0:	mov	x0, x21
+  f4:	adrp	x1, 0 <srunner_fprint>
+  f8:	add	x1, x1, #0x0
+  fc:	bl	0 <strcmp>
+ 100:	ldr	w1, [x20]
+ 104:	cbz	w0, 58 <srunner_fprint+0x58>
+ 108:	cmp	w1, #0x1
+ 10c:	b.eq	7c <srunner_fprint+0x7c>  // b.none
+ 110:	b	58 <srunner_fprint+0x58>
+ 114:	ldp	x19, x20, [sp, #16]
+ 118:	ldp	x21, x22, [sp, #32]
+ 11c:	ldp	x23, x24, [sp, #48]
+ 120:	ldp	x25, x26, [sp, #64]
+ 124:	ldp	x29, x30, [sp], #80
+ 128:	ret
+ 12c:	adrp	x0, 0 <srunner_fprint>
+ 130:	add	x0, x0, #0x0
+ 134:	bl	0 <getenv>
+ 138:	mov	x21, x0
+ 13c:	cbz	x0, 1c0 <srunner_fprint+0x1c0>
+ 140:	adrp	x1, 0 <srunner_fprint>
+ 144:	add	x1, x1, #0x0
+ 148:	bl	0 <strcmp>
+ 14c:	cbz	w0, 30 <srunner_fprint+0x30>
+ 150:	adrp	x1, 0 <srunner_fprint>
+ 154:	mov	x0, x21
+ 158:	add	x1, x1, #0x0
+ 15c:	mov	w19, #0x1                   	// #1
+ 160:	bl	0 <strcmp>
+ 164:	cbz	w0, 184 <srunner_fprint+0x184>
+ 168:	mov	x0, x21
+ 16c:	adrp	x1, 0 <srunner_fprint>
+ 170:	add	x1, x1, #0x0
+ 174:	bl	0 <strcmp>
+ 178:	cmp	w0, #0x0
+ 17c:	cset	w19, eq  // eq = none
+ 180:	add	w19, w19, #0x2
+ 184:	mov	x0, x20
+ 188:	bl	0 <sr_stat_str>
+ 18c:	adrp	x1, 0 <srunner_fprint>
+ 190:	mov	x2, x0
+ 194:	add	x1, x1, #0x0
+ 198:	mov	x21, x0
+ 19c:	mov	x0, x23
+ 1a0:	bl	0 <fprintf>
+ 1a4:	mov	x0, x21
+ 1a8:	bl	0 <free>
+ 1ac:	b	34 <srunner_fprint+0x34>
+ 1b0:	ldr	w1, [x20]
+ 1b4:	cmp	w1, #0x1
+ 1b8:	b.eq	7c <srunner_fprint+0x7c>  // b.none
+ 1bc:	b	58 <srunner_fprint+0x58>
+ 1c0:	mov	w19, #0x2                   	// #2
+ 1c4:	b	184 <srunner_fprint+0x184>
+
+00000000000001c8 <srunner_print>:
+ 1c8:	adrp	x3, 0 <stdout>
+ 1cc:	mov	w2, w1
+ 1d0:	mov	x1, x0
+ 1d4:	ldr	x0, [x3]
+ 1d8:	b	0 <srunner_fprint>
+ 1dc:	nop
+
+00000000000001e0 <fprint_xml_esc>:
+ 1e0:	ldrb	w2, [x1]
+ 1e4:	cbz	w2, 340 <fprint_xml_esc+0x160>
+ 1e8:	stp	x29, x30, [sp, #-48]!
+ 1ec:	mov	x29, sp
+ 1f0:	stp	x19, x20, [sp, #16]
+ 1f4:	mov	x19, x1
+ 1f8:	mov	x20, x0
+ 1fc:	stp	x21, x22, [sp, #32]
+ 200:	adrp	x21, 0 <srunner_fprint>
+ 204:	adrp	x22, 0 <srunner_fprint>
+ 208:	add	x21, x21, #0x0
+ 20c:	add	x22, x22, #0x0
+ 210:	b	230 <fprint_xml_esc+0x50>
+ 214:	mov	x3, x20
+ 218:	mov	x0, x21
+ 21c:	mov	x2, #0x6                   	// #6
+ 220:	mov	x1, #0x1                   	// #1
+ 224:	bl	0 <fwrite>
+ 228:	ldrb	w2, [x19, #1]!
+ 22c:	cbz	w2, 28c <fprint_xml_esc+0xac>
+ 230:	cmp	w2, #0x22
+ 234:	b.eq	214 <fprint_xml_esc+0x34>  // b.none
+ 238:	and	w1, w2, #0xfffffffd
+ 23c:	sub	w4, w2, #0x26
+ 240:	cmp	w1, #0x3c
+ 244:	and	w4, w4, #0xff
+ 248:	ccmp	w4, #0x1, #0x0, ne  // ne = any
+ 24c:	b.hi	2c0 <fprint_xml_esc+0xe0>  // b.pmore
+ 250:	cmp	w2, #0x27
+ 254:	b.eq	2f8 <fprint_xml_esc+0x118>  // b.none
+ 258:	b.ls	29c <fprint_xml_esc+0xbc>  // b.plast
+ 25c:	cmp	w2, #0x3c
+ 260:	b.eq	314 <fprint_xml_esc+0x134>  // b.none
+ 264:	cmp	w2, #0x3e
+ 268:	b.ne	228 <fprint_xml_esc+0x48>  // b.any
+ 26c:	mov	x2, #0x4                   	// #4
+ 270:	mov	x3, x20
+ 274:	adrp	x0, 0 <srunner_fprint>
+ 278:	mov	x1, #0x1                   	// #1
+ 27c:	add	x0, x0, #0x0
+ 280:	bl	0 <fwrite>
+ 284:	ldrb	w2, [x19, #1]!
+ 288:	cbnz	w2, 230 <fprint_xml_esc+0x50>
+ 28c:	ldp	x19, x20, [sp, #16]
+ 290:	ldp	x21, x22, [sp, #32]
+ 294:	ldp	x29, x30, [sp], #48
+ 298:	ret
+ 29c:	cmp	w2, #0x26
+ 2a0:	b.ne	228 <fprint_xml_esc+0x48>  // b.any
+ 2a4:	mov	x3, x20
+ 2a8:	adrp	x0, 0 <srunner_fprint>
+ 2ac:	mov	x2, #0x5                   	// #5
+ 2b0:	mov	x1, #0x1                   	// #1
+ 2b4:	add	x0, x0, #0x0
+ 2b8:	bl	0 <fwrite>
+ 2bc:	b	228 <fprint_xml_esc+0x48>
+ 2c0:	sub	w0, w2, #0x20
+ 2c4:	and	w0, w0, #0xff
+ 2c8:	cmp	w0, #0x5e
+ 2cc:	b.ls	330 <fprint_xml_esc+0x150>  // b.plast
+ 2d0:	cmp	w2, #0xd
+ 2d4:	sub	w0, w2, #0x9
+ 2d8:	ccmp	w2, #0x1f, #0x2, ne  // ne = any
+ 2dc:	and	w0, w0, #0xff
+ 2e0:	ccmp	w0, #0x1, #0x0, ls  // ls = plast
+ 2e4:	b.hi	228 <fprint_xml_esc+0x48>  // b.pmore
+ 2e8:	mov	x1, x22
+ 2ec:	mov	x0, x20
+ 2f0:	bl	0 <fprintf>
+ 2f4:	b	228 <fprint_xml_esc+0x48>
+ 2f8:	mov	x3, x20
+ 2fc:	adrp	x0, 0 <srunner_fprint>
+ 300:	mov	x2, #0x6                   	// #6
+ 304:	mov	x1, #0x1                   	// #1
+ 308:	add	x0, x0, #0x0
+ 30c:	bl	0 <fwrite>
+ 310:	b	228 <fprint_xml_esc+0x48>
+ 314:	mov	x3, x20
+ 318:	adrp	x0, 0 <srunner_fprint>
+ 31c:	mov	x2, #0x4                   	// #4
+ 320:	mov	x1, #0x1                   	// #1
+ 324:	add	x0, x0, #0x0
+ 328:	bl	0 <fwrite>
+ 32c:	b	228 <fprint_xml_esc+0x48>
+ 330:	mov	w0, w2
+ 334:	mov	x1, x20
+ 338:	bl	0 <fputc>
+ 33c:	b	228 <fprint_xml_esc+0x48>
+ 340:	ret
+ 344:	nop
+
+0000000000000348 <tr_fprint>:
+ 348:	stp	x29, x30, [sp, #-48]!
+ 34c:	cmp	w2, #0x4
+ 350:	mov	x29, sp
+ 354:	stp	x19, x20, [sp, #16]
+ 358:	mov	x20, x0
+ 35c:	mov	x19, x1
+ 360:	b.eq	3b8 <tr_fprint+0x70>  // b.none
+ 364:	cmp	w2, #0x2
+ 368:	b.ls	39c <tr_fprint+0x54>  // b.plast
+ 36c:	mov	x0, x19
+ 370:	bl	0 <tr_str>
+ 374:	mov	x19, x0
+ 378:	adrp	x1, 0 <srunner_fprint>
+ 37c:	mov	x2, x19
+ 380:	mov	x0, x20
+ 384:	add	x1, x1, #0x0
+ 388:	bl	0 <fprintf>
+ 38c:	mov	x0, x19
+ 390:	ldp	x19, x20, [sp, #16]
+ 394:	ldp	x29, x30, [sp], #48
+ 398:	b	0 <free>
+ 39c:	ldr	w0, [x1]
+ 3a0:	cmp	w0, #0x1
+ 3a4:	ccmp	w2, #0x2, #0x0, ne  // ne = any
+ 3a8:	b.eq	36c <tr_fprint+0x24>  // b.none
+ 3ac:	ldp	x19, x20, [sp, #16]
+ 3b0:	ldp	x29, x30, [sp], #48
+ 3b4:	ret
+ 3b8:	adrp	x0, 0 <srunner_fprint>
+ 3bc:	add	x0, x0, #0x0
+ 3c0:	str	x21, [sp, #32]
+ 3c4:	bl	0 <getenv>
+ 3c8:	mov	x21, x0
+ 3cc:	cbz	x0, 424 <tr_fprint+0xdc>
+ 3d0:	adrp	x1, 0 <srunner_fprint>
+ 3d4:	add	x1, x1, #0x0
+ 3d8:	bl	0 <strcmp>
+ 3dc:	cbz	w0, 414 <tr_fprint+0xcc>
+ 3e0:	adrp	x1, 0 <srunner_fprint>
+ 3e4:	mov	x0, x21
+ 3e8:	add	x1, x1, #0x0
+ 3ec:	bl	0 <strcmp>
+ 3f0:	cbz	w0, 414 <tr_fprint+0xcc>
+ 3f4:	mov	x0, x21
+ 3f8:	adrp	x1, 0 <srunner_fprint>
+ 3fc:	add	x1, x1, #0x0
+ 400:	bl	0 <strcmp>
+ 404:	ldr	w1, [x19]
+ 408:	cbz	w0, 42c <tr_fprint+0xe4>
+ 40c:	cmp	w1, #0x1
+ 410:	b.ne	42c <tr_fprint+0xe4>  // b.any
+ 414:	ldp	x19, x20, [sp, #16]
+ 418:	ldr	x21, [sp, #32]
+ 41c:	ldp	x29, x30, [sp], #48
+ 420:	ret
+ 424:	ldr	w1, [x19]
+ 428:	b	40c <tr_fprint+0xc4>
+ 42c:	ldr	x21, [sp, #32]
+ 430:	b	36c <tr_fprint+0x24>
+ 434:	nop
+
+0000000000000438 <tr_xmlprint>:
+ 438:	stp	x29, x30, [sp, #-80]!
+ 43c:	mov	x29, sp
+ 440:	stp	x19, x20, [sp, #16]
+ 444:	mov	x19, x0
+ 448:	ldr	w0, [x1]
+ 44c:	stp	x21, x22, [sp, #32]
+ 450:	mov	x20, x1
+ 454:	cmp	w0, #0x2
+ 458:	b.eq	698 <tr_xmlprint+0x260>  // b.none
+ 45c:	cmp	w0, #0x3
+ 460:	b.ne	608 <tr_xmlprint+0x1d0>  // b.any
+ 464:	adrp	x0, 0 <srunner_fprint>
+ 468:	add	x0, x0, #0x0
+ 46c:	ldr	w1, [x0]
+ 470:	ldrh	w0, [x0, #4]
+ 474:	str	w1, [sp, #64]
+ 478:	strh	w0, [sp, #68]
+ 47c:	ldr	x21, [x20, #8]
+ 480:	cbz	x21, 62c <tr_xmlprint+0x1f4>
+ 484:	mov	x0, x21
+ 488:	mov	w1, #0x2f                  	// #47
+ 48c:	str	x23, [sp, #48]
+ 490:	bl	0 <strrchr>
+ 494:	mov	x23, x0
+ 498:	cbz	x0, 664 <tr_xmlprint+0x22c>
+ 49c:	mov	x0, x21
+ 4a0:	bl	0 <strdup>
+ 4a4:	sub	x1, x23, x21
+ 4a8:	mov	x22, x0
+ 4ac:	add	x21, x23, #0x1
+ 4b0:	strb	wzr, [x0, x1]
+ 4b4:	add	x2, sp, #0x40
+ 4b8:	mov	x0, x19
+ 4bc:	adrp	x1, 0 <srunner_fprint>
+ 4c0:	add	x1, x1, #0x0
+ 4c4:	bl	0 <fprintf>
+ 4c8:	cmp	x22, #0x0
+ 4cc:	adrp	x2, 0 <srunner_fprint>
+ 4d0:	add	x2, x2, #0x0
+ 4d4:	mov	x0, x19
+ 4d8:	csel	x2, x2, x22, eq  // eq = none
+ 4dc:	adrp	x1, 0 <srunner_fprint>
+ 4e0:	add	x1, x1, #0x0
+ 4e4:	bl	0 <fprintf>
+ 4e8:	ldr	x23, [sp, #48]
+ 4ec:	mov	x2, x21
+ 4f0:	ldr	w3, [x20, #16]
+ 4f4:	mov	x0, x19
+ 4f8:	adrp	x1, 0 <srunner_fprint>
+ 4fc:	add	x1, x1, #0x0
+ 500:	bl	0 <fprintf>
+ 504:	ldr	x2, [x20, #40]
+ 508:	mov	x0, x19
+ 50c:	adrp	x1, 0 <srunner_fprint>
+ 510:	add	x1, x1, #0x0
+ 514:	bl	0 <fprintf>
+ 518:	ldr	w2, [x20, #20]
+ 51c:	mov	x0, x19
+ 520:	adrp	x1, 0 <srunner_fprint>
+ 524:	add	x1, x1, #0x0
+ 528:	bl	0 <fprintf>
+ 52c:	ldr	w3, [x20, #24]
+ 530:	tbnz	w3, #31, 68c <tr_xmlprint+0x254>
+ 534:	mov	w2, #0xde83                	// #56963
+ 538:	mov	w0, #0x4240                	// #16960
+ 53c:	movk	w2, #0x431b, lsl #16
+ 540:	movk	w0, #0xf, lsl #16
+ 544:	smull	x2, w3, w2
+ 548:	asr	x2, x2, #50
+ 54c:	sub	w2, w2, w3, asr #31
+ 550:	msub	w3, w2, w0, w3
+ 554:	mov	x0, x19
+ 558:	adrp	x1, 0 <srunner_fprint>
+ 55c:	add	x1, x1, #0x0
+ 560:	bl	0 <fprintf>
+ 564:	mov	x3, x19
+ 568:	mov	x2, #0x13                  	// #19
+ 56c:	mov	x1, #0x1                   	// #1
+ 570:	adrp	x0, 0 <srunner_fprint>
+ 574:	add	x0, x0, #0x0
+ 578:	bl	0 <fwrite>
+ 57c:	ldr	x1, [x20, #32]
+ 580:	mov	x0, x19
+ 584:	bl	1e0 <fprint_xml_esc>
+ 588:	mov	x3, x19
+ 58c:	mov	x2, #0xf                   	// #15
+ 590:	mov	x1, #0x1                   	// #1
+ 594:	adrp	x0, 0 <srunner_fprint>
+ 598:	add	x0, x0, #0x0
+ 59c:	bl	0 <fwrite>
+ 5a0:	mov	x3, x19
+ 5a4:	mov	x2, #0xf                   	// #15
+ 5a8:	mov	x1, #0x1                   	// #1
+ 5ac:	adrp	x0, 0 <srunner_fprint>
+ 5b0:	add	x0, x0, #0x0
+ 5b4:	bl	0 <fwrite>
+ 5b8:	ldr	x1, [x20, #48]
+ 5bc:	mov	x0, x19
+ 5c0:	bl	1e0 <fprint_xml_esc>
+ 5c4:	mov	x3, x19
+ 5c8:	mov	x2, #0xb                   	// #11
+ 5cc:	mov	x1, #0x1                   	// #1
+ 5d0:	adrp	x0, 0 <srunner_fprint>
+ 5d4:	add	x0, x0, #0x0
+ 5d8:	bl	0 <fwrite>
+ 5dc:	mov	x3, x19
+ 5e0:	mov	x2, #0xc                   	// #12
+ 5e4:	mov	x1, #0x1                   	// #1
+ 5e8:	adrp	x0, 0 <srunner_fprint>
+ 5ec:	add	x0, x0, #0x0
+ 5f0:	bl	0 <fwrite>
+ 5f4:	mov	x0, x22
+ 5f8:	ldp	x19, x20, [sp, #16]
+ 5fc:	ldp	x21, x22, [sp, #32]
+ 600:	ldp	x29, x30, [sp], #80
+ 604:	b	0 <free>
+ 608:	cmp	w0, #0x1
+ 60c:	b.ne	6b0 <tr_xmlprint+0x278>  // b.any
+ 610:	mov	x0, #0x7573                	// #30067
+ 614:	movk	x0, #0x6363, lsl #16
+ 618:	ldr	x21, [x20, #8]
+ 61c:	movk	x0, #0x7365, lsl #32
+ 620:	movk	x0, #0x73, lsl #48
+ 624:	str	x0, [sp, #64]
+ 628:	cbnz	x21, 484 <tr_xmlprint+0x4c>
+ 62c:	add	x2, sp, #0x40
+ 630:	mov	x0, x19
+ 634:	adrp	x1, 0 <srunner_fprint>
+ 638:	add	x1, x1, #0x0
+ 63c:	bl	0 <fprintf>
+ 640:	mov	x22, #0x0                   	// #0
+ 644:	adrp	x2, 0 <srunner_fprint>
+ 648:	add	x2, x2, #0x0
+ 64c:	mov	x21, x2
+ 650:	mov	x0, x19
+ 654:	adrp	x1, 0 <srunner_fprint>
+ 658:	add	x1, x1, #0x0
+ 65c:	bl	0 <fprintf>
+ 660:	b	4ec <tr_xmlprint+0xb4>
+ 664:	mov	x0, x21
+ 668:	mov	w1, #0x5c                  	// #92
+ 66c:	bl	0 <strrchr>
+ 670:	mov	x23, x0
+ 674:	cbnz	x0, 49c <tr_xmlprint+0x64>
+ 678:	adrp	x0, 0 <srunner_fprint>
+ 67c:	add	x0, x0, #0x0
+ 680:	bl	0 <strdup>
+ 684:	mov	x22, x0
+ 688:	b	4b4 <tr_xmlprint+0x7c>
+ 68c:	mov	w2, #0xffffffff            	// #-1
+ 690:	mov	w3, #0x0                   	// #0
+ 694:	b	554 <tr_xmlprint+0x11c>
+ 698:	mov	x0, #0x6166                	// #24934
+ 69c:	movk	x0, #0x6c69, lsl #16
+ 6a0:	movk	x0, #0x7275, lsl #32
+ 6a4:	movk	x0, #0x65, lsl #48
+ 6a8:	str	x0, [sp, #64]
+ 6ac:	b	47c <tr_xmlprint+0x44>
+ 6b0:	str	x23, [sp, #48]
+ 6b4:	bl	0 <abort>
+
+00000000000006b8 <get_env_printmode>:
+ 6b8:	stp	x29, x30, [sp, #-32]!
+ 6bc:	adrp	x0, 0 <srunner_fprint>
+ 6c0:	add	x0, x0, #0x0
+ 6c4:	mov	x29, sp
+ 6c8:	bl	0 <getenv>
+ 6cc:	cbz	x0, 740 <get_env_printmode+0x88>
+ 6d0:	adrp	x1, 0 <srunner_fprint>
+ 6d4:	add	x1, x1, #0x0
+ 6d8:	str	x19, [sp, #16]
+ 6dc:	mov	x19, x0
+ 6e0:	bl	0 <strcmp>
+ 6e4:	mov	w1, #0x0                   	// #0
+ 6e8:	cbz	w0, 730 <get_env_printmode+0x78>
+ 6ec:	mov	x0, x19
+ 6f0:	adrp	x1, 0 <srunner_fprint>
+ 6f4:	add	x1, x1, #0x0
+ 6f8:	bl	0 <strcmp>
+ 6fc:	mov	w1, #0x1                   	// #1
+ 700:	cbz	w0, 730 <get_env_printmode+0x78>
+ 704:	mov	x0, x19
+ 708:	adrp	x1, 0 <srunner_fprint>
+ 70c:	add	x1, x1, #0x0
+ 710:	bl	0 <strcmp>
+ 714:	cmp	w0, #0x0
+ 718:	cset	w1, eq  // eq = none
+ 71c:	add	w1, w1, #0x2
+ 720:	mov	w0, w1
+ 724:	ldr	x19, [sp, #16]
+ 728:	ldp	x29, x30, [sp], #32
+ 72c:	ret
+ 730:	mov	w0, w1
+ 734:	ldr	x19, [sp, #16]
+ 738:	ldp	x29, x30, [sp], #32
+ 73c:	ret
+ 740:	mov	w1, #0x2                   	// #2
+ 744:	mov	w0, w1
+ 748:	ldp	x29, x30, [sp], #32
+ 74c:	ret
+
+check_run.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <srunner_run_teardown>:
+       0:	stp	x29, x30, [sp, #-48]!
+       4:	mov	x29, sp
+       8:	str	x0, [sp, #16]
+       c:	str	w1, [sp, #28]
+      10:	bl	0 <check_list_front>
+      14:	adrp	x0, 0 <error_jmp_buffer>
+      18:	add	x0, x0, #0x0
+      1c:	str	x0, [sp, #32]
+      20:	ldr	x0, [sp, #16]
+      24:	bl	0 <check_list_at_end>
+      28:	cbz	w0, 34 <srunner_run_teardown+0x34>
+      2c:	ldp	x29, x30, [sp], #48
+      30:	ret
+      34:	ldr	x0, [sp, #16]
+      38:	bl	0 <check_list_val>
+      3c:	mov	x1, x0
+      40:	mov	w0, #0x3                   	// #3
+      44:	str	x1, [sp, #40]
+      48:	bl	0 <send_ctx_info>
+      4c:	ldr	w0, [sp, #28]
+      50:	cmp	w0, #0x2
+      54:	b.eq	70 <srunner_run_teardown+0x70>  // b.none
+      58:	ldr	x0, [sp, #40]
+      5c:	ldr	x0, [x0, #8]
+      60:	blr	x0
+      64:	ldr	x0, [sp, #16]
+      68:	bl	0 <check_list_advance>
+      6c:	b	20 <srunner_run_teardown+0x20>
+      70:	ldr	x0, [sp, #32]
+      74:	bl	0 <_setjmp>
+      78:	cbnz	w0, 2c <srunner_run_teardown+0x2c>
+      7c:	b	58 <srunner_run_teardown+0x58>
+
+0000000000000080 <signal_error_msg>:
+      80:	stp	x29, x30, [sp, #-64]!
+      84:	mov	x29, sp
+      88:	stp	x19, x20, [sp, #16]
+      8c:	stp	x21, x22, [sp, #32]
+      90:	mov	w21, w1
+      94:	str	x23, [sp, #48]
+      98:	mov	w23, w0
+      9c:	mov	x0, #0x64                  	// #100
+      a0:	bl	0 <emalloc>
+      a4:	mov	x19, x0
+      a8:	mov	w0, w23
+      ac:	bl	0 <strsignal>
+      b0:	bl	0 <strdup>
+      b4:	mov	x22, x0
+      b8:	mov	w0, w21
+      bc:	bl	0 <strsignal>
+      c0:	bl	0 <strdup>
+      c4:	mov	x20, x0
+      c8:	adrp	x1, 0 <srunner_run_teardown>
+      cc:	ldr	w0, [x1]
+      d0:	cbz	w0, 118 <signal_error_msg+0x98>
+      d4:	adrp	x2, 0 <srunner_run_teardown>
+      d8:	mov	w3, w21
+      dc:	mov	x4, x20
+      e0:	add	x2, x2, #0x0
+      e4:	mov	x0, x19
+      e8:	mov	x1, #0x64                  	// #100
+      ec:	bl	0 <snprintf>
+      f0:	mov	x0, x22
+      f4:	bl	0 <free>
+      f8:	mov	x0, x20
+      fc:	bl	0 <free>
+     100:	mov	x0, x19
+     104:	ldp	x19, x20, [sp, #16]
+     108:	ldp	x21, x22, [sp, #32]
+     10c:	ldr	x23, [sp, #48]
+     110:	ldp	x29, x30, [sp], #64
+     114:	ret
+     118:	mov	w5, w21
+     11c:	mov	w3, w23
+     120:	mov	x6, x20
+     124:	mov	x4, x22
+     128:	mov	x0, x19
+     12c:	adrp	x2, 0 <srunner_run_teardown>
+     130:	mov	x1, #0x64                  	// #100
+     134:	add	x2, x2, #0x0
+     138:	bl	0 <snprintf>
+     13c:	b	f0 <signal_error_msg+0x70>
+
+0000000000000140 <sig_handler>:
+     140:	cmp	w0, #0xe
+     144:	b.eq	184 <sig_handler+0x44>  // b.none
+     148:	stp	x29, x30, [sp, #-32]!
+     14c:	cmp	w0, #0xf
+     150:	mov	x29, sp
+     154:	stp	x19, x20, [sp, #16]
+     158:	mov	w19, w0
+     15c:	b.eq	1a0 <sig_handler+0x60>  // b.none
+     160:	cmp	w0, #0x2
+     164:	b.eq	1d4 <sig_handler+0x94>  // b.none
+     168:	mov	w3, w0
+     16c:	adrp	x1, 0 <srunner_run_teardown>
+     170:	adrp	x0, 0 <srunner_run_teardown>
+     174:	add	x1, x1, #0x0
+     178:	add	x0, x0, #0x0
+     17c:	mov	w2, #0x8e                  	// #142
+     180:	bl	0 <eprintf>
+     184:	adrp	x0, 0 <srunner_run_teardown>
+     188:	add	x2, x0, #0x0
+     18c:	mov	w3, #0x1                   	// #1
+     190:	mov	w1, #0x9                   	// #9
+     194:	str	w3, [x0]
+     198:	ldr	w0, [x2, #4]
+     19c:	b	0 <killpg>
+     1a0:	adrp	x20, 0 <srunner_run_teardown>
+     1a4:	add	x20, x20, #0x0
+     1a8:	mov	x2, #0x0                   	// #0
+     1ac:	add	x1, x20, #0xa0
+     1b0:	bl	0 <sigaction>
+     1b4:	ldr	w0, [x20, #4]
+     1b8:	mov	w1, w19
+     1bc:	bl	0 <killpg>
+     1c0:	bl	0 <getpgrp>
+     1c4:	mov	w1, w19
+     1c8:	ldp	x19, x20, [sp, #16]
+     1cc:	ldp	x29, x30, [sp], #32
+     1d0:	b	0 <killpg>
+     1d4:	adrp	x20, 0 <srunner_run_teardown>
+     1d8:	add	x20, x20, #0x0
+     1dc:	mov	x2, #0x0                   	// #0
+     1e0:	add	x1, x20, #0x8
+     1e4:	bl	0 <sigaction>
+     1e8:	ldr	w0, [x20, #4]
+     1ec:	mov	w1, #0x9                   	// #9
+     1f0:	bl	0 <killpg>
+     1f4:	bl	0 <getpgrp>
+     1f8:	mov	w1, w19
+     1fc:	ldp	x19, x20, [sp, #16]
+     200:	ldp	x29, x30, [sp], #32
+     204:	b	0 <killpg>
+
+0000000000000208 <srunner_run_setup>:
+     208:	stp	x29, x30, [sp, #-96]!
+     20c:	cmp	w1, #0x1
+     210:	mov	x29, sp
+     214:	str	x19, [sp, #16]
+     218:	str	x0, [sp, #40]
+     21c:	str	w1, [sp, #52]
+     220:	stp	x2, x3, [sp, #56]
+     224:	b.ne	230 <srunner_run_setup+0x28>  // b.any
+     228:	ldr	w0, [sp, #52]
+     22c:	bl	0 <send_ctx_info>
+     230:	ldr	x0, [sp, #40]
+     234:	bl	0 <check_list_front>
+     238:	adrp	x0, 0 <srunner_run_teardown>
+     23c:	add	x0, x0, #0x0
+     240:	str	x0, [sp, #88]
+     244:	adrp	x1, 0 <error_jmp_buffer>
+     248:	ldr	x0, [sp, #40]
+     24c:	add	x1, x1, #0x0
+     250:	str	x1, [sp, #72]
+     254:	bl	0 <check_list_at_end>
+     258:	cbnz	w0, 290 <srunner_run_setup+0x88>
+     25c:	ldr	x0, [sp, #40]
+     260:	bl	0 <check_list_val>
+     264:	str	x0, [sp, #80]
+     268:	ldr	w1, [sp, #52]
+     26c:	cmp	w1, #0x2
+     270:	b.eq	2a4 <srunner_run_setup+0x9c>  // b.none
+     274:	ldr	x0, [x0, #8]
+     278:	blr	x0
+     27c:	ldr	x0, [sp, #40]
+     280:	bl	0 <check_list_advance>
+     284:	ldr	x0, [sp, #40]
+     288:	bl	0 <check_list_at_end>
+     28c:	cbz	w0, 25c <srunner_run_setup+0x54>
+     290:	mov	x19, #0x0                   	// #0
+     294:	mov	x0, x19
+     298:	ldr	x19, [sp, #16]
+     29c:	ldp	x29, x30, [sp], #96
+     2a0:	ret
+     2a4:	mov	w0, #0x1                   	// #1
+     2a8:	bl	0 <send_ctx_info>
+     2ac:	ldr	x0, [sp, #72]
+     2b0:	bl	0 <_setjmp>
+     2b4:	cbnz	w0, 2c4 <srunner_run_setup+0xbc>
+     2b8:	ldr	x0, [sp, #80]
+     2bc:	ldr	x0, [x0, #8]
+     2c0:	blr	x0
+     2c4:	mov	w0, #0x0                   	// #0
+     2c8:	bl	0 <receive_test_result>
+     2cc:	mov	x19, x0
+     2d0:	cbz	x0, 328 <srunner_run_setup+0x120>
+     2d4:	mov	x1, #0xffffffff00000000    	// #-4294967296
+     2d8:	ldr	x0, [x0, #48]
+     2dc:	stur	x1, [x19, #20]
+     2e0:	ldr	x1, [sp, #56]
+     2e4:	str	x1, [x19, #32]
+     2e8:	ldr	x1, [sp, #64]
+     2ec:	str	x1, [x19, #40]
+     2f0:	cbz	x0, 300 <srunner_run_setup+0xf8>
+     2f4:	mov	w0, #0x2                   	// #2
+     2f8:	str	w0, [x19]
+     2fc:	b	294 <srunner_run_setup+0x8c>
+     300:	ldr	x0, [sp, #88]
+     304:	bl	0 <strdup>
+     308:	str	x0, [x19, #48]
+     30c:	ldr	x0, [x19, #8]
+     310:	bl	0 <free>
+     314:	ldr	x0, [x19, #48]
+     318:	bl	0 <free>
+     31c:	mov	x0, x19
+     320:	bl	0 <free>
+     324:	b	27c <srunner_run_setup+0x74>
+     328:	adrp	x1, 0 <srunner_run_teardown>
+     32c:	adrp	x0, 0 <srunner_run_teardown>
+     330:	add	x1, x1, #0x0
+     334:	add	x0, x0, #0x0
+     338:	mov	w2, #0x1b8                 	// #440
+     33c:	bl	0 <eprintf>
+
+0000000000000340 <tcase_run_tfun_nofork.isra.0>:
+     340:	movi	v0.4s, #0x0
+     344:	stp	x29, x30, [sp, #-112]!
+     348:	mov	x29, sp
+     34c:	stp	x19, x20, [sp, #16]
+     350:	stp	x1, x2, [sp, #56]
+     354:	ldr	x19, [x1, #48]
+     358:	stp	x21, x22, [sp, #32]
+     35c:	ldr	w1, [x0, #56]
+     360:	str	w3, [sp, #76]
+     364:	stp	q0, q0, [sp, #80]
+     368:	cbz	w1, 3a0 <tcase_run_tfun_nofork.isra.0+0x60>
+     36c:	ldr	x0, [sp, #56]
+     370:	adrp	x3, 0 <srunner_run_teardown>
+     374:	add	x3, x3, #0x0
+     378:	ldr	x2, [x0]
+     37c:	mov	x0, x19
+     380:	bl	208 <srunner_run_setup>
+     384:	mov	x19, x0
+     388:	cbz	x0, 3e0 <tcase_run_tfun_nofork.isra.0+0xa0>
+     38c:	mov	x0, x19
+     390:	ldp	x19, x20, [sp, #16]
+     394:	ldp	x21, x22, [sp, #32]
+     398:	ldp	x29, x30, [sp], #112
+     39c:	ret
+     3a0:	adrp	x0, 0 <srunner_run_teardown>
+     3a4:	add	x0, x0, #0x0
+     3a8:	bl	0 <getenv>
+     3ac:	cbz	x0, 3d8 <tcase_run_tfun_nofork.isra.0+0x98>
+     3b0:	ldrb	w1, [x0]
+     3b4:	cmp	w1, #0x6e
+     3b8:	b.ne	3d8 <tcase_run_tfun_nofork.isra.0+0x98>  // b.any
+     3bc:	ldrb	w1, [x0, #1]
+     3c0:	cmp	w1, #0x6f
+     3c4:	b.ne	3d8 <tcase_run_tfun_nofork.isra.0+0x98>  // b.any
+     3c8:	ldrb	w0, [x0, #2]
+     3cc:	cbnz	w0, 3d8 <tcase_run_tfun_nofork.isra.0+0x98>
+     3d0:	mov	w1, #0x2                   	// #2
+     3d4:	b	36c <tcase_run_tfun_nofork.isra.0+0x2c>
+     3d8:	mov	w1, #0x1                   	// #1
+     3dc:	b	36c <tcase_run_tfun_nofork.isra.0+0x2c>
+     3e0:	bl	0 <check_get_clockid>
+     3e4:	add	x1, sp, #0x50
+     3e8:	bl	0 <clock_gettime>
+     3ec:	adrp	x0, 0 <error_jmp_buffer>
+     3f0:	add	x0, x0, #0x0
+     3f4:	bl	0 <_setjmp>
+     3f8:	cbz	w0, 49c <tcase_run_tfun_nofork.isra.0+0x15c>
+     3fc:	bl	0 <check_get_clockid>
+     400:	add	x1, sp, #0x60
+     404:	bl	0 <clock_gettime>
+     408:	ldr	x19, [sp, #56]
+     40c:	mov	w1, #0x2                   	// #2
+     410:	ldr	x0, [x19, #56]
+     414:	bl	0 <srunner_run_teardown>
+     418:	ldp	x7, x3, [sp, #80]
+     41c:	mov	x2, #0xf7cf                	// #63439
+     420:	ldp	x4, x1, [sp, #96]
+     424:	movk	x2, #0xe353, lsl #16
+     428:	movk	x2, #0x9ba5, lsl #32
+     42c:	mov	w6, #0x4240                	// #16960
+     430:	movk	x2, #0x20c4, lsl #48
+     434:	movk	w6, #0xf, lsl #16
+     438:	mov	w0, #0x0                   	// #0
+     43c:	ldr	x22, [x19]
+     440:	smulh	x5, x1, x2
+     444:	smulh	x2, x3, x2
+     448:	asr	x3, x3, #63
+     44c:	asr	x5, x5, #7
+     450:	sub	x2, x3, x2, asr #7
+     454:	sub	x3, x4, x7
+     458:	ldr	x4, [sp, #64]
+     45c:	sub	x1, x5, x1, asr #63
+     460:	add	w1, w1, w2
+     464:	ldr	x4, [x4]
+     468:	madd	w20, w6, w3, w1
+     46c:	ldr	x21, [x4]
+     470:	bl	0 <receive_test_result>
+     474:	mov	x19, x0
+     478:	cbz	x0, 4e4 <tcase_run_tfun_nofork.isra.0+0x1a4>
+     47c:	ldr	x0, [x0, #48]
+     480:	stp	x22, x21, [x19, #32]
+     484:	ldr	w1, [sp, #76]
+     488:	stp	w1, w20, [x19, #20]
+     48c:	cbz	x0, 4c8 <tcase_run_tfun_nofork.isra.0+0x188>
+     490:	mov	w0, #0x2                   	// #2
+     494:	str	w0, [x19]
+     498:	b	38c <tcase_run_tfun_nofork.isra.0+0x4c>
+     49c:	ldr	x19, [sp, #64]
+     4a0:	ldr	x2, [x19]
+     4a4:	ldr	x0, [x2]
+     4a8:	ldr	x1, [x2, #16]
+     4ac:	ldr	w2, [x2, #24]
+     4b0:	bl	0 <tcase_fn_start>
+     4b4:	ldr	x1, [x19]
+     4b8:	ldr	w0, [sp, #76]
+     4bc:	ldr	x1, [x1, #8]
+     4c0:	blr	x1
+     4c4:	b	3fc <tcase_run_tfun_nofork.isra.0+0xbc>
+     4c8:	mov	w0, #0x1                   	// #1
+     4cc:	str	w0, [x19]
+     4d0:	adrp	x0, 0 <srunner_run_teardown>
+     4d4:	add	x0, x0, #0x0
+     4d8:	bl	0 <strdup>
+     4dc:	str	x0, [x19, #48]
+     4e0:	b	38c <tcase_run_tfun_nofork.isra.0+0x4c>
+     4e4:	adrp	x1, 0 <srunner_run_teardown>
+     4e8:	adrp	x0, 0 <srunner_run_teardown>
+     4ec:	add	x1, x1, #0x0
+     4f0:	add	x0, x0, #0x0
+     4f4:	mov	w2, #0x1b8                 	// #440
+     4f8:	bl	0 <eprintf>
+     4fc:	nop
+
+0000000000000500 <srunner_fork_status>:
+     500:	ldr	w0, [x0, #56]
+     504:	cbz	w0, 50c <srunner_fork_status+0xc>
+     508:	ret
+     50c:	stp	x29, x30, [sp, #-16]!
+     510:	adrp	x0, 0 <srunner_run_teardown>
+     514:	add	x0, x0, #0x0
+     518:	mov	x29, sp
+     51c:	bl	0 <getenv>
+     520:	cbz	x0, 54c <srunner_fork_status+0x4c>
+     524:	ldrb	w1, [x0]
+     528:	cmp	w1, #0x6e
+     52c:	b.ne	54c <srunner_fork_status+0x4c>  // b.any
+     530:	ldrb	w1, [x0, #1]
+     534:	cmp	w1, #0x6f
+     538:	b.ne	54c <srunner_fork_status+0x4c>  // b.any
+     53c:	ldrb	w0, [x0, #2]
+     540:	cbnz	w0, 54c <srunner_fork_status+0x4c>
+     544:	mov	w0, #0x2                   	// #2
+     548:	b	550 <srunner_fork_status+0x50>
+     54c:	mov	w0, #0x1                   	// #1
+     550:	ldp	x29, x30, [sp], #16
+     554:	ret
+
+0000000000000558 <srunner_set_fork_status>:
+     558:	str	w1, [x0, #56]
+     55c:	ret
+
+0000000000000560 <srunner_run_tagged>:
+     560:	stp	x29, x30, [sp, #-288]!
+     564:	mov	x29, sp
+     568:	stp	x19, x20, [sp, #16]
+     56c:	mov	x19, x0
+     570:	stp	x21, x22, [sp, #32]
+     574:	mov	w21, w5
+     578:	mov	x22, x2
+     57c:	stp	x3, x4, [sp, #104]
+     580:	str	x1, [sp, #120]
+     584:	cbz	x2, edc <srunner_run_tagged+0x97c>
+     588:	ldr	x0, [sp, #120]
+     58c:	cbz	x0, eac <srunner_run_tagged+0x94c>
+     590:	ldr	x0, [sp, #104]
+     594:	cbz	x0, ec8 <srunner_run_tagged+0x968>
+     598:	ldr	x0, [sp, #112]
+     59c:	cbz	x0, d84 <srunner_run_tagged+0x824>
+     5a0:	cbz	x19, 7a4 <srunner_run_tagged+0x244>
+     5a4:	stp	x23, x24, [sp, #48]
+     5a8:	cmp	w21, #0x4
+     5ac:	stp	x25, x26, [sp, #64]
+     5b0:	stp	x27, x28, [sp, #80]
+     5b4:	b.hi	1038 <srunner_run_tagged+0xad8>  // b.pmore
+     5b8:	adrp	x20, 0 <srunner_run_teardown>
+     5bc:	add	x20, x20, #0x0
+     5c0:	add	x2, x20, #0x1d0
+     5c4:	add	x1, x20, #0x138
+     5c8:	adrp	x23, 0 <srunner_run_teardown>
+     5cc:	mov	w0, #0xe                   	// #14
+     5d0:	add	x23, x23, #0x0
+     5d4:	str	x23, [x20, #312]
+     5d8:	stp	xzr, xzr, [x20, #320]
+     5dc:	stp	xzr, xzr, [x20, #336]
+     5e0:	stp	xzr, xzr, [x20, #352]
+     5e4:	stp	xzr, xzr, [x20, #368]
+     5e8:	stp	xzr, xzr, [x20, #384]
+     5ec:	stp	xzr, xzr, [x20, #400]
+     5f0:	stp	xzr, xzr, [x20, #416]
+     5f4:	stp	xzr, xzr, [x20, #432]
+     5f8:	stp	xzr, xzr, [x20, #448]
+     5fc:	bl	0 <sigaction>
+     600:	add	x3, x20, #0x270
+     604:	add	x2, x20, #0x8
+     608:	add	x1, x20, #0x268
+     60c:	mov	w0, #0x2                   	// #2
+     610:	str	x23, [x20, #616]
+     614:	stp	xzr, xzr, [x3]
+     618:	stp	xzr, xzr, [x3, #16]
+     61c:	stp	xzr, xzr, [x3, #32]
+     620:	stp	xzr, xzr, [x3, #48]
+     624:	stp	xzr, xzr, [x3, #64]
+     628:	stp	xzr, xzr, [x3, #80]
+     62c:	stp	xzr, xzr, [x3, #96]
+     630:	stp	xzr, xzr, [x3, #112]
+     634:	stp	xzr, xzr, [x3, #128]
+     638:	bl	0 <sigaction>
+     63c:	str	x23, [x20, #768]
+     640:	add	x3, x20, #0x308
+     644:	add	x2, x20, #0xa0
+     648:	add	x1, x20, #0x300
+     64c:	mov	w0, #0xf                   	// #15
+     650:	stp	xzr, xzr, [x3]
+     654:	stp	xzr, xzr, [x3, #16]
+     658:	stp	xzr, xzr, [x3, #32]
+     65c:	stp	xzr, xzr, [x3, #48]
+     660:	stp	xzr, xzr, [x3, #64]
+     664:	stp	xzr, xzr, [x3, #80]
+     668:	stp	xzr, xzr, [x3, #96]
+     66c:	stp	xzr, xzr, [x3, #112]
+     670:	stp	xzr, xzr, [x3, #128]
+     674:	bl	0 <sigaction>
+     678:	ldr	w0, [x19, #56]
+     67c:	cbz	w0, d18 <srunner_run_tagged+0x7b8>
+     680:	bl	0 <set_fork_status>
+     684:	bl	0 <setup_messaging>
+     688:	mov	w1, w21
+     68c:	mov	x0, x19
+     690:	bl	0 <srunner_init_logging>
+     694:	mov	x0, x19
+     698:	bl	0 <log_srunner_start>
+     69c:	ldr	x0, [sp, #104]
+     6a0:	ldr	x28, [x19]
+     6a4:	bl	0 <tag_string_to_list>
+     6a8:	str	x0, [sp, #128]
+     6ac:	ldr	x0, [sp, #112]
+     6b0:	bl	0 <tag_string_to_list>
+     6b4:	str	x0, [sp, #136]
+     6b8:	mov	x0, x28
+     6bc:	bl	0 <check_list_front>
+     6c0:	mov	x0, x28
+     6c4:	bl	0 <check_list_at_end>
+     6c8:	cbnz	w0, 714 <srunner_run_tagged+0x1b4>
+     6cc:	mov	x0, x28
+     6d0:	bl	0 <check_list_val>
+     6d4:	mov	x24, x0
+     6d8:	ldr	x0, [sp, #120]
+     6dc:	cbz	x0, 6ec <srunner_run_tagged+0x18c>
+     6e0:	ldr	x1, [x24]
+     6e4:	bl	0 <strcmp>
+     6e8:	cbnz	w0, 700 <srunner_run_tagged+0x1a0>
+     6ec:	cbz	x22, 7b4 <srunner_run_tagged+0x254>
+     6f0:	mov	x1, x22
+     6f4:	mov	x0, x24
+     6f8:	bl	0 <suite_tcase>
+     6fc:	cbnz	w0, 7b4 <srunner_run_tagged+0x254>
+     700:	mov	x0, x28
+     704:	bl	0 <check_list_advance>
+     708:	mov	x0, x28
+     70c:	bl	0 <check_list_at_end>
+     710:	cbz	w0, 6cc <srunner_run_tagged+0x16c>
+     714:	ldr	x22, [sp, #128]
+     718:	adrp	x21, 0 <free>
+     71c:	add	x21, x21, #0x0
+     720:	mov	x1, x21
+     724:	mov	x0, x22
+     728:	bl	0 <check_list_apply>
+     72c:	mov	x1, x21
+     730:	ldr	x21, [sp, #136]
+     734:	mov	x0, x21
+     738:	bl	0 <check_list_apply>
+     73c:	mov	x0, x22
+     740:	bl	0 <check_list_free>
+     744:	mov	x0, x21
+     748:	bl	0 <check_list_free>
+     74c:	mov	x0, x19
+     750:	bl	0 <log_srunner_end>
+     754:	mov	x0, x19
+     758:	bl	0 <srunner_end_logging>
+     75c:	bl	0 <teardown_messaging>
+     760:	mov	w0, #0x1                   	// #1
+     764:	bl	0 <set_fork_status>
+     768:	add	x1, x20, #0x1d0
+     76c:	mov	x2, #0x0                   	// #0
+     770:	mov	w0, #0xe                   	// #14
+     774:	bl	0 <sigaction>
+     778:	add	x1, x20, #0x8
+     77c:	mov	x2, #0x0                   	// #0
+     780:	mov	w0, #0x2                   	// #2
+     784:	bl	0 <sigaction>
+     788:	add	x1, x20, #0xa0
+     78c:	mov	x2, #0x0                   	// #0
+     790:	mov	w0, #0xf                   	// #15
+     794:	bl	0 <sigaction>
+     798:	ldp	x23, x24, [sp, #48]
+     79c:	ldp	x25, x26, [sp, #64]
+     7a0:	ldp	x27, x28, [sp, #80]
+     7a4:	ldp	x19, x20, [sp, #16]
+     7a8:	ldp	x21, x22, [sp, #32]
+     7ac:	ldp	x29, x30, [sp], #288
+     7b0:	ret
+     7b4:	mov	x1, x24
+     7b8:	mov	x0, x19
+     7bc:	bl	0 <log_suite_start>
+     7c0:	ldr	x27, [x24, #8]
+     7c4:	mov	x0, x27
+     7c8:	bl	0 <check_list_front>
+     7cc:	mov	x0, x27
+     7d0:	bl	0 <check_list_at_end>
+     7d4:	cbnz	w0, 8ac <srunner_run_tagged+0x34c>
+     7d8:	mov	x0, x27
+     7dc:	bl	0 <check_list_val>
+     7e0:	mov	x21, x0
+     7e4:	cbz	x22, 7f8 <srunner_run_tagged+0x298>
+     7e8:	ldr	x1, [x21]
+     7ec:	mov	x0, x22
+     7f0:	bl	0 <strcmp>
+     7f4:	cbnz	w0, 898 <srunner_run_tagged+0x338>
+     7f8:	ldr	x0, [sp, #104]
+     7fc:	cbz	x0, 810 <srunner_run_tagged+0x2b0>
+     800:	ldr	x1, [sp, #128]
+     804:	mov	x0, x21
+     808:	bl	0 <tcase_matching_tag>
+     80c:	cbz	w0, 898 <srunner_run_tagged+0x338>
+     810:	ldr	x0, [sp, #112]
+     814:	cbz	x0, 828 <srunner_run_tagged+0x2c8>
+     818:	ldr	x1, [sp, #136]
+     81c:	mov	x0, x21
+     820:	bl	0 <tcase_matching_tag>
+     824:	cbnz	w0, 898 <srunner_run_tagged+0x338>
+     828:	mov	w0, #0x2                   	// #2
+     82c:	bl	0 <set_fork_status>
+     830:	ldr	x2, [x21]
+     834:	adrp	x3, 0 <srunner_run_teardown>
+     838:	ldr	x0, [x21, #32]
+     83c:	add	x3, x3, #0x0
+     840:	mov	w1, #0x2                   	// #2
+     844:	bl	208 <srunner_run_setup>
+     848:	mov	x23, x0
+     84c:	ldr	w0, [x19, #56]
+     850:	cbz	w0, c00 <srunner_run_tagged+0x6a0>
+     854:	bl	0 <set_fork_status>
+     858:	cbz	x23, 8bc <srunner_run_tagged+0x35c>
+     85c:	ldr	w0, [x23]
+     860:	cmp	w0, #0x1
+     864:	b.eq	8bc <srunner_run_tagged+0x35c>  // b.none
+     868:	ldr	x0, [x19, #16]
+     86c:	mov	x1, x23
+     870:	bl	0 <check_list_add_end>
+     874:	ldr	x0, [x19, #8]
+     878:	ldr	w2, [x23]
+     87c:	ldr	w1, [x0]
+     880:	cmp	w2, #0x2
+     884:	add	w1, w1, #0x1
+     888:	str	w1, [x0]
+     88c:	b.eq	d50 <srunner_run_tagged+0x7f0>  // b.none
+     890:	cmp	w2, #0x3
+     894:	b.eq	dd0 <srunner_run_tagged+0x870>  // b.none
+     898:	mov	x0, x27
+     89c:	bl	0 <check_list_advance>
+     8a0:	mov	x0, x27
+     8a4:	bl	0 <check_list_at_end>
+     8a8:	cbz	w0, 7d8 <srunner_run_tagged+0x278>
+     8ac:	mov	x1, x24
+     8b0:	mov	x0, x19
+     8b4:	bl	0 <log_suite_end>
+     8b8:	b	700 <srunner_run_tagged+0x1a0>
+     8bc:	ldr	x0, [x21, #24]
+     8c0:	str	x0, [sp, #144]
+     8c4:	bl	0 <check_list_front>
+     8c8:	ldr	x0, [sp, #144]
+     8cc:	bl	0 <check_list_at_end>
+     8d0:	cbnz	w0, f70 <srunner_run_tagged+0xa10>
+     8d4:	ldr	x0, [sp, #144]
+     8d8:	bl	0 <check_list_val>
+     8dc:	mov	x23, x0
+     8e0:	adrp	x1, 0 <srunner_run_teardown>
+     8e4:	add	x0, x1, #0x0
+     8e8:	str	x0, [sp, #160]
+     8ec:	ldr	w26, [x23, #8]
+     8f0:	ldr	w0, [x23, #12]
+     8f4:	cmp	w0, w26
+     8f8:	b.le	950 <srunner_run_tagged+0x3f0>
+     8fc:	mov	x0, x19
+     900:	mov	x2, x23
+     904:	mov	x1, x21
+     908:	bl	0 <log_test_start>
+     90c:	ldr	w0, [x19, #56]
+     910:	cbz	w0, 95c <srunner_run_tagged+0x3fc>
+     914:	cmp	w0, #0x1
+     918:	b.eq	978 <srunner_run_tagged+0x418>  // b.none
+     91c:	cmp	w0, #0x2
+     920:	b.ne	1008 <srunner_run_tagged+0xaa8>  // b.any
+     924:	mov	w3, w26
+     928:	mov	x2, x23
+     92c:	mov	x1, x21
+     930:	mov	x0, x19
+     934:	bl	340 <tcase_run_tfun_nofork.isra.0>
+     938:	mov	x5, x0
+     93c:	cbnz	x0, bb8 <srunner_run_tagged+0x658>
+     940:	ldr	w0, [x23, #12]
+     944:	add	w26, w26, #0x1
+     948:	cmp	w26, w0
+     94c:	b.lt	8fc <srunner_run_tagged+0x39c>  // b.tstop
+     950:	ldr	x0, [sp, #144]
+     954:	bl	0 <check_list_advance>
+     958:	b	8c8 <srunner_run_tagged+0x368>
+     95c:	adrp	x0, 0 <srunner_run_teardown>
+     960:	add	x0, x0, #0x0
+     964:	bl	0 <getenv>
+     968:	cbz	x0, 978 <srunner_run_tagged+0x418>
+     96c:	ldrb	w1, [x0]
+     970:	cmp	w1, #0x6e
+     974:	b.eq	c38 <srunner_run_tagged+0x6d8>  // b.none
+     978:	movi	v0.4s, #0x0
+     97c:	str	wzr, [sp, #212]
+     980:	stp	q0, q0, [sp, #224]
+     984:	bl	0 <fork>
+     988:	mov	w25, w0
+     98c:	cmn	w0, #0x1
+     990:	b.eq	1020 <srunner_run_tagged+0xac0>  // b.none
+     994:	cbnz	w0, a64 <srunner_run_tagged+0x504>
+     998:	mov	w1, #0x0                   	// #0
+     99c:	bl	0 <setpgid>
+     9a0:	bl	0 <getpgrp>
+     9a4:	str	w0, [x20, #4]
+     9a8:	ldr	w1, [x19, #56]
+     9ac:	ldr	x19, [x21, #48]
+     9b0:	cbz	w1, d98 <srunner_run_tagged+0x838>
+     9b4:	ldr	x2, [x21]
+     9b8:	adrp	x3, 0 <srunner_run_teardown>
+     9bc:	add	x3, x3, #0x0
+     9c0:	mov	x0, x19
+     9c4:	bl	208 <srunner_run_setup>
+     9c8:	bl	0 <free>
+     9cc:	bl	0 <check_get_clockid>
+     9d0:	add	x1, sp, #0xe0
+     9d4:	bl	0 <clock_gettime>
+     9d8:	ldr	x2, [x23]
+     9dc:	ldr	x0, [x2]
+     9e0:	ldr	x1, [x2, #16]
+     9e4:	ldr	w2, [x2, #24]
+     9e8:	bl	0 <tcase_fn_start>
+     9ec:	ldr	x1, [x23]
+     9f0:	mov	w0, w26
+     9f4:	ldr	x1, [x1, #8]
+     9f8:	blr	x1
+     9fc:	bl	0 <check_get_clockid>
+     a00:	add	x1, sp, #0xf0
+     a04:	bl	0 <clock_gettime>
+     a08:	ldr	x0, [x21, #56]
+     a0c:	mov	w1, #0x2                   	// #2
+     a10:	bl	0 <srunner_run_teardown>
+     a14:	ldp	x4, x1, [sp, #240]
+     a18:	mov	x2, #0xf7cf                	// #63439
+     a1c:	ldp	x0, x3, [sp, #224]
+     a20:	movk	x2, #0xe353, lsl #16
+     a24:	movk	x2, #0x9ba5, lsl #32
+     a28:	mov	w6, #0x4240                	// #16960
+     a2c:	movk	x2, #0x20c4, lsl #48
+     a30:	movk	w6, #0xf, lsl #16
+     a34:	smulh	x5, x1, x2
+     a38:	smulh	x2, x3, x2
+     a3c:	asr	x3, x3, #63
+     a40:	sub	x0, x4, x0
+     a44:	asr	x5, x5, #7
+     a48:	sub	x1, x5, x1, asr #63
+     a4c:	sub	x2, x3, x2, asr #7
+     a50:	add	w1, w1, w2
+     a54:	madd	w0, w6, w0, w1
+     a58:	bl	0 <send_duration_info>
+     a5c:	mov	w0, #0x0                   	// #0
+     a60:	bl	0 <exit>
+     a64:	stp	wzr, w0, [x20]
+     a68:	bl	0 <check_get_clockid>
+     a6c:	add	x2, sp, #0xd8
+     a70:	mov	x1, #0x0                   	// #0
+     a74:	bl	0 <timer_create>
+     a78:	cbnz	w0, 106c <srunner_run_tagged+0xb0c>
+     a7c:	ldp	x6, x7, [x21, #8]
+     a80:	add	x2, sp, #0x100
+     a84:	movi	v0.4s, #0x0
+     a88:	mov	x3, #0x0                   	// #0
+     a8c:	ldr	x0, [sp, #216]
+     a90:	mov	w1, #0x0                   	// #0
+     a94:	stp	x6, x7, [sp, #272]
+     a98:	str	q0, [sp, #256]
+     a9c:	bl	0 <timer_settime>
+     aa0:	cbnz	w0, 1054 <srunner_run_tagged+0xaf4>
+     aa4:	nop
+     aa8:	add	x1, sp, #0xd4
+     aac:	mov	w0, w25
+     ab0:	mov	w2, #0x0                   	// #0
+     ab4:	bl	0 <waitpid>
+     ab8:	cmn	w0, #0x1
+     abc:	b.eq	aa8 <srunner_run_tagged+0x548>  // b.none
+     ac0:	ldr	x0, [sp, #216]
+     ac4:	bl	0 <timer_delete>
+     ac8:	mov	w1, #0x9                   	// #9
+     acc:	mov	w0, w25
+     ad0:	bl	0 <killpg>
+     ad4:	ldr	w0, [sp, #212]
+     ad8:	ldr	x4, [x23]
+     adc:	and	w6, w0, #0x7f
+     ae0:	add	w2, w6, #0x1
+     ae4:	ldr	w1, [x23, #16]
+     ae8:	ldr	x3, [x21]
+     aec:	sbfx	x2, x2, #1, #7
+     af0:	str	w2, [sp, #152]
+     af4:	cmp	w2, #0x0
+     af8:	ccmp	w1, w6, #0x4, gt
+     afc:	ldr	x4, [x4]
+     b00:	b.ne	c50 <srunner_run_tagged+0x6f0>  // b.any
+     b04:	cmp	w6, #0x0
+     b08:	str	w1, [sp, #200]
+     b0c:	cset	w7, eq  // eq = none
+     b10:	tst	x0, #0xff00
+     b14:	asr	w1, w0, #8
+     b18:	ccmp	w7, #0x0, #0x4, ne  // ne = any
+     b1c:	ldrsb	w0, [x23, #20]
+     b20:	mov	w25, w1
+     b24:	str	w7, [sp, #168]
+     b28:	str	w6, [sp, #176]
+     b2c:	stp	x3, x4, [sp, #184]
+     b30:	str	w0, [sp, #204]
+     b34:	cset	w0, ne  // ne = any
+     b38:	bl	0 <receive_test_result>
+     b3c:	mov	x5, x0
+     b40:	ldr	w2, [sp, #152]
+     b44:	ldr	w7, [sp, #168]
+     b48:	ldr	w6, [sp, #176]
+     b4c:	ldr	w1, [sp, #200]
+     b50:	ldp	x3, x4, [sp, #184]
+     b54:	cbz	x0, ef0 <srunner_run_tagged+0x990>
+     b58:	str	w26, [x0, #20]
+     b5c:	cmp	w2, #0x0
+     b60:	stp	x3, x4, [x0, #32]
+     b64:	b.gt	e50 <srunner_run_tagged+0x8f0>
+     b68:	sxtb	w3, w25
+     b6c:	cbnz	w1, df0 <srunner_run_tagged+0x890>
+     b70:	ldr	w0, [sp, #204]
+     b74:	cmp	w7, #0x0
+     b78:	ccmp	w0, w3, #0x0, ne  // ne = any
+     b7c:	b.ne	f08 <srunner_run_tagged+0x9a8>  // b.any
+     b80:	ldr	x0, [x5, #48]
+     b84:	mov	w1, #0x1                   	// #1
+     b88:	str	w1, [x5]
+     b8c:	cbz	x0, b9c <srunner_run_tagged+0x63c>
+     b90:	str	x5, [sp, #152]
+     b94:	bl	0 <free>
+     b98:	ldr	x5, [sp, #152]
+     b9c:	adrp	x0, 0 <srunner_run_teardown>
+     ba0:	add	x0, x0, #0x0
+     ba4:	str	x5, [sp, #152]
+     ba8:	bl	0 <strdup>
+     bac:	ldr	x5, [sp, #152]
+     bb0:	str	x0, [x5, #48]
+     bb4:	nop
+     bb8:	ldr	x0, [x19, #16]
+     bbc:	mov	x1, x5
+     bc0:	str	x5, [sp, #152]
+     bc4:	bl	0 <check_list_add_end>
+     bc8:	ldr	x0, [x19, #8]
+     bcc:	ldr	x5, [sp, #152]
+     bd0:	ldr	w1, [x0]
+     bd4:	ldr	w2, [x5]
+     bd8:	add	w1, w1, #0x1
+     bdc:	str	w1, [x0]
+     be0:	cmp	w2, #0x2
+     be4:	b.eq	cfc <srunner_run_tagged+0x79c>  // b.none
+     be8:	cmp	w2, #0x3
+     bec:	b.eq	d68 <srunner_run_tagged+0x808>  // b.none
+     bf0:	mov	x1, x5
+     bf4:	mov	x0, x19
+     bf8:	bl	0 <log_test_end>
+     bfc:	b	940 <srunner_run_tagged+0x3e0>
+     c00:	adrp	x0, 0 <srunner_run_teardown>
+     c04:	add	x0, x0, #0x0
+     c08:	bl	0 <getenv>
+     c0c:	cbz	x0, cf4 <srunner_run_tagged+0x794>
+     c10:	ldrb	w1, [x0]
+     c14:	cmp	w1, #0x6e
+     c18:	b.ne	cf4 <srunner_run_tagged+0x794>  // b.any
+     c1c:	ldrb	w1, [x0, #1]
+     c20:	cmp	w1, #0x6f
+     c24:	b.ne	cf4 <srunner_run_tagged+0x794>  // b.any
+     c28:	ldrb	w0, [x0, #2]
+     c2c:	cbnz	w0, cf4 <srunner_run_tagged+0x794>
+     c30:	mov	w0, #0x2                   	// #2
+     c34:	b	854 <srunner_run_tagged+0x2f4>
+     c38:	ldrb	w1, [x0, #1]
+     c3c:	cmp	w1, #0x6f
+     c40:	b.ne	978 <srunner_run_tagged+0x418>  // b.any
+     c44:	ldrb	w0, [x0, #2]
+     c48:	cbz	w0, 924 <srunner_run_tagged+0x3c4>
+     c4c:	b	978 <srunner_run_tagged+0x418>
+     c50:	mov	w0, #0x1                   	// #1
+     c54:	str	x3, [sp, #152]
+     c58:	str	x4, [sp, #168]
+     c5c:	str	w1, [sp, #176]
+     c60:	str	w6, [sp, #184]
+     c64:	bl	0 <receive_test_result>
+     c68:	ldr	w1, [sp, #176]
+     c6c:	mov	x5, x0
+     c70:	ldr	w6, [sp, #184]
+     c74:	ldr	x3, [sp, #152]
+     c78:	ldr	x4, [sp, #168]
+     c7c:	cbz	x0, ef0 <srunner_run_tagged+0x990>
+     c80:	str	w26, [x5, #20]
+     c84:	stp	x3, x4, [x5, #32]
+     c88:	ldr	x0, [x5, #48]
+     c8c:	cbnz	w1, e64 <srunner_run_tagged+0x904>
+     c90:	mov	w1, #0x3                   	// #3
+     c94:	str	w1, [x5]
+     c98:	cbz	x0, cb0 <srunner_run_tagged+0x750>
+     c9c:	str	x5, [sp, #152]
+     ca0:	str	w6, [sp, #168]
+     ca4:	bl	0 <free>
+     ca8:	ldr	w6, [sp, #168]
+     cac:	ldr	x5, [sp, #152]
+     cb0:	mov	x0, #0x64                  	// #100
+     cb4:	str	x5, [sp, #152]
+     cb8:	str	w6, [sp, #168]
+     cbc:	bl	0 <emalloc>
+     cc0:	ldr	w1, [x20]
+     cc4:	mov	x7, x0
+     cc8:	ldr	w6, [sp, #168]
+     ccc:	ldr	x5, [sp, #152]
+     cd0:	cbz	w1, f2c <srunner_run_tagged+0x9cc>
+     cd4:	adrp	x0, 0 <srunner_run_teardown>
+     cd8:	add	x0, x0, #0x0
+     cdc:	ldp	x2, x3, [x0]
+     ce0:	stp	x2, x3, [x7]
+     ce4:	ldur	x0, [x0, #13]
+     ce8:	stur	x0, [x7, #13]
+     cec:	str	x7, [x5, #48]
+     cf0:	b	bb8 <srunner_run_tagged+0x658>
+     cf4:	mov	w0, #0x1                   	// #1
+     cf8:	b	854 <srunner_run_tagged+0x2f4>
+     cfc:	ldr	w1, [x0, #4]
+     d00:	add	w1, w1, #0x1
+     d04:	str	w1, [x0, #4]
+     d08:	mov	x1, x5
+     d0c:	mov	x0, x19
+     d10:	bl	0 <log_test_end>
+     d14:	b	940 <srunner_run_tagged+0x3e0>
+     d18:	adrp	x0, 0 <srunner_run_teardown>
+     d1c:	add	x0, x0, #0x0
+     d20:	bl	0 <getenv>
+     d24:	cbz	x0, de8 <srunner_run_tagged+0x888>
+     d28:	ldrb	w1, [x0]
+     d2c:	cmp	w1, #0x6e
+     d30:	b.ne	de8 <srunner_run_tagged+0x888>  // b.any
+     d34:	ldrb	w1, [x0, #1]
+     d38:	cmp	w1, #0x6f
+     d3c:	b.ne	de8 <srunner_run_tagged+0x888>  // b.any
+     d40:	ldrb	w0, [x0, #2]
+     d44:	cbnz	w0, de8 <srunner_run_tagged+0x888>
+     d48:	mov	w0, #0x2                   	// #2
+     d4c:	b	680 <srunner_run_tagged+0x120>
+     d50:	ldr	w1, [x0, #4]
+     d54:	add	w1, w1, #0x1
+     d58:	str	w1, [x0, #4]
+     d5c:	mov	x0, x27
+     d60:	bl	0 <check_list_advance>
+     d64:	b	8a0 <srunner_run_tagged+0x340>
+     d68:	ldr	w1, [x0, #8]
+     d6c:	add	w1, w1, #0x1
+     d70:	str	w1, [x0, #8]
+     d74:	mov	x1, x5
+     d78:	mov	x0, x19
+     d7c:	bl	0 <log_test_end>
+     d80:	b	940 <srunner_run_tagged+0x3e0>
+     d84:	adrp	x0, 0 <srunner_run_teardown>
+     d88:	add	x0, x0, #0x0
+     d8c:	bl	0 <getenv>
+     d90:	str	x0, [sp, #112]
+     d94:	b	5a0 <srunner_run_tagged+0x40>
+     d98:	adrp	x0, 0 <srunner_run_teardown>
+     d9c:	add	x0, x0, #0x0
+     da0:	bl	0 <getenv>
+     da4:	cbz	x0, ea4 <srunner_run_tagged+0x944>
+     da8:	ldrb	w1, [x0]
+     dac:	cmp	w1, #0x6e
+     db0:	b.ne	ea4 <srunner_run_tagged+0x944>  // b.any
+     db4:	ldrb	w1, [x0, #1]
+     db8:	cmp	w1, #0x6f
+     dbc:	b.ne	ea4 <srunner_run_tagged+0x944>  // b.any
+     dc0:	ldrb	w0, [x0, #2]
+     dc4:	cbnz	w0, ea4 <srunner_run_tagged+0x944>
+     dc8:	mov	w1, #0x2                   	// #2
+     dcc:	b	9b4 <srunner_run_tagged+0x454>
+     dd0:	ldr	w1, [x0, #8]
+     dd4:	add	w1, w1, #0x1
+     dd8:	str	w1, [x0, #8]
+     ddc:	mov	x0, x27
+     de0:	bl	0 <check_list_advance>
+     de4:	b	8a0 <srunner_run_tagged+0x340>
+     de8:	mov	w0, #0x1                   	// #1
+     dec:	b	680 <srunner_run_tagged+0x120>
+     df0:	cbnz	w6, bb8 <srunner_run_tagged+0x658>
+     df4:	ldr	x0, [x0, #48]
+     df8:	cbz	x0, e10 <srunner_run_tagged+0x8b0>
+     dfc:	str	x5, [sp, #152]
+     e00:	str	w3, [sp, #168]
+     e04:	bl	0 <free>
+     e08:	ldr	w3, [sp, #168]
+     e0c:	ldr	x5, [sp, #152]
+     e10:	mov	x0, #0x64                  	// #100
+     e14:	str	w3, [sp, #152]
+     e18:	str	x5, [sp, #168]
+     e1c:	bl	0 <emalloc>
+     e20:	ldr	w3, [sp, #152]
+     e24:	adrp	x2, 0 <srunner_run_teardown>
+     e28:	mov	x1, #0x64                  	// #100
+     e2c:	add	x2, x2, #0x0
+     e30:	str	x0, [sp, #152]
+     e34:	bl	0 <snprintf>
+     e38:	ldr	x5, [sp, #168]
+     e3c:	mov	w0, #0x2                   	// #2
+     e40:	ldr	x4, [sp, #152]
+     e44:	str	w0, [x5]
+     e48:	str	x4, [x5, #48]
+     e4c:	b	bb8 <srunner_run_tagged+0x658>
+     e50:	cmp	w1, w6
+     e54:	ldr	x0, [x0, #48]
+     e58:	b.ne	c88 <srunner_run_tagged+0x728>  // b.any
+     e5c:	ldr	w2, [x20]
+     e60:	cbz	w2, b84 <srunner_run_tagged+0x624>
+     e64:	mov	w2, #0x3                   	// #3
+     e68:	str	w2, [x5]
+     e6c:	cbz	x0, e8c <srunner_run_tagged+0x92c>
+     e70:	str	x5, [sp, #152]
+     e74:	str	w1, [sp, #168]
+     e78:	str	w6, [sp, #176]
+     e7c:	bl	0 <free>
+     e80:	ldr	w1, [sp, #168]
+     e84:	ldr	w6, [sp, #176]
+     e88:	ldr	x5, [sp, #152]
+     e8c:	mov	w0, w6
+     e90:	str	x5, [sp, #152]
+     e94:	bl	80 <signal_error_msg>
+     e98:	ldr	x5, [sp, #152]
+     e9c:	str	x0, [x5, #48]
+     ea0:	b	bb8 <srunner_run_tagged+0x658>
+     ea4:	mov	w1, #0x1                   	// #1
+     ea8:	b	9b4 <srunner_run_tagged+0x454>
+     eac:	adrp	x0, 0 <srunner_run_teardown>
+     eb0:	add	x0, x0, #0x0
+     eb4:	bl	0 <getenv>
+     eb8:	str	x0, [sp, #120]
+     ebc:	ldr	x0, [sp, #104]
+     ec0:	cbnz	x0, 598 <srunner_run_tagged+0x38>
+     ec4:	nop
+     ec8:	adrp	x0, 0 <srunner_run_teardown>
+     ecc:	add	x0, x0, #0x0
+     ed0:	bl	0 <getenv>
+     ed4:	str	x0, [sp, #104]
+     ed8:	b	598 <srunner_run_tagged+0x38>
+     edc:	adrp	x0, 0 <srunner_run_teardown>
+     ee0:	add	x0, x0, #0x0
+     ee4:	bl	0 <getenv>
+     ee8:	mov	x22, x0
+     eec:	b	588 <srunner_run_tagged+0x28>
+     ef0:	adrp	x1, 0 <srunner_run_teardown>
+     ef4:	adrp	x0, 0 <srunner_run_teardown>
+     ef8:	add	x1, x1, #0x0
+     efc:	add	x0, x0, #0x0
+     f00:	mov	w2, #0x22c                 	// #556
+     f04:	bl	0 <eprintf>
+     f08:	ldr	w0, [sp, #204]
+     f0c:	cmp	w7, #0x0
+     f10:	ccmp	w0, w3, #0x4, ne  // ne = any
+     f14:	b.eq	bb8 <srunner_run_tagged+0x658>  // b.none
+     f18:	ldr	x0, [x5, #48]
+     f1c:	cbz	x0, fc8 <srunner_run_tagged+0xa68>
+     f20:	mov	w0, #0x2                   	// #2
+     f24:	str	w0, [x5]
+     f28:	b	bb8 <srunner_run_tagged+0x658>
+     f2c:	mov	w0, w6
+     f30:	str	w6, [sp, #152]
+     f34:	stp	x5, x7, [sp, #168]
+     f38:	bl	0 <strsignal>
+     f3c:	ldr	w6, [sp, #152]
+     f40:	ldr	x2, [sp, #160]
+     f44:	mov	x4, x0
+     f48:	ldr	x7, [sp, #176]
+     f4c:	mov	w3, w6
+     f50:	mov	x1, #0x64                  	// #100
+     f54:	str	x7, [sp, #152]
+     f58:	mov	x0, x7
+     f5c:	bl	0 <snprintf>
+     f60:	ldr	x5, [sp, #168]
+     f64:	ldr	x7, [sp, #152]
+     f68:	str	x7, [x5, #48]
+     f6c:	b	bb8 <srunner_run_tagged+0x658>
+     f70:	ldr	w1, [x19, #56]
+     f74:	ldr	x21, [x21, #40]
+     f78:	cbz	w1, f88 <srunner_run_tagged+0xa28>
+     f7c:	mov	x0, x21
+     f80:	bl	0 <srunner_run_teardown>
+     f84:	b	898 <srunner_run_tagged+0x338>
+     f88:	adrp	x0, 0 <srunner_run_teardown>
+     f8c:	add	x0, x0, #0x0
+     f90:	bl	0 <getenv>
+     f94:	cbz	x0, fc0 <srunner_run_tagged+0xa60>
+     f98:	ldrb	w1, [x0]
+     f9c:	cmp	w1, #0x6e
+     fa0:	b.ne	fc0 <srunner_run_tagged+0xa60>  // b.any
+     fa4:	ldrb	w1, [x0, #1]
+     fa8:	cmp	w1, #0x6f
+     fac:	b.ne	fc0 <srunner_run_tagged+0xa60>  // b.any
+     fb0:	ldrb	w0, [x0, #2]
+     fb4:	cbnz	w0, fc0 <srunner_run_tagged+0xa60>
+     fb8:	mov	w1, #0x2                   	// #2
+     fbc:	b	f7c <srunner_run_tagged+0xa1c>
+     fc0:	mov	w1, #0x1                   	// #1
+     fc4:	b	f7c <srunner_run_tagged+0xa1c>
+     fc8:	mov	w0, #0x3                   	// #3
+     fcc:	str	w0, [x5]
+     fd0:	mov	x0, #0x64                  	// #100
+     fd4:	str	w3, [sp, #152]
+     fd8:	str	x5, [sp, #168]
+     fdc:	bl	0 <emalloc>
+     fe0:	ldr	w3, [sp, #152]
+     fe4:	adrp	x2, 0 <srunner_run_teardown>
+     fe8:	mov	x1, #0x64                  	// #100
+     fec:	add	x2, x2, #0x0
+     ff0:	str	x0, [sp, #152]
+     ff4:	bl	0 <snprintf>
+     ff8:	ldr	x5, [sp, #168]
+     ffc:	ldr	x4, [sp, #152]
+    1000:	str	x4, [x5, #48]
+    1004:	b	bb8 <srunner_run_tagged+0x658>
+    1008:	adrp	x1, 0 <srunner_run_teardown>
+    100c:	adrp	x0, 0 <srunner_run_teardown>
+    1010:	add	x1, x1, #0x0
+    1014:	add	x0, x0, #0x0
+    1018:	mov	w2, #0x10b                 	// #267
+    101c:	bl	0 <eprintf>
+    1020:	adrp	x1, 0 <srunner_run_teardown>
+    1024:	adrp	x0, 0 <srunner_run_teardown>
+    1028:	add	x1, x1, #0x0
+    102c:	add	x0, x0, #0x0
+    1030:	mov	w2, #0x1e5                 	// #485
+    1034:	bl	0 <eprintf>
+    1038:	adrp	x1, 0 <srunner_run_teardown>
+    103c:	adrp	x0, 0 <srunner_run_teardown>
+    1040:	mov	w3, w21
+    1044:	add	x1, x1, #0x0
+    1048:	add	x0, x0, #0x0
+    104c:	mov	w2, #0x31e                 	// #798
+    1050:	bl	0 <eprintf>
+    1054:	adrp	x1, 0 <srunner_run_teardown>
+    1058:	adrp	x0, 0 <srunner_run_teardown>
+    105c:	add	x1, x1, #0x0
+    1060:	add	x0, x0, #0x0
+    1064:	mov	w2, #0x210                 	// #528
+    1068:	bl	0 <eprintf>
+    106c:	adrp	x1, 0 <srunner_run_teardown>
+    1070:	adrp	x0, 0 <srunner_run_teardown>
+    1074:	add	x1, x1, #0x0
+    1078:	add	x0, x0, #0x0
+    107c:	mov	w2, #0x218                 	// #536
+    1080:	bl	0 <eprintf>
+    1084:	nop
+
+0000000000001088 <srunner_run_all>:
+    1088:	mov	w5, w1
+    108c:	mov	x4, #0x0                   	// #0
+    1090:	mov	x3, #0x0                   	// #0
+    1094:	mov	x2, #0x0                   	// #0
+    1098:	mov	x1, #0x0                   	// #0
+    109c:	b	560 <srunner_run_tagged>
+
+00000000000010a0 <srunner_run>:
+    10a0:	mov	w5, w3
+    10a4:	mov	x4, #0x0                   	// #0
+    10a8:	mov	x3, #0x0                   	// #0
+    10ac:	b	560 <srunner_run_tagged>
+
+00000000000010b0 <check_fork>:
+    10b0:	stp	x29, x30, [sp, #-32]!
+    10b4:	mov	x29, sp
+    10b8:	str	x19, [sp, #16]
+    10bc:	bl	0 <fork>
+    10c0:	mov	w19, w0
+    10c4:	tbnz	w0, #31, 10d4 <check_fork+0x24>
+    10c8:	adrp	x1, 0 <srunner_run_teardown>
+    10cc:	ldr	w1, [x1]
+    10d0:	bl	0 <setpgid>
+    10d4:	mov	w0, w19
+    10d8:	ldr	x19, [sp, #16]
+    10dc:	ldp	x29, x30, [sp], #32
+    10e0:	ret
+    10e4:	nop
+
+00000000000010e8 <check_waitpid_and_exit>:
+    10e8:	stp	x29, x30, [sp, #-48]!
+    10ec:	cmp	w0, #0x0
+    10f0:	mov	x29, sp
+    10f4:	str	x19, [sp, #16]
+    10f8:	b.le	1148 <check_waitpid_and_exit+0x60>
+    10fc:	mov	w19, w0
+    1100:	add	x1, sp, #0x2c
+    1104:	mov	w0, w19
+    1108:	mov	w2, #0x0                   	// #0
+    110c:	bl	0 <waitpid>
+    1110:	cmn	w0, #0x1
+    1114:	b.eq	1100 <check_waitpid_and_exit+0x18>  // b.none
+    1118:	ldr	w2, [sp, #44]
+    111c:	and	w1, w2, #0x7f
+    1120:	add	w0, w1, #0x1
+    1124:	sbfx	x0, x0, #1, #7
+    1128:	cmp	w0, #0x0
+    112c:	ccmp	w1, #0x0, #0x4, gt
+    1130:	b.eq	113c <check_waitpid_and_exit+0x54>  // b.none
+    1134:	mov	w0, #0x1                   	// #1
+    1138:	bl	0 <exit>
+    113c:	tst	x2, #0xff00
+    1140:	ccmp	w1, #0x0, #0x0, ne  // ne = any
+    1144:	b.eq	1134 <check_waitpid_and_exit+0x4c>  // b.none
+    1148:	mov	w0, #0x0                   	// #0
+    114c:	bl	0 <exit>
+
+check_str.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <ck_strdup_printf>:
+   0:	stp	x29, x30, [sp, #-320]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	mov	x20, x0
+  10:	mov	x0, #0x64                  	// #100
+  14:	stp	x21, x22, [sp, #32]
+  18:	mov	w22, #0xffffffc8            	// #-56
+  1c:	mov	w21, #0xffffff80            	// #-128
+  20:	stp	x23, x24, [sp, #48]
+  24:	mov	x24, x0
+  28:	add	x23, sp, #0x100
+  2c:	str	q0, [sp, #128]
+  30:	str	q1, [sp, #144]
+  34:	str	q2, [sp, #160]
+  38:	str	q3, [sp, #176]
+  3c:	str	q4, [sp, #192]
+  40:	str	q5, [sp, #208]
+  44:	str	q6, [sp, #224]
+  48:	str	q7, [sp, #240]
+  4c:	stp	x1, x2, [sp, #264]
+  50:	stp	x3, x4, [sp, #280]
+  54:	stp	x5, x6, [sp, #296]
+  58:	str	x7, [sp, #312]
+  5c:	bl	0 <emalloc>
+  60:	mov	x19, x0
+  64:	b	88 <ck_strdup_printf+0x88>
+  68:	cmp	w0, w24
+  6c:	b.lt	c8 <ck_strdup_printf+0xc8>  // b.tstop
+  70:	sxtw	x1, w0
+  74:	add	x24, x1, #0x1
+  78:	mov	x0, x19
+  7c:	mov	x1, x24
+  80:	bl	0 <erealloc>
+  84:	mov	x19, x0
+  88:	add	x0, sp, #0x140
+  8c:	stp	x0, x0, [sp, #96]
+  90:	add	x3, sp, #0x40
+  94:	str	x23, [sp, #112]
+  98:	mov	x2, x20
+  9c:	stp	w22, w21, [sp, #120]
+  a0:	mov	x1, x24
+  a4:	ldp	x4, x5, [sp, #96]
+  a8:	stp	x4, x5, [sp, #64]
+  ac:	mov	x0, x19
+  b0:	ldp	x4, x5, [sp, #112]
+  b4:	stp	x4, x5, [sp, #80]
+  b8:	bl	0 <vsnprintf>
+  bc:	tbz	w0, #31, 68 <ck_strdup_printf+0x68>
+  c0:	lsl	x24, x24, #1
+  c4:	b	78 <ck_strdup_printf+0x78>
+  c8:	mov	x0, x19
+  cc:	ldp	x19, x20, [sp, #16]
+  d0:	ldp	x21, x22, [sp, #32]
+  d4:	ldp	x23, x24, [sp, #48]
+  d8:	ldp	x29, x30, [sp], #320
+  dc:	ret
+
+00000000000000e0 <tr_str>:
+  e0:	sub	sp, sp, #0x20
+  e4:	adrp	x7, 0 <ck_strdup_printf>
+  e8:	add	x1, x7, #0x0
+  ec:	adrp	x7, 0 <ck_strdup_printf>
+  f0:	add	x7, x7, #0x0
+  f4:	stp	x29, x30, [sp, #16]
+  f8:	add	x29, sp, #0x10
+  fc:	ldp	w3, w4, [x0]
+ 100:	ldr	w2, [x0, #16]
+ 104:	cmp	w3, #0x3
+ 108:	csel	x7, x7, x1, eq  // eq = none
+ 10c:	cmp	w4, #0x2
+ 110:	ldr	x1, [x0, #8]
+ 114:	b.eq	148 <tr_str+0x68>  // b.none
+ 118:	adrp	x3, 0 <ck_strdup_printf>
+ 11c:	add	x3, x3, #0x0
+ 120:	ldp	x4, x5, [x0, #32]
+ 124:	ldr	w6, [x0, #20]
+ 128:	ldr	x0, [x0, #48]
+ 12c:	str	x0, [sp]
+ 130:	adrp	x0, 0 <ck_strdup_printf>
+ 134:	add	x0, x0, #0x0
+ 138:	bl	0 <ck_strdup_printf>
+ 13c:	ldp	x29, x30, [sp, #16]
+ 140:	add	sp, sp, #0x20
+ 144:	ret
+ 148:	cmp	w3, #0x1
+ 14c:	b.eq	16c <tr_str+0x8c>  // b.none
+ 150:	cmp	w3, #0x2
+ 154:	b.eq	178 <tr_str+0x98>  // b.none
+ 158:	cmp	w3, #0x3
+ 15c:	adrp	x3, 0 <ck_strdup_printf>
+ 160:	add	x3, x3, #0x0
+ 164:	csel	x3, x3, xzr, eq  // eq = none
+ 168:	b	120 <tr_str+0x40>
+ 16c:	adrp	x3, 0 <ck_strdup_printf>
+ 170:	add	x3, x3, #0x0
+ 174:	b	120 <tr_str+0x40>
+ 178:	adrp	x3, 0 <ck_strdup_printf>
+ 17c:	add	x3, x3, #0x0
+ 180:	b	120 <tr_str+0x40>
+ 184:	nop
+
+0000000000000188 <tr_short_str>:
+ 188:	mov	x4, x0
+ 18c:	adrp	x5, 0 <ck_strdup_printf>
+ 190:	adrp	x3, 0 <ck_strdup_printf>
+ 194:	add	x5, x5, #0x0
+ 198:	add	x3, x3, #0x0
+ 19c:	adrp	x0, 0 <ck_strdup_printf>
+ 1a0:	ldr	w2, [x4]
+ 1a4:	add	x0, x0, #0x0
+ 1a8:	ldr	x1, [x4, #8]
+ 1ac:	cmp	w2, #0x3
+ 1b0:	ldr	w2, [x4, #16]
+ 1b4:	csel	x3, x3, x5, eq  // eq = none
+ 1b8:	ldr	x4, [x4, #48]
+ 1bc:	b	0 <ck_strdup_printf>
+
+00000000000001c0 <sr_stat_str>:
+ 1c0:	ldr	x0, [x0, #8]
+ 1c4:	mov	w1, #0x64                  	// #100
+ 1c8:	ldp	w2, w3, [x0]
+ 1cc:	ldr	w4, [x0, #8]
+ 1d0:	orr	w0, w3, w4
+ 1d4:	cbz	w0, 204 <sr_stat_str+0x44>
+ 1d8:	mov	w1, #0x0                   	// #0
+ 1dc:	cbz	w2, 204 <sr_stat_str+0x44>
+ 1e0:	add	w0, w3, w4
+ 1e4:	scvtf	s2, w2
+ 1e8:	sub	w0, w2, w0
+ 1ec:	mov	w1, #0x42c80000            	// #1120403456
+ 1f0:	fmov	s1, w1
+ 1f4:	scvtf	s0, w0
+ 1f8:	fdiv	s0, s0, s2
+ 1fc:	fmul	s0, s0, s1
+ 200:	fcvtzs	w1, s0
+ 204:	adrp	x0, 0 <ck_strdup_printf>
+ 208:	add	x0, x0, #0x0
+ 20c:	b	0 <ck_strdup_printf>
+
+fpclassify.o:     file format elf64-littleaarch64
+
+
+libcompat.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <ck_do_nothing>:
+   0:	stp	x29, x30, [sp, #-16]!
+   4:	adrp	x3, 0 <ck_do_nothing>
+   8:	adrp	x1, 0 <ck_do_nothing>
+   c:	mov	x29, sp
+  10:	adrp	x0, 0 <ck_do_nothing>
+  14:	add	x3, x3, #0x0
+  18:	add	x1, x1, #0x0
+  1c:	add	x0, x0, #0x0
+  20:	mov	w2, #0x1a                  	// #26
+  24:	bl	0 <__assert_fail>

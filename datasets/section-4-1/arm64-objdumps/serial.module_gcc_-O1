@@ -1,0 +1,773 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//serial.module_gcc_-O1:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <do_real_config>:
+   0:	stp	x29, x30, [sp, #-64]!
+   4:	mov	x29, sp
+   8:	str	x19, [sp, #16]
+   c:	mov	x19, x0
+  10:	mov	w2, #0x1                   	// #1
+  14:	str	w2, [sp, #48]
+  18:	mov	w0, #0x3                   	// #3
+  1c:	str	w0, [sp, #52]
+  20:	mov	w1, #0x2                   	// #2
+  24:	str	w1, [sp, #56]
+  28:	str	w2, [sp, #32]
+  2c:	str	w1, [sp, #36]
+  30:	str	w0, [sp, #40]
+  34:	ldr	w0, [x19, #64]
+  38:	cbnz	w0, a4 <do_real_config+0xa4>
+  3c:	ldr	x0, [x19, #72]
+  40:	ldr	w3, [x19, #44]
+  44:	ldr	w2, [x19, #40]
+  48:	ldr	x7, [x0, #16]
+  4c:	add	x1, sp, #0x20
+  50:	ldr	w6, [x1, x3, lsl #2]
+  54:	ldrb	w5, [x19, #36]
+  58:	add	x1, sp, #0x30
+  5c:	ldr	w4, [x1, x2, lsl #2]
+  60:	mov	w3, #0x0                   	// #0
+  64:	mov	w2, #0x0                   	// #0
+  68:	ldr	w1, [x19, #32]
+  6c:	blr	x7
+  70:	cbz	x0, 7c <do_real_config+0x7c>
+  74:	mov	w0, #0x1                   	// #1
+  78:	str	w0, [x19, #68]
+  7c:	ldr	x0, [x19, #72]
+  80:	ldr	x2, [x0, #24]
+  84:	ldr	w1, [x19, #56]
+  88:	cmp	w1, #0x0
+  8c:	mov	w3, #0x4002                	// #16386
+  90:	mov	w1, #0x2                   	// #2
+  94:	csel	w1, w3, w1, ne  // ne = any
+  98:	blr	x2
+  9c:	mov	w0, #0x1                   	// #1
+  a0:	str	w0, [x19, #64]
+  a4:	ldr	x19, [sp, #16]
+  a8:	ldp	x29, x30, [sp], #64
+  ac:	ret
+
+00000000000000b0 <serial_hw_fetch>:
+  b0:	stp	x29, x30, [sp, #-48]!
+  b4:	mov	x29, sp
+  b8:	str	x19, [sp, #16]
+  bc:	mov	x19, x0
+  c0:	mov	x1, #0x1                   	// #1
+  c4:	str	x1, [sp, #40]
+  c8:	bl	0 <do_real_config>
+  cc:	ldr	w0, [x19, #68]
+  d0:	cbnz	w0, 104 <serial_hw_fetch+0x54>
+  d4:	ldr	x0, [x19, #72]
+  d8:	ldr	x3, [x0, #48]
+  dc:	add	x2, sp, #0x27
+  e0:	add	x1, sp, #0x28
+  e4:	blr	x3
+  e8:	cbnz	x0, 10c <serial_hw_fetch+0x5c>
+  ec:	ldr	x0, [sp, #40]
+  f0:	cbz	x0, 114 <serial_hw_fetch+0x64>
+  f4:	ldrb	w0, [sp, #39]
+  f8:	ldr	x19, [sp, #16]
+  fc:	ldp	x29, x30, [sp], #48
+ 100:	ret
+ 104:	mov	w0, #0xffffffff            	// #-1
+ 108:	b	f8 <serial_hw_fetch+0x48>
+ 10c:	mov	w0, #0xffffffff            	// #-1
+ 110:	b	f8 <serial_hw_fetch+0x48>
+ 114:	mov	w0, #0xffffffff            	// #-1
+ 118:	b	f8 <serial_hw_fetch+0x48>
+
+000000000000011c <serial_hw_put>:
+ 11c:	stp	x29, x30, [sp, #-48]!
+ 120:	mov	x29, sp
+ 124:	str	x19, [sp, #16]
+ 128:	mov	x19, x0
+ 12c:	mov	x2, #0x1                   	// #1
+ 130:	str	x2, [sp, #40]
+ 134:	strb	w1, [sp, #39]
+ 138:	bl	0 <do_real_config>
+ 13c:	ldr	w0, [x19, #68]
+ 140:	cbnz	w0, 158 <serial_hw_put+0x3c>
+ 144:	ldr	x0, [x19, #72]
+ 148:	ldr	x3, [x0, #40]
+ 14c:	add	x2, sp, #0x27
+ 150:	add	x1, sp, #0x28
+ 154:	blr	x3
+ 158:	ldr	x19, [sp, #16]
+ 15c:	ldp	x29, x30, [sp], #48
+ 160:	ret
+
+0000000000000164 <serial_hw_configure>:
+ 164:	stp	x29, x30, [sp, #-16]!
+ 168:	mov	x29, sp
+ 16c:	ldr	w2, [x1, #8]
+ 170:	cmp	w2, #0x2
+ 174:	b.hi	1b4 <serial_hw_configure+0x50>  // b.pmore
+ 178:	ldr	w2, [x1, #12]
+ 17c:	cmp	w2, #0x2
+ 180:	b.hi	1c8 <serial_hw_configure+0x64>  // b.pmore
+ 184:	ldr	w2, [x1, #4]
+ 188:	sub	w2, w2, #0x5
+ 18c:	cmp	w2, #0x3
+ 190:	b.hi	1dc <serial_hw_configure+0x78>  // b.pmore
+ 194:	ldp	x2, x3, [x1]
+ 198:	stp	x2, x3, [x0, #32]
+ 19c:	ldp	x2, x3, [x1, #16]
+ 1a0:	stp	x2, x3, [x0, #48]
+ 1a4:	str	wzr, [x0, #64]
+ 1a8:	mov	w0, #0x0                   	// #0
+ 1ac:	ldp	x29, x30, [sp], #16
+ 1b0:	ret
+ 1b4:	adrp	x0, 0 <do_real_config>
+ 1b8:	ldr	x1, [x0]
+ 1bc:	mov	w0, #0x12                  	// #18
+ 1c0:	bl	0 <grub_error>
+ 1c4:	b	1ac <serial_hw_configure+0x48>
+ 1c8:	adrp	x0, 0 <do_real_config>
+ 1cc:	ldr	x1, [x0]
+ 1d0:	mov	w0, #0x12                  	// #18
+ 1d4:	bl	0 <grub_error>
+ 1d8:	b	1ac <serial_hw_configure+0x48>
+ 1dc:	adrp	x0, 0 <do_real_config>
+ 1e0:	ldr	x1, [x0]
+ 1e4:	mov	w0, #0x12                  	// #18
+ 1e8:	bl	0 <grub_error>
+ 1ec:	b	1ac <serial_hw_configure+0x48>
+	...
+
+0000000000000208 <grub_efiserial_init>:
+ 208:	stp	x29, x30, [sp, #-144]!
+ 20c:	mov	x29, sp
+ 210:	add	x3, sp, #0x88
+ 214:	mov	x2, #0x0                   	// #0
+ 218:	adrp	x0, 0 <do_real_config>
+ 21c:	ldr	x1, [x0]
+ 220:	mov	w0, #0x2                   	// #2
+ 224:	bl	0 <grub_efi_locate_handle>
+ 228:	cbz	x0, 364 <grub_efiserial_init+0x15c>
+ 22c:	stp	x27, x28, [sp, #80]
+ 230:	mov	x28, x0
+ 234:	ldr	x0, [sp, #136]
+ 238:	sub	x1, x0, #0x1
+ 23c:	str	x1, [sp, #136]
+ 240:	cbz	x0, 358 <grub_efiserial_init+0x150>
+ 244:	stp	x19, x20, [sp, #16]
+ 248:	stp	x21, x22, [sp, #32]
+ 24c:	stp	x23, x24, [sp, #48]
+ 250:	stp	x25, x26, [sp, #64]
+ 254:	mov	x21, x28
+ 258:	mov	w22, #0x0                   	// #0
+ 25c:	adrp	x23, 0 <do_real_config>
+ 260:	mov	w26, #0x2                   	// #2
+ 264:	mov	x27, #0xc0                  	// #192
+ 268:	mov	x24, #0x18                  	// #24
+ 26c:	b	2b4 <grub_efiserial_init+0xac>
+ 270:	mov	x0, x19
+ 274:	bl	0 <grub_free>
+ 278:	ldp	x19, x20, [sp, #16]
+ 27c:	ldp	x21, x22, [sp, #32]
+ 280:	ldp	x23, x24, [sp, #48]
+ 284:	ldp	x25, x26, [sp, #64]
+ 288:	ldp	x27, x28, [sp, #80]
+ 28c:	b	364 <grub_efiserial_init+0x15c>
+ 290:	bl	0 <grub_print_error>
+ 294:	mov	x0, x19
+ 298:	bl	800 <grub_serial_register>
+ 29c:	mov	w22, w25
+ 2a0:	add	x21, x21, #0x8
+ 2a4:	ldr	x0, [sp, #136]
+ 2a8:	sub	x1, x0, #0x1
+ 2ac:	str	x1, [sp, #136]
+ 2b0:	cbz	x0, 348 <grub_efiserial_init+0x140>
+ 2b4:	mov	w2, w26
+ 2b8:	ldr	x1, [x23]
+ 2bc:	ldr	x0, [x21]
+ 2c0:	bl	0 <grub_efi_open_protocol>
+ 2c4:	mov	x20, x0
+ 2c8:	cbz	x0, 2a0 <grub_efiserial_init+0x98>
+ 2cc:	mov	x0, x27
+ 2d0:	bl	0 <grub_zalloc>
+ 2d4:	mov	x19, x0
+ 2d8:	cbz	x0, 36c <grub_efiserial_init+0x164>
+ 2dc:	mov	x0, x24
+ 2e0:	bl	0 <grub_malloc>
+ 2e4:	str	x0, [x19, #16]
+ 2e8:	cbz	x0, 270 <grub_efiserial_init+0x68>
+ 2ec:	add	w25, w22, #0x1
+ 2f0:	mov	w3, w22
+ 2f4:	adrp	x1, 0 <do_real_config>
+ 2f8:	ldr	x2, [x1]
+ 2fc:	mov	x1, x24
+ 300:	bl	0 <grub_snprintf>
+ 304:	ldr	x0, [x23]
+ 308:	add	x0, x0, #0x10
+ 30c:	str	x0, [x19, #24]
+ 310:	str	x20, [x19, #72]
+ 314:	adrp	x0, 0 <do_real_config>
+ 318:	ldr	x0, [x0]
+ 31c:	ldp	x2, x3, [x0]
+ 320:	stp	x2, x3, [sp, #104]
+ 324:	ldp	x0, x1, [x0, #16]
+ 328:	stp	x0, x1, [sp, #120]
+ 32c:	ldr	x0, [x19, #24]
+ 330:	ldr	x2, [x0]
+ 334:	add	x1, sp, #0x68
+ 338:	mov	x0, x19
+ 33c:	blr	x2
+ 340:	cbz	w0, 294 <grub_efiserial_init+0x8c>
+ 344:	b	290 <grub_efiserial_init+0x88>
+ 348:	ldp	x19, x20, [sp, #16]
+ 34c:	ldp	x21, x22, [sp, #32]
+ 350:	ldp	x23, x24, [sp, #48]
+ 354:	ldp	x25, x26, [sp, #64]
+ 358:	mov	x0, x28
+ 35c:	bl	0 <grub_free>
+ 360:	ldp	x27, x28, [sp, #80]
+ 364:	ldp	x29, x30, [sp], #144
+ 368:	ret
+ 36c:	ldp	x19, x20, [sp, #16]
+ 370:	ldp	x21, x22, [sp, #32]
+ 374:	ldp	x23, x24, [sp, #48]
+ 378:	ldp	x25, x26, [sp, #64]
+ 37c:	ldp	x27, x28, [sp, #80]
+ 380:	b	364 <grub_efiserial_init+0x15c>
+ 384:	nop
+	...
+
+00000000000003a0 <serial_put>:
+ 3a0:	stp	x29, x30, [sp, #-16]!
+ 3a4:	mov	x29, sp
+ 3a8:	ldr	x0, [x0, #136]
+ 3ac:	ldr	x0, [x0, #88]
+ 3b0:	ldr	x2, [x0, #24]
+ 3b4:	ldr	x2, [x2, #16]
+ 3b8:	blr	x2
+ 3bc:	ldp	x29, x30, [sp], #16
+ 3c0:	ret
+
+00000000000003c4 <serial_fetch>:
+ 3c4:	stp	x29, x30, [sp, #-16]!
+ 3c8:	mov	x29, sp
+ 3cc:	ldr	x0, [x0, #56]
+ 3d0:	ldr	x0, [x0, #40]
+ 3d4:	ldr	x1, [x0, #24]
+ 3d8:	ldr	x1, [x1, #8]
+ 3dc:	blr	x1
+ 3e0:	ldp	x29, x30, [sp], #16
+ 3e4:	ret
+
+00000000000003e8 <grub_serial_find>:
+ 3e8:	stp	x29, x30, [sp, #-32]!
+ 3ec:	mov	x29, sp
+ 3f0:	stp	x19, x20, [sp, #16]
+ 3f4:	mov	x20, x0
+ 3f8:	adrp	x0, 0 <do_real_config>
+ 3fc:	ldr	x0, [x0]
+ 400:	ldr	x19, [x0]
+ 404:	cbz	x19, 420 <grub_serial_find+0x38>
+ 408:	mov	x1, x20
+ 40c:	ldr	x0, [x19, #16]
+ 410:	bl	0 <grub_strcmp>
+ 414:	cbz	w0, 420 <grub_serial_find+0x38>
+ 418:	ldr	x19, [x19]
+ 41c:	cbnz	x19, 408 <grub_serial_find+0x20>
+ 420:	mov	x0, x19
+ 424:	ldp	x19, x20, [sp, #16]
+ 428:	ldp	x29, x30, [sp], #32
+ 42c:	ret
+	...
+
+0000000000000438 <grub_cmd_serial>:
+ 438:	stp	x29, x30, [sp, #-128]!
+ 43c:	mov	x29, sp
+ 440:	stp	x19, x20, [sp, #16]
+ 444:	stp	x21, x22, [sp, #32]
+ 448:	mov	w20, w1
+ 44c:	mov	x22, x2
+ 450:	ldr	x19, [x0, #8]
+ 454:	ldr	w0, [x19]
+ 458:	mov	x21, #0x0                   	// #0
+ 45c:	cbnz	w0, 508 <grub_cmd_serial+0xd0>
+ 460:	ldr	w0, [x19, #16]
+ 464:	cbnz	w0, 538 <grub_cmd_serial+0x100>
+ 468:	cmp	w20, #0x0
+ 46c:	b.le	474 <grub_cmd_serial+0x3c>
+ 470:	ldr	x21, [x22]
+ 474:	adrp	x0, 0 <do_real_config>
+ 478:	ldr	x0, [x0]
+ 47c:	cmp	x21, #0x0
+ 480:	csel	x21, x21, x0, ne  // ne = any
+ 484:	mov	x0, x21
+ 488:	bl	3e8 <grub_serial_find>
+ 48c:	mov	x20, x0
+ 490:	cbz	x0, 570 <grub_cmd_serial+0x138>
+ 494:	ldp	x0, x1, [x0, #32]
+ 498:	stp	x0, x1, [sp, #56]
+ 49c:	ldp	x0, x1, [x20, #48]
+ 4a0:	stp	x0, x1, [sp, #72]
+ 4a4:	ldr	w0, [x19, #32]
+ 4a8:	cbnz	w0, 588 <grub_cmd_serial+0x150>
+ 4ac:	ldr	w0, [x19, #48]
+ 4b0:	cbnz	w0, 5b4 <grub_cmd_serial+0x17c>
+ 4b4:	ldr	w0, [x19, #64]
+ 4b8:	cbnz	w0, 5cc <grub_cmd_serial+0x194>
+ 4bc:	ldr	w0, [x19, #112]
+ 4c0:	cbnz	w0, 63c <grub_cmd_serial+0x204>
+ 4c4:	ldr	w0, [x19, #80]
+ 4c8:	cbnz	w0, 68c <grub_cmd_serial+0x254>
+ 4cc:	ldr	w0, [x19, #96]
+ 4d0:	cbnz	w0, 6fc <grub_cmd_serial+0x2c4>
+ 4d4:	ldr	w0, [sp, #56]
+ 4d8:	cbnz	w0, 4e4 <grub_cmd_serial+0xac>
+ 4dc:	mov	w0, #0x2580                	// #9600
+ 4e0:	str	w0, [sp, #56]
+ 4e4:	ldr	x0, [x20, #24]
+ 4e8:	ldr	x2, [x0]
+ 4ec:	add	x1, sp, #0x38
+ 4f0:	mov	x0, x20
+ 4f4:	blr	x2
+ 4f8:	ldp	x19, x20, [sp, #16]
+ 4fc:	ldp	x21, x22, [sp, #32]
+ 500:	ldp	x29, x30, [sp], #128
+ 504:	ret
+ 508:	mov	w2, #0x0                   	// #0
+ 50c:	mov	x1, #0x0                   	// #0
+ 510:	ldr	x0, [x19, #8]
+ 514:	bl	0 <grub_strtoul>
+ 518:	mov	x3, x0
+ 51c:	adrp	x0, 0 <do_real_config>
+ 520:	ldr	x2, [x0]
+ 524:	mov	x1, #0x28                  	// #40
+ 528:	add	x0, sp, #0x58
+ 52c:	bl	0 <grub_snprintf>
+ 530:	add	x21, sp, #0x58
+ 534:	b	460 <grub_cmd_serial+0x28>
+ 538:	mov	w2, #0x0                   	// #0
+ 53c:	mov	x1, #0x0                   	// #0
+ 540:	ldr	x0, [x19, #24]
+ 544:	bl	0 <grub_strtoul>
+ 548:	mov	x3, x0
+ 54c:	adrp	x0, 0 <do_real_config>
+ 550:	ldr	x2, [x0]
+ 554:	mov	x1, #0x28                  	// #40
+ 558:	add	x0, sp, #0x58
+ 55c:	bl	0 <grub_snprintf>
+ 560:	add	x21, sp, #0x58
+ 564:	cmp	w20, #0x0
+ 568:	b.gt	470 <grub_cmd_serial+0x38>
+ 56c:	b	484 <grub_cmd_serial+0x4c>
+ 570:	mov	x2, x21
+ 574:	adrp	x0, 0 <do_real_config>
+ 578:	ldr	x1, [x0]
+ 57c:	mov	w0, #0x12                  	// #18
+ 580:	bl	0 <grub_error>
+ 584:	b	4f8 <grub_cmd_serial+0xc0>
+ 588:	mov	w2, #0x0                   	// #0
+ 58c:	mov	x1, #0x0                   	// #0
+ 590:	ldr	x0, [x19, #40]
+ 594:	bl	0 <grub_strtoul>
+ 598:	str	w0, [sp, #56]
+ 59c:	cbnz	w0, 4ac <grub_cmd_serial+0x74>
+ 5a0:	adrp	x0, 0 <do_real_config>
+ 5a4:	ldr	x1, [x0]
+ 5a8:	mov	w0, #0x12                  	// #18
+ 5ac:	bl	0 <grub_error>
+ 5b0:	b	4f8 <grub_cmd_serial+0xc0>
+ 5b4:	mov	w2, #0x0                   	// #0
+ 5b8:	mov	x1, #0x0                   	// #0
+ 5bc:	ldr	x0, [x19, #56]
+ 5c0:	bl	0 <grub_strtoul>
+ 5c4:	str	w0, [sp, #60]
+ 5c8:	b	4b4 <grub_cmd_serial+0x7c>
+ 5cc:	adrp	x0, 0 <do_real_config>
+ 5d0:	ldr	x1, [x0]
+ 5d4:	ldr	x0, [x19, #72]
+ 5d8:	bl	0 <grub_strcmp>
+ 5dc:	cbnz	w0, 5e8 <grub_cmd_serial+0x1b0>
+ 5e0:	str	wzr, [sp, #64]
+ 5e4:	b	4bc <grub_cmd_serial+0x84>
+ 5e8:	adrp	x0, 0 <do_real_config>
+ 5ec:	ldr	x1, [x0]
+ 5f0:	ldr	x0, [x19, #72]
+ 5f4:	bl	0 <grub_strcmp>
+ 5f8:	cbnz	w0, 608 <grub_cmd_serial+0x1d0>
+ 5fc:	mov	w0, #0x1                   	// #1
+ 600:	str	w0, [sp, #64]
+ 604:	b	4bc <grub_cmd_serial+0x84>
+ 608:	adrp	x0, 0 <do_real_config>
+ 60c:	ldr	x1, [x0]
+ 610:	ldr	x0, [x19, #72]
+ 614:	bl	0 <grub_strcmp>
+ 618:	cbnz	w0, 628 <grub_cmd_serial+0x1f0>
+ 61c:	mov	w0, #0x2                   	// #2
+ 620:	str	w0, [sp, #64]
+ 624:	b	4bc <grub_cmd_serial+0x84>
+ 628:	adrp	x0, 0 <do_real_config>
+ 62c:	ldr	x1, [x0]
+ 630:	mov	w0, #0x12                  	// #18
+ 634:	bl	0 <grub_error>
+ 638:	b	4f8 <grub_cmd_serial+0xc0>
+ 63c:	adrp	x0, 0 <do_real_config>
+ 640:	ldr	x1, [x0]
+ 644:	ldr	x0, [x19, #120]
+ 648:	bl	0 <grub_strcmp>
+ 64c:	cbnz	w0, 65c <grub_cmd_serial+0x224>
+ 650:	mov	w0, #0x1                   	// #1
+ 654:	str	w0, [sp, #80]
+ 658:	b	4c4 <grub_cmd_serial+0x8c>
+ 65c:	adrp	x0, 0 <do_real_config>
+ 660:	ldr	x1, [x0]
+ 664:	ldr	x0, [x19, #120]
+ 668:	bl	0 <grub_strcmp>
+ 66c:	cbnz	w0, 678 <grub_cmd_serial+0x240>
+ 670:	str	wzr, [sp, #80]
+ 674:	b	4c4 <grub_cmd_serial+0x8c>
+ 678:	adrp	x0, 0 <do_real_config>
+ 67c:	ldr	x1, [x0]
+ 680:	mov	w0, #0x12                  	// #18
+ 684:	bl	0 <grub_error>
+ 688:	b	4f8 <grub_cmd_serial+0xc0>
+ 68c:	adrp	x0, 0 <do_real_config>
+ 690:	ldr	x1, [x0]
+ 694:	ldr	x0, [x19, #88]
+ 698:	bl	0 <grub_strcmp>
+ 69c:	cbnz	w0, 6a8 <grub_cmd_serial+0x270>
+ 6a0:	str	wzr, [sp, #68]
+ 6a4:	b	4cc <grub_cmd_serial+0x94>
+ 6a8:	adrp	x0, 0 <do_real_config>
+ 6ac:	ldr	x1, [x0]
+ 6b0:	ldr	x0, [x19, #88]
+ 6b4:	bl	0 <grub_strcmp>
+ 6b8:	cbnz	w0, 6c8 <grub_cmd_serial+0x290>
+ 6bc:	mov	w0, #0x2                   	// #2
+ 6c0:	str	w0, [sp, #68]
+ 6c4:	b	4cc <grub_cmd_serial+0x94>
+ 6c8:	adrp	x0, 0 <do_real_config>
+ 6cc:	ldr	x1, [x0]
+ 6d0:	ldr	x0, [x19, #88]
+ 6d4:	bl	0 <grub_strcmp>
+ 6d8:	cbnz	w0, 6e8 <grub_cmd_serial+0x2b0>
+ 6dc:	mov	w0, #0x1                   	// #1
+ 6e0:	str	w0, [sp, #68]
+ 6e4:	b	4cc <grub_cmd_serial+0x94>
+ 6e8:	adrp	x0, 0 <do_real_config>
+ 6ec:	ldr	x1, [x0]
+ 6f0:	mov	w0, #0x12                  	// #18
+ 6f4:	bl	0 <grub_error>
+ 6f8:	b	4f8 <grub_cmd_serial+0xc0>
+ 6fc:	mov	w2, #0x0                   	// #0
+ 700:	add	x1, sp, #0x30
+ 704:	ldr	x0, [x19, #104]
+ 708:	bl	0 <grub_strtoull>
+ 70c:	mov	x1, x0
+ 710:	str	x0, [sp, #72]
+ 714:	adrp	x0, 0 <do_real_config>
+ 718:	ldr	x0, [x0]
+ 71c:	ldr	w0, [x0]
+ 720:	cbnz	w0, 4f8 <grub_cmd_serial+0xc0>
+ 724:	ldr	x0, [sp, #48]
+ 728:	cbz	x0, 4d4 <grub_cmd_serial+0x9c>
+ 72c:	ldrb	w2, [x0]
+ 730:	cmp	w2, #0x4d
+ 734:	b.eq	768 <grub_cmd_serial+0x330>  // b.none
+ 738:	ldrb	w0, [x0]
+ 73c:	and	w0, w0, #0xffffffdf
+ 740:	and	w0, w0, #0xff
+ 744:	cmp	w0, #0x4b
+ 748:	b.ne	4d4 <grub_cmd_serial+0x9c>  // b.any
+ 74c:	ldr	x1, [sp, #72]
+ 750:	lsl	x0, x1, #5
+ 754:	sub	x0, x0, x1
+ 758:	add	x0, x1, x0, lsl #2
+ 75c:	lsl	x0, x0, #3
+ 760:	str	x0, [sp, #72]
+ 764:	b	4d4 <grub_cmd_serial+0x9c>
+ 768:	mov	x2, #0x4240                	// #16960
+ 76c:	movk	x2, #0xf, lsl #16
+ 770:	mul	x1, x1, x2
+ 774:	str	x1, [sp, #72]
+ 778:	b	738 <grub_cmd_serial+0x300>
+ 77c:	nop
+	...
+
+0000000000000800 <grub_serial_register>:
+ 800:	stp	x29, x30, [sp, #-64]!
+ 804:	mov	x29, sp
+ 808:	str	x23, [sp, #48]
+ 80c:	mov	x23, x0
+ 810:	mov	x0, #0x40                  	// #64
+ 814:	bl	0 <grub_malloc>
+ 818:	cbz	x0, 964 <grub_serial_register+0x164>
+ 81c:	stp	x19, x20, [sp, #16]
+ 820:	stp	x21, x22, [sp, #32]
+ 824:	mov	x19, x0
+ 828:	mov	x0, #0x30                  	// #48
+ 82c:	bl	0 <grub_malloc>
+ 830:	mov	x21, x0
+ 834:	cbz	x0, 97c <grub_serial_register+0x17c>
+ 838:	mov	x2, #0x40                  	// #64
+ 83c:	adrp	x0, 0 <do_real_config>
+ 840:	ldr	x1, [x0]
+ 844:	mov	x0, x19
+ 848:	bl	0 <grub_memmove>
+ 84c:	str	x21, [x19, #56]
+ 850:	ldr	x1, [x23, #16]
+ 854:	adrp	x0, 0 <do_real_config>
+ 858:	ldr	x0, [x0]
+ 85c:	bl	0 <grub_xasprintf>
+ 860:	str	x0, [x19, #16]
+ 864:	adrp	x0, 0 <do_real_config>
+ 868:	ldr	x1, [x0]
+ 86c:	mov	x2, #0x30                  	// #48
+ 870:	add	x1, x1, #0x8
+ 874:	mov	x0, x21
+ 878:	bl	0 <grub_memmove>
+ 87c:	ldr	x0, [x19, #16]
+ 880:	cbz	x0, 99c <grub_serial_register+0x19c>
+ 884:	mov	x0, #0x90                  	// #144
+ 888:	bl	0 <grub_zalloc>
+ 88c:	mov	x20, x0
+ 890:	cbz	x0, 9c4 <grub_serial_register+0x1c4>
+ 894:	mov	x0, #0x60                  	// #96
+ 898:	bl	0 <grub_malloc>
+ 89c:	mov	x22, x0
+ 8a0:	cbz	x0, 9f4 <grub_serial_register+0x1f4>
+ 8a4:	adrp	x0, 0 <do_real_config>
+ 8a8:	ldr	x1, [x0]
+ 8ac:	mov	x2, #0x90                  	// #144
+ 8b0:	add	x1, x1, #0x40
+ 8b4:	mov	x0, x20
+ 8b8:	bl	0 <grub_memmove>
+ 8bc:	str	x22, [x20, #136]
+ 8c0:	ldr	x0, [x19, #16]
+ 8c4:	str	x0, [x20, #16]
+ 8c8:	adrp	x0, 0 <do_real_config>
+ 8cc:	ldr	x21, [x0]
+ 8d0:	mov	x2, #0x60                  	// #96
+ 8d4:	add	x1, x21, #0x38
+ 8d8:	mov	x0, x22
+ 8dc:	bl	0 <grub_memmove>
+ 8e0:	mov	x1, x23
+ 8e4:	mov	x0, x21
+ 8e8:	bl	0 <grub_list_push>
+ 8ec:	ldr	x0, [x19, #56]
+ 8f0:	str	x23, [x0, #40]
+ 8f4:	ldr	x0, [x20, #136]
+ 8f8:	str	x23, [x0, #88]
+ 8fc:	str	x19, [x23, #184]
+ 900:	str	x20, [x23, #176]
+ 904:	adrp	x0, 0 <do_real_config>
+ 908:	ldr	x1, [x0]
+ 90c:	mov	x0, x20
+ 910:	bl	0 <grub_terminfo_output_register>
+ 914:	adrp	x0, 0 <do_real_config>
+ 918:	ldr	x0, [x0]
+ 91c:	ldr	x0, [x0]
+ 920:	cbz	x0, a2c <grub_serial_register+0x22c>
+ 924:	mov	x1, x19
+ 928:	adrp	x0, 0 <do_real_config>
+ 92c:	ldr	x0, [x0]
+ 930:	bl	0 <grub_list_push>
+ 934:	adrp	x0, 0 <do_real_config>
+ 938:	ldr	x0, [x0]
+ 93c:	ldr	x0, [x0]
+ 940:	cbz	x0, a54 <grub_serial_register+0x254>
+ 944:	mov	x1, x20
+ 948:	adrp	x0, 0 <do_real_config>
+ 94c:	ldr	x0, [x0]
+ 950:	bl	0 <grub_list_push>
+ 954:	mov	w0, #0x0                   	// #0
+ 958:	ldp	x19, x20, [sp, #16]
+ 95c:	ldp	x21, x22, [sp, #32]
+ 960:	b	970 <grub_serial_register+0x170>
+ 964:	adrp	x0, 0 <do_real_config>
+ 968:	ldr	x0, [x0]
+ 96c:	ldr	w0, [x0]
+ 970:	ldr	x23, [sp, #48]
+ 974:	ldp	x29, x30, [sp], #64
+ 978:	ret
+ 97c:	mov	x0, x19
+ 980:	bl	0 <grub_free>
+ 984:	adrp	x0, 0 <do_real_config>
+ 988:	ldr	x0, [x0]
+ 98c:	ldr	w0, [x0]
+ 990:	ldp	x19, x20, [sp, #16]
+ 994:	ldp	x21, x22, [sp, #32]
+ 998:	b	970 <grub_serial_register+0x170>
+ 99c:	mov	x0, x19
+ 9a0:	bl	0 <grub_free>
+ 9a4:	mov	x0, x21
+ 9a8:	bl	0 <grub_free>
+ 9ac:	adrp	x0, 0 <do_real_config>
+ 9b0:	ldr	x0, [x0]
+ 9b4:	ldr	w0, [x0]
+ 9b8:	ldp	x19, x20, [sp, #16]
+ 9bc:	ldp	x21, x22, [sp, #32]
+ 9c0:	b	970 <grub_serial_register+0x170>
+ 9c4:	mov	x0, x21
+ 9c8:	bl	0 <grub_free>
+ 9cc:	ldr	x0, [x19, #16]
+ 9d0:	bl	0 <grub_free>
+ 9d4:	mov	x0, x19
+ 9d8:	bl	0 <grub_free>
+ 9dc:	adrp	x0, 0 <do_real_config>
+ 9e0:	ldr	x0, [x0]
+ 9e4:	ldr	w0, [x0]
+ 9e8:	ldp	x19, x20, [sp, #16]
+ 9ec:	ldp	x21, x22, [sp, #32]
+ 9f0:	b	970 <grub_serial_register+0x170>
+ 9f4:	mov	x0, x21
+ 9f8:	bl	0 <grub_free>
+ 9fc:	ldr	x0, [x19, #16]
+ a00:	bl	0 <grub_free>
+ a04:	mov	x0, x20
+ a08:	bl	0 <grub_free>
+ a0c:	mov	x0, x19
+ a10:	bl	0 <grub_free>
+ a14:	adrp	x0, 0 <do_real_config>
+ a18:	ldr	x0, [x0]
+ a1c:	ldr	w0, [x0]
+ a20:	ldp	x19, x20, [sp, #16]
+ a24:	ldp	x21, x22, [sp, #32]
+ a28:	b	970 <grub_serial_register+0x170>
+ a2c:	ldr	x1, [x19, #24]
+ a30:	cbz	x1, a40 <grub_serial_register+0x240>
+ a34:	mov	x0, x19
+ a38:	blr	x1
+ a3c:	cbnz	w0, 934 <grub_serial_register+0x134>
+ a40:	mov	x1, x19
+ a44:	adrp	x0, 0 <do_real_config>
+ a48:	ldr	x0, [x0]
+ a4c:	bl	0 <grub_list_push>
+ a50:	b	934 <grub_serial_register+0x134>
+ a54:	ldr	x1, [x20, #24]
+ a58:	cbz	x1, a70 <grub_serial_register+0x270>
+ a5c:	mov	x0, x20
+ a60:	blr	x1
+ a64:	mov	w1, w0
+ a68:	mov	w0, #0x0                   	// #0
+ a6c:	cbnz	w1, a90 <grub_serial_register+0x290>
+ a70:	mov	x1, x20
+ a74:	adrp	x0, 0 <do_real_config>
+ a78:	ldr	x0, [x0]
+ a7c:	bl	0 <grub_list_push>
+ a80:	mov	w0, #0x0                   	// #0
+ a84:	ldp	x19, x20, [sp, #16]
+ a88:	ldp	x21, x22, [sp, #32]
+ a8c:	b	970 <grub_serial_register+0x170>
+ a90:	ldp	x19, x20, [sp, #16]
+ a94:	ldp	x21, x22, [sp, #32]
+ a98:	b	970 <grub_serial_register+0x170>
+ a9c:	nop
+	...
+
+0000000000000ae8 <grub_serial_unregister>:
+ ae8:	stp	x29, x30, [sp, #-32]!
+ aec:	mov	x29, sp
+ af0:	stp	x19, x20, [sp, #16]
+ af4:	mov	x19, x0
+ af8:	ldr	x0, [x0, #24]
+ afc:	ldr	x1, [x0, #24]
+ b00:	cbz	x1, b0c <grub_serial_unregister+0x24>
+ b04:	mov	x0, x19
+ b08:	blr	x1
+ b0c:	ldr	x20, [x19, #184]
+ b10:	cbz	x20, b24 <grub_serial_unregister+0x3c>
+ b14:	mov	x0, x20
+ b18:	bl	0 <grub_list_remove>
+ b1c:	mov	x0, x20
+ b20:	bl	0 <grub_list_remove>
+ b24:	ldr	x20, [x19, #176]
+ b28:	cbz	x20, b3c <grub_serial_unregister+0x54>
+ b2c:	mov	x0, x20
+ b30:	bl	0 <grub_list_remove>
+ b34:	mov	x0, x20
+ b38:	bl	0 <grub_list_remove>
+ b3c:	mov	x0, x19
+ b40:	bl	0 <grub_list_remove>
+ b44:	ldp	x19, x20, [sp, #16]
+ b48:	ldp	x29, x30, [sp], #32
+ b4c:	ret
+
+0000000000000b50 <grub_serial_unregister_driver>:
+ b50:	stp	x29, x30, [sp, #-32]!
+ b54:	mov	x29, sp
+ b58:	stp	x19, x20, [sp, #16]
+ b5c:	mov	x20, x0
+ b60:	adrp	x0, 0 <do_real_config>
+ b64:	ldr	x0, [x0]
+ b68:	ldr	x19, [x0]
+ b6c:	cbnz	x19, b80 <grub_serial_unregister_driver+0x30>
+ b70:	ldp	x19, x20, [sp, #16]
+ b74:	ldp	x29, x30, [sp], #32
+ b78:	ret
+ b7c:	cbz	x19, b70 <grub_serial_unregister_driver+0x20>
+ b80:	mov	x0, x19
+ b84:	ldr	x19, [x19]
+ b88:	ldr	x1, [x0, #24]
+ b8c:	cmp	x1, x20
+ b90:	b.ne	b7c <grub_serial_unregister_driver+0x2c>  // b.any
+ b94:	bl	ae8 <grub_serial_unregister>
+ b98:	b	b7c <grub_serial_unregister_driver+0x2c>
+ b9c:	nop
+	...
+
+0000000000000ba8 <grub_mod_init>:
+ ba8:	stp	x29, x30, [sp, #-32]!
+ bac:	mov	x29, sp
+ bb0:	stp	x19, x20, [sp, #16]
+ bb4:	adrp	x0, 0 <do_real_config>
+ bb8:	ldr	x20, [x0]
+ bbc:	mov	x5, x20
+ bc0:	adrp	x0, 0 <do_real_config>
+ bc4:	ldr	x4, [x0]
+ bc8:	adrp	x0, 0 <do_real_config>
+ bcc:	ldr	x3, [x0]
+ bd0:	mov	w2, #0x0                   	// #0
+ bd4:	adrp	x0, 0 <do_real_config>
+ bd8:	ldr	x1, [x0]
+ bdc:	adrp	x0, 0 <do_real_config>
+ be0:	ldr	x0, [x0]
+ be4:	bl	0 <grub_register_extcmd>
+ be8:	adrp	x1, 0 <do_real_config>
+ bec:	ldr	x19, [x1]
+ bf0:	str	x0, [x19, #152]
+ bf4:	mov	x2, #0x60                  	// #96
+ bf8:	add	x1, x20, #0x168
+ bfc:	add	x0, x19, #0x38
+ c00:	bl	0 <grub_memmove>
+ c04:	mov	x2, #0x30                  	// #48
+ c08:	add	x1, x20, #0x1c8
+ c0c:	add	x0, x19, #0x8
+ c10:	bl	0 <grub_memmove>
+ c14:	bl	208 <grub_efiserial_init>
+ c18:	ldp	x19, x20, [sp, #16]
+ c1c:	ldp	x29, x30, [sp], #32
+ c20:	ret
+ c24:	nop
+	...
+
+0000000000000c58 <grub_mod_fini>:
+ c58:	stp	x29, x30, [sp, #-32]!
+ c5c:	mov	x29, sp
+ c60:	adrp	x0, 0 <do_real_config>
+ c64:	ldr	x0, [x0]
+ c68:	ldr	x0, [x0]
+ c6c:	cbz	x0, c8c <grub_mod_fini+0x34>
+ c70:	str	x19, [sp, #16]
+ c74:	adrp	x19, 0 <do_real_config>
+ c78:	bl	ae8 <grub_serial_unregister>
+ c7c:	ldr	x0, [x19]
+ c80:	ldr	x0, [x0]
+ c84:	cbnz	x0, c78 <grub_mod_fini+0x20>
+ c88:	ldr	x19, [sp, #16]
+ c8c:	adrp	x0, 0 <do_real_config>
+ c90:	ldr	x0, [x0]
+ c94:	ldr	x0, [x0, #152]
+ c98:	bl	0 <grub_unregister_extcmd>
+ c9c:	ldp	x29, x30, [sp], #32
+ ca0:	ret
+ ca4:	nop
+	...

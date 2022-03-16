@@ -1,0 +1,790 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//xen_boot.module_gcc_-O2:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <single_binary_unload>:
+   0:	cbz	x0, e8 <single_binary_unload+0xe8>
+   4:	stp	x29, x30, [sp, #-48]!
+   8:	mov	x29, sp
+   c:	stp	x19, x20, [sp, #16]
+  10:	mov	x19, x0
+  14:	ldr	x0, [x0, #24]
+  18:	str	x21, [sp, #32]
+  1c:	cbnz	x0, 80 <single_binary_unload+0x80>
+  20:	ldr	x0, [x19, #48]
+  24:	cbz	x0, 34 <single_binary_unload+0x34>
+  28:	ldr	w1, [x19, #56]
+  2c:	cmp	w1, #0x0
+  30:	b.gt	a0 <single_binary_unload+0xa0>
+  34:	adrp	x0, 0 <single_binary_unload>
+  38:	adrp	x1, 0 <single_binary_unload>
+  3c:	ldr	x20, [x0]
+  40:	ldr	w0, [x19, #16]
+  44:	ldr	x21, [x1]
+  48:	cbz	w0, dc <single_binary_unload+0xdc>
+  4c:	adrp	x1, 0 <single_binary_unload>
+  50:	mov	x2, x21
+  54:	mov	x0, x20
+  58:	mov	x4, x19
+  5c:	ldr	x3, [x1]
+  60:	mov	x5, #0x8                   	// #8
+  64:	mov	w1, #0x128                 	// #296
+  68:	bl	0 <grub_real_dprintf>
+  6c:	mov	x0, x19
+  70:	ldp	x19, x20, [sp, #16]
+  74:	ldr	x21, [sp, #32]
+  78:	ldp	x29, x30, [sp], #48
+  7c:	b	0 <grub_free>
+  80:	ldr	x1, [x19, #32]
+  84:	cbz	x1, 20 <single_binary_unload+0x20>
+  88:	ldr	x2, [x19, #40]
+  8c:	add	x1, x1, x2
+  90:	add	x1, x1, #0xfff
+  94:	lsr	x1, x1, #12
+  98:	bl	0 <grub_efi_free_pages>
+  9c:	b	20 <single_binary_unload+0x20>
+  a0:	bl	0 <grub_free>
+  a4:	adrp	x1, 0 <single_binary_unload>
+  a8:	adrp	x2, 0 <single_binary_unload>
+  ac:	adrp	x0, 0 <single_binary_unload>
+  b0:	ldr	w5, [x19, #56]
+  b4:	ldr	x3, [x1]
+  b8:	mov	w1, #0x120                 	// #288
+  bc:	ldr	x4, [x19, #48]
+  c0:	ldr	x21, [x2]
+  c4:	ldr	x20, [x0]
+  c8:	mov	x2, x21
+  cc:	mov	x0, x20
+  d0:	bl	0 <grub_real_dprintf>
+  d4:	ldr	w0, [x19, #16]
+  d8:	cbnz	w0, 4c <single_binary_unload+0x4c>
+  dc:	mov	x0, x19
+  e0:	bl	0 <grub_list_remove>
+  e4:	b	4c <single_binary_unload+0x4c>
+  e8:	ret
+  ec:	nop
+	...
+
+0000000000000110 <all_binaries_unload>:
+ 110:	stp	x29, x30, [sp, #-32]!
+ 114:	adrp	x0, 0 <single_binary_unload>
+ 118:	mov	x29, sp
+ 11c:	stp	x19, x20, [sp, #16]
+ 120:	ldr	x20, [x0]
+ 124:	ldr	x19, [x20]
+ 128:	cbz	x19, 140 <all_binaries_unload+0x30>
+ 12c:	nop
+ 130:	mov	x0, x19
+ 134:	bl	0 <single_binary_unload>
+ 138:	ldr	x19, [x19]
+ 13c:	cbnz	x19, 130 <all_binaries_unload+0x20>
+ 140:	ldr	x0, [x20, #8]
+ 144:	cbz	x0, 154 <all_binaries_unload+0x44>
+ 148:	ldp	x19, x20, [sp, #16]
+ 14c:	ldp	x29, x30, [sp], #32
+ 150:	b	0 <single_binary_unload>
+ 154:	ldp	x19, x20, [sp, #16]
+ 158:	ldp	x29, x30, [sp], #32
+ 15c:	ret
+	...
+
+0000000000000168 <xen_unload>:
+ 168:	stp	x29, x30, [sp, #-32]!
+ 16c:	adrp	x0, 0 <single_binary_unload>
+ 170:	mov	x29, sp
+ 174:	str	x19, [sp, #16]
+ 178:	ldr	x19, [x0]
+ 17c:	str	wzr, [x19, #16]
+ 180:	bl	110 <all_binaries_unload>
+ 184:	bl	0 <grub_fdt_unload>
+ 188:	ldr	x0, [x19, #24]
+ 18c:	bl	0 <grub_dl_unref>
+ 190:	mov	w0, #0x0                   	// #0
+ 194:	ldr	x19, [sp, #16]
+ 198:	ldp	x29, x30, [sp], #32
+ 19c:	ret
+	...
+
+00000000000001a8 <xen_boot_binary_load>:
+ 1a8:	stp	x29, x30, [sp, #-64]!
+ 1ac:	adrp	x4, 0 <single_binary_unload>
+ 1b0:	mov	x29, sp
+ 1b4:	stp	x19, x20, [sp, #16]
+ 1b8:	mov	x20, x1
+ 1bc:	mov	x19, x0
+ 1c0:	adrp	x1, 0 <single_binary_unload>
+ 1c4:	adrp	x0, 0 <single_binary_unload>
+ 1c8:	stp	x21, x22, [sp, #32]
+ 1cc:	mov	x22, x3
+ 1d0:	mov	w21, w2
+ 1d4:	ldr	x3, [x4]
+ 1d8:	stp	x23, x24, [sp, #48]
+ 1dc:	ldr	x4, [x20, #64]
+ 1e0:	str	x4, [x19, #32]
+ 1e4:	ldr	x24, [x1]
+ 1e8:	mov	w1, #0x150                 	// #336
+ 1ec:	ldr	x23, [x0]
+ 1f0:	mov	x2, x24
+ 1f4:	mov	x0, x23
+ 1f8:	bl	0 <grub_real_dprintf>
+ 1fc:	ldp	x0, x1, [x19, #32]
+ 200:	add	x0, x0, x1
+ 204:	add	x0, x0, #0xfff
+ 208:	lsr	x0, x0, #12
+ 20c:	bl	0 <grub_efi_allocate_any_pages>
+ 210:	str	x0, [x19, #24]
+ 214:	cbz	x0, 2d8 <xen_boot_binary_load+0x130>
+ 218:	ldp	x4, x5, [x19, #32]
+ 21c:	adrp	x3, 0 <single_binary_unload>
+ 220:	mov	x2, x24
+ 224:	mov	x0, x23
+ 228:	ldr	x3, [x3]
+ 22c:	mov	w1, #0x15c                 	// #348
+ 230:	add	x4, x4, x5
+ 234:	add	x4, x4, #0xfff
+ 238:	lsr	x4, x4, #12
+ 23c:	bl	0 <grub_real_dprintf>
+ 240:	ldp	x5, x2, [x19, #24]
+ 244:	mov	x0, x20
+ 248:	ldr	x4, [x19, #40]
+ 24c:	cmp	x4, #0x0
+ 250:	add	x3, x5, x4
+ 254:	neg	x4, x4
+ 258:	sub	x3, x3, #0x1
+ 25c:	and	x1, x3, x4
+ 260:	csel	x1, x1, x5, ne  // ne = any
+ 264:	bl	0 <grub_file_read>
+ 268:	ldr	x1, [x19, #32]
+ 26c:	cmp	x0, x1
+ 270:	b.ne	2a4 <xen_boot_binary_load+0xfc>  // b.any
+ 274:	cmp	w21, #0x1
+ 278:	b.gt	2f8 <xen_boot_binary_load+0x150>
+ 27c:	adrp	x0, 0 <single_binary_unload>
+ 280:	str	xzr, [x19, #48]
+ 284:	str	wzr, [x19, #56]
+ 288:	ldr	x0, [x0]
+ 28c:	ldp	x19, x20, [sp, #16]
+ 290:	ldp	x21, x22, [sp, #32]
+ 294:	ldp	x23, x24, [sp, #48]
+ 298:	str	wzr, [x0]
+ 29c:	ldp	x29, x30, [sp], #64
+ 2a0:	ret
+ 2a4:	mov	x0, x19
+ 2a8:	bl	0 <single_binary_unload>
+ 2ac:	adrp	x1, 0 <single_binary_unload>
+ 2b0:	mov	w0, #0x15                  	// #21
+ 2b4:	ldr	x2, [x22]
+ 2b8:	ldp	x19, x20, [sp, #16]
+ 2bc:	ldp	x21, x22, [sp, #32]
+ 2c0:	ldp	x23, x24, [sp, #48]
+ 2c4:	ldp	x29, x30, [sp], #64
+ 2c8:	ldr	x1, [x1]
+ 2cc:	b	0 <grub_error>
+ 2d0:	mov	x0, x19
+ 2d4:	bl	0 <single_binary_unload>
+ 2d8:	adrp	x1, 0 <single_binary_unload>
+ 2dc:	mov	w0, #0x3                   	// #3
+ 2e0:	ldp	x19, x20, [sp, #16]
+ 2e4:	ldp	x21, x22, [sp, #32]
+ 2e8:	ldp	x23, x24, [sp, #48]
+ 2ec:	ldp	x29, x30, [sp], #64
+ 2f0:	ldr	x1, [x1]
+ 2f4:	b	0 <grub_error>
+ 2f8:	add	x22, x22, #0x8
+ 2fc:	sub	w21, w21, #0x1
+ 300:	mov	x1, x22
+ 304:	mov	w0, w21
+ 308:	bl	0 <grub_loader_cmdline_size>
+ 30c:	str	w0, [x19, #56]
+ 310:	sxtw	x0, w0
+ 314:	bl	0 <grub_zalloc>
+ 318:	str	x0, [x19, #48]
+ 31c:	mov	x2, x0
+ 320:	cbz	x0, 2d0 <xen_boot_binary_load+0x128>
+ 324:	ldrsw	x3, [x19, #56]
+ 328:	mov	x1, x22
+ 32c:	mov	w0, w21
+ 330:	mov	w4, #0x0                   	// #0
+ 334:	bl	0 <grub_create_loader_cmdline>
+ 338:	adrp	x0, 0 <single_binary_unload>
+ 33c:	ldr	w6, [x19, #56]
+ 340:	ldr	x5, [x19, #48]
+ 344:	mov	x2, x24
+ 348:	ldr	x3, [x0]
+ 34c:	mov	x4, x5
+ 350:	mov	x0, x23
+ 354:	mov	w1, #0x175                 	// #373
+ 358:	bl	0 <grub_real_dprintf>
+ 35c:	adrp	x0, 0 <single_binary_unload>
+ 360:	ldp	x19, x20, [sp, #16]
+ 364:	ldr	x0, [x0]
+ 368:	ldp	x21, x22, [sp, #32]
+ 36c:	ldp	x23, x24, [sp, #48]
+ 370:	str	wzr, [x0]
+ 374:	ldp	x29, x30, [sp], #64
+ 378:	ret
+ 37c:	nop
+	...
+
+00000000000003c0 <grub_cmd_xen_module>:
+ 3c0:	stp	x29, x30, [sp, #-64]!
+ 3c4:	mov	x29, sp
+ 3c8:	stp	x19, x20, [sp, #16]
+ 3cc:	stp	x21, x22, [sp, #32]
+ 3d0:	cbz	w1, 504 <grub_cmd_xen_module+0x144>
+ 3d4:	mov	w19, w1
+ 3d8:	adrp	x1, 0 <single_binary_unload>
+ 3dc:	ldr	x0, [x2]
+ 3e0:	mov	x20, x2
+ 3e4:	ldr	x1, [x1]
+ 3e8:	bl	0 <grub_strcmp>
+ 3ec:	cbz	w0, 4bc <grub_cmd_xen_module+0xfc>
+ 3f0:	adrp	x0, 0 <single_binary_unload>
+ 3f4:	str	x23, [sp, #48]
+ 3f8:	mov	w22, #0x0                   	// #0
+ 3fc:	ldr	x23, [x0]
+ 400:	ldr	w0, [x23, #16]
+ 404:	cbz	w0, 4e0 <grub_cmd_xen_module+0x120>
+ 408:	mov	x0, #0x40                  	// #64
+ 40c:	bl	0 <grub_zalloc>
+ 410:	mov	x21, x0
+ 414:	cbz	x0, 548 <grub_cmd_xen_module+0x188>
+ 418:	adrp	x3, 0 <single_binary_unload>
+ 41c:	adrp	x2, 0 <single_binary_unload>
+ 420:	adrp	x0, 0 <single_binary_unload>
+ 424:	mov	x1, #0x1000                	// #4096
+ 428:	ldr	x3, [x3]
+ 42c:	str	wzr, [x21, #16]
+ 430:	ldr	x2, [x2]
+ 434:	str	x1, [x21, #40]
+ 438:	ldr	x0, [x0]
+ 43c:	mov	w1, #0x1ae                 	// #430
+ 440:	bl	0 <grub_real_dprintf>
+ 444:	ldr	x0, [x20]
+ 448:	cmp	w22, #0x0
+ 44c:	mov	w2, #0x8                   	// #8
+ 450:	mov	w1, #0x8                   	// #8
+ 454:	movk	w2, #0x2, lsl #16
+ 458:	csel	w1, w2, w1, ne  // ne = any
+ 45c:	bl	0 <grub_file_open>
+ 460:	mov	x22, x0
+ 464:	cbz	x0, 538 <grub_cmd_xen_module+0x178>
+ 468:	mov	w2, w19
+ 46c:	mov	x1, x0
+ 470:	mov	x3, x20
+ 474:	mov	x0, x21
+ 478:	bl	1a8 <xen_boot_binary_load>
+ 47c:	adrp	x0, 0 <single_binary_unload>
+ 480:	ldr	x19, [x0]
+ 484:	ldr	w0, [x19]
+ 488:	cbz	w0, 568 <grub_cmd_xen_module+0x1a8>
+ 48c:	mov	x0, x22
+ 490:	bl	0 <grub_file_close>
+ 494:	ldr	w0, [x19]
+ 498:	ldr	x23, [sp, #48]
+ 49c:	cbz	w0, 528 <grub_cmd_xen_module+0x168>
+ 4a0:	mov	x0, x21
+ 4a4:	bl	0 <single_binary_unload>
+ 4a8:	ldr	w0, [x19]
+ 4ac:	ldp	x19, x20, [sp, #16]
+ 4b0:	ldp	x21, x22, [sp, #32]
+ 4b4:	ldp	x29, x30, [sp], #64
+ 4b8:	ret
+ 4bc:	subs	w19, w19, #0x1
+ 4c0:	b.eq	504 <grub_cmd_xen_module+0x144>  // b.none
+ 4c4:	adrp	x0, 0 <single_binary_unload>
+ 4c8:	str	x23, [sp, #48]
+ 4cc:	add	x20, x20, #0x8
+ 4d0:	mov	w22, #0x1                   	// #1
+ 4d4:	ldr	x23, [x0]
+ 4d8:	ldr	w0, [x23, #16]
+ 4dc:	cbnz	w0, 408 <grub_cmd_xen_module+0x48>
+ 4e0:	adrp	x1, 0 <single_binary_unload>
+ 4e4:	mov	w0, #0x12                  	// #18
+ 4e8:	mov	x21, #0x0                   	// #0
+ 4ec:	ldr	x1, [x1]
+ 4f0:	bl	0 <grub_error>
+ 4f4:	adrp	x0, 0 <single_binary_unload>
+ 4f8:	ldr	x23, [sp, #48]
+ 4fc:	ldr	x19, [x0]
+ 500:	b	520 <grub_cmd_xen_module+0x160>
+ 504:	adrp	x1, 0 <single_binary_unload>
+ 508:	mov	w0, #0x12                  	// #18
+ 50c:	mov	x21, #0x0                   	// #0
+ 510:	ldr	x1, [x1]
+ 514:	bl	0 <grub_error>
+ 518:	adrp	x0, 0 <single_binary_unload>
+ 51c:	ldr	x19, [x0]
+ 520:	ldr	w0, [x19]
+ 524:	cbnz	w0, 4a0 <grub_cmd_xen_module+0xe0>
+ 528:	ldp	x19, x20, [sp, #16]
+ 52c:	ldp	x21, x22, [sp, #32]
+ 530:	ldp	x29, x30, [sp], #64
+ 534:	ret
+ 538:	adrp	x0, 0 <single_binary_unload>
+ 53c:	ldr	x23, [sp, #48]
+ 540:	ldr	x19, [x0]
+ 544:	b	520 <grub_cmd_xen_module+0x160>
+ 548:	adrp	x0, 0 <single_binary_unload>
+ 54c:	ldp	x19, x20, [sp, #16]
+ 550:	ldr	x0, [x0]
+ 554:	ldp	x21, x22, [sp, #32]
+ 558:	ldr	w0, [x0]
+ 55c:	ldr	x23, [sp, #48]
+ 560:	ldp	x29, x30, [sp], #64
+ 564:	ret
+ 568:	mov	x0, x23
+ 56c:	mov	x1, x21
+ 570:	bl	0 <grub_list_push>
+ 574:	b	48c <grub_cmd_xen_module+0xcc>
+	...
+
+00000000000005b8 <grub_cmd_xen_hypervisor>:
+ 5b8:	stp	x29, x30, [sp, #-400]!
+ 5bc:	adrp	x0, 0 <single_binary_unload>
+ 5c0:	mov	x29, sp
+ 5c4:	stp	x21, x22, [sp, #32]
+ 5c8:	mov	x21, x2
+ 5cc:	ldr	x22, [x0]
+ 5d0:	stp	x19, x20, [sp, #16]
+ 5d4:	mov	w19, w1
+ 5d8:	ldr	x0, [x22, #24]
+ 5dc:	bl	0 <grub_dl_ref>
+ 5e0:	cbz	w19, 668 <grub_cmd_xen_hypervisor+0xb0>
+ 5e4:	ldr	x0, [x21]
+ 5e8:	mov	w1, #0x7                   	// #7
+ 5ec:	bl	0 <grub_file_open>
+ 5f0:	mov	x20, x0
+ 5f4:	cbz	x0, 634 <grub_cmd_xen_hypervisor+0x7c>
+ 5f8:	add	x1, sp, #0x48
+ 5fc:	mov	x2, #0x148                 	// #328
+ 600:	bl	0 <grub_file_read>
+ 604:	cmp	x0, #0x148
+ 608:	b.eq	684 <grub_cmd_xen_hypervisor+0xcc>  // b.none
+ 60c:	adrp	x0, 0 <single_binary_unload>
+ 610:	ldr	x19, [x0]
+ 614:	mov	x0, x20
+ 618:	bl	0 <grub_file_close>
+ 61c:	ldr	w0, [x19]
+ 620:	cbnz	w0, 644 <grub_cmd_xen_hypervisor+0x8c>
+ 624:	ldp	x19, x20, [sp, #16]
+ 628:	ldp	x21, x22, [sp, #32]
+ 62c:	ldp	x29, x30, [sp], #400
+ 630:	ret
+ 634:	adrp	x0, 0 <single_binary_unload>
+ 638:	ldr	x19, [x0]
+ 63c:	ldr	w0, [x19]
+ 640:	cbz	w0, 624 <grub_cmd_xen_hypervisor+0x6c>
+ 644:	str	wzr, [x22, #16]
+ 648:	bl	110 <all_binaries_unload>
+ 64c:	ldr	x0, [x22, #24]
+ 650:	bl	0 <grub_dl_unref>
+ 654:	ldr	w0, [x19]
+ 658:	ldp	x19, x20, [sp, #16]
+ 65c:	ldp	x21, x22, [sp, #32]
+ 660:	ldp	x29, x30, [sp], #400
+ 664:	ret
+ 668:	adrp	x1, 0 <single_binary_unload>
+ 66c:	mov	w0, #0x12                  	// #18
+ 670:	ldr	x1, [x1]
+ 674:	bl	0 <grub_error>
+ 678:	adrp	x0, 0 <single_binary_unload>
+ 67c:	ldr	x19, [x0]
+ 680:	b	61c <grub_cmd_xen_hypervisor+0x64>
+ 684:	add	x0, sp, #0x48
+ 688:	bl	0 <grub_arch_efi_linux_check_image>
+ 68c:	cbnz	w0, 60c <grub_cmd_xen_hypervisor+0x54>
+ 690:	mov	x1, #0x0                   	// #0
+ 694:	mov	x0, x20
+ 698:	bl	0 <grub_file_seek>
+ 69c:	bl	0 <grub_loader_unset>
+ 6a0:	mov	x0, #0x40                  	// #64
+ 6a4:	bl	0 <grub_zalloc>
+ 6a8:	str	x0, [x22, #8]
+ 6ac:	cbz	x0, 710 <grub_cmd_xen_hypervisor+0x158>
+ 6b0:	ldr	w2, [sp, #192]
+ 6b4:	mov	x3, x21
+ 6b8:	str	x23, [sp, #48]
+ 6bc:	mov	w23, #0x1                   	// #1
+ 6c0:	str	w23, [x0, #16]
+ 6c4:	mov	x1, x20
+ 6c8:	str	x2, [x0, #40]
+ 6cc:	mov	w2, w19
+ 6d0:	bl	1a8 <xen_boot_binary_load>
+ 6d4:	adrp	x0, 0 <single_binary_unload>
+ 6d8:	ldr	x19, [x0]
+ 6dc:	ldr	w0, [x19]
+ 6e0:	cbz	w0, 6ec <grub_cmd_xen_hypervisor+0x134>
+ 6e4:	ldr	x23, [sp, #48]
+ 6e8:	b	614 <grub_cmd_xen_hypervisor+0x5c>
+ 6ec:	adrp	x1, 0 <single_binary_unload>
+ 6f0:	adrp	x0, 0 <single_binary_unload>
+ 6f4:	mov	w2, #0x0                   	// #0
+ 6f8:	ldr	x1, [x1]
+ 6fc:	ldr	x0, [x0]
+ 700:	bl	0 <grub_loader_set>
+ 704:	str	w23, [x22, #16]
+ 708:	ldr	x23, [sp, #48]
+ 70c:	b	614 <grub_cmd_xen_hypervisor+0x5c>
+ 710:	adrp	x0, 0 <single_binary_unload>
+ 714:	ldr	x0, [x0]
+ 718:	ldr	w0, [x0]
+ 71c:	b	624 <grub_cmd_xen_hypervisor+0x6c>
+	...
+
+0000000000000748 <xen_boot>:
+ 748:	stp	x29, x30, [sp, #-176]!
+ 74c:	adrp	x0, 0 <single_binary_unload>
+ 750:	mov	x29, sp
+ 754:	stp	x21, x22, [sp, #32]
+ 758:	ldr	x21, [x0]
+ 75c:	stp	x19, x20, [sp, #16]
+ 760:	ldp	x1, x0, [x21]
+ 764:	ldr	w0, [x0, #56]
+ 768:	add	w0, w0, #0x31
+ 76c:	sxtw	x0, w0
+ 770:	add	x0, x0, #0x1, lsl #12
+ 774:	cbz	x1, 78c <xen_boot+0x44>
+ 778:	ldrsw	x2, [x1, #56]
+ 77c:	ldr	x1, [x1]
+ 780:	add	x2, x2, #0x136
+ 784:	add	x0, x0, x2
+ 788:	cbnz	x1, 778 <xen_boot+0x30>
+ 78c:	bl	0 <grub_fdt_load>
+ 790:	mov	x20, x0
+ 794:	cbz	x0, be0 <xen_boot+0x498>
+ 798:	ldr	x1, [x21, #8]
+ 79c:	cbz	x1, ba8 <xen_boot+0x460>
+ 7a0:	adrp	x2, 0 <single_binary_unload>
+ 7a4:	stp	x23, x24, [sp, #48]
+ 7a8:	mov	w1, #0x0                   	// #0
+ 7ac:	ldr	x24, [x2]
+ 7b0:	mov	x2, x24
+ 7b4:	bl	0 <grub_fdt_find_subnode>
+ 7b8:	mov	w19, w0
+ 7bc:	tbnz	w0, #31, b90 <xen_boot+0x448>
+ 7c0:	cmp	w19, #0x0
+ 7c4:	b.le	b7c <xen_boot+0x434>
+ 7c8:	adrp	x0, 0 <single_binary_unload>
+ 7cc:	mov	w22, #0x2000000             	// #33554432
+ 7d0:	add	x3, sp, #0x78
+ 7d4:	mov	w1, w19
+ 7d8:	ldr	x2, [x0]
+ 7dc:	mov	w4, #0x4                   	// #4
+ 7e0:	mov	x0, x20
+ 7e4:	str	w22, [sp, #120]
+ 7e8:	bl	0 <grub_fdt_set_prop>
+ 7ec:	cbnz	w0, b60 <xen_boot+0x418>
+ 7f0:	adrp	x0, 0 <single_binary_unload>
+ 7f4:	add	x3, sp, #0x78
+ 7f8:	mov	w1, w19
+ 7fc:	mov	w4, #0x4                   	// #4
+ 800:	ldr	x2, [x0]
+ 804:	mov	x0, x20
+ 808:	str	w22, [sp, #120]
+ 80c:	bl	0 <grub_fdt_set_prop>
+ 810:	cbnz	w0, bcc <xen_boot+0x484>
+ 814:	ldr	x4, [x21, #8]
+ 818:	adrp	x1, 0 <single_binary_unload>
+ 81c:	adrp	x2, 0 <single_binary_unload>
+ 820:	adrp	x0, 0 <single_binary_unload>
+ 824:	ldr	x3, [x1]
+ 828:	mov	w1, #0x82                  	// #130
+ 82c:	ldr	x2, [x2]
+ 830:	ldr	x0, [x0]
+ 834:	ldr	w6, [x4, #56]
+ 838:	ldr	x5, [x4, #48]
+ 83c:	mov	x4, x5
+ 840:	bl	0 <grub_real_dprintf>
+ 844:	ldr	x4, [x21, #8]
+ 848:	adrp	x0, 0 <single_binary_unload>
+ 84c:	mov	w1, w19
+ 850:	ldr	x2, [x0]
+ 854:	mov	x0, x20
+ 858:	ldr	x3, [x4, #48]
+ 85c:	ldr	w4, [x4, #56]
+ 860:	bl	0 <grub_fdt_set_prop>
+ 864:	cbnz	w0, bf4 <xen_boot+0x4ac>
+ 868:	ldr	x19, [x21]
+ 86c:	cbz	x19, b18 <xen_boot+0x3d0>
+ 870:	adrp	x2, 0 <single_binary_unload>
+ 874:	adrp	x0, 0 <single_binary_unload>
+ 878:	stp	x25, x26, [sp, #64]
+ 87c:	adrp	x26, 0 <single_binary_unload>
+ 880:	adrp	x25, 0 <single_binary_unload>
+ 884:	ldr	x23, [x2]
+ 888:	stp	x27, x28, [sp, #80]
+ 88c:	ldr	x22, [x0]
+ 890:	b	988 <xen_boot+0x240>
+ 894:	mov	x2, x24
+ 898:	mov	x0, x20
+ 89c:	mov	w1, #0x0                   	// #0
+ 8a0:	bl	0 <grub_fdt_find_subnode>
+ 8a4:	mov	w27, w0
+ 8a8:	tbnz	w0, #31, ae0 <xen_boot+0x398>
+ 8ac:	cmp	w27, #0x0
+ 8b0:	b.le	ac8 <xen_boot+0x380>
+ 8b4:	add	x2, sp, #0x78
+ 8b8:	mov	w1, w27
+ 8bc:	mov	x0, x20
+ 8c0:	bl	0 <grub_fdt_find_subnode>
+ 8c4:	mov	w28, w0
+ 8c8:	tbnz	w0, #31, af8 <xen_boot+0x3b0>
+ 8cc:	adrp	x0, 0 <single_binary_unload>
+ 8d0:	adrp	x2, 0 <single_binary_unload>
+ 8d4:	mov	w1, w28
+ 8d8:	mov	w4, #0x11                  	// #17
+ 8dc:	ldr	x3, [x0]
+ 8e0:	mov	x0, x20
+ 8e4:	ldr	x2, [x2]
+ 8e8:	bl	0 <grub_fdt_set_prop>
+ 8ec:	cbnz	w0, ab0 <xen_boot+0x368>
+ 8f0:	adrp	x3, 0 <single_binary_unload>
+ 8f4:	mov	x2, x23
+ 8f8:	mov	x0, x22
+ 8fc:	mov	w1, #0xaf                  	// #175
+ 900:	ldr	x3, [x3]
+ 904:	bl	0 <grub_real_dprintf>
+ 908:	ldp	x5, x7, [x19, #24]
+ 90c:	adrp	x0, 0 <single_binary_unload>
+ 910:	ldr	x1, [x19, #40]
+ 914:	add	x3, sp, #0x68
+ 918:	ldr	x2, [x0]
+ 91c:	neg	x6, x1
+ 920:	add	x0, x5, x1
+ 924:	cmp	x1, #0x0
+ 928:	sub	x0, x0, #0x1
+ 92c:	mov	w1, w28
+ 930:	and	x0, x0, x6
+ 934:	rev	x6, x7
+ 938:	csel	x5, x0, x5, ne  // ne = any
+ 93c:	mov	w4, #0x10                  	// #16
+ 940:	rev	x5, x5
+ 944:	mov	x0, x20
+ 948:	stp	x5, x6, [sp, #104]
+ 94c:	bl	0 <grub_fdt_set_prop>
+ 950:	cbnz	w0, ab0 <xen_boot+0x368>
+ 954:	ldr	x5, [x19, #48]
+ 958:	cbz	x5, 968 <xen_boot+0x220>
+ 95c:	ldr	w6, [x19, #56]
+ 960:	cmp	w6, #0x0
+ 964:	b.gt	a6c <xen_boot+0x324>
+ 968:	adrp	x3, 0 <single_binary_unload>
+ 96c:	mov	x2, x23
+ 970:	mov	x0, x22
+ 974:	mov	w1, #0xc5                  	// #197
+ 978:	ldr	x3, [x3]
+ 97c:	bl	0 <grub_real_dprintf>
+ 980:	ldr	x19, [x19]
+ 984:	cbz	x19, b10 <xen_boot+0x3c8>
+ 988:	ldr	x4, [x19, #24]
+ 98c:	cbz	x4, b44 <xen_boot+0x3fc>
+ 990:	ldr	x5, [x19, #32]
+ 994:	cbz	x5, b44 <xen_boot+0x3fc>
+ 998:	ldr	x1, [x19, #40]
+ 99c:	mov	x2, x23
+ 9a0:	ldr	x3, [x26]
+ 9a4:	cmp	x1, #0x0
+ 9a8:	add	x0, x4, x1
+ 9ac:	neg	x1, x1
+ 9b0:	sub	x0, x0, #0x1
+ 9b4:	and	x0, x0, x1
+ 9b8:	mov	w1, #0xee                  	// #238
+ 9bc:	csel	x4, x0, x4, ne  // ne = any
+ 9c0:	mov	x0, x22
+ 9c4:	bl	0 <grub_real_dprintf>
+ 9c8:	ldr	x6, [x19, #24]
+ 9cc:	mov	x1, #0x31                  	// #49
+ 9d0:	ldr	x5, [x19, #40]
+ 9d4:	add	x0, sp, #0x78
+ 9d8:	ldr	x2, [x25]
+ 9dc:	add	x4, x6, x5
+ 9e0:	cmp	x5, #0x0
+ 9e4:	sub	x4, x4, #0x1
+ 9e8:	neg	x5, x5
+ 9ec:	and	x3, x4, x5
+ 9f0:	csel	x3, x3, x6, ne  // ne = any
+ 9f4:	bl	0 <grub_snprintf>
+ 9f8:	mov	w27, w0
+ 9fc:	adrp	x1, 0 <single_binary_unload>
+ a00:	add	x4, sp, #0x78
+ a04:	mov	x2, x23
+ a08:	mov	x0, x22
+ a0c:	ldr	x3, [x1]
+ a10:	mov	w1, #0x99                  	// #153
+ a14:	bl	0 <grub_real_dprintf>
+ a18:	cmp	w27, #0x7
+ a1c:	b.gt	894 <xen_boot+0x14c>
+ a20:	adrp	x1, 0 <single_binary_unload>
+ a24:	mov	w0, #0x1d                  	// #29
+ a28:	ldr	x1, [x1]
+ a2c:	bl	0 <grub_error>
+ a30:	cbz	w0, 980 <xen_boot+0x238>
+ a34:	nop
+ a38:	ldp	x23, x24, [sp, #48]
+ a3c:	ldp	x25, x26, [sp, #64]
+ a40:	ldp	x27, x28, [sp, #80]
+ a44:	bl	0 <grub_fdt_unload>
+ a48:	adrp	x1, 0 <single_binary_unload>
+ a4c:	mov	w0, #0x1d                  	// #29
+ a50:	ldr	x1, [x1]
+ a54:	bl	0 <grub_error>
+ a58:	cbz	w0, b24 <xen_boot+0x3dc>
+ a5c:	ldp	x19, x20, [sp, #16]
+ a60:	ldp	x21, x22, [sp, #32]
+ a64:	ldp	x29, x30, [sp], #176
+ a68:	ret
+ a6c:	adrp	x0, 0 <single_binary_unload>
+ a70:	mov	x4, x5
+ a74:	mov	x2, x23
+ a78:	mov	w1, #0xba                  	// #186
+ a7c:	ldr	x3, [x0]
+ a80:	mov	x0, x22
+ a84:	bl	0 <grub_real_dprintf>
+ a88:	adrp	x0, 0 <single_binary_unload>
+ a8c:	ldr	w4, [x19, #56]
+ a90:	ldr	x3, [x19, #48]
+ a94:	mov	w1, w28
+ a98:	ldr	x2, [x0]
+ a9c:	add	w4, w4, #0x1
+ aa0:	mov	x0, x20
+ aa4:	bl	0 <grub_fdt_set_prop>
+ aa8:	cbz	w0, 980 <xen_boot+0x238>
+ aac:	nop
+ ab0:	adrp	x1, 0 <single_binary_unload>
+ ab4:	mov	w0, #0x1d                  	// #29
+ ab8:	ldr	x1, [x1]
+ abc:	bl	0 <grub_error>
+ ac0:	cbz	w0, 980 <xen_boot+0x238>
+ ac4:	b	a38 <xen_boot+0x2f0>
+ ac8:	adrp	x1, 0 <single_binary_unload>
+ acc:	mov	w0, #0x1d                  	// #29
+ ad0:	ldr	x1, [x1]
+ ad4:	bl	0 <grub_error>
+ ad8:	cbz	w0, 980 <xen_boot+0x238>
+ adc:	b	a38 <xen_boot+0x2f0>
+ ae0:	mov	x2, x24
+ ae4:	mov	x0, x20
+ ae8:	mov	w1, #0x0                   	// #0
+ aec:	bl	0 <grub_fdt_add_subnode>
+ af0:	mov	w27, w0
+ af4:	b	8ac <xen_boot+0x164>
+ af8:	mov	w1, w27
+ afc:	add	x2, sp, #0x78
+ b00:	mov	x0, x20
+ b04:	bl	0 <grub_fdt_add_subnode>
+ b08:	mov	w28, w0
+ b0c:	b	8cc <xen_boot+0x184>
+ b10:	ldp	x25, x26, [sp, #64]
+ b14:	ldp	x27, x28, [sp, #80]
+ b18:	bl	0 <grub_fdt_install>
+ b1c:	ldp	x23, x24, [sp, #48]
+ b20:	cbnz	w0, a44 <xen_boot+0x2fc>
+ b24:	ldr	x2, [x21, #8]
+ b28:	ldp	x0, x1, [x2, #24]
+ b2c:	ldr	x2, [x2, #48]
+ b30:	bl	0 <grub_arch_efi_linux_boot_image>
+ b34:	ldp	x19, x20, [sp, #16]
+ b38:	ldp	x21, x22, [sp, #32]
+ b3c:	ldp	x29, x30, [sp], #176
+ b40:	ret
+ b44:	adrp	x3, 0 <single_binary_unload>
+ b48:	mov	x2, x23
+ b4c:	mov	x0, x22
+ b50:	mov	w1, #0xf6                  	// #246
+ b54:	ldr	x3, [x3]
+ b58:	bl	0 <grub_real_dprintf>
+ b5c:	b	a38 <xen_boot+0x2f0>
+ b60:	adrp	x1, 0 <single_binary_unload>
+ b64:	mov	w0, #0x1d                  	// #29
+ b68:	ldr	x1, [x1]
+ b6c:	bl	0 <grub_error>
+ b70:	cbz	w0, 868 <xen_boot+0x120>
+ b74:	ldp	x23, x24, [sp, #48]
+ b78:	b	a44 <xen_boot+0x2fc>
+ b7c:	adrp	x1, 0 <single_binary_unload>
+ b80:	mov	w0, #0x1d                  	// #29
+ b84:	ldr	x1, [x1]
+ b88:	bl	0 <grub_error>
+ b8c:	b	b70 <xen_boot+0x428>
+ b90:	mov	x2, x24
+ b94:	mov	x0, x20
+ b98:	mov	w1, #0x0                   	// #0
+ b9c:	bl	0 <grub_fdt_add_subnode>
+ ba0:	mov	w19, w0
+ ba4:	b	7c0 <xen_boot+0x78>
+ ba8:	adrp	x3, 0 <single_binary_unload>
+ bac:	adrp	x2, 0 <single_binary_unload>
+ bb0:	adrp	x0, 0 <single_binary_unload>
+ bb4:	mov	w1, #0xe5                  	// #229
+ bb8:	ldr	x3, [x3]
+ bbc:	ldr	x2, [x2]
+ bc0:	ldr	x0, [x0]
+ bc4:	bl	0 <grub_real_dprintf>
+ bc8:	b	a44 <xen_boot+0x2fc>
+ bcc:	adrp	x1, 0 <single_binary_unload>
+ bd0:	mov	w0, #0x1d                  	// #29
+ bd4:	ldr	x1, [x1]
+ bd8:	bl	0 <grub_error>
+ bdc:	b	b70 <xen_boot+0x428>
+ be0:	adrp	x1, 0 <single_binary_unload>
+ be4:	mov	w0, #0x1d                  	// #29
+ be8:	ldr	x1, [x1]
+ bec:	bl	0 <grub_error>
+ bf0:	b	a58 <xen_boot+0x310>
+ bf4:	adrp	x1, 0 <single_binary_unload>
+ bf8:	mov	w0, #0x1d                  	// #29
+ bfc:	ldr	x1, [x1]
+ c00:	bl	0 <grub_error>
+ c04:	b	b70 <xen_boot+0x428>
+	...
+
+0000000000000cd0 <grub_mod_init>:
+ cd0:	stp	x29, x30, [sp, #-32]!
+ cd4:	adrp	x2, 0 <single_binary_unload>
+ cd8:	adrp	x3, 0 <single_binary_unload>
+ cdc:	adrp	x1, 0 <single_binary_unload>
+ ce0:	mov	x29, sp
+ ce4:	ldr	x3, [x3]
+ ce8:	stp	x19, x20, [sp, #16]
+ cec:	mov	x20, x0
+ cf0:	ldr	x1, [x1]
+ cf4:	mov	w4, #0x0                   	// #0
+ cf8:	ldr	x0, [x2]
+ cfc:	mov	x2, #0x0                   	// #0
+ d00:	bl	0 <grub_register_command_prio>
+ d04:	adrp	x3, 0 <single_binary_unload>
+ d08:	adrp	x5, 0 <single_binary_unload>
+ d0c:	adrp	x2, 0 <single_binary_unload>
+ d10:	adrp	x1, 0 <single_binary_unload>
+ d14:	ldr	x19, [x3]
+ d18:	mov	w4, #0x0                   	// #0
+ d1c:	ldr	x3, [x2]
+ d20:	mov	x2, #0x0                   	// #0
+ d24:	ldr	x1, [x1]
+ d28:	str	x0, [x19, #32]
+ d2c:	ldr	x0, [x5]
+ d30:	bl	0 <grub_register_command_prio>
+ d34:	str	x20, [x19, #24]
+ d38:	str	x0, [x19, #40]
+ d3c:	ldp	x19, x20, [sp, #16]
+ d40:	ldp	x29, x30, [sp], #32
+ d44:	ret
+	...
+
+0000000000000d80 <grub_mod_fini>:
+ d80:	stp	x29, x30, [sp, #-32]!
+ d84:	adrp	x0, 0 <single_binary_unload>
+ d88:	mov	x29, sp
+ d8c:	str	x19, [sp, #16]
+ d90:	ldr	x19, [x0]
+ d94:	ldr	x0, [x19, #32]
+ d98:	bl	0 <grub_unregister_command>
+ d9c:	ldr	x0, [x19, #40]
+ da0:	ldr	x19, [sp, #16]
+ da4:	ldp	x29, x30, [sp], #32
+ da8:	b	0 <grub_unregister_command>
+ dac:	nop
+	...

@@ -1,0 +1,175 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//adler32.module_gcc_-O0:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_swap_bytes32>:
+   0:	sub	sp, sp, #0x10
+   4:	str	w0, [sp, #12]
+   8:	ldr	w0, [sp, #12]
+   c:	rev	w0, w0
+  10:	add	sp, sp, #0x10
+  14:	ret
+
+0000000000000018 <adler32_init>:
+  18:	sub	sp, sp, #0x20
+  1c:	str	x0, [sp, #8]
+  20:	ldr	x0, [sp, #8]
+  24:	str	x0, [sp, #24]
+  28:	ldr	x0, [sp, #24]
+  2c:	mov	w1, #0x1                   	// #1
+  30:	strh	w1, [x0]
+  34:	ldr	x0, [sp, #24]
+  38:	strh	wzr, [x0, #2]
+  3c:	nop
+  40:	add	sp, sp, #0x20
+  44:	ret
+
+0000000000000048 <mod_add>:
+  48:	sub	sp, sp, #0x10
+  4c:	strh	w0, [sp, #14]
+  50:	strh	w1, [sp, #12]
+  54:	ldrh	w1, [sp, #14]
+  58:	ldrh	w0, [sp, #12]
+  5c:	add	w1, w1, w0
+  60:	mov	w0, #0xfff0                	// #65520
+  64:	cmp	w1, w0
+  68:	b.ls	88 <mod_add+0x40>  // b.plast
+  6c:	ldrh	w0, [sp, #14]
+  70:	ldrh	w1, [sp, #12]
+  74:	add	w0, w0, w1
+  78:	and	w0, w0, #0xffff
+  7c:	add	w0, w0, #0xf
+  80:	and	w0, w0, #0xffff
+  84:	b	98 <mod_add+0x50>
+  88:	ldrh	w0, [sp, #14]
+  8c:	ldrh	w1, [sp, #12]
+  90:	add	w0, w0, w1
+  94:	and	w0, w0, #0xffff
+  98:	add	sp, sp, #0x10
+  9c:	ret
+
+00000000000000a0 <adler32_write>:
+  a0:	stp	x29, x30, [sp, #-64]!
+  a4:	mov	x29, sp
+  a8:	str	x0, [sp, #40]
+  ac:	str	x1, [sp, #32]
+  b0:	str	x2, [sp, #24]
+  b4:	ldr	x0, [sp, #40]
+  b8:	str	x0, [sp, #48]
+  bc:	ldr	x0, [sp, #32]
+  c0:	str	x0, [sp, #56]
+  c4:	b	134 <adler32_write+0x94>
+  c8:	ldr	x0, [sp, #48]
+  cc:	ldrh	w2, [x0]
+  d0:	ldr	x0, [sp, #56]
+  d4:	ldrb	w0, [x0]
+  d8:	and	w0, w0, #0xffff
+  dc:	mov	w1, w0
+  e0:	mov	w0, w2
+  e4:	bl	48 <mod_add>
+  e8:	and	w1, w0, #0xffff
+  ec:	ldr	x0, [sp, #48]
+  f0:	strh	w1, [x0]
+  f4:	ldr	x0, [sp, #48]
+  f8:	ldrh	w2, [x0]
+  fc:	ldr	x0, [sp, #48]
+ 100:	ldrh	w0, [x0, #2]
+ 104:	mov	w1, w0
+ 108:	mov	w0, w2
+ 10c:	bl	48 <mod_add>
+ 110:	and	w1, w0, #0xffff
+ 114:	ldr	x0, [sp, #48]
+ 118:	strh	w1, [x0, #2]
+ 11c:	ldr	x0, [sp, #24]
+ 120:	sub	x0, x0, #0x1
+ 124:	str	x0, [sp, #24]
+ 128:	ldr	x0, [sp, #56]
+ 12c:	add	x0, x0, #0x1
+ 130:	str	x0, [sp, #56]
+ 134:	ldr	x0, [sp, #24]
+ 138:	cmp	x0, #0x0
+ 13c:	b.ne	c8 <adler32_write+0x28>  // b.any
+ 140:	nop
+ 144:	nop
+ 148:	ldp	x29, x30, [sp], #64
+ 14c:	ret
+
+0000000000000150 <adler32_final>:
+ 150:	sub	sp, sp, #0x10
+ 154:	str	x0, [sp, #8]
+ 158:	nop
+ 15c:	add	sp, sp, #0x10
+ 160:	ret
+
+0000000000000164 <adler32_read>:
+ 164:	stp	x29, x30, [sp, #-48]!
+ 168:	mov	x29, sp
+ 16c:	str	x0, [sp, #24]
+ 170:	ldr	x0, [sp, #24]
+ 174:	str	x0, [sp, #40]
+ 178:	ldr	x0, [sp, #40]
+ 17c:	ldrh	w1, [x0]
+ 180:	mov	w0, #0xfff1                	// #65521
+ 184:	cmp	w1, w0
+ 188:	b.ls	1a4 <adler32_read+0x40>  // b.plast
+ 18c:	ldr	x0, [sp, #40]
+ 190:	ldrh	w0, [x0]
+ 194:	add	w0, w0, #0xf
+ 198:	and	w1, w0, #0xffff
+ 19c:	ldr	x0, [sp, #40]
+ 1a0:	strh	w1, [x0]
+ 1a4:	ldr	x0, [sp, #40]
+ 1a8:	ldrh	w1, [x0, #2]
+ 1ac:	mov	w0, #0xfff1                	// #65521
+ 1b0:	cmp	w1, w0
+ 1b4:	b.ls	1d0 <adler32_read+0x6c>  // b.plast
+ 1b8:	ldr	x0, [sp, #40]
+ 1bc:	ldrh	w0, [x0, #2]
+ 1c0:	add	w0, w0, #0xf
+ 1c4:	and	w1, w0, #0xffff
+ 1c8:	ldr	x0, [sp, #40]
+ 1cc:	strh	w1, [x0, #2]
+ 1d0:	ldr	x0, [sp, #40]
+ 1d4:	ldrh	w0, [x0]
+ 1d8:	mov	w1, w0
+ 1dc:	ldr	x0, [sp, #40]
+ 1e0:	ldrh	w0, [x0, #2]
+ 1e4:	lsl	w0, w0, #16
+ 1e8:	orr	w0, w1, w0
+ 1ec:	bl	0 <grub_swap_bytes32>
+ 1f0:	mov	w1, w0
+ 1f4:	ldr	x0, [sp, #40]
+ 1f8:	str	w1, [x0, #4]
+ 1fc:	ldr	x0, [sp, #40]
+ 200:	add	x0, x0, #0x4
+ 204:	ldp	x29, x30, [sp], #48
+ 208:	ret
+
+000000000000020c <grub_mod_init>:
+ 20c:	stp	x29, x30, [sp, #-32]!
+ 210:	mov	x29, sp
+ 214:	str	x0, [sp, #24]
+ 218:	adrp	x0, 0 <grub_swap_bytes32>
+ 21c:	add	x0, x0, #0x0
+ 220:	ldr	x0, [x0]
+ 224:	bl	0 <grub_md_register>
+ 228:	nop
+ 22c:	ldp	x29, x30, [sp], #32
+ 230:	ret
+ 234:	nop
+	...
+
+0000000000000240 <grub_mod_fini>:
+ 240:	stp	x29, x30, [sp, #-16]!
+ 244:	mov	x29, sp
+ 248:	adrp	x0, 0 <grub_swap_bytes32>
+ 24c:	add	x0, x0, #0x0
+ 250:	ldr	x0, [x0]
+ 254:	bl	0 <grub_md_unregister>
+ 258:	nop
+ 25c:	ldp	x29, x30, [sp], #16
+ 260:	ret
+ 264:	nop
+	...

@@ -1,0 +1,1143 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//video.mod_gcc_-O3:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_video_restore>:
+       0:	stp	x29, x30, [sp, #-32]!
+       4:	adrp	x1, 0 <grub_video_restore>
+       8:	mov	w0, #0x0                   	// #0
+       c:	mov	x29, sp
+      10:	str	x19, [sp, #16]
+      14:	ldr	x19, [x1]
+      18:	ldr	x1, [x19]
+      1c:	cbz	x1, 3c <grub_video_restore+0x3c>
+      20:	ldr	x0, [x1, #40]
+      24:	blr	x0
+      28:	adrp	x0, 0 <grub_video_restore>
+      2c:	ldr	x0, [x0]
+      30:	ldr	w0, [x0]
+      34:	cbnz	w0, 3c <grub_video_restore+0x3c>
+      38:	str	xzr, [x19]
+      3c:	ldr	x19, [sp, #16]
+      40:	ldp	x29, x30, [sp], #32
+      44:	ret
+	...
+
+0000000000000058 <grub_video_get_info>:
+      58:	adrp	x2, 0 <grub_video_restore>
+      5c:	ldr	x2, [x2]
+      60:	ldr	x2, [x2]
+      64:	cbz	x2, 8c <grub_video_get_info+0x34>
+      68:	cbz	x0, 78 <grub_video_get_info+0x20>
+      6c:	ldr	x1, [x2, #56]
+      70:	mov	x16, x1
+      74:	br	x16
+      78:	adrp	x0, 0 <grub_video_restore>
+      7c:	ldr	x0, [x0]
+      80:	str	wzr, [x0]
+      84:	mov	w0, #0x0                   	// #0
+      88:	ret
+      8c:	adrp	x1, 0 <grub_video_restore>
+      90:	mov	w0, #0xd                   	// #13
+      94:	ldr	x1, [x1]
+      98:	b	0 <grub_error>
+      9c:	nop
+	...
+
+00000000000000b8 <grub_video_get_driver_id>:
+      b8:	adrp	x0, 0 <grub_video_restore>
+      bc:	ldr	x0, [x0]
+      c0:	ldr	x0, [x0]
+      c4:	cbz	x0, d0 <grub_video_get_driver_id+0x18>
+      c8:	ldr	w0, [x0, #24]
+      cc:	ret
+      d0:	mov	w0, #0x0                   	// #0
+      d4:	ret
+	...
+
+00000000000000e0 <grub_video_get_info_and_fini>:
+      e0:	stp	x29, x30, [sp, #-32]!
+      e4:	adrp	x2, 0 <grub_video_restore>
+      e8:	mov	x29, sp
+      ec:	str	x19, [sp, #16]
+      f0:	ldr	x19, [x2]
+      f4:	ldr	x2, [x19]
+      f8:	cbz	x2, 118 <grub_video_get_info_and_fini+0x38>
+      fc:	ldr	x2, [x2, #64]
+     100:	blr	x2
+     104:	cbnz	w0, 10c <grub_video_get_info_and_fini+0x2c>
+     108:	str	xzr, [x19]
+     10c:	ldr	x19, [sp, #16]
+     110:	ldp	x29, x30, [sp], #32
+     114:	ret
+     118:	adrp	x1, 0 <grub_video_restore>
+     11c:	mov	w0, #0xd                   	// #13
+     120:	ldr	x19, [sp, #16]
+     124:	ldp	x29, x30, [sp], #32
+     128:	ldr	x1, [x1]
+     12c:	b	0 <grub_error>
+	...
+
+0000000000000140 <grub_video_get_blit_format>:
+     140:	mov	x1, x0
+     144:	ldr	w0, [x0, #12]
+     148:	cmp	w0, #0x20
+     14c:	b.eq	198 <grub_video_get_blit_format+0x58>  // b.none
+     150:	cmp	w0, #0x18
+     154:	b.eq	178 <grub_video_get_blit_format+0x38>  // b.none
+     158:	cmp	w0, #0x10
+     15c:	b.eq	234 <grub_video_get_blit_format+0xf4>  // b.none
+     160:	cmp	w0, #0x1
+     164:	b.eq	2ec <grub_video_get_blit_format+0x1ac>  // b.none
+     168:	cmp	w0, #0x8
+     16c:	mov	w0, #0x8                   	// #8
+     170:	b.hi	184 <grub_video_get_blit_format+0x44>  // b.pmore
+     174:	ret
+     178:	ldr	w0, [x1, #36]
+     17c:	cmp	w0, #0x8
+     180:	b.eq	1ec <grub_video_get_blit_format+0xac>  // b.none
+     184:	ldr	w1, [x1, #60]
+     188:	mov	w0, #0x3                   	// #3
+     18c:	cmp	w1, #0x0
+     190:	csel	w0, wzr, w0, ne  // ne = any
+     194:	ret
+     198:	ldr	w0, [x1, #36]
+     19c:	cmp	w0, #0x8
+     1a0:	b.ne	184 <grub_video_get_blit_format+0x44>  // b.any
+     1a4:	ldr	w0, [x1, #40]
+     1a8:	cmp	w0, #0x10
+     1ac:	b.eq	2b8 <grub_video_get_blit_format+0x178>  // b.none
+     1b0:	cbnz	w0, 184 <grub_video_get_blit_format+0x44>
+     1b4:	ldr	w0, [x1, #44]
+     1b8:	cmp	w0, #0x8
+     1bc:	b.ne	184 <grub_video_get_blit_format+0x44>  // b.any
+     1c0:	ldr	w0, [x1, #48]
+     1c4:	cmp	w0, #0x8
+     1c8:	b.ne	184 <grub_video_get_blit_format+0x44>  // b.any
+     1cc:	ldr	w0, [x1, #52]
+     1d0:	cmp	w0, #0x8
+     1d4:	b.ne	184 <grub_video_get_blit_format+0x44>  // b.any
+     1d8:	ldr	w2, [x1, #56]
+     1dc:	mov	w0, #0x1                   	// #1
+     1e0:	cmp	w2, #0x10
+     1e4:	b.ne	184 <grub_video_get_blit_format+0x44>  // b.any
+     1e8:	b	174 <grub_video_get_blit_format+0x34>
+     1ec:	ldr	w0, [x1, #40]
+     1f0:	cmp	w0, #0x10
+     1f4:	b.eq	2f4 <grub_video_get_blit_format+0x1b4>  // b.none
+     1f8:	cbnz	w0, 184 <grub_video_get_blit_format+0x44>
+     1fc:	ldr	w0, [x1, #44]
+     200:	cmp	w0, #0x8
+     204:	b.ne	184 <grub_video_get_blit_format+0x44>  // b.any
+     208:	ldr	w0, [x1, #48]
+     20c:	cmp	w0, #0x8
+     210:	b.ne	184 <grub_video_get_blit_format+0x44>  // b.any
+     214:	ldr	w0, [x1, #52]
+     218:	cmp	w0, #0x8
+     21c:	b.ne	184 <grub_video_get_blit_format+0x44>  // b.any
+     220:	ldr	w0, [x1, #56]
+     224:	cmp	w0, #0x10
+     228:	b.ne	184 <grub_video_get_blit_format+0x44>  // b.any
+     22c:	mov	w0, #0x4                   	// #4
+     230:	ret
+     234:	ldr	w0, [x1, #36]
+     238:	cmp	w0, #0x5
+     23c:	b.ne	184 <grub_video_get_blit_format+0x44>  // b.any
+     240:	ldr	w0, [x1, #40]
+     244:	cmp	w0, #0xb
+     248:	b.eq	284 <grub_video_get_blit_format+0x144>  // b.none
+     24c:	cbnz	w0, 184 <grub_video_get_blit_format+0x44>
+     250:	ldr	w0, [x1, #44]
+     254:	cmp	w0, #0x6
+     258:	b.ne	184 <grub_video_get_blit_format+0x44>  // b.any
+     25c:	ldr	w2, [x1, #48]
+     260:	cmp	w2, #0x5
+     264:	b.ne	184 <grub_video_get_blit_format+0x44>  // b.any
+     268:	ldr	w2, [x1, #52]
+     26c:	cmp	w2, #0x5
+     270:	b.ne	184 <grub_video_get_blit_format+0x44>  // b.any
+     274:	ldr	w2, [x1, #56]
+     278:	cmp	w2, #0xb
+     27c:	b.ne	184 <grub_video_get_blit_format+0x44>  // b.any
+     280:	b	174 <grub_video_get_blit_format+0x34>
+     284:	ldr	w0, [x1, #44]
+     288:	cmp	w0, #0x6
+     28c:	b.ne	184 <grub_video_get_blit_format+0x44>  // b.any
+     290:	ldr	w0, [x1, #48]
+     294:	cmp	w0, #0x5
+     298:	b.ne	184 <grub_video_get_blit_format+0x44>  // b.any
+     29c:	ldr	w0, [x1, #52]
+     2a0:	cmp	w0, #0x5
+     2a4:	b.ne	184 <grub_video_get_blit_format+0x44>  // b.any
+     2a8:	ldr	w0, [x1, #56]
+     2ac:	cbnz	w0, 184 <grub_video_get_blit_format+0x44>
+     2b0:	mov	w0, #0x7                   	// #7
+     2b4:	ret
+     2b8:	ldr	w0, [x1, #44]
+     2bc:	cmp	w0, #0x8
+     2c0:	b.ne	184 <grub_video_get_blit_format+0x44>  // b.any
+     2c4:	ldr	w0, [x1, #48]
+     2c8:	cmp	w0, #0x8
+     2cc:	b.ne	184 <grub_video_get_blit_format+0x44>  // b.any
+     2d0:	ldr	w0, [x1, #52]
+     2d4:	cmp	w0, #0x8
+     2d8:	b.ne	184 <grub_video_get_blit_format+0x44>  // b.any
+     2dc:	ldr	w2, [x1, #56]
+     2e0:	mov	w0, #0x2                   	// #2
+     2e4:	cbnz	w2, 184 <grub_video_get_blit_format+0x44>
+     2e8:	b	174 <grub_video_get_blit_format+0x34>
+     2ec:	mov	w0, #0xa                   	// #10
+     2f0:	ret
+     2f4:	ldr	w0, [x1, #44]
+     2f8:	cmp	w0, #0x8
+     2fc:	b.ne	184 <grub_video_get_blit_format+0x44>  // b.any
+     300:	ldr	w0, [x1, #48]
+     304:	cmp	w0, #0x8
+     308:	b.ne	184 <grub_video_get_blit_format+0x44>  // b.any
+     30c:	ldr	w0, [x1, #52]
+     310:	cmp	w0, #0x8
+     314:	b.ne	184 <grub_video_get_blit_format+0x44>  // b.any
+     318:	ldr	w2, [x1, #56]
+     31c:	mov	w0, #0x5                   	// #5
+     320:	cbnz	w2, 184 <grub_video_get_blit_format+0x44>
+     324:	b	174 <grub_video_get_blit_format+0x34>
+
+0000000000000328 <grub_video_set_palette>:
+     328:	adrp	x3, 0 <grub_video_restore>
+     32c:	ldr	x3, [x3]
+     330:	ldr	x3, [x3]
+     334:	cbz	x3, 344 <grub_video_set_palette+0x1c>
+     338:	ldr	x3, [x3, #72]
+     33c:	mov	x16, x3
+     340:	br	x16
+     344:	adrp	x1, 0 <grub_video_restore>
+     348:	mov	w0, #0xd                   	// #13
+     34c:	ldr	x1, [x1]
+     350:	b	0 <grub_error>
+     354:	nop
+	...
+
+0000000000000368 <grub_video_get_palette>:
+     368:	adrp	x3, 0 <grub_video_restore>
+     36c:	ldr	x3, [x3]
+     370:	ldr	x3, [x3]
+     374:	cbz	x3, 384 <grub_video_get_palette+0x1c>
+     378:	ldr	x3, [x3, #80]
+     37c:	mov	x16, x3
+     380:	br	x16
+     384:	adrp	x1, 0 <grub_video_restore>
+     388:	mov	w0, #0xd                   	// #13
+     38c:	ldr	x1, [x1]
+     390:	b	0 <grub_error>
+     394:	nop
+	...
+
+00000000000003a8 <grub_video_set_viewport>:
+     3a8:	adrp	x4, 0 <grub_video_restore>
+     3ac:	ldr	x4, [x4]
+     3b0:	ldr	x4, [x4]
+     3b4:	cbz	x4, 3c4 <grub_video_set_viewport+0x1c>
+     3b8:	ldr	x4, [x4, #88]
+     3bc:	mov	x16, x4
+     3c0:	br	x16
+     3c4:	adrp	x1, 0 <grub_video_restore>
+     3c8:	mov	w0, #0xd                   	// #13
+     3cc:	ldr	x1, [x1]
+     3d0:	b	0 <grub_error>
+     3d4:	nop
+	...
+
+00000000000003e8 <grub_video_get_viewport>:
+     3e8:	adrp	x4, 0 <grub_video_restore>
+     3ec:	ldr	x4, [x4]
+     3f0:	ldr	x4, [x4]
+     3f4:	cbz	x4, 404 <grub_video_get_viewport+0x1c>
+     3f8:	ldr	x4, [x4, #96]
+     3fc:	mov	x16, x4
+     400:	br	x16
+     404:	adrp	x1, 0 <grub_video_restore>
+     408:	mov	w0, #0xd                   	// #13
+     40c:	ldr	x1, [x1]
+     410:	b	0 <grub_error>
+     414:	nop
+	...
+
+0000000000000428 <grub_video_set_region>:
+     428:	adrp	x4, 0 <grub_video_restore>
+     42c:	ldr	x4, [x4]
+     430:	ldr	x4, [x4]
+     434:	cbz	x4, 444 <grub_video_set_region+0x1c>
+     438:	ldr	x4, [x4, #104]
+     43c:	mov	x16, x4
+     440:	br	x16
+     444:	adrp	x1, 0 <grub_video_restore>
+     448:	mov	w0, #0xd                   	// #13
+     44c:	ldr	x1, [x1]
+     450:	b	0 <grub_error>
+     454:	nop
+	...
+
+0000000000000468 <grub_video_get_region>:
+     468:	adrp	x4, 0 <grub_video_restore>
+     46c:	ldr	x4, [x4]
+     470:	ldr	x4, [x4]
+     474:	cbz	x4, 484 <grub_video_get_region+0x1c>
+     478:	ldr	x4, [x4, #112]
+     47c:	mov	x16, x4
+     480:	br	x16
+     484:	adrp	x1, 0 <grub_video_restore>
+     488:	mov	w0, #0xd                   	// #13
+     48c:	ldr	x1, [x1]
+     490:	b	0 <grub_error>
+     494:	nop
+	...
+
+00000000000004a8 <grub_video_set_area_status>:
+     4a8:	adrp	x1, 0 <grub_video_restore>
+     4ac:	ldr	x1, [x1]
+     4b0:	ldr	x1, [x1]
+     4b4:	cbz	x1, 4c4 <grub_video_set_area_status+0x1c>
+     4b8:	ldr	x1, [x1, #120]
+     4bc:	mov	x16, x1
+     4c0:	br	x16
+     4c4:	adrp	x1, 0 <grub_video_restore>
+     4c8:	mov	w0, #0xd                   	// #13
+     4cc:	ldr	x1, [x1]
+     4d0:	b	0 <grub_error>
+     4d4:	nop
+	...
+
+00000000000004e8 <grub_video_get_area_status>:
+     4e8:	adrp	x1, 0 <grub_video_restore>
+     4ec:	ldr	x1, [x1]
+     4f0:	ldr	x1, [x1]
+     4f4:	cbz	x1, 504 <grub_video_get_area_status+0x1c>
+     4f8:	ldr	x1, [x1, #128]
+     4fc:	mov	x16, x1
+     500:	br	x16
+     504:	adrp	x1, 0 <grub_video_restore>
+     508:	mov	w0, #0xd                   	// #13
+     50c:	ldr	x1, [x1]
+     510:	b	0 <grub_error>
+     514:	nop
+	...
+
+0000000000000528 <grub_video_map_color>:
+     528:	adrp	x1, 0 <grub_video_restore>
+     52c:	ldr	x1, [x1]
+     530:	ldr	x1, [x1]
+     534:	cbz	x1, 544 <grub_video_map_color+0x1c>
+     538:	ldr	x1, [x1, #136]
+     53c:	mov	x16, x1
+     540:	br	x16
+     544:	mov	w0, #0x0                   	// #0
+     548:	ret
+     54c:	nop
+	...
+
+0000000000000558 <grub_video_map_rgb>:
+     558:	adrp	x3, 0 <grub_video_restore>
+     55c:	and	w0, w0, #0xff
+     560:	and	w1, w1, #0xff
+     564:	and	w2, w2, #0xff
+     568:	ldr	x3, [x3]
+     56c:	ldr	x3, [x3]
+     570:	cbz	x3, 580 <grub_video_map_rgb+0x28>
+     574:	ldr	x3, [x3, #144]
+     578:	mov	x16, x3
+     57c:	br	x16
+     580:	mov	w0, #0x0                   	// #0
+     584:	ret
+	...
+
+0000000000000590 <grub_video_map_rgba>:
+     590:	adrp	x4, 0 <grub_video_restore>
+     594:	and	w0, w0, #0xff
+     598:	and	w1, w1, #0xff
+     59c:	and	w2, w2, #0xff
+     5a0:	ldr	x4, [x4]
+     5a4:	and	w3, w3, #0xff
+     5a8:	ldr	x4, [x4]
+     5ac:	cbz	x4, 5bc <grub_video_map_rgba+0x2c>
+     5b0:	ldr	x4, [x4, #152]
+     5b4:	mov	x16, x4
+     5b8:	br	x16
+     5bc:	mov	w0, #0x0                   	// #0
+     5c0:	ret
+     5c4:	nop
+	...
+
+00000000000005d0 <grub_video_unmap_color>:
+     5d0:	adrp	x5, 0 <grub_video_restore>
+     5d4:	ldr	x5, [x5]
+     5d8:	ldr	x5, [x5]
+     5dc:	cbz	x5, 5ec <grub_video_unmap_color+0x1c>
+     5e0:	ldr	x5, [x5, #160]
+     5e4:	mov	x16, x5
+     5e8:	br	x16
+     5ec:	adrp	x1, 0 <grub_video_restore>
+     5f0:	mov	w0, #0xd                   	// #13
+     5f4:	ldr	x1, [x1]
+     5f8:	b	0 <grub_error>
+     5fc:	nop
+	...
+
+0000000000000610 <grub_video_fill_rect>:
+     610:	adrp	x5, 0 <grub_video_restore>
+     614:	ldr	x5, [x5]
+     618:	ldr	x5, [x5]
+     61c:	cbz	x5, 62c <grub_video_fill_rect+0x1c>
+     620:	ldr	x5, [x5, #168]
+     624:	mov	x16, x5
+     628:	br	x16
+     62c:	adrp	x1, 0 <grub_video_restore>
+     630:	mov	w0, #0xd                   	// #13
+     634:	ldr	x1, [x1]
+     638:	b	0 <grub_error>
+     63c:	nop
+	...
+
+0000000000000650 <grub_video_blit_bitmap>:
+     650:	adrp	x8, 0 <grub_video_restore>
+     654:	ldr	x8, [x8]
+     658:	ldr	x8, [x8]
+     65c:	cbz	x8, 66c <grub_video_blit_bitmap+0x1c>
+     660:	ldr	x8, [x8, #176]
+     664:	mov	x16, x8
+     668:	br	x16
+     66c:	adrp	x1, 0 <grub_video_restore>
+     670:	mov	w0, #0xd                   	// #13
+     674:	ldr	x1, [x1]
+     678:	b	0 <grub_error>
+     67c:	nop
+	...
+
+0000000000000690 <grub_video_blit_render_target>:
+     690:	adrp	x8, 0 <grub_video_restore>
+     694:	ldr	x8, [x8]
+     698:	ldr	x8, [x8]
+     69c:	cbz	x8, 6ac <grub_video_blit_render_target+0x1c>
+     6a0:	ldr	x8, [x8, #184]
+     6a4:	mov	x16, x8
+     6a8:	br	x16
+     6ac:	adrp	x1, 0 <grub_video_restore>
+     6b0:	mov	w0, #0xd                   	// #13
+     6b4:	ldr	x1, [x1]
+     6b8:	b	0 <grub_error>
+     6bc:	nop
+	...
+
+00000000000006d0 <grub_video_scroll>:
+     6d0:	adrp	x3, 0 <grub_video_restore>
+     6d4:	ldr	x3, [x3]
+     6d8:	ldr	x3, [x3]
+     6dc:	cbz	x3, 6ec <grub_video_scroll+0x1c>
+     6e0:	ldr	x3, [x3, #192]
+     6e4:	mov	x16, x3
+     6e8:	br	x16
+     6ec:	adrp	x1, 0 <grub_video_restore>
+     6f0:	mov	w0, #0xd                   	// #13
+     6f4:	ldr	x1, [x1]
+     6f8:	b	0 <grub_error>
+     6fc:	nop
+	...
+
+0000000000000710 <grub_video_swap_buffers>:
+     710:	adrp	x0, 0 <grub_video_restore>
+     714:	ldr	x0, [x0]
+     718:	ldr	x0, [x0]
+     71c:	cbz	x0, 72c <grub_video_swap_buffers+0x1c>
+     720:	ldr	x0, [x0, #200]
+     724:	mov	x16, x0
+     728:	br	x16
+     72c:	adrp	x1, 0 <grub_video_restore>
+     730:	mov	w0, #0xd                   	// #13
+     734:	ldr	x1, [x1]
+     738:	b	0 <grub_error>
+     73c:	nop
+	...
+
+0000000000000750 <grub_video_create_render_target>:
+     750:	adrp	x4, 0 <grub_video_restore>
+     754:	ldr	x4, [x4]
+     758:	ldr	x4, [x4]
+     75c:	str	xzr, [x0]
+     760:	cbz	x4, 770 <grub_video_create_render_target+0x20>
+     764:	ldr	x4, [x4, #208]
+     768:	mov	x16, x4
+     76c:	br	x16
+     770:	adrp	x1, 0 <grub_video_restore>
+     774:	mov	w0, #0xd                   	// #13
+     778:	ldr	x1, [x1]
+     77c:	b	0 <grub_error>
+	...
+
+0000000000000790 <grub_video_delete_render_target>:
+     790:	cbz	x0, 7b0 <grub_video_delete_render_target+0x20>
+     794:	adrp	x1, 0 <grub_video_restore>
+     798:	ldr	x1, [x1]
+     79c:	ldr	x1, [x1]
+     7a0:	cbz	x1, 7b8 <grub_video_delete_render_target+0x28>
+     7a4:	ldr	x1, [x1, #216]
+     7a8:	mov	x16, x1
+     7ac:	br	x16
+     7b0:	mov	w0, #0x0                   	// #0
+     7b4:	ret
+     7b8:	adrp	x1, 0 <grub_video_restore>
+     7bc:	mov	w0, #0xd                   	// #13
+     7c0:	ldr	x1, [x1]
+     7c4:	b	0 <grub_error>
+	...
+
+00000000000007d8 <grub_video_set_active_render_target>:
+     7d8:	adrp	x1, 0 <grub_video_restore>
+     7dc:	ldr	x1, [x1]
+     7e0:	ldr	x1, [x1]
+     7e4:	cbz	x1, 7f4 <grub_video_set_active_render_target+0x1c>
+     7e8:	ldr	x1, [x1, #224]
+     7ec:	mov	x16, x1
+     7f0:	br	x16
+     7f4:	adrp	x1, 0 <grub_video_restore>
+     7f8:	mov	w0, #0xd                   	// #13
+     7fc:	ldr	x1, [x1]
+     800:	b	0 <grub_error>
+     804:	nop
+	...
+
+0000000000000818 <grub_video_get_active_render_target>:
+     818:	adrp	x1, 0 <grub_video_restore>
+     81c:	ldr	x1, [x1]
+     820:	ldr	x1, [x1]
+     824:	cbz	x1, 834 <grub_video_get_active_render_target+0x1c>
+     828:	ldr	x1, [x1, #232]
+     82c:	mov	x16, x1
+     830:	br	x16
+     834:	adrp	x1, 0 <grub_video_restore>
+     838:	mov	w0, #0xd                   	// #13
+     83c:	ldr	x1, [x1]
+     840:	b	0 <grub_error>
+     844:	nop
+	...
+
+0000000000000858 <grub_video_edid_checksum>:
+     858:	neg	x2, x0
+     85c:	ands	w2, w2, #0x7
+     860:	b.eq	bbc <grub_video_edid_checksum+0x364>  // b.none
+     864:	ldrb	w1, [x0]
+     868:	cmp	w2, #0x1
+     86c:	b.eq	bb0 <grub_video_edid_checksum+0x358>  // b.none
+     870:	ldrb	w3, [x0, #1]
+     874:	cmp	w2, #0x2
+     878:	add	w1, w1, w3
+     87c:	and	w1, w1, #0xff
+     880:	b.eq	bcc <grub_video_edid_checksum+0x374>  // b.none
+     884:	ldrb	w3, [x0, #2]
+     888:	cmp	w2, #0x3
+     88c:	add	w1, w1, w3
+     890:	and	w1, w1, #0xff
+     894:	b.eq	bd8 <grub_video_edid_checksum+0x380>  // b.none
+     898:	ldrb	w3, [x0, #3]
+     89c:	cmp	w2, #0x4
+     8a0:	add	w1, w1, w3
+     8a4:	and	w1, w1, #0xff
+     8a8:	b.eq	ba4 <grub_video_edid_checksum+0x34c>  // b.none
+     8ac:	ldrb	w3, [x0, #4]
+     8b0:	cmp	w2, #0x5
+     8b4:	add	w1, w1, w3
+     8b8:	and	w1, w1, #0xff
+     8bc:	b.eq	be4 <grub_video_edid_checksum+0x38c>  // b.none
+     8c0:	ldrb	w3, [x0, #5]
+     8c4:	cmp	w2, #0x7
+     8c8:	add	w1, w1, w3
+     8cc:	and	w1, w1, #0xff
+     8d0:	b.ne	bf0 <grub_video_edid_checksum+0x398>  // b.any
+     8d4:	ldrb	w3, [x0, #6]
+     8d8:	mov	w8, w2
+     8dc:	mov	w6, #0x79                  	// #121
+     8e0:	add	w1, w1, w3
+     8e4:	and	w1, w1, #0xff
+     8e8:	mov	w5, w2
+     8ec:	mov	w7, #0x80                  	// #128
+     8f0:	add	x5, x0, x5
+     8f4:	sub	w7, w7, w2
+     8f8:	ldr	x2, [x0, w2, uxtw]
+     8fc:	lsr	w9, w7, #3
+     900:	ldp	x4, x10, [x5, #8]
+     904:	and	x3, x2, #0x7f7f7f7f7f7f7f7f
+     908:	cmp	w9, #0x10
+     90c:	and	x11, x4, #0x7f7f7f7f7f7f7f7f
+     910:	eor	x4, x2, x4
+     914:	add	x3, x3, x11
+     918:	and	x4, x4, #0x8080808080808080
+     91c:	and	x2, x3, #0x7f7f7f7f7f7f7f7f
+     920:	eor	x4, x3, x4
+     924:	and	x3, x10, #0x7f7f7f7f7f7f7f7f
+     928:	eor	x4, x4, x10
+     92c:	add	x2, x2, x3
+     930:	and	x4, x4, #0x8080808080808080
+     934:	ldp	x3, x10, [x5, #24]
+     938:	eor	x4, x2, x4
+     93c:	and	x2, x2, #0x7f7f7f7f7f7f7f7f
+     940:	eor	x4, x4, x3
+     944:	and	x3, x3, #0x7f7f7f7f7f7f7f7f
+     948:	add	x3, x2, x3
+     94c:	and	x4, x4, #0x8080808080808080
+     950:	and	x2, x3, #0x7f7f7f7f7f7f7f7f
+     954:	eor	x4, x3, x4
+     958:	and	x3, x10, #0x7f7f7f7f7f7f7f7f
+     95c:	eor	x4, x4, x10
+     960:	add	x2, x2, x3
+     964:	and	x4, x4, #0x8080808080808080
+     968:	ldp	x3, x10, [x5, #40]
+     96c:	eor	x4, x2, x4
+     970:	and	x2, x2, #0x7f7f7f7f7f7f7f7f
+     974:	eor	x4, x4, x3
+     978:	and	x3, x3, #0x7f7f7f7f7f7f7f7f
+     97c:	add	x3, x2, x3
+     980:	and	x4, x4, #0x8080808080808080
+     984:	and	x2, x3, #0x7f7f7f7f7f7f7f7f
+     988:	eor	x4, x3, x4
+     98c:	and	x3, x10, #0x7f7f7f7f7f7f7f7f
+     990:	eor	x4, x4, x10
+     994:	add	x2, x2, x3
+     998:	and	x4, x4, #0x8080808080808080
+     99c:	ldp	x3, x10, [x5, #56]
+     9a0:	eor	x4, x2, x4
+     9a4:	and	x2, x2, #0x7f7f7f7f7f7f7f7f
+     9a8:	eor	x4, x4, x3
+     9ac:	and	x3, x3, #0x7f7f7f7f7f7f7f7f
+     9b0:	add	x3, x2, x3
+     9b4:	and	x4, x4, #0x8080808080808080
+     9b8:	and	x2, x3, #0x7f7f7f7f7f7f7f7f
+     9bc:	eor	x4, x3, x4
+     9c0:	and	x3, x10, #0x7f7f7f7f7f7f7f7f
+     9c4:	eor	x4, x4, x10
+     9c8:	add	x2, x2, x3
+     9cc:	and	x4, x4, #0x8080808080808080
+     9d0:	ldp	x3, x10, [x5, #72]
+     9d4:	eor	x4, x2, x4
+     9d8:	and	x2, x2, #0x7f7f7f7f7f7f7f7f
+     9dc:	eor	x4, x4, x3
+     9e0:	and	x3, x3, #0x7f7f7f7f7f7f7f7f
+     9e4:	add	x3, x2, x3
+     9e8:	and	x4, x4, #0x8080808080808080
+     9ec:	and	x2, x3, #0x7f7f7f7f7f7f7f7f
+     9f0:	eor	x3, x3, x4
+     9f4:	and	x4, x10, #0x7f7f7f7f7f7f7f7f
+     9f8:	eor	x3, x3, x10
+     9fc:	add	x2, x2, x4
+     a00:	and	x3, x3, #0x8080808080808080
+     a04:	ldp	x4, x10, [x5, #88]
+     a08:	eor	x3, x2, x3
+     a0c:	and	x2, x2, #0x7f7f7f7f7f7f7f7f
+     a10:	eor	x3, x3, x4
+     a14:	and	x4, x4, #0x7f7f7f7f7f7f7f7f
+     a18:	add	x2, x2, x4
+     a1c:	and	x3, x3, #0x8080808080808080
+     a20:	and	x4, x2, #0x7f7f7f7f7f7f7f7f
+     a24:	eor	x2, x2, x3
+     a28:	and	x3, x10, #0x7f7f7f7f7f7f7f7f
+     a2c:	eor	x2, x2, x10
+     a30:	add	x3, x4, x3
+     a34:	and	x2, x2, #0x8080808080808080
+     a38:	ldp	x4, x10, [x5, #104]
+     a3c:	eor	x2, x3, x2
+     a40:	and	x3, x3, #0x7f7f7f7f7f7f7f7f
+     a44:	eor	x2, x2, x4
+     a48:	and	x4, x4, #0x7f7f7f7f7f7f7f7f
+     a4c:	add	x4, x3, x4
+     a50:	and	x2, x2, #0x8080808080808080
+     a54:	and	x3, x4, #0x7f7f7f7f7f7f7f7f
+     a58:	eor	x4, x4, x2
+     a5c:	eor	x4, x4, x10
+     a60:	and	x2, x10, #0x7f7f7f7f7f7f7f7f
+     a64:	add	x2, x3, x2
+     a68:	and	x3, x4, #0x8080808080808080
+     a6c:	eor	x2, x2, x3
+     a70:	b.ne	a90 <grub_video_edid_checksum+0x238>  // b.any
+     a74:	ldr	x4, [x5, #120]
+     a78:	and	x3, x2, #0x7f7f7f7f7f7f7f7f
+     a7c:	and	x5, x4, #0x7f7f7f7f7f7f7f7f
+     a80:	eor	x2, x2, x4
+     a84:	and	x2, x2, #0x8080808080808080
+     a88:	add	x3, x3, x5
+     a8c:	eor	x2, x3, x2
+     a90:	ubfx	w3, w2, #8, #8
+     a94:	ubfx	x4, x2, #16, #8
+     a98:	add	w4, w4, w2, lsr #24
+     a9c:	add	w3, w3, w2
+     aa0:	ubfx	x5, x2, #32, #8
+     aa4:	ubfx	x9, x2, #40, #8
+     aa8:	add	w3, w3, w4
+     aac:	add	w5, w5, w9
+     ab0:	ubfx	x4, x2, #48, #8
+     ab4:	lsr	x2, x2, #56
+     ab8:	add	w3, w3, w5
+     abc:	add	w2, w4, w2
+     ac0:	add	w2, w3, w2
+     ac4:	and	w3, w7, #0xfffffff8
+     ac8:	add	w1, w1, w2
+     acc:	add	w8, w3, w8
+     ad0:	and	w2, w1, #0xff
+     ad4:	sub	w6, w6, w3
+     ad8:	cmp	w7, w3
+     adc:	b.eq	b7c <grub_video_edid_checksum+0x324>  // b.none
+     ae0:	ldrb	w3, [x0, w8, sxtw]
+     ae4:	cmp	w6, #0x1
+     ae8:	add	w1, w8, #0x1
+     aec:	add	w2, w2, w3
+     af0:	and	w2, w2, #0xff
+     af4:	b.eq	b7c <grub_video_edid_checksum+0x324>  // b.none
+     af8:	ldrb	w3, [x0, w1, sxtw]
+     afc:	cmp	w6, #0x2
+     b00:	add	w1, w8, #0x2
+     b04:	add	w2, w2, w3
+     b08:	and	w2, w2, #0xff
+     b0c:	b.eq	b7c <grub_video_edid_checksum+0x324>  // b.none
+     b10:	ldrb	w3, [x0, w1, sxtw]
+     b14:	cmp	w6, #0x3
+     b18:	add	w1, w8, #0x3
+     b1c:	add	w2, w2, w3
+     b20:	and	w2, w2, #0xff
+     b24:	b.eq	b7c <grub_video_edid_checksum+0x324>  // b.none
+     b28:	ldrb	w3, [x0, w1, sxtw]
+     b2c:	cmp	w6, #0x4
+     b30:	add	w1, w8, #0x4
+     b34:	add	w2, w2, w3
+     b38:	and	w2, w2, #0xff
+     b3c:	b.eq	b7c <grub_video_edid_checksum+0x324>  // b.none
+     b40:	ldrb	w3, [x0, w1, sxtw]
+     b44:	cmp	w6, #0x5
+     b48:	add	w1, w8, #0x5
+     b4c:	add	w2, w2, w3
+     b50:	and	w2, w2, #0xff
+     b54:	b.eq	b7c <grub_video_edid_checksum+0x324>  // b.none
+     b58:	ldrb	w1, [x0, w1, sxtw]
+     b5c:	add	w8, w8, #0x6
+     b60:	cmp	w6, #0x6
+     b64:	add	w2, w2, w1
+     b68:	and	w2, w2, #0xff
+     b6c:	b.eq	b7c <grub_video_edid_checksum+0x324>  // b.none
+     b70:	ldrb	w0, [x0, w8, sxtw]
+     b74:	add	w2, w2, w0
+     b78:	and	w2, w2, #0xff
+     b7c:	cbnz	w2, b94 <grub_video_edid_checksum+0x33c>
+     b80:	adrp	x1, 0 <grub_video_restore>
+     b84:	mov	w0, #0x0                   	// #0
+     b88:	ldr	x1, [x1]
+     b8c:	str	wzr, [x1]
+     b90:	ret
+     b94:	adrp	x1, 0 <grub_video_restore>
+     b98:	mov	w0, #0xd                   	// #13
+     b9c:	ldr	x1, [x1]
+     ba0:	b	0 <grub_error>
+     ba4:	mov	w8, w2
+     ba8:	mov	w6, #0x7c                  	// #124
+     bac:	b	8e8 <grub_video_edid_checksum+0x90>
+     bb0:	mov	w8, w2
+     bb4:	mov	w6, #0x7f                  	// #127
+     bb8:	b	8e8 <grub_video_edid_checksum+0x90>
+     bbc:	mov	w6, #0x80                  	// #128
+     bc0:	mov	w1, #0x0                   	// #0
+     bc4:	mov	w8, #0x0                   	// #0
+     bc8:	b	8e8 <grub_video_edid_checksum+0x90>
+     bcc:	mov	w8, w2
+     bd0:	mov	w6, #0x7e                  	// #126
+     bd4:	b	8e8 <grub_video_edid_checksum+0x90>
+     bd8:	mov	w8, w2
+     bdc:	mov	w6, #0x7d                  	// #125
+     be0:	b	8e8 <grub_video_edid_checksum+0x90>
+     be4:	mov	w8, w2
+     be8:	mov	w6, #0x7b                  	// #123
+     bec:	b	8e8 <grub_video_edid_checksum+0x90>
+     bf0:	mov	w6, #0x7a                  	// #122
+     bf4:	mov	w8, #0x6                   	// #6
+     bf8:	b	8e8 <grub_video_edid_checksum+0x90>
+     bfc:	nop
+	...
+
+0000000000000c10 <grub_video_edid_preferred_mode>:
+     c10:	ldrb	w3, [x0, #18]
+     c14:	cmp	w3, #0x1
+     c18:	b.ne	c6c <grub_video_edid_preferred_mode+0x5c>  // b.any
+     c1c:	ldrb	w3, [x0, #24]
+     c20:	tbz	w3, #1, c6c <grub_video_edid_preferred_mode+0x5c>
+     c24:	ldrh	w3, [x0, #54]
+     c28:	cbz	w3, c6c <grub_video_edid_preferred_mode+0x5c>
+     c2c:	ldrb	w3, [x0, #58]
+     c30:	ldrb	w4, [x0, #56]
+     c34:	lsl	w3, w3, #4
+     c38:	and	w3, w3, #0xf00
+     c3c:	orr	w3, w3, w4
+     c40:	str	w3, [x1]
+     c44:	ldrb	w3, [x0, #61]
+     c48:	ldrb	w4, [x0, #59]
+     c4c:	lsl	w0, w3, #4
+     c50:	and	w0, w0, #0xf00
+     c54:	orr	w0, w0, w4
+     c58:	str	w0, [x2]
+     c5c:	ldr	w1, [x1]
+     c60:	cmp	w1, #0x0
+     c64:	ccmp	w0, #0x0, #0x4, ne  // ne = any
+     c68:	b.ne	c7c <grub_video_edid_preferred_mode+0x6c>  // b.any
+     c6c:	adrp	x1, 0 <grub_video_restore>
+     c70:	mov	w0, #0xd                   	// #13
+     c74:	ldr	x1, [x1]
+     c78:	b	0 <grub_error>
+     c7c:	mov	w0, #0x0                   	// #0
+     c80:	ret
+     c84:	nop
+	...
+
+0000000000000c90 <grub_video_set_mode>:
+     c90:	stp	x29, x30, [sp, #-208]!
+     c94:	adrp	x3, 0 <grub_video_restore>
+     c98:	mov	x29, sp
+     c9c:	stp	x21, x22, [sp, #32]
+     ca0:	ldr	x22, [x3]
+     ca4:	stp	x19, x20, [sp, #16]
+     ca8:	mov	w20, w1
+     cac:	stp	x27, x28, [sp, #80]
+     cb0:	mov	w19, w2
+     cb4:	ldr	x1, [x22]
+     cb8:	cbz	x1, ccc <grub_video_set_mode+0x3c>
+     cbc:	ldr	w2, [x1, #24]
+     cc0:	mov	w27, #0x0                   	// #0
+     cc4:	cmp	w2, #0xd
+     cc8:	b.eq	e34 <grub_video_set_mode+0x1a4>  // b.none
+     ccc:	bl	0 <grub_strdup>
+     cd0:	mov	x21, x0
+     cd4:	cbz	x0, e4c <grub_video_set_mode+0x1bc>
+     cd8:	adrp	x1, 0 <grub_video_restore>
+     cdc:	and	w19, w19, w20
+     ce0:	mov	x2, #0x5                   	// #5
+     ce4:	ldr	x1, [x1]
+     ce8:	bl	0 <grub_memcmp>
+     cec:	cbnz	w0, e70 <grub_video_set_mode+0x1e0>
+     cf0:	ldr	x0, [x22]
+     cf4:	cbz	x0, d38 <grub_video_set_mode+0xa8>
+     cf8:	add	x0, sp, #0x80
+     cfc:	mov	x2, #0x4c                  	// #76
+     d00:	mov	w1, #0x0                   	// #0
+     d04:	bl	0 <grub_memset>
+     d08:	ldr	x0, [x22]
+     d0c:	cbz	x0, 114c <grub_video_set_mode+0x4bc>
+     d10:	ldr	x1, [x0, #56]
+     d14:	add	x0, sp, #0x80
+     d18:	blr	x1
+     d1c:	ldr	w1, [sp, #136]
+     d20:	and	w1, w20, w1
+     d24:	cbz	w0, eb0 <grub_video_set_mode+0x220>
+     d28:	adrp	x0, 0 <grub_video_restore>
+     d2c:	ldr	x0, [x0]
+     d30:	str	wzr, [x0]
+     d34:	b	d40 <grub_video_set_mode+0xb0>
+     d38:	tbz	w20, #6, eb8 <grub_video_set_mode+0x228>
+     d3c:	tbnz	w19, #6, eb8 <grub_video_set_mode+0x228>
+     d40:	ldrb	w0, [x21, #4]
+     d44:	add	x27, x21, #0x5
+     d48:	cbz	w0, 10a0 <grub_video_set_mode+0x410>
+     d4c:	stp	x23, x24, [sp, #48]
+     d50:	stp	x25, x26, [sp, #64]
+     d54:	ldr	x0, [x22]
+     d58:	cbz	x0, d7c <grub_video_set_mode+0xec>
+     d5c:	ldr	x0, [x0, #40]
+     d60:	blr	x0
+     d64:	adrp	x0, 0 <grub_video_restore>
+     d68:	ldr	x0, [x0]
+     d6c:	ldr	w1, [x0]
+     d70:	cbz	w1, d78 <grub_video_set_mode+0xe8>
+     d74:	str	wzr, [x0]
+     d78:	str	xzr, [x22]
+     d7c:	adrp	x0, 0 <grub_video_restore>
+     d80:	and	w1, w20, #0xff00
+     d84:	str	w1, [sp, #124]
+     d88:	and	w1, w20, #0x40
+     d8c:	ldr	x0, [x0]
+     d90:	adrp	x25, 0 <grub_video_restore>
+     d94:	str	x0, [sp, #104]
+     d98:	str	w1, [sp, #116]
+     d9c:	and	w1, w19, #0x40
+     da0:	str	w1, [sp, #120]
+     da4:	ldrb	w0, [x27]
+     da8:	mov	x28, x27
+     dac:	mov	w1, #0x3b                  	// #59
+     db0:	cbnz	w0, dc0 <grub_video_set_mode+0x130>
+     db4:	b	f0c <grub_video_set_mode+0x27c>
+     db8:	ldrb	w0, [x28]
+     dbc:	cbz	w0, f0c <grub_video_set_mode+0x27c>
+     dc0:	cmp	w0, #0x2c
+     dc4:	mov	x2, x28
+     dc8:	ccmp	w0, w1, #0x4, ne  // ne = any
+     dcc:	add	x28, x28, #0x1
+     dd0:	b.ne	db8 <grub_video_set_mode+0x128>  // b.any
+     dd4:	strb	wzr, [x2]
+     dd8:	b	de0 <grub_video_set_mode+0x150>
+     ddc:	add	x27, x27, #0x1
+     de0:	ldrb	w0, [x27]
+     de4:	bl	0 <grub_isspace>
+     de8:	cbnz	w0, ddc <grub_video_set_mode+0x14c>
+     dec:	ldr	x1, [sp, #104]
+     df0:	mov	x0, x27
+     df4:	bl	0 <grub_strcmp>
+     df8:	cbnz	w0, f14 <grub_video_set_mode+0x284>
+     dfc:	add	x0, sp, #0x80
+     e00:	mov	x2, #0x4c                  	// #76
+     e04:	mov	w1, #0x0                   	// #0
+     e08:	bl	0 <grub_memset>
+     e0c:	ldr	w0, [sp, #116]
+     e10:	cbz	w0, e1c <grub_video_set_mode+0x18c>
+     e14:	ldr	w0, [sp, #120]
+     e18:	cbz	w0, f00 <grub_video_set_mode+0x270>
+     e1c:	mov	x0, x21
+     e20:	str	xzr, [x22]
+     e24:	bl	0 <grub_free>
+     e28:	mov	w27, #0x0                   	// #0
+     e2c:	ldp	x23, x24, [sp, #48]
+     e30:	ldp	x25, x26, [sp, #64]
+     e34:	mov	w0, w27
+     e38:	ldp	x19, x20, [sp, #16]
+     e3c:	ldp	x21, x22, [sp, #32]
+     e40:	ldp	x27, x28, [sp, #80]
+     e44:	ldp	x29, x30, [sp], #208
+     e48:	ret
+     e4c:	adrp	x0, 0 <grub_video_restore>
+     e50:	ldp	x19, x20, [sp, #16]
+     e54:	ldr	x0, [x0]
+     e58:	ldp	x21, x22, [sp, #32]
+     e5c:	ldr	w27, [x0]
+     e60:	mov	w0, w27
+     e64:	ldp	x27, x28, [sp, #80]
+     e68:	ldp	x29, x30, [sp], #208
+     e6c:	ret
+     e70:	adrp	x1, 0 <grub_video_restore>
+     e74:	mov	x0, x21
+     e78:	mov	x2, #0x5                   	// #5
+     e7c:	ldr	x1, [x1]
+     e80:	bl	0 <grub_memcmp>
+     e84:	cbz	w0, cf0 <grub_video_set_mode+0x60>
+     e88:	adrp	x1, 0 <grub_video_restore>
+     e8c:	mov	x0, x21
+     e90:	mov	x2, #0x5                   	// #5
+     e94:	ldr	x1, [x1]
+     e98:	bl	0 <grub_memcmp>
+     e9c:	cbz	w0, cf0 <grub_video_set_mode+0x60>
+     ea0:	mov	x27, x21
+     ea4:	stp	x23, x24, [sp, #48]
+     ea8:	stp	x25, x26, [sp, #64]
+     eac:	b	d54 <grub_video_set_mode+0xc4>
+     eb0:	cmp	w1, w19
+     eb4:	b.ne	d40 <grub_video_set_mode+0xb0>  // b.any
+     eb8:	mov	x0, x21
+     ebc:	mov	w27, #0x0                   	// #0
+     ec0:	bl	0 <grub_free>
+     ec4:	mov	w0, w27
+     ec8:	ldp	x19, x20, [sp, #16]
+     ecc:	ldp	x21, x22, [sp, #32]
+     ed0:	ldp	x27, x28, [sp, #80]
+     ed4:	ldp	x29, x30, [sp], #208
+     ed8:	ret
+     edc:	and	w0, w20, w23
+     ee0:	cmp	w0, w19
+     ee4:	b.eq	1074 <grub_video_set_mode+0x3e4>  // b.none
+     ee8:	ldr	x0, [x26, #40]
+     eec:	blr	x0
+     ef0:	ldr	x0, [x25]
+     ef4:	ldr	x26, [x26]
+     ef8:	str	wzr, [x0]
+     efc:	cbnz	x26, 1008 <grub_video_set_mode+0x378>
+     f00:	cbz	x28, 11a8 <grub_video_set_mode+0x518>
+     f04:	mov	x27, x28
+     f08:	b	da4 <grub_video_set_mode+0x114>
+     f0c:	mov	x28, #0x0                   	// #0
+     f10:	b	de0 <grub_video_set_mode+0x150>
+     f14:	adrp	x1, 0 <grub_video_restore>
+     f18:	mov	x0, x27
+     f1c:	ldr	x1, [x1]
+     f20:	bl	0 <grub_strcmp>
+     f24:	mov	w24, w0
+     f28:	cbz	w0, fe8 <grub_video_set_mode+0x358>
+     f2c:	mov	x0, x27
+     f30:	mov	w1, #0x78                  	// #120
+     f34:	bl	0 <grub_strchr>
+     f38:	mov	x26, x0
+     f3c:	cbz	x0, 1118 <grub_video_set_mode+0x488>
+     f40:	mov	x0, x27
+     f44:	mov	w2, #0x0                   	// #0
+     f48:	mov	x1, #0x0                   	// #0
+     f4c:	bl	0 <grub_strtoul>
+     f50:	ldr	x23, [x25]
+     f54:	mov	w24, w0
+     f58:	ldr	w0, [x23]
+     f5c:	cbnz	w0, 10e8 <grub_video_set_mode+0x458>
+     f60:	add	x26, x26, #0x1
+     f64:	mov	w1, #0x78                  	// #120
+     f68:	mov	x0, x26
+     f6c:	bl	0 <grub_strchr>
+     f70:	mov	x3, x0
+     f74:	cbz	x0, 1160 <grub_video_set_mode+0x4d0>
+     f78:	mov	x1, #0x0                   	// #0
+     f7c:	mov	x0, x26
+     f80:	mov	w2, #0x0                   	// #0
+     f84:	str	x3, [sp, #96]
+     f88:	bl	0 <grub_strtoul>
+     f8c:	str	w0, [sp, #112]
+     f90:	ldr	w1, [x23]
+     f94:	ldr	x3, [sp, #96]
+     f98:	cbnz	w1, 10c0 <grub_video_set_mode+0x430>
+     f9c:	mov	x1, #0x0                   	// #0
+     fa0:	add	x0, x3, #0x1
+     fa4:	mov	w2, #0x0                   	// #0
+     fa8:	bl	0 <grub_strtoul>
+     fac:	ldr	w1, [x23]
+     fb0:	mov	x23, x0
+     fb4:	cbnz	w1, 11d0 <grub_video_set_mode+0x540>
+     fb8:	cmn	w23, #0x1
+     fbc:	b.eq	10dc <grub_video_set_mode+0x44c>  // b.none
+     fc0:	ldr	w0, [sp, #124]
+     fc4:	ubfiz	w23, w23, #8, #8
+     fc8:	cbz	w0, fd8 <grub_video_set_mode+0x348>
+     fcc:	and	w0, w19, #0xff00
+     fd0:	cmp	w0, w23
+     fd4:	b.ne	f00 <grub_video_set_mode+0x270>  // b.any
+     fd8:	orr	w0, w20, #0xff00
+     fdc:	orr	w23, w19, w23
+     fe0:	str	w0, [sp, #96]
+     fe4:	b	ff4 <grub_video_set_mode+0x364>
+     fe8:	mov	w23, w19
+     fec:	str	w20, [sp, #96]
+     ff0:	str	wzr, [sp, #112]
+     ff4:	adrp	x0, 0 <grub_video_restore>
+     ff8:	ldr	x0, [x0]
+     ffc:	ldr	x26, [x0]
+    1000:	cbz	x26, f00 <grub_video_set_mode+0x270>
+    1004:	nop
+    1008:	add	x0, sp, #0x80
+    100c:	mov	x2, #0x4c                  	// #76
+    1010:	mov	w1, #0x0                   	// #0
+    1014:	bl	0 <grub_memset>
+    1018:	ldr	x0, [x26, #32]
+    101c:	blr	x0
+    1020:	cbnz	w0, ef0 <grub_video_set_mode+0x260>
+    1024:	ldr	w3, [sp, #96]
+    1028:	mov	w2, w23
+    102c:	ldr	w1, [sp, #112]
+    1030:	mov	w0, w24
+    1034:	ldr	x6, [x26, #48]
+    1038:	blr	x6
+    103c:	cbnz	w0, ee8 <grub_video_set_mode+0x258>
+    1040:	ldr	x1, [x26, #56]
+    1044:	add	x0, sp, #0x80
+    1048:	blr	x1
+    104c:	mov	w27, w0
+    1050:	cbnz	w0, ee8 <grub_video_set_mode+0x258>
+    1054:	ldp	w0, w2, [sp, #136]
+    1058:	mov	w23, w0
+    105c:	bfi	w23, w2, #8, #8
+    1060:	tbz	w0, #6, edc <grub_video_set_mode+0x24c>
+    1064:	ldr	w0, [sp, #116]
+    1068:	cbz	w0, 1074 <grub_video_set_mode+0x3e4>
+    106c:	ldr	w0, [sp, #120]
+    1070:	cbz	w0, ee8 <grub_video_set_mode+0x258>
+    1074:	mov	x0, x21
+    1078:	str	x26, [x22]
+    107c:	bl	0 <grub_free>
+    1080:	mov	w0, w27
+    1084:	ldp	x19, x20, [sp, #16]
+    1088:	ldp	x21, x22, [sp, #32]
+    108c:	ldp	x23, x24, [sp, #48]
+    1090:	ldp	x25, x26, [sp, #64]
+    1094:	ldp	x27, x28, [sp, #80]
+    1098:	ldp	x29, x30, [sp], #208
+    109c:	ret
+    10a0:	mov	x0, x21
+    10a4:	bl	0 <grub_free>
+    10a8:	adrp	x1, 0 <grub_video_restore>
+    10ac:	mov	w0, #0x12                  	// #18
+    10b0:	ldr	x1, [x1]
+    10b4:	bl	0 <grub_error>
+    10b8:	mov	w27, w0
+    10bc:	b	e34 <grub_video_set_mode+0x1a4>
+    10c0:	adrp	x1, 0 <grub_video_restore>
+    10c4:	mov	x2, x27
+    10c8:	mov	w0, #0x12                  	// #18
+    10cc:	ldr	x1, [x1]
+    10d0:	bl	0 <grub_error>
+    10d4:	mov	w27, w0
+    10d8:	cbnz	w0, 11ec <grub_video_set_mode+0x55c>
+    10dc:	mov	w23, w19
+    10e0:	str	w20, [sp, #96]
+    10e4:	b	ff4 <grub_video_set_mode+0x364>
+    10e8:	adrp	x1, 0 <grub_video_restore>
+    10ec:	mov	x2, x27
+    10f0:	mov	w0, #0x12                  	// #18
+    10f4:	ldr	x1, [x1]
+    10f8:	bl	0 <grub_error>
+    10fc:	mov	w27, w0
+    1100:	cbnz	w0, 11ec <grub_video_set_mode+0x55c>
+    1104:	mov	w0, #0xffffffff            	// #-1
+    1108:	mov	w23, w19
+    110c:	str	w20, [sp, #96]
+    1110:	str	w0, [sp, #112]
+    1114:	b	ff4 <grub_video_set_mode+0x364>
+    1118:	adrp	x1, 0 <grub_video_restore>
+    111c:	mov	x2, x27
+    1120:	mov	w0, #0x12                  	// #18
+    1124:	ldr	x1, [x1]
+    1128:	bl	0 <grub_error>
+    112c:	mov	w27, w0
+    1130:	cbnz	w0, 11ec <grub_video_set_mode+0x55c>
+    1134:	mov	w0, #0xffffffff            	// #-1
+    1138:	mov	w23, w19
+    113c:	mov	w24, w0
+    1140:	str	w20, [sp, #96]
+    1144:	str	w0, [sp, #112]
+    1148:	b	ff4 <grub_video_set_mode+0x364>
+    114c:	adrp	x1, 0 <grub_video_restore>
+    1150:	mov	w0, #0xd                   	// #13
+    1154:	ldr	x1, [x1]
+    1158:	bl	0 <grub_error>
+    115c:	b	d1c <grub_video_set_mode+0x8c>
+    1160:	mov	x1, #0x0                   	// #0
+    1164:	mov	x0, x26
+    1168:	mov	w2, #0x0                   	// #0
+    116c:	bl	0 <grub_strtoul>
+    1170:	ldr	w1, [x23]
+    1174:	mov	w23, w19
+    1178:	str	w20, [sp, #96]
+    117c:	str	w0, [sp, #112]
+    1180:	cbz	w1, ff4 <grub_video_set_mode+0x364>
+    1184:	adrp	x1, 0 <grub_video_restore>
+    1188:	mov	x2, x27
+    118c:	mov	w0, #0x12                  	// #18
+    1190:	ldr	x1, [x1]
+    1194:	bl	0 <grub_error>
+    1198:	mov	w27, w0
+    119c:	cbnz	w0, 11ec <grub_video_set_mode+0x55c>
+    11a0:	str	w20, [sp, #96]
+    11a4:	b	ff4 <grub_video_set_mode+0x364>
+    11a8:	mov	x0, x21
+    11ac:	bl	0 <grub_free>
+    11b0:	adrp	x1, 0 <grub_video_restore>
+    11b4:	mov	w0, #0x12                  	// #18
+    11b8:	ldr	x1, [x1]
+    11bc:	bl	0 <grub_error>
+    11c0:	mov	w27, w0
+    11c4:	ldp	x23, x24, [sp, #48]
+    11c8:	ldp	x25, x26, [sp, #64]
+    11cc:	b	e34 <grub_video_set_mode+0x1a4>
+    11d0:	adrp	x1, 0 <grub_video_restore>
+    11d4:	mov	x2, x27
+    11d8:	mov	w0, #0x12                  	// #18
+    11dc:	ldr	x1, [x1]
+    11e0:	bl	0 <grub_error>
+    11e4:	mov	w27, w0
+    11e8:	cbz	w0, fb8 <grub_video_set_mode+0x328>
+    11ec:	mov	x0, x21
+    11f0:	bl	0 <grub_free>
+    11f4:	ldp	x23, x24, [sp, #48]
+    11f8:	ldp	x25, x26, [sp, #64]
+    11fc:	b	e34 <grub_video_set_mode+0x1a4>
+	...

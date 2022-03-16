@@ -1,0 +1,3621 @@
+In archive /home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//libatomic.a_clang_-O1:
+
+gload.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <__atomic_load>:
+   0:	stp	x29, x30, [sp, #-64]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	stp	x21, x22, [sp, #32]
+  10:	mov	x19, x0
+  14:	mov	x20, x1
+  18:	mov	x21, x2
+  1c:	cmp	x0, #0x4
+  20:	b.eq	110 <__atomic_load+0x110>  // b.none
+  24:	b.ls	98 <__atomic_load+0x98>  // b.plast
+  28:	cmp	x0, #0xf
+  2c:	b.hi	dc <__atomic_load+0xdc>  // b.pmore
+  30:	cmp	x0, #0x8
+  34:	b.hi	50 <__atomic_load+0x50>  // b.pmore
+  38:	cmp	x0, #0x7
+  3c:	b.hi	124 <__atomic_load+0x124>  // b.pmore
+  40:	and	x22, x20, #0x7
+  44:	add	x0, x19, x22
+  48:	cmp	x0, #0x8
+  4c:	b.ls	138 <__atomic_load+0x138>  // b.plast
+  50:	and	x22, x20, #0xf
+  54:	add	x0, x19, x22
+  58:	cmp	x0, #0x10
+  5c:	b.ls	148 <__atomic_load+0x148>  // b.plast
+  60:	mov	x1, x19
+  64:	mov	x0, x20
+  68:	bl	0 <libat_lock_n>
+  6c:	mov	x2, x19
+  70:	mov	x1, x20
+  74:	mov	x0, x21
+  78:	bl	0 <memcpy>
+  7c:	mov	x1, x19
+  80:	mov	x0, x20
+  84:	bl	0 <libat_unlock_n>
+  88:	ldp	x19, x20, [sp, #16]
+  8c:	ldp	x21, x22, [sp, #32]
+  90:	ldp	x29, x30, [sp], #64
+  94:	ret
+  98:	cmp	x0, #0x2
+  9c:	b.eq	100 <__atomic_load+0x100>  // b.none
+  a0:	b.ls	c4 <__atomic_load+0xc4>  // b.plast
+  a4:	and	x22, x20, #0x3
+  a8:	add	x0, x19, x22
+  ac:	cmp	x0, #0x4
+  b0:	b.hi	40 <__atomic_load+0x40>  // b.pmore
+  b4:	and	x20, x20, #0xfffffffffffffffc
+  b8:	ldar	w0, [x20]
+  bc:	str	w0, [sp, #48]
+  c0:	b	158 <__atomic_load+0x158>
+  c4:	cbz	x0, 88 <__atomic_load+0x88>
+  c8:	cmp	x0, #0x1
+  cc:	b.ne	60 <__atomic_load+0x60>  // b.any
+  d0:	ldarb	w0, [x1]
+  d4:	strb	w0, [x2]
+  d8:	b	88 <__atomic_load+0x88>
+  dc:	cmp	x0, #0x10
+  e0:	b.ne	60 <__atomic_load+0x60>  // b.any
+  e4:	tst	x1, #0xf
+  e8:	b.ne	60 <__atomic_load+0x60>  // b.any
+  ec:	mov	w1, w3
+  f0:	mov	x0, x20
+  f4:	bl	0 <__atomic_load_16>
+  f8:	stp	x0, x1, [x21]
+  fc:	b	88 <__atomic_load+0x88>
+ 100:	tbnz	w1, #0, a4 <__atomic_load+0xa4>
+ 104:	ldarh	w0, [x1]
+ 108:	strh	w0, [x2]
+ 10c:	b	88 <__atomic_load+0x88>
+ 110:	tst	x1, #0x3
+ 114:	b.ne	40 <__atomic_load+0x40>  // b.any
+ 118:	ldar	w0, [x1]
+ 11c:	str	w0, [x2]
+ 120:	b	88 <__atomic_load+0x88>
+ 124:	tst	x1, #0x7
+ 128:	b.ne	50 <__atomic_load+0x50>  // b.any
+ 12c:	ldar	x0, [x1]
+ 130:	str	x0, [x2]
+ 134:	b	88 <__atomic_load+0x88>
+ 138:	and	x20, x20, #0xfffffffffffffff8
+ 13c:	ldar	x0, [x20]
+ 140:	str	x0, [sp, #48]
+ 144:	b	158 <__atomic_load+0x158>
+ 148:	mov	w1, w3
+ 14c:	and	x0, x20, #0xfffffffffffffff0
+ 150:	bl	0 <__atomic_load_16>
+ 154:	stp	x0, x1, [sp, #48]
+ 158:	mov	x2, x19
+ 15c:	add	x0, sp, #0x30
+ 160:	add	x1, x0, x22
+ 164:	mov	x0, x21
+ 168:	bl	0 <memcpy>
+ 16c:	b	88 <__atomic_load+0x88>
+
+gstore.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <__atomic_store>:
+   0:	stp	x29, x30, [sp, #-80]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	stp	x21, x22, [sp, #32]
+  10:	mov	x19, x0
+  14:	mov	x20, x1
+  18:	mov	x21, x2
+  1c:	cmp	x0, #0x4
+  20:	b.eq	154 <__atomic_store+0x154>  // b.none
+  24:	b.hi	c0 <__atomic_store+0xc0>  // b.pmore
+  28:	cmp	x0, #0x2
+  2c:	b.eq	144 <__atomic_store+0x144>  // b.none
+  30:	b.ls	a8 <__atomic_store+0xa8>  // b.plast
+  34:	and	x0, x20, #0x3
+  38:	add	x1, x19, x0
+  3c:	cmp	x1, #0x4
+  40:	b.hi	fc <__atomic_store+0xfc>  // b.pmore
+  44:	dmb	ish
+  48:	and	x20, x20, #0xfffffffffffffffc
+  4c:	ldr	w1, [x20]
+  50:	str	w1, [sp, #48]
+  54:	add	x1, sp, #0x40
+  58:	add	x22, x1, x0
+  5c:	ldp	x0, x1, [sp, #48]
+  60:	stp	x0, x1, [sp, #64]
+  64:	mov	x2, x19
+  68:	mov	x1, x21
+  6c:	mov	x0, x22
+  70:	bl	0 <memcpy>
+  74:	ldr	w0, [sp, #48]
+  78:	ldr	w1, [sp, #64]
+  7c:	ldxr	w2, [x20]
+  80:	cmp	w2, w0
+  84:	b.ne	90 <__atomic_store+0x90>  // b.any
+  88:	stxr	w3, w1, [x20]
+  8c:	cmp	w3, #0x0
+  90:	cset	w0, eq  // eq = none
+  94:	b.eq	9c <__atomic_store+0x9c>  // b.none
+  98:	str	w2, [sp, #48]
+  9c:	cbz	w0, 5c <__atomic_store+0x5c>
+  a0:	dmb	ish
+  a4:	b	134 <__atomic_store+0x134>
+  a8:	cbz	x0, 134 <__atomic_store+0x134>
+  ac:	cmp	x0, #0x1
+  b0:	b.ne	10c <__atomic_store+0x10c>  // b.any
+  b4:	ldrb	w0, [x2]
+  b8:	stlrb	w0, [x1]
+  bc:	b	134 <__atomic_store+0x134>
+  c0:	cmp	x0, #0x8
+  c4:	b.eq	168 <__atomic_store+0x168>  // b.none
+  c8:	b.ls	f0 <__atomic_store+0xf0>  // b.plast
+  cc:	cmp	x0, #0x10
+  d0:	b.ne	10c <__atomic_store+0x10c>  // b.any
+  d4:	tst	x1, #0xf
+  d8:	b.ne	10c <__atomic_store+0x10c>  // b.any
+  dc:	mov	w4, w3
+  e0:	ldp	x2, x3, [x2]
+  e4:	mov	x0, x1
+  e8:	bl	0 <__atomic_store_16>
+  ec:	b	134 <__atomic_store+0x134>
+  f0:	sub	x0, x0, #0x5
+  f4:	cmp	x0, #0x2
+  f8:	b.hi	10c <__atomic_store+0x10c>  // b.pmore
+  fc:	and	x0, x20, #0x7
+ 100:	add	x1, x19, x0
+ 104:	cmp	x1, #0x8
+ 108:	b.ls	17c <__atomic_store+0x17c>  // b.plast
+ 10c:	mov	x1, x19
+ 110:	mov	x0, x20
+ 114:	bl	0 <libat_lock_n>
+ 118:	mov	x2, x19
+ 11c:	mov	x1, x21
+ 120:	mov	x0, x20
+ 124:	bl	0 <memcpy>
+ 128:	mov	x1, x19
+ 12c:	mov	x0, x20
+ 130:	bl	0 <libat_unlock_n>
+ 134:	ldp	x19, x20, [sp, #16]
+ 138:	ldp	x21, x22, [sp, #32]
+ 13c:	ldp	x29, x30, [sp], #80
+ 140:	ret
+ 144:	tbnz	w1, #0, 34 <__atomic_store+0x34>
+ 148:	ldrh	w0, [x2]
+ 14c:	stlrh	w0, [x1]
+ 150:	b	134 <__atomic_store+0x134>
+ 154:	tst	x1, #0x3
+ 158:	b.ne	fc <__atomic_store+0xfc>  // b.any
+ 15c:	ldr	w0, [x2]
+ 160:	stlr	w0, [x1]
+ 164:	b	134 <__atomic_store+0x134>
+ 168:	tst	x1, #0x7
+ 16c:	b.ne	10c <__atomic_store+0x10c>  // b.any
+ 170:	ldr	x0, [x2]
+ 174:	stlr	x0, [x1]
+ 178:	b	134 <__atomic_store+0x134>
+ 17c:	dmb	ish
+ 180:	and	x20, x20, #0xfffffffffffffff8
+ 184:	ldr	x1, [x20]
+ 188:	str	x1, [sp, #48]
+ 18c:	add	x1, sp, #0x40
+ 190:	add	x22, x1, x0
+ 194:	ldp	x0, x1, [sp, #48]
+ 198:	stp	x0, x1, [sp, #64]
+ 19c:	mov	x2, x19
+ 1a0:	mov	x1, x21
+ 1a4:	mov	x0, x22
+ 1a8:	bl	0 <memcpy>
+ 1ac:	ldr	x0, [sp, #48]
+ 1b0:	ldr	x1, [sp, #64]
+ 1b4:	ldxr	x2, [x20]
+ 1b8:	cmp	x2, x0
+ 1bc:	b.ne	1c8 <__atomic_store+0x1c8>  // b.any
+ 1c0:	stxr	w3, x1, [x20]
+ 1c4:	cmp	w3, #0x0
+ 1c8:	cset	w0, eq  // eq = none
+ 1cc:	b.eq	1d4 <__atomic_store+0x1d4>  // b.none
+ 1d0:	str	x2, [sp, #48]
+ 1d4:	cbz	w0, 194 <__atomic_store+0x194>
+ 1d8:	dmb	ish
+ 1dc:	b	134 <__atomic_store+0x134>
+
+gcas.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <__atomic_compare_exchange>:
+   0:	stp	x29, x30, [sp, #-112]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	stp	x21, x22, [sp, #32]
+  10:	stp	x23, x24, [sp, #48]
+  14:	mov	x19, x0
+  18:	mov	x20, x1
+  1c:	mov	x21, x2
+  20:	mov	x22, x3
+  24:	cmp	x0, #0x4
+  28:	b.eq	1e4 <__atomic_compare_exchange+0x1e4>  // b.none
+  2c:	b.hi	108 <__atomic_compare_exchange+0x108>  // b.pmore
+  30:	cmp	x0, #0x2
+  34:	b.eq	1b4 <__atomic_compare_exchange+0x1b4>  // b.none
+  38:	b.ls	cc <__atomic_compare_exchange+0xcc>  // b.plast
+  3c:	and	x23, x20, #0x3
+  40:	add	x0, x19, x23
+  44:	cmp	x0, #0x4
+  48:	b.hi	148 <__atomic_compare_exchange+0x148>  // b.pmore
+  4c:	str	x25, [sp, #64]
+  50:	dmb	ish
+  54:	and	x20, x20, #0xfffffffffffffffc
+  58:	ldr	w0, [x20]
+  5c:	str	w0, [sp, #96]
+  60:	add	x0, sp, #0x60
+  64:	add	x25, x0, x23
+  68:	add	x0, sp, #0x50
+  6c:	add	x24, x0, x23
+  70:	mov	x2, x19
+  74:	mov	x1, x21
+  78:	mov	x0, x25
+  7c:	bl	0 <memcmp>
+  80:	cbnz	w0, 2d8 <__atomic_compare_exchange+0x2d8>
+  84:	ldp	x0, x1, [sp, #96]
+  88:	stp	x0, x1, [sp, #80]
+  8c:	mov	x2, x19
+  90:	mov	x1, x22
+  94:	mov	x0, x24
+  98:	bl	0 <memcpy>
+  9c:	ldr	w0, [sp, #96]
+  a0:	ldr	w1, [sp, #80]
+  a4:	ldxr	w2, [x20]
+  a8:	cmp	w2, w0
+  ac:	b.ne	b8 <__atomic_compare_exchange+0xb8>  // b.any
+  b0:	stxr	w3, w1, [x20]
+  b4:	cmp	w3, #0x0
+  b8:	cset	w0, eq  // eq = none
+  bc:	b.eq	c4 <__atomic_compare_exchange+0xc4>  // b.none
+  c0:	str	w2, [sp, #96]
+  c4:	cbnz	w0, 2c8 <__atomic_compare_exchange+0x2c8>
+  c8:	b	70 <__atomic_compare_exchange+0x70>
+  cc:	mov	w23, #0x1                   	// #1
+  d0:	cbz	x0, 19c <__atomic_compare_exchange+0x19c>
+  d4:	cmp	x0, #0x1
+  d8:	b.ne	158 <__atomic_compare_exchange+0x158>  // b.any
+  dc:	ldrb	w0, [x2]
+  e0:	ldrb	w1, [x3]
+  e4:	ldaxrb	w2, [x20]
+  e8:	cmp	w2, w0, uxtb
+  ec:	b.ne	f8 <__atomic_compare_exchange+0xf8>  // b.any
+  f0:	stlxrb	w3, w1, [x20]
+  f4:	cbnz	w3, e4 <__atomic_compare_exchange+0xe4>
+  f8:	cset	w23, eq  // eq = none
+  fc:	b.eq	19c <__atomic_compare_exchange+0x19c>  // b.none
+ 100:	strb	w2, [x21]
+ 104:	b	19c <__atomic_compare_exchange+0x19c>
+ 108:	cmp	x0, #0x8
+ 10c:	b.eq	218 <__atomic_compare_exchange+0x218>  // b.none
+ 110:	b.ls	13c <__atomic_compare_exchange+0x13c>  // b.plast
+ 114:	cmp	x0, #0x10
+ 118:	b.ne	158 <__atomic_compare_exchange+0x158>  // b.any
+ 11c:	tst	x1, #0xf
+ 120:	b.ne	158 <__atomic_compare_exchange+0x158>  // b.any
+ 124:	ldp	x2, x3, [x3]
+ 128:	mov	x1, x21
+ 12c:	mov	x0, x20
+ 130:	bl	0 <__atomic_compare_exchange_16>
+ 134:	and	w23, w0, #0xff
+ 138:	b	19c <__atomic_compare_exchange+0x19c>
+ 13c:	sub	x0, x0, #0x5
+ 140:	cmp	x0, #0x2
+ 144:	b.hi	158 <__atomic_compare_exchange+0x158>  // b.pmore
+ 148:	and	x23, x20, #0x7
+ 14c:	add	x0, x19, x23
+ 150:	cmp	x0, #0x8
+ 154:	b.ls	24c <__atomic_compare_exchange+0x24c>  // b.plast
+ 158:	mov	x1, x19
+ 15c:	mov	x0, x20
+ 160:	bl	0 <libat_lock_n>
+ 164:	mov	x2, x19
+ 168:	mov	x1, x21
+ 16c:	mov	x0, x20
+ 170:	bl	0 <memcmp>
+ 174:	cmp	w0, #0x0
+ 178:	cset	w23, eq  // eq = none
+ 17c:	csel	x21, x21, x20, ne  // ne = any
+ 180:	mov	x2, x19
+ 184:	csel	x1, x20, x22, ne  // ne = any
+ 188:	mov	x0, x21
+ 18c:	bl	0 <memcpy>
+ 190:	mov	x1, x19
+ 194:	mov	x0, x20
+ 198:	bl	0 <libat_unlock_n>
+ 19c:	mov	w0, w23
+ 1a0:	ldp	x19, x20, [sp, #16]
+ 1a4:	ldp	x21, x22, [sp, #32]
+ 1a8:	ldp	x23, x24, [sp, #48]
+ 1ac:	ldp	x29, x30, [sp], #112
+ 1b0:	ret
+ 1b4:	tbnz	w1, #0, 3c <__atomic_compare_exchange+0x3c>
+ 1b8:	ldrh	w0, [x2]
+ 1bc:	ldrh	w1, [x3]
+ 1c0:	ldaxrh	w2, [x20]
+ 1c4:	cmp	w2, w0, uxth
+ 1c8:	b.ne	1d4 <__atomic_compare_exchange+0x1d4>  // b.any
+ 1cc:	stlxrh	w3, w1, [x20]
+ 1d0:	cbnz	w3, 1c0 <__atomic_compare_exchange+0x1c0>
+ 1d4:	cset	w23, eq  // eq = none
+ 1d8:	b.eq	19c <__atomic_compare_exchange+0x19c>  // b.none
+ 1dc:	strh	w2, [x21]
+ 1e0:	b	19c <__atomic_compare_exchange+0x19c>
+ 1e4:	tst	x1, #0x3
+ 1e8:	b.ne	148 <__atomic_compare_exchange+0x148>  // b.any
+ 1ec:	ldr	w0, [x2]
+ 1f0:	ldr	w1, [x3]
+ 1f4:	ldaxr	w2, [x20]
+ 1f8:	cmp	w2, w0
+ 1fc:	b.ne	208 <__atomic_compare_exchange+0x208>  // b.any
+ 200:	stlxr	w3, w1, [x20]
+ 204:	cbnz	w3, 1f4 <__atomic_compare_exchange+0x1f4>
+ 208:	cset	w23, eq  // eq = none
+ 20c:	b.eq	19c <__atomic_compare_exchange+0x19c>  // b.none
+ 210:	str	w2, [x21]
+ 214:	b	19c <__atomic_compare_exchange+0x19c>
+ 218:	tst	x1, #0x7
+ 21c:	b.ne	158 <__atomic_compare_exchange+0x158>  // b.any
+ 220:	ldr	x0, [x2]
+ 224:	ldr	x1, [x3]
+ 228:	ldaxr	x2, [x20]
+ 22c:	cmp	x2, x0
+ 230:	b.ne	23c <__atomic_compare_exchange+0x23c>  // b.any
+ 234:	stlxr	w3, x1, [x20]
+ 238:	cbnz	w3, 228 <__atomic_compare_exchange+0x228>
+ 23c:	cset	w23, eq  // eq = none
+ 240:	b.eq	19c <__atomic_compare_exchange+0x19c>  // b.none
+ 244:	str	x2, [x21]
+ 248:	b	19c <__atomic_compare_exchange+0x19c>
+ 24c:	str	x25, [sp, #64]
+ 250:	dmb	ish
+ 254:	and	x20, x20, #0xfffffffffffffff8
+ 258:	ldr	x0, [x20]
+ 25c:	str	x0, [sp, #96]
+ 260:	add	x0, sp, #0x60
+ 264:	add	x25, x0, x23
+ 268:	add	x0, sp, #0x50
+ 26c:	add	x24, x0, x23
+ 270:	mov	x2, x19
+ 274:	mov	x1, x21
+ 278:	mov	x0, x25
+ 27c:	bl	0 <memcmp>
+ 280:	cbnz	w0, 2d8 <__atomic_compare_exchange+0x2d8>
+ 284:	ldp	x0, x1, [sp, #96]
+ 288:	stp	x0, x1, [sp, #80]
+ 28c:	mov	x2, x19
+ 290:	mov	x1, x22
+ 294:	mov	x0, x24
+ 298:	bl	0 <memcpy>
+ 29c:	ldr	x0, [sp, #96]
+ 2a0:	ldr	x1, [sp, #80]
+ 2a4:	ldxr	x2, [x20]
+ 2a8:	cmp	x2, x0
+ 2ac:	b.ne	2b8 <__atomic_compare_exchange+0x2b8>  // b.any
+ 2b0:	stxr	w3, x1, [x20]
+ 2b4:	cmp	w3, #0x0
+ 2b8:	cset	w0, eq  // eq = none
+ 2bc:	b.eq	2c4 <__atomic_compare_exchange+0x2c4>  // b.none
+ 2c0:	str	x2, [sp, #96]
+ 2c4:	cbz	w0, 270 <__atomic_compare_exchange+0x270>
+ 2c8:	dmb	ish
+ 2cc:	mov	w23, #0x1                   	// #1
+ 2d0:	ldr	x25, [sp, #64]
+ 2d4:	b	19c <__atomic_compare_exchange+0x19c>
+ 2d8:	dmb	ish
+ 2dc:	mov	x2, x19
+ 2e0:	add	x0, sp, #0x60
+ 2e4:	add	x1, x0, x23
+ 2e8:	mov	x0, x21
+ 2ec:	bl	0 <memcpy>
+ 2f0:	mov	w23, #0x0                   	// #0
+ 2f4:	ldr	x25, [sp, #64]
+ 2f8:	b	19c <__atomic_compare_exchange+0x19c>
+
+gexch.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_exchange_large_inplace>:
+   0:	sub	sp, sp, #0x450
+   4:	stp	x29, x30, [sp]
+   8:	mov	x29, sp
+   c:	stp	x23, x24, [sp, #48]
+  10:	stp	x25, x26, [sp, #64]
+  14:	mov	x23, x0
+  18:	mov	x24, x1
+  1c:	mov	x26, x2
+  20:	cmp	x0, #0x3ff
+  24:	b.ls	b8 <libat_exchange_large_inplace+0xb8>  // b.plast
+  28:	stp	x19, x20, [sp, #16]
+  2c:	stp	x21, x22, [sp, #32]
+  30:	mov	x19, x1
+  34:	mov	x20, x2
+  38:	sub	x25, x0, #0x400
+  3c:	add	x22, x1, #0x400
+  40:	and	x0, x25, #0xfffffffffffffc00
+  44:	add	x22, x22, x0
+  48:	mov	x21, #0x400                 	// #1024
+  4c:	mov	x2, x21
+  50:	mov	x1, x19
+  54:	add	x0, sp, #0x50
+  58:	bl	0 <memcpy>
+  5c:	mov	x2, x21
+  60:	mov	x1, x20
+  64:	mov	x0, x19
+  68:	bl	0 <memcpy>
+  6c:	mov	x2, x21
+  70:	add	x1, sp, #0x50
+  74:	mov	x0, x20
+  78:	bl	0 <memcpy>
+  7c:	add	x19, x19, #0x400
+  80:	add	x20, x20, #0x400
+  84:	cmp	x19, x22
+  88:	b.ne	4c <libat_exchange_large_inplace+0x4c>  // b.any
+  8c:	and	x25, x25, #0xfffffffffffffc00
+  90:	add	x25, x25, #0x400
+  94:	and	x23, x23, #0x3ff
+  98:	ldp	x19, x20, [sp, #16]
+  9c:	ldp	x21, x22, [sp, #32]
+  a0:	cbnz	x23, c0 <libat_exchange_large_inplace+0xc0>
+  a4:	ldp	x23, x24, [sp, #48]
+  a8:	ldp	x25, x26, [sp, #64]
+  ac:	ldp	x29, x30, [sp]
+  b0:	add	sp, sp, #0x450
+  b4:	ret
+  b8:	mov	x25, #0x0                   	// #0
+  bc:	b	a0 <libat_exchange_large_inplace+0xa0>
+  c0:	add	x24, x24, x25
+  c4:	mov	x2, x23
+  c8:	mov	x1, x24
+  cc:	add	x0, sp, #0x50
+  d0:	bl	0 <memcpy>
+  d4:	add	x25, x26, x25
+  d8:	mov	x2, x23
+  dc:	mov	x1, x25
+  e0:	mov	x0, x24
+  e4:	bl	0 <memcpy>
+  e8:	mov	x2, x23
+  ec:	add	x1, sp, #0x50
+  f0:	mov	x0, x25
+  f4:	bl	0 <memcpy>
+  f8:	b	a4 <libat_exchange_large_inplace+0xa4>
+
+00000000000000fc <__atomic_exchange>:
+  fc:	stp	x29, x30, [sp, #-96]!
+ 100:	mov	x29, sp
+ 104:	stp	x19, x20, [sp, #16]
+ 108:	stp	x21, x22, [sp, #32]
+ 10c:	mov	x19, x0
+ 110:	mov	x20, x1
+ 114:	mov	x21, x2
+ 118:	mov	x22, x3
+ 11c:	cmp	x0, #0x4
+ 120:	b.eq	28c <__atomic_exchange+0x190>  // b.none
+ 124:	b.hi	1cc <__atomic_exchange+0xd0>  // b.pmore
+ 128:	cmp	x0, #0x2
+ 12c:	b.eq	270 <__atomic_exchange+0x174>  // b.none
+ 130:	b.ls	1a8 <__atomic_exchange+0xac>  // b.plast
+ 134:	stp	x23, x24, [sp, #48]
+ 138:	and	x23, x20, #0x3
+ 13c:	add	x0, x19, x23
+ 140:	cmp	x0, #0x4
+ 144:	b.hi	20c <__atomic_exchange+0x110>  // b.pmore
+ 148:	dmb	ish
+ 14c:	and	x20, x20, #0xfffffffffffffffc
+ 150:	ldr	w0, [x20]
+ 154:	str	w0, [sp, #80]
+ 158:	add	x0, sp, #0x40
+ 15c:	add	x24, x0, x23
+ 160:	ldp	x0, x1, [sp, #80]
+ 164:	stp	x0, x1, [sp, #64]
+ 168:	mov	x2, x19
+ 16c:	mov	x1, x21
+ 170:	mov	x0, x24
+ 174:	bl	0 <memcpy>
+ 178:	ldr	w0, [sp, #80]
+ 17c:	ldr	w1, [sp, #64]
+ 180:	ldxr	w2, [x20]
+ 184:	cmp	w2, w0
+ 188:	b.ne	194 <__atomic_exchange+0x98>  // b.any
+ 18c:	stxr	w3, w1, [x20]
+ 190:	cmp	w3, #0x0
+ 194:	cset	w0, eq  // eq = none
+ 198:	b.eq	1a0 <__atomic_exchange+0xa4>  // b.none
+ 19c:	str	w2, [sp, #80]
+ 1a0:	cbnz	w0, 330 <__atomic_exchange+0x234>
+ 1a4:	b	160 <__atomic_exchange+0x64>
+ 1a8:	cbz	x0, 260 <__atomic_exchange+0x164>
+ 1ac:	cmp	x0, #0x1
+ 1b0:	b.ne	220 <__atomic_exchange+0x124>  // b.any
+ 1b4:	ldrb	w1, [x2]
+ 1b8:	ldaxrb	w0, [x20]
+ 1bc:	stlxrb	w2, w1, [x20]
+ 1c0:	cbnz	w2, 1b8 <__atomic_exchange+0xbc>
+ 1c4:	strb	w0, [x22]
+ 1c8:	b	260 <__atomic_exchange+0x164>
+ 1cc:	cmp	x0, #0x8
+ 1d0:	b.eq	2b4 <__atomic_exchange+0x1b8>  // b.none
+ 1d4:	b.ls	1fc <__atomic_exchange+0x100>  // b.plast
+ 1d8:	cmp	x0, #0x10
+ 1dc:	b.ne	220 <__atomic_exchange+0x124>  // b.any
+ 1e0:	tst	x1, #0xf
+ 1e4:	b.ne	220 <__atomic_exchange+0x124>  // b.any
+ 1e8:	ldp	x2, x3, [x2]
+ 1ec:	mov	x0, x1
+ 1f0:	bl	0 <__atomic_exchange_16>
+ 1f4:	stp	x0, x1, [x22]
+ 1f8:	b	260 <__atomic_exchange+0x164>
+ 1fc:	sub	x0, x0, #0x5
+ 200:	cmp	x0, #0x2
+ 204:	b.hi	220 <__atomic_exchange+0x124>  // b.pmore
+ 208:	stp	x23, x24, [sp, #48]
+ 20c:	and	x23, x20, #0x7
+ 210:	add	x0, x19, x23
+ 214:	cmp	x0, #0x8
+ 218:	b.ls	2d4 <__atomic_exchange+0x1d8>  // b.plast
+ 21c:	ldp	x23, x24, [sp, #48]
+ 220:	mov	x1, x19
+ 224:	mov	x0, x20
+ 228:	bl	0 <libat_lock_n>
+ 22c:	cmp	x22, x21
+ 230:	b.eq	350 <__atomic_exchange+0x254>  // b.none
+ 234:	mov	x2, x19
+ 238:	mov	x1, x20
+ 23c:	mov	x0, x22
+ 240:	bl	0 <memcpy>
+ 244:	mov	x2, x19
+ 248:	mov	x1, x21
+ 24c:	mov	x0, x20
+ 250:	bl	0 <memcpy>
+ 254:	mov	x1, x19
+ 258:	mov	x0, x20
+ 25c:	bl	0 <libat_unlock_n>
+ 260:	ldp	x19, x20, [sp, #16]
+ 264:	ldp	x21, x22, [sp, #32]
+ 268:	ldp	x29, x30, [sp], #96
+ 26c:	ret
+ 270:	tbnz	w1, #0, 134 <__atomic_exchange+0x38>
+ 274:	ldrh	w1, [x2]
+ 278:	ldaxrh	w0, [x20]
+ 27c:	stlxrh	w2, w1, [x20]
+ 280:	cbnz	w2, 278 <__atomic_exchange+0x17c>
+ 284:	strh	w0, [x22]
+ 288:	b	260 <__atomic_exchange+0x164>
+ 28c:	tst	x1, #0x3
+ 290:	b.eq	29c <__atomic_exchange+0x1a0>  // b.none
+ 294:	stp	x23, x24, [sp, #48]
+ 298:	b	20c <__atomic_exchange+0x110>
+ 29c:	ldr	w1, [x2]
+ 2a0:	ldaxr	w0, [x20]
+ 2a4:	stlxr	w2, w1, [x20]
+ 2a8:	cbnz	w2, 2a0 <__atomic_exchange+0x1a4>
+ 2ac:	str	w0, [x22]
+ 2b0:	b	260 <__atomic_exchange+0x164>
+ 2b4:	tst	x1, #0x7
+ 2b8:	b.ne	220 <__atomic_exchange+0x124>  // b.any
+ 2bc:	ldr	x1, [x2]
+ 2c0:	ldaxr	x0, [x20]
+ 2c4:	stlxr	w2, x1, [x20]
+ 2c8:	cbnz	w2, 2c0 <__atomic_exchange+0x1c4>
+ 2cc:	str	x0, [x22]
+ 2d0:	b	260 <__atomic_exchange+0x164>
+ 2d4:	dmb	ish
+ 2d8:	and	x20, x20, #0xfffffffffffffff8
+ 2dc:	ldr	x0, [x20]
+ 2e0:	str	x0, [sp, #80]
+ 2e4:	add	x0, sp, #0x40
+ 2e8:	add	x24, x0, x23
+ 2ec:	ldp	x0, x1, [sp, #80]
+ 2f0:	stp	x0, x1, [sp, #64]
+ 2f4:	mov	x2, x19
+ 2f8:	mov	x1, x21
+ 2fc:	mov	x0, x24
+ 300:	bl	0 <memcpy>
+ 304:	ldr	x0, [sp, #80]
+ 308:	ldr	x1, [sp, #64]
+ 30c:	ldxr	x2, [x20]
+ 310:	cmp	x2, x0
+ 314:	b.ne	320 <__atomic_exchange+0x224>  // b.any
+ 318:	stxr	w3, x1, [x20]
+ 31c:	cmp	w3, #0x0
+ 320:	cset	w0, eq  // eq = none
+ 324:	b.eq	32c <__atomic_exchange+0x230>  // b.none
+ 328:	str	x2, [sp, #80]
+ 32c:	cbz	w0, 2ec <__atomic_exchange+0x1f0>
+ 330:	dmb	ish
+ 334:	mov	x2, x19
+ 338:	add	x0, sp, #0x50
+ 33c:	add	x1, x0, x23
+ 340:	mov	x0, x22
+ 344:	bl	0 <memcpy>
+ 348:	ldp	x23, x24, [sp, #48]
+ 34c:	b	260 <__atomic_exchange+0x164>
+ 350:	mov	x2, x21
+ 354:	mov	x1, x20
+ 358:	mov	x0, x19
+ 35c:	bl	0 <libat_exchange_large_inplace>
+ 360:	b	254 <__atomic_exchange+0x158>
+
+glfree.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <__atomic_is_lock_free>:
+   0:	mov	x2, x0
+   4:	cmp	x0, #0x3
+   8:	b.eq	24 <__atomic_is_lock_free+0x24>  // b.none
+   c:	b.hi	4c <__atomic_is_lock_free+0x4c>  // b.pmore
+  10:	mov	w0, #0x1                   	// #1
+  14:	cmp	x2, #0x1
+  18:	b.ls	7c <__atomic_is_lock_free+0x7c>  // b.plast
+  1c:	mov	w0, #0x1                   	// #1
+  20:	tbz	w1, #0, 7c <__atomic_is_lock_free+0x7c>
+  24:	and	x3, x1, #0x3
+  28:	add	x3, x3, x2
+  2c:	mov	w0, #0x1                   	// #1
+  30:	cmp	x3, #0x4
+  34:	b.ls	7c <__atomic_is_lock_free+0x7c>  // b.plast
+  38:	and	x1, x1, #0x7
+  3c:	add	x2, x1, x2
+  40:	cmp	x2, #0x8
+  44:	cset	w0, ls  // ls = plast
+  48:	b	7c <__atomic_is_lock_free+0x7c>
+  4c:	cmp	x0, #0x7
+  50:	b.hi	6c <__atomic_is_lock_free+0x6c>  // b.pmore
+  54:	cmp	x0, #0x4
+  58:	b.hi	38 <__atomic_is_lock_free+0x38>  // b.pmore
+  5c:	mov	w0, #0x1                   	// #1
+  60:	tst	x1, #0x3
+  64:	b.eq	7c <__atomic_is_lock_free+0x7c>  // b.none
+  68:	b	38 <__atomic_is_lock_free+0x38>
+  6c:	tst	x1, #0x7
+  70:	cset	w0, eq  // eq = none
+  74:	cmp	x2, #0x8
+  78:	csel	w0, w0, wzr, eq  // eq = none
+  7c:	ret
+
+lock.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_lock_1>:
+   0:	stp	x29, x30, [sp, #-16]!
+   4:	mov	x29, sp
+   8:	and	x0, x0, #0xfc0
+   c:	adrp	x1, 0 <libat_lock_1>
+  10:	add	x1, x1, #0x0
+  14:	add	x0, x1, x0
+  18:	bl	0 <pthread_mutex_lock>
+  1c:	ldp	x29, x30, [sp], #16
+  20:	ret
+
+0000000000000024 <libat_unlock_1>:
+  24:	stp	x29, x30, [sp, #-16]!
+  28:	mov	x29, sp
+  2c:	and	x0, x0, #0xfc0
+  30:	adrp	x1, 0 <libat_lock_1>
+  34:	add	x1, x1, #0x0
+  38:	add	x0, x1, x0
+  3c:	bl	0 <pthread_mutex_unlock>
+  40:	ldp	x29, x30, [sp], #16
+  44:	ret
+
+0000000000000048 <libat_lock_n>:
+  48:	stp	x29, x30, [sp, #-64]!
+  4c:	mov	x29, sp
+  50:	stp	x19, x20, [sp, #16]
+  54:	stp	x21, x22, [sp, #32]
+  58:	str	x23, [sp, #48]
+  5c:	ubfx	x19, x0, #6, #6
+  60:	cmp	x1, #0x1, lsl #12
+  64:	mov	x21, #0x1000                	// #4096
+  68:	csel	x21, x1, x21, ls  // ls = plast
+  6c:	mov	x20, #0x0                   	// #0
+  70:	adrp	x22, 0 <libat_lock_1>
+  74:	add	x22, x22, #0x0
+  78:	mov	x23, #0x0                   	// #0
+  7c:	add	x0, x22, x19, lsl #6
+  80:	bl	0 <pthread_mutex_lock>
+  84:	add	x19, x19, #0x1
+  88:	cmp	x19, #0x40
+  8c:	csel	x19, x19, x23, ne  // ne = any
+  90:	add	x20, x20, #0x40
+  94:	cmp	x20, x21
+  98:	b.cc	7c <libat_lock_n+0x34>  // b.lo, b.ul, b.last
+  9c:	ldp	x19, x20, [sp, #16]
+  a0:	ldp	x21, x22, [sp, #32]
+  a4:	ldr	x23, [sp, #48]
+  a8:	ldp	x29, x30, [sp], #64
+  ac:	ret
+
+00000000000000b0 <libat_unlock_n>:
+  b0:	stp	x29, x30, [sp, #-64]!
+  b4:	mov	x29, sp
+  b8:	stp	x19, x20, [sp, #16]
+  bc:	stp	x21, x22, [sp, #32]
+  c0:	str	x23, [sp, #48]
+  c4:	ubfx	x19, x0, #6, #6
+  c8:	cmp	x1, #0x1, lsl #12
+  cc:	mov	x21, #0x1000                	// #4096
+  d0:	csel	x21, x1, x21, ls  // ls = plast
+  d4:	mov	x20, #0x0                   	// #0
+  d8:	adrp	x22, 0 <libat_lock_1>
+  dc:	add	x22, x22, #0x0
+  e0:	mov	x23, #0x0                   	// #0
+  e4:	add	x0, x22, x19, lsl #6
+  e8:	bl	0 <pthread_mutex_unlock>
+  ec:	add	x19, x19, #0x1
+  f0:	cmp	x19, #0x40
+  f4:	csel	x19, x19, x23, ne  // ne = any
+  f8:	add	x20, x20, #0x40
+  fc:	cmp	x20, x21
+ 100:	b.cc	e4 <libat_unlock_n+0x34>  // b.lo, b.ul, b.last
+ 104:	ldp	x19, x20, [sp, #16]
+ 108:	ldp	x21, x22, [sp, #32]
+ 10c:	ldr	x23, [sp, #48]
+ 110:	ldp	x29, x30, [sp], #64
+ 114:	ret
+
+init.o:     file format elf64-littleaarch64
+
+
+fenv.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <__atomic_feraiseexcept>:
+   0:	sub	sp, sp, #0x20
+   4:	tbz	w0, #0, 1c <__atomic_feraiseexcept+0x1c>
+   8:	str	wzr, [sp, #8]
+   c:	ldr	s0, [sp, #8]
+  10:	ldr	s1, [sp, #8]
+  14:	fdiv	s0, s0, s1
+  18:	str	s0, [sp, #28]
+  1c:	tbz	w0, #1, 34 <__atomic_feraiseexcept+0x34>
+  20:	str	wzr, [sp, #12]
+  24:	ldr	s1, [sp, #12]
+  28:	fmov	s0, #1.000000000000000000e+00
+  2c:	fdiv	s0, s0, s1
+  30:	str	s0, [sp, #28]
+  34:	tbz	w0, #2, 50 <__atomic_feraiseexcept+0x50>
+  38:	mov	w1, #0x7f7fffff            	// #2139095039
+  3c:	str	w1, [sp, #16]
+  40:	ldr	s0, [sp, #16]
+  44:	ldr	s1, [sp, #16]
+  48:	fmul	s0, s0, s1
+  4c:	str	s0, [sp, #28]
+  50:	tbz	w0, #3, 6c <__atomic_feraiseexcept+0x6c>
+  54:	movi	v0.2s, #0x80, lsl #16
+  58:	str	s0, [sp, #20]
+  5c:	ldr	s0, [sp, #20]
+  60:	ldr	s1, [sp, #20]
+  64:	fmul	s0, s0, s1
+  68:	str	s0, [sp, #28]
+  6c:	tbz	w0, #4, 88 <__atomic_feraiseexcept+0x88>
+  70:	fmov	s0, #3.000000000000000000e+00
+  74:	str	s0, [sp, #24]
+  78:	ldr	s1, [sp, #24]
+  7c:	fmov	s0, #1.000000000000000000e+00
+  80:	fdiv	s0, s0, s1
+  84:	str	s0, [sp, #28]
+  88:	add	sp, sp, #0x20
+  8c:	ret
+
+fence.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <atomic_thread_fence>:
+   0:	dmb	ish
+   4:	ret
+
+0000000000000008 <atomic_signal_fence>:
+   8:	ret
+
+flag.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <atomic_flag_test_and_set>:
+   0:	mov	x1, x0
+   4:	mov	w2, #0x1                   	// #1
+   8:	ldaxrb	w0, [x1]
+   c:	stlxrb	w3, w2, [x1]
+  10:	cbnz	w3, 8 <atomic_flag_test_and_set+0x8>
+  14:	ret
+
+0000000000000018 <atomic_flag_test_and_set_explicit>:
+  18:	mov	x1, x0
+  1c:	mov	w2, #0x1                   	// #1
+  20:	ldaxrb	w0, [x1]
+  24:	stlxrb	w3, w2, [x1]
+  28:	cbnz	w3, 20 <atomic_flag_test_and_set_explicit+0x8>
+  2c:	ret
+
+0000000000000030 <atomic_flag_clear>:
+  30:	stlrb	wzr, [x0]
+  34:	ret
+
+0000000000000038 <atomic_flag_clear_explicit>:
+  38:	stlrb	wzr, [x0]
+  3c:	ret
+
+load_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_load_1>:
+   0:	ldarb	w0, [x0]
+   4:	ret
+
+0000000000000008 <select_load_1>:
+   8:	adrp	x0, 0 <libat_load_1>
+   c:	add	x0, x0, #0x0
+  10:	ret
+
+store_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_store_1>:
+   0:	and	w1, w1, #0xff
+   4:	stlrb	w1, [x0]
+   8:	ret
+
+000000000000000c <select_store_1>:
+   c:	adrp	x0, 0 <libat_store_1>
+  10:	add	x0, x0, #0x0
+  14:	ret
+
+cas_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_compare_exchange_1>:
+   0:	and	w2, w2, #0xff
+   4:	ldrb	w3, [x1]
+   8:	ldaxrb	w4, [x0]
+   c:	cmp	w4, w3, uxtb
+  10:	b.ne	1c <libat_compare_exchange_1+0x1c>  // b.any
+  14:	stlxrb	w5, w2, [x0]
+  18:	cbnz	w5, 8 <libat_compare_exchange_1+0x8>
+  1c:	cset	w0, eq  // eq = none
+  20:	b.eq	28 <libat_compare_exchange_1+0x28>  // b.none
+  24:	strb	w4, [x1]
+  28:	ret
+
+000000000000002c <select_compare_exchange_1>:
+  2c:	adrp	x0, 0 <libat_compare_exchange_1>
+  30:	add	x0, x0, #0x0
+  34:	ret
+
+exch_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_exchange_1>:
+   0:	mov	x2, x0
+   4:	and	w1, w1, #0xff
+   8:	ldaxrb	w0, [x2]
+   c:	stlxrb	w3, w1, [x2]
+  10:	cbnz	w3, 8 <libat_exchange_1+0x8>
+  14:	ret
+
+0000000000000018 <select_exchange_1>:
+  18:	adrp	x0, 0 <libat_exchange_1>
+  1c:	add	x0, x0, #0x0
+  20:	ret
+
+fadd_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_add_1>:
+   0:	mov	x2, x0
+   4:	and	w1, w1, #0xff
+   8:	ldaxrb	w0, [x2]
+   c:	add	w3, w0, w1
+  10:	stlxrb	w4, w3, [x2]
+  14:	cbnz	w4, 8 <libat_fetch_add_1+0x8>
+  18:	ret
+
+000000000000001c <libat_add_fetch_1>:
+  1c:	mov	x2, x0
+  20:	and	w1, w1, #0xff
+  24:	ldaxrb	w0, [x2]
+  28:	add	w0, w0, w1
+  2c:	stlxrb	w3, w0, [x2]
+  30:	cbnz	w3, 24 <libat_add_fetch_1+0x8>
+  34:	ret
+
+0000000000000038 <select_fetch_add_1>:
+  38:	adrp	x0, 0 <libat_fetch_add_1>
+  3c:	add	x0, x0, #0x0
+  40:	ret
+
+0000000000000044 <select_add_fetch_1>:
+  44:	adrp	x0, 1c <libat_add_fetch_1>
+  48:	add	x0, x0, #0x0
+  4c:	ret
+
+fsub_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_sub_1>:
+   0:	mov	x2, x0
+   4:	and	w1, w1, #0xff
+   8:	ldaxrb	w0, [x2]
+   c:	sub	w3, w0, w1
+  10:	stlxrb	w4, w3, [x2]
+  14:	cbnz	w4, 8 <libat_fetch_sub_1+0x8>
+  18:	ret
+
+000000000000001c <libat_sub_fetch_1>:
+  1c:	mov	x2, x0
+  20:	and	w1, w1, #0xff
+  24:	ldaxrb	w0, [x2]
+  28:	sub	w0, w0, w1
+  2c:	stlxrb	w3, w0, [x2]
+  30:	cbnz	w3, 24 <libat_sub_fetch_1+0x8>
+  34:	ret
+
+0000000000000038 <select_fetch_sub_1>:
+  38:	adrp	x0, 0 <libat_fetch_sub_1>
+  3c:	add	x0, x0, #0x0
+  40:	ret
+
+0000000000000044 <select_sub_fetch_1>:
+  44:	adrp	x0, 1c <libat_sub_fetch_1>
+  48:	add	x0, x0, #0x0
+  4c:	ret
+
+fand_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_and_1>:
+   0:	mov	x2, x0
+   4:	and	w1, w1, #0xff
+   8:	ldaxrb	w0, [x2]
+   c:	and	w3, w0, w1
+  10:	stlxrb	w4, w3, [x2]
+  14:	cbnz	w4, 8 <libat_fetch_and_1+0x8>
+  18:	ret
+
+000000000000001c <libat_and_fetch_1>:
+  1c:	mov	x2, x0
+  20:	and	w1, w1, #0xff
+  24:	ldaxrb	w0, [x2]
+  28:	and	w0, w0, w1
+  2c:	stlxrb	w3, w0, [x2]
+  30:	cbnz	w3, 24 <libat_and_fetch_1+0x8>
+  34:	ret
+
+0000000000000038 <select_fetch_and_1>:
+  38:	adrp	x0, 0 <libat_fetch_and_1>
+  3c:	add	x0, x0, #0x0
+  40:	ret
+
+0000000000000044 <select_and_fetch_1>:
+  44:	adrp	x0, 1c <libat_and_fetch_1>
+  48:	add	x0, x0, #0x0
+  4c:	ret
+
+fior_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_or_1>:
+   0:	mov	x2, x0
+   4:	and	w1, w1, #0xff
+   8:	ldaxrb	w0, [x2]
+   c:	orr	w3, w0, w1
+  10:	stlxrb	w4, w3, [x2]
+  14:	cbnz	w4, 8 <libat_fetch_or_1+0x8>
+  18:	ret
+
+000000000000001c <libat_or_fetch_1>:
+  1c:	mov	x2, x0
+  20:	and	w1, w1, #0xff
+  24:	ldaxrb	w0, [x2]
+  28:	orr	w0, w0, w1
+  2c:	stlxrb	w3, w0, [x2]
+  30:	cbnz	w3, 24 <libat_or_fetch_1+0x8>
+  34:	ret
+
+0000000000000038 <select_fetch_or_1>:
+  38:	adrp	x0, 0 <libat_fetch_or_1>
+  3c:	add	x0, x0, #0x0
+  40:	ret
+
+0000000000000044 <select_or_fetch_1>:
+  44:	adrp	x0, 1c <libat_or_fetch_1>
+  48:	add	x0, x0, #0x0
+  4c:	ret
+
+fxor_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_xor_1>:
+   0:	mov	x2, x0
+   4:	and	w1, w1, #0xff
+   8:	ldaxrb	w0, [x2]
+   c:	eor	w3, w0, w1
+  10:	stlxrb	w4, w3, [x2]
+  14:	cbnz	w4, 8 <libat_fetch_xor_1+0x8>
+  18:	ret
+
+000000000000001c <libat_xor_fetch_1>:
+  1c:	mov	x2, x0
+  20:	and	w1, w1, #0xff
+  24:	ldaxrb	w0, [x2]
+  28:	eor	w0, w0, w1
+  2c:	stlxrb	w3, w0, [x2]
+  30:	cbnz	w3, 24 <libat_xor_fetch_1+0x8>
+  34:	ret
+
+0000000000000038 <select_fetch_xor_1>:
+  38:	adrp	x0, 0 <libat_fetch_xor_1>
+  3c:	add	x0, x0, #0x0
+  40:	ret
+
+0000000000000044 <select_xor_fetch_1>:
+  44:	adrp	x0, 1c <libat_xor_fetch_1>
+  48:	add	x0, x0, #0x0
+  4c:	ret
+
+fnand_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_nand_1>:
+   0:	mov	x2, x0
+   4:	and	w1, w1, #0xff
+   8:	ldaxrb	w0, [x2]
+   c:	and	w3, w0, w1
+  10:	mvn	w3, w3
+  14:	stlxrb	w4, w3, [x2]
+  18:	cbnz	w4, 8 <libat_fetch_nand_1+0x8>
+  1c:	ret
+
+0000000000000020 <libat_nand_fetch_1>:
+  20:	mov	x2, x0
+  24:	and	w1, w1, #0xff
+  28:	ldaxrb	w0, [x2]
+  2c:	and	w0, w0, w1
+  30:	mvn	w0, w0
+  34:	stlxrb	w3, w0, [x2]
+  38:	cbnz	w3, 28 <libat_nand_fetch_1+0x8>
+  3c:	ret
+
+0000000000000040 <select_fetch_nand_1>:
+  40:	adrp	x0, 0 <libat_fetch_nand_1>
+  44:	add	x0, x0, #0x0
+  48:	ret
+
+000000000000004c <select_nand_fetch_1>:
+  4c:	adrp	x0, 20 <libat_nand_fetch_1>
+  50:	add	x0, x0, #0x0
+  54:	ret
+
+tas_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_test_and_set_1>:
+   0:	mov	x1, x0
+   4:	mov	w2, #0x1                   	// #1
+   8:	ldaxrb	w0, [x1]
+   c:	stlxrb	w3, w2, [x1]
+  10:	cbnz	w3, 8 <libat_test_and_set_1+0x8>
+  14:	ret
+
+0000000000000018 <select_test_and_set_1>:
+  18:	adrp	x0, 0 <libat_test_and_set_1>
+  1c:	add	x0, x0, #0x0
+  20:	ret
+
+load_2_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_load_2>:
+   0:	ldarh	w0, [x0]
+   4:	ret
+
+0000000000000008 <select_load_2>:
+   8:	adrp	x0, 0 <libat_load_2>
+   c:	add	x0, x0, #0x0
+  10:	ret
+
+store_2_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_store_2>:
+   0:	and	w1, w1, #0xffff
+   4:	stlrh	w1, [x0]
+   8:	ret
+
+000000000000000c <select_store_2>:
+   c:	adrp	x0, 0 <libat_store_2>
+  10:	add	x0, x0, #0x0
+  14:	ret
+
+cas_2_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_compare_exchange_2>:
+   0:	and	w2, w2, #0xffff
+   4:	ldrh	w3, [x1]
+   8:	ldaxrh	w4, [x0]
+   c:	cmp	w4, w3, uxth
+  10:	b.ne	1c <libat_compare_exchange_2+0x1c>  // b.any
+  14:	stlxrh	w5, w2, [x0]
+  18:	cbnz	w5, 8 <libat_compare_exchange_2+0x8>
+  1c:	cset	w0, eq  // eq = none
+  20:	b.eq	28 <libat_compare_exchange_2+0x28>  // b.none
+  24:	strh	w4, [x1]
+  28:	ret
+
+000000000000002c <select_compare_exchange_2>:
+  2c:	adrp	x0, 0 <libat_compare_exchange_2>
+  30:	add	x0, x0, #0x0
+  34:	ret
+
+exch_2_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_exchange_2>:
+   0:	mov	x2, x0
+   4:	and	w1, w1, #0xffff
+   8:	ldaxrh	w0, [x2]
+   c:	stlxrh	w3, w1, [x2]
+  10:	cbnz	w3, 8 <libat_exchange_2+0x8>
+  14:	ret
+
+0000000000000018 <select_exchange_2>:
+  18:	adrp	x0, 0 <libat_exchange_2>
+  1c:	add	x0, x0, #0x0
+  20:	ret
+
+fadd_2_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_add_2>:
+   0:	mov	x2, x0
+   4:	and	w1, w1, #0xffff
+   8:	ldaxrh	w0, [x2]
+   c:	add	w3, w0, w1
+  10:	stlxrh	w4, w3, [x2]
+  14:	cbnz	w4, 8 <libat_fetch_add_2+0x8>
+  18:	ret
+
+000000000000001c <libat_add_fetch_2>:
+  1c:	mov	x2, x0
+  20:	and	w1, w1, #0xffff
+  24:	ldaxrh	w0, [x2]
+  28:	add	w0, w0, w1
+  2c:	stlxrh	w3, w0, [x2]
+  30:	cbnz	w3, 24 <libat_add_fetch_2+0x8>
+  34:	ret
+
+0000000000000038 <select_fetch_add_2>:
+  38:	adrp	x0, 0 <libat_fetch_add_2>
+  3c:	add	x0, x0, #0x0
+  40:	ret
+
+0000000000000044 <select_add_fetch_2>:
+  44:	adrp	x0, 1c <libat_add_fetch_2>
+  48:	add	x0, x0, #0x0
+  4c:	ret
+
+fsub_2_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_sub_2>:
+   0:	mov	x2, x0
+   4:	and	w1, w1, #0xffff
+   8:	ldaxrh	w0, [x2]
+   c:	sub	w3, w0, w1
+  10:	stlxrh	w4, w3, [x2]
+  14:	cbnz	w4, 8 <libat_fetch_sub_2+0x8>
+  18:	ret
+
+000000000000001c <libat_sub_fetch_2>:
+  1c:	mov	x2, x0
+  20:	and	w1, w1, #0xffff
+  24:	ldaxrh	w0, [x2]
+  28:	sub	w0, w0, w1
+  2c:	stlxrh	w3, w0, [x2]
+  30:	cbnz	w3, 24 <libat_sub_fetch_2+0x8>
+  34:	ret
+
+0000000000000038 <select_fetch_sub_2>:
+  38:	adrp	x0, 0 <libat_fetch_sub_2>
+  3c:	add	x0, x0, #0x0
+  40:	ret
+
+0000000000000044 <select_sub_fetch_2>:
+  44:	adrp	x0, 1c <libat_sub_fetch_2>
+  48:	add	x0, x0, #0x0
+  4c:	ret
+
+fand_2_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_and_2>:
+   0:	mov	x2, x0
+   4:	and	w1, w1, #0xffff
+   8:	ldaxrh	w0, [x2]
+   c:	and	w3, w0, w1
+  10:	stlxrh	w4, w3, [x2]
+  14:	cbnz	w4, 8 <libat_fetch_and_2+0x8>
+  18:	ret
+
+000000000000001c <libat_and_fetch_2>:
+  1c:	mov	x2, x0
+  20:	and	w1, w1, #0xffff
+  24:	ldaxrh	w0, [x2]
+  28:	and	w0, w0, w1
+  2c:	stlxrh	w3, w0, [x2]
+  30:	cbnz	w3, 24 <libat_and_fetch_2+0x8>
+  34:	ret
+
+0000000000000038 <select_fetch_and_2>:
+  38:	adrp	x0, 0 <libat_fetch_and_2>
+  3c:	add	x0, x0, #0x0
+  40:	ret
+
+0000000000000044 <select_and_fetch_2>:
+  44:	adrp	x0, 1c <libat_and_fetch_2>
+  48:	add	x0, x0, #0x0
+  4c:	ret
+
+fior_2_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_or_2>:
+   0:	mov	x2, x0
+   4:	and	w1, w1, #0xffff
+   8:	ldaxrh	w0, [x2]
+   c:	orr	w3, w0, w1
+  10:	stlxrh	w4, w3, [x2]
+  14:	cbnz	w4, 8 <libat_fetch_or_2+0x8>
+  18:	ret
+
+000000000000001c <libat_or_fetch_2>:
+  1c:	mov	x2, x0
+  20:	and	w1, w1, #0xffff
+  24:	ldaxrh	w0, [x2]
+  28:	orr	w0, w0, w1
+  2c:	stlxrh	w3, w0, [x2]
+  30:	cbnz	w3, 24 <libat_or_fetch_2+0x8>
+  34:	ret
+
+0000000000000038 <select_fetch_or_2>:
+  38:	adrp	x0, 0 <libat_fetch_or_2>
+  3c:	add	x0, x0, #0x0
+  40:	ret
+
+0000000000000044 <select_or_fetch_2>:
+  44:	adrp	x0, 1c <libat_or_fetch_2>
+  48:	add	x0, x0, #0x0
+  4c:	ret
+
+fxor_2_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_xor_2>:
+   0:	mov	x2, x0
+   4:	and	w1, w1, #0xffff
+   8:	ldaxrh	w0, [x2]
+   c:	eor	w3, w0, w1
+  10:	stlxrh	w4, w3, [x2]
+  14:	cbnz	w4, 8 <libat_fetch_xor_2+0x8>
+  18:	ret
+
+000000000000001c <libat_xor_fetch_2>:
+  1c:	mov	x2, x0
+  20:	and	w1, w1, #0xffff
+  24:	ldaxrh	w0, [x2]
+  28:	eor	w0, w0, w1
+  2c:	stlxrh	w3, w0, [x2]
+  30:	cbnz	w3, 24 <libat_xor_fetch_2+0x8>
+  34:	ret
+
+0000000000000038 <select_fetch_xor_2>:
+  38:	adrp	x0, 0 <libat_fetch_xor_2>
+  3c:	add	x0, x0, #0x0
+  40:	ret
+
+0000000000000044 <select_xor_fetch_2>:
+  44:	adrp	x0, 1c <libat_xor_fetch_2>
+  48:	add	x0, x0, #0x0
+  4c:	ret
+
+fnand_2_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_nand_2>:
+   0:	mov	x2, x0
+   4:	and	w1, w1, #0xffff
+   8:	ldaxrh	w0, [x2]
+   c:	and	w3, w0, w1
+  10:	mvn	w3, w3
+  14:	stlxrh	w4, w3, [x2]
+  18:	cbnz	w4, 8 <libat_fetch_nand_2+0x8>
+  1c:	ret
+
+0000000000000020 <libat_nand_fetch_2>:
+  20:	mov	x2, x0
+  24:	and	w1, w1, #0xffff
+  28:	ldaxrh	w0, [x2]
+  2c:	and	w0, w0, w1
+  30:	mvn	w0, w0
+  34:	stlxrh	w3, w0, [x2]
+  38:	cbnz	w3, 28 <libat_nand_fetch_2+0x8>
+  3c:	ret
+
+0000000000000040 <select_fetch_nand_2>:
+  40:	adrp	x0, 0 <libat_fetch_nand_2>
+  44:	add	x0, x0, #0x0
+  48:	ret
+
+000000000000004c <select_nand_fetch_2>:
+  4c:	adrp	x0, 20 <libat_nand_fetch_2>
+  50:	add	x0, x0, #0x0
+  54:	ret
+
+tas_2_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_test_and_set_2>:
+   0:	mov	x1, x0
+   4:	mov	w2, #0x1                   	// #1
+   8:	ldaxrb	w0, [x1]
+   c:	stlxrb	w3, w2, [x1]
+  10:	cbnz	w3, 8 <libat_test_and_set_2+0x8>
+  14:	ret
+
+0000000000000018 <select_test_and_set_2>:
+  18:	adrp	x0, 0 <libat_test_and_set_2>
+  1c:	add	x0, x0, #0x0
+  20:	ret
+
+load_4_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_load_4>:
+   0:	ldar	w0, [x0]
+   4:	ret
+
+0000000000000008 <select_load_4>:
+   8:	adrp	x0, 0 <libat_load_4>
+   c:	add	x0, x0, #0x0
+  10:	ret
+
+store_4_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_store_4>:
+   0:	stlr	w1, [x0]
+   4:	ret
+
+0000000000000008 <select_store_4>:
+   8:	adrp	x0, 0 <libat_store_4>
+   c:	add	x0, x0, #0x0
+  10:	ret
+
+cas_4_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_compare_exchange_4>:
+   0:	ldr	w3, [x1]
+   4:	ldaxr	w4, [x0]
+   8:	cmp	w4, w3
+   c:	b.ne	18 <libat_compare_exchange_4+0x18>  // b.any
+  10:	stlxr	w5, w2, [x0]
+  14:	cbnz	w5, 4 <libat_compare_exchange_4+0x4>
+  18:	cset	w0, eq  // eq = none
+  1c:	b.eq	24 <libat_compare_exchange_4+0x24>  // b.none
+  20:	str	w4, [x1]
+  24:	ret
+
+0000000000000028 <select_compare_exchange_4>:
+  28:	adrp	x0, 0 <libat_compare_exchange_4>
+  2c:	add	x0, x0, #0x0
+  30:	ret
+
+exch_4_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_exchange_4>:
+   0:	mov	x2, x0
+   4:	ldaxr	w0, [x2]
+   8:	stlxr	w3, w1, [x2]
+   c:	cbnz	w3, 4 <libat_exchange_4+0x4>
+  10:	ret
+
+0000000000000014 <select_exchange_4>:
+  14:	adrp	x0, 0 <libat_exchange_4>
+  18:	add	x0, x0, #0x0
+  1c:	ret
+
+fadd_4_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_add_4>:
+   0:	mov	x2, x0
+   4:	ldaxr	w0, [x2]
+   8:	add	w3, w0, w1
+   c:	stlxr	w4, w3, [x2]
+  10:	cbnz	w4, 4 <libat_fetch_add_4+0x4>
+  14:	ret
+
+0000000000000018 <libat_add_fetch_4>:
+  18:	mov	x2, x0
+  1c:	ldaxr	w0, [x2]
+  20:	add	w0, w0, w1
+  24:	stlxr	w3, w0, [x2]
+  28:	cbnz	w3, 1c <libat_add_fetch_4+0x4>
+  2c:	ret
+
+0000000000000030 <select_fetch_add_4>:
+  30:	adrp	x0, 0 <libat_fetch_add_4>
+  34:	add	x0, x0, #0x0
+  38:	ret
+
+000000000000003c <select_add_fetch_4>:
+  3c:	adrp	x0, 18 <libat_add_fetch_4>
+  40:	add	x0, x0, #0x0
+  44:	ret
+
+fsub_4_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_sub_4>:
+   0:	mov	x2, x0
+   4:	ldaxr	w0, [x2]
+   8:	sub	w3, w0, w1
+   c:	stlxr	w4, w3, [x2]
+  10:	cbnz	w4, 4 <libat_fetch_sub_4+0x4>
+  14:	ret
+
+0000000000000018 <libat_sub_fetch_4>:
+  18:	mov	x2, x0
+  1c:	ldaxr	w0, [x2]
+  20:	sub	w0, w0, w1
+  24:	stlxr	w3, w0, [x2]
+  28:	cbnz	w3, 1c <libat_sub_fetch_4+0x4>
+  2c:	ret
+
+0000000000000030 <select_fetch_sub_4>:
+  30:	adrp	x0, 0 <libat_fetch_sub_4>
+  34:	add	x0, x0, #0x0
+  38:	ret
+
+000000000000003c <select_sub_fetch_4>:
+  3c:	adrp	x0, 18 <libat_sub_fetch_4>
+  40:	add	x0, x0, #0x0
+  44:	ret
+
+fand_4_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_and_4>:
+   0:	mov	x2, x0
+   4:	ldaxr	w0, [x2]
+   8:	and	w3, w0, w1
+   c:	stlxr	w4, w3, [x2]
+  10:	cbnz	w4, 4 <libat_fetch_and_4+0x4>
+  14:	ret
+
+0000000000000018 <libat_and_fetch_4>:
+  18:	mov	x2, x0
+  1c:	ldaxr	w0, [x2]
+  20:	and	w0, w0, w1
+  24:	stlxr	w3, w0, [x2]
+  28:	cbnz	w3, 1c <libat_and_fetch_4+0x4>
+  2c:	ret
+
+0000000000000030 <select_fetch_and_4>:
+  30:	adrp	x0, 0 <libat_fetch_and_4>
+  34:	add	x0, x0, #0x0
+  38:	ret
+
+000000000000003c <select_and_fetch_4>:
+  3c:	adrp	x0, 18 <libat_and_fetch_4>
+  40:	add	x0, x0, #0x0
+  44:	ret
+
+fior_4_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_or_4>:
+   0:	mov	x2, x0
+   4:	ldaxr	w0, [x2]
+   8:	orr	w3, w0, w1
+   c:	stlxr	w4, w3, [x2]
+  10:	cbnz	w4, 4 <libat_fetch_or_4+0x4>
+  14:	ret
+
+0000000000000018 <libat_or_fetch_4>:
+  18:	mov	x2, x0
+  1c:	ldaxr	w0, [x2]
+  20:	orr	w0, w0, w1
+  24:	stlxr	w3, w0, [x2]
+  28:	cbnz	w3, 1c <libat_or_fetch_4+0x4>
+  2c:	ret
+
+0000000000000030 <select_fetch_or_4>:
+  30:	adrp	x0, 0 <libat_fetch_or_4>
+  34:	add	x0, x0, #0x0
+  38:	ret
+
+000000000000003c <select_or_fetch_4>:
+  3c:	adrp	x0, 18 <libat_or_fetch_4>
+  40:	add	x0, x0, #0x0
+  44:	ret
+
+fxor_4_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_xor_4>:
+   0:	mov	x2, x0
+   4:	ldaxr	w0, [x2]
+   8:	eor	w3, w0, w1
+   c:	stlxr	w4, w3, [x2]
+  10:	cbnz	w4, 4 <libat_fetch_xor_4+0x4>
+  14:	ret
+
+0000000000000018 <libat_xor_fetch_4>:
+  18:	mov	x2, x0
+  1c:	ldaxr	w0, [x2]
+  20:	eor	w0, w0, w1
+  24:	stlxr	w3, w0, [x2]
+  28:	cbnz	w3, 1c <libat_xor_fetch_4+0x4>
+  2c:	ret
+
+0000000000000030 <select_fetch_xor_4>:
+  30:	adrp	x0, 0 <libat_fetch_xor_4>
+  34:	add	x0, x0, #0x0
+  38:	ret
+
+000000000000003c <select_xor_fetch_4>:
+  3c:	adrp	x0, 18 <libat_xor_fetch_4>
+  40:	add	x0, x0, #0x0
+  44:	ret
+
+fnand_4_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_nand_4>:
+   0:	mov	x2, x0
+   4:	ldaxr	w0, [x2]
+   8:	and	w3, w0, w1
+   c:	mvn	w3, w3
+  10:	stlxr	w4, w3, [x2]
+  14:	cbnz	w4, 4 <libat_fetch_nand_4+0x4>
+  18:	ret
+
+000000000000001c <libat_nand_fetch_4>:
+  1c:	mov	x2, x0
+  20:	ldaxr	w0, [x2]
+  24:	and	w0, w0, w1
+  28:	mvn	w0, w0
+  2c:	stlxr	w3, w0, [x2]
+  30:	cbnz	w3, 20 <libat_nand_fetch_4+0x4>
+  34:	ret
+
+0000000000000038 <select_fetch_nand_4>:
+  38:	adrp	x0, 0 <libat_fetch_nand_4>
+  3c:	add	x0, x0, #0x0
+  40:	ret
+
+0000000000000044 <select_nand_fetch_4>:
+  44:	adrp	x0, 1c <libat_nand_fetch_4>
+  48:	add	x0, x0, #0x0
+  4c:	ret
+
+tas_4_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_test_and_set_4>:
+   0:	mov	x1, x0
+   4:	mov	w2, #0x1                   	// #1
+   8:	ldaxrb	w0, [x1]
+   c:	stlxrb	w3, w2, [x1]
+  10:	cbnz	w3, 8 <libat_test_and_set_4+0x8>
+  14:	ret
+
+0000000000000018 <select_test_and_set_4>:
+  18:	adrp	x0, 0 <libat_test_and_set_4>
+  1c:	add	x0, x0, #0x0
+  20:	ret
+
+load_8_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_load_8>:
+   0:	ldar	x0, [x0]
+   4:	ret
+
+0000000000000008 <select_load_8>:
+   8:	adrp	x0, 0 <libat_load_8>
+   c:	add	x0, x0, #0x0
+  10:	ret
+
+store_8_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_store_8>:
+   0:	stlr	x1, [x0]
+   4:	ret
+
+0000000000000008 <select_store_8>:
+   8:	adrp	x0, 0 <libat_store_8>
+   c:	add	x0, x0, #0x0
+  10:	ret
+
+cas_8_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_compare_exchange_8>:
+   0:	ldr	x3, [x1]
+   4:	ldaxr	x4, [x0]
+   8:	cmp	x4, x3
+   c:	b.ne	18 <libat_compare_exchange_8+0x18>  // b.any
+  10:	stlxr	w5, x2, [x0]
+  14:	cbnz	w5, 4 <libat_compare_exchange_8+0x4>
+  18:	cset	w0, eq  // eq = none
+  1c:	b.eq	24 <libat_compare_exchange_8+0x24>  // b.none
+  20:	str	x4, [x1]
+  24:	ret
+
+0000000000000028 <select_compare_exchange_8>:
+  28:	adrp	x0, 0 <libat_compare_exchange_8>
+  2c:	add	x0, x0, #0x0
+  30:	ret
+
+exch_8_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_exchange_8>:
+   0:	mov	x2, x0
+   4:	ldaxr	x0, [x2]
+   8:	stlxr	w3, x1, [x2]
+   c:	cbnz	w3, 4 <libat_exchange_8+0x4>
+  10:	ret
+
+0000000000000014 <select_exchange_8>:
+  14:	adrp	x0, 0 <libat_exchange_8>
+  18:	add	x0, x0, #0x0
+  1c:	ret
+
+fadd_8_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_add_8>:
+   0:	mov	x2, x0
+   4:	ldaxr	x0, [x2]
+   8:	add	x3, x0, x1
+   c:	stlxr	w4, x3, [x2]
+  10:	cbnz	w4, 4 <libat_fetch_add_8+0x4>
+  14:	ret
+
+0000000000000018 <libat_add_fetch_8>:
+  18:	mov	x2, x0
+  1c:	ldaxr	x0, [x2]
+  20:	add	x0, x0, x1
+  24:	stlxr	w3, x0, [x2]
+  28:	cbnz	w3, 1c <libat_add_fetch_8+0x4>
+  2c:	ret
+
+0000000000000030 <select_fetch_add_8>:
+  30:	adrp	x0, 0 <libat_fetch_add_8>
+  34:	add	x0, x0, #0x0
+  38:	ret
+
+000000000000003c <select_add_fetch_8>:
+  3c:	adrp	x0, 18 <libat_add_fetch_8>
+  40:	add	x0, x0, #0x0
+  44:	ret
+
+fsub_8_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_sub_8>:
+   0:	mov	x2, x0
+   4:	ldaxr	x0, [x2]
+   8:	sub	x3, x0, x1
+   c:	stlxr	w4, x3, [x2]
+  10:	cbnz	w4, 4 <libat_fetch_sub_8+0x4>
+  14:	ret
+
+0000000000000018 <libat_sub_fetch_8>:
+  18:	mov	x2, x0
+  1c:	ldaxr	x0, [x2]
+  20:	sub	x0, x0, x1
+  24:	stlxr	w3, x0, [x2]
+  28:	cbnz	w3, 1c <libat_sub_fetch_8+0x4>
+  2c:	ret
+
+0000000000000030 <select_fetch_sub_8>:
+  30:	adrp	x0, 0 <libat_fetch_sub_8>
+  34:	add	x0, x0, #0x0
+  38:	ret
+
+000000000000003c <select_sub_fetch_8>:
+  3c:	adrp	x0, 18 <libat_sub_fetch_8>
+  40:	add	x0, x0, #0x0
+  44:	ret
+
+fand_8_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_and_8>:
+   0:	mov	x2, x0
+   4:	ldaxr	x0, [x2]
+   8:	and	x3, x0, x1
+   c:	stlxr	w4, x3, [x2]
+  10:	cbnz	w4, 4 <libat_fetch_and_8+0x4>
+  14:	ret
+
+0000000000000018 <libat_and_fetch_8>:
+  18:	mov	x2, x0
+  1c:	ldaxr	x0, [x2]
+  20:	and	x0, x0, x1
+  24:	stlxr	w3, x0, [x2]
+  28:	cbnz	w3, 1c <libat_and_fetch_8+0x4>
+  2c:	ret
+
+0000000000000030 <select_fetch_and_8>:
+  30:	adrp	x0, 0 <libat_fetch_and_8>
+  34:	add	x0, x0, #0x0
+  38:	ret
+
+000000000000003c <select_and_fetch_8>:
+  3c:	adrp	x0, 18 <libat_and_fetch_8>
+  40:	add	x0, x0, #0x0
+  44:	ret
+
+fior_8_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_or_8>:
+   0:	mov	x2, x0
+   4:	ldaxr	x0, [x2]
+   8:	orr	x3, x0, x1
+   c:	stlxr	w4, x3, [x2]
+  10:	cbnz	w4, 4 <libat_fetch_or_8+0x4>
+  14:	ret
+
+0000000000000018 <libat_or_fetch_8>:
+  18:	mov	x2, x0
+  1c:	ldaxr	x0, [x2]
+  20:	orr	x0, x0, x1
+  24:	stlxr	w3, x0, [x2]
+  28:	cbnz	w3, 1c <libat_or_fetch_8+0x4>
+  2c:	ret
+
+0000000000000030 <select_fetch_or_8>:
+  30:	adrp	x0, 0 <libat_fetch_or_8>
+  34:	add	x0, x0, #0x0
+  38:	ret
+
+000000000000003c <select_or_fetch_8>:
+  3c:	adrp	x0, 18 <libat_or_fetch_8>
+  40:	add	x0, x0, #0x0
+  44:	ret
+
+fxor_8_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_xor_8>:
+   0:	mov	x2, x0
+   4:	ldaxr	x0, [x2]
+   8:	eor	x3, x0, x1
+   c:	stlxr	w4, x3, [x2]
+  10:	cbnz	w4, 4 <libat_fetch_xor_8+0x4>
+  14:	ret
+
+0000000000000018 <libat_xor_fetch_8>:
+  18:	mov	x2, x0
+  1c:	ldaxr	x0, [x2]
+  20:	eor	x0, x0, x1
+  24:	stlxr	w3, x0, [x2]
+  28:	cbnz	w3, 1c <libat_xor_fetch_8+0x4>
+  2c:	ret
+
+0000000000000030 <select_fetch_xor_8>:
+  30:	adrp	x0, 0 <libat_fetch_xor_8>
+  34:	add	x0, x0, #0x0
+  38:	ret
+
+000000000000003c <select_xor_fetch_8>:
+  3c:	adrp	x0, 18 <libat_xor_fetch_8>
+  40:	add	x0, x0, #0x0
+  44:	ret
+
+fnand_8_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_nand_8>:
+   0:	mov	x2, x0
+   4:	ldaxr	x0, [x2]
+   8:	and	x3, x0, x1
+   c:	mvn	x3, x3
+  10:	stlxr	w4, x3, [x2]
+  14:	cbnz	w4, 4 <libat_fetch_nand_8+0x4>
+  18:	ret
+
+000000000000001c <libat_nand_fetch_8>:
+  1c:	mov	x2, x0
+  20:	ldaxr	x0, [x2]
+  24:	and	x0, x0, x1
+  28:	mvn	x0, x0
+  2c:	stlxr	w3, x0, [x2]
+  30:	cbnz	w3, 20 <libat_nand_fetch_8+0x4>
+  34:	ret
+
+0000000000000038 <select_fetch_nand_8>:
+  38:	adrp	x0, 0 <libat_fetch_nand_8>
+  3c:	add	x0, x0, #0x0
+  40:	ret
+
+0000000000000044 <select_nand_fetch_8>:
+  44:	adrp	x0, 1c <libat_nand_fetch_8>
+  48:	add	x0, x0, #0x0
+  4c:	ret
+
+tas_8_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_test_and_set_8>:
+   0:	mov	x1, x0
+   4:	mov	w2, #0x1                   	// #1
+   8:	ldaxrb	w0, [x1]
+   c:	stlxrb	w3, w2, [x1]
+  10:	cbnz	w3, 8 <libat_test_and_set_8+0x8>
+  14:	ret
+
+0000000000000018 <select_test_and_set_8>:
+  18:	adrp	x0, 0 <libat_test_and_set_8>
+  1c:	add	x0, x0, #0x0
+  20:	ret
+
+load_16_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_load_16>:
+   0:	stp	x29, x30, [sp, #-48]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	str	x21, [sp, #32]
+  10:	mov	x19, x0
+  14:	bl	0 <libat_lock_1>
+  18:	ldp	x20, x21, [x19]
+  1c:	mov	x0, x19
+  20:	bl	0 <libat_unlock_1>
+  24:	mov	x0, x20
+  28:	mov	x1, x21
+  2c:	ldp	x19, x20, [sp, #16]
+  30:	ldr	x21, [sp, #32]
+  34:	ldp	x29, x30, [sp], #48
+  38:	ret
+
+000000000000003c <select_load_16>:
+  3c:	adrp	x0, 0 <libat_load_16>
+  40:	add	x0, x0, #0x0
+  44:	ret
+
+store_16_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_store_16>:
+   0:	stp	x29, x30, [sp, #-48]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	str	x21, [sp, #32]
+  10:	mov	x19, x0
+  14:	mov	x21, x2
+  18:	mov	x20, x3
+  1c:	bl	0 <libat_lock_1>
+  20:	str	x21, [x19]
+  24:	str	x20, [x19, #8]
+  28:	mov	x0, x19
+  2c:	bl	0 <libat_unlock_1>
+  30:	ldp	x19, x20, [sp, #16]
+  34:	ldr	x21, [sp, #32]
+  38:	ldp	x29, x30, [sp], #48
+  3c:	ret
+
+0000000000000040 <select_store_16>:
+  40:	adrp	x0, 0 <libat_store_16>
+  44:	add	x0, x0, #0x0
+  48:	ret
+
+cas_16_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_compare_exchange_16>:
+   0:	stp	x29, x30, [sp, #-64]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	stp	x21, x22, [sp, #32]
+  10:	str	x23, [sp, #48]
+  14:	mov	x19, x0
+  18:	mov	x20, x1
+  1c:	mov	x22, x2
+  20:	mov	x21, x3
+  24:	bl	0 <libat_lock_1>
+  28:	ldr	x1, [x19]
+  2c:	ldr	x2, [x19, #8]
+  30:	ldr	x3, [x20]
+  34:	ldr	x4, [x20, #8]
+  38:	eor	x0, x3, x1
+  3c:	eor	x5, x4, x2
+  40:	orr	x0, x0, x5
+  44:	cmp	x0, #0x0
+  48:	cset	w23, eq  // eq = none
+  4c:	cmp	x3, x1
+  50:	b.eq	7c <libat_compare_exchange_16+0x7c>  // b.none
+  54:	str	x1, [x20]
+  58:	str	x2, [x20, #8]
+  5c:	mov	x0, x19
+  60:	bl	0 <libat_unlock_1>
+  64:	mov	w0, w23
+  68:	ldp	x19, x20, [sp, #16]
+  6c:	ldp	x21, x22, [sp, #32]
+  70:	ldr	x23, [sp, #48]
+  74:	ldp	x29, x30, [sp], #64
+  78:	ret
+  7c:	cmp	x4, x2
+  80:	b.ne	54 <libat_compare_exchange_16+0x54>  // b.any
+  84:	str	x22, [x19]
+  88:	str	x21, [x19, #8]
+  8c:	b	5c <libat_compare_exchange_16+0x5c>
+
+0000000000000090 <select_compare_exchange_16>:
+  90:	adrp	x0, 0 <libat_compare_exchange_16>
+  94:	add	x0, x0, #0x0
+  98:	ret
+
+exch_16_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_exchange_16>:
+   0:	stp	x29, x30, [sp, #-64]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	stp	x21, x22, [sp, #32]
+  10:	str	x23, [sp, #48]
+  14:	mov	x19, x0
+  18:	mov	x21, x2
+  1c:	mov	x20, x3
+  20:	bl	0 <libat_lock_1>
+  24:	ldp	x22, x23, [x19]
+  28:	str	x21, [x19]
+  2c:	str	x20, [x19, #8]
+  30:	mov	x0, x19
+  34:	bl	0 <libat_unlock_1>
+  38:	mov	x0, x22
+  3c:	mov	x1, x23
+  40:	ldp	x19, x20, [sp, #16]
+  44:	ldp	x21, x22, [sp, #32]
+  48:	ldr	x23, [sp, #48]
+  4c:	ldp	x29, x30, [sp], #64
+  50:	ret
+
+0000000000000054 <select_exchange_16>:
+  54:	adrp	x0, 0 <libat_exchange_16>
+  58:	add	x0, x0, #0x0
+  5c:	ret
+
+fadd_16_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_add_16>:
+   0:	stp	x29, x30, [sp, #-64]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	stp	x21, x22, [sp, #32]
+  10:	str	x23, [sp, #48]
+  14:	mov	x19, x0
+  18:	mov	x20, x2
+  1c:	mov	x21, x3
+  20:	bl	0 <libat_lock_1>
+  24:	ldr	x22, [x19]
+  28:	ldr	x23, [x19, #8]
+  2c:	adds	x20, x22, x20
+  30:	adc	x21, x23, x21
+  34:	str	x20, [x19]
+  38:	str	x21, [x19, #8]
+  3c:	mov	x0, x19
+  40:	bl	0 <libat_unlock_1>
+  44:	mov	x0, x22
+  48:	mov	x1, x23
+  4c:	ldp	x19, x20, [sp, #16]
+  50:	ldp	x21, x22, [sp, #32]
+  54:	ldr	x23, [sp, #48]
+  58:	ldp	x29, x30, [sp], #64
+  5c:	ret
+
+0000000000000060 <libat_add_fetch_16>:
+  60:	stp	x29, x30, [sp, #-48]!
+  64:	mov	x29, sp
+  68:	stp	x19, x20, [sp, #16]
+  6c:	str	x21, [sp, #32]
+  70:	mov	x20, x0
+  74:	mov	x19, x2
+  78:	mov	x21, x3
+  7c:	bl	0 <libat_lock_1>
+  80:	ldr	x2, [x20]
+  84:	ldr	x3, [x20, #8]
+  88:	adds	x19, x19, x2
+  8c:	adc	x21, x21, x3
+  90:	str	x19, [x20]
+  94:	str	x21, [x20, #8]
+  98:	mov	x0, x20
+  9c:	bl	0 <libat_unlock_1>
+  a0:	mov	x0, x19
+  a4:	mov	x1, x21
+  a8:	ldp	x19, x20, [sp, #16]
+  ac:	ldr	x21, [sp, #32]
+  b0:	ldp	x29, x30, [sp], #48
+  b4:	ret
+
+00000000000000b8 <select_fetch_add_16>:
+  b8:	adrp	x0, 0 <libat_fetch_add_16>
+  bc:	add	x0, x0, #0x0
+  c0:	ret
+
+00000000000000c4 <select_add_fetch_16>:
+  c4:	adrp	x0, 60 <libat_add_fetch_16>
+  c8:	add	x0, x0, #0x0
+  cc:	ret
+
+fsub_16_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_sub_16>:
+   0:	stp	x29, x30, [sp, #-64]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	stp	x21, x22, [sp, #32]
+  10:	str	x23, [sp, #48]
+  14:	mov	x19, x0
+  18:	mov	x20, x2
+  1c:	mov	x21, x3
+  20:	bl	0 <libat_lock_1>
+  24:	ldr	x22, [x19]
+  28:	ldr	x23, [x19, #8]
+  2c:	subs	x20, x22, x20
+  30:	sbc	x21, x23, x21
+  34:	str	x20, [x19]
+  38:	str	x21, [x19, #8]
+  3c:	mov	x0, x19
+  40:	bl	0 <libat_unlock_1>
+  44:	mov	x0, x22
+  48:	mov	x1, x23
+  4c:	ldp	x19, x20, [sp, #16]
+  50:	ldp	x21, x22, [sp, #32]
+  54:	ldr	x23, [sp, #48]
+  58:	ldp	x29, x30, [sp], #64
+  5c:	ret
+
+0000000000000060 <libat_sub_fetch_16>:
+  60:	stp	x29, x30, [sp, #-64]!
+  64:	mov	x29, sp
+  68:	stp	x19, x20, [sp, #16]
+  6c:	stp	x21, x22, [sp, #32]
+  70:	str	x23, [sp, #48]
+  74:	mov	x19, x0
+  78:	mov	x22, x2
+  7c:	mov	x23, x3
+  80:	bl	0 <libat_lock_1>
+  84:	ldr	x20, [x19]
+  88:	ldr	x21, [x19, #8]
+  8c:	subs	x20, x20, x22
+  90:	sbc	x21, x21, x23
+  94:	str	x20, [x19]
+  98:	str	x21, [x19, #8]
+  9c:	mov	x0, x19
+  a0:	bl	0 <libat_unlock_1>
+  a4:	mov	x0, x20
+  a8:	mov	x1, x21
+  ac:	ldp	x19, x20, [sp, #16]
+  b0:	ldp	x21, x22, [sp, #32]
+  b4:	ldr	x23, [sp, #48]
+  b8:	ldp	x29, x30, [sp], #64
+  bc:	ret
+
+00000000000000c0 <select_fetch_sub_16>:
+  c0:	adrp	x0, 0 <libat_fetch_sub_16>
+  c4:	add	x0, x0, #0x0
+  c8:	ret
+
+00000000000000cc <select_sub_fetch_16>:
+  cc:	adrp	x0, 60 <libat_sub_fetch_16>
+  d0:	add	x0, x0, #0x0
+  d4:	ret
+
+fand_16_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_and_16>:
+   0:	stp	x29, x30, [sp, #-64]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	stp	x21, x22, [sp, #32]
+  10:	str	x23, [sp, #48]
+  14:	mov	x19, x0
+  18:	mov	x21, x2
+  1c:	mov	x20, x3
+  20:	bl	0 <libat_lock_1>
+  24:	ldr	x23, [x19]
+  28:	ldr	x22, [x19, #8]
+  2c:	and	x21, x23, x21
+  30:	str	x21, [x19]
+  34:	and	x20, x22, x20
+  38:	str	x20, [x19, #8]
+  3c:	mov	x0, x19
+  40:	bl	0 <libat_unlock_1>
+  44:	mov	x0, x23
+  48:	mov	x1, x22
+  4c:	ldp	x19, x20, [sp, #16]
+  50:	ldp	x21, x22, [sp, #32]
+  54:	ldr	x23, [sp, #48]
+  58:	ldp	x29, x30, [sp], #64
+  5c:	ret
+
+0000000000000060 <libat_and_fetch_16>:
+  60:	stp	x29, x30, [sp, #-48]!
+  64:	mov	x29, sp
+  68:	stp	x19, x20, [sp, #16]
+  6c:	stp	x21, x22, [sp, #32]
+  70:	mov	x19, x0
+  74:	mov	x20, x2
+  78:	mov	x22, x3
+  7c:	bl	0 <libat_lock_1>
+  80:	ldr	x21, [x19]
+  84:	and	x21, x21, x20
+  88:	ldr	x20, [x19, #8]
+  8c:	and	x20, x20, x22
+  90:	str	x21, [x19]
+  94:	str	x20, [x19, #8]
+  98:	mov	x0, x19
+  9c:	bl	0 <libat_unlock_1>
+  a0:	mov	x0, x21
+  a4:	mov	x1, x20
+  a8:	ldp	x19, x20, [sp, #16]
+  ac:	ldp	x21, x22, [sp, #32]
+  b0:	ldp	x29, x30, [sp], #48
+  b4:	ret
+
+00000000000000b8 <select_fetch_and_16>:
+  b8:	adrp	x0, 0 <libat_fetch_and_16>
+  bc:	add	x0, x0, #0x0
+  c0:	ret
+
+00000000000000c4 <select_and_fetch_16>:
+  c4:	adrp	x0, 60 <libat_and_fetch_16>
+  c8:	add	x0, x0, #0x0
+  cc:	ret
+
+fior_16_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_or_16>:
+   0:	stp	x29, x30, [sp, #-64]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	stp	x21, x22, [sp, #32]
+  10:	str	x23, [sp, #48]
+  14:	mov	x19, x0
+  18:	mov	x21, x2
+  1c:	mov	x20, x3
+  20:	bl	0 <libat_lock_1>
+  24:	ldr	x23, [x19]
+  28:	ldr	x22, [x19, #8]
+  2c:	orr	x21, x23, x21
+  30:	str	x21, [x19]
+  34:	orr	x20, x22, x20
+  38:	str	x20, [x19, #8]
+  3c:	mov	x0, x19
+  40:	bl	0 <libat_unlock_1>
+  44:	mov	x0, x23
+  48:	mov	x1, x22
+  4c:	ldp	x19, x20, [sp, #16]
+  50:	ldp	x21, x22, [sp, #32]
+  54:	ldr	x23, [sp, #48]
+  58:	ldp	x29, x30, [sp], #64
+  5c:	ret
+
+0000000000000060 <libat_or_fetch_16>:
+  60:	stp	x29, x30, [sp, #-48]!
+  64:	mov	x29, sp
+  68:	stp	x19, x20, [sp, #16]
+  6c:	stp	x21, x22, [sp, #32]
+  70:	mov	x19, x0
+  74:	mov	x20, x2
+  78:	mov	x22, x3
+  7c:	bl	0 <libat_lock_1>
+  80:	ldr	x21, [x19]
+  84:	orr	x21, x21, x20
+  88:	ldr	x20, [x19, #8]
+  8c:	orr	x20, x20, x22
+  90:	str	x21, [x19]
+  94:	str	x20, [x19, #8]
+  98:	mov	x0, x19
+  9c:	bl	0 <libat_unlock_1>
+  a0:	mov	x0, x21
+  a4:	mov	x1, x20
+  a8:	ldp	x19, x20, [sp, #16]
+  ac:	ldp	x21, x22, [sp, #32]
+  b0:	ldp	x29, x30, [sp], #48
+  b4:	ret
+
+00000000000000b8 <select_fetch_or_16>:
+  b8:	adrp	x0, 0 <libat_fetch_or_16>
+  bc:	add	x0, x0, #0x0
+  c0:	ret
+
+00000000000000c4 <select_or_fetch_16>:
+  c4:	adrp	x0, 60 <libat_or_fetch_16>
+  c8:	add	x0, x0, #0x0
+  cc:	ret
+
+fxor_16_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_xor_16>:
+   0:	stp	x29, x30, [sp, #-64]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	stp	x21, x22, [sp, #32]
+  10:	str	x23, [sp, #48]
+  14:	mov	x19, x0
+  18:	mov	x21, x2
+  1c:	mov	x20, x3
+  20:	bl	0 <libat_lock_1>
+  24:	ldr	x23, [x19]
+  28:	ldr	x22, [x19, #8]
+  2c:	eor	x21, x23, x21
+  30:	str	x21, [x19]
+  34:	eor	x20, x22, x20
+  38:	str	x20, [x19, #8]
+  3c:	mov	x0, x19
+  40:	bl	0 <libat_unlock_1>
+  44:	mov	x0, x23
+  48:	mov	x1, x22
+  4c:	ldp	x19, x20, [sp, #16]
+  50:	ldp	x21, x22, [sp, #32]
+  54:	ldr	x23, [sp, #48]
+  58:	ldp	x29, x30, [sp], #64
+  5c:	ret
+
+0000000000000060 <libat_xor_fetch_16>:
+  60:	stp	x29, x30, [sp, #-48]!
+  64:	mov	x29, sp
+  68:	stp	x19, x20, [sp, #16]
+  6c:	stp	x21, x22, [sp, #32]
+  70:	mov	x19, x0
+  74:	mov	x20, x2
+  78:	mov	x22, x3
+  7c:	bl	0 <libat_lock_1>
+  80:	ldr	x21, [x19]
+  84:	eor	x21, x21, x20
+  88:	ldr	x20, [x19, #8]
+  8c:	eor	x20, x20, x22
+  90:	str	x21, [x19]
+  94:	str	x20, [x19, #8]
+  98:	mov	x0, x19
+  9c:	bl	0 <libat_unlock_1>
+  a0:	mov	x0, x21
+  a4:	mov	x1, x20
+  a8:	ldp	x19, x20, [sp, #16]
+  ac:	ldp	x21, x22, [sp, #32]
+  b0:	ldp	x29, x30, [sp], #48
+  b4:	ret
+
+00000000000000b8 <select_fetch_xor_16>:
+  b8:	adrp	x0, 0 <libat_fetch_xor_16>
+  bc:	add	x0, x0, #0x0
+  c0:	ret
+
+00000000000000c4 <select_xor_fetch_16>:
+  c4:	adrp	x0, 60 <libat_xor_fetch_16>
+  c8:	add	x0, x0, #0x0
+  cc:	ret
+
+fnand_16_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_nand_16>:
+   0:	stp	x29, x30, [sp, #-64]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	stp	x21, x22, [sp, #32]
+  10:	str	x23, [sp, #48]
+  14:	mov	x19, x0
+  18:	mov	x21, x2
+  1c:	mov	x20, x3
+  20:	bl	0 <libat_lock_1>
+  24:	ldr	x23, [x19]
+  28:	ldr	x22, [x19, #8]
+  2c:	and	x21, x23, x21
+  30:	and	x20, x22, x20
+  34:	mvn	x21, x21
+  38:	str	x21, [x19]
+  3c:	mvn	x20, x20
+  40:	str	x20, [x19, #8]
+  44:	mov	x0, x19
+  48:	bl	0 <libat_unlock_1>
+  4c:	mov	x0, x23
+  50:	mov	x1, x22
+  54:	ldp	x19, x20, [sp, #16]
+  58:	ldp	x21, x22, [sp, #32]
+  5c:	ldr	x23, [sp, #48]
+  60:	ldp	x29, x30, [sp], #64
+  64:	ret
+
+0000000000000068 <libat_nand_fetch_16>:
+  68:	stp	x29, x30, [sp, #-48]!
+  6c:	mov	x29, sp
+  70:	stp	x19, x20, [sp, #16]
+  74:	stp	x21, x22, [sp, #32]
+  78:	mov	x19, x0
+  7c:	mov	x20, x2
+  80:	mov	x22, x3
+  84:	bl	0 <libat_lock_1>
+  88:	ldr	x21, [x19]
+  8c:	and	x21, x21, x20
+  90:	ldr	x20, [x19, #8]
+  94:	and	x20, x20, x22
+  98:	mvn	x21, x21
+  9c:	mvn	x20, x20
+  a0:	str	x21, [x19]
+  a4:	str	x20, [x19, #8]
+  a8:	mov	x0, x19
+  ac:	bl	0 <libat_unlock_1>
+  b0:	mov	x0, x21
+  b4:	mov	x1, x20
+  b8:	ldp	x19, x20, [sp, #16]
+  bc:	ldp	x21, x22, [sp, #32]
+  c0:	ldp	x29, x30, [sp], #48
+  c4:	ret
+
+00000000000000c8 <select_fetch_nand_16>:
+  c8:	adrp	x0, 0 <libat_fetch_nand_16>
+  cc:	add	x0, x0, #0x0
+  d0:	ret
+
+00000000000000d4 <select_nand_fetch_16>:
+  d4:	adrp	x0, 68 <libat_nand_fetch_16>
+  d8:	add	x0, x0, #0x0
+  dc:	ret
+
+tas_16_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_test_and_set_16>:
+   0:	mov	x1, x0
+   4:	mov	w2, #0x1                   	// #1
+   8:	ldaxrb	w0, [x1]
+   c:	stlxrb	w3, w2, [x1]
+  10:	cbnz	w3, 8 <libat_test_and_set_16+0x8>
+  14:	ret
+
+0000000000000018 <select_test_and_set_16>:
+  18:	adrp	x0, 0 <libat_test_and_set_16>
+  1c:	add	x0, x0, #0x0
+  20:	ret
+
+load_1_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_load_1_i1>:
+   0:	ldarb	w0, [x0]
+   4:	ret
+
+store_1_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_store_1_i1>:
+   0:	and	w1, w1, #0xff
+   4:	stlrb	w1, [x0]
+   8:	ret
+
+cas_1_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_compare_exchange_1_i1>:
+   0:	and	w2, w2, #0xff
+   4:	ldrb	w4, [x1]
+   8:	mov	w3, w4
+   c:	casalb	w3, w2, [x0]
+  10:	cmp	w3, w4, uxtb
+  14:	cset	w0, eq  // eq = none
+  18:	b.eq	20 <libat_compare_exchange_1_i1+0x20>  // b.none
+  1c:	strb	w3, [x1]
+  20:	ret
+
+exch_1_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_exchange_1_i1>:
+   0:	mov	x2, x0
+   4:	and	w0, w1, #0xff
+   8:	swpalb	w0, w0, [x2]
+   c:	ret
+
+fadd_1_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_add_1_i1>:
+   0:	ldaddalb	w1, w0, [x0]
+   4:	ret
+
+0000000000000008 <libat_add_fetch_1_i1>:
+   8:	and	w1, w1, #0xff
+   c:	ldaddalb	w1, w2, [x0]
+  10:	add	w0, w1, w2
+  14:	ret
+
+fsub_1_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_sub_1_i1>:
+   0:	and	w1, w1, #0xff
+   4:	neg	w1, w1
+   8:	ldaddalb	w1, w0, [x0]
+   c:	ret
+
+0000000000000010 <libat_sub_fetch_1_i1>:
+  10:	and	w1, w1, #0xff
+  14:	neg	w2, w1
+  18:	ldaddalb	w2, w2, [x0]
+  1c:	sub	w0, w2, w1
+  20:	ret
+
+fand_1_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_and_1_i1>:
+   0:	and	w1, w1, #0xff
+   4:	mvn	w1, w1
+   8:	ldclralb	w1, w0, [x0]
+   c:	ret
+
+0000000000000010 <libat_and_fetch_1_i1>:
+  10:	and	w1, w1, #0xff
+  14:	mvn	w2, w1
+  18:	ldclralb	w2, w2, [x0]
+  1c:	and	w0, w1, w2
+  20:	ret
+
+fior_1_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_or_1_i1>:
+   0:	ldsetalb	w1, w0, [x0]
+   4:	ret
+
+0000000000000008 <libat_or_fetch_1_i1>:
+   8:	and	w1, w1, #0xff
+   c:	ldsetalb	w1, w2, [x0]
+  10:	orr	w0, w1, w2
+  14:	ret
+
+fxor_1_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_xor_1_i1>:
+   0:	ldeoralb	w1, w0, [x0]
+   4:	ret
+
+0000000000000008 <libat_xor_fetch_1_i1>:
+   8:	and	w1, w1, #0xff
+   c:	ldeoralb	w1, w2, [x0]
+  10:	eor	w0, w1, w2
+  14:	ret
+
+fnand_1_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_nand_1_i1>:
+   0:	mov	x2, x0
+   4:	and	w1, w1, #0xff
+   8:	ldaxrb	w0, [x2]
+   c:	and	w3, w0, w1
+  10:	mvn	w3, w3
+  14:	stlxrb	w4, w3, [x2]
+  18:	cbnz	w4, 8 <libat_fetch_nand_1_i1+0x8>
+  1c:	ret
+
+0000000000000020 <libat_nand_fetch_1_i1>:
+  20:	mov	x2, x0
+  24:	and	w1, w1, #0xff
+  28:	ldaxrb	w0, [x2]
+  2c:	and	w0, w0, w1
+  30:	mvn	w0, w0
+  34:	stlxrb	w3, w0, [x2]
+  38:	cbnz	w3, 28 <libat_nand_fetch_1_i1+0x8>
+  3c:	ret
+
+tas_1_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_test_and_set_1_i1>:
+   0:	mov	x1, x0
+   4:	mov	w0, #0x1                   	// #1
+   8:	swpalb	w0, w0, [x1]
+   c:	ret
+
+load_2_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_load_2_i1>:
+   0:	ldarh	w0, [x0]
+   4:	ret
+
+store_2_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_store_2_i1>:
+   0:	and	w1, w1, #0xffff
+   4:	stlrh	w1, [x0]
+   8:	ret
+
+cas_2_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_compare_exchange_2_i1>:
+   0:	and	w2, w2, #0xffff
+   4:	ldrh	w4, [x1]
+   8:	mov	w3, w4
+   c:	casalh	w3, w2, [x0]
+  10:	cmp	w3, w4, uxth
+  14:	cset	w0, eq  // eq = none
+  18:	b.eq	20 <libat_compare_exchange_2_i1+0x20>  // b.none
+  1c:	strh	w3, [x1]
+  20:	ret
+
+exch_2_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_exchange_2_i1>:
+   0:	mov	x2, x0
+   4:	and	w0, w1, #0xffff
+   8:	swpalh	w0, w0, [x2]
+   c:	ret
+
+fadd_2_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_add_2_i1>:
+   0:	ldaddalh	w1, w0, [x0]
+   4:	ret
+
+0000000000000008 <libat_add_fetch_2_i1>:
+   8:	and	w1, w1, #0xffff
+   c:	ldaddalh	w1, w2, [x0]
+  10:	add	w0, w1, w2
+  14:	ret
+
+fsub_2_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_sub_2_i1>:
+   0:	and	w1, w1, #0xffff
+   4:	neg	w1, w1
+   8:	ldaddalh	w1, w0, [x0]
+   c:	ret
+
+0000000000000010 <libat_sub_fetch_2_i1>:
+  10:	and	w1, w1, #0xffff
+  14:	neg	w2, w1
+  18:	ldaddalh	w2, w2, [x0]
+  1c:	sub	w0, w2, w1
+  20:	ret
+
+fand_2_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_and_2_i1>:
+   0:	and	w1, w1, #0xffff
+   4:	mvn	w1, w1
+   8:	ldclralh	w1, w0, [x0]
+   c:	ret
+
+0000000000000010 <libat_and_fetch_2_i1>:
+  10:	and	w1, w1, #0xffff
+  14:	mvn	w2, w1
+  18:	ldclralh	w2, w2, [x0]
+  1c:	and	w0, w1, w2
+  20:	ret
+
+fior_2_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_or_2_i1>:
+   0:	ldsetalh	w1, w0, [x0]
+   4:	ret
+
+0000000000000008 <libat_or_fetch_2_i1>:
+   8:	and	w1, w1, #0xffff
+   c:	ldsetalh	w1, w2, [x0]
+  10:	orr	w0, w1, w2
+  14:	ret
+
+fxor_2_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_xor_2_i1>:
+   0:	ldeoralh	w1, w0, [x0]
+   4:	ret
+
+0000000000000008 <libat_xor_fetch_2_i1>:
+   8:	and	w1, w1, #0xffff
+   c:	ldeoralh	w1, w2, [x0]
+  10:	eor	w0, w1, w2
+  14:	ret
+
+fnand_2_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_nand_2_i1>:
+   0:	mov	x2, x0
+   4:	and	w1, w1, #0xffff
+   8:	ldaxrh	w0, [x2]
+   c:	and	w3, w0, w1
+  10:	mvn	w3, w3
+  14:	stlxrh	w4, w3, [x2]
+  18:	cbnz	w4, 8 <libat_fetch_nand_2_i1+0x8>
+  1c:	ret
+
+0000000000000020 <libat_nand_fetch_2_i1>:
+  20:	mov	x2, x0
+  24:	and	w1, w1, #0xffff
+  28:	ldaxrh	w0, [x2]
+  2c:	and	w0, w0, w1
+  30:	mvn	w0, w0
+  34:	stlxrh	w3, w0, [x2]
+  38:	cbnz	w3, 28 <libat_nand_fetch_2_i1+0x8>
+  3c:	ret
+
+tas_2_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_test_and_set_2_i1>:
+   0:	mov	x1, x0
+   4:	mov	w0, #0x1                   	// #1
+   8:	swpalb	w0, w0, [x1]
+   c:	ret
+
+load_4_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_load_4_i1>:
+   0:	ldar	w0, [x0]
+   4:	ret
+
+store_4_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_store_4_i1>:
+   0:	stlr	w1, [x0]
+   4:	ret
+
+cas_4_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_compare_exchange_4_i1>:
+   0:	ldr	w3, [x1]
+   4:	mov	w4, w3
+   8:	casal	w3, w2, [x0]
+   c:	cmp	w3, w4
+  10:	cset	w0, eq  // eq = none
+  14:	b.eq	1c <libat_compare_exchange_4_i1+0x1c>  // b.none
+  18:	str	w3, [x1]
+  1c:	ret
+
+exch_4_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_exchange_4_i1>:
+   0:	swpal	w1, w0, [x0]
+   4:	ret
+
+fadd_4_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_add_4_i1>:
+   0:	ldaddal	w1, w0, [x0]
+   4:	ret
+
+0000000000000008 <libat_add_fetch_4_i1>:
+   8:	ldaddal	w1, w2, [x0]
+   c:	add	w0, w2, w1
+  10:	ret
+
+fsub_4_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_sub_4_i1>:
+   0:	neg	w1, w1
+   4:	ldaddal	w1, w0, [x0]
+   8:	ret
+
+000000000000000c <libat_sub_fetch_4_i1>:
+   c:	neg	w2, w1
+  10:	ldaddal	w2, w2, [x0]
+  14:	sub	w0, w2, w1
+  18:	ret
+
+fand_4_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_and_4_i1>:
+   0:	mvn	w1, w1
+   4:	ldclral	w1, w0, [x0]
+   8:	ret
+
+000000000000000c <libat_and_fetch_4_i1>:
+   c:	mvn	w2, w1
+  10:	ldclral	w2, w2, [x0]
+  14:	and	w0, w2, w1
+  18:	ret
+
+fior_4_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_or_4_i1>:
+   0:	ldsetal	w1, w0, [x0]
+   4:	ret
+
+0000000000000008 <libat_or_fetch_4_i1>:
+   8:	ldsetal	w1, w2, [x0]
+   c:	orr	w0, w2, w1
+  10:	ret
+
+fxor_4_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_xor_4_i1>:
+   0:	ldeoral	w1, w0, [x0]
+   4:	ret
+
+0000000000000008 <libat_xor_fetch_4_i1>:
+   8:	ldeoral	w1, w2, [x0]
+   c:	eor	w0, w2, w1
+  10:	ret
+
+fnand_4_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_nand_4_i1>:
+   0:	mov	x2, x0
+   4:	ldaxr	w0, [x2]
+   8:	and	w3, w0, w1
+   c:	mvn	w3, w3
+  10:	stlxr	w4, w3, [x2]
+  14:	cbnz	w4, 4 <libat_fetch_nand_4_i1+0x4>
+  18:	ret
+
+000000000000001c <libat_nand_fetch_4_i1>:
+  1c:	mov	x2, x0
+  20:	ldaxr	w0, [x2]
+  24:	and	w0, w0, w1
+  28:	mvn	w0, w0
+  2c:	stlxr	w3, w0, [x2]
+  30:	cbnz	w3, 20 <libat_nand_fetch_4_i1+0x4>
+  34:	ret
+
+tas_4_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_test_and_set_4_i1>:
+   0:	mov	x1, x0
+   4:	mov	w0, #0x1                   	// #1
+   8:	swpalb	w0, w0, [x1]
+   c:	ret
+
+load_8_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_load_8_i1>:
+   0:	ldar	x0, [x0]
+   4:	ret
+
+store_8_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_store_8_i1>:
+   0:	stlr	x1, [x0]
+   4:	ret
+
+cas_8_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_compare_exchange_8_i1>:
+   0:	ldr	x3, [x1]
+   4:	mov	x4, x3
+   8:	casal	x3, x2, [x0]
+   c:	cmp	x3, x4
+  10:	cset	w0, eq  // eq = none
+  14:	b.eq	1c <libat_compare_exchange_8_i1+0x1c>  // b.none
+  18:	str	x3, [x1]
+  1c:	ret
+
+exch_8_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_exchange_8_i1>:
+   0:	swpal	x1, x0, [x0]
+   4:	ret
+
+fadd_8_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_add_8_i1>:
+   0:	ldaddal	x1, x0, [x0]
+   4:	ret
+
+0000000000000008 <libat_add_fetch_8_i1>:
+   8:	ldaddal	x1, x2, [x0]
+   c:	add	x0, x2, x1
+  10:	ret
+
+fsub_8_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_sub_8_i1>:
+   0:	neg	x1, x1
+   4:	ldaddal	x1, x0, [x0]
+   8:	ret
+
+000000000000000c <libat_sub_fetch_8_i1>:
+   c:	neg	x2, x1
+  10:	ldaddal	x2, x2, [x0]
+  14:	sub	x0, x2, x1
+  18:	ret
+
+fand_8_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_and_8_i1>:
+   0:	mvn	x1, x1
+   4:	ldclral	x1, x0, [x0]
+   8:	ret
+
+000000000000000c <libat_and_fetch_8_i1>:
+   c:	mvn	x2, x1
+  10:	ldclral	x2, x2, [x0]
+  14:	and	x0, x2, x1
+  18:	ret
+
+fior_8_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_or_8_i1>:
+   0:	ldsetal	x1, x0, [x0]
+   4:	ret
+
+0000000000000008 <libat_or_fetch_8_i1>:
+   8:	ldsetal	x1, x2, [x0]
+   c:	orr	x0, x2, x1
+  10:	ret
+
+fxor_8_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_xor_8_i1>:
+   0:	ldeoral	x1, x0, [x0]
+   4:	ret
+
+0000000000000008 <libat_xor_fetch_8_i1>:
+   8:	ldeoral	x1, x2, [x0]
+   c:	eor	x0, x2, x1
+  10:	ret
+
+fnand_8_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_nand_8_i1>:
+   0:	mov	x2, x0
+   4:	ldaxr	x0, [x2]
+   8:	and	x3, x0, x1
+   c:	mvn	x3, x3
+  10:	stlxr	w4, x3, [x2]
+  14:	cbnz	w4, 4 <libat_fetch_nand_8_i1+0x4>
+  18:	ret
+
+000000000000001c <libat_nand_fetch_8_i1>:
+  1c:	mov	x2, x0
+  20:	ldaxr	x0, [x2]
+  24:	and	x0, x0, x1
+  28:	mvn	x0, x0
+  2c:	stlxr	w3, x0, [x2]
+  30:	cbnz	w3, 20 <libat_nand_fetch_8_i1+0x4>
+  34:	ret
+
+tas_8_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_test_and_set_8_i1>:
+   0:	mov	x1, x0
+   4:	mov	w0, #0x1                   	// #1
+   8:	swpalb	w0, w0, [x1]
+   c:	ret
+
+load_16_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_load_16_i1>:
+   0:	stp	x29, x30, [sp, #-48]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	str	x21, [sp, #32]
+  10:	mov	x19, x0
+  14:	bl	0 <libat_lock_1>
+  18:	ldp	x20, x21, [x19]
+  1c:	mov	x0, x19
+  20:	bl	0 <libat_unlock_1>
+  24:	mov	x0, x20
+  28:	mov	x1, x21
+  2c:	ldp	x19, x20, [sp, #16]
+  30:	ldr	x21, [sp, #32]
+  34:	ldp	x29, x30, [sp], #48
+  38:	ret
+
+store_16_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_store_16_i1>:
+   0:	stp	x29, x30, [sp, #-48]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	str	x21, [sp, #32]
+  10:	mov	x19, x0
+  14:	mov	x21, x2
+  18:	mov	x20, x3
+  1c:	bl	0 <libat_lock_1>
+  20:	str	x21, [x19]
+  24:	str	x20, [x19, #8]
+  28:	mov	x0, x19
+  2c:	bl	0 <libat_unlock_1>
+  30:	ldp	x19, x20, [sp, #16]
+  34:	ldr	x21, [sp, #32]
+  38:	ldp	x29, x30, [sp], #48
+  3c:	ret
+
+cas_16_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_compare_exchange_16_i1>:
+   0:	stp	x29, x30, [sp, #-64]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	stp	x21, x22, [sp, #32]
+  10:	str	x23, [sp, #48]
+  14:	mov	x19, x0
+  18:	mov	x20, x1
+  1c:	mov	x22, x2
+  20:	mov	x21, x3
+  24:	bl	0 <libat_lock_1>
+  28:	ldr	x1, [x19]
+  2c:	ldr	x2, [x19, #8]
+  30:	ldr	x3, [x20]
+  34:	ldr	x4, [x20, #8]
+  38:	eor	x0, x3, x1
+  3c:	eor	x5, x4, x2
+  40:	orr	x0, x0, x5
+  44:	cmp	x0, #0x0
+  48:	cset	w23, eq  // eq = none
+  4c:	cmp	x3, x1
+  50:	b.eq	7c <libat_compare_exchange_16_i1+0x7c>  // b.none
+  54:	str	x1, [x20]
+  58:	str	x2, [x20, #8]
+  5c:	mov	x0, x19
+  60:	bl	0 <libat_unlock_1>
+  64:	mov	w0, w23
+  68:	ldp	x19, x20, [sp, #16]
+  6c:	ldp	x21, x22, [sp, #32]
+  70:	ldr	x23, [sp, #48]
+  74:	ldp	x29, x30, [sp], #64
+  78:	ret
+  7c:	cmp	x4, x2
+  80:	b.ne	54 <libat_compare_exchange_16_i1+0x54>  // b.any
+  84:	str	x22, [x19]
+  88:	str	x21, [x19, #8]
+  8c:	b	5c <libat_compare_exchange_16_i1+0x5c>
+
+exch_16_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_exchange_16_i1>:
+   0:	stp	x29, x30, [sp, #-64]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	stp	x21, x22, [sp, #32]
+  10:	str	x23, [sp, #48]
+  14:	mov	x19, x0
+  18:	mov	x21, x2
+  1c:	mov	x20, x3
+  20:	bl	0 <libat_lock_1>
+  24:	ldp	x22, x23, [x19]
+  28:	str	x21, [x19]
+  2c:	str	x20, [x19, #8]
+  30:	mov	x0, x19
+  34:	bl	0 <libat_unlock_1>
+  38:	mov	x0, x22
+  3c:	mov	x1, x23
+  40:	ldp	x19, x20, [sp, #16]
+  44:	ldp	x21, x22, [sp, #32]
+  48:	ldr	x23, [sp, #48]
+  4c:	ldp	x29, x30, [sp], #64
+  50:	ret
+
+fadd_16_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_add_16_i1>:
+   0:	stp	x29, x30, [sp, #-64]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	stp	x21, x22, [sp, #32]
+  10:	str	x23, [sp, #48]
+  14:	mov	x19, x0
+  18:	mov	x20, x2
+  1c:	mov	x21, x3
+  20:	bl	0 <libat_lock_1>
+  24:	ldr	x22, [x19]
+  28:	ldr	x23, [x19, #8]
+  2c:	adds	x20, x22, x20
+  30:	adc	x21, x23, x21
+  34:	str	x20, [x19]
+  38:	str	x21, [x19, #8]
+  3c:	mov	x0, x19
+  40:	bl	0 <libat_unlock_1>
+  44:	mov	x0, x22
+  48:	mov	x1, x23
+  4c:	ldp	x19, x20, [sp, #16]
+  50:	ldp	x21, x22, [sp, #32]
+  54:	ldr	x23, [sp, #48]
+  58:	ldp	x29, x30, [sp], #64
+  5c:	ret
+
+0000000000000060 <libat_add_fetch_16_i1>:
+  60:	stp	x29, x30, [sp, #-48]!
+  64:	mov	x29, sp
+  68:	stp	x19, x20, [sp, #16]
+  6c:	str	x21, [sp, #32]
+  70:	mov	x20, x0
+  74:	mov	x19, x2
+  78:	mov	x21, x3
+  7c:	bl	0 <libat_lock_1>
+  80:	ldr	x2, [x20]
+  84:	ldr	x3, [x20, #8]
+  88:	adds	x19, x19, x2
+  8c:	adc	x21, x21, x3
+  90:	str	x19, [x20]
+  94:	str	x21, [x20, #8]
+  98:	mov	x0, x20
+  9c:	bl	0 <libat_unlock_1>
+  a0:	mov	x0, x19
+  a4:	mov	x1, x21
+  a8:	ldp	x19, x20, [sp, #16]
+  ac:	ldr	x21, [sp, #32]
+  b0:	ldp	x29, x30, [sp], #48
+  b4:	ret
+
+fsub_16_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_sub_16_i1>:
+   0:	stp	x29, x30, [sp, #-64]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	stp	x21, x22, [sp, #32]
+  10:	str	x23, [sp, #48]
+  14:	mov	x19, x0
+  18:	mov	x20, x2
+  1c:	mov	x21, x3
+  20:	bl	0 <libat_lock_1>
+  24:	ldr	x22, [x19]
+  28:	ldr	x23, [x19, #8]
+  2c:	subs	x20, x22, x20
+  30:	sbc	x21, x23, x21
+  34:	str	x20, [x19]
+  38:	str	x21, [x19, #8]
+  3c:	mov	x0, x19
+  40:	bl	0 <libat_unlock_1>
+  44:	mov	x0, x22
+  48:	mov	x1, x23
+  4c:	ldp	x19, x20, [sp, #16]
+  50:	ldp	x21, x22, [sp, #32]
+  54:	ldr	x23, [sp, #48]
+  58:	ldp	x29, x30, [sp], #64
+  5c:	ret
+
+0000000000000060 <libat_sub_fetch_16_i1>:
+  60:	stp	x29, x30, [sp, #-64]!
+  64:	mov	x29, sp
+  68:	stp	x19, x20, [sp, #16]
+  6c:	stp	x21, x22, [sp, #32]
+  70:	str	x23, [sp, #48]
+  74:	mov	x19, x0
+  78:	mov	x22, x2
+  7c:	mov	x23, x3
+  80:	bl	0 <libat_lock_1>
+  84:	ldr	x20, [x19]
+  88:	ldr	x21, [x19, #8]
+  8c:	subs	x20, x20, x22
+  90:	sbc	x21, x21, x23
+  94:	str	x20, [x19]
+  98:	str	x21, [x19, #8]
+  9c:	mov	x0, x19
+  a0:	bl	0 <libat_unlock_1>
+  a4:	mov	x0, x20
+  a8:	mov	x1, x21
+  ac:	ldp	x19, x20, [sp, #16]
+  b0:	ldp	x21, x22, [sp, #32]
+  b4:	ldr	x23, [sp, #48]
+  b8:	ldp	x29, x30, [sp], #64
+  bc:	ret
+
+fand_16_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_and_16_i1>:
+   0:	stp	x29, x30, [sp, #-64]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	stp	x21, x22, [sp, #32]
+  10:	str	x23, [sp, #48]
+  14:	mov	x19, x0
+  18:	mov	x21, x2
+  1c:	mov	x20, x3
+  20:	bl	0 <libat_lock_1>
+  24:	ldr	x23, [x19]
+  28:	ldr	x22, [x19, #8]
+  2c:	and	x21, x23, x21
+  30:	str	x21, [x19]
+  34:	and	x20, x22, x20
+  38:	str	x20, [x19, #8]
+  3c:	mov	x0, x19
+  40:	bl	0 <libat_unlock_1>
+  44:	mov	x0, x23
+  48:	mov	x1, x22
+  4c:	ldp	x19, x20, [sp, #16]
+  50:	ldp	x21, x22, [sp, #32]
+  54:	ldr	x23, [sp, #48]
+  58:	ldp	x29, x30, [sp], #64
+  5c:	ret
+
+0000000000000060 <libat_and_fetch_16_i1>:
+  60:	stp	x29, x30, [sp, #-48]!
+  64:	mov	x29, sp
+  68:	stp	x19, x20, [sp, #16]
+  6c:	stp	x21, x22, [sp, #32]
+  70:	mov	x19, x0
+  74:	mov	x20, x2
+  78:	mov	x22, x3
+  7c:	bl	0 <libat_lock_1>
+  80:	ldr	x21, [x19]
+  84:	and	x21, x21, x20
+  88:	ldr	x20, [x19, #8]
+  8c:	and	x20, x20, x22
+  90:	str	x21, [x19]
+  94:	str	x20, [x19, #8]
+  98:	mov	x0, x19
+  9c:	bl	0 <libat_unlock_1>
+  a0:	mov	x0, x21
+  a4:	mov	x1, x20
+  a8:	ldp	x19, x20, [sp, #16]
+  ac:	ldp	x21, x22, [sp, #32]
+  b0:	ldp	x29, x30, [sp], #48
+  b4:	ret
+
+fior_16_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_or_16_i1>:
+   0:	stp	x29, x30, [sp, #-64]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	stp	x21, x22, [sp, #32]
+  10:	str	x23, [sp, #48]
+  14:	mov	x19, x0
+  18:	mov	x21, x2
+  1c:	mov	x20, x3
+  20:	bl	0 <libat_lock_1>
+  24:	ldr	x23, [x19]
+  28:	ldr	x22, [x19, #8]
+  2c:	orr	x21, x23, x21
+  30:	str	x21, [x19]
+  34:	orr	x20, x22, x20
+  38:	str	x20, [x19, #8]
+  3c:	mov	x0, x19
+  40:	bl	0 <libat_unlock_1>
+  44:	mov	x0, x23
+  48:	mov	x1, x22
+  4c:	ldp	x19, x20, [sp, #16]
+  50:	ldp	x21, x22, [sp, #32]
+  54:	ldr	x23, [sp, #48]
+  58:	ldp	x29, x30, [sp], #64
+  5c:	ret
+
+0000000000000060 <libat_or_fetch_16_i1>:
+  60:	stp	x29, x30, [sp, #-48]!
+  64:	mov	x29, sp
+  68:	stp	x19, x20, [sp, #16]
+  6c:	stp	x21, x22, [sp, #32]
+  70:	mov	x19, x0
+  74:	mov	x20, x2
+  78:	mov	x22, x3
+  7c:	bl	0 <libat_lock_1>
+  80:	ldr	x21, [x19]
+  84:	orr	x21, x21, x20
+  88:	ldr	x20, [x19, #8]
+  8c:	orr	x20, x20, x22
+  90:	str	x21, [x19]
+  94:	str	x20, [x19, #8]
+  98:	mov	x0, x19
+  9c:	bl	0 <libat_unlock_1>
+  a0:	mov	x0, x21
+  a4:	mov	x1, x20
+  a8:	ldp	x19, x20, [sp, #16]
+  ac:	ldp	x21, x22, [sp, #32]
+  b0:	ldp	x29, x30, [sp], #48
+  b4:	ret
+
+fxor_16_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_xor_16_i1>:
+   0:	stp	x29, x30, [sp, #-64]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	stp	x21, x22, [sp, #32]
+  10:	str	x23, [sp, #48]
+  14:	mov	x19, x0
+  18:	mov	x21, x2
+  1c:	mov	x20, x3
+  20:	bl	0 <libat_lock_1>
+  24:	ldr	x23, [x19]
+  28:	ldr	x22, [x19, #8]
+  2c:	eor	x21, x23, x21
+  30:	str	x21, [x19]
+  34:	eor	x20, x22, x20
+  38:	str	x20, [x19, #8]
+  3c:	mov	x0, x19
+  40:	bl	0 <libat_unlock_1>
+  44:	mov	x0, x23
+  48:	mov	x1, x22
+  4c:	ldp	x19, x20, [sp, #16]
+  50:	ldp	x21, x22, [sp, #32]
+  54:	ldr	x23, [sp, #48]
+  58:	ldp	x29, x30, [sp], #64
+  5c:	ret
+
+0000000000000060 <libat_xor_fetch_16_i1>:
+  60:	stp	x29, x30, [sp, #-48]!
+  64:	mov	x29, sp
+  68:	stp	x19, x20, [sp, #16]
+  6c:	stp	x21, x22, [sp, #32]
+  70:	mov	x19, x0
+  74:	mov	x20, x2
+  78:	mov	x22, x3
+  7c:	bl	0 <libat_lock_1>
+  80:	ldr	x21, [x19]
+  84:	eor	x21, x21, x20
+  88:	ldr	x20, [x19, #8]
+  8c:	eor	x20, x20, x22
+  90:	str	x21, [x19]
+  94:	str	x20, [x19, #8]
+  98:	mov	x0, x19
+  9c:	bl	0 <libat_unlock_1>
+  a0:	mov	x0, x21
+  a4:	mov	x1, x20
+  a8:	ldp	x19, x20, [sp, #16]
+  ac:	ldp	x21, x22, [sp, #32]
+  b0:	ldp	x29, x30, [sp], #48
+  b4:	ret
+
+fnand_16_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_fetch_nand_16_i1>:
+   0:	stp	x29, x30, [sp, #-64]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	stp	x21, x22, [sp, #32]
+  10:	str	x23, [sp, #48]
+  14:	mov	x19, x0
+  18:	mov	x21, x2
+  1c:	mov	x20, x3
+  20:	bl	0 <libat_lock_1>
+  24:	ldr	x23, [x19]
+  28:	ldr	x22, [x19, #8]
+  2c:	and	x21, x23, x21
+  30:	and	x20, x22, x20
+  34:	mvn	x21, x21
+  38:	str	x21, [x19]
+  3c:	mvn	x20, x20
+  40:	str	x20, [x19, #8]
+  44:	mov	x0, x19
+  48:	bl	0 <libat_unlock_1>
+  4c:	mov	x0, x23
+  50:	mov	x1, x22
+  54:	ldp	x19, x20, [sp, #16]
+  58:	ldp	x21, x22, [sp, #32]
+  5c:	ldr	x23, [sp, #48]
+  60:	ldp	x29, x30, [sp], #64
+  64:	ret
+
+0000000000000068 <libat_nand_fetch_16_i1>:
+  68:	stp	x29, x30, [sp, #-48]!
+  6c:	mov	x29, sp
+  70:	stp	x19, x20, [sp, #16]
+  74:	stp	x21, x22, [sp, #32]
+  78:	mov	x19, x0
+  7c:	mov	x20, x2
+  80:	mov	x22, x3
+  84:	bl	0 <libat_lock_1>
+  88:	ldr	x21, [x19]
+  8c:	and	x21, x21, x20
+  90:	ldr	x20, [x19, #8]
+  94:	and	x20, x20, x22
+  98:	mvn	x21, x21
+  9c:	mvn	x20, x20
+  a0:	str	x21, [x19]
+  a4:	str	x20, [x19, #8]
+  a8:	mov	x0, x19
+  ac:	bl	0 <libat_unlock_1>
+  b0:	mov	x0, x21
+  b4:	mov	x1, x20
+  b8:	ldp	x19, x20, [sp, #16]
+  bc:	ldp	x21, x22, [sp, #32]
+  c0:	ldp	x29, x30, [sp], #48
+  c4:	ret
+
+tas_16_1_.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <libat_test_and_set_16_i1>:
+   0:	mov	x1, x0
+   4:	mov	w0, #0x1                   	// #1
+   8:	swpalb	w0, w0, [x1]
+   c:	ret

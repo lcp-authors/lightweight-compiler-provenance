@@ -1,0 +1,733 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//hfspluscomp.module_gcc_-O0:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_swap_bytes16>:
+   0:	sub	sp, sp, #0x10
+   4:	strh	w0, [sp, #14]
+   8:	ldrh	w0, [sp, #14]
+   c:	lsl	w0, w0, #8
+  10:	sxth	w1, w0
+  14:	ldrh	w0, [sp, #14]
+  18:	lsr	w0, w0, #8
+  1c:	and	w0, w0, #0xffff
+  20:	sxth	w0, w0
+  24:	orr	w0, w1, w0
+  28:	sxth	w0, w0
+  2c:	and	w0, w0, #0xffff
+  30:	add	sp, sp, #0x10
+  34:	ret
+
+0000000000000038 <grub_swap_bytes32>:
+  38:	sub	sp, sp, #0x10
+  3c:	str	w0, [sp, #12]
+  40:	ldr	w0, [sp, #12]
+  44:	rev	w0, w0
+  48:	add	sp, sp, #0x10
+  4c:	ret
+
+0000000000000050 <grub_swap_bytes64>:
+  50:	sub	sp, sp, #0x10
+  54:	str	x0, [sp, #8]
+  58:	ldr	x0, [sp, #8]
+  5c:	rev	x0, x0
+  60:	add	sp, sp, #0x10
+  64:	ret
+
+0000000000000068 <grub_get_unaligned16>:
+  68:	sub	sp, sp, #0x20
+  6c:	str	x0, [sp, #8]
+  70:	ldr	x0, [sp, #8]
+  74:	str	x0, [sp, #24]
+  78:	ldr	x0, [sp, #24]
+  7c:	ldrh	w0, [x0]
+  80:	add	sp, sp, #0x20
+  84:	ret
+
+0000000000000088 <grub_hfsplus_btree_recoffset>:
+  88:	stp	x29, x30, [sp, #-64]!
+  8c:	mov	x29, sp
+  90:	str	x0, [sp, #40]
+  94:	str	x1, [sp, #32]
+  98:	str	w2, [sp, #28]
+  9c:	ldr	x0, [sp, #32]
+  a0:	str	x0, [sp, #56]
+  a4:	ldr	x0, [sp, #40]
+  a8:	ldr	x1, [x0, #8]
+  ac:	ldr	w0, [sp, #28]
+  b0:	add	x0, x0, #0x1
+  b4:	lsl	x0, x0, #1
+  b8:	cmp	x1, x0
+  bc:	b.cs	c4 <grub_hfsplus_btree_recoffset+0x3c>  // b.hs, b.nlast
+  c0:	str	wzr, [sp, #28]
+  c4:	ldr	x0, [sp, #40]
+  c8:	ldr	x1, [x0, #8]
+  cc:	ldr	w0, [sp, #28]
+  d0:	lsl	x0, x0, #1
+  d4:	sub	x0, x1, x0
+  d8:	sub	x0, x0, #0x2
+  dc:	ldr	x1, [sp, #56]
+  e0:	add	x0, x1, x0
+  e4:	str	x0, [sp, #48]
+  e8:	ldr	x0, [sp, #48]
+  ec:	bl	68 <grub_get_unaligned16>
+  f0:	and	w0, w0, #0xffff
+  f4:	bl	0 <grub_swap_bytes16>
+  f8:	and	w0, w0, #0xffff
+  fc:	ldp	x29, x30, [sp], #64
+ 100:	ret
+
+0000000000000104 <grub_hfsplus_btree_recptr>:
+ 104:	stp	x29, x30, [sp, #-64]!
+ 108:	mov	x29, sp
+ 10c:	str	x0, [sp, #40]
+ 110:	str	x1, [sp, #32]
+ 114:	str	w2, [sp, #28]
+ 118:	ldr	x0, [sp, #32]
+ 11c:	str	x0, [sp, #48]
+ 120:	ldr	w2, [sp, #28]
+ 124:	ldr	x1, [sp, #32]
+ 128:	ldr	x0, [sp, #40]
+ 12c:	bl	88 <grub_hfsplus_btree_recoffset>
+ 130:	strh	w0, [sp, #62]
+ 134:	ldrh	w1, [sp, #62]
+ 138:	ldr	x0, [sp, #40]
+ 13c:	ldr	x0, [x0, #8]
+ 140:	sub	x0, x0, #0xe
+ 144:	cmp	x1, x0
+ 148:	b.ls	150 <grub_hfsplus_btree_recptr+0x4c>  // b.plast
+ 14c:	strh	wzr, [sp, #62]
+ 150:	ldrh	w0, [sp, #62]
+ 154:	ldr	x1, [sp, #48]
+ 158:	add	x0, x1, x0
+ 15c:	ldp	x29, x30, [sp], #64
+ 160:	ret
+
+0000000000000164 <grub_memcpy>:
+ 164:	stp	x29, x30, [sp, #-48]!
+ 168:	mov	x29, sp
+ 16c:	str	x0, [sp, #40]
+ 170:	str	x1, [sp, #32]
+ 174:	str	x2, [sp, #24]
+ 178:	ldr	x2, [sp, #24]
+ 17c:	ldr	x1, [sp, #32]
+ 180:	ldr	x0, [sp, #40]
+ 184:	bl	0 <grub_memmove>
+ 188:	ldp	x29, x30, [sp], #48
+ 18c:	ret
+
+0000000000000190 <grub_hfsplus_cmp_attrkey>:
+ 190:	stp	x29, x30, [sp, #-80]!
+ 194:	mov	x29, sp
+ 198:	str	x0, [sp, #24]
+ 19c:	str	x1, [sp, #16]
+ 1a0:	ldr	x0, [sp, #24]
+ 1a4:	str	x0, [sp, #56]
+ 1a8:	ldr	x0, [sp, #16]
+ 1ac:	str	x0, [sp, #48]
+ 1b0:	ldr	x0, [sp, #56]
+ 1b4:	ldr	w0, [x0, #4]
+ 1b8:	bl	38 <grub_swap_bytes32>
+ 1bc:	str	w0, [sp, #44]
+ 1c0:	ldr	x0, [sp, #48]
+ 1c4:	ldr	w0, [x0]
+ 1c8:	ldr	w1, [sp, #44]
+ 1cc:	cmp	w1, w0
+ 1d0:	b.ls	1dc <grub_hfsplus_cmp_attrkey+0x4c>  // b.plast
+ 1d4:	mov	w0, #0x1                   	// #1
+ 1d8:	b	28c <grub_hfsplus_cmp_attrkey+0xfc>
+ 1dc:	ldr	x0, [sp, #48]
+ 1e0:	ldr	w0, [x0]
+ 1e4:	ldr	w1, [sp, #44]
+ 1e8:	cmp	w1, w0
+ 1ec:	b.cs	1f8 <grub_hfsplus_cmp_attrkey+0x68>  // b.hs, b.nlast
+ 1f0:	mov	w0, #0xffffffff            	// #-1
+ 1f4:	b	28c <grub_hfsplus_cmp_attrkey+0xfc>
+ 1f8:	ldr	x0, [sp, #56]
+ 1fc:	ldrh	w0, [x0, #12]
+ 200:	bl	0 <grub_swap_bytes16>
+ 204:	and	w0, w0, #0xffff
+ 208:	and	x0, x0, #0xffff
+ 20c:	str	x0, [sp, #72]
+ 210:	ldr	x0, [sp, #48]
+ 214:	ldr	x0, [x0, #16]
+ 218:	ldr	x1, [sp, #72]
+ 21c:	cmp	x1, x0
+ 220:	b.ls	230 <grub_hfsplus_cmp_attrkey+0xa0>  // b.plast
+ 224:	ldr	x0, [sp, #48]
+ 228:	ldr	x0, [x0, #16]
+ 22c:	str	x0, [sp, #72]
+ 230:	ldr	x0, [sp, #56]
+ 234:	add	x3, x0, #0xe
+ 238:	ldr	x0, [sp, #48]
+ 23c:	ldr	x1, [x0, #8]
+ 240:	ldr	x0, [sp, #72]
+ 244:	lsl	x0, x0, #1
+ 248:	mov	x2, x0
+ 24c:	mov	x0, x3
+ 250:	bl	0 <grub_memcmp>
+ 254:	str	w0, [sp, #68]
+ 258:	ldr	w0, [sp, #68]
+ 25c:	cmp	w0, #0x0
+ 260:	b.ne	288 <grub_hfsplus_cmp_attrkey+0xf8>  // b.any
+ 264:	ldr	x0, [sp, #56]
+ 268:	ldrh	w0, [x0, #12]
+ 26c:	bl	0 <grub_swap_bytes16>
+ 270:	and	w0, w0, #0xffff
+ 274:	mov	w1, w0
+ 278:	ldr	x0, [sp, #48]
+ 27c:	ldr	x0, [x0, #16]
+ 280:	sub	w0, w1, w0
+ 284:	str	w0, [sp, #68]
+ 288:	ldr	w0, [sp, #68]
+ 28c:	ldp	x29, x30, [sp], #80
+ 290:	ret
+
+0000000000000294 <hfsplus_read_compressed_real>:
+ 294:	stp	x29, x30, [sp, #-96]!
+ 298:	mov	x29, sp
+ 29c:	str	x0, [sp, #40]
+ 2a0:	str	x1, [sp, #32]
+ 2a4:	str	x2, [sp, #24]
+ 2a8:	str	x3, [sp, #16]
+ 2ac:	str	xzr, [sp, #88]
+ 2b0:	ldr	x0, [sp, #24]
+ 2b4:	str	x0, [sp, #64]
+ 2b8:	ldr	x0, [sp, #40]
+ 2bc:	ldr	w0, [x0, #160]
+ 2c0:	cmp	w0, #0x1
+ 2c4:	b.ne	5a8 <hfsplus_read_compressed_real+0x314>  // b.any
+ 2c8:	ldr	x0, [sp, #40]
+ 2cc:	ldr	x1, [x0, #168]
+ 2d0:	ldr	x0, [sp, #32]
+ 2d4:	add	x0, x1, x0
+ 2d8:	ldr	x2, [sp, #24]
+ 2dc:	mov	x1, x0
+ 2e0:	ldr	x0, [sp, #16]
+ 2e4:	bl	164 <grub_memcpy>
+ 2e8:	adrp	x0, 0 <grub_swap_bytes16>
+ 2ec:	add	x0, x0, #0x0
+ 2f0:	ldr	x0, [x0]
+ 2f4:	ldr	x0, [x0]
+ 2f8:	cmp	x0, #0x0
+ 2fc:	b.eq	344 <hfsplus_read_compressed_real+0xb0>  // b.none
+ 300:	ldr	x0, [sp, #40]
+ 304:	ldr	x0, [x0, #176]
+ 308:	cmp	x0, #0x0
+ 30c:	b.eq	344 <hfsplus_read_compressed_real+0xb0>  // b.none
+ 310:	adrp	x0, 0 <grub_swap_bytes16>
+ 314:	add	x0, x0, #0x0
+ 318:	ldr	x0, [x0]
+ 31c:	ldr	x4, [x0]
+ 320:	ldr	x0, [sp, #24]
+ 324:	mov	w1, w0
+ 328:	ldr	x0, [sp, #40]
+ 32c:	ldr	x0, [x0, #176]
+ 330:	mov	x3, x0
+ 334:	mov	w2, w1
+ 338:	mov	w1, #0x0                   	// #0
+ 33c:	mov	x0, #0x0                   	// #0
+ 340:	blr	x4
+ 344:	ldr	x0, [sp, #24]
+ 348:	b	5c0 <hfsplus_read_compressed_real+0x32c>
+ 34c:	ldr	x0, [sp, #32]
+ 350:	lsr	x0, x0, #16
+ 354:	str	w0, [sp, #60]
+ 358:	ldr	x0, [sp, #32]
+ 35c:	and	x0, x0, #0xffff
+ 360:	mov	x1, #0x10000               	// #65536
+ 364:	sub	x0, x1, x0
+ 368:	str	x0, [sp, #80]
+ 36c:	ldr	x1, [sp, #80]
+ 370:	ldr	x0, [sp, #24]
+ 374:	cmp	x1, x0
+ 378:	b.ls	384 <hfsplus_read_compressed_real+0xf0>  // b.plast
+ 37c:	ldr	x0, [sp, #24]
+ 380:	str	x0, [sp, #80]
+ 384:	ldr	x0, [sp, #40]
+ 388:	ldr	w0, [x0, #192]
+ 38c:	ldr	w1, [sp, #60]
+ 390:	cmp	w1, w0
+ 394:	b.eq	4f8 <hfsplus_read_compressed_real+0x264>  // b.none
+ 398:	ldr	x0, [sp, #40]
+ 39c:	ldr	x1, [x0, #184]
+ 3a0:	ldr	w0, [sp, #60]
+ 3a4:	lsl	x0, x0, #3
+ 3a8:	add	x0, x1, x0
+ 3ac:	ldr	w0, [x0, #4]
+ 3b0:	str	w0, [sp, #56]
+ 3b4:	ldr	x0, [sp, #88]
+ 3b8:	cmp	x0, #0x0
+ 3bc:	b.ne	3cc <hfsplus_read_compressed_real+0x138>  // b.any
+ 3c0:	mov	x0, #0x10000               	// #65536
+ 3c4:	bl	0 <grub_malloc>
+ 3c8:	str	x0, [sp, #88]
+ 3cc:	ldr	x0, [sp, #88]
+ 3d0:	cmp	x0, #0x0
+ 3d4:	b.ne	3e0 <hfsplus_read_compressed_real+0x14c>  // b.any
+ 3d8:	mov	x0, #0xffffffffffffffff    	// #-1
+ 3dc:	b	5c0 <hfsplus_read_compressed_real+0x32c>
+ 3e0:	ldr	x0, [sp, #40]
+ 3e4:	ldr	x1, [x0, #184]
+ 3e8:	ldr	w0, [sp, #60]
+ 3ec:	lsl	x0, x0, #3
+ 3f0:	add	x0, x1, x0
+ 3f4:	ldr	w0, [x0]
+ 3f8:	add	w0, w0, #0x104
+ 3fc:	mov	w0, w0
+ 400:	ldr	w1, [sp, #56]
+ 404:	ldr	x5, [sp, #88]
+ 408:	mov	x4, x1
+ 40c:	mov	x3, x0
+ 410:	mov	x2, #0x0                   	// #0
+ 414:	mov	x1, #0x0                   	// #0
+ 418:	ldr	x0, [sp, #40]
+ 41c:	bl	0 <grub_hfsplus_read_file>
+ 420:	mov	x1, x0
+ 424:	ldr	w0, [sp, #56]
+ 428:	cmp	x1, x0
+ 42c:	b.eq	440 <hfsplus_read_compressed_real+0x1ac>  // b.none
+ 430:	ldr	x0, [sp, #88]
+ 434:	bl	0 <grub_free>
+ 438:	mov	x0, #0xffffffffffffffff    	// #-1
+ 43c:	b	5c0 <hfsplus_read_compressed_real+0x32c>
+ 440:	mov	x0, #0x10000               	// #65536
+ 444:	str	x0, [sp, #72]
+ 448:	ldr	x0, [sp, #40]
+ 44c:	ldr	x1, [x0, #136]
+ 450:	ldr	x0, [sp, #32]
+ 454:	and	x0, x0, #0xfffffffffffeffff
+ 458:	sub	x0, x1, x0
+ 45c:	ldr	x1, [sp, #72]
+ 460:	cmp	x1, x0
+ 464:	b.ls	480 <hfsplus_read_compressed_real+0x1ec>  // b.plast
+ 468:	ldr	x0, [sp, #40]
+ 46c:	ldr	x1, [x0, #136]
+ 470:	ldr	x0, [sp, #32]
+ 474:	and	x0, x0, #0xfffffffffffeffff
+ 478:	sub	x0, x1, x0
+ 47c:	str	x0, [sp, #72]
+ 480:	ldr	w1, [sp, #56]
+ 484:	ldr	x0, [sp, #40]
+ 488:	ldr	x0, [x0, #168]
+ 48c:	ldr	x4, [sp, #72]
+ 490:	mov	x3, x0
+ 494:	mov	x2, #0x0                   	// #0
+ 498:	ldr	x0, [sp, #88]
+ 49c:	bl	0 <grub_zlib_decompress>
+ 4a0:	mov	x1, x0
+ 4a4:	ldr	x0, [sp, #72]
+ 4a8:	cmp	x1, x0
+ 4ac:	b.eq	4ec <hfsplus_read_compressed_real+0x258>  // b.none
+ 4b0:	adrp	x0, 0 <grub_swap_bytes16>
+ 4b4:	add	x0, x0, #0x0
+ 4b8:	ldr	x0, [x0]
+ 4bc:	ldr	w0, [x0]
+ 4c0:	cmp	w0, #0x0
+ 4c4:	b.ne	4dc <hfsplus_read_compressed_real+0x248>  // b.any
+ 4c8:	adrp	x0, 0 <grub_swap_bytes16>
+ 4cc:	add	x0, x0, #0x0
+ 4d0:	ldr	x1, [x0]
+ 4d4:	mov	w0, #0x1a                  	// #26
+ 4d8:	bl	0 <grub_error>
+ 4dc:	ldr	x0, [sp, #88]
+ 4e0:	bl	0 <grub_free>
+ 4e4:	mov	x0, #0xffffffffffffffff    	// #-1
+ 4e8:	b	5c0 <hfsplus_read_compressed_real+0x32c>
+ 4ec:	ldr	x0, [sp, #40]
+ 4f0:	ldr	w1, [sp, #60]
+ 4f4:	str	w1, [x0, #192]
+ 4f8:	ldr	x0, [sp, #40]
+ 4fc:	ldr	x1, [x0, #168]
+ 500:	ldr	x0, [sp, #32]
+ 504:	and	x0, x0, #0xffff
+ 508:	add	x0, x1, x0
+ 50c:	ldr	x2, [sp, #80]
+ 510:	mov	x1, x0
+ 514:	ldr	x0, [sp, #16]
+ 518:	bl	164 <grub_memcpy>
+ 51c:	adrp	x0, 0 <grub_swap_bytes16>
+ 520:	add	x0, x0, #0x0
+ 524:	ldr	x0, [x0]
+ 528:	ldr	x0, [x0]
+ 52c:	cmp	x0, #0x0
+ 530:	b.eq	578 <hfsplus_read_compressed_real+0x2e4>  // b.none
+ 534:	ldr	x0, [sp, #40]
+ 538:	ldr	x0, [x0, #176]
+ 53c:	cmp	x0, #0x0
+ 540:	b.eq	578 <hfsplus_read_compressed_real+0x2e4>  // b.none
+ 544:	adrp	x0, 0 <grub_swap_bytes16>
+ 548:	add	x0, x0, #0x0
+ 54c:	ldr	x0, [x0]
+ 550:	ldr	x4, [x0]
+ 554:	ldr	x0, [sp, #80]
+ 558:	mov	w1, w0
+ 55c:	ldr	x0, [sp, #40]
+ 560:	ldr	x0, [x0, #176]
+ 564:	mov	x3, x0
+ 568:	mov	w2, w1
+ 56c:	mov	w1, #0x0                   	// #0
+ 570:	mov	x0, #0x0                   	// #0
+ 574:	blr	x4
+ 578:	ldr	x1, [sp, #16]
+ 57c:	ldr	x0, [sp, #80]
+ 580:	add	x0, x1, x0
+ 584:	str	x0, [sp, #16]
+ 588:	ldr	x1, [sp, #32]
+ 58c:	ldr	x0, [sp, #80]
+ 590:	add	x0, x1, x0
+ 594:	str	x0, [sp, #32]
+ 598:	ldr	x1, [sp, #24]
+ 59c:	ldr	x0, [sp, #80]
+ 5a0:	sub	x0, x1, x0
+ 5a4:	str	x0, [sp, #24]
+ 5a8:	ldr	x0, [sp, #24]
+ 5ac:	cmp	x0, #0x0
+ 5b0:	b.ne	34c <hfsplus_read_compressed_real+0xb8>  // b.any
+ 5b4:	ldr	x0, [sp, #88]
+ 5b8:	bl	0 <grub_free>
+ 5bc:	ldr	x0, [sp, #64]
+ 5c0:	ldp	x29, x30, [sp], #96
+ 5c4:	ret
+	...
+
+00000000000005e0 <hfsplus_open_compressed_real>:
+ 5e0:	stp	x29, x30, [sp, #-176]!
+ 5e4:	mov	x29, sp
+ 5e8:	str	x19, [sp, #16]
+ 5ec:	str	x0, [sp, #40]
+ 5f0:	adrp	x0, 0 <grub_swap_bytes16>
+ 5f4:	add	x0, x0, #0x0
+ 5f8:	ldr	x1, [x0]
+ 5fc:	add	x0, sp, #0x40
+ 600:	ldp	x2, x3, [x1]
+ 604:	stp	x2, x3, [x0]
+ 608:	ldp	x2, x3, [x1, #16]
+ 60c:	stp	x2, x3, [x0, #16]
+ 610:	ldrh	w1, [x1, #32]
+ 614:	strh	w1, [x0, #32]
+ 618:	ldr	x0, [sp, #40]
+ 61c:	ldr	x0, [x0, #136]
+ 620:	cmp	x0, #0x0
+ 624:	b.eq	630 <hfsplus_open_compressed_real+0x50>  // b.none
+ 628:	mov	w0, #0x0                   	// #0
+ 62c:	b	a80 <hfsplus_open_compressed_real+0x4a0>
+ 630:	ldr	x0, [sp, #40]
+ 634:	ldr	w0, [x0, #152]
+ 638:	str	w0, [sp, #104]
+ 63c:	mov	x0, #0x11                  	// #17
+ 640:	str	x0, [sp, #120]
+ 644:	add	x0, sp, #0x40
+ 648:	str	x0, [sp, #112]
+ 64c:	ldr	x0, [sp, #40]
+ 650:	ldr	x0, [x0]
+ 654:	add	x5, x0, #0x3c0
+ 658:	add	x2, sp, #0x80
+ 65c:	add	x0, sp, #0x88
+ 660:	add	x1, sp, #0x68
+ 664:	mov	x4, x2
+ 668:	mov	x3, x0
+ 66c:	adrp	x0, 0 <grub_swap_bytes16>
+ 670:	add	x0, x0, #0x0
+ 674:	ldr	x2, [x0]
+ 678:	mov	x0, x5
+ 67c:	bl	0 <grub_hfsplus_btree_search>
+ 680:	str	w0, [sp, #172]
+ 684:	ldr	w0, [sp, #172]
+ 688:	cmp	w0, #0x0
+ 68c:	b.ne	69c <hfsplus_open_compressed_real+0xbc>  // b.any
+ 690:	ldr	x0, [sp, #136]
+ 694:	cmp	x0, #0x0
+ 698:	b.ne	6b4 <hfsplus_open_compressed_real+0xd4>  // b.any
+ 69c:	adrp	x0, 0 <grub_swap_bytes16>
+ 6a0:	add	x0, x0, #0x0
+ 6a4:	ldr	x0, [x0]
+ 6a8:	str	wzr, [x0]
+ 6ac:	mov	w0, #0x0                   	// #0
+ 6b0:	b	a80 <hfsplus_open_compressed_real+0x4a0>
+ 6b4:	ldr	x0, [sp, #40]
+ 6b8:	ldr	x0, [x0]
+ 6bc:	add	x0, x0, #0x3c0
+ 6c0:	ldr	x1, [sp, #136]
+ 6c4:	ldr	x2, [sp, #128]
+ 6c8:	bl	104 <grub_hfsplus_btree_recptr>
+ 6cc:	add	x0, x0, #0x30
+ 6d0:	str	x0, [sp, #160]
+ 6d4:	ldr	x0, [sp, #160]
+ 6d8:	ldrb	w0, [x0, #3]
+ 6dc:	cmp	w0, #0x10
+ 6e0:	b.ne	774 <hfsplus_open_compressed_real+0x194>  // b.any
+ 6e4:	ldr	x0, [sp, #160]
+ 6e8:	ldr	x0, [x0, #8]
+ 6ec:	mov	x1, #0xfffffffffffffff0    	// #-16
+ 6f0:	str	x1, [sp, #152]
+ 6f4:	ldr	x1, [sp, #152]
+ 6f8:	lsl	x2, x1, #56
+ 6fc:	ldr	x1, [sp, #152]
+ 700:	lsl	x1, x1, #40
+ 704:	and	x1, x1, #0xff000000000000
+ 708:	orr	x2, x2, x1
+ 70c:	ldr	x1, [sp, #152]
+ 710:	lsl	x1, x1, #24
+ 714:	and	x1, x1, #0xff0000000000
+ 718:	orr	x2, x2, x1
+ 71c:	ldr	x1, [sp, #152]
+ 720:	lsl	x1, x1, #8
+ 724:	and	x1, x1, #0xff00000000
+ 728:	orr	x2, x2, x1
+ 72c:	ldr	x1, [sp, #152]
+ 730:	lsr	x1, x1, #8
+ 734:	and	x1, x1, #0xff000000
+ 738:	orr	x2, x2, x1
+ 73c:	ldr	x1, [sp, #152]
+ 740:	lsr	x1, x1, #24
+ 744:	and	x1, x1, #0xff0000
+ 748:	orr	x2, x2, x1
+ 74c:	ldr	x1, [sp, #152]
+ 750:	lsr	x1, x1, #40
+ 754:	and	x1, x1, #0xff00
+ 758:	orr	x2, x2, x1
+ 75c:	ldr	x1, [sp, #152]
+ 760:	lsr	x1, x1, #56
+ 764:	orr	x1, x2, x1
+ 768:	and	x0, x1, x0
+ 76c:	cmp	x0, #0x0
+ 770:	b.ne	784 <hfsplus_open_compressed_real+0x1a4>  // b.any
+ 774:	ldr	x0, [sp, #136]
+ 778:	bl	0 <grub_free>
+ 77c:	mov	w0, #0x0                   	// #0
+ 780:	b	a80 <hfsplus_open_compressed_real+0x4a0>
+ 784:	ldr	x0, [sp, #160]
+ 788:	add	x0, x0, #0x10
+ 78c:	str	x0, [sp, #144]
+ 790:	ldr	x0, [sp, #144]
+ 794:	ldr	w1, [x0]
+ 798:	mov	w0, #0x7066                	// #28774
+ 79c:	movk	w0, #0x636d, lsl #16
+ 7a0:	cmp	w1, w0
+ 7a4:	b.eq	7b8 <hfsplus_open_compressed_real+0x1d8>  // b.none
+ 7a8:	ldr	x0, [sp, #136]
+ 7ac:	bl	0 <grub_free>
+ 7b0:	mov	w0, #0x0                   	// #0
+ 7b4:	b	a80 <hfsplus_open_compressed_real+0x4a0>
+ 7b8:	ldr	x0, [sp, #144]
+ 7bc:	ldr	w0, [x0, #8]
+ 7c0:	mov	w1, w0
+ 7c4:	ldr	x0, [sp, #40]
+ 7c8:	str	x1, [x0, #136]
+ 7cc:	ldr	x0, [sp, #144]
+ 7d0:	ldr	w0, [x0, #4]
+ 7d4:	cmp	w0, #0x4
+ 7d8:	b.ne	984 <hfsplus_open_compressed_real+0x3a4>  // b.any
+ 7dc:	ldr	x0, [sp, #40]
+ 7e0:	mov	w1, #0x2                   	// #2
+ 7e4:	str	w1, [x0, #160]
+ 7e8:	add	x0, sp, #0x3c
+ 7ec:	mov	x5, x0
+ 7f0:	mov	x4, #0x4                   	// #4
+ 7f4:	mov	x3, #0x104                 	// #260
+ 7f8:	mov	x2, #0x0                   	// #0
+ 7fc:	mov	x1, #0x0                   	// #0
+ 800:	ldr	x0, [sp, #40]
+ 804:	bl	0 <grub_hfsplus_read_file>
+ 808:	cmp	x0, #0x4
+ 80c:	b.eq	838 <hfsplus_open_compressed_real+0x258>  // b.none
+ 810:	ldr	x0, [sp, #40]
+ 814:	str	wzr, [x0, #160]
+ 818:	ldr	x0, [sp, #136]
+ 81c:	bl	0 <grub_free>
+ 820:	adrp	x0, 0 <grub_swap_bytes16>
+ 824:	add	x0, x0, #0x0
+ 828:	ldr	x0, [x0]
+ 82c:	str	wzr, [x0]
+ 830:	mov	w0, #0x0                   	// #0
+ 834:	b	a80 <hfsplus_open_compressed_real+0x4a0>
+ 838:	ldr	w1, [sp, #60]
+ 83c:	ldr	x0, [sp, #40]
+ 840:	str	w1, [x0, #196]
+ 844:	ldr	x0, [sp, #40]
+ 848:	ldr	w0, [x0, #196]
+ 84c:	mov	w0, w0
+ 850:	lsl	x0, x0, #3
+ 854:	bl	0 <grub_malloc>
+ 858:	mov	x1, x0
+ 85c:	ldr	x0, [sp, #40]
+ 860:	str	x1, [x0, #184]
+ 864:	ldr	x0, [sp, #40]
+ 868:	ldr	x0, [x0, #184]
+ 86c:	cmp	x0, #0x0
+ 870:	b.ne	898 <hfsplus_open_compressed_real+0x2b8>  // b.any
+ 874:	ldr	x0, [sp, #40]
+ 878:	str	wzr, [x0, #160]
+ 87c:	ldr	x0, [sp, #136]
+ 880:	bl	0 <grub_free>
+ 884:	adrp	x0, 0 <grub_swap_bytes16>
+ 888:	add	x0, x0, #0x0
+ 88c:	ldr	x0, [x0]
+ 890:	ldr	w0, [x0]
+ 894:	b	a80 <hfsplus_open_compressed_real+0x4a0>
+ 898:	ldr	x0, [sp, #40]
+ 89c:	ldr	w0, [x0, #196]
+ 8a0:	mov	w0, w0
+ 8a4:	lsl	x1, x0, #3
+ 8a8:	ldr	x0, [sp, #40]
+ 8ac:	ldr	x0, [x0, #184]
+ 8b0:	mov	x5, x0
+ 8b4:	mov	x4, x1
+ 8b8:	mov	x3, #0x108                 	// #264
+ 8bc:	mov	x2, #0x0                   	// #0
+ 8c0:	mov	x1, #0x0                   	// #0
+ 8c4:	ldr	x0, [sp, #40]
+ 8c8:	bl	0 <grub_hfsplus_read_file>
+ 8cc:	mov	x1, x0
+ 8d0:	ldr	x0, [sp, #40]
+ 8d4:	ldr	w0, [x0, #196]
+ 8d8:	mov	w0, w0
+ 8dc:	lsl	x0, x0, #3
+ 8e0:	cmp	x1, x0
+ 8e4:	b.eq	91c <hfsplus_open_compressed_real+0x33c>  // b.none
+ 8e8:	ldr	x0, [sp, #40]
+ 8ec:	str	wzr, [x0, #160]
+ 8f0:	ldr	x0, [sp, #136]
+ 8f4:	bl	0 <grub_free>
+ 8f8:	ldr	x0, [sp, #40]
+ 8fc:	ldr	x0, [x0, #184]
+ 900:	bl	0 <grub_free>
+ 904:	adrp	x0, 0 <grub_swap_bytes16>
+ 908:	add	x0, x0, #0x0
+ 90c:	ldr	x0, [x0]
+ 910:	str	wzr, [x0]
+ 914:	mov	w0, #0x0                   	// #0
+ 918:	b	a80 <hfsplus_open_compressed_real+0x4a0>
+ 91c:	ldr	x0, [sp, #40]
+ 920:	mov	w1, #0xffffffff            	// #-1
+ 924:	str	w1, [x0, #192]
+ 928:	mov	x0, #0x10000               	// #65536
+ 92c:	bl	0 <grub_malloc>
+ 930:	mov	x1, x0
+ 934:	ldr	x0, [sp, #40]
+ 938:	str	x1, [x0, #168]
+ 93c:	ldr	x0, [sp, #136]
+ 940:	bl	0 <grub_free>
+ 944:	ldr	x0, [sp, #40]
+ 948:	ldr	x0, [x0, #168]
+ 94c:	cmp	x0, #0x0
+ 950:	b.ne	97c <hfsplus_open_compressed_real+0x39c>  // b.any
+ 954:	ldr	x0, [sp, #40]
+ 958:	str	wzr, [x0, #160]
+ 95c:	ldr	x0, [sp, #40]
+ 960:	ldr	x0, [x0, #184]
+ 964:	bl	0 <grub_free>
+ 968:	adrp	x0, 0 <grub_swap_bytes16>
+ 96c:	add	x0, x0, #0x0
+ 970:	ldr	x0, [x0]
+ 974:	ldr	w0, [x0]
+ 978:	b	a80 <hfsplus_open_compressed_real+0x4a0>
+ 97c:	mov	w0, #0x0                   	// #0
+ 980:	b	a80 <hfsplus_open_compressed_real+0x4a0>
+ 984:	ldr	x0, [sp, #144]
+ 988:	ldr	w0, [x0, #4]
+ 98c:	cmp	w0, #0x3
+ 990:	b.eq	9a4 <hfsplus_open_compressed_real+0x3c4>  // b.none
+ 994:	ldr	x0, [sp, #136]
+ 998:	bl	0 <grub_free>
+ 99c:	mov	w0, #0x0                   	// #0
+ 9a0:	b	a80 <hfsplus_open_compressed_real+0x4a0>
+ 9a4:	ldr	x0, [sp, #40]
+ 9a8:	ldr	x0, [x0, #136]
+ 9ac:	bl	0 <grub_malloc>
+ 9b0:	mov	x1, x0
+ 9b4:	ldr	x0, [sp, #40]
+ 9b8:	str	x1, [x0, #168]
+ 9bc:	ldr	x0, [sp, #40]
+ 9c0:	ldr	x0, [x0, #168]
+ 9c4:	cmp	x0, #0x0
+ 9c8:	b.ne	9e0 <hfsplus_open_compressed_real+0x400>  // b.any
+ 9cc:	adrp	x0, 0 <grub_swap_bytes16>
+ 9d0:	add	x0, x0, #0x0
+ 9d4:	ldr	x0, [x0]
+ 9d8:	ldr	w0, [x0]
+ 9dc:	b	a80 <hfsplus_open_compressed_real+0x4a0>
+ 9e0:	ldr	x0, [sp, #144]
+ 9e4:	add	x19, x0, #0x10
+ 9e8:	ldr	x0, [sp, #160]
+ 9ec:	ldr	x0, [x0, #8]
+ 9f0:	bl	50 <grub_swap_bytes64>
+ 9f4:	sub	x1, x0, #0x10
+ 9f8:	ldr	x0, [sp, #40]
+ 9fc:	ldr	x2, [x0, #168]
+ a00:	ldr	x0, [sp, #40]
+ a04:	ldr	x0, [x0, #136]
+ a08:	mov	x4, x0
+ a0c:	mov	x3, x2
+ a10:	mov	x2, #0x0                   	// #0
+ a14:	mov	x0, x19
+ a18:	bl	0 <grub_zlib_decompress>
+ a1c:	mov	x1, x0
+ a20:	ldr	x0, [sp, #40]
+ a24:	ldr	x0, [x0, #136]
+ a28:	cmp	x1, x0
+ a2c:	b.eq	a70 <hfsplus_open_compressed_real+0x490>  // b.none
+ a30:	adrp	x0, 0 <grub_swap_bytes16>
+ a34:	add	x0, x0, #0x0
+ a38:	ldr	x0, [x0]
+ a3c:	ldr	w0, [x0]
+ a40:	cmp	w0, #0x0
+ a44:	b.ne	a5c <hfsplus_open_compressed_real+0x47c>  // b.any
+ a48:	adrp	x0, 0 <grub_swap_bytes16>
+ a4c:	add	x0, x0, #0x0
+ a50:	ldr	x1, [x0]
+ a54:	mov	w0, #0x1a                  	// #26
+ a58:	bl	0 <grub_error>
+ a5c:	adrp	x0, 0 <grub_swap_bytes16>
+ a60:	add	x0, x0, #0x0
+ a64:	ldr	x0, [x0]
+ a68:	ldr	w0, [x0]
+ a6c:	b	a80 <hfsplus_open_compressed_real+0x4a0>
+ a70:	ldr	x0, [sp, #40]
+ a74:	mov	w1, #0x1                   	// #1
+ a78:	str	w1, [x0, #160]
+ a7c:	mov	w0, #0x0                   	// #0
+ a80:	ldr	x19, [sp, #16]
+ a84:	ldp	x29, x30, [sp], #176
+ a88:	ret
+ a8c:	nop
+	...
+
+0000000000000ab0 <grub_mod_init>:
+ ab0:	sub	sp, sp, #0x10
+ ab4:	str	x0, [sp, #8]
+ ab8:	adrp	x0, 0 <grub_swap_bytes16>
+ abc:	add	x0, x0, #0x0
+ ac0:	ldr	x0, [x0]
+ ac4:	adrp	x1, 0 <grub_swap_bytes16>
+ ac8:	add	x1, x1, #0x0
+ acc:	ldr	x1, [x1]
+ ad0:	str	x1, [x0]
+ ad4:	adrp	x0, 0 <grub_swap_bytes16>
+ ad8:	add	x0, x0, #0x0
+ adc:	ldr	x0, [x0]
+ ae0:	adrp	x1, 0 <grub_swap_bytes16>
+ ae4:	add	x1, x1, #0x0
+ ae8:	ldr	x1, [x1]
+ aec:	str	x1, [x0]
+ af0:	nop
+ af4:	add	sp, sp, #0x10
+ af8:	ret
+ afc:	nop
+	...
+
+0000000000000b20 <grub_mod_fini>:
+ b20:	adrp	x0, 0 <grub_swap_bytes16>
+ b24:	add	x0, x0, #0x0
+ b28:	ldr	x0, [x0]
+ b2c:	str	xzr, [x0]
+ b30:	adrp	x0, 0 <grub_swap_bytes16>
+ b34:	add	x0, x0, #0x0
+ b38:	ldr	x0, [x0]
+ b3c:	str	xzr, [x0]
+ b40:	nop
+ b44:	ret
+	...

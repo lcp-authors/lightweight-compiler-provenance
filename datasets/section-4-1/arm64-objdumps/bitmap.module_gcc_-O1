@@ -1,0 +1,302 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//bitmap.module_gcc_-O1:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_video_bitmap_reader_register>:
+   0:	adrp	x1, 0 <grub_video_bitmap_reader_register>
+   4:	ldr	x1, [x1]
+   8:	ldr	x2, [x1]
+   c:	str	x2, [x0, #16]
+  10:	str	x0, [x1]
+  14:	ret
+	...
+
+0000000000000020 <grub_video_bitmap_reader_unregister>:
+  20:	adrp	x1, 0 <grub_video_bitmap_reader_register>
+  24:	ldr	x1, [x1]
+  28:	ldr	x1, [x1]
+  2c:	cbz	x1, 58 <grub_video_bitmap_reader_unregister+0x38>
+  30:	cmp	x1, x0
+  34:	b.eq	5c <grub_video_bitmap_reader_unregister+0x3c>  // b.none
+  38:	mov	x2, x1
+  3c:	ldr	x1, [x1, #16]
+  40:	cbz	x1, 58 <grub_video_bitmap_reader_unregister+0x38>
+  44:	cmp	x0, x1
+  48:	b.ne	38 <grub_video_bitmap_reader_unregister+0x18>  // b.any
+  4c:	add	x2, x2, #0x10
+  50:	ldr	x0, [x1, #16]
+  54:	str	x0, [x2]
+  58:	ret
+  5c:	mov	x1, x0
+  60:	adrp	x0, 0 <grub_video_bitmap_reader_register>
+  64:	ldr	x2, [x0]
+  68:	b	50 <grub_video_bitmap_reader_unregister+0x30>
+  6c:	nop
+	...
+
+0000000000000078 <grub_video_bitmap_create>:
+  78:	stp	x29, x30, [sp, #-48]!
+  7c:	mov	x29, sp
+  80:	cbz	x0, 10c <grub_video_bitmap_create+0x94>
+  84:	stp	x19, x20, [sp, #16]
+  88:	stp	x21, x22, [sp, #32]
+  8c:	mov	x19, x0
+  90:	mov	w20, w1
+  94:	mov	w22, w2
+  98:	mov	w21, w3
+  9c:	str	xzr, [x0]
+  a0:	cmp	w1, #0x0
+  a4:	ccmp	w2, #0x0, #0x4, ne  // ne = any
+  a8:	b.eq	120 <grub_video_bitmap_create+0xa8>  // b.none
+  ac:	mov	x0, #0x58                  	// #88
+  b0:	bl	0 <grub_malloc>
+  b4:	mov	x4, x0
+  b8:	str	x0, [x19]
+  bc:	cbz	x0, 13c <grub_video_bitmap_create+0xc4>
+  c0:	str	w20, [x0]
+  c4:	str	w22, [x0, #4]
+  c8:	str	w21, [x0, #32]
+  cc:	cmp	w21, #0x4
+  d0:	b.eq	1dc <grub_video_bitmap_create+0x164>  // b.none
+  d4:	cmp	w21, #0x8
+  d8:	b.eq	228 <grub_video_bitmap_create+0x1b0>  // b.none
+  dc:	cmp	w21, #0x1
+  e0:	b.eq	154 <grub_video_bitmap_create+0xdc>  // b.none
+  e4:	ldr	x0, [x19]
+  e8:	bl	0 <grub_free>
+  ec:	str	xzr, [x19]
+  f0:	adrp	x0, 0 <grub_video_bitmap_reader_register>
+  f4:	ldr	x1, [x0]
+  f8:	mov	w0, #0x18                  	// #24
+  fc:	bl	0 <grub_error>
+ 100:	ldp	x19, x20, [sp, #16]
+ 104:	ldp	x21, x22, [sp, #32]
+ 108:	b	1d4 <grub_video_bitmap_create+0x15c>
+ 10c:	adrp	x0, 0 <grub_video_bitmap_reader_register>
+ 110:	ldr	x1, [x0]
+ 114:	mov	w0, #0x26                  	// #38
+ 118:	bl	0 <grub_error>
+ 11c:	b	1d4 <grub_video_bitmap_create+0x15c>
+ 120:	adrp	x0, 0 <grub_video_bitmap_reader_register>
+ 124:	ldr	x1, [x0]
+ 128:	mov	w0, #0x26                  	// #38
+ 12c:	bl	0 <grub_error>
+ 130:	ldp	x19, x20, [sp, #16]
+ 134:	ldp	x21, x22, [sp, #32]
+ 138:	b	1d4 <grub_video_bitmap_create+0x15c>
+ 13c:	adrp	x0, 0 <grub_video_bitmap_reader_register>
+ 140:	ldr	x0, [x0]
+ 144:	ldr	w0, [x0]
+ 148:	ldp	x19, x20, [sp, #16]
+ 14c:	ldp	x21, x22, [sp, #32]
+ 150:	b	1d4 <grub_video_bitmap_create+0x15c>
+ 154:	mov	w0, #0x21                  	// #33
+ 158:	str	w0, [x4, #8]
+ 15c:	mov	w0, #0x20                  	// #32
+ 160:	str	w0, [x4, #12]
+ 164:	mov	w0, #0x4                   	// #4
+ 168:	str	w0, [x4, #16]
+ 16c:	mov	w0, #0x100                 	// #256
+ 170:	str	w0, [x4, #24]
+ 174:	mov	w0, #0x8                   	// #8
+ 178:	str	w0, [x4, #36]
+ 17c:	str	wzr, [x4, #40]
+ 180:	str	w0, [x4, #44]
+ 184:	str	w0, [x4, #48]
+ 188:	str	w0, [x4, #52]
+ 18c:	mov	w1, #0x10                  	// #16
+ 190:	str	w1, [x4, #56]
+ 194:	str	w0, [x4, #60]
+ 198:	mov	w0, #0x18                  	// #24
+ 19c:	str	w0, [x4, #64]
+ 1a0:	ldr	w0, [x4, #16]
+ 1a4:	mul	w0, w20, w0
+ 1a8:	str	w0, [x4, #20]
+ 1ac:	ldr	x20, [x19]
+ 1b0:	mul	w0, w0, w22
+ 1b4:	bl	0 <grub_zalloc>
+ 1b8:	str	x0, [x20, #80]
+ 1bc:	ldr	x1, [x19]
+ 1c0:	ldr	x2, [x1, #80]
+ 1c4:	mov	w0, #0x0                   	// #0
+ 1c8:	cbz	x2, 26c <grub_video_bitmap_create+0x1f4>
+ 1cc:	ldp	x19, x20, [sp, #16]
+ 1d0:	ldp	x21, x22, [sp, #32]
+ 1d4:	ldp	x29, x30, [sp], #48
+ 1d8:	ret
+ 1dc:	mov	w0, #0x1                   	// #1
+ 1e0:	str	w0, [x4, #8]
+ 1e4:	mov	w0, #0x18                  	// #24
+ 1e8:	str	w0, [x4, #12]
+ 1ec:	mov	w0, #0x3                   	// #3
+ 1f0:	str	w0, [x4, #16]
+ 1f4:	mov	w0, #0x100                 	// #256
+ 1f8:	str	w0, [x4, #24]
+ 1fc:	mov	w0, #0x8                   	// #8
+ 200:	str	w0, [x4, #36]
+ 204:	str	wzr, [x4, #40]
+ 208:	str	w0, [x4, #44]
+ 20c:	str	w0, [x4, #48]
+ 210:	str	w0, [x4, #52]
+ 214:	mov	w0, #0x10                  	// #16
+ 218:	str	w0, [x4, #56]
+ 21c:	str	wzr, [x4, #60]
+ 220:	str	wzr, [x4, #64]
+ 224:	b	1a0 <grub_video_bitmap_create+0x128>
+ 228:	mov	w0, #0x2                   	// #2
+ 22c:	str	w0, [x4, #8]
+ 230:	mov	w0, #0x8                   	// #8
+ 234:	str	w0, [x4, #12]
+ 238:	mov	w0, #0x1                   	// #1
+ 23c:	str	w0, [x4, #16]
+ 240:	mov	w0, #0x100                 	// #256
+ 244:	str	w0, [x4, #24]
+ 248:	str	wzr, [x4, #36]
+ 24c:	str	wzr, [x4, #40]
+ 250:	str	wzr, [x4, #44]
+ 254:	str	wzr, [x4, #48]
+ 258:	str	wzr, [x4, #52]
+ 25c:	str	wzr, [x4, #56]
+ 260:	str	wzr, [x4, #60]
+ 264:	str	wzr, [x4, #64]
+ 268:	b	1a0 <grub_video_bitmap_create+0x128>
+ 26c:	mov	x0, x1
+ 270:	bl	0 <grub_free>
+ 274:	str	xzr, [x19]
+ 278:	adrp	x0, 0 <grub_video_bitmap_reader_register>
+ 27c:	ldr	x0, [x0]
+ 280:	ldr	w0, [x0]
+ 284:	ldp	x19, x20, [sp, #16]
+ 288:	ldp	x21, x22, [sp, #32]
+ 28c:	b	1d4 <grub_video_bitmap_create+0x15c>
+	...
+
+00000000000002a8 <grub_video_bitmap_destroy>:
+ 2a8:	cbz	x0, 2dc <grub_video_bitmap_destroy+0x34>
+ 2ac:	stp	x29, x30, [sp, #-32]!
+ 2b0:	mov	x29, sp
+ 2b4:	str	x19, [sp, #16]
+ 2b8:	mov	x19, x0
+ 2bc:	ldr	x0, [x0, #80]
+ 2c0:	bl	0 <grub_free>
+ 2c4:	mov	x0, x19
+ 2c8:	bl	0 <grub_free>
+ 2cc:	mov	w0, #0x0                   	// #0
+ 2d0:	ldr	x19, [sp, #16]
+ 2d4:	ldp	x29, x30, [sp], #32
+ 2d8:	ret
+ 2dc:	mov	w0, #0x0                   	// #0
+ 2e0:	ret
+
+00000000000002e4 <grub_video_bitmap_load>:
+ 2e4:	stp	x29, x30, [sp, #-64]!
+ 2e8:	mov	x29, sp
+ 2ec:	stp	x21, x22, [sp, #32]
+ 2f0:	str	x23, [sp, #48]
+ 2f4:	mov	x23, x0
+ 2f8:	adrp	x0, 0 <grub_video_bitmap_reader_register>
+ 2fc:	ldr	x0, [x0]
+ 300:	ldr	x21, [x0]
+ 304:	cbz	x23, 31c <grub_video_bitmap_load+0x38>
+ 308:	mov	x22, x1
+ 30c:	str	xzr, [x23]
+ 310:	cbz	x21, 358 <grub_video_bitmap_load+0x74>
+ 314:	stp	x19, x20, [sp, #16]
+ 318:	b	3a4 <grub_video_bitmap_load+0xc0>
+ 31c:	adrp	x0, 0 <grub_video_bitmap_reader_register>
+ 320:	ldr	x1, [x0]
+ 324:	mov	w0, #0x26                  	// #38
+ 328:	bl	0 <grub_error>
+ 32c:	b	36c <grub_video_bitmap_load+0x88>
+ 330:	cmp	w4, #0x19
+ 334:	b.ls	438 <grub_video_bitmap_load+0x154>  // b.plast
+ 338:	b	380 <grub_video_bitmap_load+0x9c>
+ 33c:	ldr	x2, [x21, #8]
+ 340:	mov	x1, x22
+ 344:	mov	x0, x23
+ 348:	blr	x2
+ 34c:	ldp	x19, x20, [sp, #16]
+ 350:	b	36c <grub_video_bitmap_load+0x88>
+ 354:	ldp	x19, x20, [sp, #16]
+ 358:	mov	x2, x22
+ 35c:	adrp	x0, 0 <grub_video_bitmap_reader_register>
+ 360:	ldr	x1, [x0]
+ 364:	mov	w0, #0x4                   	// #4
+ 368:	bl	0 <grub_error>
+ 36c:	ldp	x21, x22, [sp, #32]
+ 370:	ldr	x23, [sp, #48]
+ 374:	ldp	x29, x30, [sp], #64
+ 378:	ret
+ 37c:	mov	w6, #0x0                   	// #0
+ 380:	ldrb	w0, [x20]
+ 384:	sub	w2, w0, #0x41
+ 388:	add	w1, w0, #0x20
+ 38c:	cmp	w2, #0x1a
+ 390:	csel	w0, w1, w0, cc  // cc = lo, ul, last
+ 394:	cmp	w0, w6
+ 398:	b.eq	33c <grub_video_bitmap_load+0x58>  // b.none
+ 39c:	ldr	x21, [x21, #16]
+ 3a0:	cbz	x21, 354 <grub_video_bitmap_load+0x70>
+ 3a4:	ldr	x20, [x21]
+ 3a8:	mov	x0, x22
+ 3ac:	bl	0 <grub_strlen>
+ 3b0:	mov	x19, x0
+ 3b4:	mov	x0, x20
+ 3b8:	bl	0 <grub_strlen>
+ 3bc:	cmp	w19, #0x0
+ 3c0:	ccmp	w0, #0x0, #0x4, ne  // ne = any
+ 3c4:	ccmp	w19, w0, #0x1, ne  // ne = any
+ 3c8:	b.lt	39c <grub_video_bitmap_load+0xb8>  // b.tstop
+ 3cc:	sub	w19, w19, w0
+ 3d0:	add	x3, x22, w19, sxtw
+ 3d4:	ldrb	w2, [x22, w19, sxtw]
+ 3d8:	cbz	w2, 37c <grub_video_bitmap_load+0x98>
+ 3dc:	ldrb	w0, [x20]
+ 3e0:	cbz	w0, 428 <grub_video_bitmap_load+0x144>
+ 3e4:	mov	w6, w2
+ 3e8:	sub	w4, w2, #0x41
+ 3ec:	add	w1, w2, #0x20
+ 3f0:	cmp	w4, #0x1a
+ 3f4:	csel	w2, w1, w2, cc  // cc = lo, ul, last
+ 3f8:	sub	w5, w0, #0x41
+ 3fc:	add	w1, w0, #0x20
+ 400:	cmp	w5, #0x1a
+ 404:	csel	w0, w1, w0, cc  // cc = lo, ul, last
+ 408:	cmp	w0, w2
+ 40c:	b.ne	330 <grub_video_bitmap_load+0x4c>  // b.any
+ 410:	add	x20, x20, #0x1
+ 414:	ldrb	w2, [x3, #1]!
+ 418:	cbnz	w2, 3dc <grub_video_bitmap_load+0xf8>
+ 41c:	b	37c <grub_video_bitmap_load+0x98>
+ 420:	ldrb	w0, [x20]
+ 424:	b	394 <grub_video_bitmap_load+0xb0>
+ 428:	mov	w6, w2
+ 42c:	sub	w2, w2, #0x41
+ 430:	cmp	w2, #0x19
+ 434:	b.hi	420 <grub_video_bitmap_load+0x13c>  // b.pmore
+ 438:	add	w6, w6, #0x20
+ 43c:	b	380 <grub_video_bitmap_load+0x9c>
+	...
+
+0000000000000458 <grub_video_bitmap_get_mode_info>:
+ 458:	cbz	x0, 48c <grub_video_bitmap_get_mode_info+0x34>
+ 45c:	ldp	x2, x3, [x0]
+ 460:	stp	x2, x3, [x1]
+ 464:	ldp	x2, x3, [x0, #16]
+ 468:	stp	x2, x3, [x1, #16]
+ 46c:	ldp	x2, x3, [x0, #32]
+ 470:	stp	x2, x3, [x1, #32]
+ 474:	ldp	x2, x3, [x0, #48]
+ 478:	stp	x2, x3, [x1, #48]
+ 47c:	ldr	x2, [x0, #64]
+ 480:	str	x2, [x1, #64]
+ 484:	ldr	w0, [x0, #72]
+ 488:	str	w0, [x1, #72]
+ 48c:	ret
+
+0000000000000490 <grub_video_bitmap_get_data>:
+ 490:	cbz	x0, 498 <grub_video_bitmap_get_data+0x8>
+ 494:	ldr	x0, [x0, #80]
+ 498:	ret

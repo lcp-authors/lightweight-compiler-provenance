@@ -1,0 +1,351 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//hexdump.module_gcc_-O1:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_cmd_hexdump>:
+   0:	sub	sp, sp, #0x850
+   4:	stp	x29, x30, [sp]
+   8:	mov	x29, sp
+   c:	cmp	w1, #0x1
+  10:	b.eq	30 <grub_cmd_hexdump+0x30>  // b.none
+  14:	adrp	x0, 0 <grub_cmd_hexdump>
+  18:	ldr	x1, [x0]
+  1c:	mov	w0, #0x12                  	// #18
+  20:	bl	0 <grub_error>
+  24:	ldp	x29, x30, [sp]
+  28:	add	sp, sp, #0x850
+  2c:	ret
+  30:	stp	x19, x20, [sp, #16]
+  34:	stp	x21, x22, [sp, #32]
+  38:	stp	x23, x24, [sp, #48]
+  3c:	mov	x19, x2
+  40:	ldr	x22, [x0, #8]
+  44:	ldr	x0, [x2]
+  48:	bl	0 <grub_strlen>
+  4c:	mov	x23, x0
+  50:	ldr	w2, [x22]
+  54:	mov	x21, #0x0                   	// #0
+  58:	cbnz	w2, bc <grub_cmd_hexdump+0xbc>
+  5c:	ldr	w2, [x22, #16]
+  60:	mov	x20, #0x100                 	// #256
+  64:	cbnz	w2, d4 <grub_cmd_hexdump+0xd4>
+  68:	adrp	x2, 0 <grub_cmd_hexdump>
+  6c:	ldr	x1, [x2]
+  70:	ldr	x0, [x19]
+  74:	bl	0 <grub_strcmp>
+  78:	cbz	w0, ec <grub_cmd_hexdump+0xec>
+  7c:	ldr	x0, [x19]
+  80:	ldrb	w1, [x0]
+  84:	cmp	w1, #0x28
+  88:	b.ne	a0 <grub_cmd_hexdump+0xa0>  // b.any
+  8c:	sxtw	x1, w23
+  90:	sub	x1, x1, #0x1
+  94:	ldrb	w2, [x0, x1]
+  98:	cmp	w2, #0x29
+  9c:	b.eq	110 <grub_cmd_hexdump+0x110>  // b.none
+  a0:	mov	w1, #0x2c                  	// #44
+  a4:	bl	0 <grub_file_open>
+  a8:	mov	x22, x0
+  ac:	cbz	x0, 23c <grub_cmd_hexdump+0x23c>
+  b0:	str	x21, [x0, #24]
+  b4:	mov	x23, #0x800                 	// #2048
+  b8:	b	1c8 <grub_cmd_hexdump+0x1c8>
+  bc:	mov	w2, #0x0                   	// #0
+  c0:	mov	x1, #0x0                   	// #0
+  c4:	ldr	x0, [x22, #8]
+  c8:	bl	0 <grub_strtoull>
+  cc:	mov	x21, x0
+  d0:	b	5c <grub_cmd_hexdump+0x5c>
+  d4:	mov	w2, #0x0                   	// #0
+  d8:	mov	x1, #0x0                   	// #0
+  dc:	ldr	x0, [x22, #24]
+  e0:	bl	0 <grub_strtoul>
+  e4:	mov	x20, x0
+  e8:	b	68 <grub_cmd_hexdump+0x68>
+  ec:	mov	w2, w20
+  f0:	mov	x1, x21
+  f4:	mov	x0, x21
+  f8:	bl	308 <hexdump>
+  fc:	mov	w0, #0x0                   	// #0
+ 100:	ldp	x19, x20, [sp, #16]
+ 104:	ldp	x21, x22, [sp, #32]
+ 108:	ldp	x23, x24, [sp, #48]
+ 10c:	b	24 <grub_cmd_hexdump+0x24>
+ 110:	strb	wzr, [x0, x1]
+ 114:	ldr	x0, [x19]
+ 118:	add	x0, x0, #0x1
+ 11c:	bl	0 <grub_disk_open>
+ 120:	mov	x23, x0
+ 124:	cbz	x0, 228 <grub_cmd_hexdump+0x228>
+ 128:	lsr	x22, x21, #11
+ 12c:	lsl	x22, x22, #2
+ 130:	and	x2, x21, #0x7ff
+ 134:	cbz	x20, 194 <grub_cmd_hexdump+0x194>
+ 138:	str	x25, [sp, #64]
+ 13c:	mov	x24, #0x800                 	// #2048
+ 140:	mov	x25, #0x0                   	// #0
+ 144:	cmp	x20, #0x800
+ 148:	csel	x19, x20, x24, ls  // ls = plast
+ 14c:	add	x4, sp, #0x50
+ 150:	mov	x3, x19
+ 154:	mov	x1, x22
+ 158:	mov	x0, x23
+ 15c:	bl	0 <grub_disk_read>
+ 160:	cbnz	w0, 190 <grub_cmd_hexdump+0x190>
+ 164:	mov	w2, w19
+ 168:	add	x1, sp, #0x50
+ 16c:	mov	x0, x21
+ 170:	bl	308 <hexdump>
+ 174:	add	x21, x21, x19
+ 178:	add	x22, x22, #0x4
+ 17c:	mov	x2, x25
+ 180:	subs	x20, x20, x19
+ 184:	b.ne	144 <grub_cmd_hexdump+0x144>  // b.any
+ 188:	ldr	x25, [sp, #64]
+ 18c:	b	194 <grub_cmd_hexdump+0x194>
+ 190:	ldr	x25, [sp, #64]
+ 194:	mov	x0, x23
+ 198:	bl	0 <grub_disk_close>
+ 19c:	mov	w0, #0x0                   	// #0
+ 1a0:	ldp	x19, x20, [sp, #16]
+ 1a4:	ldp	x21, x22, [sp, #32]
+ 1a8:	ldp	x23, x24, [sp, #48]
+ 1ac:	b	24 <grub_cmd_hexdump+0x24>
+ 1b0:	mov	w2, w19
+ 1b4:	add	x1, sp, #0x50
+ 1b8:	mov	x0, x21
+ 1bc:	bl	308 <hexdump>
+ 1c0:	add	x21, x21, x19
+ 1c4:	cbnz	x20, 21c <grub_cmd_hexdump+0x21c>
+ 1c8:	mov	x2, x23
+ 1cc:	add	x1, sp, #0x50
+ 1d0:	mov	x0, x22
+ 1d4:	bl	0 <grub_file_read>
+ 1d8:	mov	x19, x0
+ 1dc:	cmp	x0, #0x0
+ 1e0:	b.le	200 <grub_cmd_hexdump+0x200>
+ 1e4:	cmp	x20, #0x0
+ 1e8:	ccmp	x20, x19, #0x0, ne  // ne = any
+ 1ec:	b.ge	1b0 <grub_cmd_hexdump+0x1b0>  // b.tcont
+ 1f0:	mov	w2, w20
+ 1f4:	add	x1, sp, #0x50
+ 1f8:	mov	x0, x21
+ 1fc:	bl	308 <hexdump>
+ 200:	mov	x0, x22
+ 204:	bl	0 <grub_file_close>
+ 208:	mov	w0, #0x0                   	// #0
+ 20c:	ldp	x19, x20, [sp, #16]
+ 210:	ldp	x21, x22, [sp, #32]
+ 214:	ldp	x23, x24, [sp, #48]
+ 218:	b	24 <grub_cmd_hexdump+0x24>
+ 21c:	subs	x20, x20, x19
+ 220:	b.ne	1c8 <grub_cmd_hexdump+0x1c8>  // b.any
+ 224:	b	200 <grub_cmd_hexdump+0x200>
+ 228:	mov	w0, #0x0                   	// #0
+ 22c:	ldp	x19, x20, [sp, #16]
+ 230:	ldp	x21, x22, [sp, #32]
+ 234:	ldp	x23, x24, [sp, #48]
+ 238:	b	24 <grub_cmd_hexdump+0x24>
+ 23c:	mov	w0, #0x0                   	// #0
+ 240:	ldp	x19, x20, [sp, #16]
+ 244:	ldp	x21, x22, [sp, #32]
+ 248:	ldp	x23, x24, [sp, #48]
+ 24c:	b	24 <grub_cmd_hexdump+0x24>
+	...
+
+0000000000000260 <grub_mod_init>:
+ 260:	stp	x29, x30, [sp, #-16]!
+ 264:	mov	x29, sp
+ 268:	adrp	x0, 0 <grub_cmd_hexdump>
+ 26c:	ldr	x5, [x0]
+ 270:	adrp	x0, 0 <grub_cmd_hexdump>
+ 274:	ldr	x4, [x0]
+ 278:	adrp	x0, 0 <grub_cmd_hexdump>
+ 27c:	ldr	x3, [x0]
+ 280:	mov	w2, #0x0                   	// #0
+ 284:	adrp	x0, 0 <grub_cmd_hexdump>
+ 288:	ldr	x1, [x0]
+ 28c:	adrp	x0, 0 <grub_cmd_hexdump>
+ 290:	ldr	x0, [x0]
+ 294:	bl	0 <grub_register_extcmd>
+ 298:	adrp	x1, 0 <grub_cmd_hexdump>
+ 29c:	ldr	x1, [x1]
+ 2a0:	str	x0, [x1]
+ 2a4:	ldp	x29, x30, [sp], #16
+ 2a8:	ret
+ 2ac:	nop
+	...
+
+00000000000002e0 <grub_mod_fini>:
+ 2e0:	stp	x29, x30, [sp, #-16]!
+ 2e4:	mov	x29, sp
+ 2e8:	adrp	x0, 0 <grub_cmd_hexdump>
+ 2ec:	ldr	x0, [x0]
+ 2f0:	ldr	x0, [x0]
+ 2f4:	bl	0 <grub_unregister_extcmd>
+ 2f8:	ldp	x29, x30, [sp], #16
+ 2fc:	ret
+	...
+
+0000000000000308 <hexdump>:
+ 308:	cmp	w2, #0x0
+ 30c:	b.le	578 <hexdump+0x270>
+ 310:	stp	x29, x30, [sp, #-176]!
+ 314:	mov	x29, sp
+ 318:	stp	x19, x20, [sp, #16]
+ 31c:	stp	x21, x22, [sp, #32]
+ 320:	stp	x23, x24, [sp, #48]
+ 324:	stp	x25, x26, [sp, #64]
+ 328:	stp	x27, x28, [sp, #80]
+ 32c:	mov	x27, x0
+ 330:	mov	x23, x1
+ 334:	mov	w25, w2
+ 338:	add	x21, sp, #0x60
+ 33c:	mov	w26, #0x20                  	// #32
+ 340:	b	468 <hexdump+0x160>
+ 344:	mov	w22, #0x10                  	// #16
+ 348:	mov	x20, #0x0                   	// #0
+ 34c:	adrp	x28, 0 <grub_cmd_hexdump>
+ 350:	mov	x24, #0x50                  	// #80
+ 354:	b	364 <hexdump+0x5c>
+ 358:	add	x20, x20, #0x1
+ 35c:	cmp	w22, w20
+ 360:	b.le	540 <hexdump+0x238>
+ 364:	sxtw	x0, w19
+ 368:	ldrb	w3, [x23, x20]
+ 36c:	ldr	x2, [x28]
+ 370:	sub	x1, x24, x0
+ 374:	add	x0, x21, x0
+ 378:	bl	0 <grub_snprintf>
+ 37c:	add	w19, w19, w0
+ 380:	and	w0, w20, #0x7
+ 384:	cmp	w0, #0x7
+ 388:	b.ne	358 <hexdump+0x50>  // b.any
+ 38c:	strb	w26, [x21, w19, sxtw]
+ 390:	add	w19, w19, #0x1
+ 394:	b	358 <hexdump+0x50>
+ 398:	add	w20, w20, #0x1
+ 39c:	cmp	w20, #0xf
+ 3a0:	b.gt	3d4 <hexdump+0xcc>
+ 3a4:	sxtw	x0, w19
+ 3a8:	ldr	x2, [x28]
+ 3ac:	sub	x1, x24, x0
+ 3b0:	add	x0, x21, x0
+ 3b4:	bl	0 <grub_snprintf>
+ 3b8:	add	w19, w19, w0
+ 3bc:	and	w0, w20, #0x7
+ 3c0:	cmp	w0, #0x7
+ 3c4:	b.ne	398 <hexdump+0x90>  // b.any
+ 3c8:	strb	w26, [x21, w19, sxtw]
+ 3cc:	add	w19, w19, #0x1
+ 3d0:	b	398 <hexdump+0x90>
+ 3d4:	add	w3, w19, #0x1
+ 3d8:	mov	w0, #0x7c                  	// #124
+ 3dc:	strb	w0, [x21, w19, sxtw]
+ 3e0:	cmp	w22, #0x0
+ 3e4:	b.le	42c <hexdump+0x124>
+ 3e8:	mov	x0, #0x0                   	// #0
+ 3ec:	mov	w5, #0x2e                  	// #46
+ 3f0:	add	x4, x21, w3, sxtw
+ 3f4:	ldrb	w1, [x23, x0]
+ 3f8:	sub	w2, w1, #0x20
+ 3fc:	and	w2, w2, #0xff
+ 400:	cmp	w2, #0x5f
+ 404:	csel	w1, w1, w5, cc  // cc = lo, ul, last
+ 408:	strb	w1, [x4, x0]
+ 40c:	add	x0, x0, #0x1
+ 410:	cmp	w22, w0
+ 414:	b.gt	3f4 <hexdump+0xec>
+ 418:	add	w3, w3, #0x1
+ 41c:	sub	w0, w22, #0x1
+ 420:	cmp	w22, #0x0
+ 424:	csel	w0, w0, wzr, gt
+ 428:	add	w3, w0, w3
+ 42c:	mov	w0, #0x7c                  	// #124
+ 430:	strb	w0, [x21, w3, sxtw]
+ 434:	add	w3, w3, #0x1
+ 438:	strb	wzr, [x21, w3, sxtw]
+ 43c:	mov	x1, x21
+ 440:	adrp	x0, 0 <grub_cmd_hexdump>
+ 444:	ldr	x0, [x0]
+ 448:	bl	0 <grub_printf>
+ 44c:	cmp	w25, #0x3f
+ 450:	b.gt	4a0 <hexdump+0x198>
+ 454:	add	x27, x27, #0x10
+ 458:	add	x23, x23, #0x10
+ 45c:	sub	w25, w25, w22
+ 460:	cmp	w25, #0x0
+ 464:	b.le	55c <hexdump+0x254>
+ 468:	mov	x3, x27
+ 46c:	adrp	x0, 0 <grub_cmd_hexdump>
+ 470:	ldr	x2, [x0]
+ 474:	mov	x1, #0x50                  	// #80
+ 478:	mov	x0, x21
+ 47c:	bl	0 <grub_snprintf>
+ 480:	mov	w19, w0
+ 484:	cmp	w25, #0xf
+ 488:	b.gt	344 <hexdump+0x3c>
+ 48c:	mov	w22, w25
+ 490:	cmp	w25, #0x0
+ 494:	b.gt	348 <hexdump+0x40>
+ 498:	mov	w20, #0x0                   	// #0
+ 49c:	b	550 <hexdump+0x248>
+ 4a0:	add	x19, x23, #0x10
+ 4a4:	mov	x2, #0x10                  	// #16
+ 4a8:	mov	x1, x19
+ 4ac:	mov	x0, x23
+ 4b0:	bl	0 <grub_memcmp>
+ 4b4:	cbnz	w0, 454 <hexdump+0x14c>
+ 4b8:	mov	x2, #0x10                  	// #16
+ 4bc:	add	x1, x23, #0x20
+ 4c0:	mov	x0, x23
+ 4c4:	bl	0 <grub_memcmp>
+ 4c8:	cbnz	w0, 454 <hexdump+0x14c>
+ 4cc:	mov	x2, #0x10                  	// #16
+ 4d0:	add	x1, x23, #0x30
+ 4d4:	mov	x0, x23
+ 4d8:	bl	0 <grub_memcmp>
+ 4dc:	cbnz	w0, 454 <hexdump+0x14c>
+ 4e0:	adrp	x0, 0 <grub_cmd_hexdump>
+ 4e4:	ldr	x0, [x0]
+ 4e8:	bl	0 <grub_printf>
+ 4ec:	add	x27, x27, #0x10
+ 4f0:	sub	w25, w25, #0x10
+ 4f4:	mov	x20, #0x10                  	// #16
+ 4f8:	mov	x2, x20
+ 4fc:	add	x1, x19, #0x20
+ 500:	mov	x0, x19
+ 504:	bl	0 <grub_memcmp>
+ 508:	cbnz	w0, 528 <hexdump+0x220>
+ 50c:	add	x27, x27, #0x10
+ 510:	add	x19, x19, #0x10
+ 514:	sub	w25, w25, #0x10
+ 518:	cmp	w25, #0x2f
+ 51c:	b.gt	4f8 <hexdump+0x1f0>
+ 520:	mov	x23, x19
+ 524:	b	454 <hexdump+0x14c>
+ 528:	mov	x23, x19
+ 52c:	b	454 <hexdump+0x14c>
+ 530:	add	w3, w19, #0x1
+ 534:	mov	w0, #0x7c                  	// #124
+ 538:	strb	w0, [x21, w19, sxtw]
+ 53c:	b	3e8 <hexdump+0xe0>
+ 540:	cmp	w22, #0x0
+ 544:	csinc	w20, w22, wzr, gt
+ 548:	cmp	w22, #0xf
+ 54c:	b.gt	530 <hexdump+0x228>
+ 550:	adrp	x28, 0 <grub_cmd_hexdump>
+ 554:	mov	x24, #0x50                  	// #80
+ 558:	b	3a4 <hexdump+0x9c>
+ 55c:	ldp	x19, x20, [sp, #16]
+ 560:	ldp	x21, x22, [sp, #32]
+ 564:	ldp	x23, x24, [sp, #48]
+ 568:	ldp	x25, x26, [sp, #64]
+ 56c:	ldp	x27, x28, [sp, #80]
+ 570:	ldp	x29, x30, [sp], #176
+ 574:	ret
+ 578:	ret
+ 57c:	nop
+	...

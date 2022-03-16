@@ -1,0 +1,215 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//priority_queue.mod_gcc_-O2:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_priority_queue_top>:
+   0:	ldr	x1, [x0, #16]
+   4:	cbz	x1, 10 <grub_priority_queue_top+0x10>
+   8:	ldr	x0, [x0, #32]
+   c:	ret
+  10:	mov	x0, #0x0                   	// #0
+  14:	ret
+
+0000000000000018 <grub_priority_queue_destroy>:
+  18:	stp	x29, x30, [sp, #-32]!
+  1c:	mov	x29, sp
+  20:	str	x19, [sp, #16]
+  24:	mov	x19, x0
+  28:	ldr	x0, [x0, #32]
+  2c:	bl	0 <grub_free>
+  30:	mov	x0, x19
+  34:	ldr	x19, [sp, #16]
+  38:	ldp	x29, x30, [sp], #32
+  3c:	b	0 <grub_free>
+
+0000000000000040 <grub_priority_queue_new>:
+  40:	stp	x29, x30, [sp, #-48]!
+  44:	mov	x29, sp
+  48:	stp	x19, x20, [sp, #16]
+  4c:	stp	x21, x22, [sp, #32]
+  50:	mov	x21, x0
+  54:	mov	x22, x1
+  58:	lsl	x0, x0, #3
+  5c:	bl	0 <grub_malloc>
+  60:	cbz	x0, 9c <grub_priority_queue_new+0x5c>
+  64:	mov	x20, x0
+  68:	mov	x0, #0x28                  	// #40
+  6c:	bl	0 <grub_malloc>
+  70:	mov	x19, x0
+  74:	cbz	x0, b4 <grub_priority_queue_new+0x74>
+  78:	mov	x0, #0x8                   	// #8
+  7c:	stp	x21, x0, [x19]
+  80:	stp	xzr, x22, [x19, #16]
+  84:	str	x20, [x19, #32]
+  88:	mov	x0, x19
+  8c:	ldp	x19, x20, [sp, #16]
+  90:	ldp	x21, x22, [sp, #32]
+  94:	ldp	x29, x30, [sp], #48
+  98:	ret
+  9c:	mov	x19, #0x0                   	// #0
+  a0:	mov	x0, x19
+  a4:	ldp	x19, x20, [sp, #16]
+  a8:	ldp	x21, x22, [sp, #32]
+  ac:	ldp	x29, x30, [sp], #48
+  b0:	ret
+  b4:	mov	x0, x20
+  b8:	bl	0 <grub_free>
+  bc:	b	88 <grub_priority_queue_new+0x48>
+
+00000000000000c0 <grub_priority_queue_push>:
+  c0:	stp	x29, x30, [sp, #-48]!
+  c4:	mov	x29, sp
+  c8:	str	x21, [sp, #32]
+  cc:	mov	x21, x0
+  d0:	ldr	x0, [x0, #8]
+  d4:	stp	x19, x20, [sp, #16]
+  d8:	mov	x19, x1
+  dc:	ldr	x3, [x21, #16]
+  e0:	ldr	x2, [x21]
+  e4:	cmp	x3, x0
+  e8:	ldr	x0, [x21, #32]
+  ec:	b.eq	184 <grub_priority_queue_push+0xc4>  // b.none
+  f0:	madd	x0, x3, x2, x0
+  f4:	add	x3, x3, #0x1
+  f8:	str	x3, [x21, #16]
+  fc:	mov	x1, x19
+ 100:	bl	0 <grub_memmove>
+ 104:	ldr	x20, [x21, #16]
+ 108:	subs	x20, x20, #0x1
+ 10c:	b.eq	170 <grub_priority_queue_push+0xb0>  // b.none
+ 110:	ldp	x3, x1, [x21, #24]
+ 114:	sub	x4, x20, #0x1
+ 118:	ldr	x2, [x21]
+ 11c:	mov	x19, x20
+ 120:	madd	x0, x2, x20, x1
+ 124:	lsr	x20, x4, #1
+ 128:	madd	x1, x2, x20, x1
+ 12c:	blr	x3
+ 130:	cmp	w0, #0x0
+ 134:	b.le	170 <grub_priority_queue_push+0xb0>
+ 138:	ldr	x6, [x21]
+ 13c:	mov	x1, #0x0                   	// #0
+ 140:	ldr	x2, [x21, #32]
+ 144:	madd	x3, x6, x19, x2
+ 148:	madd	x2, x20, x6, x2
+ 14c:	cbz	x6, 16c <grub_priority_queue_push+0xac>
+ 150:	ldrb	w5, [x2, x1]
+ 154:	ldrb	w4, [x3, x1]
+ 158:	strb	w5, [x3, x1]
+ 15c:	strb	w4, [x2, x1]
+ 160:	add	x1, x1, #0x1
+ 164:	cmp	x6, x1
+ 168:	b.ne	150 <grub_priority_queue_push+0x90>  // b.any
+ 16c:	cbnz	x20, 110 <grub_priority_queue_push+0x50>
+ 170:	mov	w0, #0x0                   	// #0
+ 174:	ldp	x19, x20, [sp, #16]
+ 178:	ldr	x21, [sp, #32]
+ 17c:	ldp	x29, x30, [sp], #48
+ 180:	ret
+ 184:	mul	x3, x3, x2
+ 188:	lsl	x1, x3, #1
+ 18c:	bl	0 <grub_realloc>
+ 190:	cbz	x0, 1ac <grub_priority_queue_push+0xec>
+ 194:	ldp	x2, x1, [x21]
+ 198:	str	x0, [x21, #32]
+ 19c:	ldr	x3, [x21, #16]
+ 1a0:	lsl	x1, x1, #1
+ 1a4:	str	x1, [x21, #8]
+ 1a8:	b	f0 <grub_priority_queue_push+0x30>
+ 1ac:	adrp	x0, 0 <grub_priority_queue_top>
+ 1b0:	ldr	x0, [x0]
+ 1b4:	ldr	w0, [x0]
+ 1b8:	b	174 <grub_priority_queue_push+0xb4>
+ 1bc:	nop
+	...
+
+00000000000001c8 <grub_priority_queue_pop>:
+ 1c8:	stp	x29, x30, [sp, #-48]!
+ 1cc:	mov	x29, sp
+ 1d0:	stp	x19, x20, [sp, #16]
+ 1d4:	mov	x20, x0
+ 1d8:	ldr	x0, [x0, #16]
+ 1dc:	stp	x21, x22, [sp, #32]
+ 1e0:	ldr	x5, [x20]
+ 1e4:	sub	x0, x0, #0x1
+ 1e8:	ldr	x1, [x20, #32]
+ 1ec:	madd	x2, x0, x5, x1
+ 1f0:	cbz	x5, 21c <grub_priority_queue_pop+0x54>
+ 1f4:	mov	x0, #0x0                   	// #0
+ 1f8:	ldrb	w4, [x2, x0]
+ 1fc:	ldrb	w3, [x1, x0]
+ 200:	strb	w4, [x1, x0]
+ 204:	strb	w3, [x2, x0]
+ 208:	add	x0, x0, #0x1
+ 20c:	cmp	x5, x0
+ 210:	b.ne	1f8 <grub_priority_queue_pop+0x30>  // b.any
+ 214:	ldr	x0, [x20, #16]
+ 218:	sub	x0, x0, #0x1
+ 21c:	str	x0, [x20, #16]
+ 220:	cmp	x0, #0x1
+ 224:	mov	x22, #0x1                   	// #1
+ 228:	mov	x19, #0x0                   	// #0
+ 22c:	b.ls	308 <grub_priority_queue_pop+0x140>  // b.plast
+ 230:	ldp	x3, x0, [x20, #24]
+ 234:	add	x21, x19, #0x1
+ 238:	ldr	x2, [x20]
+ 23c:	lsl	x21, x21, #1
+ 240:	madd	x1, x2, x19, x0
+ 244:	madd	x0, x2, x22, x0
+ 248:	blr	x3
+ 24c:	cmp	w0, #0x0
+ 250:	b.le	2e0 <grub_priority_queue_pop+0x118>
+ 254:	ldr	x1, [x20]
+ 258:	ldr	x3, [x20, #32]
+ 25c:	ldr	x2, [x20, #16]
+ 260:	madd	x0, x22, x1, x3
+ 264:	cmp	x2, x21
+ 268:	b.hi	2b8 <grub_priority_queue_pop+0xf0>  // b.pmore
+ 26c:	mov	x21, x22
+ 270:	madd	x3, x19, x1, x3
+ 274:	mov	x2, #0x0                   	// #0
+ 278:	cbz	x1, 29c <grub_priority_queue_pop+0xd4>
+ 27c:	nop
+ 280:	ldrb	w5, [x0, x2]
+ 284:	ldrb	w4, [x3, x2]
+ 288:	strb	w5, [x3, x2]
+ 28c:	strb	w4, [x0, x2]
+ 290:	add	x2, x2, #0x1
+ 294:	cmp	x2, x1
+ 298:	b.ne	280 <grub_priority_queue_pop+0xb8>  // b.any
+ 29c:	ldr	x0, [x20, #16]
+ 2a0:	lsl	x22, x21, #1
+ 2a4:	add	x22, x22, #0x1
+ 2a8:	cmp	x0, x22
+ 2ac:	b.ls	308 <grub_priority_queue_pop+0x140>  // b.plast
+ 2b0:	mov	x19, x21
+ 2b4:	b	230 <grub_priority_queue_pop+0x68>
+ 2b8:	madd	x1, x21, x1, x3
+ 2bc:	ldr	x2, [x20, #24]
+ 2c0:	blr	x2
+ 2c4:	cmp	w0, #0x0
+ 2c8:	ldr	x1, [x20]
+ 2cc:	b.le	318 <grub_priority_queue_pop+0x150>
+ 2d0:	ldr	x3, [x20, #32]
+ 2d4:	mov	x21, x22
+ 2d8:	madd	x0, x22, x1, x3
+ 2dc:	b	270 <grub_priority_queue_pop+0xa8>
+ 2e0:	ldr	x0, [x20, #16]
+ 2e4:	cmp	x0, x21
+ 2e8:	b.ls	308 <grub_priority_queue_pop+0x140>  // b.plast
+ 2ec:	ldp	x3, x0, [x20, #24]
+ 2f0:	ldr	x2, [x20]
+ 2f4:	madd	x1, x2, x19, x0
+ 2f8:	madd	x0, x2, x21, x0
+ 2fc:	blr	x3
+ 300:	cmp	w0, #0x0
+ 304:	b.gt	254 <grub_priority_queue_pop+0x8c>
+ 308:	ldp	x19, x20, [sp, #16]
+ 30c:	ldp	x21, x22, [sp, #32]
+ 310:	ldp	x29, x30, [sp], #48
+ 314:	ret
+ 318:	ldr	x3, [x20, #32]
+ 31c:	madd	x0, x21, x1, x3
+ 320:	b	270 <grub_priority_queue_pop+0xa8>

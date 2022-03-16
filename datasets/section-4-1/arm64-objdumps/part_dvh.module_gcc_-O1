@@ -1,0 +1,108 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//part_dvh.module_gcc_-O1:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <dvh_partition_map_iterate>:
+   0:	sub	sp, sp, #0x280
+   4:	stp	x29, x30, [sp]
+   8:	mov	x29, sp
+   c:	stp	x19, x20, [sp, #16]
+  10:	stp	x21, x22, [sp, #32]
+  14:	str	x23, [sp, #48]
+  18:	mov	x21, x0
+  1c:	mov	x22, x1
+  20:	mov	x23, x2
+  24:	adrp	x1, 0 <dvh_partition_map_iterate>
+  28:	ldr	x1, [x1]
+  2c:	str	x1, [sp, #624]
+  30:	add	x4, sp, #0x40
+  34:	mov	x3, #0x200                 	// #512
+  38:	mov	x2, #0x0                   	// #0
+  3c:	mov	x1, #0x0                   	// #0
+  40:	bl	0 <grub_disk_read>
+  44:	mov	w19, w0
+  48:	cbnz	w0, 110 <dvh_partition_map_iterate+0x110>
+  4c:	add	x4, sp, #0x40
+  50:	add	x0, sp, #0x240
+  54:	ldr	w2, [sp, #64]
+  58:	mov	w1, #0xe50b                	// #58635
+  5c:	movk	w1, #0x41a9, lsl #16
+  60:	cmp	w2, w1
+  64:	b.ne	9c <dvh_partition_map_iterate+0x9c>  // b.any
+  68:	ldr	w3, [x4], #4
+  6c:	rev	w3, w3
+  70:	add	w19, w19, w3
+  74:	cmp	x4, x0
+  78:	b.ne	68 <dvh_partition_map_iterate+0x68>  // b.any
+  7c:	add	x20, sp, #0x40
+  80:	cbz	w19, c4 <dvh_partition_map_iterate+0xc4>
+  84:	adrp	x0, 0 <dvh_partition_map_iterate>
+  88:	ldr	x1, [x0]
+  8c:	mov	w0, #0x13                  	// #19
+  90:	bl	0 <grub_error>
+  94:	mov	w19, w0
+  98:	b	110 <dvh_partition_map_iterate+0x110>
+  9c:	adrp	x0, 0 <dvh_partition_map_iterate>
+  a0:	ldr	x1, [x0]
+  a4:	mov	w0, #0x13                  	// #19
+  a8:	bl	0 <grub_error>
+  ac:	mov	w19, w0
+  b0:	b	110 <dvh_partition_map_iterate+0x110>
+  b4:	add	w19, w19, #0x1
+  b8:	add	x20, x20, #0xc
+  bc:	cmp	w19, #0x10
+  c0:	b.eq	104 <dvh_partition_map_iterate+0x104>  // b.none
+  c4:	ldr	w3, [x20, #312]
+  c8:	cmp	w3, #0x0
+  cc:	ccmp	w19, #0xa, #0x4, ne  // ne = any
+  d0:	b.eq	b4 <dvh_partition_map_iterate+0xb4>  // b.none
+  d4:	ldr	w0, [x20, #316]
+  d8:	rev	w0, w0
+  dc:	str	x0, [sp, #584]
+  e0:	rev	w3, w3
+  e4:	str	x3, [sp, #592]
+  e8:	str	w19, [sp, #608]
+  ec:	str	w19, [sp, #576]
+  f0:	mov	x2, x23
+  f4:	add	x1, sp, #0x240
+  f8:	mov	x0, x21
+  fc:	blr	x22
+ 100:	cbz	w0, b4 <dvh_partition_map_iterate+0xb4>
+ 104:	adrp	x0, 0 <dvh_partition_map_iterate>
+ 108:	ldr	x0, [x0]
+ 10c:	ldr	w19, [x0]
+ 110:	mov	w0, w19
+ 114:	ldp	x19, x20, [sp, #16]
+ 118:	ldp	x21, x22, [sp, #32]
+ 11c:	ldr	x23, [sp, #48]
+ 120:	ldp	x29, x30, [sp]
+ 124:	add	sp, sp, #0x280
+ 128:	ret
+ 12c:	nop
+	...
+
+0000000000000150 <grub_mod_init>:
+ 150:	stp	x29, x30, [sp, #-16]!
+ 154:	mov	x29, sp
+ 158:	adrp	x0, 0 <dvh_partition_map_iterate>
+ 15c:	ldr	x1, [x0]
+ 160:	adrp	x0, 0 <dvh_partition_map_iterate>
+ 164:	ldr	x0, [x0]
+ 168:	bl	0 <grub_list_push>
+ 16c:	ldp	x29, x30, [sp], #16
+ 170:	ret
+ 174:	nop
+	...
+
+0000000000000188 <grub_mod_fini>:
+ 188:	stp	x29, x30, [sp, #-16]!
+ 18c:	mov	x29, sp
+ 190:	adrp	x0, 0 <dvh_partition_map_iterate>
+ 194:	ldr	x0, [x0]
+ 198:	bl	0 <grub_list_remove>
+ 19c:	ldp	x29, x30, [sp], #16
+ 1a0:	ret
+ 1a4:	nop
+	...

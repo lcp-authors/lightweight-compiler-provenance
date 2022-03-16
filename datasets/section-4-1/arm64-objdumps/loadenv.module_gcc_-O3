@@ -1,0 +1,1069 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//loadenv.module_gcc_-O3:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <save_env_read_hook>:
+       0:	stp	x29, x30, [sp, #-48]!
+       4:	mov	x29, sp
+       8:	stp	x19, x20, [sp, #16]
+       c:	mov	w20, w2
+      10:	mov	x19, x3
+      14:	stp	x21, x22, [sp, #32]
+      18:	mov	x22, x0
+      1c:	mov	w21, w1
+      20:	mov	x0, #0x18                  	// #24
+      24:	bl	0 <grub_malloc>
+      28:	cbz	x0, 50 <save_env_read_hook+0x50>
+      2c:	ldr	x1, [x19, #8]
+      30:	str	x22, [x0]
+      34:	stp	w21, w20, [x0, #8]
+      38:	str	xzr, [x0, #16]
+      3c:	cbz	x1, 44 <save_env_read_hook+0x44>
+      40:	str	x0, [x1, #16]
+      44:	ldr	x1, [x19]
+      48:	str	x0, [x19, #8]
+      4c:	cbz	x1, 60 <save_env_read_hook+0x60>
+      50:	ldp	x19, x20, [sp, #16]
+      54:	ldp	x21, x22, [sp, #32]
+      58:	ldp	x29, x30, [sp], #48
+      5c:	ret
+      60:	str	x0, [x19]
+      64:	ldp	x19, x20, [sp, #16]
+      68:	ldp	x21, x22, [sp, #32]
+      6c:	ldp	x29, x30, [sp], #48
+      70:	ret
+      74:	nop
+
+0000000000000078 <print_var>:
+      78:	stp	x29, x30, [sp, #-16]!
+      7c:	adrp	x3, 0 <save_env_read_hook>
+      80:	mov	x2, x1
+      84:	mov	x29, sp
+      88:	mov	x1, x0
+      8c:	ldr	x0, [x3]
+      90:	bl	0 <grub_printf>
+      94:	mov	w0, #0x0                   	// #0
+      98:	ldp	x29, x30, [sp], #16
+      9c:	ret
+	...
+
+00000000000000a8 <open_envblk_file>:
+      a8:	stp	x29, x30, [sp, #-64]!
+      ac:	mov	x29, sp
+      b0:	stp	x19, x20, [sp, #16]
+      b4:	mov	x19, x0
+      b8:	stp	x21, x22, [sp, #32]
+      bc:	mov	w21, w1
+      c0:	str	x23, [sp, #48]
+      c4:	mov	x23, #0x0                   	// #0
+      c8:	cbz	x0, fc <open_envblk_file+0x54>
+      cc:	mov	w1, w21
+      d0:	mov	x0, x19
+      d4:	bl	0 <grub_file_open>
+      d8:	mov	x20, x0
+      dc:	mov	x0, x23
+      e0:	bl	0 <grub_free>
+      e4:	mov	x0, x20
+      e8:	ldp	x19, x20, [sp, #16]
+      ec:	ldp	x21, x22, [sp, #32]
+      f0:	ldr	x23, [sp, #48]
+      f4:	ldp	x29, x30, [sp], #64
+      f8:	ret
+      fc:	adrp	x0, 0 <save_env_read_hook>
+     100:	ldr	x19, [x0]
+     104:	mov	x0, x19
+     108:	bl	0 <grub_env_get>
+     10c:	mov	x20, x0
+     110:	cbz	x0, 16c <open_envblk_file+0xc4>
+     114:	bl	0 <grub_strlen>
+     118:	mov	x22, x0
+     11c:	add	w0, w0, #0x1
+     120:	sxtw	x0, w0
+     124:	add	x0, x0, #0x8
+     128:	bl	0 <grub_malloc>
+     12c:	mov	x19, x0
+     130:	cbz	x0, 164 <open_envblk_file+0xbc>
+     134:	mov	x1, x20
+     138:	bl	0 <grub_strcpy>
+     13c:	adrp	x1, 0 <save_env_read_hook>
+     140:	sxtw	x22, w22
+     144:	mov	w0, #0x2f                  	// #47
+     148:	mov	x23, x19
+     14c:	ldr	x1, [x1]
+     150:	strb	w0, [x19, x22]
+     154:	add	x22, x22, #0x1
+     158:	add	x0, x19, x22
+     15c:	bl	0 <grub_strcpy>
+     160:	b	cc <open_envblk_file+0x24>
+     164:	mov	x20, #0x0                   	// #0
+     168:	b	e4 <open_envblk_file+0x3c>
+     16c:	adrp	x1, 0 <save_env_read_hook>
+     170:	mov	x2, x19
+     174:	mov	w0, #0x5                   	// #5
+     178:	ldr	x1, [x1]
+     17c:	bl	0 <grub_error>
+     180:	b	e4 <open_envblk_file+0x3c>
+     184:	nop
+	...
+
+00000000000001a0 <grub_cmd_save_env>:
+     1a0:	stp	x29, x30, [sp, #-128]!
+     1a4:	mov	x29, sp
+     1a8:	stp	x21, x22, [sp, #32]
+     1ac:	mov	w21, w1
+     1b0:	stp	xzr, xzr, [sp, #112]
+     1b4:	ldr	x1, [x0, #8]
+     1b8:	cbz	w21, 42c <grub_cmd_save_env+0x28c>
+     1bc:	stp	x19, x20, [sp, #16]
+     1c0:	mov	x19, x2
+     1c4:	ldr	w2, [x1]
+     1c8:	mov	x0, #0x0                   	// #0
+     1cc:	cbnz	w2, 298 <grub_cmd_save_env+0xf8>
+     1d0:	mov	w1, #0x3a                  	// #58
+     1d4:	movk	w1, #0x1, lsl #16
+     1d8:	bl	a8 <open_envblk_file>
+     1dc:	mov	x20, x0
+     1e0:	cbz	x0, 2b0 <grub_cmd_save_env+0x110>
+     1e4:	ldr	x1, [x0, #8]
+     1e8:	ldr	x1, [x1]
+     1ec:	cbz	x1, 448 <grub_cmd_save_env+0x2a8>
+     1f0:	adrp	x0, 0 <save_env_read_hook>
+     1f4:	add	x1, sp, #0x70
+     1f8:	stp	x23, x24, [sp, #48]
+     1fc:	ldr	x0, [x0]
+     200:	stp	x0, x1, [x20, #88]
+     204:	ldr	x22, [x20, #64]
+     208:	mov	x0, x22
+     20c:	bl	0 <grub_malloc>
+     210:	mov	x24, x0
+     214:	cbz	x0, 250 <grub_cmd_save_env+0xb0>
+     218:	mov	x23, #0x0                   	// #0
+     21c:	cbnz	x22, 230 <grub_cmd_save_env+0x90>
+     220:	b	2cc <grub_cmd_save_env+0x12c>
+     224:	add	x23, x23, x0
+     228:	subs	x22, x22, x0
+     22c:	b.eq	2cc <grub_cmd_save_env+0x12c>  // b.none
+     230:	mov	x2, x22
+     234:	add	x1, x24, x23
+     238:	mov	x0, x20
+     23c:	bl	0 <grub_file_read>
+     240:	cmp	x0, #0x0
+     244:	b.gt	224 <grub_cmd_save_env+0x84>
+     248:	mov	x0, x24
+     24c:	bl	0 <grub_free>
+     250:	adrp	x1, 0 <save_env_read_hook>
+     254:	str	xzr, [x20, #88]
+     258:	ldr	x23, [x1]
+     25c:	ldr	x19, [sp, #112]
+     260:	cbz	x19, 278 <grub_cmd_save_env+0xd8>
+     264:	nop
+     268:	mov	x0, x19
+     26c:	ldr	x19, [x19, #16]
+     270:	bl	0 <grub_free>
+     274:	cbnz	x19, 268 <grub_cmd_save_env+0xc8>
+     278:	mov	x0, x20
+     27c:	bl	0 <grub_file_close>
+     280:	ldr	w0, [x23]
+     284:	ldp	x19, x20, [sp, #16]
+     288:	ldp	x21, x22, [sp, #32]
+     28c:	ldp	x23, x24, [sp, #48]
+     290:	ldp	x29, x30, [sp], #128
+     294:	ret
+     298:	ldr	x0, [x1, #8]
+     29c:	mov	w1, #0x3a                  	// #58
+     2a0:	movk	w1, #0x1, lsl #16
+     2a4:	bl	a8 <open_envblk_file>
+     2a8:	mov	x20, x0
+     2ac:	cbnz	x0, 1e4 <grub_cmd_save_env+0x44>
+     2b0:	adrp	x0, 0 <save_env_read_hook>
+     2b4:	ldp	x19, x20, [sp, #16]
+     2b8:	ldr	x0, [x0]
+     2bc:	ldp	x21, x22, [sp, #32]
+     2c0:	ldr	w0, [x0]
+     2c4:	ldp	x29, x30, [sp], #128
+     2c8:	ret
+     2cc:	mov	x1, x23
+     2d0:	mov	x0, x24
+     2d4:	bl	ab0 <grub_envblk_open>
+     2d8:	mov	x22, x0
+     2dc:	cbz	x0, 58c <grub_cmd_save_env+0x3ec>
+     2e0:	ldr	x23, [sp, #112]
+     2e4:	str	xzr, [x20, #88]
+     2e8:	cbz	x23, 480 <grub_cmd_save_env+0x2e0>
+     2ec:	mov	x1, x23
+     2f0:	mov	x7, #0x0                   	// #0
+     2f4:	ldr	x5, [x1, #16]
+     2f8:	ldr	w6, [x1, #12]
+     2fc:	cbz	x5, 568 <grub_cmd_save_env+0x3c8>
+     300:	add	w0, w6, #0x1ff
+     304:	mov	x4, x5
+     308:	ldr	x2, [x1]
+     30c:	lsr	w0, w0, #9
+     310:	add	x0, x0, x2
+     314:	b	320 <grub_cmd_save_env+0x180>
+     318:	ldr	x4, [x4, #16]
+     31c:	cbz	x4, 420 <grub_cmd_save_env+0x280>
+     320:	ldr	w3, [x4, #12]
+     324:	ldr	x1, [x4]
+     328:	add	w3, w3, #0x1ff
+     32c:	lsr	w3, w3, #9
+     330:	add	x3, x3, x1
+     334:	cmp	x2, x3
+     338:	ccmp	x0, x1, #0x0, cc  // cc = lo, ul, last
+     33c:	b.ls	318 <grub_cmd_save_env+0x178>  // b.plast
+     340:	adrp	x1, 0 <save_env_read_hook>
+     344:	mov	w0, #0x9                   	// #9
+     348:	ldr	x1, [x1]
+     34c:	bl	0 <grub_error>
+     350:	adrp	x1, 0 <save_env_read_hook>
+     354:	ldr	x23, [x1]
+     358:	cbnz	w0, 414 <grub_cmd_save_env+0x274>
+     35c:	sub	w21, w21, #0x1
+     360:	add	x21, x21, #0x1
+     364:	add	x21, x19, x21, lsl #3
+     368:	b	380 <grub_cmd_save_env+0x1e0>
+     36c:	bl	b60 <grub_envblk_set>
+     370:	cbz	w0, 46c <grub_cmd_save_env+0x2cc>
+     374:	add	x19, x19, #0x8
+     378:	cmp	x19, x21
+     37c:	b.eq	3a8 <grub_cmd_save_env+0x208>  // b.none
+     380:	ldr	x0, [x19]
+     384:	bl	0 <grub_env_get>
+     388:	mov	x2, x0
+     38c:	mov	x0, x22
+     390:	ldr	x1, [x19]
+     394:	cbnz	x2, 36c <grub_cmd_save_env+0x1cc>
+     398:	add	x19, x19, #0x8
+     39c:	bl	e08 <grub_envblk_delete>
+     3a0:	cmp	x19, x21
+     3a4:	b.ne	380 <grub_cmd_save_env+0x1e0>  // b.any
+     3a8:	ldr	x0, [x20, #8]
+     3ac:	stp	x25, x26, [sp, #64]
+     3b0:	mov	x24, #0x0                   	// #0
+     3b4:	ldr	x26, [x22]
+     3b8:	ldr	x25, [x0]
+     3bc:	ldr	x19, [sp, #112]
+     3c0:	ldr	x0, [x25, #40]
+     3c4:	cbz	x0, 3d8 <grub_cmd_save_env+0x238>
+     3c8:	ldr	x1, [x0, #8]
+     3cc:	ldr	x0, [x0, #40]
+     3d0:	add	x24, x24, x1
+     3d4:	cbnz	x0, 3c8 <grub_cmd_save_env+0x228>
+     3d8:	cbz	x19, 410 <grub_cmd_save_env+0x270>
+     3dc:	mov	x21, #0x0                   	// #0
+     3e0:	b	3f4 <grub_cmd_save_env+0x254>
+     3e4:	ldr	w0, [x19, #12]
+     3e8:	ldr	x19, [x19, #16]
+     3ec:	add	x21, x21, x0
+     3f0:	cbz	x19, 410 <grub_cmd_save_env+0x270>
+     3f4:	ldp	w2, w3, [x19, #8]
+     3f8:	add	x4, x26, x21
+     3fc:	ldr	x1, [x19]
+     400:	mov	x0, x25
+     404:	sub	x1, x1, x24
+     408:	bl	0 <grub_disk_write>
+     40c:	cbz	w0, 3e4 <grub_cmd_save_env+0x244>
+     410:	ldp	x25, x26, [sp, #64]
+     414:	mov	x0, x22
+     418:	bl	b38 <grub_envblk_close>
+     41c:	b	25c <grub_cmd_save_env+0xbc>
+     420:	add	x7, x7, w6, uxtw
+     424:	mov	x1, x5
+     428:	b	2f4 <grub_cmd_save_env+0x154>
+     42c:	adrp	x1, 0 <save_env_read_hook>
+     430:	mov	w0, #0x12                  	// #18
+     434:	ldr	x1, [x1]
+     438:	bl	0 <grub_error>
+     43c:	ldp	x21, x22, [sp, #32]
+     440:	ldp	x29, x30, [sp], #128
+     444:	ret
+     448:	bl	0 <grub_file_close>
+     44c:	adrp	x1, 0 <save_env_read_hook>
+     450:	mov	w0, #0xd                   	// #13
+     454:	ldr	x1, [x1]
+     458:	bl	0 <grub_error>
+     45c:	ldp	x19, x20, [sp, #16]
+     460:	ldp	x21, x22, [sp, #32]
+     464:	ldp	x29, x30, [sp], #128
+     468:	ret
+     46c:	adrp	x1, 0 <save_env_read_hook>
+     470:	mov	w0, #0x12                  	// #18
+     474:	ldr	x1, [x1]
+     478:	bl	0 <grub_error>
+     47c:	b	414 <grub_cmd_save_env+0x274>
+     480:	mov	x6, #0x0                   	// #0
+     484:	ldr	x0, [x20, #64]
+     488:	cmp	x0, x6
+     48c:	b.ne	570 <grub_cmd_save_env+0x3d0>  // b.any
+     490:	ldr	x0, [x20, #8]
+     494:	stp	x27, x28, [sp, #80]
+     498:	stp	x25, x26, [sp, #64]
+     49c:	mov	x26, #0x0                   	// #0
+     4a0:	ldr	x27, [x0]
+     4a4:	ldr	x0, [x27, #40]
+     4a8:	cbz	x0, 4c0 <grub_cmd_save_env+0x320>
+     4ac:	nop
+     4b0:	ldr	x1, [x0, #8]
+     4b4:	ldr	x0, [x0, #40]
+     4b8:	add	x26, x26, x1
+     4bc:	cbnz	x0, 4b0 <grub_cmd_save_env+0x310>
+     4c0:	ldr	x0, [x22]
+     4c4:	str	x0, [sp, #104]
+     4c8:	mov	x25, #0x0                   	// #0
+     4cc:	mov	x28, #0x0                   	// #0
+     4d0:	mov	x24, #0x0                   	// #0
+     4d4:	cbnz	x23, 504 <grub_cmd_save_env+0x364>
+     4d8:	b	5b4 <grub_cmd_save_env+0x414>
+     4dc:	ldr	w2, [x23, #12]
+     4e0:	mov	x1, x28
+     4e4:	ldr	x0, [sp, #104]
+     4e8:	add	x0, x0, x25
+     4ec:	bl	0 <grub_memcmp>
+     4f0:	cbnz	w0, 5c8 <grub_cmd_save_env+0x428>
+     4f4:	ldr	w0, [x23, #12]
+     4f8:	ldr	x23, [x23, #16]
+     4fc:	add	x25, x25, x0
+     500:	cbz	x23, 5b4 <grub_cmd_save_env+0x414>
+     504:	ldr	w3, [x23, #12]
+     508:	mov	x0, x28
+     50c:	cmp	x3, x24
+     510:	b.ls	534 <grub_cmd_save_env+0x394>  // b.plast
+     514:	bl	0 <grub_free>
+     518:	ldr	w24, [x23, #12]
+     51c:	lsl	w24, w24, #1
+     520:	mov	x0, x24
+     524:	bl	0 <grub_malloc>
+     528:	mov	x28, x0
+     52c:	cbz	x0, 550 <grub_cmd_save_env+0x3b0>
+     530:	ldr	w3, [x23, #12]
+     534:	ldr	w2, [x23, #8]
+     538:	mov	x4, x28
+     53c:	ldr	x1, [x23]
+     540:	mov	x0, x27
+     544:	sub	x1, x1, x26
+     548:	bl	0 <grub_disk_read>
+     54c:	cbz	w0, 4dc <grub_cmd_save_env+0x33c>
+     550:	adrp	x1, 0 <save_env_read_hook>
+     554:	ldp	x25, x26, [sp, #64]
+     558:	ldr	x23, [x1]
+     55c:	ldp	x27, x28, [sp, #80]
+     560:	ldr	w0, [x23]
+     564:	b	358 <grub_cmd_save_env+0x1b8>
+     568:	add	x6, x7, w6, uxtw
+     56c:	b	484 <grub_cmd_save_env+0x2e4>
+     570:	adrp	x1, 0 <save_env_read_hook>
+     574:	mov	w0, #0x4                   	// #4
+     578:	ldr	x1, [x1]
+     57c:	bl	0 <grub_error>
+     580:	adrp	x1, 0 <save_env_read_hook>
+     584:	ldr	x23, [x1]
+     588:	b	358 <grub_cmd_save_env+0x1b8>
+     58c:	mov	x0, x24
+     590:	bl	0 <grub_free>
+     594:	adrp	x1, 0 <save_env_read_hook>
+     598:	mov	w0, #0x4                   	// #4
+     59c:	ldr	x1, [x1]
+     5a0:	bl	0 <grub_error>
+     5a4:	str	xzr, [x20, #88]
+     5a8:	adrp	x1, 0 <save_env_read_hook>
+     5ac:	ldr	x23, [x1]
+     5b0:	b	25c <grub_cmd_save_env+0xbc>
+     5b4:	adrp	x1, 0 <save_env_read_hook>
+     5b8:	ldp	x25, x26, [sp, #64]
+     5bc:	ldr	x23, [x1]
+     5c0:	ldp	x27, x28, [sp, #80]
+     5c4:	b	35c <grub_cmd_save_env+0x1bc>
+     5c8:	adrp	x1, 0 <save_env_read_hook>
+     5cc:	mov	w0, #0x6                   	// #6
+     5d0:	ldr	x1, [x1]
+     5d4:	bl	0 <grub_error>
+     5d8:	adrp	x1, 0 <save_env_read_hook>
+     5dc:	ldp	x25, x26, [sp, #64]
+     5e0:	ldr	x23, [x1]
+     5e4:	ldp	x27, x28, [sp, #80]
+     5e8:	b	358 <grub_cmd_save_env+0x1b8>
+     5ec:	nop
+	...
+
+0000000000000638 <set_var>:
+     638:	stp	x29, x30, [sp, #-48]!
+     63c:	mov	x29, sp
+     640:	stp	x21, x22, [sp, #32]
+     644:	mov	x21, x0
+     648:	mov	x22, x1
+     64c:	cbz	x2, 690 <set_var+0x58>
+     650:	ldr	x0, [x2]
+     654:	stp	x19, x20, [sp, #16]
+     658:	mov	x19, x2
+     65c:	mov	x20, #0x0                   	// #0
+     660:	cbnz	x0, 674 <set_var+0x3c>
+     664:	b	6ac <set_var+0x74>
+     668:	ldr	x0, [x19]
+     66c:	cmp	x20, x0
+     670:	b.cs	6ac <set_var+0x74>  // b.hs, b.nlast
+     674:	ldr	x1, [x19, #8]
+     678:	mov	x0, x21
+     67c:	ldr	x1, [x1, x20, lsl #3]
+     680:	add	x20, x20, #0x1
+     684:	bl	0 <grub_strcmp>
+     688:	cbnz	w0, 668 <set_var+0x30>
+     68c:	ldp	x19, x20, [sp, #16]
+     690:	mov	x1, x22
+     694:	mov	x0, x21
+     698:	bl	0 <grub_env_set>
+     69c:	mov	w0, #0x0                   	// #0
+     6a0:	ldp	x21, x22, [sp, #32]
+     6a4:	ldp	x29, x30, [sp], #48
+     6a8:	ret
+     6ac:	mov	w0, #0x0                   	// #0
+     6b0:	ldp	x19, x20, [sp, #16]
+     6b4:	ldp	x21, x22, [sp, #32]
+     6b8:	ldp	x29, x30, [sp], #48
+     6bc:	ret
+
+00000000000006c0 <grub_cmd_list_env>:
+     6c0:	stp	x29, x30, [sp, #-48]!
+     6c4:	mov	x29, sp
+     6c8:	ldr	x1, [x0, #8]
+     6cc:	stp	x19, x20, [sp, #16]
+     6d0:	mov	x0, #0x0                   	// #0
+     6d4:	ldr	w2, [x1]
+     6d8:	cbz	w2, 6e0 <grub_cmd_list_env+0x20>
+     6dc:	ldr	x0, [x1, #8]
+     6e0:	mov	w2, #0x39                  	// #57
+     6e4:	ldr	w3, [x1, #16]
+     6e8:	movk	w2, #0x1, lsl #16
+     6ec:	mov	w1, #0x39                  	// #57
+     6f0:	cmp	w3, #0x0
+     6f4:	csel	w1, w2, w1, ne  // ne = any
+     6f8:	bl	a8 <open_envblk_file>
+     6fc:	mov	x19, x0
+     700:	cbz	x0, 7a8 <grub_cmd_list_env+0xe8>
+     704:	ldr	x20, [x0, #64]
+     708:	stp	x21, x22, [sp, #32]
+     70c:	mov	x0, x20
+     710:	bl	0 <grub_malloc>
+     714:	mov	x21, x0
+     718:	cbz	x0, 754 <grub_cmd_list_env+0x94>
+     71c:	mov	x22, #0x0                   	// #0
+     720:	cbnz	x20, 734 <grub_cmd_list_env+0x74>
+     724:	b	778 <grub_cmd_list_env+0xb8>
+     728:	add	x22, x22, x0
+     72c:	subs	x20, x20, x0
+     730:	b.eq	778 <grub_cmd_list_env+0xb8>  // b.none
+     734:	mov	x2, x20
+     738:	add	x1, x21, x22
+     73c:	mov	x0, x19
+     740:	bl	0 <grub_file_read>
+     744:	cmp	x0, #0x0
+     748:	b.gt	728 <grub_cmd_list_env+0x68>
+     74c:	mov	x0, x21
+     750:	bl	0 <grub_free>
+     754:	mov	x0, x19
+     758:	bl	0 <grub_file_close>
+     75c:	adrp	x0, 0 <save_env_read_hook>
+     760:	ldp	x19, x20, [sp, #16]
+     764:	ldr	x0, [x0]
+     768:	ldp	x21, x22, [sp, #32]
+     76c:	ldr	w0, [x0]
+     770:	ldp	x29, x30, [sp], #48
+     774:	ret
+     778:	mov	x1, x22
+     77c:	mov	x0, x21
+     780:	bl	ab0 <grub_envblk_open>
+     784:	mov	x20, x0
+     788:	cbz	x0, 7c0 <grub_cmd_list_env+0x100>
+     78c:	adrp	x2, 0 <save_env_read_hook>
+     790:	mov	x1, #0x0                   	// #0
+     794:	ldr	x2, [x2]
+     798:	bl	f48 <grub_envblk_iterate>
+     79c:	mov	x0, x20
+     7a0:	bl	b38 <grub_envblk_close>
+     7a4:	b	754 <grub_cmd_list_env+0x94>
+     7a8:	adrp	x0, 0 <save_env_read_hook>
+     7ac:	ldp	x19, x20, [sp, #16]
+     7b0:	ldr	x0, [x0]
+     7b4:	ldp	x29, x30, [sp], #48
+     7b8:	ldr	w0, [x0]
+     7bc:	ret
+     7c0:	mov	x0, x21
+     7c4:	bl	0 <grub_free>
+     7c8:	adrp	x1, 0 <save_env_read_hook>
+     7cc:	mov	w0, #0x4                   	// #4
+     7d0:	ldr	x1, [x1]
+     7d4:	bl	0 <grub_error>
+     7d8:	b	754 <grub_cmd_list_env+0x94>
+     7dc:	nop
+	...
+
+00000000000007f8 <grub_cmd_load_env>:
+     7f8:	stp	x29, x30, [sp, #-80]!
+     7fc:	mov	x29, sp
+     800:	stp	x21, x22, [sp, #32]
+     804:	mov	w21, w1
+     808:	ldr	x1, [x0, #8]
+     80c:	str	x2, [sp, #72]
+     810:	sxtw	x2, w21
+     814:	str	x2, [sp, #64]
+     818:	stp	x19, x20, [sp, #16]
+     81c:	mov	x0, #0x0                   	// #0
+     820:	ldr	w2, [x1]
+     824:	cbz	w2, 82c <grub_cmd_load_env+0x34>
+     828:	ldr	x0, [x1, #8]
+     82c:	mov	w2, #0x39                  	// #57
+     830:	ldr	w3, [x1, #16]
+     834:	movk	w2, #0x1, lsl #16
+     838:	mov	w1, #0x39                  	// #57
+     83c:	cmp	w3, #0x0
+     840:	csel	w1, w2, w1, ne  // ne = any
+     844:	bl	a8 <open_envblk_file>
+     848:	mov	x19, x0
+     84c:	cbz	x0, 8ac <grub_cmd_load_env+0xb4>
+     850:	ldr	x20, [x0, #64]
+     854:	mov	x0, x20
+     858:	bl	0 <grub_malloc>
+     85c:	mov	x22, x0
+     860:	cbz	x0, 8a4 <grub_cmd_load_env+0xac>
+     864:	str	x23, [sp, #48]
+     868:	mov	x23, #0x0                   	// #0
+     86c:	cbnz	x20, 880 <grub_cmd_load_env+0x88>
+     870:	b	8c8 <grub_cmd_load_env+0xd0>
+     874:	add	x23, x23, x0
+     878:	subs	x20, x20, x0
+     87c:	b.eq	8c8 <grub_cmd_load_env+0xd0>  // b.none
+     880:	mov	x2, x20
+     884:	add	x1, x22, x23
+     888:	mov	x0, x19
+     88c:	bl	0 <grub_file_read>
+     890:	cmp	x0, #0x0
+     894:	b.gt	874 <grub_cmd_load_env+0x7c>
+     898:	mov	x0, x22
+     89c:	bl	0 <grub_free>
+     8a0:	ldr	x23, [sp, #48]
+     8a4:	mov	x0, x19
+     8a8:	bl	0 <grub_file_close>
+     8ac:	adrp	x0, 0 <save_env_read_hook>
+     8b0:	ldp	x19, x20, [sp, #16]
+     8b4:	ldr	x0, [x0]
+     8b8:	ldp	x21, x22, [sp, #32]
+     8bc:	ldr	w0, [x0]
+     8c0:	ldp	x29, x30, [sp], #80
+     8c4:	ret
+     8c8:	mov	x1, x23
+     8cc:	mov	x0, x22
+     8d0:	bl	ab0 <grub_envblk_open>
+     8d4:	mov	x20, x0
+     8d8:	cbz	x0, 90c <grub_cmd_load_env+0x114>
+     8dc:	adrp	x2, 0 <save_env_read_hook>
+     8e0:	cmp	w21, #0x0
+     8e4:	add	x1, sp, #0x40
+     8e8:	ldr	x2, [x2]
+     8ec:	csel	x1, x1, xzr, gt
+     8f0:	bl	f48 <grub_envblk_iterate>
+     8f4:	mov	x0, x20
+     8f8:	bl	b38 <grub_envblk_close>
+     8fc:	mov	x0, x19
+     900:	ldr	x23, [sp, #48]
+     904:	bl	0 <grub_file_close>
+     908:	b	8ac <grub_cmd_load_env+0xb4>
+     90c:	mov	x0, x22
+     910:	bl	0 <grub_free>
+     914:	adrp	x1, 0 <save_env_read_hook>
+     918:	mov	w0, #0x4                   	// #4
+     91c:	ldr	x1, [x1]
+     920:	bl	0 <grub_error>
+     924:	ldr	x23, [sp, #48]
+     928:	b	8a4 <grub_cmd_load_env+0xac>
+     92c:	nop
+	...
+
+0000000000000948 <grub_mod_init>:
+     948:	stp	x29, x30, [sp, #-32]!
+     94c:	adrp	x4, 0 <save_env_read_hook>
+     950:	adrp	x3, 0 <save_env_read_hook>
+     954:	adrp	x1, 0 <save_env_read_hook>
+     958:	adrp	x0, 0 <save_env_read_hook>
+     95c:	adrp	x5, 0 <save_env_read_hook>
+     960:	mov	x29, sp
+     964:	ldr	x4, [x4]
+     968:	stp	x19, x20, [sp, #16]
+     96c:	mov	w2, #0x0                   	// #0
+     970:	ldr	x3, [x3]
+     974:	ldr	x1, [x1]
+     978:	ldr	x0, [x0]
+     97c:	ldr	x20, [x5]
+     980:	mov	x5, x20
+     984:	bl	0 <grub_register_extcmd>
+     988:	adrp	x4, 0 <save_env_read_hook>
+     98c:	adrp	x6, 0 <save_env_read_hook>
+     990:	adrp	x2, 0 <save_env_read_hook>
+     994:	adrp	x3, 0 <save_env_read_hook>
+     998:	ldr	x19, [x4]
+     99c:	adrp	x1, 0 <save_env_read_hook>
+     9a0:	ldr	x4, [x2]
+     9a4:	mov	x5, x20
+     9a8:	ldr	x3, [x3]
+     9ac:	str	x0, [x19]
+     9b0:	ldr	x1, [x1]
+     9b4:	mov	w2, #0x0                   	// #0
+     9b8:	ldr	x0, [x6]
+     9bc:	bl	0 <grub_register_extcmd>
+     9c0:	str	x0, [x19, #8]
+     9c4:	adrp	x6, 0 <save_env_read_hook>
+     9c8:	adrp	x3, 0 <save_env_read_hook>
+     9cc:	adrp	x2, 0 <save_env_read_hook>
+     9d0:	adrp	x1, 0 <save_env_read_hook>
+     9d4:	ldr	x4, [x3]
+     9d8:	mov	x5, x20
+     9dc:	ldr	x3, [x2]
+     9e0:	mov	w2, #0x0                   	// #0
+     9e4:	ldr	x1, [x1]
+     9e8:	ldr	x0, [x6]
+     9ec:	bl	0 <grub_register_extcmd>
+     9f0:	str	x0, [x19, #16]
+     9f4:	ldp	x19, x20, [sp, #16]
+     9f8:	ldp	x29, x30, [sp], #32
+     9fc:	ret
+	...
+
+0000000000000a70 <grub_mod_fini>:
+     a70:	stp	x29, x30, [sp, #-32]!
+     a74:	adrp	x0, 0 <save_env_read_hook>
+     a78:	mov	x29, sp
+     a7c:	str	x19, [sp, #16]
+     a80:	ldr	x19, [x0]
+     a84:	ldr	x0, [x19]
+     a88:	bl	0 <grub_unregister_extcmd>
+     a8c:	ldr	x0, [x19, #8]
+     a90:	bl	0 <grub_unregister_extcmd>
+     a94:	ldr	x0, [x19, #16]
+     a98:	ldr	x19, [sp, #16]
+     a9c:	ldp	x29, x30, [sp], #32
+     aa0:	b	0 <grub_unregister_extcmd>
+     aa4:	nop
+	...
+
+0000000000000ab0 <grub_envblk_open>:
+     ab0:	stp	x29, x30, [sp, #-32]!
+     ab4:	cmp	x1, #0x19
+     ab8:	mov	x29, sp
+     abc:	b.ls	b00 <grub_envblk_open+0x50>  // b.plast
+     ac0:	stp	x19, x20, [sp, #16]
+     ac4:	mov	x19, x1
+     ac8:	adrp	x1, 0 <save_env_read_hook>
+     acc:	mov	x20, x0
+     ad0:	mov	x2, #0x19                  	// #25
+     ad4:	ldr	x1, [x1]
+     ad8:	bl	0 <grub_memcmp>
+     adc:	cbnz	w0, afc <grub_envblk_open+0x4c>
+     ae0:	mov	x0, #0x10                  	// #16
+     ae4:	bl	0 <grub_malloc>
+     ae8:	cbz	x0, b1c <grub_envblk_open+0x6c>
+     aec:	stp	x20, x19, [x0]
+     af0:	ldp	x19, x20, [sp, #16]
+     af4:	ldp	x29, x30, [sp], #32
+     af8:	ret
+     afc:	ldp	x19, x20, [sp, #16]
+     b00:	adrp	x1, 0 <save_env_read_hook>
+     b04:	mov	w0, #0x4                   	// #4
+     b08:	ldr	x1, [x1]
+     b0c:	bl	0 <grub_error>
+     b10:	mov	x0, #0x0                   	// #0
+     b14:	ldp	x29, x30, [sp], #32
+     b18:	ret
+     b1c:	ldp	x19, x20, [sp, #16]
+     b20:	ldp	x29, x30, [sp], #32
+     b24:	ret
+	...
+
+0000000000000b38 <grub_envblk_close>:
+     b38:	stp	x29, x30, [sp, #-32]!
+     b3c:	mov	x29, sp
+     b40:	str	x19, [sp, #16]
+     b44:	mov	x19, x0
+     b48:	ldr	x0, [x0]
+     b4c:	bl	0 <grub_free>
+     b50:	mov	x0, x19
+     b54:	ldr	x19, [sp, #16]
+     b58:	ldp	x29, x30, [sp], #32
+     b5c:	b	0 <grub_free>
+
+0000000000000b60 <grub_envblk_set>:
+     b60:	stp	x29, x30, [sp, #-112]!
+     b64:	mov	x29, sp
+     b68:	stp	x21, x22, [sp, #32]
+     b6c:	mov	x22, x2
+     b70:	stp	x19, x20, [sp, #16]
+     b74:	mov	x20, x0
+     b78:	mov	x0, x1
+     b7c:	stp	x23, x24, [sp, #48]
+     b80:	mov	x24, x1
+     b84:	stp	x27, x28, [sp, #80]
+     b88:	bl	0 <grub_strlen>
+     b8c:	ldrb	w3, [x22]
+     b90:	str	x0, [sp, #104]
+     b94:	cbz	w3, dd0 <grub_envblk_set+0x270>
+     b98:	mov	x1, x22
+     b9c:	mov	w28, #0x0                   	// #0
+     ba0:	cmp	w3, #0x5c
+     ba4:	ccmp	w3, #0xa, #0x4, ne  // ne = any
+     ba8:	ldrb	w3, [x1, #1]!
+     bac:	cinc	w21, w28, eq  // eq = none
+     bb0:	add	w28, w21, #0x1
+     bb4:	cbnz	w3, ba0 <grub_envblk_set+0x40>
+     bb8:	ldp	x19, x20, [x20]
+     bbc:	add	x20, x19, x20
+     bc0:	sub	x2, x20, #0x1
+     bc4:	ldurb	w0, [x20, #-1]
+     bc8:	cmp	w0, #0x23
+     bcc:	b.ne	dec <grub_envblk_set+0x28c>  // b.any
+     bd0:	mov	x27, x2
+     bd4:	ldrb	w0, [x2, #-1]!
+     bd8:	cmp	w0, #0x23
+     bdc:	b.eq	bd0 <grub_envblk_set+0x70>  // b.none
+     be0:	cmp	w0, #0xa
+     be4:	b.ne	c8c <grub_envblk_set+0x12c>  // b.any
+     be8:	stp	x25, x26, [sp, #64]
+     bec:	add	x19, x19, #0x19
+     bf0:	ldrsw	x25, [sp, #104]
+     bf4:	add	x26, x25, #0x1
+     bf8:	add	x23, x19, x26
+     bfc:	cmp	x23, x27
+     c00:	b.cs	c70 <grub_envblk_set+0x110>  // b.hs, b.nlast
+     c04:	mov	x2, x25
+     c08:	mov	x1, x24
+     c0c:	mov	x0, x19
+     c10:	bl	0 <grub_memcmp>
+     c14:	mov	w21, w0
+     c18:	cbnz	w0, c28 <grub_envblk_set+0xc8>
+     c1c:	ldrb	w0, [x19, x25]
+     c20:	cmp	w0, #0x3d
+     c24:	b.eq	d48 <grub_envblk_set+0x1e8>  // b.none
+     c28:	cmp	x20, x19
+     c2c:	b.hi	c48 <grub_envblk_set+0xe8>  // b.pmore
+     c30:	b	c60 <grub_envblk_set+0x100>
+     c34:	add	x19, x19, #0x1
+     c38:	cmp	w3, #0xa
+     c3c:	b.eq	bf8 <grub_envblk_set+0x98>  // b.none
+     c40:	cmp	x19, x20
+     c44:	b.cs	c60 <grub_envblk_set+0x100>  // b.hs, b.nlast
+     c48:	ldrb	w3, [x19]
+     c4c:	cmp	w3, #0x5c
+     c50:	b.ne	c34 <grub_envblk_set+0xd4>  // b.any
+     c54:	add	x19, x19, #0x2
+     c58:	cmp	x19, x20
+     c5c:	b.cc	c48 <grub_envblk_set+0xe8>  // b.lo, b.ul, b.last
+     c60:	add	x19, x19, #0x1
+     c64:	add	x23, x19, x26
+     c68:	cmp	x23, x27
+     c6c:	b.cc	c04 <grub_envblk_set+0xa4>  // b.lo, b.ul, b.last
+     c70:	ldr	w0, [sp, #104]
+     c74:	sub	x20, x20, x27
+     c78:	add	w0, w28, w0
+     c7c:	add	w0, w0, #0x2
+     c80:	cmp	x20, w0, sxtw
+     c84:	b.ge	ca8 <grub_envblk_set+0x148>  // b.tcont
+     c88:	ldp	x25, x26, [sp, #64]
+     c8c:	mov	w0, #0x0                   	// #0
+     c90:	ldp	x19, x20, [sp, #16]
+     c94:	ldp	x21, x22, [sp, #32]
+     c98:	ldp	x23, x24, [sp, #48]
+     c9c:	ldp	x27, x28, [sp, #80]
+     ca0:	ldp	x29, x30, [sp], #112
+     ca4:	ret
+     ca8:	mov	x1, x24
+     cac:	mov	x2, x25
+     cb0:	mov	x0, x27
+     cb4:	bl	0 <grub_memmove>
+     cb8:	add	x3, x27, x25
+     cbc:	mov	w0, #0x3d                  	// #61
+     cc0:	add	x23, x3, #0x1
+     cc4:	strb	w0, [x27, x25]
+     cc8:	ldrb	w0, [x22]
+     ccc:	cbz	w0, e00 <grub_envblk_set+0x2a0>
+     cd0:	cmp	w0, #0x5c
+     cd4:	add	x1, x23, #0x1
+     cd8:	ccmp	w0, #0xa, #0x4, ne  // ne = any
+     cdc:	mov	w2, #0x5c                  	// #92
+     ce0:	b.ne	d14 <grub_envblk_set+0x1b4>  // b.any
+     ce4:	nop
+     ce8:	mov	x1, x23
+     cec:	strb	w2, [x1], #2
+     cf0:	ldrb	w0, [x22]
+     cf4:	strb	w0, [x23, #1]
+     cf8:	ldrb	w0, [x22, #1]!
+     cfc:	cbz	w0, d20 <grub_envblk_set+0x1c0>
+     d00:	mov	x23, x1
+     d04:	cmp	w0, #0x5c
+     d08:	add	x1, x23, #0x1
+     d0c:	ccmp	w0, #0xa, #0x4, ne  // ne = any
+     d10:	b.eq	ce8 <grub_envblk_set+0x188>  // b.none
+     d14:	strb	w0, [x23]
+     d18:	ldrb	w0, [x22, #1]!
+     d1c:	cbnz	w0, d00 <grub_envblk_set+0x1a0>
+     d20:	mov	w2, #0xa                   	// #10
+     d24:	strb	w2, [x1]
+     d28:	mov	w0, #0x1                   	// #1
+     d2c:	ldp	x19, x20, [sp, #16]
+     d30:	ldp	x21, x22, [sp, #32]
+     d34:	ldp	x23, x24, [sp, #48]
+     d38:	ldp	x25, x26, [sp, #64]
+     d3c:	ldp	x27, x28, [sp, #80]
+     d40:	ldp	x29, x30, [sp], #112
+     d44:	ret
+     d48:	cmp	x20, x23
+     d4c:	mov	x1, x23
+     d50:	mov	x19, #0x0                   	// #0
+     d54:	b.hi	d78 <grub_envblk_set+0x218>  // b.pmore
+     d58:	b	c88 <grub_envblk_set+0x128>
+     d5c:	cmp	w0, #0x5c
+     d60:	cinc	w21, w21, eq  // eq = none
+     d64:	add	w21, w21, #0x1
+     d68:	sxtw	x19, w21
+     d6c:	add	x1, x23, x19
+     d70:	cmp	x1, x20
+     d74:	b.cs	c88 <grub_envblk_set+0x128>  // b.hs, b.nlast
+     d78:	ldrb	w0, [x1]
+     d7c:	cmp	w0, #0xa
+     d80:	b.ne	d5c <grub_envblk_set+0x1fc>  // b.any
+     d84:	cmp	x20, x1
+     d88:	b.ls	c88 <grub_envblk_set+0x128>  // b.plast
+     d8c:	sub	w0, w28, w21
+     d90:	sub	x2, x20, x27
+     d94:	cmp	x2, w0, sxtw
+     d98:	b.lt	c88 <grub_envblk_set+0x128>  // b.tstop
+     d9c:	sxtw	x24, w28
+     da0:	cmp	w21, w28
+     da4:	add	x0, x23, x24
+     da8:	b.le	df4 <grub_envblk_set+0x294>
+     dac:	sub	x2, x20, x1
+     db0:	sub	w21, w21, w28
+     db4:	bl	0 <grub_memmove>
+     db8:	sub	x0, x19, x24
+     dbc:	sxtw	x2, w21
+     dc0:	add	x0, x27, x0
+     dc4:	mov	w1, #0x23                  	// #35
+     dc8:	bl	0 <grub_memset>
+     dcc:	b	cc8 <grub_envblk_set+0x168>
+     dd0:	ldp	x19, x20, [x20]
+     dd4:	mov	w28, #0x0                   	// #0
+     dd8:	add	x20, x19, x20
+     ddc:	sub	x2, x20, #0x1
+     de0:	ldurb	w0, [x20, #-1]
+     de4:	cmp	w0, #0x23
+     de8:	b.eq	bd0 <grub_envblk_set+0x70>  // b.none
+     dec:	mov	x27, x20
+     df0:	b	be0 <grub_envblk_set+0x80>
+     df4:	sub	x2, x20, x0
+     df8:	bl	0 <grub_memmove>
+     dfc:	b	cc8 <grub_envblk_set+0x168>
+     e00:	mov	x1, x23
+     e04:	b	d20 <grub_envblk_set+0x1c0>
+
+0000000000000e08 <grub_envblk_delete>:
+     e08:	stp	x29, x30, [sp, #-64]!
+     e0c:	mov	x29, sp
+     e10:	stp	x19, x20, [sp, #16]
+     e14:	mov	x19, x0
+     e18:	mov	x0, x1
+     e1c:	stp	x21, x22, [sp, #32]
+     e20:	stp	x23, x24, [sp, #48]
+     e24:	mov	x23, x1
+     e28:	bl	0 <grub_strlen>
+     e2c:	sxtw	x21, w0
+     e30:	mov	x22, x0
+     e34:	ldp	x20, x0, [x19]
+     e38:	add	x24, x21, #0x1
+     e3c:	add	x19, x20, #0x19
+     e40:	add	x20, x20, x0
+     e44:	add	x0, x19, x24
+     e48:	cmp	x20, x0
+     e4c:	b.ls	eb8 <grub_envblk_delete+0xb0>  // b.plast
+     e50:	mov	x2, x21
+     e54:	mov	x1, x23
+     e58:	mov	x0, x19
+     e5c:	bl	0 <grub_memcmp>
+     e60:	cbnz	w0, e70 <grub_envblk_delete+0x68>
+     e64:	ldrb	w0, [x19, x21]
+     e68:	cmp	w0, #0x3d
+     e6c:	b.eq	ecc <grub_envblk_delete+0xc4>  // b.none
+     e70:	cmp	x20, x19
+     e74:	b.hi	e90 <grub_envblk_delete+0x88>  // b.pmore
+     e78:	b	ea8 <grub_envblk_delete+0xa0>
+     e7c:	add	x19, x19, #0x1
+     e80:	cmp	w3, #0xa
+     e84:	b.eq	eac <grub_envblk_delete+0xa4>  // b.none
+     e88:	cmp	x19, x20
+     e8c:	b.cs	ea8 <grub_envblk_delete+0xa0>  // b.hs, b.nlast
+     e90:	ldrb	w3, [x19]
+     e94:	cmp	w3, #0x5c
+     e98:	b.ne	e7c <grub_envblk_delete+0x74>  // b.any
+     e9c:	add	x19, x19, #0x2
+     ea0:	cmp	x19, x20
+     ea4:	b.cc	e90 <grub_envblk_delete+0x88>  // b.lo, b.ul, b.last
+     ea8:	add	x19, x19, #0x1
+     eac:	add	x3, x19, x24
+     eb0:	cmp	x20, x3
+     eb4:	b.hi	e50 <grub_envblk_delete+0x48>  // b.pmore
+     eb8:	ldp	x19, x20, [sp, #16]
+     ebc:	ldp	x21, x22, [sp, #32]
+     ec0:	ldp	x23, x24, [sp, #48]
+     ec4:	ldp	x29, x30, [sp], #64
+     ec8:	ret
+     ecc:	add	w0, w22, #0x1
+     ed0:	add	x1, x19, w0, sxtw
+     ed4:	cmp	x1, x20
+     ed8:	b.cc	ef8 <grub_envblk_delete+0xf0>  // b.lo, b.ul, b.last
+     edc:	b	eb8 <grub_envblk_delete+0xb0>
+     ee0:	cmp	w2, #0x5c
+     ee4:	cinc	w0, w0, eq  // eq = none
+     ee8:	add	w0, w0, #0x1
+     eec:	add	x1, x19, w0, sxtw
+     ef0:	cmp	x1, x20
+     ef4:	b.cs	eb8 <grub_envblk_delete+0xb0>  // b.hs, b.nlast
+     ef8:	ldrb	w2, [x1]
+     efc:	cmp	w2, #0xa
+     f00:	b.ne	ee0 <grub_envblk_delete+0xd8>  // b.any
+     f04:	cmp	x20, x1
+     f08:	b.ls	eb8 <grub_envblk_delete+0xb0>  // b.plast
+     f0c:	add	w21, w0, #0x1
+     f10:	mov	x0, x19
+     f14:	sxtw	x21, w21
+     f18:	add	x1, x19, x21
+     f1c:	sub	x2, x20, x1
+     f20:	bl	0 <grub_memmove>
+     f24:	sub	x0, x20, x21
+     f28:	mov	x2, x21
+     f2c:	ldp	x19, x20, [sp, #16]
+     f30:	mov	w1, #0x23                  	// #35
+     f34:	ldp	x21, x22, [sp, #32]
+     f38:	ldp	x23, x24, [sp, #48]
+     f3c:	ldp	x29, x30, [sp], #64
+     f40:	b	0 <grub_memset>
+     f44:	nop
+
+0000000000000f48 <grub_envblk_iterate>:
+     f48:	stp	x29, x30, [sp, #-80]!
+     f4c:	mov	x29, sp
+     f50:	stp	x19, x20, [sp, #16]
+     f54:	ldp	x20, x0, [x0]
+     f58:	add	x19, x20, #0x19
+     f5c:	add	x20, x20, x0
+     f60:	cmp	x19, x20
+     f64:	b.cs	fc4 <grub_envblk_iterate+0x7c>  // b.hs, b.nlast
+     f68:	stp	x21, x22, [sp, #32]
+     f6c:	mov	x22, x2
+     f70:	stp	x23, x24, [sp, #48]
+     f74:	mov	x23, x1
+     f78:	stp	x25, x26, [sp, #64]
+     f7c:	nop
+     f80:	ldrb	w0, [x19]
+     f84:	cmp	w0, #0x23
+     f88:	b.ne	fec <grub_envblk_iterate+0xa4>  // b.any
+     f8c:	nop
+     f90:	cmp	x19, x20
+     f94:	b.cs	fdc <grub_envblk_iterate+0x94>  // b.hs, b.nlast
+     f98:	ldrb	w0, [x19]
+     f9c:	cmp	w0, #0x5c
+     fa0:	b.eq	fd0 <grub_envblk_iterate+0x88>  // b.none
+     fa4:	add	x19, x19, #0x1
+     fa8:	cmp	w0, #0xa
+     fac:	b.ne	f90 <grub_envblk_iterate+0x48>  // b.any
+     fb0:	cmp	x19, x20
+     fb4:	b.cc	f80 <grub_envblk_iterate+0x38>  // b.lo, b.ul, b.last
+     fb8:	ldp	x21, x22, [sp, #32]
+     fbc:	ldp	x23, x24, [sp, #48]
+     fc0:	ldp	x25, x26, [sp, #64]
+     fc4:	ldp	x19, x20, [sp, #16]
+     fc8:	ldp	x29, x30, [sp], #80
+     fcc:	ret
+     fd0:	add	x19, x19, #0x2
+     fd4:	cmp	x19, x20
+     fd8:	b.cc	f98 <grub_envblk_iterate+0x50>  // b.lo, b.ul, b.last
+     fdc:	add	x19, x19, #0x1
+     fe0:	cmp	x19, x20
+     fe4:	b.cc	f80 <grub_envblk_iterate+0x38>  // b.lo, b.ul, b.last
+     fe8:	b	fb8 <grub_envblk_iterate+0x70>
+     fec:	cmp	x20, x19
+     ff0:	mov	x21, x19
+     ff4:	b.hi	1008 <grub_envblk_iterate+0xc0>  // b.pmore
+     ff8:	b	1014 <grub_envblk_iterate+0xcc>
+     ffc:	add	x21, x21, #0x1
+    1000:	cmp	x20, x21
+    1004:	b.eq	fb8 <grub_envblk_iterate+0x70>  // b.none
+    1008:	ldrb	w0, [x21]
+    100c:	cmp	w0, #0x3d
+    1010:	b.ne	ffc <grub_envblk_iterate+0xb4>  // b.any
+    1014:	cmp	x20, x21
+    1018:	b.eq	fb8 <grub_envblk_iterate+0x70>  // b.none
+    101c:	add	x24, x21, #0x1
+    1020:	cmp	x20, x24
+    1024:	b.ls	fb8 <grub_envblk_iterate+0x70>  // b.plast
+    1028:	mov	x0, x24
+    102c:	b	1044 <grub_envblk_iterate+0xfc>
+    1030:	cmp	w1, #0x5c
+    1034:	cinc	x0, x0, eq  // eq = none
+    1038:	add	x0, x0, #0x1
+    103c:	cmp	x20, x0
+    1040:	b.ls	fb8 <grub_envblk_iterate+0x70>  // b.plast
+    1044:	ldrb	w1, [x0]
+    1048:	cmp	w1, #0xa
+    104c:	b.ne	1030 <grub_envblk_iterate+0xe8>  // b.any
+    1050:	cmp	x20, x0
+    1054:	b.ls	fb8 <grub_envblk_iterate+0x70>  // b.plast
+    1058:	sub	x0, x0, x19
+    105c:	add	x0, x0, #0x1
+    1060:	bl	0 <grub_malloc>
+    1064:	mov	x25, x0
+    1068:	cbz	x0, fb8 <grub_envblk_iterate+0x70>
+    106c:	sub	x26, x21, x19
+    1070:	mov	x1, x19
+    1074:	mov	x2, x26
+    1078:	bl	0 <grub_memmove>
+    107c:	sub	x19, x24, x19
+    1080:	strb	wzr, [x25, x26]
+    1084:	add	x1, x25, x19
+    1088:	ldrb	w2, [x21, #1]
+    108c:	cmp	w2, #0xa
+    1090:	b.eq	1108 <grub_envblk_iterate+0x1c0>  // b.none
+    1094:	mov	x3, x1
+    1098:	cmp	w2, #0x5c
+    109c:	add	x3, x3, #0x1
+    10a0:	add	x19, x24, #0x1
+    10a4:	b.eq	10cc <grub_envblk_iterate+0x184>  // b.none
+    10a8:	sturb	w2, [x3, #-1]
+    10ac:	ldrb	w2, [x24, #1]
+    10b0:	cmp	w2, #0xa
+    10b4:	b.eq	10e4 <grub_envblk_iterate+0x19c>  // b.none
+    10b8:	mov	x24, x19
+    10bc:	add	x3, x3, #0x1
+    10c0:	cmp	w2, #0x5c
+    10c4:	add	x19, x24, #0x1
+    10c8:	b.ne	10a8 <grub_envblk_iterate+0x160>  // b.any
+    10cc:	ldrb	w0, [x24, #1]
+    10d0:	add	x19, x24, #0x2
+    10d4:	sturb	w0, [x3, #-1]
+    10d8:	ldrb	w2, [x24, #2]
+    10dc:	cmp	w2, #0xa
+    10e0:	b.ne	10b8 <grub_envblk_iterate+0x170>  // b.any
+    10e4:	mov	x2, x23
+    10e8:	strb	wzr, [x3]
+    10ec:	mov	x0, x25
+    10f0:	blr	x22
+    10f4:	mov	w21, w0
+    10f8:	mov	x0, x25
+    10fc:	bl	0 <grub_free>
+    1100:	cbz	w21, f90 <grub_envblk_iterate+0x48>
+    1104:	b	fb8 <grub_envblk_iterate+0x70>
+    1108:	mov	x2, x23
+    110c:	strb	wzr, [x25, x19]
+    1110:	mov	x0, x25
+    1114:	blr	x22
+    1118:	mov	w19, w0
+    111c:	mov	x0, x25
+    1120:	bl	0 <grub_free>
+    1124:	cbnz	w19, fb8 <grub_envblk_iterate+0x70>
+    1128:	mov	x19, x24
+    112c:	b	f98 <grub_envblk_iterate+0x50>

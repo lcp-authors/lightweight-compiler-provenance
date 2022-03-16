@@ -1,0 +1,344 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//search_fs_file.mod_gcc_-Os:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_search_fs_file-0x3f0>:
+   0:	stp	x29, x30, [sp, #-64]!
+   4:	mov	x29, sp
+   8:	stp	x21, x22, [sp, #32]
+   c:	mov	x21, x0
+  10:	ldr	w0, [x1, #16]
+  14:	stp	x19, x20, [sp, #16]
+  18:	mov	x19, x1
+  1c:	str	x23, [sp, #48]
+  20:	cbz	w0, 6c <grub_search_fs_file-0x384>
+  24:	ldrb	w0, [x21]
+  28:	cmp	w0, #0x66
+  2c:	b.ne	6c <grub_search_fs_file-0x384>  // b.any
+  30:	ldrb	w0, [x21, #1]
+  34:	cmp	w0, #0x64
+  38:	b.ne	6c <grub_search_fs_file-0x384>  // b.any
+  3c:	ldrb	w0, [x21, #2]
+  40:	sub	w0, w0, #0x30
+  44:	and	w0, w0, #0xff
+  48:	cmp	w0, #0x9
+  4c:	b.hi	6c <grub_search_fs_file-0x384>  // b.pmore
+  50:	mov	w22, #0x1                   	// #1
+  54:	mov	w0, w22
+  58:	ldp	x19, x20, [sp, #16]
+  5c:	ldp	x21, x22, [sp, #32]
+  60:	ldr	x23, [sp, #48]
+  64:	ldp	x29, x30, [sp], #64
+  68:	ret
+  6c:	adrp	x0, 0 <grub_search_fs_file-0x3f0>
+  70:	mov	x1, x21
+  74:	ldr	x2, [x19]
+  78:	ldr	x0, [x0]
+  7c:	bl	0 <grub_xasprintf>
+  80:	mov	x20, x0
+  84:	cbz	x0, 50 <grub_search_fs_file-0x3a0>
+  88:	mov	w1, #0x36                  	// #54
+  8c:	movk	w1, #0x2, lsl #16
+  90:	bl	0 <grub_file_open>
+  94:	cbz	x0, 12c <grub_search_fs_file-0x2c4>
+  98:	mov	w22, #0x1                   	// #1
+  9c:	bl	0 <grub_file_close>
+  a0:	mov	x0, x20
+  a4:	bl	0 <grub_free>
+  a8:	ldr	w0, [x19, #40]
+  ac:	adrp	x1, 0 <grub_search_fs_file-0x3f0>
+  b0:	ldr	x23, [x1]
+  b4:	cbnz	w0, 150 <grub_search_fs_file-0x2a0>
+  b8:	cbz	w22, 154 <grub_search_fs_file-0x29c>
+  bc:	ldr	w0, [x19, #36]
+  c0:	cbnz	w0, 10c <grub_search_fs_file-0x2e4>
+  c4:	mov	x0, #0x18                  	// #24
+  c8:	bl	0 <grub_malloc>
+  cc:	mov	x20, x0
+  d0:	cbz	x0, 148 <grub_search_fs_file-0x2a8>
+  d4:	ldr	x0, [x19]
+  d8:	bl	0 <grub_strdup>
+  dc:	str	x0, [x20, #8]
+  e0:	mov	x0, x21
+  e4:	bl	0 <grub_strdup>
+  e8:	str	x0, [x20, #16]
+  ec:	cbz	x0, 134 <grub_search_fs_file-0x2bc>
+  f0:	ldr	x1, [x20, #8]
+  f4:	cbz	x1, 134 <grub_search_fs_file-0x2bc>
+  f8:	adrp	x0, 0 <grub_search_fs_file-0x3f0>
+  fc:	ldr	x0, [x0]
+ 100:	ldr	x1, [x0]
+ 104:	str	x1, [x20]
+ 108:	str	x20, [x0]
+ 10c:	ldr	w0, [x19, #36]
+ 110:	mov	x1, x21
+ 114:	add	w0, w0, #0x1
+ 118:	str	w0, [x19, #36]
+ 11c:	ldr	x0, [x19, #8]
+ 120:	cbz	x0, 16c <grub_search_fs_file-0x284>
+ 124:	bl	0 <grub_env_set>
+ 128:	b	154 <grub_search_fs_file-0x29c>
+ 12c:	mov	w22, #0x0                   	// #0
+ 130:	b	a0 <grub_search_fs_file-0x350>
+ 134:	bl	0 <grub_free>
+ 138:	ldr	x0, [x20, #8]
+ 13c:	bl	0 <grub_free>
+ 140:	mov	x0, x20
+ 144:	bl	0 <grub_free>
+ 148:	str	wzr, [x23]
+ 14c:	b	10c <grub_search_fs_file-0x2e4>
+ 150:	cbnz	w22, 10c <grub_search_fs_file-0x2e4>
+ 154:	str	wzr, [x23]
+ 158:	cbz	w22, 54 <grub_search_fs_file-0x39c>
+ 15c:	ldr	x0, [x19, #8]
+ 160:	cbnz	x0, 50 <grub_search_fs_file-0x3a0>
+ 164:	mov	w22, #0x0                   	// #0
+ 168:	b	54 <grub_search_fs_file-0x39c>
+ 16c:	adrp	x0, 0 <grub_search_fs_file-0x3f0>
+ 170:	ldr	x0, [x0]
+ 174:	bl	0 <grub_printf>
+ 178:	b	154 <grub_search_fs_file-0x29c>
+ 17c:	nop
+	...
+ 1a0:	stp	x29, x30, [sp, #-80]!
+ 1a4:	mov	x29, sp
+ 1a8:	stp	x19, x20, [sp, #16]
+ 1ac:	mov	x19, x0
+ 1b0:	adrp	x0, 0 <grub_search_fs_file-0x3f0>
+ 1b4:	stp	x21, x22, [sp, #32]
+ 1b8:	ldr	x21, [x0]
+ 1bc:	stp	x23, x24, [sp, #48]
+ 1c0:	stp	x25, x26, [sp, #64]
+ 1c4:	ldr	x20, [x21]
+ 1c8:	cbnz	x20, 208 <grub_search_fs_file-0x1e8>
+ 1cc:	mov	w23, #0x0                   	// #0
+ 1d0:	adrp	x26, 0 <grub_search_fs_file-0x3f0>
+ 1d4:	mov	w24, #0x2c                  	// #44
+ 1d8:	ldr	w0, [x19, #32]
+ 1dc:	cmp	w0, w23
+ 1e0:	b.hi	254 <grub_search_fs_file-0x19c>  // b.pmore
+ 1e4:	mov	x1, x19
+ 1e8:	adrp	x0, 0 <grub_search_fs_file-0x3f0>
+ 1ec:	ldp	x19, x20, [sp, #16]
+ 1f0:	ldp	x21, x22, [sp, #32]
+ 1f4:	ldp	x23, x24, [sp, #48]
+ 1f8:	ldp	x25, x26, [sp, #64]
+ 1fc:	ldp	x29, x30, [sp], #80
+ 200:	ldr	x0, [x0]
+ 204:	b	0 <grub_device_iterate>
+ 208:	ldr	x1, [x19]
+ 20c:	ldr	x0, [x20, #8]
+ 210:	bl	0 <grub_strcmp>
+ 214:	cbz	w0, 31c <grub_search_fs_file-0xd4>
+ 218:	mov	x21, x20
+ 21c:	ldr	x20, [x20]
+ 220:	b	1c8 <grub_search_fs_file-0x228>
+ 224:	ldr	w0, [x19, #36]
+ 228:	str	wzr, [x19, #40]
+ 22c:	cbnz	w0, 1cc <grub_search_fs_file-0x224>
+ 230:	ldr	x0, [x20]
+ 234:	str	x0, [x21]
+ 238:	ldr	x0, [x20, #8]
+ 23c:	bl	0 <grub_free>
+ 240:	ldr	x0, [x20, #16]
+ 244:	bl	0 <grub_free>
+ 248:	mov	x0, x20
+ 24c:	bl	0 <grub_free>
+ 250:	b	1cc <grub_search_fs_file-0x224>
+ 254:	ldr	x0, [x19, #24]
+ 258:	ubfiz	x22, x23, #3, #32
+ 25c:	ldr	x21, [x0, x22]
+ 260:	ldrb	w0, [x21]
+ 264:	cbz	w0, 2d4 <grub_search_fs_file-0x11c>
+ 268:	mov	x0, x21
+ 26c:	bl	0 <grub_strlen>
+ 270:	sub	x20, x0, #0x1
+ 274:	add	x25, x21, x20
+ 278:	ldrb	w0, [x21, x20]
+ 27c:	cmp	w0, #0x2c
+ 280:	b.ne	288 <grub_search_fs_file-0x168>  // b.any
+ 284:	strb	wzr, [x21, x20]
+ 288:	ldr	x0, [x19, #24]
+ 28c:	mov	x1, x19
+ 290:	ldr	x0, [x0, x22]
+ 294:	bl	0 <grub_search_fs_file-0x3f0>
+ 298:	ldrb	w1, [x21, x20]
+ 29c:	cbz	w0, 2b0 <grub_search_fs_file-0x140>
+ 2a0:	cbnz	w1, 338 <grub_search_fs_file-0xb8>
+ 2a4:	mov	w0, #0x2c                  	// #44
+ 2a8:	strb	w0, [x25]
+ 2ac:	b	338 <grub_search_fs_file-0xb8>
+ 2b0:	cbnz	w1, 2d4 <grub_search_fs_file-0x11c>
+ 2b4:	ldr	x0, [x19, #24]
+ 2b8:	ldr	x0, [x0, x22]
+ 2bc:	bl	0 <grub_device_open>
+ 2c0:	mov	x22, x0
+ 2c4:	cbnz	x0, 2dc <grub_search_fs_file-0x114>
+ 2c8:	ldrb	w0, [x21, x20]
+ 2cc:	cbnz	w0, 2d4 <grub_search_fs_file-0x11c>
+ 2d0:	strb	w24, [x21, x20]
+ 2d4:	add	w23, w23, #0x1
+ 2d8:	b	1d8 <grub_search_fs_file-0x218>
+ 2dc:	ldr	x3, [x0]
+ 2e0:	cbnz	x3, 2ec <grub_search_fs_file-0x104>
+ 2e4:	bl	0 <grub_device_close>
+ 2e8:	b	2c8 <grub_search_fs_file-0x128>
+ 2ec:	ldr	x1, [x26]
+ 2f0:	mov	x2, x19
+ 2f4:	mov	x0, x3
+ 2f8:	bl	0 <grub_partition_iterate>
+ 2fc:	mov	w25, w0
+ 300:	ldrb	w0, [x21, x20]
+ 304:	cbnz	w0, 30c <grub_search_fs_file-0xe4>
+ 308:	strb	w24, [x21, x20]
+ 30c:	mov	x0, x22
+ 310:	bl	0 <grub_device_close>
+ 314:	cbz	w25, 2d4 <grub_search_fs_file-0x11c>
+ 318:	b	338 <grub_search_fs_file-0xb8>
+ 31c:	mov	w0, #0x1                   	// #1
+ 320:	str	w0, [x19, #40]
+ 324:	ldr	x0, [x20, #16]
+ 328:	mov	x1, x19
+ 32c:	bl	0 <grub_search_fs_file-0x3f0>
+ 330:	cbz	w0, 224 <grub_search_fs_file-0x1cc>
+ 334:	str	wzr, [x19, #40]
+ 338:	ldp	x19, x20, [sp, #16]
+ 33c:	ldp	x21, x22, [sp, #32]
+ 340:	ldp	x23, x24, [sp, #48]
+ 344:	ldp	x25, x26, [sp, #64]
+ 348:	ldp	x29, x30, [sp], #80
+ 34c:	ret
+	...
+ 368:	stp	x29, x30, [sp, #-48]!
+ 36c:	mov	x29, sp
+ 370:	stp	x19, x20, [sp, #16]
+ 374:	mov	x19, x0
+ 378:	mov	x0, x1
+ 37c:	str	x21, [sp, #32]
+ 380:	mov	x21, x2
+ 384:	bl	0 <grub_partition_get_name>
+ 388:	cbnz	x0, 3a4 <grub_search_fs_file-0x4c>
+ 38c:	mov	w20, #0x1                   	// #1
+ 390:	mov	w0, w20
+ 394:	ldp	x19, x20, [sp, #16]
+ 398:	ldr	x21, [sp, #32]
+ 39c:	ldp	x29, x30, [sp], #48
+ 3a0:	ret
+ 3a4:	mov	x20, x0
+ 3a8:	mov	x2, x0
+ 3ac:	adrp	x0, 0 <grub_search_fs_file-0x3f0>
+ 3b0:	ldr	x1, [x19]
+ 3b4:	ldr	x0, [x0]
+ 3b8:	bl	0 <grub_xasprintf>
+ 3bc:	mov	x19, x0
+ 3c0:	mov	x0, x20
+ 3c4:	bl	0 <grub_free>
+ 3c8:	cbz	x19, 38c <grub_search_fs_file-0x64>
+ 3cc:	mov	x1, x21
+ 3d0:	mov	x0, x19
+ 3d4:	bl	0 <grub_search_fs_file-0x3f0>
+ 3d8:	mov	w20, w0
+ 3dc:	mov	x0, x19
+ 3e0:	bl	0 <grub_free>
+ 3e4:	b	390 <grub_search_fs_file-0x60>
+	...
+
+00000000000003f0 <grub_search_fs_file>:
+ 3f0:	stp	x29, x30, [sp, #-96]!
+ 3f4:	mov	x29, sp
+ 3f8:	stp	x19, x20, [sp, #16]
+ 3fc:	mov	x19, x0
+ 400:	stp	x21, x22, [sp, #32]
+ 404:	stp	x0, x1, [sp, #48]
+ 408:	adrp	x0, 0 <grub_search_fs_file-0x3f0>
+ 40c:	str	w2, [sp, #64]
+ 410:	str	x3, [sp, #72]
+ 414:	str	w4, [sp, #80]
+ 418:	stur	xzr, [sp, #84]
+ 41c:	ldr	x21, [x0]
+ 420:	cbz	x1, 450 <grub_search_fs_file+0x60>
+ 424:	adrp	x0, 0 <grub_search_fs_file-0x3f0>
+ 428:	ldr	x20, [x0]
+ 42c:	add	x0, sp, #0x30
+ 430:	ldr	x22, [x20]
+ 434:	str	xzr, [x20]
+ 438:	bl	1a0 <grub_search_fs_file-0x250>
+ 43c:	str	x22, [x20]
+ 440:	ldr	w0, [x21]
+ 444:	cbnz	w0, 468 <grub_search_fs_file+0x78>
+ 448:	ldr	w0, [sp, #84]
+ 44c:	cbnz	w0, 468 <grub_search_fs_file+0x78>
+ 450:	add	x0, sp, #0x30
+ 454:	bl	1a0 <grub_search_fs_file-0x250>
+ 458:	ldr	w0, [x21]
+ 45c:	cbnz	w0, 468 <grub_search_fs_file+0x78>
+ 460:	ldr	w0, [sp, #84]
+ 464:	cbz	w0, 478 <grub_search_fs_file+0x88>
+ 468:	ldp	x19, x20, [sp, #16]
+ 46c:	ldp	x21, x22, [sp, #32]
+ 470:	ldp	x29, x30, [sp], #96
+ 474:	ret
+ 478:	adrp	x0, 0 <grub_search_fs_file-0x3f0>
+ 47c:	mov	x2, x19
+ 480:	ldr	x1, [x0]
+ 484:	mov	w0, #0x5                   	// #5
+ 488:	bl	0 <grub_error>
+ 48c:	b	468 <grub_search_fs_file+0x78>
+	...
+ 4a8:	cbnz	w1, 4bc <grub_search_fs_file+0xcc>
+ 4ac:	adrp	x0, 0 <grub_search_fs_file-0x3f0>
+ 4b0:	ldr	x1, [x0]
+ 4b4:	mov	w0, #0x12                  	// #18
+ 4b8:	b	0 <grub_error>
+ 4bc:	stp	x29, x30, [sp, #-16]!
+ 4c0:	mov	w4, w1
+ 4c4:	cmp	w1, #0x1
+ 4c8:	mov	x29, sp
+ 4cc:	ldr	x0, [x2]
+ 4d0:	b.eq	508 <grub_search_fs_file+0x118>  // b.none
+ 4d4:	ldr	x1, [x2, #8]
+ 4d8:	cmp	w4, #0x2
+ 4dc:	mov	w3, #0x2                   	// #2
+ 4e0:	csel	w4, w4, w3, ge  // ge = tcont
+ 4e4:	sub	w4, w4, #0x2
+ 4e8:	add	x3, x2, #0x10
+ 4ec:	mov	w2, #0x0                   	// #0
+ 4f0:	bl	3f0 <grub_search_fs_file>
+ 4f4:	adrp	x0, 0 <grub_search_fs_file-0x3f0>
+ 4f8:	ldp	x29, x30, [sp], #16
+ 4fc:	ldr	x0, [x0]
+ 500:	ldr	w0, [x0]
+ 504:	ret
+ 508:	mov	x1, #0x0                   	// #0
+ 50c:	b	4d8 <grub_search_fs_file+0xe8>
+	...
+
+0000000000000520 <grub_mod_init>:
+ 520:	stp	x29, x30, [sp, #-16]!
+ 524:	adrp	x0, 0 <grub_search_fs_file-0x3f0>
+ 528:	mov	w4, #0x0                   	// #0
+ 52c:	mov	x29, sp
+ 530:	ldr	x3, [x0]
+ 534:	adrp	x0, 0 <grub_search_fs_file-0x3f0>
+ 538:	ldr	x2, [x0]
+ 53c:	adrp	x0, 0 <grub_search_fs_file-0x3f0>
+ 540:	ldr	x1, [x0]
+ 544:	adrp	x0, 0 <grub_search_fs_file-0x3f0>
+ 548:	ldr	x0, [x0]
+ 54c:	bl	0 <grub_register_command_prio>
+ 550:	adrp	x1, 0 <grub_search_fs_file-0x3f0>
+ 554:	ldr	x1, [x1]
+ 558:	str	x0, [x1, #8]
+ 55c:	ldp	x29, x30, [sp], #16
+ 560:	ret
+ 564:	nop
+	...
+
+0000000000000590 <grub_mod_fini>:
+ 590:	adrp	x0, 0 <grub_search_fs_file-0x3f0>
+ 594:	ldr	x0, [x0]
+ 598:	ldr	x0, [x0, #8]
+ 59c:	b	0 <grub_unregister_command>
+	...

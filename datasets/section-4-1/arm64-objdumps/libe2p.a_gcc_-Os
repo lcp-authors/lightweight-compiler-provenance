@@ -1,0 +1,2741 @@
+In archive /home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//libe2p.a_gcc_-Os:
+
+feature.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <e2p_feature2string>:
+   0:	adrp	x2, 0 <e2p_feature2string>
+   4:	mov	w3, w0
+   8:	add	x2, x2, #0x0
+   c:	ldr	x0, [x2, #8]
+  10:	cbnz	x0, 68 <e2p_feature2string+0x68>
+  14:	stp	x29, x30, [sp, #-32]!
+  18:	cmp	w3, #0x2
+  1c:	mov	x29, sp
+  20:	str	x19, [sp, #16]
+  24:	b.hi	88 <e2p_feature2string+0x88>  // b.pmore
+  28:	adrp	x0, 0 <e2p_feature2string>
+  2c:	add	x0, x0, #0x0
+  30:	ldrb	w2, [x0, w3, uxtw]
+  34:	mov	w3, #0x0                   	// #0
+  38:	lsr	w1, w1, #1
+  3c:	cbnz	w1, 90 <e2p_feature2string+0x90>
+  40:	adrp	x0, 0 <e2p_feature2string>
+  44:	add	x19, x0, #0x0
+  48:	mov	x0, x19
+  4c:	adrp	x1, 0 <e2p_feature2string>
+  50:	add	x1, x1, #0x0
+  54:	bl	0 <sprintf>
+  58:	mov	x0, x19
+  5c:	ldr	x19, [sp, #16]
+  60:	ldp	x29, x30, [sp], #32
+  64:	ret
+  68:	ldr	w4, [x2]
+  6c:	cmp	w4, w3
+  70:	b.ne	80 <e2p_feature2string+0x80>  // b.any
+  74:	ldr	w4, [x2, #4]
+  78:	cmp	w4, w1
+  7c:	b.eq	98 <e2p_feature2string+0x98>  // b.none
+  80:	add	x2, x2, #0x10
+  84:	b	c <e2p_feature2string+0xc>
+  88:	mov	w2, #0x3f                  	// #63
+  8c:	b	34 <e2p_feature2string+0x34>
+  90:	add	w3, w3, #0x1
+  94:	b	38 <e2p_feature2string+0x38>
+  98:	ret
+
+000000000000009c <e2p_string2feature>:
+  9c:	stp	x29, x30, [sp, #-80]!
+  a0:	mov	x29, sp
+  a4:	stp	x19, x20, [sp, #16]
+  a8:	mov	x20, x0
+  ac:	stp	x21, x22, [sp, #32]
+  b0:	adrp	x21, 0 <e2p_feature2string>
+  b4:	mov	x22, x2
+  b8:	add	x21, x21, #0x0
+  bc:	str	x23, [sp, #48]
+  c0:	mov	x23, x1
+  c4:	ldr	x1, [x21, #8]
+  c8:	cbnz	x1, 130 <e2p_string2feature+0x94>
+  cc:	mov	x0, x20
+  d0:	mov	x2, #0x8                   	// #8
+  d4:	adrp	x1, 0 <e2p_feature2string>
+  d8:	add	x1, x1, #0x0
+  dc:	bl	0 <strncasecmp>
+  e0:	mov	w19, w0
+  e4:	cbnz	w0, 128 <e2p_string2feature+0x8c>
+  e8:	ldrb	w3, [x20, #8]
+  ec:	sub	w3, w3, #0x43
+  f0:	and	w3, w3, #0xff
+  f4:	cmp	w3, #0x2f
+  f8:	b.hi	128 <e2p_string2feature+0x8c>  // b.pmore
+  fc:	mov	x0, #0x1                   	// #1
+ 100:	lsl	x3, x0, x3
+ 104:	tst	x3, #0x800000008000
+ 108:	b.ne	170 <e2p_string2feature+0xd4>  // b.any
+ 10c:	tst	x3, #0x4000000040
+ 110:	b.ne	174 <e2p_string2feature+0xd8>  // b.any
+ 114:	tst	x3, #0x100000001
+ 118:	b.eq	128 <e2p_string2feature+0x8c>  // b.none
+ 11c:	str	wzr, [x23]
+ 120:	ldrb	w0, [x20, #9]
+ 124:	cbnz	w0, 17c <e2p_string2feature+0xe0>
+ 128:	mov	w19, #0x1                   	// #1
+ 12c:	b	150 <e2p_string2feature+0xb4>
+ 130:	mov	x0, x20
+ 134:	bl	0 <strcasecmp>
+ 138:	mov	w19, w0
+ 13c:	cbnz	w0, 168 <e2p_string2feature+0xcc>
+ 140:	ldr	w0, [x21]
+ 144:	str	w0, [x23]
+ 148:	ldr	w0, [x21, #4]
+ 14c:	str	w0, [x22]
+ 150:	mov	w0, w19
+ 154:	ldp	x19, x20, [sp, #16]
+ 158:	ldp	x21, x22, [sp, #32]
+ 15c:	ldr	x23, [sp, #48]
+ 160:	ldp	x29, x30, [sp], #80
+ 164:	ret
+ 168:	add	x21, x21, #0x10
+ 16c:	b	c4 <e2p_string2feature+0x28>
+ 170:	mov	w0, #0x2                   	// #2
+ 174:	str	w0, [x23]
+ 178:	b	120 <e2p_string2feature+0x84>
+ 17c:	add	x1, sp, #0x48
+ 180:	add	x0, x20, #0x9
+ 184:	mov	w2, #0xa                   	// #10
+ 188:	bl	0 <strtol>
+ 18c:	cmp	w0, #0x1f
+ 190:	b.hi	128 <e2p_string2feature+0x8c>  // b.pmore
+ 194:	ldr	x1, [sp, #72]
+ 198:	ldrb	w1, [x1]
+ 19c:	cbnz	w1, 128 <e2p_string2feature+0x8c>
+ 1a0:	mov	w1, #0x1                   	// #1
+ 1a4:	lsl	w0, w1, w0
+ 1a8:	b	14c <e2p_string2feature+0xb0>
+
+00000000000001ac <e2p_jrnl_feature2string>:
+ 1ac:	adrp	x2, 0 <e2p_feature2string>
+ 1b0:	add	x2, x2, #0x0
+ 1b4:	mov	w3, w0
+ 1b8:	add	x2, x2, #0x2c0
+ 1bc:	ldr	x0, [x2, #8]
+ 1c0:	cbnz	x0, 21c <e2p_jrnl_feature2string+0x70>
+ 1c4:	stp	x29, x30, [sp, #-32]!
+ 1c8:	cmp	w3, #0x2
+ 1cc:	mov	x29, sp
+ 1d0:	str	x19, [sp, #16]
+ 1d4:	b.hi	23c <e2p_jrnl_feature2string+0x90>  // b.pmore
+ 1d8:	adrp	x0, 0 <e2p_feature2string>
+ 1dc:	add	x0, x0, #0x0
+ 1e0:	ldrb	w2, [x0, w3, uxtw]
+ 1e4:	mov	w3, #0x0                   	// #0
+ 1e8:	lsr	w1, w1, #1
+ 1ec:	cbnz	w1, 244 <e2p_jrnl_feature2string+0x98>
+ 1f0:	adrp	x0, 0 <e2p_feature2string>
+ 1f4:	add	x0, x0, #0x0
+ 1f8:	add	x19, x0, #0x14
+ 1fc:	adrp	x1, 0 <e2p_feature2string>
+ 200:	mov	x0, x19
+ 204:	add	x1, x1, #0x0
+ 208:	bl	0 <sprintf>
+ 20c:	mov	x0, x19
+ 210:	ldr	x19, [sp, #16]
+ 214:	ldp	x29, x30, [sp], #32
+ 218:	ret
+ 21c:	ldr	w4, [x2]
+ 220:	cmp	w4, w3
+ 224:	b.ne	234 <e2p_jrnl_feature2string+0x88>  // b.any
+ 228:	ldr	w4, [x2, #4]
+ 22c:	cmp	w4, w1
+ 230:	b.eq	24c <e2p_jrnl_feature2string+0xa0>  // b.none
+ 234:	add	x2, x2, #0x10
+ 238:	b	1bc <e2p_jrnl_feature2string+0x10>
+ 23c:	mov	w2, #0x3f                  	// #63
+ 240:	b	1e4 <e2p_jrnl_feature2string+0x38>
+ 244:	add	w3, w3, #0x1
+ 248:	b	1e8 <e2p_jrnl_feature2string+0x3c>
+ 24c:	ret
+
+0000000000000250 <e2p_jrnl_string2feature>:
+ 250:	stp	x29, x30, [sp, #-80]!
+ 254:	mov	x29, sp
+ 258:	stp	x19, x20, [sp, #16]
+ 25c:	adrp	x20, 0 <e2p_feature2string>
+ 260:	add	x20, x20, #0x0
+ 264:	add	x20, x20, #0x2c0
+ 268:	stp	x21, x22, [sp, #32]
+ 26c:	mov	x22, x0
+ 270:	mov	x21, x2
+ 274:	str	x23, [sp, #48]
+ 278:	mov	x23, x1
+ 27c:	ldr	x1, [x20, #8]
+ 280:	cbnz	x1, 2a8 <e2p_jrnl_string2feature+0x58>
+ 284:	mov	x0, x22
+ 288:	mov	x2, #0x8                   	// #8
+ 28c:	adrp	x1, 0 <e2p_feature2string>
+ 290:	add	x1, x1, #0x0
+ 294:	bl	0 <strncasecmp>
+ 298:	mov	w19, w0
+ 29c:	cbz	w0, 2e8 <e2p_jrnl_string2feature+0x98>
+ 2a0:	mov	w19, #0x1                   	// #1
+ 2a4:	b	2c8 <e2p_jrnl_string2feature+0x78>
+ 2a8:	mov	x0, x22
+ 2ac:	bl	0 <strcasecmp>
+ 2b0:	mov	w19, w0
+ 2b4:	cbnz	w0, 2e0 <e2p_jrnl_string2feature+0x90>
+ 2b8:	ldr	w0, [x20]
+ 2bc:	str	w0, [x23]
+ 2c0:	ldr	w0, [x20, #4]
+ 2c4:	str	w0, [x21]
+ 2c8:	mov	w0, w19
+ 2cc:	ldp	x19, x20, [sp, #16]
+ 2d0:	ldp	x21, x22, [sp, #32]
+ 2d4:	ldr	x23, [sp, #48]
+ 2d8:	ldp	x29, x30, [sp], #80
+ 2dc:	ret
+ 2e0:	add	x20, x20, #0x10
+ 2e4:	b	27c <e2p_jrnl_string2feature+0x2c>
+ 2e8:	ldrb	w3, [x22, #8]
+ 2ec:	sub	w3, w3, #0x43
+ 2f0:	and	w3, w3, #0xff
+ 2f4:	cmp	w3, #0x2f
+ 2f8:	b.hi	2a0 <e2p_jrnl_string2feature+0x50>  // b.pmore
+ 2fc:	mov	x0, #0x1                   	// #1
+ 300:	lsl	x3, x0, x3
+ 304:	tst	x3, #0x800000008000
+ 308:	b.ne	358 <e2p_jrnl_string2feature+0x108>  // b.any
+ 30c:	tst	x3, #0x4000000040
+ 310:	b.ne	35c <e2p_jrnl_string2feature+0x10c>  // b.any
+ 314:	tst	x3, #0x100000001
+ 318:	b.eq	364 <e2p_jrnl_string2feature+0x114>  // b.none
+ 31c:	str	wzr, [x23]
+ 320:	ldrb	w0, [x22, #9]
+ 324:	cbz	w0, 2a0 <e2p_jrnl_string2feature+0x50>
+ 328:	add	x1, sp, #0x48
+ 32c:	add	x0, x22, #0x9
+ 330:	mov	w2, #0xa                   	// #10
+ 334:	bl	0 <strtol>
+ 338:	cmp	w0, #0x1f
+ 33c:	b.hi	2a0 <e2p_jrnl_string2feature+0x50>  // b.pmore
+ 340:	ldr	x1, [sp, #72]
+ 344:	ldrb	w1, [x1]
+ 348:	cbnz	w1, 2a0 <e2p_jrnl_string2feature+0x50>
+ 34c:	mov	w1, #0x1                   	// #1
+ 350:	lsl	w0, w1, w0
+ 354:	b	2c4 <e2p_jrnl_string2feature+0x74>
+ 358:	mov	w0, #0x2                   	// #2
+ 35c:	str	w0, [x23]
+ 360:	b	320 <e2p_jrnl_string2feature+0xd0>
+ 364:	mov	w19, w0
+ 368:	b	2c8 <e2p_jrnl_string2feature+0x78>
+
+000000000000036c <e2p_edit_feature2>:
+ 36c:	stp	x29, x30, [sp, #-128]!
+ 370:	cmp	x3, #0x0
+ 374:	mov	x29, sp
+ 378:	stp	x19, x20, [sp, #16]
+ 37c:	mov	x19, x0
+ 380:	stp	x21, x22, [sp, #32]
+ 384:	mov	x21, x1
+ 388:	mov	x22, x4
+ 38c:	stp	x23, x24, [sp, #48]
+ 390:	mov	x23, x5
+ 394:	csel	x24, x3, x2, ne  // ne = any
+ 398:	stp	x25, x26, [sp, #64]
+ 39c:	mov	x26, x2
+ 3a0:	stp	x27, x28, [sp, #80]
+ 3a4:	cbz	x4, 3ac <e2p_edit_feature2+0x40>
+ 3a8:	str	wzr, [x4]
+ 3ac:	cbz	x23, 3b4 <e2p_edit_feature2+0x48>
+ 3b0:	str	wzr, [x23]
+ 3b4:	mov	x0, x19
+ 3b8:	bl	0 <strlen>
+ 3bc:	add	x0, x0, #0x1
+ 3c0:	bl	0 <malloc>
+ 3c4:	mov	x25, x0
+ 3c8:	cbz	x0, 570 <e2p_edit_feature2+0x204>
+ 3cc:	mov	x1, x19
+ 3d0:	adrp	x28, 0 <e2p_feature2string>
+ 3d4:	bl	0 <strcpy>
+ 3d8:	mov	x19, x25
+ 3dc:	add	x28, x28, #0x0
+ 3e0:	adrp	x27, 0 <e2p_feature2string>
+ 3e4:	add	x0, x27, #0x0
+ 3e8:	str	x0, [sp, #104]
+ 3ec:	ldrb	w0, [x19]
+ 3f0:	cbnz	w0, 3fc <e2p_edit_feature2+0x90>
+ 3f4:	b	480 <e2p_edit_feature2+0x114>
+ 3f8:	add	x19, x19, #0x1
+ 3fc:	ldrb	w20, [x19]
+ 400:	cbz	w20, 418 <e2p_edit_feature2+0xac>
+ 404:	bl	0 <__ctype_b_loc>
+ 408:	ubfiz	x20, x20, #1, #8
+ 40c:	ldr	x0, [x0]
+ 410:	ldrh	w0, [x0, x20]
+ 414:	tbnz	w0, #13, 3f8 <e2p_edit_feature2+0x8c>
+ 418:	mov	x27, x19
+ 41c:	b	424 <e2p_edit_feature2+0xb8>
+ 420:	add	x27, x27, #0x1
+ 424:	ldrb	w20, [x27]
+ 428:	cbz	w20, 450 <e2p_edit_feature2+0xe4>
+ 42c:	bl	0 <__ctype_b_loc>
+ 430:	ldr	x0, [x0]
+ 434:	ubfiz	x1, x20, #1, #8
+ 438:	ldrh	w0, [x0, x1]
+ 43c:	tbnz	w0, #13, 448 <e2p_edit_feature2+0xdc>
+ 440:	cmp	w20, #0x2c
+ 444:	b.ne	420 <e2p_edit_feature2+0xb4>  // b.any
+ 448:	strb	wzr, [x27]
+ 44c:	b	454 <e2p_edit_feature2+0xe8>
+ 450:	mov	x27, #0x0                   	// #0
+ 454:	ldr	x1, [sp, #104]
+ 458:	mov	x0, x19
+ 45c:	bl	0 <strcasecmp>
+ 460:	cbz	w0, 474 <e2p_edit_feature2+0x108>
+ 464:	mov	x1, x28
+ 468:	mov	x0, x19
+ 46c:	bl	0 <strcasecmp>
+ 470:	cbnz	w0, 488 <e2p_edit_feature2+0x11c>
+ 474:	str	xzr, [x21]
+ 478:	str	wzr, [x21, #8]
+ 47c:	cbnz	x27, 568 <e2p_edit_feature2+0x1fc>
+ 480:	mov	w20, #0x0                   	// #0
+ 484:	b	500 <e2p_edit_feature2+0x194>
+ 488:	ldrb	w0, [x19]
+ 48c:	cmp	w0, #0x2d
+ 490:	b.eq	4c8 <e2p_edit_feature2+0x15c>  // b.none
+ 494:	cmp	w0, #0x5e
+ 498:	b.eq	4c8 <e2p_edit_feature2+0x15c>  // b.none
+ 49c:	cmp	w0, #0x2b
+ 4a0:	mov	w20, #0x0                   	// #0
+ 4a4:	b.ne	4ac <e2p_edit_feature2+0x140>  // b.any
+ 4a8:	add	x19, x19, #0x1
+ 4ac:	add	x2, sp, #0x78
+ 4b0:	add	x1, sp, #0x7c
+ 4b4:	mov	x0, x19
+ 4b8:	bl	9c <e2p_string2feature>
+ 4bc:	cbz	w0, 4d0 <e2p_edit_feature2+0x164>
+ 4c0:	mov	w20, #0x1                   	// #1
+ 4c4:	b	500 <e2p_edit_feature2+0x194>
+ 4c8:	mov	w20, #0x1                   	// #1
+ 4cc:	b	4a8 <e2p_edit_feature2+0x13c>
+ 4d0:	ldp	w0, w2, [sp, #120]
+ 4d4:	sbfiz	x1, x2, #2, #32
+ 4d8:	cbz	w20, 538 <e2p_edit_feature2+0x1cc>
+ 4dc:	cbz	x24, 528 <e2p_edit_feature2+0x1bc>
+ 4e0:	ldr	w4, [x24, x1]
+ 4e4:	tst	w0, w4
+ 4e8:	b.ne	528 <e2p_edit_feature2+0x1bc>  // b.any
+ 4ec:	cbz	x22, 4f8 <e2p_edit_feature2+0x18c>
+ 4f0:	orr	w2, w2, #0x80
+ 4f4:	str	w2, [x22]
+ 4f8:	cbz	x23, 4c0 <e2p_edit_feature2+0x154>
+ 4fc:	str	w0, [x23]
+ 500:	mov	x0, x25
+ 504:	bl	0 <free>
+ 508:	mov	w0, w20
+ 50c:	ldp	x19, x20, [sp, #16]
+ 510:	ldp	x21, x22, [sp, #32]
+ 514:	ldp	x23, x24, [sp, #48]
+ 518:	ldp	x25, x26, [sp, #64]
+ 51c:	ldp	x27, x28, [sp, #80]
+ 520:	ldp	x29, x30, [sp], #128
+ 524:	ret
+ 528:	ldr	w2, [x21, x1]
+ 52c:	bic	w0, w2, w0
+ 530:	str	w0, [x21, x1]
+ 534:	b	47c <e2p_edit_feature2+0x110>
+ 538:	cbz	x26, 55c <e2p_edit_feature2+0x1f0>
+ 53c:	ldr	w4, [x26, x1]
+ 540:	tst	w0, w4
+ 544:	b.ne	55c <e2p_edit_feature2+0x1f0>  // b.any
+ 548:	cbz	x22, 550 <e2p_edit_feature2+0x1e4>
+ 54c:	str	w2, [x22]
+ 550:	cbz	x23, 4c0 <e2p_edit_feature2+0x154>
+ 554:	str	w0, [x23]
+ 558:	b	4c0 <e2p_edit_feature2+0x154>
+ 55c:	ldr	w2, [x21, x1]
+ 560:	orr	w0, w2, w0
+ 564:	b	530 <e2p_edit_feature2+0x1c4>
+ 568:	add	x19, x27, #0x1
+ 56c:	b	3ec <e2p_edit_feature2+0x80>
+ 570:	mov	w20, #0x1                   	// #1
+ 574:	b	508 <e2p_edit_feature2+0x19c>
+
+0000000000000578 <e2p_edit_feature>:
+ 578:	mov	x5, #0x0                   	// #0
+ 57c:	mov	x4, #0x0                   	// #0
+ 580:	mov	x3, #0x0                   	// #0
+ 584:	b	36c <e2p_edit_feature2>
+
+fgetflags.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <fgetflags>:
+   0:	stp	x29, x30, [sp, #-192]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	mov	x19, x0
+  10:	stp	x21, x22, [sp, #32]
+  14:	mov	x22, x1
+  18:	add	x1, sp, #0x40
+  1c:	bl	0 <lstat>
+  20:	cbnz	w0, 60 <fgetflags+0x60>
+  24:	ldr	w2, [sp, #80]
+  28:	and	w2, w2, #0xf000
+  2c:	cmp	w2, #0x8, lsl #12
+  30:	b.eq	60 <fgetflags+0x60>  // b.none
+  34:	cmp	w2, #0x4, lsl #12
+  38:	b.eq	60 <fgetflags+0x60>  // b.none
+  3c:	bl	0 <__errno_location>
+  40:	mov	w19, #0xffffffff            	// #-1
+  44:	mov	w1, #0x5f                  	// #95
+  48:	str	w1, [x0]
+  4c:	mov	w0, w19
+  50:	ldp	x19, x20, [sp, #16]
+  54:	ldp	x21, x22, [sp, #32]
+  58:	ldp	x29, x30, [sp], #192
+  5c:	ret
+  60:	mov	x0, x19
+  64:	mov	w1, #0x800                 	// #2048
+  68:	bl	0 <open>
+  6c:	mov	w20, w0
+  70:	cmn	w0, #0x1
+  74:	b.eq	c4 <fgetflags+0xc4>  // b.none
+  78:	mov	x1, #0x6601                	// #26113
+  7c:	add	x2, sp, #0x3c
+  80:	movk	x1, #0x8008, lsl #16
+  84:	bl	0 <ioctl>
+  88:	mov	w19, w0
+  8c:	cmn	w0, #0x1
+  90:	b.ne	bc <fgetflags+0xbc>  // b.any
+  94:	bl	0 <__errno_location>
+  98:	ldr	w21, [x0]
+  9c:	ldrsw	x0, [sp, #60]
+  a0:	str	x0, [x22]
+  a4:	mov	w0, w20
+  a8:	bl	0 <close>
+  ac:	cbz	w21, 4c <fgetflags+0x4c>
+  b0:	bl	0 <__errno_location>
+  b4:	str	w21, [x0]
+  b8:	b	4c <fgetflags+0x4c>
+  bc:	mov	w21, #0x0                   	// #0
+  c0:	b	9c <fgetflags+0x9c>
+  c4:	mov	w19, w0
+  c8:	b	4c <fgetflags+0x4c>
+
+fsetflags.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <fsetflags>:
+   0:	stp	x29, x30, [sp, #-192]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	mov	x19, x1
+  10:	mov	x20, x0
+  14:	add	x1, sp, #0x40
+  18:	str	x21, [sp, #32]
+  1c:	bl	0 <lstat>
+  20:	cbnz	w0, 60 <fsetflags+0x60>
+  24:	ldr	w2, [sp, #80]
+  28:	and	w2, w2, #0xf000
+  2c:	cmp	w2, #0x8, lsl #12
+  30:	b.eq	60 <fsetflags+0x60>  // b.none
+  34:	cmp	w2, #0x4, lsl #12
+  38:	b.eq	60 <fsetflags+0x60>  // b.none
+  3c:	bl	0 <__errno_location>
+  40:	mov	w19, #0xffffffff            	// #-1
+  44:	mov	w1, #0x5f                  	// #95
+  48:	str	w1, [x0]
+  4c:	mov	w0, w19
+  50:	ldp	x19, x20, [sp, #16]
+  54:	ldr	x21, [sp, #32]
+  58:	ldp	x29, x30, [sp], #192
+  5c:	ret
+  60:	mov	x0, x20
+  64:	mov	w1, #0x800                 	// #2048
+  68:	bl	0 <open>
+  6c:	mov	w20, w0
+  70:	cmn	w0, #0x1
+  74:	b.eq	c0 <fsetflags+0xc0>  // b.none
+  78:	mov	x1, #0x6602                	// #26114
+  7c:	add	x2, sp, #0x3c
+  80:	movk	x1, #0x4008, lsl #16
+  84:	str	w19, [sp, #60]
+  88:	bl	0 <ioctl>
+  8c:	mov	w19, w0
+  90:	cmn	w0, #0x1
+  94:	b.ne	b8 <fsetflags+0xb8>  // b.any
+  98:	bl	0 <__errno_location>
+  9c:	ldr	w21, [x0]
+  a0:	mov	w0, w20
+  a4:	bl	0 <close>
+  a8:	cbz	w21, 4c <fsetflags+0x4c>
+  ac:	bl	0 <__errno_location>
+  b0:	str	w21, [x0]
+  b4:	b	4c <fsetflags+0x4c>
+  b8:	mov	w21, #0x0                   	// #0
+  bc:	b	a0 <fsetflags+0xa0>
+  c0:	mov	w19, w0
+  c4:	b	4c <fsetflags+0x4c>
+
+fgetversion.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <fgetversion>:
+   0:	stp	x29, x30, [sp, #-64]!
+   4:	mov	x29, sp
+   8:	stp	x21, x22, [sp, #32]
+   c:	mov	x21, x1
+  10:	mov	w1, #0xffffffff            	// #-1
+  14:	stp	x19, x20, [sp, #16]
+  18:	str	w1, [sp, #60]
+  1c:	mov	w1, #0x800                 	// #2048
+  20:	bl	0 <open>
+  24:	mov	w20, w0
+  28:	cmn	w0, #0x1
+  2c:	b.eq	98 <fgetversion+0x98>  // b.none
+  30:	mov	x1, #0x7601                	// #30209
+  34:	add	x2, sp, #0x3c
+  38:	movk	x1, #0x8008, lsl #16
+  3c:	bl	0 <ioctl>
+  40:	mov	w19, w0
+  44:	cmn	w0, #0x1
+  48:	b.ne	80 <fgetversion+0x80>  // b.any
+  4c:	bl	0 <__errno_location>
+  50:	ldr	w22, [x0]
+  54:	mov	w0, w20
+  58:	bl	0 <close>
+  5c:	cmn	w19, #0x1
+  60:	b.ne	88 <fgetversion+0x88>  // b.any
+  64:	bl	0 <__errno_location>
+  68:	str	w22, [x0]
+  6c:	mov	w0, w19
+  70:	ldp	x19, x20, [sp, #16]
+  74:	ldp	x21, x22, [sp, #32]
+  78:	ldp	x29, x30, [sp], #64
+  7c:	ret
+  80:	mov	w22, #0x0                   	// #0
+  84:	b	54 <fgetversion+0x54>
+  88:	cbnz	w19, 6c <fgetversion+0x6c>
+  8c:	ldr	w0, [sp, #60]
+  90:	str	x0, [x21]
+  94:	b	6c <fgetversion+0x6c>
+  98:	mov	w19, w0
+  9c:	b	6c <fgetversion+0x6c>
+
+fsetversion.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <fsetversion>:
+   0:	stp	x29, x30, [sp, #-64]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	mov	x19, x1
+  10:	mov	w1, #0x800                 	// #2048
+  14:	str	x21, [sp, #32]
+  18:	bl	0 <open>
+  1c:	mov	w20, w0
+  20:	cmn	w0, #0x1
+  24:	b.eq	80 <fsetversion+0x80>  // b.none
+  28:	mov	x1, #0x7602                	// #30210
+  2c:	add	x2, sp, #0x3c
+  30:	movk	x1, #0x4008, lsl #16
+  34:	str	w19, [sp, #60]
+  38:	bl	0 <ioctl>
+  3c:	mov	w19, w0
+  40:	cmn	w0, #0x1
+  44:	b.ne	78 <fsetversion+0x78>  // b.any
+  48:	bl	0 <__errno_location>
+  4c:	ldr	w21, [x0]
+  50:	mov	w0, w20
+  54:	bl	0 <close>
+  58:	cbz	w21, 64 <fsetversion+0x64>
+  5c:	bl	0 <__errno_location>
+  60:	str	w21, [x0]
+  64:	mov	w0, w19
+  68:	ldp	x19, x20, [sp, #16]
+  6c:	ldr	x21, [sp, #32]
+  70:	ldp	x29, x30, [sp], #64
+  74:	ret
+  78:	mov	w21, #0x0                   	// #0
+  7c:	b	50 <fsetversion+0x50>
+  80:	mov	w19, w0
+  84:	b	64 <fsetversion+0x64>
+
+getflags.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <getflags>:
+   0:	stp	x29, x30, [sp, #-176]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	mov	x19, x1
+  10:	mov	w20, w0
+  14:	add	x1, sp, #0x30
+  18:	bl	0 <fstat>
+  1c:	cbnz	w0, 54 <getflags+0x54>
+  20:	ldr	w2, [sp, #64]
+  24:	and	w2, w2, #0xf000
+  28:	cmp	w2, #0x8, lsl #12
+  2c:	b.eq	54 <getflags+0x54>  // b.none
+  30:	cmp	w2, #0x4, lsl #12
+  34:	b.eq	54 <getflags+0x54>  // b.none
+  38:	bl	0 <__errno_location>
+  3c:	mov	w1, #0x5f                  	// #95
+  40:	str	w1, [x0]
+  44:	mov	w0, #0xffffffff            	// #-1
+  48:	ldp	x19, x20, [sp, #16]
+  4c:	ldp	x29, x30, [sp], #176
+  50:	ret
+  54:	mov	x1, #0x6601                	// #26113
+  58:	add	x2, sp, #0x2c
+  5c:	movk	x1, #0x8008, lsl #16
+  60:	mov	w0, w20
+  64:	bl	0 <ioctl>
+  68:	ldrsw	x1, [sp, #44]
+  6c:	str	x1, [x19]
+  70:	b	48 <getflags+0x48>
+
+getversion.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <getversion>:
+   0:	stp	x29, x30, [sp, #-48]!
+   4:	mov	x29, sp
+   8:	str	x19, [sp, #16]
+   c:	mov	x19, x1
+  10:	mov	x1, #0x7601                	// #30209
+  14:	add	x2, sp, #0x2c
+  18:	movk	x1, #0x8008, lsl #16
+  1c:	bl	0 <ioctl>
+  20:	ldrsw	x1, [sp, #44]
+  24:	str	x1, [x19]
+  28:	ldr	x19, [sp, #16]
+  2c:	ldp	x29, x30, [sp], #48
+  30:	ret
+
+hashstr.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <e2p_hash2string>:
+   0:	adrp	x1, 0 <e2p_hash2string>
+   4:	mov	w2, w0
+   8:	add	x1, x1, #0x0
+   c:	ldr	x0, [x1, #8]
+  10:	cbnz	x0, 48 <e2p_hash2string+0x48>
+  14:	stp	x29, x30, [sp, #-32]!
+  18:	adrp	x1, 0 <e2p_hash2string>
+  1c:	add	x1, x1, #0x0
+  20:	mov	x29, sp
+  24:	str	x19, [sp, #16]
+  28:	adrp	x19, 0 <e2p_hash2string>
+  2c:	add	x19, x19, #0x0
+  30:	mov	x0, x19
+  34:	bl	0 <sprintf>
+  38:	mov	x0, x19
+  3c:	ldr	x19, [sp, #16]
+  40:	ldp	x29, x30, [sp], #32
+  44:	ret
+  48:	ldr	w3, [x1]
+  4c:	cmp	w3, w2
+  50:	b.eq	5c <e2p_hash2string+0x5c>  // b.none
+  54:	add	x1, x1, #0x10
+  58:	b	c <e2p_hash2string+0xc>
+  5c:	ret
+
+0000000000000060 <e2p_string2hash>:
+  60:	stp	x29, x30, [sp, #-48]!
+  64:	mov	x29, sp
+  68:	stp	x19, x20, [sp, #16]
+  6c:	adrp	x20, 0 <e2p_hash2string>
+  70:	mov	x19, x0
+  74:	add	x20, x20, #0x0
+  78:	ldr	x1, [x20, #8]
+  7c:	cbnz	x1, cc <e2p_string2hash+0x6c>
+  80:	adrp	x1, 0 <e2p_hash2string>
+  84:	mov	x0, x19
+  88:	add	x1, x1, #0x0
+  8c:	mov	x2, #0x8                   	// #8
+  90:	bl	0 <strncasecmp>
+  94:	cbnz	w0, c4 <e2p_string2hash+0x64>
+  98:	ldrb	w0, [x19, #8]
+  9c:	cbz	w0, c4 <e2p_string2hash+0x64>
+  a0:	add	x1, sp, #0x28
+  a4:	add	x0, x19, #0x8
+  a8:	mov	w2, #0xa                   	// #10
+  ac:	bl	0 <strtol>
+  b0:	cmp	w0, #0xff
+  b4:	b.hi	c4 <e2p_string2hash+0x64>  // b.pmore
+  b8:	ldr	x1, [sp, #40]
+  bc:	ldrb	w1, [x1]
+  c0:	cbz	w1, dc <e2p_string2hash+0x7c>
+  c4:	mov	w0, #0xffffffff            	// #-1
+  c8:	b	dc <e2p_string2hash+0x7c>
+  cc:	mov	x0, x19
+  d0:	bl	0 <strcasecmp>
+  d4:	cbnz	w0, e8 <e2p_string2hash+0x88>
+  d8:	ldr	w0, [x20]
+  dc:	ldp	x19, x20, [sp, #16]
+  e0:	ldp	x29, x30, [sp], #48
+  e4:	ret
+  e8:	add	x20, x20, #0x10
+  ec:	b	78 <e2p_string2hash+0x18>
+
+iod.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <iterate_on_dir>:
+   0:	stp	x29, x30, [sp, #-80]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	mov	w19, #0xe                   	// #14
+  10:	stp	x21, x22, [sp, #32]
+  14:	mov	x21, x0
+  18:	mov	x22, x1
+  1c:	mov	w1, #0x3                   	// #3
+  20:	stp	x23, x24, [sp, #48]
+  24:	mov	x23, x2
+  28:	str	x25, [sp, #64]
+  2c:	bl	0 <pathconf>
+  30:	cmn	w0, #0x1
+  34:	csel	w19, w0, w19, ne  // ne = any
+  38:	add	w24, w19, #0x118
+  3c:	add	w19, w19, #0x119
+  40:	sxtw	x19, w19
+  44:	mov	x0, x19
+  48:	bl	0 <malloc>
+  4c:	cbz	x0, 7c <iterate_on_dir+0x7c>
+  50:	mov	x2, x19
+  54:	mov	w1, #0x0                   	// #0
+  58:	mov	x20, x0
+  5c:	bl	0 <memset>
+  60:	mov	x0, x21
+  64:	mov	w19, #0x0                   	// #0
+  68:	bl	0 <opendir>
+  6c:	mov	x25, x0
+  70:	cbnz	x0, b4 <iterate_on_dir+0xb4>
+  74:	mov	x0, x20
+  78:	bl	0 <free>
+  7c:	mov	w19, #0xffffffff            	// #-1
+  80:	b	d4 <iterate_on_dir+0xd4>
+  84:	ldrh	w2, [x1, #16]
+  88:	mov	x0, x20
+  8c:	cmp	w24, w2
+  90:	csel	w2, w24, w2, le
+  94:	sxtw	x2, w2
+  98:	bl	0 <memcpy>
+  9c:	mov	x2, x23
+  a0:	mov	x1, x20
+  a4:	mov	x0, x21
+  a8:	blr	x22
+  ac:	cmp	w0, #0x0
+  b0:	cinc	w19, w19, ne  // ne = any
+  b4:	mov	x0, x25
+  b8:	bl	0 <readdir>
+  bc:	mov	x1, x0
+  c0:	cbnz	x0, 84 <iterate_on_dir+0x84>
+  c4:	mov	x0, x20
+  c8:	bl	0 <free>
+  cc:	mov	x0, x25
+  d0:	bl	0 <closedir>
+  d4:	mov	w0, w19
+  d8:	ldp	x19, x20, [sp, #16]
+  dc:	ldp	x21, x22, [sp, #32]
+  e0:	ldp	x23, x24, [sp, #48]
+  e4:	ldr	x25, [sp, #64]
+  e8:	ldp	x29, x30, [sp], #80
+  ec:	ret
+
+ls.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <list_super2>:
+   0:	stp	x29, x30, [sp, #-192]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	mov	x20, x0
+  10:	mov	x19, x1
+  14:	stp	x21, x22, [sp, #32]
+  18:	ldr	w21, [x0, #40]
+  1c:	ldr	w0, [x0, #76]
+  20:	stp	x23, x24, [sp, #48]
+  24:	stp	x25, x26, [sp, #64]
+  28:	stp	x27, x28, [sp, #80]
+  2c:	cbz	w0, d78 <list_super2+0xd78>
+  30:	ldrh	w2, [x20, #88]
+  34:	ldr	w1, [x20, #24]
+  38:	mov	w0, #0x400                 	// #1024
+  3c:	lsl	w0, w0, w1
+  40:	sub	w0, w0, #0x1
+  44:	add	w1, w1, #0xa
+  48:	madd	w21, w21, w2, w0
+  4c:	ldrb	w0, [x20, #120]
+  50:	lsr	w21, w21, w1
+  54:	cbz	w0, d80 <list_super2+0xd80>
+  58:	add	x1, x20, #0x78
+  5c:	add	x0, sp, #0x70
+  60:	mov	x2, #0x10                  	// #16
+  64:	stp	xzr, xzr, [sp, #112]
+  68:	stp	xzr, xzr, [sp, #128]
+  6c:	stp	xzr, xzr, [sp, #144]
+  70:	stp	xzr, xzr, [sp, #160]
+  74:	stp	xzr, xzr, [sp, #176]
+  78:	bl	0 <strncpy>
+  7c:	add	x2, sp, #0x70
+  80:	mov	x0, x19
+  84:	adrp	x1, 0 <list_super2>
+  88:	add	x1, x1, #0x0
+  8c:	bl	0 <fprintf>
+  90:	ldrb	w0, [x20, #136]
+  94:	cbz	w0, d94 <list_super2+0xd94>
+  98:	add	x1, x20, #0x88
+  9c:	add	x0, sp, #0x70
+  a0:	mov	x2, #0x40                  	// #64
+  a4:	stp	xzr, xzr, [sp, #112]
+  a8:	stp	xzr, xzr, [sp, #128]
+  ac:	stp	xzr, xzr, [sp, #144]
+  b0:	stp	xzr, xzr, [sp, #160]
+  b4:	stp	xzr, xzr, [sp, #176]
+  b8:	bl	0 <strncpy>
+  bc:	add	x2, sp, #0x70
+  c0:	adrp	x1, 0 <list_super2>
+  c4:	add	x1, x1, #0x0
+  c8:	mov	x0, x19
+  cc:	bl	0 <fprintf>
+  d0:	add	x0, x20, #0x68
+  d4:	bl	0 <e2p_uuid2str>
+  d8:	mov	x2, x0
+  dc:	adrp	x1, 0 <list_super2>
+  e0:	mov	x0, x19
+  e4:	add	x1, x1, #0x0
+  e8:	bl	0 <fprintf>
+  ec:	ldrh	w2, [x20, #56]
+  f0:	mov	x0, x19
+  f4:	adrp	x1, 0 <list_super2>
+  f8:	add	x1, x1, #0x0
+  fc:	bl	0 <fprintf>
+ 100:	ldr	w2, [x20, #76]
+ 104:	mov	x0, x19
+ 108:	adrp	x1, 0 <list_super2>
+ 10c:	add	x1, x1, #0x0
+ 110:	bl	0 <fprintf>
+ 114:	ldr	w0, [x20, #76]
+ 118:	mov	x1, x19
+ 11c:	cbnz	w0, da8 <list_super2+0xda8>
+ 120:	adrp	x0, 0 <list_super2>
+ 124:	add	x0, x0, #0x0
+ 128:	adrp	x26, 0 <list_super2>
+ 12c:	add	x28, x20, #0x5c
+ 130:	add	x26, x26, #0x0
+ 134:	mov	x22, #0x0                   	// #0
+ 138:	mov	w24, #0x0                   	// #0
+ 13c:	bl	0 <fputs>
+ 140:	mov	x1, x19
+ 144:	adrp	x0, 0 <list_super2>
+ 148:	add	x0, x0, #0x0
+ 14c:	bl	0 <fputs>
+ 150:	mov	w27, w22
+ 154:	mov	w25, #0x20                  	// #32
+ 158:	mov	w23, #0x1                   	// #1
+ 15c:	ldr	w0, [x28, x22, lsl #2]
+ 160:	tst	w23, w0
+ 164:	b.eq	188 <list_super2+0x188>  // b.none
+ 168:	add	w24, w24, #0x1
+ 16c:	mov	w1, w23
+ 170:	mov	w0, w27
+ 174:	bl	0 <e2p_feature2string>
+ 178:	mov	x1, x26
+ 17c:	mov	x2, x0
+ 180:	mov	x0, x19
+ 184:	bl	0 <fprintf>
+ 188:	lsl	w23, w23, #1
+ 18c:	subs	w25, w25, #0x1
+ 190:	b.ne	15c <list_super2+0x15c>  // b.any
+ 194:	add	x22, x22, #0x1
+ 198:	cmp	x22, #0x3
+ 19c:	b.ne	150 <list_super2+0x150>  // b.any
+ 1a0:	cbnz	w24, 1b4 <list_super2+0x1b4>
+ 1a4:	adrp	x0, 0 <list_super2>
+ 1a8:	mov	x1, x19
+ 1ac:	add	x0, x0, #0x0
+ 1b0:	bl	0 <fputs>
+ 1b4:	mov	x1, x19
+ 1b8:	mov	w0, #0xa                   	// #10
+ 1bc:	bl	0 <fputc>
+ 1c0:	ldr	w0, [x20, #352]
+ 1c4:	cbz	w0, 234 <list_super2+0x234>
+ 1c8:	mov	x1, x19
+ 1cc:	adrp	x0, 0 <list_super2>
+ 1d0:	add	x0, x0, #0x0
+ 1d4:	bl	0 <fputs>
+ 1d8:	ldr	w0, [x20, #352]
+ 1dc:	tbz	w0, #0, dc8 <list_super2+0xdc8>
+ 1e0:	mov	w22, #0x1                   	// #1
+ 1e4:	mov	x1, x19
+ 1e8:	adrp	x0, 0 <list_super2>
+ 1ec:	add	x0, x0, #0x0
+ 1f0:	bl	0 <fputs>
+ 1f4:	ldr	w0, [x20, #352]
+ 1f8:	tbz	w0, #1, 210 <list_super2+0x210>
+ 1fc:	add	w22, w22, #0x1
+ 200:	mov	x1, x19
+ 204:	adrp	x0, 0 <list_super2>
+ 208:	add	x0, x0, #0x0
+ 20c:	bl	0 <fputs>
+ 210:	ldr	w0, [x20, #352]
+ 214:	tbz	w0, #2, dd0 <list_super2+0xdd0>
+ 218:	adrp	x0, 0 <list_super2>
+ 21c:	mov	x1, x19
+ 220:	add	x0, x0, #0x0
+ 224:	bl	0 <fputs>
+ 228:	mov	x1, x19
+ 22c:	mov	w0, #0xa                   	// #10
+ 230:	bl	0 <fputc>
+ 234:	ldr	w25, [x20, #256]
+ 238:	mov	x1, x19
+ 23c:	adrp	x0, 0 <list_super2>
+ 240:	add	x0, x0, #0x0
+ 244:	bl	0 <fputs>
+ 248:	ands	w0, w25, #0x60
+ 24c:	b.eq	de8 <list_super2+0xde8>  // b.none
+ 250:	mov	w23, #0x1                   	// #1
+ 254:	bl	0 <e2p_mntopt2string>
+ 258:	adrp	x1, 0 <list_super2>
+ 25c:	mov	x2, x0
+ 260:	add	x1, x1, #0x0
+ 264:	mov	x0, x19
+ 268:	bl	0 <fprintf>
+ 26c:	adrp	x26, 0 <list_super2>
+ 270:	add	x26, x26, #0x0
+ 274:	mov	w24, #0x20                  	// #32
+ 278:	mov	w22, #0x1                   	// #1
+ 27c:	tst	w22, #0x60
+ 280:	b.ne	2a8 <list_super2+0x2a8>  // b.any
+ 284:	tst	w25, w22
+ 288:	b.eq	2a8 <list_super2+0x2a8>  // b.none
+ 28c:	add	w23, w23, #0x1
+ 290:	mov	w0, w22
+ 294:	bl	0 <e2p_mntopt2string>
+ 298:	mov	x2, x0
+ 29c:	mov	x1, x26
+ 2a0:	mov	x0, x19
+ 2a4:	bl	0 <fprintf>
+ 2a8:	lsl	w22, w22, #1
+ 2ac:	subs	w24, w24, #0x1
+ 2b0:	b.ne	27c <list_super2+0x27c>  // b.any
+ 2b4:	cbnz	w23, 2c8 <list_super2+0x2c8>
+ 2b8:	adrp	x0, 0 <list_super2>
+ 2bc:	mov	x1, x19
+ 2c0:	add	x0, x0, #0x0
+ 2c4:	bl	0 <fputs>
+ 2c8:	mov	x1, x19
+ 2cc:	mov	w0, #0xa                   	// #10
+ 2d0:	bl	0 <fputc>
+ 2d4:	ldrb	w0, [x20, #512]
+ 2d8:	cbz	w0, 2f0 <list_super2+0x2f0>
+ 2dc:	adrp	x1, 0 <list_super2>
+ 2e0:	add	x2, x20, #0x200
+ 2e4:	add	x1, x1, #0x0
+ 2e8:	mov	x0, x19
+ 2ec:	bl	0 <fprintf>
+ 2f0:	mov	x1, x19
+ 2f4:	adrp	x0, 0 <list_super2>
+ 2f8:	add	x0, x0, #0x0
+ 2fc:	bl	0 <fputs>
+ 300:	ldrh	w1, [x20, #58]
+ 304:	mov	x0, x19
+ 308:	bl	0 <print_fs_state>
+ 30c:	mov	x1, x19
+ 310:	mov	w0, #0xa                   	// #10
+ 314:	bl	0 <fputc>
+ 318:	mov	x1, x19
+ 31c:	adrp	x0, 0 <list_super2>
+ 320:	add	x0, x0, #0x0
+ 324:	bl	0 <fputs>
+ 328:	ldrh	w1, [x20, #60]
+ 32c:	mov	x0, x19
+ 330:	bl	0 <print_fs_errors>
+ 334:	mov	x1, x19
+ 338:	mov	w0, #0xa                   	// #10
+ 33c:	bl	0 <fputc>
+ 340:	ldr	w0, [x20, #72]
+ 344:	bl	0 <e2p_os2string>
+ 348:	mov	x2, x0
+ 34c:	adrp	x1, 0 <list_super2>
+ 350:	add	x1, x1, #0x0
+ 354:	mov	x22, x0
+ 358:	mov	x0, x19
+ 35c:	bl	0 <fprintf>
+ 360:	mov	x0, x22
+ 364:	bl	0 <free>
+ 368:	ldr	w2, [x20]
+ 36c:	mov	x0, x19
+ 370:	adrp	x1, 0 <list_super2>
+ 374:	add	x1, x1, #0x0
+ 378:	bl	0 <fprintf>
+ 37c:	ldr	w0, [x20, #96]
+ 380:	ldr	w2, [x20, #4]
+ 384:	tbz	w0, #7, df0 <list_super2+0xdf0>
+ 388:	ldr	w0, [x20, #336]
+ 38c:	lsl	x0, x0, #32
+ 390:	orr	x2, x2, x0
+ 394:	adrp	x1, 0 <list_super2>
+ 398:	mov	x0, x19
+ 39c:	add	x1, x1, #0x0
+ 3a0:	bl	0 <fprintf>
+ 3a4:	ldr	w0, [x20, #96]
+ 3a8:	ldr	w2, [x20, #8]
+ 3ac:	tbz	w0, #7, df8 <list_super2+0xdf8>
+ 3b0:	ldr	w0, [x20, #340]
+ 3b4:	lsl	x0, x0, #32
+ 3b8:	orr	x2, x2, x0
+ 3bc:	adrp	x1, 0 <list_super2>
+ 3c0:	mov	x0, x19
+ 3c4:	add	x1, x1, #0x0
+ 3c8:	bl	0 <fprintf>
+ 3cc:	ldr	w2, [x20, #584]
+ 3d0:	cbz	w2, 3e4 <list_super2+0x3e4>
+ 3d4:	adrp	x1, 0 <list_super2>
+ 3d8:	mov	x0, x19
+ 3dc:	add	x1, x1, #0x0
+ 3e0:	bl	0 <fprintf>
+ 3e4:	ldr	w0, [x20, #96]
+ 3e8:	ldr	w2, [x20, #12]
+ 3ec:	tbz	w0, #7, e00 <list_super2+0xe00>
+ 3f0:	ldr	w0, [x20, #344]
+ 3f4:	lsl	x0, x0, #32
+ 3f8:	orr	x2, x2, x0
+ 3fc:	adrp	x1, 0 <list_super2>
+ 400:	mov	x0, x19
+ 404:	add	x1, x1, #0x0
+ 408:	bl	0 <fprintf>
+ 40c:	mov	w22, #0x400                 	// #1024
+ 410:	ldr	w2, [x20, #16]
+ 414:	mov	x0, x19
+ 418:	adrp	x1, 0 <list_super2>
+ 41c:	add	x1, x1, #0x0
+ 420:	bl	0 <fprintf>
+ 424:	ldr	w2, [x20, #20]
+ 428:	mov	x0, x19
+ 42c:	adrp	x1, 0 <list_super2>
+ 430:	add	x1, x1, #0x0
+ 434:	bl	0 <fprintf>
+ 438:	ldr	w2, [x20, #24]
+ 43c:	mov	x0, x19
+ 440:	adrp	x1, 0 <list_super2>
+ 444:	add	x1, x1, #0x0
+ 448:	lsl	w2, w22, w2
+ 44c:	bl	0 <fprintf>
+ 450:	ldr	w0, [x20, #100]
+ 454:	ldr	w2, [x20, #28]
+ 458:	lsl	w2, w22, w2
+ 45c:	tbz	w0, #9, e08 <list_super2+0xe08>
+ 460:	adrp	x1, 0 <list_super2>
+ 464:	add	x1, x1, #0x0
+ 468:	mov	x0, x19
+ 46c:	bl	0 <fprintf>
+ 470:	ldr	w0, [x20, #96]
+ 474:	tbz	w0, #7, 48c <list_super2+0x48c>
+ 478:	ldrh	w2, [x20, #254]
+ 47c:	adrp	x1, 0 <list_super2>
+ 480:	mov	x0, x19
+ 484:	add	x1, x1, #0x0
+ 488:	bl	0 <fprintf>
+ 48c:	ldrh	w2, [x20, #206]
+ 490:	cbz	w2, 4a4 <list_super2+0x4a4>
+ 494:	adrp	x1, 0 <list_super2>
+ 498:	mov	x0, x19
+ 49c:	add	x1, x1, #0x0
+ 4a0:	bl	0 <fprintf>
+ 4a4:	ldr	w2, [x20, #32]
+ 4a8:	mov	x0, x19
+ 4ac:	adrp	x1, 0 <list_super2>
+ 4b0:	add	x1, x1, #0x0
+ 4b4:	bl	0 <fprintf>
+ 4b8:	ldr	w0, [x20, #100]
+ 4bc:	ldr	w2, [x20, #36]
+ 4c0:	tbz	w0, #9, e14 <list_super2+0xe14>
+ 4c4:	adrp	x1, 0 <list_super2>
+ 4c8:	add	x1, x1, #0x0
+ 4cc:	mov	x0, x19
+ 4d0:	bl	0 <fprintf>
+ 4d4:	ldr	w2, [x20, #40]
+ 4d8:	mov	x0, x19
+ 4dc:	adrp	x1, 0 <list_super2>
+ 4e0:	add	x1, x1, #0x0
+ 4e4:	bl	0 <fprintf>
+ 4e8:	mov	w2, w21
+ 4ec:	mov	x0, x19
+ 4f0:	adrp	x1, 0 <list_super2>
+ 4f4:	add	x1, x1, #0x0
+ 4f8:	bl	0 <fprintf>
+ 4fc:	ldrh	w2, [x20, #356]
+ 500:	cbz	w2, 514 <list_super2+0x514>
+ 504:	adrp	x1, 0 <list_super2>
+ 508:	mov	x0, x19
+ 50c:	add	x1, x1, #0x0
+ 510:	bl	0 <fprintf>
+ 514:	ldr	w2, [x20, #368]
+ 518:	cbz	w2, 52c <list_super2+0x52c>
+ 51c:	adrp	x1, 0 <list_super2>
+ 520:	mov	x0, x19
+ 524:	add	x1, x1, #0x0
+ 528:	bl	0 <fprintf>
+ 52c:	ldr	w2, [x20, #260]
+ 530:	cbz	w2, 544 <list_super2+0x544>
+ 534:	adrp	x1, 0 <list_super2>
+ 538:	mov	x0, x19
+ 53c:	add	x1, x1, #0x0
+ 540:	bl	0 <fprintf>
+ 544:	ldrb	w0, [x20, #372]
+ 548:	cbz	w0, 564 <list_super2+0x564>
+ 54c:	mov	w2, #0x1                   	// #1
+ 550:	adrp	x1, 0 <list_super2>
+ 554:	lsl	w2, w2, w0
+ 558:	add	x1, x1, #0x0
+ 55c:	mov	x0, x19
+ 560:	bl	0 <fprintf>
+ 564:	ldr	w0, [x20, #264]
+ 568:	cbz	w0, 590 <list_super2+0x590>
+ 56c:	mov	w0, w0
+ 570:	str	x0, [sp, #96]
+ 574:	add	x0, sp, #0x60
+ 578:	bl	0 <ctime>
+ 57c:	adrp	x1, 0 <list_super2>
+ 580:	mov	x2, x0
+ 584:	add	x1, x1, #0x0
+ 588:	mov	x0, x19
+ 58c:	bl	0 <fprintf>
+ 590:	ldr	w0, [x20, #44]
+ 594:	mov	w1, w0
+ 598:	str	x1, [sp, #96]
+ 59c:	cbz	w0, e20 <list_super2+0xe20>
+ 5a0:	add	x0, sp, #0x60
+ 5a4:	bl	0 <ctime>
+ 5a8:	mov	x2, x0
+ 5ac:	adrp	x1, 0 <list_super2>
+ 5b0:	add	x1, x1, #0x0
+ 5b4:	mov	x0, x19
+ 5b8:	bl	0 <fprintf>
+ 5bc:	ldr	w0, [x20, #48]
+ 5c0:	adrp	x23, 0 <list_super2>
+ 5c4:	str	x0, [sp, #96]
+ 5c8:	add	x0, sp, #0x60
+ 5cc:	bl	0 <ctime>
+ 5d0:	mov	x2, x0
+ 5d4:	adrp	x1, 0 <list_super2>
+ 5d8:	mov	x0, x19
+ 5dc:	add	x1, x1, #0x0
+ 5e0:	bl	0 <fprintf>
+ 5e4:	ldrh	w2, [x20, #52]
+ 5e8:	mov	x0, x19
+ 5ec:	adrp	x1, 0 <list_super2>
+ 5f0:	add	x1, x1, #0x0
+ 5f4:	bl	0 <fprintf>
+ 5f8:	ldrsh	w2, [x20, #54]
+ 5fc:	adrp	x1, 0 <list_super2>
+ 600:	add	x1, x1, #0x0
+ 604:	mov	x0, x19
+ 608:	bl	0 <fprintf>
+ 60c:	ldr	w0, [x20, #64]
+ 610:	str	x0, [sp, #96]
+ 614:	add	x0, sp, #0x60
+ 618:	bl	0 <ctime>
+ 61c:	mov	x2, x0
+ 620:	adrp	x1, 0 <list_super2>
+ 624:	mov	x0, x19
+ 628:	add	x1, x1, #0x0
+ 62c:	bl	0 <fprintf>
+ 630:	ldr	w24, [x20, #68]
+ 634:	strb	wzr, [x23]
+ 638:	cbz	w24, e34 <list_super2+0xe34>
+ 63c:	mov	w0, #0x8cff                	// #36095
+ 640:	add	x21, x23, #0x0
+ 644:	movk	w0, #0x27, lsl #16
+ 648:	cmp	w24, w0
+ 64c:	b.ls	e2c <list_super2+0xe2c>  // b.plast
+ 650:	mov	w22, #0x8d00                	// #36096
+ 654:	adrp	x0, 0 <list_super2>
+ 658:	movk	w22, #0x27, lsl #16
+ 65c:	add	x0, x0, #0x0
+ 660:	adrp	x3, 0 <list_super2>
+ 664:	add	x3, x3, #0x0
+ 668:	udiv	w2, w24, w22
+ 66c:	adrp	x1, 0 <list_super2>
+ 670:	add	x1, x1, #0x0
+ 674:	cmp	w2, #0x1
+ 678:	msub	w22, w2, w22, w24
+ 67c:	csel	x3, x3, x0, ne  // ne = any
+ 680:	mov	x0, x21
+ 684:	bl	0 <sprintf>
+ 688:	mov	w0, #0x3a7f                	// #14975
+ 68c:	movk	w0, #0x9, lsl #16
+ 690:	cmp	w22, w0
+ 694:	b.ls	6f0 <list_super2+0x6f0>  // b.plast
+ 698:	add	w0, w0, #0x1
+ 69c:	ldrb	w1, [x23]
+ 6a0:	adrp	x2, 0 <list_super2>
+ 6a4:	add	x2, x2, #0x0
+ 6a8:	cmp	w1, #0x0
+ 6ac:	adrp	x4, 0 <list_super2>
+ 6b0:	udiv	w3, w22, w0
+ 6b4:	add	x4, x4, #0x0
+ 6b8:	add	x25, x21, #0x100
+ 6bc:	adrp	x1, 0 <list_super2>
+ 6c0:	add	x1, x1, #0x0
+ 6c4:	msub	w22, w3, w0, w22
+ 6c8:	adrp	x0, 0 <list_super2>
+ 6cc:	add	x0, x0, #0x0
+ 6d0:	csel	x2, x2, x0, ne  // ne = any
+ 6d4:	cmp	w3, #0x1
+ 6d8:	csel	x4, x4, x0, ne  // ne = any
+ 6dc:	mov	x0, x25
+ 6e0:	bl	0 <sprintf>
+ 6e4:	mov	x1, x25
+ 6e8:	mov	x0, x21
+ 6ec:	bl	0 <strcat>
+ 6f0:	mov	w0, #0x517f                	// #20863
+ 6f4:	movk	w0, #0x1, lsl #16
+ 6f8:	cmp	w22, w0
+ 6fc:	b.ls	758 <list_super2+0x758>  // b.plast
+ 700:	add	w0, w0, #0x1
+ 704:	ldrb	w1, [x23]
+ 708:	adrp	x2, 0 <list_super2>
+ 70c:	add	x2, x2, #0x0
+ 710:	cmp	w1, #0x0
+ 714:	adrp	x4, 0 <list_super2>
+ 718:	udiv	w3, w22, w0
+ 71c:	add	x4, x4, #0x0
+ 720:	add	x25, x21, #0x100
+ 724:	adrp	x1, 0 <list_super2>
+ 728:	add	x1, x1, #0x0
+ 72c:	msub	w22, w3, w0, w22
+ 730:	adrp	x0, 0 <list_super2>
+ 734:	add	x0, x0, #0x0
+ 738:	csel	x2, x2, x0, ne  // ne = any
+ 73c:	cmp	w3, #0x1
+ 740:	csel	x4, x4, x0, ne  // ne = any
+ 744:	mov	x0, x25
+ 748:	bl	0 <sprintf>
+ 74c:	mov	x1, x25
+ 750:	mov	x0, x21
+ 754:	bl	0 <strcat>
+ 758:	cbz	w22, 7b0 <list_super2+0x7b0>
+ 75c:	mov	w5, #0xe10                 	// #3600
+ 760:	ldrb	w1, [x23]
+ 764:	adrp	x2, 0 <list_super2>
+ 768:	adrp	x0, 0 <list_super2>
+ 76c:	udiv	w3, w22, w5
+ 770:	cmp	w1, #0x0
+ 774:	add	x0, x0, #0x0
+ 778:	add	x2, x2, #0x0
+ 77c:	csel	x2, x0, x2, ne  // ne = any
+ 780:	add	x23, x21, #0x100
+ 784:	mov	x0, x23
+ 788:	adrp	x1, 0 <list_super2>
+ 78c:	msub	w22, w3, w5, w22
+ 790:	mov	w5, #0x3c                  	// #60
+ 794:	add	x1, x1, #0x0
+ 798:	udiv	w4, w22, w5
+ 79c:	msub	w5, w4, w5, w22
+ 7a0:	bl	0 <sprintf>
+ 7a4:	mov	x1, x23
+ 7a8:	mov	x0, x21
+ 7ac:	bl	0 <strcat>
+ 7b0:	mov	x3, x21
+ 7b4:	mov	w2, w24
+ 7b8:	mov	x0, x19
+ 7bc:	adrp	x1, 0 <list_super2>
+ 7c0:	add	x1, x1, #0x0
+ 7c4:	bl	0 <fprintf>
+ 7c8:	ldr	w0, [x20, #68]
+ 7cc:	cbz	w0, 7f8 <list_super2+0x7f8>
+ 7d0:	ldr	w1, [x20, #64]
+ 7d4:	add	w0, w0, w1
+ 7d8:	str	x0, [sp, #104]
+ 7dc:	add	x0, sp, #0x68
+ 7e0:	bl	0 <ctime>
+ 7e4:	mov	x2, x0
+ 7e8:	adrp	x1, 0 <list_super2>
+ 7ec:	mov	x0, x19
+ 7f0:	add	x1, x1, #0x0
+ 7f4:	bl	0 <fprintf>
+ 7f8:	ldr	x0, [x20, #376]
+ 7fc:	cbz	x0, 830 <list_super2+0x830>
+ 800:	mov	x1, x19
+ 804:	adrp	x0, 0 <list_super2>
+ 808:	add	x0, x0, #0x0
+ 80c:	bl	0 <fputs>
+ 810:	ldr	x2, [x20, #376]
+ 814:	mov	x0, #0x1fff                	// #8191
+ 818:	cmp	x2, x0
+ 81c:	b.hi	e40 <list_super2+0xe40>  // b.pmore
+ 820:	adrp	x1, 0 <list_super2>
+ 824:	add	x1, x1, #0x0
+ 828:	mov	x0, x19
+ 82c:	bl	0 <fprintf>
+ 830:	mov	x1, x19
+ 834:	adrp	x0, 0 <list_super2>
+ 838:	add	x0, x0, #0x0
+ 83c:	bl	0 <fputs>
+ 840:	ldrh	w22, [x20, #80]
+ 844:	adrp	x21, 0 <list_super2>
+ 848:	add	x21, x21, #0x0
+ 84c:	mov	x0, x19
+ 850:	mov	w2, w22
+ 854:	mov	x1, x21
+ 858:	bl	0 <fprintf>
+ 85c:	mov	w0, w22
+ 860:	bl	0 <getpwuid>
+ 864:	cbnz	x0, ebc <list_super2+0xebc>
+ 868:	adrp	x0, 0 <list_super2>
+ 86c:	mov	x1, x19
+ 870:	add	x0, x0, #0x0
+ 874:	bl	0 <fputs>
+ 878:	mov	x1, x19
+ 87c:	adrp	x0, 0 <list_super2>
+ 880:	add	x0, x0, #0x0
+ 884:	bl	0 <fputs>
+ 888:	ldrh	w22, [x20, #82]
+ 88c:	mov	x1, x21
+ 890:	mov	x0, x19
+ 894:	mov	w2, w22
+ 898:	bl	0 <fprintf>
+ 89c:	mov	w0, w22
+ 8a0:	bl	0 <getgrgid>
+ 8a4:	cbnz	x0, ed4 <list_super2+0xed4>
+ 8a8:	adrp	x0, 0 <list_super2>
+ 8ac:	mov	x1, x19
+ 8b0:	add	x0, x0, #0x0
+ 8b4:	bl	0 <fputs>
+ 8b8:	ldr	w0, [x20, #76]
+ 8bc:	cbz	w0, 918 <list_super2+0x918>
+ 8c0:	ldr	w2, [x20, #84]
+ 8c4:	mov	x0, x19
+ 8c8:	adrp	x1, 0 <list_super2>
+ 8cc:	add	x1, x1, #0x0
+ 8d0:	bl	0 <fprintf>
+ 8d4:	ldrh	w2, [x20, #88]
+ 8d8:	mov	x0, x19
+ 8dc:	adrp	x1, 0 <list_super2>
+ 8e0:	add	x1, x1, #0x0
+ 8e4:	bl	0 <fprintf>
+ 8e8:	ldrh	w2, [x20, #348]
+ 8ec:	cbz	w2, 900 <list_super2+0x900>
+ 8f0:	adrp	x1, 0 <list_super2>
+ 8f4:	mov	x0, x19
+ 8f8:	add	x1, x1, #0x0
+ 8fc:	bl	0 <fprintf>
+ 900:	ldrh	w2, [x20, #350]
+ 904:	cbz	w2, 918 <list_super2+0x918>
+ 908:	adrp	x1, 0 <list_super2>
+ 90c:	mov	x0, x19
+ 910:	add	x1, x1, #0x0
+ 914:	bl	0 <fprintf>
+ 918:	add	x22, x20, #0xd0
+ 91c:	mov	x0, x22
+ 920:	bl	0 <e2p_is_null_uuid>
+ 924:	cbnz	w0, 944 <list_super2+0x944>
+ 928:	mov	x0, x22
+ 92c:	bl	0 <e2p_uuid2str>
+ 930:	adrp	x1, 0 <list_super2>
+ 934:	mov	x2, x0
+ 938:	add	x1, x1, #0x0
+ 93c:	mov	x0, x19
+ 940:	bl	0 <fprintf>
+ 944:	ldr	w2, [x20, #224]
+ 948:	cbz	w2, 95c <list_super2+0x95c>
+ 94c:	adrp	x1, 0 <list_super2>
+ 950:	mov	x0, x19
+ 954:	add	x1, x1, #0x0
+ 958:	bl	0 <fprintf>
+ 95c:	ldr	w2, [x20, #228]
+ 960:	cbz	w2, 974 <list_super2+0x974>
+ 964:	adrp	x1, 0 <list_super2>
+ 968:	mov	x0, x19
+ 96c:	add	x1, x1, #0x0
+ 970:	bl	0 <fprintf>
+ 974:	ldr	w2, [x20, #232]
+ 978:	cbz	w2, 98c <list_super2+0x98c>
+ 97c:	adrp	x1, 0 <list_super2>
+ 980:	mov	x0, x19
+ 984:	add	x1, x1, #0x0
+ 988:	bl	0 <fprintf>
+ 98c:	ldr	w1, [x20, #92]
+ 990:	ldrb	w0, [x20, #252]
+ 994:	tbnz	w1, #5, 99c <list_super2+0x99c>
+ 998:	cbz	w0, 9b4 <list_super2+0x9b4>
+ 99c:	bl	0 <e2p_hash2string>
+ 9a0:	mov	x2, x0
+ 9a4:	adrp	x1, 0 <list_super2>
+ 9a8:	mov	x0, x19
+ 9ac:	add	x1, x1, #0x0
+ 9b0:	bl	0 <fprintf>
+ 9b4:	add	x22, x20, #0xec
+ 9b8:	mov	x0, x22
+ 9bc:	bl	0 <e2p_is_null_uuid>
+ 9c0:	cbnz	w0, 9e0 <list_super2+0x9e0>
+ 9c4:	mov	x0, x22
+ 9c8:	bl	0 <e2p_uuid2str>
+ 9cc:	adrp	x1, 0 <list_super2>
+ 9d0:	mov	x2, x0
+ 9d4:	add	x1, x1, #0x0
+ 9d8:	mov	x0, x19
+ 9dc:	bl	0 <fprintf>
+ 9e0:	ldrb	w0, [x20, #253]
+ 9e4:	cbz	w0, a14 <list_super2+0xa14>
+ 9e8:	mov	x1, x19
+ 9ec:	adrp	x0, 0 <list_super2>
+ 9f0:	add	x0, x0, #0x0
+ 9f4:	bl	0 <fputs>
+ 9f8:	ldrb	w2, [x20, #253]
+ 9fc:	cmp	w2, #0x1
+ a00:	b.ne	eec <list_super2+0xeec>  // b.any
+ a04:	adrp	x0, 0 <list_super2>
+ a08:	mov	x1, x19
+ a0c:	add	x0, x0, #0x0
+ a10:	bl	0 <fputs>
+ a14:	ldr	w0, [x20, #588]
+ a18:	cbnz	w0, a24 <list_super2+0xa24>
+ a1c:	ldr	w0, [x20, #592]
+ a20:	cbz	w0, a68 <list_super2+0xa68>
+ a24:	mov	x1, x19
+ a28:	adrp	x0, 0 <list_super2>
+ a2c:	add	x0, x0, #0x0
+ a30:	bl	0 <fputs>
+ a34:	ldr	w2, [x20, #588]
+ a38:	cbz	w2, a48 <list_super2+0xa48>
+ a3c:	mov	x1, x21
+ a40:	mov	x0, x19
+ a44:	bl	0 <fprintf>
+ a48:	ldr	w2, [x20, #592]
+ a4c:	cbz	w2, a5c <list_super2+0xa5c>
+ a50:	mov	x1, x21
+ a54:	mov	x0, x19
+ a58:	bl	0 <fprintf>
+ a5c:	mov	x1, x19
+ a60:	mov	w0, #0xa                   	// #10
+ a64:	bl	0 <fputc>
+ a68:	ldr	w2, [x20, #384]
+ a6c:	cbz	w2, aa8 <list_super2+0xaa8>
+ a70:	mov	x0, x19
+ a74:	adrp	x1, 0 <list_super2>
+ a78:	add	x1, x1, #0x0
+ a7c:	bl	0 <fprintf>
+ a80:	ldr	w2, [x20, #388]
+ a84:	mov	x0, x19
+ a88:	adrp	x1, 0 <list_super2>
+ a8c:	add	x1, x1, #0x0
+ a90:	bl	0 <fprintf>
+ a94:	ldr	x2, [x20, #392]
+ a98:	adrp	x1, 0 <list_super2>
+ a9c:	mov	x0, x19
+ aa0:	add	x1, x1, #0x0
+ aa4:	bl	0 <fprintf>
+ aa8:	ldr	w2, [x20, #400]
+ aac:	cbz	w2, ac0 <list_super2+0xac0>
+ ab0:	adrp	x1, 0 <list_super2>
+ ab4:	mov	x0, x19
+ ab8:	add	x1, x1, #0x0
+ abc:	bl	0 <fprintf>
+ ac0:	ldr	w2, [x20, #404]
+ ac4:	cbz	w2, ad8 <list_super2+0xad8>
+ ac8:	adrp	x1, 0 <list_super2>
+ acc:	mov	x0, x19
+ ad0:	add	x1, x1, #0x0
+ ad4:	bl	0 <fprintf>
+ ad8:	ldr	w0, [x20, #408]
+ adc:	cbz	w0, b78 <list_super2+0xb78>
+ ae0:	mov	w0, w0
+ ae4:	str	x0, [sp, #96]
+ ae8:	add	x0, sp, #0x60
+ aec:	bl	0 <ctime>
+ af0:	adrp	x1, 0 <list_super2>
+ af4:	mov	x2, x0
+ af8:	add	x1, x1, #0x0
+ afc:	mov	x0, x19
+ b00:	bl	0 <fprintf>
+ b04:	stp	xzr, xzr, [sp, #112]
+ b08:	add	x1, x20, #0x1a8
+ b0c:	mov	x2, #0x20                  	// #32
+ b10:	add	x0, sp, #0x70
+ b14:	stp	xzr, xzr, [sp, #128]
+ b18:	stp	xzr, xzr, [sp, #144]
+ b1c:	stp	xzr, xzr, [sp, #160]
+ b20:	stp	xzr, xzr, [sp, #176]
+ b24:	bl	0 <strncpy>
+ b28:	add	x2, sp, #0x70
+ b2c:	mov	x0, x19
+ b30:	adrp	x1, 0 <list_super2>
+ b34:	add	x1, x1, #0x0
+ b38:	bl	0 <fprintf>
+ b3c:	ldr	w2, [x20, #456]
+ b40:	mov	x0, x19
+ b44:	adrp	x1, 0 <list_super2>
+ b48:	add	x1, x1, #0x0
+ b4c:	bl	0 <fprintf>
+ b50:	ldr	w2, [x20, #412]
+ b54:	mov	x0, x19
+ b58:	adrp	x1, 0 <list_super2>
+ b5c:	add	x1, x1, #0x0
+ b60:	bl	0 <fprintf>
+ b64:	ldr	x2, [x20, #416]
+ b68:	adrp	x1, 0 <list_super2>
+ b6c:	mov	x0, x19
+ b70:	add	x1, x1, #0x0
+ b74:	bl	0 <fprintf>
+ b78:	ldr	w0, [x20, #460]
+ b7c:	cbz	w0, c18 <list_super2+0xc18>
+ b80:	mov	w0, w0
+ b84:	str	x0, [sp, #96]
+ b88:	add	x0, sp, #0x60
+ b8c:	bl	0 <ctime>
+ b90:	adrp	x1, 0 <list_super2>
+ b94:	mov	x2, x0
+ b98:	add	x1, x1, #0x0
+ b9c:	mov	x0, x19
+ ba0:	bl	0 <fprintf>
+ ba4:	stp	xzr, xzr, [sp, #112]
+ ba8:	add	x1, x20, #0x1e0
+ bac:	mov	x2, #0x20                  	// #32
+ bb0:	add	x0, sp, #0x70
+ bb4:	stp	xzr, xzr, [sp, #128]
+ bb8:	stp	xzr, xzr, [sp, #144]
+ bbc:	stp	xzr, xzr, [sp, #160]
+ bc0:	stp	xzr, xzr, [sp, #176]
+ bc4:	bl	0 <strncpy>
+ bc8:	add	x2, sp, #0x70
+ bcc:	mov	x0, x19
+ bd0:	adrp	x1, 0 <list_super2>
+ bd4:	add	x1, x1, #0x0
+ bd8:	bl	0 <fprintf>
+ bdc:	ldr	w2, [x20, #468]
+ be0:	mov	x0, x19
+ be4:	adrp	x1, 0 <list_super2>
+ be8:	add	x1, x1, #0x0
+ bec:	bl	0 <fprintf>
+ bf0:	ldr	w2, [x20, #464]
+ bf4:	mov	x0, x19
+ bf8:	adrp	x1, 0 <list_super2>
+ bfc:	add	x1, x1, #0x0
+ c00:	bl	0 <fprintf>
+ c04:	ldr	x2, [x20, #472]
+ c08:	adrp	x1, 0 <list_super2>
+ c0c:	mov	x0, x19
+ c10:	add	x1, x1, #0x0
+ c14:	bl	0 <fprintf>
+ c18:	ldr	w0, [x20, #96]
+ c1c:	tbz	w0, #8, c48 <list_super2+0xc48>
+ c20:	ldr	x2, [x20, #360]
+ c24:	mov	x0, x19
+ c28:	adrp	x1, 0 <list_super2>
+ c2c:	add	x1, x1, #0x0
+ c30:	bl	0 <fprintf>
+ c34:	ldrh	w2, [x20, #358]
+ c38:	adrp	x1, 0 <list_super2>
+ c3c:	mov	x0, x19
+ c40:	add	x1, x1, #0x0
+ c44:	bl	0 <fprintf>
+ c48:	ldr	w3, [x20, #576]
+ c4c:	cbz	w3, c68 <list_super2+0xc68>
+ c50:	adrp	x2, 0 <list_super2>
+ c54:	adrp	x1, 0 <list_super2>
+ c58:	add	x2, x2, #0x0
+ c5c:	add	x1, x1, #0x0
+ c60:	mov	x0, x19
+ c64:	bl	0 <fprintf>
+ c68:	ldr	w3, [x20, #580]
+ c6c:	cbz	w3, c88 <list_super2+0xc88>
+ c70:	adrp	x2, 0 <list_super2>
+ c74:	adrp	x1, 0 <list_super2>
+ c78:	add	x2, x2, #0x0
+ c7c:	add	x1, x1, #0x0
+ c80:	mov	x0, x19
+ c84:	bl	0 <fprintf>
+ c88:	ldr	w3, [x20, #620]
+ c8c:	cbz	w3, ca8 <list_super2+0xca8>
+ c90:	adrp	x2, 0 <list_super2>
+ c94:	adrp	x1, 0 <list_super2>
+ c98:	add	x2, x2, #0x0
+ c9c:	add	x1, x1, #0x0
+ ca0:	mov	x0, x19
+ ca4:	bl	0 <fprintf>
+ ca8:	ldr	w0, [x20, #100]
+ cac:	tbz	w0, #10, cf0 <list_super2+0xcf0>
+ cb0:	ldrb	w1, [x20, #373]
+ cb4:	adrp	x0, 0 <list_super2>
+ cb8:	adrp	x2, 0 <list_super2>
+ cbc:	add	x0, x0, #0x0
+ cc0:	cmp	w1, #0x1
+ cc4:	add	x2, x2, #0x0
+ cc8:	csel	x2, x2, x0, eq  // eq = none
+ ccc:	adrp	x1, 0 <list_super2>
+ cd0:	mov	x0, x19
+ cd4:	add	x1, x1, #0x0
+ cd8:	bl	0 <fprintf>
+ cdc:	ldr	w2, [x20, #1020]
+ ce0:	adrp	x1, 0 <list_super2>
+ ce4:	mov	x0, x19
+ ce8:	add	x1, x1, #0x0
+ cec:	bl	0 <fprintf>
+ cf0:	add	x21, x20, #0x258
+ cf4:	mov	x0, x21
+ cf8:	bl	0 <e2p_is_null_uuid>
+ cfc:	cbnz	w0, d1c <list_super2+0xd1c>
+ d00:	mov	x0, x21
+ d04:	bl	0 <e2p_uuid2str>
+ d08:	adrp	x1, 0 <list_super2>
+ d0c:	mov	x2, x0
+ d10:	add	x1, x1, #0x0
+ d14:	mov	x0, x19
+ d18:	bl	0 <fprintf>
+ d1c:	ldr	w0, [x20, #96]
+ d20:	tbz	w0, #13, d38 <list_super2+0xd38>
+ d24:	ldr	w2, [x20, #624]
+ d28:	adrp	x1, 0 <list_super2>
+ d2c:	mov	x0, x19
+ d30:	add	x1, x1, #0x0
+ d34:	bl	0 <fprintf>
+ d38:	ldr	w0, [x20, #96]
+ d3c:	tbz	w0, #17, d5c <list_super2+0xd5c>
+ d40:	ldrh	w0, [x20, #636]
+ d44:	bl	0 <e2p_encoding2str>
+ d48:	mov	x2, x0
+ d4c:	adrp	x1, 0 <list_super2>
+ d50:	mov	x0, x19
+ d54:	add	x1, x1, #0x0
+ d58:	bl	0 <fprintf>
+ d5c:	ldp	x19, x20, [sp, #16]
+ d60:	ldp	x21, x22, [sp, #32]
+ d64:	ldp	x23, x24, [sp, #48]
+ d68:	ldp	x25, x26, [sp, #64]
+ d6c:	ldp	x27, x28, [sp, #80]
+ d70:	ldp	x29, x30, [sp], #192
+ d74:	ret
+ d78:	mov	w2, #0x80                  	// #128
+ d7c:	b	34 <list_super2+0x34>
+ d80:	add	x0, sp, #0x70
+ d84:	adrp	x1, 0 <list_super2>
+ d88:	add	x1, x1, #0x0
+ d8c:	bl	0 <strcpy>
+ d90:	b	7c <list_super2+0x7c>
+ d94:	add	x0, sp, #0x70
+ d98:	adrp	x1, 0 <list_super2>
+ d9c:	add	x1, x1, #0x0
+ da0:	bl	0 <strcpy>
+ da4:	b	bc <list_super2+0xbc>
+ da8:	cmp	w0, #0x1
+ dac:	b.ne	dbc <list_super2+0xdbc>  // b.any
+ db0:	adrp	x0, 0 <list_super2>
+ db4:	add	x0, x0, #0x0
+ db8:	b	128 <list_super2+0x128>
+ dbc:	adrp	x0, 0 <list_super2>
+ dc0:	add	x0, x0, #0x0
+ dc4:	b	128 <list_super2+0x128>
+ dc8:	mov	w22, #0x0                   	// #0
+ dcc:	b	1f4 <list_super2+0x1f4>
+ dd0:	cbnz	w22, 228 <list_super2+0x228>
+ dd4:	mov	x1, x19
+ dd8:	adrp	x0, 0 <list_super2>
+ ddc:	add	x0, x0, #0x0
+ de0:	bl	0 <fputs>
+ de4:	b	234 <list_super2+0x234>
+ de8:	mov	w23, #0x0                   	// #0
+ dec:	b	26c <list_super2+0x26c>
+ df0:	mov	x0, #0x0                   	// #0
+ df4:	b	390 <list_super2+0x390>
+ df8:	mov	x0, #0x0                   	// #0
+ dfc:	b	3b8 <list_super2+0x3b8>
+ e00:	mov	x0, #0x0                   	// #0
+ e04:	b	3f8 <list_super2+0x3f8>
+ e08:	adrp	x1, 0 <list_super2>
+ e0c:	add	x1, x1, #0x0
+ e10:	b	468 <list_super2+0x468>
+ e14:	adrp	x1, 0 <list_super2>
+ e18:	add	x1, x1, #0x0
+ e1c:	b	4cc <list_super2+0x4cc>
+ e20:	adrp	x2, 0 <list_super2>
+ e24:	add	x2, x2, #0x0
+ e28:	b	5ac <list_super2+0x5ac>
+ e2c:	mov	w22, w24
+ e30:	b	688 <list_super2+0x688>
+ e34:	adrp	x21, 0 <list_super2>
+ e38:	add	x21, x21, #0x0
+ e3c:	b	7b0 <list_super2+0x7b0>
+ e40:	mov	x0, #0x7fffff              	// #8388607
+ e44:	cmp	x2, x0
+ e48:	b.hi	e60 <list_super2+0xe60>  // b.pmore
+ e4c:	add	x2, x2, #0x200
+ e50:	adrp	x1, 0 <list_super2>
+ e54:	add	x1, x1, #0x0
+ e58:	lsr	x2, x2, #10
+ e5c:	b	828 <list_super2+0x828>
+ e60:	mov	x0, #0x1ffffffff           	// #8589934591
+ e64:	cmp	x2, x0
+ e68:	b.hi	e80 <list_super2+0xe80>  // b.pmore
+ e6c:	add	x2, x2, #0x80, lsl #12
+ e70:	adrp	x1, 0 <list_super2>
+ e74:	add	x1, x1, #0x0
+ e78:	lsr	x2, x2, #20
+ e7c:	b	828 <list_super2+0x828>
+ e80:	mov	x0, #0x7ffffffffff         	// #8796093022207
+ e84:	cmp	x2, x0
+ e88:	b.hi	ea4 <list_super2+0xea4>  // b.pmore
+ e8c:	mov	x0, #0x20000000            	// #536870912
+ e90:	add	x2, x2, x0
+ e94:	adrp	x1, 0 <list_super2>
+ e98:	add	x1, x1, #0x0
+ e9c:	lsr	x2, x2, #30
+ ea0:	b	828 <list_super2+0x828>
+ ea4:	mov	x0, #0x8000000000          	// #549755813888
+ ea8:	add	x2, x2, x0
+ eac:	adrp	x1, 0 <list_super2>
+ eb0:	add	x1, x1, #0x0
+ eb4:	lsr	x2, x2, #40
+ eb8:	b	828 <list_super2+0x828>
+ ebc:	ldr	x2, [x0]
+ ec0:	adrp	x1, 0 <list_super2>
+ ec4:	mov	x0, x19
+ ec8:	add	x1, x1, #0x0
+ ecc:	bl	0 <fprintf>
+ ed0:	b	878 <list_super2+0x878>
+ ed4:	ldr	x2, [x0]
+ ed8:	adrp	x1, 0 <list_super2>
+ edc:	mov	x0, x19
+ ee0:	add	x1, x1, #0x0
+ ee4:	bl	0 <fprintf>
+ ee8:	b	8b8 <list_super2+0x8b8>
+ eec:	mov	x0, x19
+ ef0:	adrp	x1, 0 <list_super2>
+ ef4:	add	x1, x1, #0x0
+ ef8:	bl	0 <fprintf>
+ efc:	b	a14 <list_super2+0xa14>
+
+0000000000000f00 <list_super>:
+ f00:	adrp	x1, 0 <stdout>
+ f04:	ldr	x1, [x1]
+ f08:	b	0 <list_super2>
+
+ljs.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <e2p_list_journal_super>:
+   0:	stp	x29, x30, [sp, #-96]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	mov	x20, x1
+  10:	mov	x19, x0
+  14:	stp	x25, x26, [sp, #64]
+  18:	adrp	x26, 0 <e2p_list_journal_super>
+  1c:	add	x26, x26, #0x0
+  20:	stp	x27, x28, [sp, #80]
+  24:	add	x28, x20, #0x24
+  28:	mov	w25, #0x0                   	// #0
+  2c:	stp	x21, x22, [sp, #32]
+  30:	mov	x22, #0x0                   	// #0
+  34:	mov	x1, x0
+  38:	adrp	x0, 0 <e2p_list_journal_super>
+  3c:	add	x0, x0, #0x0
+  40:	stp	x23, x24, [sp, #48]
+  44:	mov	w23, w2
+  48:	bl	0 <fputs>
+  4c:	ldr	w27, [x28, x22, lsl #2]
+  50:	mov	w21, #0x20                  	// #32
+  54:	mov	w24, #0x1                   	// #1
+  58:	rev	w27, w27
+  5c:	tst	w27, w24
+  60:	b.eq	84 <e2p_list_journal_super+0x84>  // b.none
+  64:	add	w25, w25, #0x1
+  68:	mov	w1, w24
+  6c:	mov	w0, w22
+  70:	bl	0 <e2p_jrnl_feature2string>
+  74:	mov	x1, x26
+  78:	mov	x2, x0
+  7c:	mov	x0, x19
+  80:	bl	0 <fprintf>
+  84:	lsl	w24, w24, #1
+  88:	subs	w21, w21, #0x1
+  8c:	b.ne	5c <e2p_list_journal_super+0x5c>  // b.any
+  90:	add	x22, x22, #0x1
+  94:	cmp	x22, #0x3
+  98:	b.ne	4c <e2p_list_journal_super+0x4c>  // b.any
+  9c:	cbnz	w25, b0 <e2p_list_journal_super+0xb0>
+  a0:	adrp	x0, 0 <e2p_list_journal_super>
+  a4:	mov	x1, x19
+  a8:	add	x0, x0, #0x0
+  ac:	bl	0 <fputs>
+  b0:	mov	x1, x19
+  b4:	mov	w0, #0xa                   	// #10
+  b8:	bl	0 <fputc>
+  bc:	mov	x1, x19
+  c0:	adrp	x0, 0 <e2p_list_journal_super>
+  c4:	add	x0, x0, #0x0
+  c8:	bl	0 <fputs>
+  cc:	ldp	w0, w2, [x20, #12]
+  d0:	rev	w0, w0
+  d4:	rev	w2, w2
+  d8:	lsr	w0, w0, #10
+  dc:	mul	w2, w0, w2
+  e0:	mov	w0, #0x1fff                	// #8191
+  e4:	cmp	w2, w0
+  e8:	b.hi	23c <e2p_list_journal_super+0x23c>  // b.pmore
+  ec:	adrp	x1, 0 <e2p_list_journal_super>
+  f0:	add	x1, x1, #0x0
+  f4:	mov	x0, x19
+  f8:	bl	0 <fprintf>
+  fc:	ldr	w2, [x20, #12]
+ 100:	ldr	w22, [x20, #64]
+ 104:	rev	w2, w2
+ 108:	rev	w22, w22
+ 10c:	cmp	w2, w23
+ 110:	b.eq	124 <e2p_list_journal_super+0x124>  // b.none
+ 114:	adrp	x1, 0 <e2p_list_journal_super>
+ 118:	mov	x0, x19
+ 11c:	add	x1, x1, #0x0
+ 120:	bl	0 <fprintf>
+ 124:	ldr	w2, [x20, #16]
+ 128:	mov	x0, x19
+ 12c:	adrp	x1, 0 <e2p_list_journal_super>
+ 130:	add	x1, x1, #0x0
+ 134:	rev	w2, w2
+ 138:	bl	0 <fprintf>
+ 13c:	ldr	w2, [x20, #20]
+ 140:	rev	w2, w2
+ 144:	cmp	w2, #0x1
+ 148:	b.eq	15c <e2p_list_journal_super+0x15c>  // b.none
+ 14c:	adrp	x1, 0 <e2p_list_journal_super>
+ 150:	mov	x0, x19
+ 154:	add	x1, x1, #0x0
+ 158:	bl	0 <fprintf>
+ 15c:	ldp	w2, w3, [x20, #24]
+ 160:	mov	x0, x19
+ 164:	adrp	x1, 0 <e2p_list_journal_super>
+ 168:	add	x1, x1, #0x0
+ 16c:	rev	w3, w3
+ 170:	rev	w2, w2
+ 174:	bl	0 <fprintf>
+ 178:	cmp	w22, #0x1
+ 17c:	b.eq	194 <e2p_list_journal_super+0x194>  // b.none
+ 180:	adrp	x1, 0 <e2p_list_journal_super>
+ 184:	mov	w2, w22
+ 188:	add	x1, x1, #0x0
+ 18c:	mov	x0, x19
+ 190:	bl	0 <fprintf>
+ 194:	ldr	w0, [x20, #36]
+ 198:	tbz	w0, #24, 1ac <e2p_list_journal_super+0x1ac>
+ 19c:	adrp	x0, 0 <e2p_list_journal_super>
+ 1a0:	mov	x1, x19
+ 1a4:	add	x0, x0, #0x0
+ 1a8:	bl	0 <fputs>
+ 1ac:	ldr	w0, [x20, #40]
+ 1b0:	tst	w0, #0x18000000
+ 1b4:	b.eq	1ec <e2p_list_journal_super+0x1ec>  // b.none
+ 1b8:	ldrb	w1, [x20, #80]
+ 1bc:	adrp	x0, 0 <e2p_list_journal_super>
+ 1c0:	ldr	w3, [x20, #252]
+ 1c4:	add	x0, x0, #0x0
+ 1c8:	cmp	w1, #0x4
+ 1cc:	adrp	x2, 0 <e2p_list_journal_super>
+ 1d0:	add	x2, x2, #0x0
+ 1d4:	adrp	x1, 0 <e2p_list_journal_super>
+ 1d8:	csel	x2, x2, x0, eq  // eq = none
+ 1dc:	add	x1, x1, #0x0
+ 1e0:	mov	x0, x19
+ 1e4:	rev	w3, w3
+ 1e8:	bl	0 <fprintf>
+ 1ec:	cmp	w22, #0x1
+ 1f0:	add	x23, x20, #0x100
+ 1f4:	b.ls	24c <e2p_list_journal_super+0x24c>  // b.plast
+ 1f8:	adrp	x24, 0 <e2p_list_journal_super>
+ 1fc:	adrp	x25, 0 <e2p_list_journal_super>
+ 200:	add	x24, x24, #0x0
+ 204:	add	x25, x25, #0x0
+ 208:	cmp	w21, #0x2f
+ 20c:	ccmp	w21, w22, #0x2, ls  // ls = plast
+ 210:	b.cs	258 <e2p_list_journal_super+0x258>  // b.hs, b.nlast
+ 214:	cmp	w21, #0x0
+ 218:	mov	x0, x23
+ 21c:	csel	x26, x25, x24, ne  // ne = any
+ 220:	add	w21, w21, #0x1
+ 224:	add	x23, x23, #0x10
+ 228:	bl	0 <e2p_uuid2str>
+ 22c:	mov	x1, x0
+ 230:	mov	x0, x26
+ 234:	bl	0 <printf>
+ 238:	b	208 <e2p_list_journal_super+0x208>
+ 23c:	adrp	x1, 0 <e2p_list_journal_super>
+ 240:	lsr	w2, w2, #10
+ 244:	add	x1, x1, #0x0
+ 248:	b	f4 <e2p_list_journal_super+0xf4>
+ 24c:	mov	x0, x23
+ 250:	bl	0 <e2p_is_null_uuid>
+ 254:	cbz	w0, 1f8 <e2p_list_journal_super+0x1f8>
+ 258:	ldr	w2, [x20, #32]
+ 25c:	cbz	w2, 28c <e2p_list_journal_super+0x28c>
+ 260:	mov	x0, x19
+ 264:	rev	w2, w2
+ 268:	ldp	x19, x20, [sp, #16]
+ 26c:	adrp	x1, 0 <e2p_list_journal_super>
+ 270:	ldp	x21, x22, [sp, #32]
+ 274:	add	x1, x1, #0x0
+ 278:	ldp	x23, x24, [sp, #48]
+ 27c:	ldp	x25, x26, [sp, #64]
+ 280:	ldp	x27, x28, [sp, #80]
+ 284:	ldp	x29, x30, [sp], #96
+ 288:	b	0 <fprintf>
+ 28c:	ldp	x19, x20, [sp, #16]
+ 290:	ldp	x21, x22, [sp, #32]
+ 294:	ldp	x23, x24, [sp, #48]
+ 298:	ldp	x25, x26, [sp, #64]
+ 29c:	ldp	x27, x28, [sp, #80]
+ 2a0:	ldp	x29, x30, [sp], #96
+ 2a4:	ret
+
+mntopts.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <e2p_mntopt2string>:
+   0:	adrp	x2, 0 <e2p_mntopt2string>
+   4:	mov	w1, w0
+   8:	add	x2, x2, #0x0
+   c:	ldr	x0, [x2, #8]
+  10:	cbnz	x0, 54 <e2p_mntopt2string+0x54>
+  14:	stp	x29, x30, [sp, #-32]!
+  18:	mov	w2, #0x0                   	// #0
+  1c:	mov	x29, sp
+  20:	str	x19, [sp, #16]
+  24:	lsr	w1, w1, #1
+  28:	cbnz	w1, 68 <e2p_mntopt2string+0x68>
+  2c:	adrp	x0, 0 <e2p_mntopt2string>
+  30:	add	x19, x0, #0x0
+  34:	mov	x0, x19
+  38:	adrp	x1, 0 <e2p_mntopt2string>
+  3c:	add	x1, x1, #0x0
+  40:	bl	0 <sprintf>
+  44:	mov	x0, x19
+  48:	ldr	x19, [sp, #16]
+  4c:	ldp	x29, x30, [sp], #32
+  50:	ret
+  54:	ldr	w3, [x2]
+  58:	cmp	w3, w1
+  5c:	b.eq	70 <e2p_mntopt2string+0x70>  // b.none
+  60:	add	x2, x2, #0x10
+  64:	b	c <e2p_mntopt2string+0xc>
+  68:	add	w2, w2, #0x1
+  6c:	b	24 <e2p_mntopt2string+0x24>
+  70:	ret
+
+0000000000000074 <e2p_string2mntopt>:
+  74:	stp	x29, x30, [sp, #-64]!
+  78:	mov	x29, sp
+  7c:	stp	x19, x20, [sp, #16]
+  80:	mov	x20, x0
+  84:	stp	x21, x22, [sp, #32]
+  88:	adrp	x21, 0 <e2p_mntopt2string>
+  8c:	mov	x22, x1
+  90:	add	x21, x21, #0x0
+  94:	ldr	x1, [x21, #8]
+  98:	cbnz	x1, f4 <e2p_string2mntopt+0x80>
+  9c:	mov	x0, x20
+  a0:	mov	x2, #0x7                   	// #7
+  a4:	adrp	x1, 0 <e2p_mntopt2string>
+  a8:	add	x1, x1, #0x0
+  ac:	bl	0 <strncasecmp>
+  b0:	mov	w19, w0
+  b4:	cbnz	w0, 128 <e2p_string2mntopt+0xb4>
+  b8:	ldrb	w0, [x20, #8]
+  bc:	cbz	w0, 128 <e2p_string2mntopt+0xb4>
+  c0:	add	x1, sp, #0x38
+  c4:	add	x0, x20, #0x8
+  c8:	mov	w2, #0xa                   	// #10
+  cc:	bl	0 <strtol>
+  d0:	cmp	w0, #0x1f
+  d4:	b.hi	128 <e2p_string2mntopt+0xb4>  // b.pmore
+  d8:	ldr	x1, [sp, #56]
+  dc:	mov	w2, #0x1                   	// #1
+  e0:	ldrb	w1, [x1]
+  e4:	cbnz	w1, 128 <e2p_string2mntopt+0xb4>
+  e8:	lsl	w2, w2, w0
+  ec:	str	w2, [x22]
+  f0:	b	10c <e2p_string2mntopt+0x98>
+  f4:	mov	x0, x20
+  f8:	bl	0 <strcasecmp>
+  fc:	mov	w19, w0
+ 100:	cbnz	w0, 120 <e2p_string2mntopt+0xac>
+ 104:	ldr	w0, [x21]
+ 108:	str	w0, [x22]
+ 10c:	mov	w0, w19
+ 110:	ldp	x19, x20, [sp, #16]
+ 114:	ldp	x21, x22, [sp, #32]
+ 118:	ldp	x29, x30, [sp], #64
+ 11c:	ret
+ 120:	add	x21, x21, #0x10
+ 124:	b	94 <e2p_string2mntopt+0x20>
+ 128:	mov	w19, #0x1                   	// #1
+ 12c:	b	10c <e2p_string2mntopt+0x98>
+
+0000000000000130 <e2p_edit_mntopts>:
+ 130:	stp	x29, x30, [sp, #-80]!
+ 134:	mov	x29, sp
+ 138:	stp	x19, x20, [sp, #16]
+ 13c:	mov	x19, x0
+ 140:	stp	x21, x22, [sp, #32]
+ 144:	mov	x21, x1
+ 148:	stp	x23, x24, [sp, #48]
+ 14c:	mov	w23, w2
+ 150:	bl	0 <strlen>
+ 154:	add	x0, x0, #0x1
+ 158:	bl	0 <malloc>
+ 15c:	cbz	x0, 288 <e2p_edit_mntopts+0x158>
+ 160:	mov	x22, x0
+ 164:	mov	x1, x19
+ 168:	mov	x19, x22
+ 16c:	bl	0 <strcpy>
+ 170:	ldrb	w0, [x19]
+ 174:	cbnz	w0, 180 <e2p_edit_mntopts+0x50>
+ 178:	b	24c <e2p_edit_mntopts+0x11c>
+ 17c:	add	x19, x19, #0x1
+ 180:	ldrb	w20, [x19]
+ 184:	cbz	w20, 19c <e2p_edit_mntopts+0x6c>
+ 188:	bl	0 <__ctype_b_loc>
+ 18c:	ubfiz	x20, x20, #1, #8
+ 190:	ldr	x0, [x0]
+ 194:	ldrh	w0, [x0, x20]
+ 198:	tbnz	w0, #13, 17c <e2p_edit_mntopts+0x4c>
+ 19c:	mov	x20, x19
+ 1a0:	b	1a8 <e2p_edit_mntopts+0x78>
+ 1a4:	add	x20, x20, #0x1
+ 1a8:	ldrb	w24, [x20]
+ 1ac:	cbz	w24, 1d4 <e2p_edit_mntopts+0xa4>
+ 1b0:	bl	0 <__ctype_b_loc>
+ 1b4:	ldr	x0, [x0]
+ 1b8:	ubfiz	x1, x24, #1, #8
+ 1bc:	ldrh	w0, [x0, x1]
+ 1c0:	tbnz	w0, #13, 1cc <e2p_edit_mntopts+0x9c>
+ 1c4:	cmp	w24, #0x2c
+ 1c8:	b.ne	1a4 <e2p_edit_mntopts+0x74>  // b.any
+ 1cc:	strb	wzr, [x20]
+ 1d0:	b	1d8 <e2p_edit_mntopts+0xa8>
+ 1d4:	mov	x20, #0x0                   	// #0
+ 1d8:	ldrb	w0, [x19]
+ 1dc:	cmp	w0, #0x2d
+ 1e0:	b.eq	270 <e2p_edit_mntopts+0x140>  // b.none
+ 1e4:	cmp	w0, #0x5e
+ 1e8:	b.eq	270 <e2p_edit_mntopts+0x140>  // b.none
+ 1ec:	cmp	w0, #0x2b
+ 1f0:	mov	w24, #0x0                   	// #0
+ 1f4:	b.ne	1fc <e2p_edit_mntopts+0xcc>  // b.any
+ 1f8:	add	x19, x19, #0x1
+ 1fc:	add	x1, sp, #0x4c
+ 200:	mov	x0, x19
+ 204:	bl	74 <e2p_string2mntopt>
+ 208:	cbnz	w0, 280 <e2p_edit_mntopts+0x150>
+ 20c:	ldr	w0, [sp, #76]
+ 210:	cbz	w23, 21c <e2p_edit_mntopts+0xec>
+ 214:	tst	w23, w0
+ 218:	b.eq	280 <e2p_edit_mntopts+0x150>  // b.none
+ 21c:	tst	w0, #0x60
+ 220:	b.eq	230 <e2p_edit_mntopts+0x100>  // b.none
+ 224:	ldr	w1, [x21]
+ 228:	and	w1, w1, #0xffffff9f
+ 22c:	str	w1, [x21]
+ 230:	ldr	w1, [x21]
+ 234:	cmp	w24, #0x0
+ 238:	bic	w2, w1, w0
+ 23c:	orr	w1, w1, w0
+ 240:	csel	w1, w1, w2, eq  // eq = none
+ 244:	str	w1, [x21]
+ 248:	cbnz	x20, 278 <e2p_edit_mntopts+0x148>
+ 24c:	mov	w19, #0x0                   	// #0
+ 250:	mov	x0, x22
+ 254:	bl	0 <free>
+ 258:	mov	w0, w19
+ 25c:	ldp	x19, x20, [sp, #16]
+ 260:	ldp	x21, x22, [sp, #32]
+ 264:	ldp	x23, x24, [sp, #48]
+ 268:	ldp	x29, x30, [sp], #80
+ 26c:	ret
+ 270:	mov	w24, #0x1                   	// #1
+ 274:	b	1f8 <e2p_edit_mntopts+0xc8>
+ 278:	add	x19, x20, #0x1
+ 27c:	b	170 <e2p_edit_mntopts+0x40>
+ 280:	mov	w19, #0x1                   	// #1
+ 284:	b	250 <e2p_edit_mntopts+0x120>
+ 288:	mov	w19, #0x1                   	// #1
+ 28c:	b	258 <e2p_edit_mntopts+0x128>
+
+parse_num.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <parse_num_blocks2>:
+   0:	stp	x29, x30, [sp, #-48]!
+   4:	mov	w2, #0x0                   	// #0
+   8:	mov	x29, sp
+   c:	str	x19, [sp, #16]
+  10:	mov	w19, w1
+  14:	add	x1, sp, #0x28
+  18:	bl	0 <strtoull>
+  1c:	ldr	x1, [sp, #40]
+  20:	ldrb	w2, [x1]
+  24:	cbz	w2, b0 <parse_num_blocks2+0xb0>
+  28:	ldrb	w1, [x1, #1]
+  2c:	cbnz	w1, 60 <parse_num_blocks2+0x60>
+  30:	cmp	w2, #0x74
+  34:	b.hi	60 <parse_num_blocks2+0x60>  // b.pmore
+  38:	cmp	w2, #0x66
+  3c:	b.hi	68 <parse_num_blocks2+0x68>  // b.pmore
+  40:	cmp	w2, #0x4d
+  44:	b.eq	9c <parse_num_blocks2+0x9c>  // b.none
+  48:	b.hi	8c <parse_num_blocks2+0x8c>  // b.pmore
+  4c:	cmp	w2, #0x4b
+  50:	b.eq	a0 <parse_num_blocks2+0xa0>  // b.none
+  54:	b.hi	60 <parse_num_blocks2+0x60>  // b.pmore
+  58:	cmp	w2, #0x47
+  5c:	b.eq	98 <parse_num_blocks2+0x98>  // b.none
+  60:	mov	x0, #0x0                   	// #0
+  64:	b	b0 <parse_num_blocks2+0xb0>
+  68:	sub	w2, w2, #0x67
+  6c:	cmp	w2, #0xd
+  70:	b.hi	60 <parse_num_blocks2+0x60>  // b.pmore
+  74:	adrp	x1, 0 <parse_num_blocks2>
+  78:	add	x1, x1, #0x0
+  7c:	ldrb	w1, [x1, w2, uxtw]
+  80:	adr	x2, 8c <parse_num_blocks2+0x8c>
+  84:	add	x1, x2, w1, sxtb #2
+  88:	br	x1
+  8c:	cmp	w2, #0x54
+  90:	b.ne	60 <parse_num_blocks2+0x60>  // b.any
+  94:	lsl	x0, x0, #10
+  98:	lsl	x0, x0, #10
+  9c:	lsl	x0, x0, #10
+  a0:	lsl	x1, x0, #10
+  a4:	lsr	x0, x0, x19
+  a8:	cmp	w19, #0x0
+  ac:	csel	x0, x0, x1, ge  // ge = tcont
+  b0:	ldr	x19, [sp, #16]
+  b4:	ldp	x29, x30, [sp], #48
+  b8:	ret
+  bc:	add	w2, w19, #0x1
+  c0:	lsl	x1, x0, #9
+  c4:	lsr	x0, x0, x2
+  c8:	b	a8 <parse_num_blocks2+0xa8>
+
+00000000000000cc <parse_num_blocks>:
+  cc:	b	0 <parse_num_blocks2>
+
+pe.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <print_fs_errors>:
+   0:	and	w1, w1, #0xffff
+   4:	cmp	w1, #0x2
+   8:	b.eq	2c <print_fs_errors+0x2c>  // b.none
+   c:	cmp	w1, #0x3
+  10:	b.eq	3c <print_fs_errors+0x3c>  // b.none
+  14:	cmp	w1, #0x1
+  18:	mov	x1, x0
+  1c:	b.ne	4c <print_fs_errors+0x4c>  // b.any
+  20:	adrp	x0, 0 <print_fs_errors>
+  24:	add	x0, x0, #0x0
+  28:	b	0 <fputs>
+  2c:	mov	x1, x0
+  30:	adrp	x0, 0 <print_fs_errors>
+  34:	add	x0, x0, #0x0
+  38:	b	28 <print_fs_errors+0x28>
+  3c:	mov	x1, x0
+  40:	adrp	x0, 0 <print_fs_errors>
+  44:	add	x0, x0, #0x0
+  48:	b	28 <print_fs_errors+0x28>
+  4c:	adrp	x0, 0 <print_fs_errors>
+  50:	add	x0, x0, #0x0
+  54:	b	28 <print_fs_errors+0x28>
+
+pf.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <print_flags>:
+   0:	stp	x29, x30, [sp, #-64]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	adrp	x20, 0 <print_flags>
+  10:	mov	x19, x0
+  14:	add	x20, x20, #0x0
+  18:	stp	x21, x22, [sp, #32]
+  1c:	and	w21, w2, #0x1
+  20:	stp	x23, x24, [sp, #48]
+  24:	adrp	x24, 0 <print_flags>
+  28:	mov	x23, x1
+  2c:	add	x24, x24, #0x0
+  30:	mov	w22, #0x1                   	// #1
+  34:	ldr	x0, [x20]
+  38:	cbnz	x0, 64 <print_flags+0x64>
+  3c:	tst	w21, w22
+  40:	b.eq	bc <print_flags+0xbc>  // b.none
+  44:	mov	x1, x19
+  48:	adrp	x0, 0 <print_flags>
+  4c:	ldp	x19, x20, [sp, #16]
+  50:	add	x0, x0, #0x0
+  54:	ldp	x21, x22, [sp, #32]
+  58:	ldp	x23, x24, [sp, #48]
+  5c:	ldp	x29, x30, [sp], #64
+  60:	b	0 <fputs>
+  64:	tst	x0, x23
+  68:	b.eq	a8 <print_flags+0xa8>  // b.none
+  6c:	cbz	w21, 98 <print_flags+0x98>
+  70:	cbnz	w22, 80 <print_flags+0x80>
+  74:	mov	x1, x19
+  78:	mov	x0, x24
+  7c:	bl	0 <fputs>
+  80:	ldr	x0, [x20, #16]
+  84:	mov	x1, x19
+  88:	mov	w22, #0x0                   	// #0
+  8c:	bl	0 <fputs>
+  90:	add	x20, x20, #0x18
+  94:	b	34 <print_flags+0x34>
+  98:	ldr	x0, [x20, #8]
+  9c:	mov	x1, x19
+  a0:	bl	0 <fputs>
+  a4:	b	90 <print_flags+0x90>
+  a8:	cbnz	w21, 90 <print_flags+0x90>
+  ac:	mov	x1, x19
+  b0:	mov	w0, #0x2d                  	// #45
+  b4:	bl	0 <fputc>
+  b8:	b	90 <print_flags+0x90>
+  bc:	ldp	x19, x20, [sp, #16]
+  c0:	ldp	x21, x22, [sp, #32]
+  c4:	ldp	x23, x24, [sp, #48]
+  c8:	ldp	x29, x30, [sp], #64
+  cc:	ret
+
+ps.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <print_fs_state>:
+   0:	stp	x29, x30, [sp, #-32]!
+   4:	tst	w1, #0x1
+   8:	mov	x29, sp
+   c:	stp	x19, x20, [sp, #16]
+  10:	and	w20, w1, #0xffff
+  14:	mov	x19, x0
+  18:	mov	x1, x0
+  1c:	b.eq	48 <print_fs_state+0x48>  // b.none
+  20:	adrp	x0, 0 <print_fs_state>
+  24:	add	x0, x0, #0x0
+  28:	bl	0 <fputs>
+  2c:	tbz	w20, #1, 54 <print_fs_state+0x54>
+  30:	mov	x1, x19
+  34:	adrp	x0, 0 <print_fs_state>
+  38:	ldp	x19, x20, [sp, #16]
+  3c:	add	x0, x0, #0x0
+  40:	ldp	x29, x30, [sp], #32
+  44:	b	0 <fputs>
+  48:	adrp	x0, 0 <print_fs_state>
+  4c:	add	x0, x0, #0x0
+  50:	b	28 <print_fs_state+0x28>
+  54:	ldp	x19, x20, [sp, #16]
+  58:	ldp	x29, x30, [sp], #32
+  5c:	ret
+
+setflags.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <setflags>:
+   0:	stp	x29, x30, [sp, #-176]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	mov	x20, x1
+  10:	mov	w19, w0
+  14:	add	x1, sp, #0x30
+  18:	bl	0 <fstat>
+  1c:	cbnz	w0, 54 <setflags+0x54>
+  20:	ldr	w2, [sp, #64]
+  24:	and	w2, w2, #0xf000
+  28:	cmp	w2, #0x8, lsl #12
+  2c:	b.eq	54 <setflags+0x54>  // b.none
+  30:	cmp	w2, #0x4, lsl #12
+  34:	b.eq	54 <setflags+0x54>  // b.none
+  38:	bl	0 <__errno_location>
+  3c:	mov	w1, #0x5f                  	// #95
+  40:	str	w1, [x0]
+  44:	mov	w0, #0xffffffff            	// #-1
+  48:	ldp	x19, x20, [sp, #16]
+  4c:	ldp	x29, x30, [sp], #176
+  50:	ret
+  54:	mov	x1, #0x6602                	// #26114
+  58:	add	x2, sp, #0x2c
+  5c:	mov	w0, w19
+  60:	movk	x1, #0x4008, lsl #16
+  64:	str	w20, [sp, #44]
+  68:	bl	0 <ioctl>
+  6c:	b	48 <setflags+0x48>
+
+setversion.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <setversion>:
+   0:	stp	x29, x30, [sp, #-32]!
+   4:	mov	x29, sp
+   8:	str	w1, [sp, #28]
+   c:	mov	x1, #0x7602                	// #30210
+  10:	add	x2, sp, #0x1c
+  14:	movk	x1, #0x4008, lsl #16
+  18:	bl	0 <ioctl>
+  1c:	ldp	x29, x30, [sp], #32
+  20:	ret
+
+uuid.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <e2p_is_null_uuid>:
+   0:	mov	x1, #0x0                   	// #0
+   4:	ldrb	w2, [x0, x1]
+   8:	cbnz	w2, 20 <e2p_is_null_uuid+0x20>
+   c:	add	x1, x1, #0x1
+  10:	cmp	x1, #0x10
+  14:	b.ne	4 <e2p_is_null_uuid+0x4>  // b.any
+  18:	mov	w0, #0x1                   	// #1
+  1c:	ret
+  20:	mov	w0, #0x0                   	// #0
+  24:	b	1c <e2p_is_null_uuid+0x1c>
+
+0000000000000028 <e2p_uuid_to_str>:
+  28:	sub	sp, sp, #0x40
+  2c:	mov	x6, x0
+  30:	mov	x0, x1
+  34:	stp	x29, x30, [sp, #48]
+  38:	add	x29, sp, #0x30
+  3c:	ldrh	w2, [x6]
+  40:	ldrb	w1, [x6, #2]
+  44:	rev16	w2, w2
+  48:	ldrb	w7, [x6, #15]
+  4c:	ldrh	w5, [x6, #8]
+  50:	ubfiz	w2, w2, #8, #16
+  54:	ldrh	w4, [x6, #6]
+  58:	ldrh	w3, [x6, #4]
+  5c:	orr	w2, w1, w2
+  60:	ldrb	w1, [x6, #3]
+  64:	rev16	w5, w5
+  68:	str	w7, [sp, #32]
+  6c:	rev16	w4, w4
+  70:	rev16	w3, w3
+  74:	and	w4, w4, #0xffff
+  78:	ldrb	w7, [x6, #14]
+  7c:	orr	w2, w1, w2, lsl #8
+  80:	str	w7, [sp, #24]
+  84:	and	w3, w3, #0xffff
+  88:	adrp	x1, 0 <e2p_is_null_uuid>
+  8c:	add	x1, x1, #0x0
+  90:	ldrb	w7, [x6, #13]
+  94:	str	w7, [sp, #16]
+  98:	ldrb	w7, [x6, #12]
+  9c:	str	w7, [sp, #8]
+  a0:	ldrb	w7, [x6, #11]
+  a4:	str	w7, [sp]
+  a8:	ldrb	w7, [x6, #10]
+  ac:	and	w6, w5, #0xff
+  b0:	ubfx	x5, x5, #8, #8
+  b4:	bl	0 <sprintf>
+  b8:	ldp	x29, x30, [sp, #48]
+  bc:	add	sp, sp, #0x40
+  c0:	ret
+
+00000000000000c4 <e2p_uuid2str>:
+  c4:	stp	x29, x30, [sp, #-32]!
+  c8:	mov	x3, x0
+  cc:	mov	x29, sp
+  d0:	str	x19, [sp, #16]
+  d4:	bl	0 <e2p_is_null_uuid>
+  d8:	cbnz	w0, 100 <e2p_uuid2str+0x3c>
+  dc:	adrp	x19, 0 <e2p_is_null_uuid>
+  e0:	add	x19, x19, #0x0
+  e4:	mov	x0, x3
+  e8:	mov	x1, x19
+  ec:	bl	28 <e2p_uuid_to_str>
+  f0:	mov	x0, x19
+  f4:	ldr	x19, [sp, #16]
+  f8:	ldp	x29, x30, [sp], #32
+  fc:	ret
+ 100:	adrp	x0, 0 <e2p_is_null_uuid>
+ 104:	add	x0, x0, #0x0
+ 108:	b	f4 <e2p_uuid2str+0x30>
+
+ostype.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <e2p_os2string>:
+   0:	stp	x29, x30, [sp, #-32]!
+   4:	cmp	w0, #0x4
+   8:	mov	x29, sp
+   c:	stp	x19, x20, [sp, #16]
+  10:	b.hi	50 <e2p_os2string+0x50>  // b.pmore
+  14:	adrp	x1, 0 <e2p_os2string>
+  18:	add	x1, x1, #0x0
+  1c:	ldr	x19, [x1, w0, sxtw #3]
+  20:	mov	x0, x19
+  24:	bl	0 <strlen>
+  28:	add	x0, x0, #0x1
+  2c:	bl	0 <malloc>
+  30:	mov	x20, x0
+  34:	cbz	x0, 40 <e2p_os2string+0x40>
+  38:	mov	x1, x19
+  3c:	bl	0 <strcpy>
+  40:	mov	x0, x20
+  44:	ldp	x19, x20, [sp, #16]
+  48:	ldp	x29, x30, [sp], #32
+  4c:	ret
+  50:	adrp	x19, 0 <e2p_os2string>
+  54:	add	x19, x19, #0x0
+  58:	b	20 <e2p_os2string+0x20>
+
+000000000000005c <e2p_string2os>:
+  5c:	stp	x29, x30, [sp, #-48]!
+  60:	mov	x29, sp
+  64:	stp	x19, x20, [sp, #16]
+  68:	adrp	x20, 0 <e2p_os2string>
+  6c:	add	x20, x20, #0x0
+  70:	stp	x21, x22, [sp, #32]
+  74:	mov	x21, x0
+  78:	mov	x19, #0x0                   	// #0
+  7c:	ldr	x1, [x20, x19, lsl #3]
+  80:	mov	w22, w19
+  84:	cbnz	x1, 90 <e2p_string2os+0x34>
+  88:	mov	w22, #0xffffffff            	// #-1
+  8c:	b	a0 <e2p_string2os+0x44>
+  90:	mov	x0, x21
+  94:	add	x19, x19, #0x1
+  98:	bl	0 <strcasecmp>
+  9c:	cbnz	w0, 7c <e2p_string2os+0x20>
+  a0:	mov	w0, w22
+  a4:	ldp	x19, x20, [sp, #16]
+  a8:	ldp	x21, x22, [sp, #32]
+  ac:	ldp	x29, x30, [sp], #48
+  b0:	ret
+
+percent.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <e2p_percent>:
+   0:	cbz	w0, 3c <e2p_percent+0x3c>
+   4:	mov	w2, #0x64                  	// #100
+   8:	sdiv	w3, w2, w0
+   c:	msub	w4, w3, w0, w2
+  10:	cbnz	w4, 1c <e2p_percent+0x1c>
+  14:	udiv	w0, w1, w3
+  18:	ret
+  1c:	tst	w1, #0xff000000
+  20:	b.eq	30 <e2p_percent+0x30>  // b.none
+  24:	udiv	w1, w1, w2
+  28:	mul	w0, w1, w0
+  2c:	b	18 <e2p_percent+0x18>
+  30:	mul	w0, w1, w0
+  34:	udiv	w0, w0, w2
+  38:	b	18 <e2p_percent+0x18>
+  3c:	mov	w0, #0x0                   	// #0
+  40:	b	18 <e2p_percent+0x18>
+
+crypto_mode.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <e2p_encmode2string>:
+   0:	adrp	x1, 0 <e2p_encmode2string>
+   4:	mov	w2, w0
+   8:	add	x1, x1, #0x0
+   c:	ldr	x0, [x1, #8]
+  10:	cbnz	x0, 48 <e2p_encmode2string+0x48>
+  14:	stp	x29, x30, [sp, #-32]!
+  18:	adrp	x1, 0 <e2p_encmode2string>
+  1c:	add	x1, x1, #0x0
+  20:	mov	x29, sp
+  24:	str	x19, [sp, #16]
+  28:	adrp	x19, 0 <e2p_encmode2string>
+  2c:	add	x19, x19, #0x0
+  30:	mov	x0, x19
+  34:	bl	0 <sprintf>
+  38:	mov	x0, x19
+  3c:	ldr	x19, [sp, #16]
+  40:	ldp	x29, x30, [sp], #32
+  44:	ret
+  48:	ldr	w3, [x1]
+  4c:	cmp	w3, w2
+  50:	b.eq	5c <e2p_encmode2string+0x5c>  // b.none
+  54:	add	x1, x1, #0x10
+  58:	b	c <e2p_encmode2string+0xc>
+  5c:	ret
+
+0000000000000060 <e2p_string2encmode>:
+  60:	stp	x29, x30, [sp, #-48]!
+  64:	mov	x29, sp
+  68:	stp	x19, x20, [sp, #16]
+  6c:	adrp	x20, 0 <e2p_encmode2string>
+  70:	mov	x19, x0
+  74:	add	x20, x20, #0x0
+  78:	ldr	x1, [x20, #8]
+  7c:	cbnz	x1, cc <e2p_string2encmode+0x6c>
+  80:	adrp	x1, 0 <e2p_encmode2string>
+  84:	mov	x0, x19
+  88:	add	x1, x1, #0x0
+  8c:	mov	x2, #0x9                   	// #9
+  90:	bl	0 <strncasecmp>
+  94:	cbnz	w0, c4 <e2p_string2encmode+0x64>
+  98:	ldrb	w0, [x19, #9]
+  9c:	cbz	w0, c4 <e2p_string2encmode+0x64>
+  a0:	add	x1, sp, #0x28
+  a4:	add	x0, x19, #0x9
+  a8:	mov	w2, #0xa                   	// #10
+  ac:	bl	0 <strtol>
+  b0:	cmp	w0, #0xff
+  b4:	b.hi	c4 <e2p_string2encmode+0x64>  // b.pmore
+  b8:	ldr	x1, [sp, #40]
+  bc:	ldrb	w1, [x1]
+  c0:	cbz	w1, dc <e2p_string2encmode+0x7c>
+  c4:	mov	w0, #0xffffffff            	// #-1
+  c8:	b	dc <e2p_string2encmode+0x7c>
+  cc:	mov	x0, x19
+  d0:	bl	0 <strcasecmp>
+  d4:	cbnz	w0, e8 <e2p_string2encmode+0x88>
+  d8:	ldr	w0, [x20]
+  dc:	ldp	x19, x20, [sp, #16]
+  e0:	ldp	x29, x30, [sp], #48
+  e4:	ret
+  e8:	add	x20, x20, #0x10
+  ec:	b	78 <e2p_string2encmode+0x18>
+
+fgetproject.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <fgetproject>:
+   0:	stp	x29, x30, [sp, #-80]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	stp	x21, x22, [sp, #32]
+  10:	mov	x21, x1
+  14:	mov	w1, #0x800                 	// #2048
+  18:	bl	0 <open>
+  1c:	mov	w20, w0
+  20:	cmn	w0, #0x1
+  24:	b.eq	78 <fgetproject+0x78>  // b.none
+  28:	mov	x1, #0x581f                	// #22559
+  2c:	add	x2, sp, #0x30
+  30:	movk	x1, #0x801c, lsl #16
+  34:	bl	0 <ioctl>
+  38:	mov	w19, w0
+  3c:	cbnz	w0, 48 <fgetproject+0x48>
+  40:	ldr	w0, [sp, #60]
+  44:	str	x0, [x21]
+  48:	bl	0 <__errno_location>
+  4c:	mov	x21, x0
+  50:	mov	w0, w20
+  54:	ldr	w22, [x21]
+  58:	bl	0 <close>
+  5c:	cbz	w22, 64 <fgetproject+0x64>
+  60:	str	w22, [x21]
+  64:	mov	w0, w19
+  68:	ldp	x19, x20, [sp, #16]
+  6c:	ldp	x21, x22, [sp, #32]
+  70:	ldp	x29, x30, [sp], #80
+  74:	ret
+  78:	mov	w19, w0
+  7c:	b	64 <fgetproject+0x64>
+
+fsetproject.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <fsetproject>:
+   0:	stp	x29, x30, [sp, #-80]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	str	x21, [sp, #32]
+  10:	mov	x21, x1
+  14:	mov	w1, #0x800                 	// #2048
+  18:	bl	0 <open>
+  1c:	mov	w20, w0
+  20:	cmn	w0, #0x1
+  24:	b.eq	a0 <fsetproject+0xa0>  // b.none
+  28:	mov	x1, #0x581f                	// #22559
+  2c:	add	x2, sp, #0x30
+  30:	movk	x1, #0x801c, lsl #16
+  34:	bl	0 <ioctl>
+  38:	mov	w19, w0
+  3c:	cmn	w0, #0x1
+  40:	b.ne	74 <fsetproject+0x74>  // b.any
+  44:	bl	0 <__errno_location>
+  48:	ldr	w21, [x0]
+  4c:	mov	w0, w20
+  50:	bl	0 <close>
+  54:	cbz	w21, 60 <fsetproject+0x60>
+  58:	bl	0 <__errno_location>
+  5c:	str	w21, [x0]
+  60:	mov	w0, w19
+  64:	ldp	x19, x20, [sp, #16]
+  68:	ldr	x21, [sp, #32]
+  6c:	ldp	x29, x30, [sp], #80
+  70:	ret
+  74:	mov	x1, #0x5820                	// #22560
+  78:	add	x2, sp, #0x30
+  7c:	mov	w0, w20
+  80:	movk	x1, #0x401c, lsl #16
+  84:	str	w21, [sp, #60]
+  88:	bl	0 <ioctl>
+  8c:	mov	w19, w0
+  90:	cmn	w0, #0x1
+  94:	b.eq	44 <fsetproject+0x44>  // b.none
+  98:	mov	w21, #0x0                   	// #0
+  9c:	b	4c <fsetproject+0x4c>
+  a0:	mov	w19, w0
+  a4:	b	60 <fsetproject+0x60>
+
+encoding.o:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <e2p_str2encoding>:
+   0:	stp	x29, x30, [sp, #-32]!
+   4:	adrp	x1, 0 <e2p_str2encoding>
+   8:	add	x1, x1, #0x0
+   c:	mov	x29, sp
+  10:	str	x19, [sp, #16]
+  14:	mov	x19, x0
+  18:	bl	0 <strcmp>
+  1c:	cbz	w0, 48 <e2p_str2encoding+0x48>
+  20:	mov	x0, x19
+  24:	adrp	x1, 0 <e2p_str2encoding>
+  28:	add	x1, x1, #0x0
+  2c:	bl	0 <strcmp>
+  30:	cmp	w0, #0x0
+  34:	mov	w0, #0xffffffea            	// #-22
+  38:	csinc	w0, w0, wzr, ne  // ne = any
+  3c:	ldr	x19, [sp, #16]
+  40:	ldp	x29, x30, [sp], #32
+  44:	ret
+  48:	mov	w0, #0x1                   	// #1
+  4c:	b	3c <e2p_str2encoding+0x3c>
+
+0000000000000050 <e2p_encoding2str>:
+  50:	cmp	w0, #0x1
+  54:	b.eq	90 <e2p_encoding2str+0x40>  // b.none
+  58:	stp	x29, x30, [sp, #-32]!
+  5c:	mov	w2, w0
+  60:	adrp	x1, 0 <e2p_str2encoding>
+  64:	mov	x29, sp
+  68:	str	x19, [sp, #16]
+  6c:	adrp	x19, 0 <e2p_str2encoding>
+  70:	add	x19, x19, #0x0
+  74:	add	x1, x1, #0x0
+  78:	mov	x0, x19
+  7c:	bl	0 <sprintf>
+  80:	mov	x0, x19
+  84:	ldr	x19, [sp, #16]
+  88:	ldp	x29, x30, [sp], #32
+  8c:	ret
+  90:	adrp	x0, 0 <e2p_str2encoding>
+  94:	add	x0, x0, #0x0
+  98:	ret
+
+000000000000009c <e2p_get_encoding_flags>:
+  9c:	mov	w0, #0x0                   	// #0
+  a0:	ret
+
+00000000000000a4 <e2p_str2encoding_flags>:
+  a4:	stp	x29, x30, [sp, #-64]!
+  a8:	mov	x29, sp
+  ac:	stp	x21, x22, [sp, #32]
+  b0:	adrp	x21, 0 <e2p_str2encoding>
+  b4:	add	x21, x21, #0x0
+  b8:	mov	w22, w0
+  bc:	mov	x0, x1
+  c0:	mov	x1, x21
+  c4:	stp	x19, x20, [sp, #16]
+  c8:	mov	x20, x2
+  cc:	stp	x23, x24, [sp, #48]
+  d0:	bl	0 <strtok>
+  d4:	cmp	w22, #0x1
+  d8:	b.ne	fc <e2p_str2encoding_flags+0x58>  // b.any
+  dc:	adrp	x22, 0 <e2p_str2encoding>
+  e0:	adrp	x23, 0 <e2p_str2encoding>
+  e4:	mov	x19, x0
+  e8:	add	x22, x22, #0x0
+  ec:	add	x23, x23, #0x0
+  f0:	cbnz	x19, 114 <e2p_str2encoding_flags+0x70>
+  f4:	mov	w0, #0x0                   	// #0
+  f8:	b	100 <e2p_str2encoding_flags+0x5c>
+  fc:	mov	w0, #0xffffffea            	// #-22
+ 100:	ldp	x19, x20, [sp, #16]
+ 104:	ldp	x21, x22, [sp, #32]
+ 108:	ldp	x23, x24, [sp, #48]
+ 10c:	ldp	x29, x30, [sp], #64
+ 110:	ret
+ 114:	mov	x1, x19
+ 118:	mov	x0, x22
+ 11c:	mov	x2, #0x2                   	// #2
+ 120:	bl	0 <strncmp>
+ 124:	cbnz	w0, 16c <e2p_str2encoding_flags+0xc8>
+ 128:	add	x19, x19, #0x2
+ 12c:	mov	w24, #0x1                   	// #1
+ 130:	mov	x1, x19
+ 134:	mov	x0, x23
+ 138:	bl	0 <strcmp>
+ 13c:	cbnz	w0, fc <e2p_str2encoding_flags+0x58>
+ 140:	ldrh	w0, [x20]
+ 144:	cmp	w24, #0x0
+ 148:	and	w1, w0, #0xfffe
+ 14c:	orr	w0, w0, #0x1
+ 150:	csel	w0, w0, w1, eq  // eq = none
+ 154:	strh	w0, [x20]
+ 158:	mov	x1, x21
+ 15c:	mov	x0, #0x0                   	// #0
+ 160:	bl	0 <strtok>
+ 164:	mov	x19, x0
+ 168:	b	f0 <e2p_str2encoding_flags+0x4c>
+ 16c:	mov	w24, #0x0                   	// #0
+ 170:	b	130 <e2p_str2encoding_flags+0x8c>

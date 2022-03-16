@@ -1,0 +1,677 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//scsi.module_gcc_-Os:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_scsi_iterate>:
+   0:	stp	x29, x30, [sp, #-64]!
+   4:	mov	x29, sp
+   8:	stp	x0, x1, [sp, #48]
+   c:	adrp	x0, 0 <grub_scsi_iterate>
+  10:	ldr	x0, [x0]
+  14:	stp	x19, x20, [sp, #16]
+  18:	mov	w20, w2
+  1c:	str	x21, [sp, #32]
+  20:	adrp	x21, 0 <grub_scsi_iterate>
+  24:	ldr	x19, [x0]
+  28:	cbnz	x19, 40 <grub_scsi_iterate+0x40>
+  2c:	mov	w0, #0x0                   	// #0
+  30:	ldp	x19, x20, [sp, #16]
+  34:	ldr	x21, [sp, #32]
+  38:	ldp	x29, x30, [sp], #64
+  3c:	ret
+  40:	ldr	x3, [x19]
+  44:	cbnz	x3, 50 <grub_scsi_iterate+0x50>
+  48:	ldr	x19, [x19, #40]
+  4c:	b	28 <grub_scsi_iterate+0x28>
+  50:	ldr	x0, [x21]
+  54:	mov	w2, w20
+  58:	add	x1, sp, #0x30
+  5c:	blr	x3
+  60:	cbz	w0, 48 <grub_scsi_iterate+0x48>
+  64:	mov	w0, #0x1                   	// #1
+  68:	b	30 <grub_scsi_iterate+0x30>
+  6c:	nop
+	...
+
+0000000000000080 <grub_scsi_request_sense>:
+  80:	stp	x29, x30, [sp, #-80]!
+  84:	mov	x2, #0x6                   	// #6
+  88:	mov	w1, #0x0                   	// #0
+  8c:	mov	x29, sp
+  90:	str	x19, [sp, #16]
+  94:	mov	x19, x0
+  98:	mov	w0, #0x3                   	// #3
+  9c:	strb	w0, [sp, #40]
+  a0:	ldr	w0, [x19, #20]
+  a4:	ubfiz	w0, w0, #5, #3
+  a8:	strb	w0, [sp, #41]
+  ac:	mov	w0, #0x120000              	// #1179648
+  b0:	stur	w0, [sp, #42]
+  b4:	add	x0, sp, #0x28
+  b8:	add	x0, x0, x2
+  bc:	bl	0 <grub_memset>
+  c0:	ldr	x0, [x19]
+  c4:	add	x4, sp, #0x38
+  c8:	add	x2, sp, #0x28
+  cc:	mov	x3, #0x12                  	// #18
+  d0:	mov	x1, #0xc                   	// #12
+  d4:	ldr	x5, [x0, #24]
+  d8:	mov	x0, x19
+  dc:	blr	x5
+  e0:	ldr	x19, [sp, #16]
+  e4:	ldp	x29, x30, [sp], #80
+  e8:	ret
+
+00000000000000ec <grub_scsi_close>:
+  ec:	stp	x29, x30, [sp, #-32]!
+  f0:	mov	x29, sp
+  f4:	str	x19, [sp, #16]
+  f8:	ldr	x19, [x0, #64]
+  fc:	ldr	x0, [x19]
+ 100:	ldr	x1, [x0, #16]
+ 104:	cbz	x1, 110 <grub_scsi_close+0x24>
+ 108:	mov	x0, x19
+ 10c:	blr	x1
+ 110:	mov	x0, x19
+ 114:	ldr	x19, [sp, #16]
+ 118:	ldp	x29, x30, [sp], #32
+ 11c:	b	0 <grub_free>
+
+0000000000000120 <grub_scsi_open>:
+ 120:	stp	x29, x30, [sp, #-144]!
+ 124:	mov	x29, sp
+ 128:	stp	x19, x20, [sp, #16]
+ 12c:	stp	x21, x22, [sp, #32]
+ 130:	mov	x21, x1
+ 134:	stp	x23, x24, [sp, #48]
+ 138:	mov	x23, x0
+ 13c:	stp	x25, x26, [sp, #64]
+ 140:	bl	0 <grub_strlen>
+ 144:	sub	x0, x0, #0x1
+ 148:	adds	x20, x23, x0
+ 14c:	b.cs	1e8 <grub_scsi_open+0xc8>  // b.hs, b.nlast
+ 150:	ldrb	w22, [x23, x0]
+ 154:	sub	w22, w22, #0x61
+ 158:	and	w0, w22, #0xff
+ 15c:	cmp	w0, #0x19
+ 160:	b.hi	1e0 <grub_scsi_open+0xc0>  // b.pmore
+ 164:	sub	x20, x20, #0x1
+ 168:	cmp	x20, x23
+ 16c:	b.cc	180 <grub_scsi_open+0x60>  // b.lo, b.ul, b.last
+ 170:	ldrb	w0, [x20]
+ 174:	sub	w0, w0, #0x30
+ 178:	cmp	w0, #0x9
+ 17c:	b.ls	164 <grub_scsi_open+0x44>  // b.plast
+ 180:	ldrb	w0, [x20, #1]
+ 184:	sub	w0, w0, #0x30
+ 188:	and	w0, w0, #0xff
+ 18c:	cmp	w0, #0x9
+ 190:	b.hi	22c <grub_scsi_open+0x10c>  // b.pmore
+ 194:	mov	w2, #0x0                   	// #0
+ 198:	mov	x1, #0x0                   	// #0
+ 19c:	add	x0, x20, #0x1
+ 1a0:	bl	0 <grub_strtoul>
+ 1a4:	mov	x25, x0
+ 1a8:	mov	x0, #0x38                  	// #56
+ 1ac:	bl	0 <grub_malloc>
+ 1b0:	mov	x19, x0
+ 1b4:	cbnz	x0, 1f0 <grub_scsi_open+0xd0>
+ 1b8:	adrp	x0, 0 <grub_scsi_iterate>
+ 1bc:	ldr	x0, [x0]
+ 1c0:	ldr	w20, [x0]
+ 1c4:	mov	w0, w20
+ 1c8:	ldp	x19, x20, [sp, #16]
+ 1cc:	ldp	x21, x22, [sp, #32]
+ 1d0:	ldp	x23, x24, [sp, #48]
+ 1d4:	ldp	x25, x26, [sp, #64]
+ 1d8:	ldp	x29, x30, [sp], #144
+ 1dc:	ret
+ 1e0:	mov	w22, #0x0                   	// #0
+ 1e4:	b	168 <grub_scsi_open+0x48>
+ 1e8:	mov	w22, #0x0                   	// #0
+ 1ec:	b	180 <grub_scsi_open+0x60>
+ 1f0:	adrp	x0, 0 <grub_scsi_iterate>
+ 1f4:	sub	x20, x20, x23
+ 1f8:	mov	w24, #0x0                   	// #0
+ 1fc:	ldr	x26, [x0]
+ 200:	mov	x2, x20
+ 204:	mov	x1, x23
+ 208:	mov	x0, x26
+ 20c:	bl	0 <grub_strncmp>
+ 210:	cbz	w0, 614 <grub_scsi_open+0x4f4>
+ 214:	add	w24, w24, #0x1
+ 218:	add	x26, x26, #0x5
+ 21c:	cmp	w24, #0x3
+ 220:	b.ne	200 <grub_scsi_open+0xe0>  // b.any
+ 224:	mov	x0, x19
+ 228:	bl	0 <grub_free>
+ 22c:	adrp	x0, 0 <grub_scsi_iterate>
+ 230:	ldr	x1, [x0]
+ 234:	b	360 <grub_scsi_open+0x240>
+ 238:	ldr	x3, [x20, #8]
+ 23c:	mov	x2, x19
+ 240:	mov	w1, w26
+ 244:	mov	w0, w24
+ 248:	blr	x3
+ 24c:	cbz	w0, 264 <grub_scsi_open+0x144>
+ 250:	ldr	x0, [x23]
+ 254:	ldr	x20, [x20, #40]
+ 258:	str	wzr, [x0]
+ 25c:	cbnz	x20, 238 <grub_scsi_open+0x118>
+ 260:	b	224 <grub_scsi_open+0x104>
+ 264:	orr	w0, w22, w25, lsl #8
+ 268:	str	x19, [x21, #64]
+ 26c:	adrp	x23, 0 <grub_scsi_iterate>
+ 270:	mov	w1, #0x21e                 	// #542
+ 274:	orr	w24, w0, w24, lsl #24
+ 278:	str	x24, [x21, #32]
+ 27c:	adrp	x0, 0 <grub_scsi_iterate>
+ 280:	str	w22, [x19, #20]
+ 284:	adrp	x22, 0 <grub_scsi_iterate>
+ 288:	str	x20, [x19]
+ 28c:	ldr	x3, [x0]
+ 290:	str	w25, [x19, #12]
+ 294:	ldr	x2, [x23]
+ 298:	ldr	x0, [x22]
+ 29c:	bl	0 <grub_real_dprintf>
+ 2a0:	mov	w0, #0x12                  	// #18
+ 2a4:	strb	w0, [sp, #88]
+ 2a8:	mov	x2, #0x6                   	// #6
+ 2ac:	mov	w1, #0x0                   	// #0
+ 2b0:	ldr	w0, [x19, #20]
+ 2b4:	ubfiz	w0, w0, #5, #3
+ 2b8:	strb	w0, [sp, #89]
+ 2bc:	mov	w0, #0x240000              	// #2359296
+ 2c0:	stur	w0, [sp, #90]
+ 2c4:	add	x0, sp, #0x58
+ 2c8:	add	x0, x0, x2
+ 2cc:	bl	0 <grub_memset>
+ 2d0:	ldr	x0, [x19]
+ 2d4:	add	x4, sp, #0x68
+ 2d8:	add	x2, sp, #0x58
+ 2dc:	mov	x3, #0x24                  	// #36
+ 2e0:	mov	x1, #0xc                   	// #12
+ 2e4:	ldr	x5, [x0, #24]
+ 2e8:	mov	x0, x19
+ 2ec:	blr	x5
+ 2f0:	mov	w20, w0
+ 2f4:	mov	x0, x19
+ 2f8:	bl	80 <grub_scsi_request_sense>
+ 2fc:	cbz	w0, 30c <grub_scsi_open+0x1ec>
+ 300:	adrp	x0, 0 <grub_scsi_iterate>
+ 304:	ldr	x0, [x0]
+ 308:	str	w20, [x0]
+ 30c:	cbnz	w20, 370 <grub_scsi_open+0x250>
+ 310:	ldrb	w4, [sp, #104]
+ 314:	adrp	x0, 0 <grub_scsi_iterate>
+ 318:	ldr	x2, [x23]
+ 31c:	and	w4, w4, #0x1f
+ 320:	strb	w4, [x19, #8]
+ 324:	mov	w1, #0x228                 	// #552
+ 328:	ldr	x3, [x0]
+ 32c:	ldrb	w5, [sp, #105]
+ 330:	ldr	x0, [x22]
+ 334:	lsr	w5, w5, #7
+ 338:	str	w5, [x19, #24]
+ 33c:	bl	0 <grub_real_dprintf>
+ 340:	ldrb	w0, [x19, #8]
+ 344:	cmp	w0, #0x0
+ 348:	ccmp	w0, #0x5, #0x4, ne  // ne = any
+ 34c:	b.eq	394 <grub_scsi_open+0x274>  // b.none
+ 350:	mov	x0, x19
+ 354:	bl	0 <grub_free>
+ 358:	adrp	x0, 0 <grub_scsi_iterate>
+ 35c:	ldr	x1, [x0]
+ 360:	mov	w0, #0xc                   	// #12
+ 364:	bl	0 <grub_error>
+ 368:	mov	w20, w0
+ 36c:	b	1c4 <grub_scsi_open+0xa4>
+ 370:	mov	x0, x19
+ 374:	bl	0 <grub_free>
+ 378:	adrp	x0, 0 <grub_scsi_iterate>
+ 37c:	mov	w1, #0x224                 	// #548
+ 380:	ldr	x2, [x23]
+ 384:	ldr	x3, [x0]
+ 388:	ldr	x0, [x22]
+ 38c:	bl	0 <grub_real_dprintf>
+ 390:	b	1c4 <grub_scsi_open+0xa4>
+ 394:	bl	0 <grub_get_time_ms>
+ 398:	add	x25, sp, #0x6e
+ 39c:	mov	x1, #0x1388                	// #5000
+ 3a0:	add	x24, x0, x1
+ 3a4:	adrp	x26, 0 <grub_scsi_iterate>
+ 3a8:	bl	0 <grub_get_time_ms>
+ 3ac:	cmp	x0, x24
+ 3b0:	b.ls	3dc <grub_scsi_open+0x2bc>  // b.plast
+ 3b4:	mov	x0, x19
+ 3b8:	bl	0 <grub_free>
+ 3bc:	adrp	x0, 0 <grub_scsi_iterate>
+ 3c0:	mov	w1, #0x242                 	// #578
+ 3c4:	ldr	x2, [x23]
+ 3c8:	mov	w20, #0xe                   	// #14
+ 3cc:	ldr	x3, [x0]
+ 3d0:	ldr	x0, [x22]
+ 3d4:	bl	0 <grub_real_dprintf>
+ 3d8:	b	1c4 <grub_scsi_open+0xa4>
+ 3dc:	strb	wzr, [sp, #104]
+ 3e0:	mov	x2, #0x6                   	// #6
+ 3e4:	mov	w1, #0x0                   	// #0
+ 3e8:	ldr	w0, [x19, #20]
+ 3ec:	stur	wzr, [sp, #106]
+ 3f0:	ubfiz	w0, w0, #5, #3
+ 3f4:	strb	w0, [sp, #105]
+ 3f8:	mov	x0, x25
+ 3fc:	bl	0 <grub_memset>
+ 400:	ldr	x0, [x19]
+ 404:	add	x2, sp, #0x68
+ 408:	mov	x4, #0x0                   	// #0
+ 40c:	mov	x3, #0x0                   	// #0
+ 410:	mov	x1, #0xc                   	// #12
+ 414:	ldr	x5, [x0, #24]
+ 418:	mov	x0, x19
+ 41c:	blr	x5
+ 420:	mov	w20, w0
+ 424:	mov	x0, x19
+ 428:	bl	80 <grub_scsi_request_sense>
+ 42c:	cbz	w0, 438 <grub_scsi_open+0x318>
+ 430:	ldr	x0, [x26]
+ 434:	str	w20, [x0]
+ 438:	cmp	w20, #0xe
+ 43c:	b.eq	3a8 <grub_scsi_open+0x288>  // b.none
+ 440:	adrp	x0, 0 <grub_scsi_iterate>
+ 444:	add	x4, sp, #0x58
+ 448:	add	x2, sp, #0x68
+ 44c:	mov	x3, #0x8                   	// #8
+ 450:	ldr	x24, [x0]
+ 454:	mov	w0, #0x25                  	// #37
+ 458:	strb	w0, [sp, #104]
+ 45c:	mov	x1, #0xc                   	// #12
+ 460:	ldr	w0, [x19, #20]
+ 464:	stur	xzr, [sp, #106]
+ 468:	str	wzr, [x24]
+ 46c:	ubfiz	w0, w0, #5, #3
+ 470:	strb	w0, [sp, #105]
+ 474:	strh	wzr, [sp, #114]
+ 478:	ldr	x0, [x19]
+ 47c:	ldr	x5, [x0, #24]
+ 480:	mov	x0, x19
+ 484:	blr	x5
+ 488:	mov	w20, w0
+ 48c:	mov	x0, x19
+ 490:	bl	80 <grub_scsi_request_sense>
+ 494:	cbz	w0, 49c <grub_scsi_open+0x37c>
+ 498:	str	w20, [x24]
+ 49c:	cbnz	w20, 580 <grub_scsi_open+0x460>
+ 4a0:	ldr	w1, [sp, #88]
+ 4a4:	rev	w0, w1
+ 4a8:	str	x0, [x19, #32]
+ 4ac:	ldr	w0, [sp, #92]
+ 4b0:	cmn	w1, #0x1
+ 4b4:	rev	w0, w0
+ 4b8:	str	w0, [x19, #40]
+ 4bc:	b.ne	538 <grub_scsi_open+0x418>  // b.any
+ 4c0:	mov	w0, #0xffffff9e            	// #-98
+ 4c4:	strb	w0, [sp, #88]
+ 4c8:	add	x4, sp, #0x68
+ 4cc:	add	x2, sp, #0x58
+ 4d0:	ldr	w0, [x19, #20]
+ 4d4:	mov	x3, #0x20                  	// #32
+ 4d8:	strh	wzr, [sp, #102]
+ 4dc:	mov	x1, #0x10                  	// #16
+ 4e0:	stur	xzr, [sp, #90]
+ 4e4:	lsl	w0, w0, #5
+ 4e8:	orr	w0, w0, #0x10
+ 4ec:	strb	w0, [sp, #89]
+ 4f0:	mov	w0, #0x20000000            	// #536870912
+ 4f4:	stur	w0, [sp, #98]
+ 4f8:	ldr	x0, [x19]
+ 4fc:	ldr	x5, [x0, #24]
+ 500:	mov	x0, x19
+ 504:	blr	x5
+ 508:	mov	w20, w0
+ 50c:	mov	x0, x19
+ 510:	bl	80 <grub_scsi_request_sense>
+ 514:	cbz	w0, 51c <grub_scsi_open+0x3fc>
+ 518:	str	w20, [x24]
+ 51c:	cbnz	w20, 59c <grub_scsi_open+0x47c>
+ 520:	ldr	x0, [sp, #104]
+ 524:	rev	x0, x0
+ 528:	str	x0, [x19, #32]
+ 52c:	ldr	w0, [sp, #112]
+ 530:	rev	w0, w0
+ 534:	str	w0, [x19, #40]
+ 538:	ldr	x4, [x19, #32]
+ 53c:	mov	w1, #0x1                   	// #1
+ 540:	ldr	w2, [x19, #40]
+ 544:	add	x0, x4, #0x1
+ 548:	str	x0, [x21, #16]
+ 54c:	str	w1, [x21, #28]
+ 550:	sub	w0, w2, #0x1
+ 554:	ands	w20, w0, w2
+ 558:	b.ne	560 <grub_scsi_open+0x440>  // b.any
+ 55c:	cbnz	w2, 5b8 <grub_scsi_open+0x498>
+ 560:	adrp	x0, 0 <grub_scsi_iterate>
+ 564:	ldr	x1, [x0]
+ 568:	mov	w0, #0x1d                  	// #29
+ 56c:	bl	0 <grub_error>
+ 570:	mov	x0, x19
+ 574:	bl	0 <grub_free>
+ 578:	ldr	w20, [x24]
+ 57c:	b	1c4 <grub_scsi_open+0xa4>
+ 580:	mov	x0, x19
+ 584:	bl	0 <grub_free>
+ 588:	adrp	x0, 0 <grub_scsi_iterate>
+ 58c:	mov	w1, #0x251                 	// #593
+ 590:	ldr	x2, [x23]
+ 594:	ldr	x3, [x0]
+ 598:	b	388 <grub_scsi_open+0x268>
+ 59c:	mov	x0, x19
+ 5a0:	bl	0 <grub_free>
+ 5a4:	adrp	x0, 0 <grub_scsi_iterate>
+ 5a8:	mov	w1, #0x25b                 	// #603
+ 5ac:	ldr	x2, [x23]
+ 5b0:	ldr	x3, [x0]
+ 5b4:	b	388 <grub_scsi_open+0x268>
+ 5b8:	str	wzr, [x21, #24]
+ 5bc:	ldr	w0, [x21, #24]
+ 5c0:	lsl	w3, w1, w0
+ 5c4:	cmp	w2, w3
+ 5c8:	b.hi	608 <grub_scsi_open+0x4e8>  // b.pmore
+ 5cc:	adrp	x0, 0 <grub_scsi_iterate>
+ 5d0:	mov	w5, w2
+ 5d4:	ldr	x2, [x23]
+ 5d8:	mov	w1, #0x273                 	// #627
+ 5dc:	ldr	x3, [x0]
+ 5e0:	ldr	x0, [x22]
+ 5e4:	bl	0 <grub_real_dprintf>
+ 5e8:	adrp	x0, 0 <grub_scsi_iterate>
+ 5ec:	mov	w1, #0x275                 	// #629
+ 5f0:	ldr	x2, [x23]
+ 5f4:	ldr	x3, [x0]
+ 5f8:	ldr	x0, [x22]
+ 5fc:	ldr	x4, [x21, #16]
+ 600:	bl	0 <grub_real_dprintf>
+ 604:	b	1c4 <grub_scsi_open+0xa4>
+ 608:	add	w0, w0, #0x1
+ 60c:	str	w0, [x21, #24]
+ 610:	b	5bc <grub_scsi_open+0x49c>
+ 614:	adrp	x0, 0 <grub_scsi_iterate>
+ 618:	mov	w26, w25
+ 61c:	adrp	x23, 0 <grub_scsi_iterate>
+ 620:	ldr	x0, [x0]
+ 624:	ldr	x20, [x0]
+ 628:	b	25c <grub_scsi_open+0x13c>
+ 62c:	nop
+	...
+
+00000000000006b0 <grub_scsi_write>:
+ 6b0:	stp	x29, x30, [sp, #-48]!
+ 6b4:	mov	x29, sp
+ 6b8:	stp	x19, x20, [sp, #16]
+ 6bc:	ldr	x20, [x0, #64]
+ 6c0:	ldrb	w0, [x20, #8]
+ 6c4:	cmp	w0, #0x5
+ 6c8:	b.ne	6f0 <grub_scsi_write+0x40>  // b.any
+ 6cc:	adrp	x0, 0 <grub_scsi_iterate>
+ 6d0:	ldr	x1, [x0]
+ 6d4:	mov	w0, #0x1d                  	// #29
+ 6d8:	bl	0 <grub_error>
+ 6dc:	mov	w19, w0
+ 6e0:	mov	w0, w19
+ 6e4:	ldp	x19, x20, [sp, #16]
+ 6e8:	ldp	x29, x30, [sp], #48
+ 6ec:	ret
+ 6f0:	cbnz	w0, 7a4 <grub_scsi_write+0xf4>
+ 6f4:	ldr	x0, [x20]
+ 6f8:	mov	x4, x3
+ 6fc:	ldr	w5, [x20, #20]
+ 700:	cmp	xzr, x1, lsr #32
+ 704:	ldr	x6, [x0, #32]
+ 708:	ubfiz	w5, w5, #5, #3
+ 70c:	ldr	w0, [x20, #40]
+ 710:	mul	x3, x0, x2
+ 714:	b.eq	768 <grub_scsi_write+0xb8>  // b.none
+ 718:	rev	w2, w2
+ 71c:	rev	x1, x1
+ 720:	stur	w2, [sp, #42]
+ 724:	add	x2, sp, #0x20
+ 728:	mov	w0, #0xffffff8a            	// #-118
+ 72c:	strb	w0, [sp, #32]
+ 730:	strb	w5, [sp, #33]
+ 734:	stur	x1, [sp, #34]
+ 738:	mov	x1, #0x10                  	// #16
+ 73c:	strh	wzr, [sp, #46]
+ 740:	mov	x0, x20
+ 744:	blr	x6
+ 748:	mov	w19, w0
+ 74c:	mov	x0, x20
+ 750:	bl	80 <grub_scsi_request_sense>
+ 754:	cbz	w0, 6e0 <grub_scsi_write+0x30>
+ 758:	adrp	x0, 0 <grub_scsi_iterate>
+ 75c:	ldr	x0, [x0]
+ 760:	str	w19, [x0]
+ 764:	b	6e0 <grub_scsi_write+0x30>
+ 768:	mov	w0, #0x2a                  	// #42
+ 76c:	strb	w0, [sp, #32]
+ 770:	ubfiz	w0, w2, #8, #16
+ 774:	ubfx	w2, w2, #8, #8
+ 778:	rev	w1, w1
+ 77c:	orr	w2, w0, w2
+ 780:	strb	w5, [sp, #33]
+ 784:	stur	w1, [sp, #34]
+ 788:	mov	x1, #0xc                   	// #12
+ 78c:	strb	wzr, [sp, #38]
+ 790:	sturh	w2, [sp, #39]
+ 794:	add	x2, sp, #0x20
+ 798:	strb	wzr, [sp, #41]
+ 79c:	strh	wzr, [sp, #42]
+ 7a0:	b	740 <grub_scsi_write+0x90>
+ 7a4:	mov	w19, #0x0                   	// #0
+ 7a8:	b	6e0 <grub_scsi_write+0x30>
+ 7ac:	nop
+	...
+
+00000000000007c0 <grub_scsi_read16.isra.0>:
+ 7c0:	stp	x29, x30, [sp, #-48]!
+ 7c4:	rev	x1, x1
+ 7c8:	mov	w4, #0xffffff88            	// #-120
+ 7cc:	mov	x29, sp
+ 7d0:	stur	x1, [sp, #34]
+ 7d4:	rev	w1, w2
+ 7d8:	ldr	w5, [x0, #20]
+ 7dc:	strb	w4, [sp, #32]
+ 7e0:	stur	w1, [sp, #42]
+ 7e4:	ldr	w1, [x0, #40]
+ 7e8:	ubfiz	w5, w5, #5, #3
+ 7ec:	ldr	x4, [x0]
+ 7f0:	strb	w5, [sp, #33]
+ 7f4:	stp	x19, x20, [sp, #16]
+ 7f8:	mov	x19, x0
+ 7fc:	ldr	x5, [x4, #24]
+ 800:	mov	x4, x3
+ 804:	mul	x3, x1, x2
+ 808:	add	x2, sp, #0x20
+ 80c:	strh	wzr, [sp, #46]
+ 810:	mov	x1, #0x10                  	// #16
+ 814:	blr	x5
+ 818:	mov	w20, w0
+ 81c:	mov	x0, x19
+ 820:	bl	80 <grub_scsi_request_sense>
+ 824:	cbz	w0, 834 <grub_scsi_read16.isra.0+0x74>
+ 828:	adrp	x0, 0 <grub_scsi_iterate>
+ 82c:	ldr	x0, [x0]
+ 830:	str	w20, [x0]
+ 834:	mov	w0, w20
+ 838:	ldp	x19, x20, [sp, #16]
+ 83c:	ldp	x29, x30, [sp], #48
+ 840:	ret
+ 844:	nop
+	...
+
+0000000000000850 <grub_scsi_read>:
+ 850:	stp	x29, x30, [sp, #-48]!
+ 854:	mov	x6, x2
+ 858:	mov	x4, x3
+ 85c:	mov	x29, sp
+ 860:	stp	x19, x20, [sp, #16]
+ 864:	ldr	x20, [x0, #64]
+ 868:	ldrb	w0, [x20, #8]
+ 86c:	cbz	w0, 88c <grub_scsi_read+0x3c>
+ 870:	cmp	w0, #0x5
+ 874:	b.eq	91c <grub_scsi_read+0xcc>  // b.none
+ 878:	mov	w19, #0x0                   	// #0
+ 87c:	mov	w0, w19
+ 880:	ldp	x19, x20, [sp, #16]
+ 884:	ldp	x29, x30, [sp], #48
+ 888:	ret
+ 88c:	cmp	xzr, x1, lsr #32
+ 890:	b.eq	8a4 <grub_scsi_read+0x54>  // b.none
+ 894:	mov	x0, x20
+ 898:	bl	7c0 <grub_scsi_read16.isra.0>
+ 89c:	mov	w19, w0
+ 8a0:	b	87c <grub_scsi_read+0x2c>
+ 8a4:	mov	w0, #0x28                  	// #40
+ 8a8:	strb	w0, [sp, #32]
+ 8ac:	rev	w5, w1
+ 8b0:	ubfx	w1, w2, #8, #8
+ 8b4:	ldr	w0, [x20, #20]
+ 8b8:	stur	w5, [sp, #34]
+ 8bc:	strb	wzr, [sp, #38]
+ 8c0:	ubfiz	w0, w0, #5, #3
+ 8c4:	strb	w0, [sp, #33]
+ 8c8:	ubfiz	w0, w2, #8, #16
+ 8cc:	strb	wzr, [sp, #41]
+ 8d0:	orr	w0, w0, w1
+ 8d4:	sturh	w0, [sp, #39]
+ 8d8:	strh	wzr, [sp, #42]
+ 8dc:	add	x2, sp, #0x20
+ 8e0:	mov	x1, #0xc                   	// #12
+ 8e4:	ldr	w3, [x20, #40]
+ 8e8:	ldr	x0, [x20]
+ 8ec:	mul	x3, x3, x6
+ 8f0:	ldr	x5, [x0, #24]
+ 8f4:	mov	x0, x20
+ 8f8:	blr	x5
+ 8fc:	mov	w19, w0
+ 900:	mov	x0, x20
+ 904:	bl	80 <grub_scsi_request_sense>
+ 908:	cbz	w0, 87c <grub_scsi_read+0x2c>
+ 90c:	adrp	x0, 0 <grub_scsi_iterate>
+ 910:	ldr	x0, [x0]
+ 914:	str	w19, [x0]
+ 918:	b	87c <grub_scsi_read+0x2c>
+ 91c:	cmp	xzr, x1, lsr #32
+ 920:	b.ne	894 <grub_scsi_read+0x44>  // b.any
+ 924:	mov	w0, #0xffffffa8            	// #-88
+ 928:	strb	w0, [sp, #32]
+ 92c:	rev	w5, w1
+ 930:	ldr	w0, [x20, #20]
+ 934:	stur	w5, [sp, #34]
+ 938:	ubfiz	w0, w0, #5, #3
+ 93c:	strb	w0, [sp, #33]
+ 940:	rev	w0, w2
+ 944:	stur	w0, [sp, #38]
+ 948:	b	8d8 <grub_scsi_read+0x88>
+ 94c:	nop
+	...
+
+0000000000000958 <scsi_iterate>:
+ 958:	stp	x29, x30, [sp, #-80]!
+ 95c:	cmp	w2, #0x1
+ 960:	mov	x29, sp
+ 964:	stp	x23, x24, [sp, #48]
+ 968:	mov	w23, w1
+ 96c:	adrp	x1, 0 <grub_scsi_iterate>
+ 970:	stp	x21, x22, [sp, #32]
+ 974:	ldr	x22, [x1]
+ 978:	mov	w1, #0x5                   	// #5
+ 97c:	stp	x19, x20, [sp, #16]
+ 980:	mov	x19, x3
+ 984:	stp	x25, x26, [sp, #64]
+ 988:	smaddl	x22, w0, w1, x22
+ 98c:	b.ne	a2c <scsi_iterate+0xd4>  // b.any
+ 990:	adrp	x0, 0 <grub_scsi_iterate>
+ 994:	mov	w2, w23
+ 998:	mov	x1, x22
+ 99c:	ldr	x0, [x0]
+ 9a0:	bl	0 <grub_xasprintf>
+ 9a4:	mov	x20, x0
+ 9a8:	cbnz	x0, 9cc <scsi_iterate+0x74>
+ 9ac:	mov	w19, #0x1                   	// #1
+ 9b0:	mov	w0, w19
+ 9b4:	ldp	x19, x20, [sp, #16]
+ 9b8:	ldp	x21, x22, [sp, #32]
+ 9bc:	ldp	x23, x24, [sp, #48]
+ 9c0:	ldp	x25, x26, [sp, #64]
+ 9c4:	ldp	x29, x30, [sp], #80
+ 9c8:	ret
+ 9cc:	ldp	x2, x1, [x19]
+ 9d0:	blr	x2
+ 9d4:	mov	w19, w0
+ 9d8:	mov	x0, x20
+ 9dc:	bl	0 <grub_free>
+ 9e0:	b	9b0 <scsi_iterate+0x58>
+ 9e4:	ldr	x0, [x26]
+ 9e8:	add	w3, w21, #0x61
+ 9ec:	mov	w2, w23
+ 9f0:	mov	x1, x22
+ 9f4:	bl	0 <grub_xasprintf>
+ 9f8:	mov	x24, x0
+ 9fc:	cbz	x0, 9ac <scsi_iterate+0x54>
+ a00:	ldp	x2, x1, [x19]
+ a04:	blr	x2
+ a08:	mov	w25, w0
+ a0c:	mov	x0, x24
+ a10:	bl	0 <grub_free>
+ a14:	cbnz	w25, 9ac <scsi_iterate+0x54>
+ a18:	add	w21, w21, #0x1
+ a1c:	cmp	w21, w20
+ a20:	b.lt	9e4 <scsi_iterate+0x8c>  // b.tstop
+ a24:	mov	w19, #0x0                   	// #0
+ a28:	b	9b0 <scsi_iterate+0x58>
+ a2c:	mov	w20, w2
+ a30:	mov	w21, #0x0                   	// #0
+ a34:	adrp	x26, 0 <grub_scsi_iterate>
+ a38:	b	a1c <scsi_iterate+0xc4>
+ a3c:	nop
+	...
+
+0000000000000a58 <grub_scsi_dev_register>:
+ a58:	adrp	x1, 0 <grub_scsi_iterate>
+ a5c:	ldr	x1, [x1]
+ a60:	ldr	x2, [x1]
+ a64:	str	x0, [x1]
+ a68:	str	x2, [x0, #40]
+ a6c:	ret
+	...
+
+0000000000000a78 <grub_scsi_dev_unregister>:
+ a78:	adrp	x1, 0 <grub_scsi_iterate>
+ a7c:	ldr	x2, [x1]
+ a80:	ldr	x1, [x2]
+ a84:	cbz	x1, a98 <grub_scsi_dev_unregister+0x20>
+ a88:	cmp	x1, x0
+ a8c:	ldr	x3, [x1, #40]
+ a90:	b.ne	a9c <grub_scsi_dev_unregister+0x24>  // b.any
+ a94:	str	x3, [x2]
+ a98:	ret
+ a9c:	add	x2, x1, #0x28
+ aa0:	mov	x1, x3
+ aa4:	b	a84 <grub_scsi_dev_unregister+0xc>
+	...
+
+0000000000000ab0 <grub_mod_init>:
+ ab0:	adrp	x0, 0 <grub_scsi_iterate>
+ ab4:	ldr	x0, [x0]
+ ab8:	b	0 <grub_disk_dev_register>
+ abc:	nop
+	...
+
+0000000000000ac8 <grub_mod_fini>:
+ ac8:	adrp	x0, 0 <grub_scsi_iterate>
+ acc:	ldr	x0, [x0]
+ ad0:	b	0 <grub_disk_dev_unregister>
+ ad4:	nop
+	...

@@ -1,0 +1,219 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//procfs.module_gcc_-Os:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_procdev_close>:
+   0:	ret
+
+0000000000000004 <grub_procdev_read>:
+   4:	mov	w0, #0xb                   	// #11
+   8:	ret
+
+000000000000000c <grub_procfs_rewind>:
+   c:	adrp	x1, 0 <grub_procdev_close>
+  10:	ldr	x1, [x1]
+  14:	ldr	x1, [x1]
+  18:	stp	xzr, x1, [x0]
+  1c:	ret
+	...
+
+0000000000000028 <grub_procfs_close>:
+  28:	stp	x29, x30, [sp, #-16]!
+  2c:	mov	x29, sp
+  30:	ldr	x0, [x0, #80]
+  34:	bl	0 <grub_free>
+  38:	mov	w0, #0x0                   	// #0
+  3c:	ldp	x29, x30, [sp], #16
+  40:	ret
+
+0000000000000044 <grub_procfs_read>:
+  44:	mov	x3, x0
+  48:	stp	x29, x30, [sp, #-32]!
+  4c:	mov	x0, x1
+  50:	mov	x29, sp
+  54:	ldr	x4, [x3, #80]
+  58:	ldr	x1, [x3, #24]
+  5c:	str	x19, [sp, #16]
+  60:	mov	x19, x2
+  64:	add	x1, x4, x1
+  68:	bl	0 <grub_memmove>
+  6c:	mov	x0, x19
+  70:	ldr	x19, [sp, #16]
+  74:	ldp	x29, x30, [sp], #32
+  78:	ret
+
+000000000000007c <grub_procfs_open>:
+  7c:	stp	x29, x30, [sp, #-64]!
+  80:	mov	x2, x1
+  84:	mov	x29, sp
+  88:	stp	x19, x20, [sp, #16]
+  8c:	mov	x20, x0
+  90:	adrp	x0, 0 <grub_procdev_close>
+  94:	ldr	x0, [x0]
+  98:	ldr	x0, [x0]
+  9c:	stp	xzr, x0, [sp, #48]
+  a0:	adrp	x0, 0 <grub_procdev_close>
+  a4:	ldr	x1, [x0]
+  a8:	add	x0, sp, #0x30
+  ac:	bl	0 <grub_archelp_open>
+  b0:	mov	w19, w0
+  b4:	cbnz	w0, dc <grub_procfs_open+0x60>
+  b8:	ldr	x0, [sp, #48]
+  bc:	ldr	x1, [x0, #24]
+  c0:	add	x0, sp, #0x28
+  c4:	blr	x1
+  c8:	str	x0, [x20, #80]
+  cc:	cbnz	x0, ec <grub_procfs_open+0x70>
+  d0:	adrp	x0, 0 <grub_procdev_close>
+  d4:	ldr	x0, [x0]
+  d8:	ldr	w19, [x0]
+  dc:	mov	w0, w19
+  e0:	ldp	x19, x20, [sp, #16]
+  e4:	ldp	x29, x30, [sp], #64
+  e8:	ret
+  ec:	ldr	x0, [sp, #40]
+  f0:	str	x0, [x20, #64]
+  f4:	b	dc <grub_procfs_open+0x60>
+	...
+
+0000000000000110 <grub_procfs_find_file>:
+ 110:	ldr	x4, [x0, #8]
+ 114:	str	x4, [x0]
+ 118:	cbnz	x4, 12c <grub_procfs_find_file+0x1c>
+ 11c:	mov	w0, #0xffffffff            	// #-1
+ 120:	str	w0, [x3]
+ 124:	mov	w0, #0x0                   	// #0
+ 128:	ret
+ 12c:	stp	x29, x30, [sp, #-32]!
+ 130:	mov	x29, sp
+ 134:	stp	x19, x20, [sp, #16]
+ 138:	mov	x20, x1
+ 13c:	mov	x19, x2
+ 140:	ldr	x1, [x4]
+ 144:	str	x1, [x0, #8]
+ 148:	mov	w0, #0x80008000            	// #-2147450880
+ 14c:	str	w0, [x3]
+ 150:	ldr	x0, [x4, #16]
+ 154:	bl	0 <grub_strdup>
+ 158:	str	x0, [x20]
+ 15c:	str	wzr, [x19]
+ 160:	cbnz	x0, 17c <grub_procfs_find_file+0x6c>
+ 164:	adrp	x0, 0 <grub_procdev_close>
+ 168:	ldr	x0, [x0]
+ 16c:	ldr	w0, [x0]
+ 170:	ldp	x19, x20, [sp, #16]
+ 174:	ldp	x29, x30, [sp], #32
+ 178:	ret
+ 17c:	mov	w0, #0x0                   	// #0
+ 180:	b	170 <grub_procfs_find_file+0x60>
+ 184:	nop
+	...
+
+0000000000000190 <grub_procdev_iterate>:
+ 190:	mov	x3, x0
+ 194:	cbnz	w2, 1a8 <grub_procdev_iterate+0x18>
+ 198:	adrp	x0, 0 <grub_procdev_close>
+ 19c:	mov	x16, x3
+ 1a0:	ldr	x0, [x0]
+ 1a4:	br	x16
+ 1a8:	mov	w0, #0x0                   	// #0
+ 1ac:	ret
+	...
+
+00000000000001b8 <grub_procdev_open>:
+ 1b8:	stp	x29, x30, [sp, #-32]!
+ 1bc:	mov	x29, sp
+ 1c0:	str	x19, [sp, #16]
+ 1c4:	mov	x19, x1
+ 1c8:	adrp	x1, 0 <grub_procdev_close>
+ 1cc:	ldr	x1, [x1]
+ 1d0:	bl	0 <grub_strcmp>
+ 1d4:	cbz	w0, 1f0 <grub_procdev_open+0x38>
+ 1d8:	adrp	x0, 0 <grub_procdev_close>
+ 1dc:	ldr	x19, [sp, #16]
+ 1e0:	ldp	x29, x30, [sp], #32
+ 1e4:	ldr	x1, [x0]
+ 1e8:	mov	w0, #0xc                   	// #12
+ 1ec:	b	0 <grub_error>
+ 1f0:	str	xzr, [x19, #16]
+ 1f4:	str	xzr, [x19, #32]
+ 1f8:	str	xzr, [x19, #64]
+ 1fc:	ldr	x19, [sp, #16]
+ 200:	ldp	x29, x30, [sp], #32
+ 204:	ret
+	...
+
+0000000000000218 <grub_procfs_dir>:
+ 218:	stp	x29, x30, [sp, #-64]!
+ 21c:	mov	x29, sp
+ 220:	ldr	x0, [x0]
+ 224:	stp	x19, x20, [sp, #16]
+ 228:	mov	x19, x1
+ 22c:	adrp	x1, 0 <grub_procdev_close>
+ 230:	mov	x20, x2
+ 234:	ldr	x0, [x0]
+ 238:	str	x21, [sp, #32]
+ 23c:	ldr	x1, [x1]
+ 240:	mov	x21, x3
+ 244:	bl	0 <grub_strcmp>
+ 248:	cbz	w0, 26c <grub_procfs_dir+0x54>
+ 24c:	adrp	x0, 0 <grub_procdev_close>
+ 250:	ldr	x1, [x0]
+ 254:	mov	w0, #0x9                   	// #9
+ 258:	bl	0 <grub_error>
+ 25c:	ldp	x19, x20, [sp, #16]
+ 260:	ldr	x21, [sp, #32]
+ 264:	ldp	x29, x30, [sp], #64
+ 268:	ret
+ 26c:	adrp	x0, 0 <grub_procdev_close>
+ 270:	mov	x4, x21
+ 274:	mov	x3, x20
+ 278:	mov	x2, x19
+ 27c:	ldr	x0, [x0]
+ 280:	ldr	x0, [x0]
+ 284:	stp	xzr, x0, [sp, #48]
+ 288:	adrp	x0, 0 <grub_procdev_close>
+ 28c:	ldr	x1, [x0]
+ 290:	add	x0, sp, #0x30
+ 294:	bl	0 <grub_archelp_dir>
+ 298:	b	25c <grub_procfs_dir+0x44>
+ 29c:	nop
+	...
+
+00000000000002c0 <grub_procdev_write>:
+ 2c0:	mov	w0, #0xb                   	// #11
+ 2c4:	ret
+
+00000000000002c8 <grub_mod_init>:
+ 2c8:	stp	x29, x30, [sp, #-32]!
+ 2cc:	adrp	x0, 0 <grub_procdev_close>
+ 2d0:	mov	x29, sp
+ 2d4:	str	x19, [sp, #16]
+ 2d8:	ldr	x19, [x0]
+ 2dc:	add	x0, x19, #0x18
+ 2e0:	bl	0 <grub_disk_dev_register>
+ 2e4:	add	x1, x19, #0x58
+ 2e8:	adrp	x0, 0 <grub_procdev_close>
+ 2ec:	ldr	x19, [sp, #16]
+ 2f0:	ldp	x29, x30, [sp], #32
+ 2f4:	ldr	x0, [x0]
+ 2f8:	b	0 <grub_list_push>
+ 2fc:	nop
+	...
+
+0000000000000310 <grub_mod_fini>:
+ 310:	stp	x29, x30, [sp, #-32]!
+ 314:	adrp	x0, 0 <grub_procdev_close>
+ 318:	mov	x29, sp
+ 31c:	str	x19, [sp, #16]
+ 320:	ldr	x19, [x0]
+ 324:	add	x0, x19, #0x18
+ 328:	bl	0 <grub_disk_dev_unregister>
+ 32c:	add	x0, x19, #0x58
+ 330:	ldr	x19, [sp, #16]
+ 334:	ldp	x29, x30, [sp], #32
+ 338:	b	0 <grub_list_remove>
+ 33c:	nop
+	...
