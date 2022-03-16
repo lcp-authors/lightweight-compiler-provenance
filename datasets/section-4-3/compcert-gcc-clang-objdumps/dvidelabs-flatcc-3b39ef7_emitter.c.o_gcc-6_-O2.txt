@@ -1,0 +1,382 @@
+
+../compcert-repos/dvidelabs-flatcc-3b39ef7/test/json_test/CMakeFiles/json_test_uq.dir/__/__/src/runtime/emitter.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <flatcc_emitter_recycle_page>:
+   0:	ldr	r3, [r0]
+   4:	cmp	r3, r1
+   8:	beq	50 <flatcc_emitter_recycle_page+0x50>
+   c:	ldr	r2, [r0, #4]
+  10:	cmp	r1, r2
+  14:	beq	50 <flatcc_emitter_recycle_page+0x50>
+  18:	ldr	ip, [r1, #2944]	; 0xb80
+  1c:	ldr	r2, [r1, #2948]	; 0xb84
+  20:	push	{lr}		; (str lr, [sp, #-4]!)
+  24:	mov	r0, #0
+  28:	str	r2, [ip, #2948]	; 0xb84
+  2c:	ldr	r2, [r3, #2948]	; 0xb84
+  30:	ldr	lr, [r1, #2948]	; 0xb84
+  34:	str	ip, [lr, #2944]	; 0xb80
+  38:	str	r3, [r1, #2944]	; 0xb80
+  3c:	str	r2, [r1, #2948]	; 0xb84
+  40:	str	r1, [r2, #2944]	; 0xb80
+  44:	ldr	r3, [r1, #2944]	; 0xb80
+  48:	str	r1, [r3, #2948]	; 0xb84
+  4c:	pop	{pc}		; (ldr pc, [sp], #4)
+  50:	mvn	r0, #0
+  54:	bx	lr
+
+00000058 <flatcc_emitter_reset>:
+  58:	ldr	r2, [r0]
+  5c:	cmp	r2, #0
+  60:	bxeq	lr
+  64:	ldr	r3, [r0, #32]
+  68:	mov	r1, #1472	; 0x5c0
+  6c:	push	{r4, lr}
+  70:	cmp	r3, #0
+  74:	str	r1, [r0, #12]
+  78:	str	r1, [r0, #20]
+  7c:	ldr	r1, [r0, #24]
+  80:	add	ip, r2, #1472	; 0x5c0
+  84:	moveq	r3, r1
+  88:	stmib	r0, {r2, ip}
+  8c:	str	ip, [r0, #16]
+  90:	add	ip, r3, r3, lsl #1
+  94:	lsr	r3, r1, #2
+  98:	add	r3, r3, ip, lsr #2
+  9c:	ldr	ip, [r0, #28]
+  a0:	ldr	lr, [pc, #104]	; 110 <flatcc_emitter_reset+0xb8>
+  a4:	cmp	ip, r3, lsl #1
+  a8:	mov	r1, #0
+  ac:	str	lr, [r2, #2952]	; 0xb88
+  b0:	str	r3, [r0, #32]
+  b4:	str	r1, [r0, #24]
+  b8:	popls	{r4, pc}
+  bc:	ldr	r3, [r2, #2944]	; 0xb80
+  c0:	mov	r4, r0
+  c4:	cmp	r2, r3
+  c8:	popeq	{r4, pc}
+  cc:	ldr	r1, [r3, #2944]	; 0xb80
+  d0:	mov	r0, r3
+  d4:	str	r1, [r2, #2944]	; 0xb80
+  d8:	ldr	r3, [r3, #2944]	; 0xb80
+  dc:	str	r2, [r3, #2948]	; 0xb84
+  e0:	bl	0 <free>
+  e4:	ldr	r3, [r4, #28]
+  e8:	ldr	r2, [r4, #32]
+  ec:	sub	r3, r3, #2944	; 0xb80
+  f0:	str	r3, [r4, #28]
+  f4:	cmp	r3, r2, lsl #1
+  f8:	popls	{r4, pc}
+  fc:	ldm	r4, {r1, r2}
+ 100:	ldr	r3, [r2, #2944]	; 0xb80
+ 104:	cmp	r3, r1
+ 108:	bne	cc <flatcc_emitter_reset+0x74>
+ 10c:	pop	{r4, pc}
+ 110:	.word	0xfffffa40
+
+00000114 <flatcc_emitter_clear>:
+ 114:	ldr	r3, [r0]
+ 118:	cmp	r3, #0
+ 11c:	bxeq	lr
+ 120:	ldr	r2, [r3, #2948]	; 0xb84
+ 124:	mov	r1, #0
+ 128:	push	{r4, r5, r6, lr}
+ 12c:	mov	r5, r0
+ 130:	str	r1, [r2, #2944]	; 0xb80
+ 134:	ldr	r4, [r3, #2944]	; 0xb80
+ 138:	cmp	r4, r1
+ 13c:	bne	148 <flatcc_emitter_clear+0x34>
+ 140:	b	178 <flatcc_emitter_clear+0x64>
+ 144:	mov	r4, r3
+ 148:	ldr	r0, [r4, #2948]	; 0xb84
+ 14c:	bl	0 <free>
+ 150:	ldr	r3, [r4, #2944]	; 0xb80
+ 154:	cmp	r3, #0
+ 158:	bne	144 <flatcc_emitter_clear+0x30>
+ 15c:	mov	r0, r4
+ 160:	bl	0 <free>
+ 164:	mov	r0, r5
+ 168:	mov	r2, #36	; 0x24
+ 16c:	mov	r1, #0
+ 170:	pop	{r4, r5, r6, lr}
+ 174:	b	0 <memset>
+ 178:	mov	r4, r3
+ 17c:	b	15c <flatcc_emitter_clear+0x48>
+
+00000180 <flatcc_emitter>:
+ 180:	push	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+ 184:	sub	sp, sp, #12
+ 188:	mov	r4, r0
+ 18c:	ldr	ip, [sp, #48]	; 0x30
+ 190:	ldr	r0, [r0, #24]
+ 194:	cmp	r3, #0
+ 198:	add	r0, r0, ip
+ 19c:	str	r0, [r4, #24]
+ 1a0:	blt	364 <flatcc_emitter+0x1e4>
+ 1a4:	ldr	r0, [r4, #20]
+ 1a8:	cmp	ip, r0
+ 1ac:	bls	238 <flatcc_emitter+0xb8>
+ 1b0:	cmp	r2, #0
+ 1b4:	addne	r7, r1, #8
+ 1b8:	movne	r8, r2
+ 1bc:	movne	r9, #2944	; 0xb80
+ 1c0:	beq	22c <flatcc_emitter+0xac>
+ 1c4:	ldr	r6, [r7, #-4]
+ 1c8:	ldr	sl, [r7, #-8]
+ 1cc:	cmp	r6, #0
+ 1d0:	beq	220 <flatcc_emitter+0xa0>
+ 1d4:	cmp	r0, r6
+ 1d8:	mov	r5, r0
+ 1dc:	bcs	280 <flatcc_emitter+0x100>
+ 1e0:	cmp	r0, #0
+ 1e4:	beq	28c <flatcc_emitter+0x10c>
+ 1e8:	sub	r6, r6, r0
+ 1ec:	mov	r1, sl
+ 1f0:	mov	r2, r5
+ 1f4:	ldr	r0, [r4, #16]
+ 1f8:	bl	0 <memcpy>
+ 1fc:	ldr	r3, [r4, #16]
+ 200:	ldr	r0, [r4, #20]
+ 204:	add	r3, r3, r5
+ 208:	sub	r0, r0, r5
+ 20c:	cmp	r6, #0
+ 210:	add	sl, sl, r5
+ 214:	str	r3, [r4, #16]
+ 218:	str	r0, [r4, #20]
+ 21c:	bne	1d4 <flatcc_emitter+0x54>
+ 220:	subs	r8, r8, #1
+ 224:	add	r7, r7, #8
+ 228:	bne	1c4 <flatcc_emitter+0x44>
+ 22c:	mov	r0, #0
+ 230:	add	sp, sp, #12
+ 234:	pop	{r4, r5, r6, r7, r8, r9, sl, fp, pc}
+ 238:	ldr	r3, [r4, #16]
+ 23c:	sub	r0, r0, ip
+ 240:	add	ip, r3, ip
+ 244:	str	r0, [r4, #20]
+ 248:	str	ip, [r4, #16]
+ 24c:	cmp	r2, #0
+ 250:	addne	r4, r1, #8
+ 254:	movne	r7, r2
+ 258:	beq	22c <flatcc_emitter+0xac>
+ 25c:	ldmdb	r4, {r1, r2}
+ 260:	mov	r0, r3
+ 264:	bl	0 <memcpy>
+ 268:	ldr	r2, [r4, #-4]
+ 26c:	subs	r7, r7, #1
+ 270:	add	r4, r4, #8
+ 274:	add	r3, r0, r2
+ 278:	bne	25c <flatcc_emitter+0xdc>
+ 27c:	b	22c <flatcc_emitter+0xac>
+ 280:	mov	r5, r6
+ 284:	mov	r6, #0
+ 288:	b	1ec <flatcc_emitter+0x6c>
+ 28c:	ldr	fp, [r4, #4]
+ 290:	cmp	fp, #0
+ 294:	beq	304 <flatcc_emitter+0x184>
+ 298:	ldr	r5, [fp, #2944]	; 0xb80
+ 29c:	ldr	r3, [r4]
+ 2a0:	cmp	r5, r3
+ 2a4:	beq	2cc <flatcc_emitter+0x14c>
+ 2a8:	str	r5, [r4, #4]
+ 2ac:	ldr	r3, [r5, #2948]	; 0xb84
+ 2b0:	mov	r0, r9
+ 2b4:	str	r5, [r4, #16]
+ 2b8:	ldr	r3, [r3, #2952]	; 0xb88
+ 2bc:	str	r9, [r4, #20]
+ 2c0:	add	r3, r3, #2944	; 0xb80
+ 2c4:	str	r3, [r5, #2952]	; 0xb88
+ 2c8:	b	1d4 <flatcc_emitter+0x54>
+ 2cc:	ldr	r0, [pc, #540]	; 4f0 <flatcc_emitter+0x370>
+ 2d0:	bl	0 <malloc>
+ 2d4:	cmp	r0, #0
+ 2d8:	beq	314 <flatcc_emitter+0x194>
+ 2dc:	ldr	r3, [r4, #28]
+ 2e0:	str	r5, [r0, #2944]	; 0xb80
+ 2e4:	add	r3, r3, #2944	; 0xb80
+ 2e8:	str	fp, [r0, #2948]	; 0xb84
+ 2ec:	str	r3, [r4, #28]
+ 2f0:	str	r0, [r5, #2948]	; 0xb84
+ 2f4:	str	r0, [fp, #2944]	; 0xb80
+ 2f8:	mov	r5, r0
+ 2fc:	str	r0, [r4, #4]
+ 300:	b	2ac <flatcc_emitter+0x12c>
+ 304:	ldr	r0, [pc, #484]	; 4f0 <flatcc_emitter+0x370>
+ 308:	bl	0 <malloc>
+ 30c:	cmp	r0, #0
+ 310:	bne	320 <flatcc_emitter+0x1a0>
+ 314:	mvn	r0, #0
+ 318:	add	sp, sp, #12
+ 31c:	pop	{r4, r5, r6, r7, r8, r9, sl, fp, pc}
+ 320:	mov	r2, #1472	; 0x5c0
+ 324:	ldr	r3, [r4, #28]
+ 328:	str	r2, [r4, #12]
+ 32c:	str	r2, [r4, #20]
+ 330:	sub	r2, r2, #2944	; 0xb80
+ 334:	str	r2, [r0, #2952]	; 0xb88
+ 338:	str	r0, [r4]
+ 33c:	add	r3, r3, #2944	; 0xb80
+ 340:	str	r0, [r4, #4]
+ 344:	str	r0, [r0, #2944]	; 0xb80
+ 348:	str	r0, [r0, #2948]	; 0xb84
+ 34c:	add	r0, r0, #1472	; 0x5c0
+ 350:	str	r0, [r4, #8]
+ 354:	str	r0, [r4, #16]
+ 358:	str	r3, [r4, #28]
+ 35c:	mov	r0, #1472	; 0x5c0
+ 360:	b	1d4 <flatcc_emitter+0x54>
+ 364:	ldr	r0, [r4, #12]
+ 368:	cmp	ip, r0
+ 36c:	bls	3ec <flatcc_emitter+0x26c>
+ 370:	add	r6, r1, r2, lsl #3
+ 374:	mov	r7, r2
+ 378:	mov	r9, #2944	; 0xb80
+ 37c:	mov	r8, #0
+ 380:	cmp	r7, #0
+ 384:	beq	22c <flatcc_emitter+0xac>
+ 388:	ldr	r5, [r6, #-4]
+ 38c:	ldr	sl, [r6, #-8]
+ 390:	cmp	r5, #0
+ 394:	add	sl, sl, r5
+ 398:	beq	3e0 <flatcc_emitter+0x260>
+ 39c:	ldr	r2, [r4, #12]
+ 3a0:	cmp	r2, r5
+ 3a4:	bcs	404 <flatcc_emitter+0x284>
+ 3a8:	cmp	r2, #0
+ 3ac:	beq	414 <flatcc_emitter+0x294>
+ 3b0:	sub	r5, r5, r2
+ 3b4:	mov	r1, r8
+ 3b8:	ldr	r0, [r4, #8]
+ 3bc:	rsb	r3, r2, #0
+ 3c0:	add	r0, r0, r3
+ 3c4:	add	sl, sl, r3
+ 3c8:	str	r1, [r4, #12]
+ 3cc:	str	r0, [r4, #8]
+ 3d0:	mov	r1, sl
+ 3d4:	bl	0 <memcpy>
+ 3d8:	cmp	r5, #0
+ 3dc:	bne	39c <flatcc_emitter+0x21c>
+ 3e0:	sub	r6, r6, #8
+ 3e4:	sub	r7, r7, #1
+ 3e8:	b	380 <flatcc_emitter+0x200>
+ 3ec:	ldr	r3, [r4, #8]
+ 3f0:	sub	r0, r0, ip
+ 3f4:	sub	r3, r3, ip
+ 3f8:	str	r0, [r4, #12]
+ 3fc:	str	r3, [r4, #8]
+ 400:	b	24c <flatcc_emitter+0xcc>
+ 404:	sub	r1, r2, r5
+ 408:	mov	r2, r5
+ 40c:	mov	r5, #0
+ 410:	b	3b8 <flatcc_emitter+0x238>
+ 414:	ldr	r3, [r4]
+ 418:	cmp	r3, #0
+ 41c:	beq	4a0 <flatcc_emitter+0x320>
+ 420:	ldr	fp, [r3, #2948]	; 0xb84
+ 424:	ldr	r2, [r4, #4]
+ 428:	cmp	fp, r2
+ 42c:	beq	460 <flatcc_emitter+0x2e0>
+ 430:	ldr	r3, [r3, #2952]	; 0xb88
+ 434:	sub	r3, r3, #2944	; 0xb80
+ 438:	str	r3, [fp, #2952]	; 0xb88
+ 43c:	str	fp, [r4]
+ 440:	ldr	r3, [fp, #2944]	; 0xb80
+ 444:	add	r2, fp, #2944	; 0xb80
+ 448:	str	r9, [r4, #12]
+ 44c:	ldr	r3, [r3, #2952]	; 0xb88
+ 450:	str	r2, [r4, #8]
+ 454:	sub	r3, r3, #2944	; 0xb80
+ 458:	str	r3, [fp, #2952]	; 0xb88
+ 45c:	b	39c <flatcc_emitter+0x21c>
+ 460:	ldr	r0, [pc, #136]	; 4f0 <flatcc_emitter+0x370>
+ 464:	str	r3, [sp, #4]
+ 468:	bl	0 <malloc>
+ 46c:	ldr	r3, [sp, #4]
+ 470:	cmp	r0, #0
+ 474:	beq	314 <flatcc_emitter+0x194>
+ 478:	ldr	r2, [r4, #28]
+ 47c:	str	fp, [r0, #2948]	; 0xb84
+ 480:	add	r2, r2, #2944	; 0xb80
+ 484:	str	r3, [r0, #2944]	; 0xb80
+ 488:	str	r2, [r4, #28]
+ 48c:	str	r0, [r3, #2948]	; 0xb84
+ 490:	str	r0, [fp, #2944]	; 0xb80
+ 494:	str	r0, [r4]
+ 498:	mov	fp, r0
+ 49c:	b	440 <flatcc_emitter+0x2c0>
+ 4a0:	ldr	r0, [pc, #72]	; 4f0 <flatcc_emitter+0x370>
+ 4a4:	bl	0 <malloc>
+ 4a8:	cmp	r0, #0
+ 4ac:	beq	314 <flatcc_emitter+0x194>
+ 4b0:	mov	r2, #1472	; 0x5c0
+ 4b4:	ldr	r3, [r4, #28]
+ 4b8:	str	r2, [r4, #12]
+ 4bc:	str	r2, [r4, #20]
+ 4c0:	sub	r2, r2, #2944	; 0xb80
+ 4c4:	str	r2, [r0, #2952]	; 0xb88
+ 4c8:	str	r0, [r4]
+ 4cc:	add	r3, r3, #2944	; 0xb80
+ 4d0:	str	r0, [r4, #4]
+ 4d4:	str	r0, [r0, #2944]	; 0xb80
+ 4d8:	str	r0, [r0, #2948]	; 0xb84
+ 4dc:	add	r0, r0, #1472	; 0x5c0
+ 4e0:	str	r0, [r4, #8]
+ 4e4:	str	r0, [r4, #16]
+ 4e8:	str	r3, [r4, #28]
+ 4ec:	b	39c <flatcc_emitter+0x21c>
+ 4f0:	.word	0x00000b8c
+
+000004f4 <flatcc_emitter_copy_buffer>:
+ 4f4:	ldr	ip, [r0, #24]
+ 4f8:	cmp	ip, r2
+ 4fc:	bhi	598 <flatcc_emitter_copy_buffer+0xa4>
+ 500:	ldr	r2, [r0]
+ 504:	cmp	r2, #0
+ 508:	beq	598 <flatcc_emitter_copy_buffer+0xa4>
+ 50c:	mov	r3, r1
+ 510:	ldr	r1, [r0, #4]
+ 514:	push	{r4, r5, r6, lr}
+ 518:	cmp	r2, r1
+ 51c:	mov	r5, r0
+ 520:	beq	5a4 <flatcc_emitter_copy_buffer+0xb0>
+ 524:	ldr	r4, [r0, #12]
+ 528:	ldr	r1, [r5, #8]
+ 52c:	rsb	r4, r4, #2944	; 0xb80
+ 530:	mov	r2, r4
+ 534:	mov	r0, r3
+ 538:	bl	0 <memcpy>
+ 53c:	ldr	r2, [r5]
+ 540:	ldr	r1, [r5, #4]
+ 544:	add	r3, r0, r4
+ 548:	ldr	r4, [r2, #2944]	; 0xb80
+ 54c:	cmp	r4, r1
+ 550:	beq	57c <flatcc_emitter_copy_buffer+0x88>
+ 554:	mov	r6, #2944	; 0xb80
+ 558:	mov	r1, r4
+ 55c:	mov	r0, r3
+ 560:	mov	r2, r6
+ 564:	bl	0 <memcpy>
+ 568:	ldr	r4, [r4, #2944]	; 0xb80
+ 56c:	ldr	r1, [r5, #4]
+ 570:	cmp	r1, r4
+ 574:	add	r3, r0, #2944	; 0xb80
+ 578:	bne	558 <flatcc_emitter_copy_buffer+0x64>
+ 57c:	ldr	r2, [r5, #20]
+ 580:	mov	r0, r3
+ 584:	rsb	r2, r2, #2944	; 0xb80
+ 588:	bl	0 <memcpy>
+ 58c:	mov	r3, r0
+ 590:	mov	r0, r3
+ 594:	pop	{r4, r5, r6, pc}
+ 598:	mov	r3, #0
+ 59c:	mov	r0, r3
+ 5a0:	bx	lr
+ 5a4:	ldr	r1, [r0, #8]
+ 5a8:	mov	r2, ip
+ 5ac:	mov	r0, r3
+ 5b0:	bl	0 <memcpy>
+ 5b4:	mov	r3, r0
+ 5b8:	b	590 <flatcc_emitter_copy_buffer+0x9c>

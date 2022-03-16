@@ -1,0 +1,138 @@
+
+../compcert-repos/prog2/CMakeFiles/5.1.dir/Aula05_Filas_e_Pilhas/1/armazem.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <armazem_novo>:
+   0:	push	{r4, r5, r6, lr}
+   4:	mov	r6, r0
+   8:	mov	r0, #12
+   c:	mov	r5, r1
+  10:	bl	0 <malloc>
+  14:	str	r6, [r0]
+  18:	str	r5, [r0, #4]
+  1c:	mov	r4, r0
+  20:	bl	0 <fila_nova>
+  24:	str	r0, [r4, #8]
+  28:	mov	r0, r4
+  2c:	pop	{r4, r5, r6, pc}
+
+00000030 <armazem_vazio>:
+  30:	cmp	r0, #0
+  34:	beq	50 <armazem_vazio+0x20>
+  38:	push	{r4, lr}
+  3c:	ldr	r0, [r0, #8]
+  40:	bl	0 <fila_tamanho>
+  44:	clz	r0, r0
+  48:	lsr	r0, r0, #5
+  4c:	pop	{r4, pc}
+  50:	mov	r0, #1
+  54:	bx	lr
+
+00000058 <armazem_cheio>:
+  58:	push	{r4, lr}
+  5c:	subs	r4, r0, #0
+  60:	beq	74 <armazem_cheio+0x1c>
+  64:	ldr	r0, [r4, #8]
+  68:	bl	0 <fila_tamanho>
+  6c:	cmp	r0, #0
+  70:	bne	7c <armazem_cheio+0x24>
+  74:	mov	r0, #0
+  78:	pop	{r4, pc}
+  7c:	ldr	r0, [r4, #8]
+  80:	bl	0 <fila_tamanho>
+  84:	ldr	r3, [r4]
+  88:	cmp	r0, r3
+  8c:	bne	74 <armazem_cheio+0x1c>
+  90:	ldr	r0, [r4, #8]
+  94:	bl	0 <fila_back>
+  98:	ldr	r3, [r4, #4]
+  9c:	ldr	r0, [r0, #4]
+  a0:	sub	r0, r0, r3
+  a4:	clz	r0, r0
+  a8:	lsr	r0, r0, #5
+  ac:	pop	{r4, pc}
+
+000000b0 <armazenar_contentor>:
+  b0:	push	{r4, r5, r6, r7, r8, lr}
+  b4:	mov	r4, r0
+  b8:	mov	r5, r1
+  bc:	bl	0 <pilha_nova>
+  c0:	cmp	r5, #0
+  c4:	cmpne	r4, #0
+  c8:	bne	d4 <armazenar_contentor+0x24>
+  cc:	mov	r0, #0
+  d0:	pop	{r4, r5, r6, r7, r8, pc}
+  d4:	mov	r6, r0
+  d8:	mov	r0, r4
+  dc:	bl	58 <armazem_cheio>
+  e0:	cmp	r0, #0
+  e4:	bne	cc <armazenar_contentor+0x1c>
+  e8:	ldr	r0, [r4, #8]
+  ec:	bl	0 <fila_tamanho>
+  f0:	cmp	r0, #0
+  f4:	beq	128 <armazenar_contentor+0x78>
+  f8:	ldr	r0, [r4, #8]
+  fc:	bl	0 <fila_back>
+ 100:	ldr	r3, [r4, #4]
+ 104:	ldr	r2, [r0, #4]
+ 108:	cmp	r2, r3
+ 10c:	beq	140 <armazenar_contentor+0x90>
+ 110:	ldr	r0, [r4, #8]
+ 114:	bl	0 <fila_back>
+ 118:	mov	r1, r5
+ 11c:	bl	0 <pilha_push>
+ 120:	mov	r0, #1
+ 124:	pop	{r4, r5, r6, r7, r8, pc}
+ 128:	ldr	r7, [r4, #8]
+ 12c:	bl	0 <pilha_nova>
+ 130:	mov	r1, r0
+ 134:	mov	r0, r7
+ 138:	bl	0 <fila_push>
+ 13c:	b	f8 <armazenar_contentor+0x48>
+ 140:	mov	r1, r6
+ 144:	ldr	r0, [r4, #8]
+ 148:	bl	0 <fila_push>
+ 14c:	b	110 <armazenar_contentor+0x60>
+
+00000150 <expedir_contentor>:
+ 150:	push	{r4, r5, r6, lr}
+ 154:	subs	r4, r0, #0
+ 158:	beq	1d4 <expedir_contentor+0x84>
+ 15c:	ldr	r0, [r4, #8]
+ 160:	bl	0 <fila_tamanho>
+ 164:	cmp	r0, #0
+ 168:	beq	1d4 <expedir_contentor+0x84>
+ 16c:	ldr	r0, [r4, #8]
+ 170:	bl	0 <fila_front>
+ 174:	bl	0 <pilha_top>
+ 178:	cmp	r0, #0
+ 17c:	beq	1d4 <expedir_contentor+0x84>
+ 180:	ldr	r0, [r4, #8]
+ 184:	bl	0 <fila_front>
+ 188:	bl	0 <pilha_top>
+ 18c:	ldr	r5, [r0]
+ 190:	ldr	r0, [r4, #8]
+ 194:	bl	0 <fila_front>
+ 198:	bl	0 <pilha_top>
+ 19c:	vldr	s0, [r0, #4]
+ 1a0:	mov	r0, r5
+ 1a4:	bl	0 <contentor_novo>
+ 1a8:	mov	r5, r0
+ 1ac:	ldr	r0, [r4, #8]
+ 1b0:	bl	0 <fila_front>
+ 1b4:	ldr	r3, [r0, #4]
+ 1b8:	ldr	r0, [r4, #8]
+ 1bc:	cmp	r3, #1
+ 1c0:	ble	1e0 <expedir_contentor+0x90>
+ 1c4:	bl	0 <fila_front>
+ 1c8:	bl	0 <pilha_pop>
+ 1cc:	mov	r0, r5
+ 1d0:	pop	{r4, r5, r6, pc}
+ 1d4:	mov	r5, #0
+ 1d8:	mov	r0, r5
+ 1dc:	pop	{r4, r5, r6, pc}
+ 1e0:	bl	0 <fila_pop>
+ 1e4:	mov	r0, r5
+ 1e8:	pop	{r4, r5, r6, pc}

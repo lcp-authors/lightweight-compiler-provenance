@@ -1,0 +1,128 @@
+
+../compcert-repos/prog2/CMakeFiles/5.1.dir/Aula05_Filas_e_Pilhas/1/pilha_contentores.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <pilha_novo_elemento>:
+   0:	push	{r4, r5, r6, sl, fp, lr}
+   4:	add	fp, sp, #16
+   8:	mov	r6, r0
+   c:	mov	r0, #8
+  10:	bl	0 <malloc>
+  14:	mov	r4, #0
+  18:	cmp	r0, #0
+  1c:	beq	48 <pilha_novo_elemento+0x48>
+  20:	mov	r5, r0
+  24:	vldr	s0, [r6, #4]
+  28:	ldr	r0, [r6]
+  2c:	bl	0 <contentor_novo>
+  30:	cmp	r0, #0
+  34:	str	r0, [r5]
+  38:	beq	50 <pilha_novo_elemento+0x50>
+  3c:	mov	r0, #0
+  40:	mov	r4, r5
+  44:	str	r0, [r5, #4]
+  48:	mov	r0, r4
+  4c:	pop	{r4, r5, r6, sl, fp, pc}
+  50:	mov	r0, r5
+  54:	bl	0 <free>
+  58:	mov	r0, r4
+  5c:	pop	{r4, r5, r6, sl, fp, pc}
+
+00000060 <pilha_nova>:
+  60:	push	{fp, lr}
+  64:	mov	fp, sp
+  68:	mov	r0, #8
+  6c:	bl	0 <malloc>
+  70:	cmp	r0, #0
+  74:	moveq	r0, #0
+  78:	movne	r1, #0
+  7c:	strne	r1, [r0]
+  80:	strne	r1, [r0, #4]
+  84:	pop	{fp, pc}
+
+00000088 <pilha_apaga>:
+  88:	cmp	r0, #0
+  8c:	bxeq	lr
+  90:	push	{r4, r5, fp, lr}
+  94:	add	fp, sp, #8
+  98:	mov	r4, r0
+  9c:	b	b8 <pilha_apaga+0x30>
+  a0:	ldr	r0, [r5, #4]
+  a4:	str	r0, [r4]
+  a8:	ldr	r0, [r5]
+  ac:	bl	0 <contentor_apaga>
+  b0:	mov	r0, r5
+  b4:	bl	0 <free>
+  b8:	ldr	r5, [r4]
+  bc:	cmp	r5, #0
+  c0:	bne	a0 <pilha_apaga+0x18>
+  c4:	mov	r0, r4
+  c8:	pop	{r4, r5, fp, lr}
+  cc:	b	0 <free>
+
+000000d0 <pilha_tamanho>:
+  d0:	cmp	r0, #0
+  d4:	ldrne	r0, [r0, #4]
+  d8:	mvneq	r0, #0
+  dc:	bx	lr
+
+000000e0 <pilha_top>:
+  e0:	mov	r1, r0
+  e4:	mov	r0, #0
+  e8:	cmp	r1, #0
+  ec:	ldrne	r2, [r1, #4]
+  f0:	cmpne	r2, #0
+  f4:	ldrne	r0, [r1]
+  f8:	ldrne	r0, [r0]
+  fc:	bx	lr
+
+00000100 <pilha_push>:
+ 100:	push	{r4, r5, r6, sl, fp, lr}
+ 104:	add	fp, sp, #16
+ 108:	cmp	r0, #0
+ 10c:	beq	164 <pilha_push+0x64>
+ 110:	mov	r4, r0
+ 114:	mov	r0, #8
+ 118:	mov	r6, r1
+ 11c:	bl	0 <malloc>
+ 120:	cmp	r0, #0
+ 124:	popeq	{r4, r5, r6, sl, fp, pc}
+ 128:	mov	r5, r0
+ 12c:	vldr	s0, [r6, #4]
+ 130:	ldr	r0, [r6]
+ 134:	bl	0 <contentor_novo>
+ 138:	cmp	r0, #0
+ 13c:	str	r0, [r5]
+ 140:	beq	168 <pilha_push+0x68>
+ 144:	mov	r0, #0
+ 148:	str	r0, [r5, #4]
+ 14c:	ldm	r4, {r0, r1}
+ 150:	add	r1, r1, #1
+ 154:	cmp	r0, #0
+ 158:	str	r1, [r4, #4]
+ 15c:	strne	r0, [r5, #4]
+ 160:	str	r5, [r4]
+ 164:	pop	{r4, r5, r6, sl, fp, pc}
+ 168:	mov	r0, r5
+ 16c:	pop	{r4, r5, r6, sl, fp, lr}
+ 170:	b	0 <free>
+
+00000174 <pilha_pop>:
+ 174:	cmp	r0, #0
+ 178:	ldrne	r1, [r0, #4]
+ 17c:	cmpne	r1, #0
+ 180:	bxeq	lr
+ 184:	push	{r4, sl, fp, lr}
+ 188:	add	fp, sp, #8
+ 18c:	ldr	r4, [r0]
+ 190:	sub	r1, r1, #1
+ 194:	ldr	r2, [r4, #4]
+ 198:	str	r2, [r0]
+ 19c:	str	r1, [r0, #4]
+ 1a0:	ldr	r0, [r4]
+ 1a4:	bl	0 <contentor_apaga>
+ 1a8:	mov	r0, r4
+ 1ac:	pop	{r4, sl, fp, lr}
+ 1b0:	b	0 <free>

@@ -1,0 +1,887 @@
+
+../compcert-repos/jclehner-nmrpflash-5fc77cc/tftp.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <leafname>:
+   0:	push	{r4, r5, fp, lr}
+   4:	add	fp, sp, #8
+   8:	cmp	r0, #0
+   c:	beq	54 <leafname+0x54>
+  10:	mov	r1, #47	; 0x2f
+  14:	mov	r4, r0
+  18:	bl	0 <strrchr>
+  1c:	mov	r5, r0
+  20:	mov	r0, r4
+  24:	mov	r1, #92	; 0x5c
+  28:	bl	0 <strrchr>
+  2c:	cmp	r5, #0
+  30:	cmpne	r0, #0
+  34:	bne	5c <leafname+0x5c>
+  38:	cmp	r5, #0
+  3c:	addne	r0, r5, #1
+  40:	popne	{r4, r5, fp, pc}
+  44:	cmp	r0, #0
+  48:	addne	r4, r0, #1
+  4c:	mov	r0, r4
+  50:	pop	{r4, r5, fp, pc}
+  54:	mov	r0, #0
+  58:	pop	{r4, r5, fp, pc}
+  5c:	cmp	r5, r0
+  60:	movhi	r0, r5
+  64:	add	r0, r0, #1
+  68:	pop	{r4, r5, fp, pc}
+
+0000006c <tftp_is_valid_filename>:
+  6c:	push	{r4, sl, fp, lr}
+  70:	add	fp, sp, #8
+  74:	mov	r4, r0
+  78:	bl	0 <strlen>
+  7c:	mov	r1, r0
+  80:	mov	r0, #0
+  84:	cmp	r1, #255	; 0xff
+  88:	pophi	{r4, sl, fp, pc}
+  8c:	ldrb	r1, [r4]
+  90:	cmp	r1, #0
+  94:	beq	c0 <tftp_is_valid_filename+0x54>
+  98:	add	r2, r4, #1
+  9c:	uxtb	r3, r1
+  a0:	cmp	r3, #32
+  a4:	bcc	c4 <tftp_is_valid_filename+0x58>
+  a8:	sxtb	r1, r1
+  ac:	cmn	r1, #1
+  b0:	ble	c4 <tftp_is_valid_filename+0x58>
+  b4:	ldrb	r1, [r2], #1
+  b8:	cmp	r1, #0
+  bc:	bne	9c <tftp_is_valid_filename+0x30>
+  c0:	mov	r0, #1
+  c4:	pop	{r4, sl, fp, pc}
+
+000000c8 <tftp_put>:
+  c8:	push	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+  cc:	add	fp, sp, #28
+  d0:	sub	sp, sp, #108	; 0x6c
+  d4:	sub	sp, sp, #4096	; 0x1000
+  d8:	movw	r6, #0
+  dc:	mov	r9, r0
+  e0:	ldr	r5, [r0, #16]
+  e4:	mvn	sl, #0
+  e8:	movt	r6, #0
+  ec:	ldr	r0, [r6]
+  f0:	cmp	r0, #0
+  f4:	bne	3dc <tftp_put+0x314>
+  f8:	ldr	r4, [r9, #12]
+  fc:	movw	r1, #0
+ 100:	movt	r1, #0
+ 104:	mov	r0, r4
+ 108:	bl	0 <strcmp>
+ 10c:	cmp	r0, #0
+ 110:	beq	13c <tftp_put+0x74>
+ 114:	mov	r0, r4
+ 118:	mov	r1, #0
+ 11c:	bl	0 <open>
+ 120:	mov	sl, r0
+ 124:	cmn	r0, #1
+ 128:	ble	154 <tftp_put+0x8c>
+ 12c:	cmp	r5, #0
+ 130:	beq	164 <tftp_put+0x9c>
+ 134:	mov	r4, r5
+ 138:	b	168 <tftp_put+0xa0>
+ 13c:	movw	r4, #0
+ 140:	cmp	r5, #0
+ 144:	mov	sl, #0
+ 148:	movt	r4, #0
+ 14c:	movne	r4, r5
+ 150:	b	168 <tftp_put+0xa0>
+ 154:	movw	r0, #0
+ 158:	movt	r0, #0
+ 15c:	bl	0 <xperror>
+ 160:	b	3dc <tftp_put+0x314>
+ 164:	ldr	r4, [r9, #12]
+ 168:	mov	r0, #2
+ 16c:	mov	r1, #2
+ 170:	mov	r2, #17
+ 174:	mov	r5, #2
+ 178:	bl	0 <socket>
+ 17c:	mov	r7, r0
+ 180:	cmn	r0, #1
+ 184:	ble	1d8 <tftp_put+0x110>
+ 188:	vmov.i32	q8, #0	; 0x00000000
+ 18c:	sub	r8, fp, #72	; 0x48
+ 190:	vst1.64	{d16-d17}, [r8]
+ 194:	strh	r5, [fp, #-72]	; 0xffffffb8
+ 198:	ldr	r0, [r9, #20]
+ 19c:	cmp	r0, #0
+ 1a0:	beq	1ec <tftp_put+0x124>
+ 1a4:	bl	0 <inet_addr>
+ 1a8:	cmn	r0, #1
+ 1ac:	str	r0, [fp, #-68]	; 0xffffffbc
+ 1b0:	beq	24c <tftp_put+0x184>
+ 1b4:	sub	r1, fp, #72	; 0x48
+ 1b8:	mov	r0, r7
+ 1bc:	mov	r2, #16
+ 1c0:	bl	0 <bind>
+ 1c4:	cmp	r0, #0
+ 1c8:	beq	1ec <tftp_put+0x124>
+ 1cc:	movw	r0, #0
+ 1d0:	movt	r0, #0
+ 1d4:	b	254 <tftp_put+0x18c>
+ 1d8:	movw	r0, #0
+ 1dc:	movt	r0, #0
+ 1e0:	bl	0 <xperror>
+ 1e4:	mov	r4, r7
+ 1e8:	b	3b4 <tftp_put+0x2ec>
+ 1ec:	ldr	r0, [r9, #24]
+ 1f0:	bl	0 <inet_addr>
+ 1f4:	cmn	r0, #1
+ 1f8:	str	r0, [fp, #-68]	; 0xffffffbc
+ 1fc:	beq	24c <tftp_put+0x184>
+ 200:	ldrh	r0, [r9, #44]	; 0x2c
+ 204:	cmp	r4, #0
+ 208:	rev16	r0, r0
+ 20c:	strh	r0, [fp, #-70]	; 0xffffffba
+ 210:	beq	260 <tftp_put+0x198>
+ 214:	mov	r0, r4
+ 218:	mov	r1, #47	; 0x2f
+ 21c:	bl	0 <strrchr>
+ 220:	mov	r5, r0
+ 224:	mov	r0, r4
+ 228:	mov	r1, #92	; 0x5c
+ 22c:	bl	0 <strrchr>
+ 230:	cmp	r5, #0
+ 234:	cmpne	r0, #0
+ 238:	bne	268 <tftp_put+0x1a0>
+ 23c:	cmp	r5, #0
+ 240:	beq	278 <tftp_put+0x1b0>
+ 244:	add	r4, r5, #1
+ 248:	b	280 <tftp_put+0x1b8>
+ 24c:	movw	r0, #0
+ 250:	movt	r0, #0
+ 254:	bl	0 <xperror>
+ 258:	mvn	r4, #0
+ 25c:	b	3b4 <tftp_put+0x2ec>
+ 260:	mov	r4, #0
+ 264:	b	280 <tftp_put+0x1b8>
+ 268:	cmp	r5, r0
+ 26c:	movhi	r0, r5
+ 270:	add	r4, r0, #1
+ 274:	b	280 <tftp_put+0x1b8>
+ 278:	cmp	r0, #0
+ 27c:	addne	r4, r0, #1
+ 280:	mov	r0, r4
+ 284:	bl	0 <strlen>
+ 288:	cmp	r0, #255	; 0xff
+ 28c:	bhi	2e8 <tftp_put+0x220>
+ 290:	ldrb	r1, [r4]
+ 294:	cmp	r1, #0
+ 298:	beq	2c4 <tftp_put+0x1fc>
+ 29c:	add	r0, r4, #1
+ 2a0:	uxtb	r2, r1
+ 2a4:	cmp	r2, #32
+ 2a8:	bcc	2e8 <tftp_put+0x220>
+ 2ac:	sxtb	r1, r1
+ 2b0:	cmn	r1, #1
+ 2b4:	ble	2e8 <tftp_put+0x220>
+ 2b8:	ldrb	r1, [r0], #1
+ 2bc:	cmp	r1, #0
+ 2c0:	bne	2a0 <tftp_put+0x1d8>
+ 2c4:	movw	r1, #0
+ 2c8:	mov	r0, r4
+ 2cc:	movt	r1, #0
+ 2d0:	bl	0 <strcmp>
+ 2d4:	movw	r5, #0
+ 2d8:	cmp	r0, #0
+ 2dc:	movt	r5, #0
+ 2e0:	movne	r5, r4
+ 2e4:	b	310 <tftp_put+0x248>
+ 2e8:	movw	r0, #0
+ 2ec:	movw	r5, #0
+ 2f0:	mov	r1, #45	; 0x2d
+ 2f4:	mov	r2, #1
+ 2f8:	movt	r0, #0
+ 2fc:	movt	r5, #0
+ 300:	ldr	r3, [r0]
+ 304:	movw	r0, #0
+ 308:	movt	r0, #0
+ 30c:	bl	0 <fwrite>
+ 310:	mov	r0, #512	; 0x200
+ 314:	mov	r1, #512	; 0x200
+ 318:	str	r0, [sp, #56]	; 0x38
+ 31c:	add	r0, sp, #64	; 0x40
+ 320:	strh	r1, [sp, #64]	; 0x40
+ 324:	mov	r1, r5
+ 328:	add	r4, r0, #2
+ 32c:	mov	r0, r4
+ 330:	bl	0 <strcpy>
+ 334:	mov	r0, r5
+ 338:	bl	0 <strlen>
+ 33c:	str	r4, [sp, #32]
+ 340:	add	r4, r0, r4
+ 344:	movw	r0, #25455	; 0x636f
+ 348:	mov	r1, #0
+ 34c:	mov	r2, #10
+ 350:	movt	r0, #25972	; 0x6574
+ 354:	str	r0, [r4, #1]
+ 358:	mov	r0, #116	; 0x74
+ 35c:	strh	r0, [r4, #5]
+ 360:	mov	r0, #0
+ 364:	str	r0, [sp, #36]	; 0x24
+ 368:	mov	r0, #1456	; 0x5b0
+ 36c:	bl	0 <lltostr>
+ 370:	mov	r1, r0
+ 374:	movw	r0, #31337	; 0x7a69
+ 378:	movt	r0, #101	; 0x65
+ 37c:	str	r0, [r4, #11]
+ 380:	movw	r0, #27746	; 0x6c62
+ 384:	movt	r0, #29547	; 0x736b
+ 388:	str	r0, [r4, #7]
+ 38c:	add	r0, r4, #15
+ 390:	bl	0 <strcpy>
+ 394:	ldr	r0, [r6]
+ 398:	cmp	r0, #0
+ 39c:	beq	3e8 <tftp_put+0x320>
+ 3a0:	ldr	r4, [r6]
+ 3a4:	cmp	r4, #0
+ 3a8:	mvnne	r4, #0
+ 3ac:	cmp	sl, #0
+ 3b0:	bmi	3bc <tftp_put+0x2f4>
+ 3b4:	mov	r0, sl
+ 3b8:	bl	0 <close>
+ 3bc:	cmp	r7, #0
+ 3c0:	bmi	3d8 <tftp_put+0x310>
+ 3c4:	mov	r0, r7
+ 3c8:	mov	r1, #2
+ 3cc:	bl	0 <shutdown>
+ 3d0:	mov	r0, r7
+ 3d4:	bl	0 <close>
+ 3d8:	mov	sl, r4
+ 3dc:	mov	r0, sl
+ 3e0:	sub	sp, fp, #28
+ 3e4:	pop	{r4, r5, r6, r7, r8, r9, sl, fp, pc}
+ 3e8:	add	r0, sp, #64	; 0x40
+ 3ec:	add	r1, sp, #2112	; 0x840
+ 3f0:	mov	r2, #0
+ 3f4:	mov	r4, #0
+ 3f8:	add	r0, r0, #4
+ 3fc:	str	r2, [sp, #24]
+ 400:	str	r0, [sp, #28]
+ 404:	add	r0, r1, #2
+ 408:	mov	r1, #1
+ 40c:	str	r0, [sp, #16]
+ 410:	mov	r0, #0
+ 414:	str	r0, [sp, #20]
+ 418:	mvn	r0, #0
+ 41c:	b	438 <tftp_put+0x370>
+ 420:	strh	r5, [fp, #-70]	; 0xffffffba
+ 424:	mov	r1, #0
+ 428:	ldr	r0, [r6]
+ 42c:	cmp	r0, #0
+ 430:	ldr	r0, [sp, #48]	; 0x30
+ 434:	bne	3a0 <tftp_put+0x2d8>
+ 438:	cmp	r1, #0
+ 43c:	str	r1, [sp, #40]	; 0x28
+ 440:	beq	528 <tftp_put+0x460>
+ 444:	str	r0, [sp, #48]	; 0x30
+ 448:	ldrh	r0, [sp, #64]	; 0x40
+ 44c:	mvn	r1, #0
+ 450:	rev	r0, r0
+ 454:	add	r0, r1, r0, lsr #16
+ 458:	cmp	r0, #5
+ 45c:	bhi	a34 <tftp_put+0x96c>
+ 460:	str	r4, [sp, #52]	; 0x34
+ 464:	add	r1, pc, #4
+ 468:	mov	r4, #4
+ 46c:	ldr	pc, [r1, r0, lsl #2]
+ 470:	.word	0x00000488
+ 474:	.word	0x00000488
+ 478:	.word	0x000006a0
+ 47c:	.word	0x000006d4
+ 480:	.word	0x000006a8
+ 484:	.word	0x00000488
+ 488:	mov	r8, r7
+ 48c:	bl	0 <__ctype_b_loc>
+ 490:	ldr	r6, [r0]
+ 494:	ldrb	r0, [sp, #66]	; 0x42
+ 498:	mov	r7, #512	; 0x200
+ 49c:	add	r0, r6, r0, lsl #1
+ 4a0:	ldrb	r0, [r0, #1]
+ 4a4:	tst	r0, #64	; 0x40
+ 4a8:	beq	6bc <tftp_put+0x5f4>
+ 4ac:	ldr	r4, [sp, #32]
+ 4b0:	mov	r7, #512	; 0x200
+ 4b4:	mov	r0, r4
+ 4b8:	mov	r1, r7
+ 4bc:	bl	0 <strnlen>
+ 4c0:	cmp	r0, #0
+ 4c4:	beq	6bc <tftp_put+0x5f4>
+ 4c8:	add	r0, r0, #1
+ 4cc:	cmp	r7, #1
+ 4d0:	mov	r5, #0
+ 4d4:	subhi	r5, r7, r0
+ 4d8:	ldrb	r0, [r4, r0]!
+ 4dc:	add	r0, r6, r0, lsl #1
+ 4e0:	ldrb	r0, [r0, #1]
+ 4e4:	tst	r0, #64	; 0x40
+ 4e8:	beq	6b8 <tftp_put+0x5f0>
+ 4ec:	mov	r0, r4
+ 4f0:	mov	r1, r5
+ 4f4:	bl	0 <strnlen>
+ 4f8:	cmp	r0, #0
+ 4fc:	beq	6b8 <tftp_put+0x5f0>
+ 500:	add	r0, r0, #1
+ 504:	cmp	r5, #1
+ 508:	mov	r7, #0
+ 50c:	subhi	r7, r5, r0
+ 510:	ldrb	r0, [r4, r0]!
+ 514:	add	r0, r6, r0, lsl #1
+ 518:	ldrb	r0, [r0, #1]
+ 51c:	tst	r0, #64	; 0x40
+ 520:	bne	4b4 <tftp_put+0x3ec>
+ 524:	b	6bc <tftp_put+0x5f4>
+ 528:	add	r1, sp, #2112	; 0x840
+ 52c:	str	r0, [sp, #48]	; 0x30
+ 530:	str	r4, [sp, #52]	; 0x34
+ 534:	ldrh	r0, [r1]
+ 538:	rev16	r3, r0
+ 53c:	cmp	r3, #4
+ 540:	beq	684 <tftp_put+0x5bc>
+ 544:	ldr	r6, [sp, #56]	; 0x38
+ 548:	cmp	r3, #6
+ 54c:	bne	694 <tftp_put+0x5cc>
+ 550:	str	r3, [sp, #8]
+ 554:	str	r7, [sp, #12]
+ 558:	bl	0 <__ctype_b_loc>
+ 55c:	ldr	r0, [r0]
+ 560:	ldr	r7, [sp, #16]
+ 564:	mov	r5, #512	; 0x200
+ 568:	str	r0, [sp, #44]	; 0x2c
+ 56c:	ldrb	r0, [r7]
+ 570:	ldr	r1, [sp, #44]	; 0x2c
+ 574:	mov	r8, #0
+ 578:	add	r0, r1, r0, lsl #1
+ 57c:	ldrb	r0, [r0, #1]
+ 580:	tst	r0, #64	; 0x40
+ 584:	beq	8a4 <tftp_put+0x7dc>
+ 588:	mov	r0, r7
+ 58c:	mov	r1, r5
+ 590:	bl	0 <strnlen>
+ 594:	cmp	r0, #0
+ 598:	beq	8a4 <tftp_put+0x7dc>
+ 59c:	add	r0, r0, #1
+ 5a0:	cmp	r5, #1
+ 5a4:	mov	r4, r7
+ 5a8:	mov	r6, #0
+ 5ac:	ldr	r1, [sp, #44]	; 0x2c
+ 5b0:	mov	r8, #0
+ 5b4:	subhi	r6, r5, r0
+ 5b8:	ldrb	r0, [r4, r0]!
+ 5bc:	add	r0, r1, r0, lsl #1
+ 5c0:	ldrb	r0, [r0, #1]
+ 5c4:	tst	r0, #64	; 0x40
+ 5c8:	beq	8ac <tftp_put+0x7e4>
+ 5cc:	mov	r0, r4
+ 5d0:	mov	r1, r6
+ 5d4:	bl	0 <strnlen>
+ 5d8:	cmp	r0, #0
+ 5dc:	beq	8ac <tftp_put+0x7e4>
+ 5e0:	add	r0, r0, #1
+ 5e4:	cmp	r6, #1
+ 5e8:	mov	r5, #0
+ 5ec:	mov	r1, r7
+ 5f0:	subhi	r5, r6, r0
+ 5f4:	add	r6, r4, r0
+ 5f8:	movw	r0, #0
+ 5fc:	movt	r0, #0
+ 600:	bl	0 <strcasecmp>
+ 604:	mov	r7, r6
+ 608:	ldr	r6, [sp, #56]	; 0x38
+ 60c:	cmp	r0, #0
+ 610:	bne	56c <tftp_put+0x4a4>
+ 614:	ldr	r7, [sp, #12]
+ 618:	cmp	r4, #0
+ 61c:	beq	8b4 <tftp_put+0x7ec>
+ 620:	mov	r0, r4
+ 624:	add	r1, sp, #60	; 0x3c
+ 628:	mov	r2, #10
+ 62c:	bl	0 <strtol>
+ 630:	mov	r6, r0
+ 634:	ldr	r0, [sp, #60]	; 0x3c
+ 638:	ldrb	r0, [r0]
+ 63c:	cmp	r0, #0
+ 640:	bne	bd8 <tftp_put+0xb10>
+ 644:	mvn	r0, #7
+ 648:	movw	r1, #1449	; 0x5a9
+ 64c:	uxtah	r0, r0, r6
+ 650:	cmp	r0, r1
+ 654:	bcs	bd8 <tftp_put+0xb10>
+ 658:	movw	r0, #0
+ 65c:	ldr	r4, [sp, #52]	; 0x34
+ 660:	movt	r0, #0
+ 664:	ldr	r0, [r0]
+ 668:	cmp	r0, #0
+ 66c:	beq	8b8 <tftp_put+0x7f0>
+ 670:	movw	r0, #0
+ 674:	uxth	r1, r6
+ 678:	movt	r0, #0
+ 67c:	bl	0 <printf>
+ 680:	b	8b8 <tftp_put+0x7f0>
+ 684:	ldrh	r0, [r1, #2]
+ 688:	ldr	r6, [sp, #56]	; 0x38
+ 68c:	rev16	r8, r0
+ 690:	b	8bc <tftp_put+0x7f4>
+ 694:	uxth	r2, r4
+ 698:	mvn	r8, #0
+ 69c:	b	950 <tftp_put+0x888>
+ 6a0:	ldr	r0, [sp, #24]
+ 6a4:	b	6b0 <tftp_put+0x5e8>
+ 6a8:	ldr	r0, [sp, #28]
+ 6ac:	bl	0 <strlen>
+ 6b0:	add	r4, r0, #4
+ 6b4:	b	6d4 <tftp_put+0x60c>
+ 6b8:	mov	r7, r5
+ 6bc:	movw	r6, #0
+ 6c0:	movw	r0, #514	; 0x202
+ 6c4:	sub	r4, r0, r7
+ 6c8:	mov	r7, r8
+ 6cc:	movt	r6, #0
+ 6d0:	sub	r8, fp, #72	; 0x48
+ 6d4:	movw	r0, #0
+ 6d8:	movt	r0, #0
+ 6dc:	ldr	r0, [r0]
+ 6e0:	cmp	r0, #3
+ 6e4:	blt	710 <tftp_put+0x648>
+ 6e8:	movw	r0, #0
+ 6ec:	movt	r0, #0
+ 6f0:	bl	0 <printf>
+ 6f4:	movw	r0, #0
+ 6f8:	movt	r0, #0
+ 6fc:	ldr	r1, [r0]
+ 700:	add	r0, sp, #64	; 0x40
+ 704:	bl	bf4 <pkt_print>
+ 708:	mov	r0, #10
+ 70c:	bl	0 <putchar>
+ 710:	mov	r0, #16
+ 714:	add	r1, sp, #64	; 0x40
+ 718:	mov	r2, r4
+ 71c:	mov	r3, #0
+ 720:	str	r8, [sp]
+ 724:	str	r0, [sp, #4]
+ 728:	mov	r0, r7
+ 72c:	bl	0 <sendto>
+ 730:	cmn	r0, #1
+ 734:	ble	b44 <tftp_put+0xa7c>
+ 738:	ldr	r1, [r9]
+ 73c:	mov	r0, r7
+ 740:	bl	0 <select_fd>
+ 744:	mvn	r4, #0
+ 748:	cmp	r0, #0
+ 74c:	bmi	3ac <tftp_put+0x2e4>
+ 750:	beq	878 <tftp_put+0x7b0>
+ 754:	ldr	r0, [sp, #56]	; 0x38
+ 758:	mov	r1, #4
+ 75c:	add	r5, sp, #2112	; 0x840
+ 760:	mov	r3, #0
+ 764:	uxtah	r2, r1, r0
+ 768:	mov	r0, #16
+ 76c:	mov	r1, r5
+ 770:	str	r0, [fp, #-52]	; 0xffffffcc
+ 774:	sub	r0, fp, #48	; 0x30
+ 778:	str	r0, [sp]
+ 77c:	sub	r0, fp, #52	; 0x34
+ 780:	str	r0, [sp, #4]
+ 784:	mov	r0, r7
+ 788:	bl	0 <recvfrom>
+ 78c:	cmn	r0, #1
+ 790:	ble	b54 <tftp_put+0xa8c>
+ 794:	ldrh	r6, [r5]
+ 798:	cmp	r6, #1280	; 0x500
+ 79c:	beq	a8c <tftp_put+0x9c4>
+ 7a0:	ldrh	r5, [fp, #-46]	; 0xffffffd2
+ 7a4:	mov	r8, r0
+ 7a8:	bl	0 <__ctype_b_loc>
+ 7ac:	ldr	r0, [r0]
+ 7b0:	uxtb	r1, r6
+ 7b4:	add	r0, r0, r1, lsl #1
+ 7b8:	ldrb	r0, [r0, #1]
+ 7bc:	tst	r0, #64	; 0x40
+ 7c0:	bne	ac4 <tftp_put+0x9fc>
+ 7c4:	cmp	r6, #0
+ 7c8:	beq	af0 <tftp_put+0xa28>
+ 7cc:	rev16	r0, r6
+ 7d0:	uxth	r0, r0
+ 7d4:	cmp	r0, #7
+ 7d8:	bcs	af0 <tftp_put+0xa28>
+ 7dc:	movw	r0, #0
+ 7e0:	movt	r0, #0
+ 7e4:	ldr	r0, [r0]
+ 7e8:	cmp	r0, #3
+ 7ec:	blt	818 <tftp_put+0x750>
+ 7f0:	movw	r0, #0
+ 7f4:	movt	r0, #0
+ 7f8:	bl	0 <printf>
+ 7fc:	movw	r0, #0
+ 800:	movt	r0, #0
+ 804:	ldr	r1, [r0]
+ 808:	add	r0, sp, #2112	; 0x840
+ 80c:	bl	bf4 <pkt_print>
+ 810:	mov	r0, #10
+ 814:	bl	0 <putchar>
+ 818:	ldr	r4, [sp, #52]	; 0x34
+ 81c:	movw	r6, #0
+ 820:	cmp	r8, #0
+ 824:	sub	r8, fp, #72	; 0x48
+ 828:	movt	r6, #0
+ 82c:	beq	87c <tftp_put+0x7b4>
+ 830:	movw	r0, #65535	; 0xffff
+ 834:	mov	r1, #0
+ 838:	tst	r4, r0
+ 83c:	bne	428 <tftp_put+0x360>
+ 840:	rev16	r0, r5
+ 844:	uxth	r1, r0
+ 848:	ldrh	r0, [r9, #44]	; 0x2c
+ 84c:	cmp	r1, r0
+ 850:	beq	424 <tftp_put+0x35c>
+ 854:	movw	r0, #0
+ 858:	movt	r0, #0
+ 85c:	ldr	r0, [r0]
+ 860:	cmp	r0, #2
+ 864:	blt	420 <tftp_put+0x358>
+ 868:	movw	r0, #0
+ 86c:	movt	r0, #0
+ 870:	bl	0 <printf>
+ 874:	b	420 <tftp_put+0x358>
+ 878:	ldr	r4, [sp, #52]	; 0x34
+ 87c:	ldr	r1, [sp, #40]	; 0x28
+ 880:	add	r1, r1, #1
+ 884:	cmp	r1, #5
+ 888:	blt	428 <tftp_put+0x360>
+ 88c:	cmp	r1, #9
+ 890:	bgt	b6c <tftp_put+0xaa4>
+ 894:	movw	r0, #65535	; 0xffff
+ 898:	tst	r4, r0
+ 89c:	beq	428 <tftp_put+0x360>
+ 8a0:	b	b6c <tftp_put+0xaa4>
+ 8a4:	ldr	r7, [sp, #12]
+ 8a8:	b	8b4 <tftp_put+0x7ec>
+ 8ac:	ldr	r7, [sp, #12]
+ 8b0:	ldr	r6, [sp, #56]	; 0x38
+ 8b4:	ldr	r4, [sp, #52]	; 0x34
+ 8b8:	ldr	r3, [sp, #8]
+ 8bc:	uxth	r2, r4
+ 8c0:	cmp	r8, r2
+ 8c4:	bne	950 <tftp_put+0x888>
+ 8c8:	add	r4, r4, #1
+ 8cc:	ldr	r1, [sp, #36]	; 0x24
+ 8d0:	uxth	r0, r4
+ 8d4:	cmp	r0, #0
+ 8d8:	movwne	r0, #1
+ 8dc:	orr	r0, r1, r0
+ 8e0:	tst	r0, #1
+ 8e4:	bne	8fc <tftp_put+0x834>
+ 8e8:	movw	r0, #0
+ 8ec:	movt	r0, #0
+ 8f0:	bl	0 <puts>
+ 8f4:	mov	r0, #1
+ 8f8:	str	r0, [sp, #36]	; 0x24
+ 8fc:	mov	r0, #768	; 0x300
+ 900:	ldr	r1, [sp, #28]
+ 904:	mov	r5, r4
+ 908:	str	r6, [sp, #56]	; 0x38
+ 90c:	strh	r0, [sp, #64]	; 0x40
+ 910:	rev16	r0, r4
+ 914:	uxth	r4, r6
+ 918:	strh	r0, [sp, #66]	; 0x42
+ 91c:	mov	r0, sl
+ 920:	mov	r2, r4
+ 924:	bl	0 <read>
+ 928:	movw	r6, #0
+ 92c:	cmn	r0, #1
+ 930:	sub	r8, fp, #72	; 0x48
+ 934:	movt	r6, #0
+ 938:	ble	bc8 <tftp_put+0xb00>
+ 93c:	cmp	r0, #0
+ 940:	beq	9a8 <tftp_put+0x8e0>
+ 944:	str	r0, [sp, #24]
+ 948:	mov	r4, r5
+ 94c:	b	444 <tftp_put+0x37c>
+ 950:	orr	r0, r3, #2
+ 954:	str	r6, [sp, #56]	; 0x38
+ 958:	cmp	r0, #6
+ 95c:	bne	968 <tftp_put+0x8a0>
+ 960:	cmp	r8, r2
+ 964:	ble	a24 <tftp_put+0x95c>
+ 968:	movw	r0, #0
+ 96c:	movt	r0, #0
+ 970:	ldr	r0, [r0]
+ 974:	cmp	r0, #0
+ 978:	bne	9dc <tftp_put+0x914>
+ 97c:	cmn	r8, #1
+ 980:	beq	a24 <tftp_put+0x95c>
+ 984:	ldr	r0, [sp, #20]
+ 988:	movw	r6, #0
+ 98c:	sub	r8, fp, #72	; 0x48
+ 990:	movt	r6, #0
+ 994:	cmp	r0, #5
+ 998:	bge	bac <tftp_put+0xae4>
+ 99c:	add	r0, r0, #1
+ 9a0:	str	r0, [sp, #20]
+ 9a4:	b	738 <tftp_put+0x670>
+ 9a8:	mov	r0, #0
+ 9ac:	str	r0, [sp, #24]
+ 9b0:	ldr	r0, [sp, #48]	; 0x30
+ 9b4:	cmn	r0, #1
+ 9b8:	beq	9d0 <tftp_put+0x908>
+ 9bc:	cmp	r0, r4
+ 9c0:	mov	r0, #0
+ 9c4:	mov	r4, r5
+ 9c8:	beq	444 <tftp_put+0x37c>
+ 9cc:	b	3a0 <tftp_put+0x2d8>
+ 9d0:	mov	r0, #0
+ 9d4:	mov	r4, r5
+ 9d8:	b	444 <tftp_put+0x37c>
+ 9dc:	movw	r0, #0
+ 9e0:	movw	r1, #0
+ 9e4:	movt	r0, #0
+ 9e8:	movt	r1, #0
+ 9ec:	mov	r4, r0
+ 9f0:	ldr	r0, [r0]
+ 9f4:	bl	0 <fprintf>
+ 9f8:	ldr	r1, [r4]
+ 9fc:	add	r0, sp, #2112	; 0x840
+ a00:	bl	bf4 <pkt_print>
+ a04:	ldr	r3, [r4]
+ a08:	movw	r0, #0
+ a0c:	mov	r1, #2
+ a10:	mov	r2, #1
+ a14:	movt	r0, #0
+ a18:	bl	0 <fwrite>
+ a1c:	cmn	r8, #1
+ a20:	bne	984 <tftp_put+0x8bc>
+ a24:	movw	r6, #0
+ a28:	sub	r8, fp, #72	; 0x48
+ a2c:	movt	r6, #0
+ a30:	b	738 <tftp_put+0x670>
+ a34:	movw	r0, #0
+ a38:	mov	r1, #33	; 0x21
+ a3c:	mov	r2, #1
+ a40:	movt	r0, #0
+ a44:	ldr	r3, [r0]
+ a48:	mov	r4, r0
+ a4c:	movw	r0, #0
+ a50:	movt	r0, #0
+ a54:	bl	0 <fwrite>
+ a58:	ldr	r1, [r4]
+ a5c:	add	r0, sp, #64	; 0x40
+ a60:	bl	bf4 <pkt_print>
+ a64:	ldr	r3, [r4]
+ a68:	movw	r0, #0
+ a6c:	mov	r1, #17
+ a70:	movt	r0, #0
+ a74:	mov	r2, #1
+ a78:	bl	0 <fwrite>
+ a7c:	mvn	r4, #0
+ a80:	cmp	sl, #0
+ a84:	bpl	3b4 <tftp_put+0x2ec>
+ a88:	b	3bc <tftp_put+0x2f4>
+ a8c:	add	r1, sp, #2112	; 0x840
+ a90:	movw	r0, #0
+ a94:	mov	r2, r1
+ a98:	ldrh	r1, [r1, #2]
+ a9c:	movt	r0, #0
+ aa0:	add	r3, r2, #4
+ aa4:	ldr	r0, [r0]
+ aa8:	rev16	r2, r1
+ aac:	movw	r1, #0
+ ab0:	movt	r1, #0
+ ab4:	bl	0 <fprintf>
+ ab8:	cmp	sl, #0
+ abc:	bpl	3b4 <tftp_put+0x2ec>
+ ac0:	b	3bc <tftp_put+0x2f4>
+ ac4:	movw	r0, #0
+ ac8:	movw	r1, #0
+ acc:	add	r2, sp, #2112	; 0x840
+ ad0:	movt	r0, #0
+ ad4:	movt	r1, #0
+ ad8:	ldr	r0, [r0]
+ adc:	bl	0 <fprintf>
+ ae0:	mvn	r4, #1
+ ae4:	cmp	sl, #0
+ ae8:	bpl	3b4 <tftp_put+0x2ec>
+ aec:	b	3bc <tftp_put+0x2f4>
+ af0:	movw	r0, #0
+ af4:	mov	r1, #25
+ af8:	mov	r2, #1
+ afc:	movt	r0, #0
+ b00:	ldr	r3, [r0]
+ b04:	mov	r5, r0
+ b08:	movw	r0, #0
+ b0c:	movt	r0, #0
+ b10:	bl	0 <fwrite>
+ b14:	ldr	r1, [r5]
+ b18:	add	r0, sp, #2112	; 0x840
+ b1c:	bl	bf4 <pkt_print>
+ b20:	ldr	r3, [r5]
+ b24:	movw	r0, #0
+ b28:	mov	r1, #2
+ b2c:	mov	r2, #1
+ b30:	movt	r0, #0
+ b34:	bl	0 <fwrite>
+ b38:	cmp	sl, #0
+ b3c:	bpl	3b4 <tftp_put+0x2ec>
+ b40:	b	3bc <tftp_put+0x2f4>
+ b44:	mov	r4, r0
+ b48:	movw	r0, #0
+ b4c:	movt	r0, #0
+ b50:	b	b5c <tftp_put+0xa94>
+ b54:	movw	r0, #0
+ b58:	movt	r0, #0
+ b5c:	bl	0 <xperror>
+ b60:	cmp	sl, #0
+ b64:	bpl	3b4 <tftp_put+0x2ec>
+ b68:	b	3bc <tftp_put+0x2f4>
+ b6c:	movw	r0, #0
+ b70:	movt	r0, #0
+ b74:	ldr	r3, [r0]
+ b78:	movw	r0, #65535	; 0xffff
+ b7c:	tst	r4, r0
+ b80:	bne	b94 <tftp_put+0xacc>
+ b84:	movw	r0, #0
+ b88:	mov	r1, #39	; 0x27
+ b8c:	movt	r0, #0
+ b90:	b	a74 <tftp_put+0x9ac>
+ b94:	movw	r1, #0
+ b98:	uxth	r2, r4
+ b9c:	mov	r0, r3
+ ba0:	movt	r1, #0
+ ba4:	bl	0 <fprintf>
+ ba8:	b	a7c <tftp_put+0x9b4>
+ bac:	movw	r0, #0
+ bb0:	mov	r1, #29
+ bb4:	movt	r0, #0
+ bb8:	ldr	r3, [r0]
+ bbc:	movw	r0, #0
+ bc0:	movt	r0, #0
+ bc4:	b	a74 <tftp_put+0x9ac>
+ bc8:	mov	r4, r0
+ bcc:	movw	r0, #0
+ bd0:	movt	r0, #0
+ bd4:	b	b5c <tftp_put+0xa94>
+ bd8:	movw	r0, #0
+ bdc:	movw	r1, #0
+ be0:	mov	r2, r4
+ be4:	movt	r0, #0
+ be8:	movt	r1, #0
+ bec:	ldr	r0, [r0]
+ bf0:	b	ba4 <tftp_put+0xadc>
+
+00000bf4 <pkt_print>:
+ bf4:	push	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+ bf8:	add	fp, sp, #28
+ bfc:	sub	sp, sp, #4
+ c00:	mov	r7, r0
+ c04:	ldrh	r0, [r0]
+ c08:	mov	sl, r1
+ c0c:	rev16	r4, r0
+ c10:	cmp	r0, #0
+ c14:	beq	c70 <pkt_print+0x7c>
+ c18:	uxth	r5, r4
+ c1c:	cmp	r5, #7
+ c20:	bcs	c70 <pkt_print+0x7c>
+ c24:	movw	r0, #0
+ c28:	mov	r1, sl
+ c2c:	movt	r0, #0
+ c30:	add	r0, r0, r4, lsl #2
+ c34:	ldr	r0, [r0, #-4]
+ c38:	bl	0 <fputs>
+ c3c:	mvn	r0, #0
+ c40:	uxtah	r0, r0, r4
+ c44:	cmp	r0, #2
+ c48:	bcc	c8c <pkt_print+0x98>
+ c4c:	sub	r0, r5, #3
+ c50:	cmp	r0, #2
+ c54:	bcs	cbc <pkt_print+0xc8>
+ c58:	ldrh	r0, [r7, #2]
+ c5c:	movw	r1, #0
+ c60:	movt	r1, #0
+ c64:	rev16	r2, r0
+ c68:	mov	r0, sl
+ c6c:	b	c80 <pkt_print+0x8c>
+ c70:	movw	r1, #0
+ c74:	mov	r0, sl
+ c78:	mov	r2, r4
+ c7c:	movt	r1, #0
+ c80:	sub	sp, fp, #28
+ c84:	pop	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+ c88:	b	0 <fprintf>
+ c8c:	add	r4, r7, #2
+ c90:	mov	r0, r4
+ c94:	bl	0 <strlen>
+ c98:	movw	r1, #0
+ c9c:	add	r0, r4, r0
+ ca0:	mov	r2, r4
+ ca4:	add	r3, r0, #1
+ ca8:	movt	r1, #0
+ cac:	mov	r0, sl
+ cb0:	sub	sp, fp, #28
+ cb4:	pop	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+ cb8:	b	0 <fprintf>
+ cbc:	cmp	r5, #6
+ cc0:	bne	da0 <pkt_print+0x1ac>
+ cc4:	mov	r0, #40	; 0x28
+ cc8:	mov	r1, sl
+ ccc:	bl	0 <fputc>
+ cd0:	bl	0 <__ctype_b_loc>
+ cd4:	mov	r9, r0
+ cd8:	ldrb	r0, [r7, #2]!
+ cdc:	ldr	r8, [r9]
+ ce0:	add	r0, r8, r0, lsl #1
+ ce4:	ldrb	r0, [r0, #1]
+ ce8:	tst	r0, #64	; 0x40
+ cec:	beq	d8c <pkt_print+0x198>
+ cf0:	mov	r6, #512	; 0x200
+ cf4:	mov	r0, r7
+ cf8:	mov	r1, r6
+ cfc:	bl	0 <strnlen>
+ d00:	cmp	r0, #0
+ d04:	beq	d8c <pkt_print+0x198>
+ d08:	add	r0, r0, #1
+ d0c:	cmp	r6, #1
+ d10:	mov	r5, r7
+ d14:	mov	r4, #0
+ d18:	subhi	r4, r6, r0
+ d1c:	ldrb	r0, [r5, r0]!
+ d20:	add	r0, r8, r0, lsl #1
+ d24:	ldrb	r0, [r0, #1]
+ d28:	tst	r0, #64	; 0x40
+ d2c:	beq	d8c <pkt_print+0x198>
+ d30:	mov	r0, r5
+ d34:	mov	r1, r4
+ d38:	bl	0 <strnlen>
+ d3c:	cmp	r0, #0
+ d40:	beq	d8c <pkt_print+0x198>
+ d44:	movw	r1, #0
+ d48:	mov	r6, r0
+ d4c:	mov	r0, sl
+ d50:	mov	r2, r7
+ d54:	mov	r3, r5
+ d58:	movt	r1, #0
+ d5c:	bl	0 <fprintf>
+ d60:	add	r0, r6, #1
+ d64:	cmp	r4, #1
+ d68:	mov	r6, #0
+ d6c:	ldr	r8, [r9]
+ d70:	subhi	r6, r4, r0
+ d74:	ldrb	r0, [r5, r0]!
+ d78:	mov	r7, r5
+ d7c:	add	r0, r8, r0, lsl #1
+ d80:	ldrb	r0, [r0, #1]
+ d84:	tst	r0, #64	; 0x40
+ d88:	bne	cf4 <pkt_print+0x100>
+ d8c:	mov	r0, #41	; 0x29
+ d90:	mov	r1, sl
+ d94:	sub	sp, fp, #28
+ d98:	pop	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+ d9c:	b	0 <fputc>
+ da0:	sub	sp, fp, #28
+ da4:	pop	{r4, r5, r6, r7, r8, r9, sl, fp, pc}

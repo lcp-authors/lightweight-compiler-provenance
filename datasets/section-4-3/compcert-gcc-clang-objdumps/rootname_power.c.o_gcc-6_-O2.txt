@@ -1,0 +1,152 @@
+
+../compcert-repos/rootname/CMakeFiles/rootname.dir/src/power.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <init_bat>:
+   0:	push	{r4, r5, r6, lr}
+   4:	mov	r4, r0
+   8:	ldr	r1, [pc, #188]	; cc <init_bat+0xcc>
+   c:	ldr	r0, [pc, #188]	; d0 <init_bat+0xd0>
+  10:	bl	0 <fopen>
+  14:	subs	r5, r0, #0
+  18:	beq	7c <init_bat+0x7c>
+  1c:	mov	r3, #1
+  20:	strb	r3, [r4, #24]
+  24:	mov	r0, r5
+  28:	bl	0 <read_int>
+  2c:	strd	r0, [r4, #16]
+  30:	ldr	r1, [pc, #148]	; cc <init_bat+0xcc>
+  34:	ldr	r0, [pc, #152]	; d4 <init_bat+0xd4>
+  38:	bl	0 <fopen>
+  3c:	ldr	r1, [pc, #136]	; cc <init_bat+0xcc>
+  40:	str	r0, [r4]
+  44:	ldr	r0, [pc, #140]	; d8 <init_bat+0xd8>
+  48:	bl	0 <fopen>
+  4c:	cmp	r0, #0
+  50:	str	r0, [r4, #4]
+  54:	beq	a4 <init_bat+0xa4>
+  58:	ldr	r1, [pc, #108]	; cc <init_bat+0xcc>
+  5c:	ldr	r0, [pc, #120]	; dc <init_bat+0xdc>
+  60:	bl	0 <fopen>
+  64:	cmp	r0, #0
+  68:	str	r0, [r4, #8]
+  6c:	beq	b8 <init_bat+0xb8>
+  70:	mov	r0, r5
+  74:	pop	{r4, r5, r6, lr}
+  78:	b	0 <fclose>
+  7c:	ldr	r1, [pc, #72]	; cc <init_bat+0xcc>
+  80:	ldr	r0, [pc, #88]	; e0 <init_bat+0xe0>
+  84:	bl	0 <fopen>
+  88:	subs	r5, r0, #0
+  8c:	bne	1c <init_bat+0x1c>
+  90:	strb	r5, [r4, #24]
+  94:	str	r5, [r4]
+  98:	str	r5, [r4, #4]
+  9c:	str	r5, [r4, #8]
+  a0:	pop	{r4, r5, r6, pc}
+  a4:	ldr	r1, [pc, #32]	; cc <init_bat+0xcc>
+  a8:	ldr	r0, [pc, #52]	; e4 <init_bat+0xe4>
+  ac:	bl	0 <fopen>
+  b0:	str	r0, [r4, #4]
+  b4:	b	58 <init_bat+0x58>
+  b8:	ldr	r1, [pc, #12]	; cc <init_bat+0xcc>
+  bc:	ldr	r0, [pc, #36]	; e8 <init_bat+0xe8>
+  c0:	bl	0 <fopen>
+  c4:	str	r0, [r4, #8]
+  c8:	b	70 <init_bat+0x70>
+  cc:	.word	0x00000000
+  d0:	.word	0x00000004
+  d4:	.word	0x0000005c
+  d8:	.word	0x00000080
+  dc:	.word	0x000000d0
+  e0:	.word	0x00000030
+  e4:	.word	0x000000a8
+  e8:	.word	0x000000f8
+
+000000ec <close_bat>:
+  ec:	push	{r4, lr}
+  f0:	mov	r4, r0
+  f4:	ldr	r0, [r0]
+  f8:	cmp	r0, #0
+  fc:	beq	104 <close_bat+0x18>
+ 100:	bl	0 <fclose>
+ 104:	ldr	r0, [r4, #4]
+ 108:	cmp	r0, #0
+ 10c:	beq	114 <close_bat+0x28>
+ 110:	bl	0 <fclose>
+ 114:	ldr	r0, [r4, #8]
+ 118:	cmp	r0, #0
+ 11c:	popeq	{r4, pc}
+ 120:	pop	{r4, lr}
+ 124:	b	0 <fclose>
+
+00000128 <bat>:
+ 128:	push	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+ 12c:	sub	sp, sp, #20
+ 130:	mov	r4, r0
+ 134:	ldr	r0, [r0]
+ 138:	mov	fp, r2
+ 13c:	str	r1, [sp, #12]
+ 140:	bl	0 <read_int>
+ 144:	mov	r8, r0
+ 148:	ldr	r0, [r4, #4]
+ 14c:	mov	r9, r1
+ 150:	bl	0 <read_int>
+ 154:	mov	sl, r0
+ 158:	ldr	r0, [r4, #8]
+ 15c:	mov	r5, r1
+ 160:	bl	0 <read_int>
+ 164:	mov	ip, #100	; 0x64
+ 168:	ldrd	r2, [r4, #16]
+ 16c:	mov	r6, r0
+ 170:	mov	r7, r1
+ 174:	umull	r0, r1, sl, ip
+ 178:	mla	r1, ip, r5, r1
+ 17c:	bl	0 <__aeabi_uldivmod>
+ 180:	orrs	r3, r8, r9
+ 184:	mov	r4, r0
+ 188:	bne	20c <bat+0xe4>
+ 18c:	orrs	r3, r6, r7
+ 190:	bne	1b0 <bat+0x88>
+ 194:	mov	r3, r0
+ 198:	mov	r1, fp
+ 19c:	ldr	r0, [sp, #12]
+ 1a0:	ldr	r2, [pc, #128]	; 228 <bat+0x100>
+ 1a4:	add	sp, sp, #20
+ 1a8:	pop	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+ 1ac:	b	0 <snprintf>
+ 1b0:	mov	ip, #60	; 0x3c
+ 1b4:	mov	r2, r6
+ 1b8:	umull	r0, r1, sl, ip
+ 1bc:	mov	r3, r7
+ 1c0:	mla	r1, ip, r5, r1
+ 1c4:	bl	0 <__aeabi_uldivmod>
+ 1c8:	mov	r2, #60	; 0x3c
+ 1cc:	mov	r3, #0
+ 1d0:	bl	0 <__aeabi_uldivmod>
+ 1d4:	mov	r3, r7
+ 1d8:	mov	r0, sl
+ 1dc:	mov	r1, r5
+ 1e0:	str	r2, [sp, #4]
+ 1e4:	mov	r2, r6
+ 1e8:	bl	0 <__aeabi_uldivmod>
+ 1ec:	mov	r3, r4
+ 1f0:	mov	r1, fp
+ 1f4:	ldr	r2, [pc, #48]	; 22c <bat+0x104>
+ 1f8:	str	r0, [sp]
+ 1fc:	ldr	r0, [sp, #12]
+ 200:	bl	0 <snprintf>
+ 204:	add	sp, sp, #20
+ 208:	pop	{r4, r5, r6, r7, r8, r9, sl, fp, pc}
+ 20c:	mov	r3, r0
+ 210:	mov	r1, fp
+ 214:	ldr	r0, [sp, #12]
+ 218:	ldr	r2, [pc, #16]	; 230 <bat+0x108>
+ 21c:	add	sp, sp, #20
+ 220:	pop	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+ 224:	b	0 <snprintf>
+ 228:	.word	0x00000144
+ 22c:	.word	0x00000130
+ 230:	.word	0x00000124

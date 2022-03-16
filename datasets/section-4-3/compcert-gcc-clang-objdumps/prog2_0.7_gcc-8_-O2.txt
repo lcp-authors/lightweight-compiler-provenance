@@ -1,0 +1,260 @@
+
+../compcert-repos/prog2/0.7:     file format elf32-littlearm
+
+
+Disassembly of section .init:
+
+000105b4 <.init>:
+   105b4:	push	{r3, lr}
+   105b8:	bl	10704 <_start@@Base+0x3c>
+   105bc:	pop	{r3, pc}
+
+Disassembly of section .plt:
+
+000105c0 <printf@plt-0x14>:
+   105c0:	push	{lr}		; (str lr, [sp, #-4]!)
+   105c4:	ldr	lr, [pc, #4]	; 105d0 <printf@plt-0x4>
+   105c8:	add	lr, pc, lr
+   105cc:	ldr	pc, [lr, #8]!
+   105d0:	andeq	r0, r1, r0, lsr sl
+
+000105d4 <printf@plt>:
+   105d4:	add	ip, pc, #0, 12
+   105d8:	add	ip, ip, #16, 20	; 0x10000
+   105dc:	ldr	pc, [ip, #2608]!	; 0xa30
+
+000105e0 <__libc_start_main@plt>:
+   105e0:	add	ip, pc, #0, 12
+   105e4:	add	ip, ip, #16, 20	; 0x10000
+   105e8:	ldr	pc, [ip, #2600]!	; 0xa28
+
+000105ec <__gmon_start__@plt>:
+   105ec:	add	ip, pc, #0, 12
+   105f0:	add	ip, ip, #16, 20	; 0x10000
+   105f4:	ldr	pc, [ip, #2592]!	; 0xa20
+
+000105f8 <memset@plt>:
+   105f8:	add	ip, pc, #0, 12
+   105fc:	add	ip, ip, #16, 20	; 0x10000
+   10600:	ldr	pc, [ip, #2584]!	; 0xa18
+
+00010604 <__isoc99_scanf@plt>:
+   10604:	add	ip, pc, #0, 12
+   10608:	add	ip, ip, #16, 20	; 0x10000
+   1060c:	ldr	pc, [ip, #2576]!	; 0xa10
+
+00010610 <abort@plt>:
+   10610:	add	ip, pc, #0, 12
+   10614:	add	ip, ip, #16, 20	; 0x10000
+   10618:	ldr	pc, [ip, #2568]!	; 0xa08
+
+Disassembly of section .text:
+
+00010620 <main@@Base>:
+   10620:	push	{lr}		; (str lr, [sp, #-4]!)
+   10624:	sub	sp, sp, #404	; 0x194
+   10628:	mov	r2, #400	; 0x190
+   1062c:	mov	r1, #0
+   10630:	mov	r0, sp
+   10634:	bl	105f8 <memset@plt>
+   10638:	mov	r0, sp
+   1063c:	bl	10820 <lernotas@@Base>
+   10640:	cmp	r0, #0
+   10644:	vldr	s14, [pc, #116]	; 106c0 <main@@Base+0xa0>
+   10648:	ble	1068c <main@@Base+0x6c>
+   1064c:	vldr	d5, [pc, #100]	; 106b8 <main@@Base+0x98>
+   10650:	mov	r3, sp
+   10654:	add	r2, r3, r0, lsl #2
+   10658:	vldr	s9, [pc, #100]	; 106c4 <main@@Base+0xa4>
+   1065c:	vldmia	r3!, {s15}
+   10660:	vcvt.f64.f32	d6, s15
+   10664:	vcmpe.f64	d6, d5
+   10668:	vmrs	APSR_nzcv, fpscr
+   1066c:	blt	10680 <main@@Base+0x60>
+   10670:	vcmpe.f32	s15, s9
+   10674:	vmrs	APSR_nzcv, fpscr
+   10678:	vaddmi.f32	s14, s14, s9
+   1067c:	bmi	10684 <main@@Base+0x64>
+   10680:	vadd.f32	s14, s14, s15
+   10684:	cmp	r2, r3
+   10688:	bne	1065c <main@@Base+0x3c>
+   1068c:	vmov	s15, r0
+   10690:	movw	r0, #2352	; 0x930
+   10694:	movt	r0, #1
+   10698:	vcvt.f32.s32	s15, s15
+   1069c:	vdiv.f32	s13, s14, s15
+   106a0:	vcvt.f64.f32	d7, s13
+   106a4:	vmov	r2, r3, d7
+   106a8:	bl	105d4 <printf@plt>
+   106ac:	mov	r0, #0
+   106b0:	add	sp, sp, #404	; 0x194
+   106b4:	pop	{pc}		; (ldr pc, [sp], #4)
+   106b8:	ldmibls	r9, {r1, r3, r4, r7, r8, fp, ip, pc}
+   106bc:	mlami	r2, r9, r9, r9
+   106c0:	andeq	r0, r0, r0
+   106c4:	tstmi	r8, r0
+
+000106c8 <_start@@Base>:
+   106c8:	mov	fp, #0
+   106cc:	mov	lr, #0
+   106d0:	pop	{r1}		; (ldr r1, [sp], #4)
+   106d4:	mov	r2, sp
+   106d8:	push	{r2}		; (str r2, [sp, #-4]!)
+   106dc:	push	{r0}		; (str r0, [sp, #-4]!)
+   106e0:	ldr	ip, [pc, #16]	; 106f8 <_start@@Base+0x30>
+   106e4:	push	{ip}		; (str ip, [sp, #-4]!)
+   106e8:	ldr	r0, [pc, #12]	; 106fc <_start@@Base+0x34>
+   106ec:	ldr	r3, [pc, #12]	; 10700 <_start@@Base+0x38>
+   106f0:	bl	105e0 <__libc_start_main@plt>
+   106f4:	bl	10610 <abort@plt>
+   106f8:	andeq	r0, r1, r8, lsl r9
+   106fc:	andeq	r0, r1, r0, lsr #12
+   10700:			; <UNDEFINED> instruction: 0x000108b8
+   10704:	ldr	r3, [pc, #20]	; 10720 <_start@@Base+0x58>
+   10708:	ldr	r2, [pc, #20]	; 10724 <_start@@Base+0x5c>
+   1070c:	add	r3, pc, r3
+   10710:	ldr	r2, [r3, r2]
+   10714:	cmp	r2, #0
+   10718:	bxeq	lr
+   1071c:	b	105ec <__gmon_start__@plt>
+   10720:	andeq	r0, r1, ip, ror #17
+   10724:	andeq	r0, r0, r4, lsr #32
+   10728:	ldr	r0, [pc, #24]	; 10748 <_start@@Base+0x80>
+   1072c:	ldr	r3, [pc, #24]	; 1074c <_start@@Base+0x84>
+   10730:	cmp	r3, r0
+   10734:	bxeq	lr
+   10738:	ldr	r3, [pc, #16]	; 10750 <_start@@Base+0x88>
+   1073c:	cmp	r3, #0
+   10740:	bxeq	lr
+   10744:	bx	r3
+   10748:	andeq	r1, r2, r0, lsr r0
+   1074c:	andeq	r1, r2, r0, lsr r0
+   10750:	andeq	r0, r0, r0
+   10754:	ldr	r0, [pc, #36]	; 10780 <_start@@Base+0xb8>
+   10758:	ldr	r1, [pc, #36]	; 10784 <_start@@Base+0xbc>
+   1075c:	sub	r1, r1, r0
+   10760:	asr	r1, r1, #2
+   10764:	add	r1, r1, r1, lsr #31
+   10768:	asrs	r1, r1, #1
+   1076c:	bxeq	lr
+   10770:	ldr	r3, [pc, #16]	; 10788 <_start@@Base+0xc0>
+   10774:	cmp	r3, #0
+   10778:	bxeq	lr
+   1077c:	bx	r3
+   10780:	andeq	r1, r2, r0, lsr r0
+   10784:	andeq	r1, r2, r0, lsr r0
+   10788:	andeq	r0, r0, r0
+   1078c:	push	{r4, lr}
+   10790:	ldr	r4, [pc, #24]	; 107b0 <_start@@Base+0xe8>
+   10794:	ldrb	r3, [r4]
+   10798:	cmp	r3, #0
+   1079c:	popne	{r4, pc}
+   107a0:	bl	10728 <_start@@Base+0x60>
+   107a4:	mov	r3, #1
+   107a8:	strb	r3, [r4]
+   107ac:	pop	{r4, pc}
+   107b0:	andeq	r1, r2, r0, lsr r0
+   107b4:	b	10754 <_start@@Base+0x8c>
+
+000107b8 <media@@Base>:
+   107b8:	cmp	r1, #0
+   107bc:	vldr	s14, [pc, #84]	; 10818 <media@@Base+0x60>
+   107c0:	ble	10800 <media@@Base+0x48>
+   107c4:	vldr	d5, [pc, #68]	; 10810 <media@@Base+0x58>
+   107c8:	add	r3, r0, r1, lsl #2
+   107cc:	vldr	s9, [pc, #72]	; 1081c <media@@Base+0x64>
+   107d0:	vldmia	r0!, {s15}
+   107d4:	vcvt.f64.f32	d6, s15
+   107d8:	vcmpe.f64	d6, d5
+   107dc:	vmrs	APSR_nzcv, fpscr
+   107e0:	blt	107f4 <media@@Base+0x3c>
+   107e4:	vcmpe.f32	s15, s9
+   107e8:	vmrs	APSR_nzcv, fpscr
+   107ec:	vaddmi.f32	s14, s14, s9
+   107f0:	bmi	107f8 <media@@Base+0x40>
+   107f4:	vadd.f32	s14, s14, s15
+   107f8:	cmp	r0, r3
+   107fc:	bne	107d0 <media@@Base+0x18>
+   10800:	vmov	s15, r1
+   10804:	vcvt.f32.s32	s0, s15
+   10808:	vdiv.f32	s0, s14, s0
+   1080c:	bx	lr
+   10810:	ldmibls	r9, {r1, r3, r4, r7, r8, fp, ip, pc}
+   10814:	mlami	r2, r9, r9, r9
+   10818:	andeq	r0, r0, r0
+   1081c:	tstmi	r8, r0
+
+00010820 <lernotas@@Base>:
+   10820:	strd	r4, [sp, #-16]!
+   10824:	mov	r5, r0
+   10828:	mov	r4, #0
+   1082c:	str	r6, [sp, #8]
+   10830:	movw	r6, #2344	; 0x928
+   10834:	movt	r6, #1
+   10838:	str	lr, [sp, #12]
+   1083c:	vpush	{d8-d9}
+   10840:	sub	sp, sp, #8
+   10844:	vldr	d9, [pc, #92]	; 108a8 <lernotas@@Base+0x88>
+   10848:	vldr	d8, [pc, #96]	; 108b0 <lernotas@@Base+0x90>
+   1084c:	b	10874 <lernotas@@Base+0x54>
+   10850:	vldr	s12, [sp]
+   10854:	add	r4, r4, #1
+   10858:	vldr	s14, [sp, #4]
+   1085c:	vcvt.f64.f32	d6, s12
+   10860:	vcvt.f64.f32	d7, s14
+   10864:	vmul.f64	d7, d7, d8
+   10868:	vmla.f64	d7, d6, d9
+   1086c:	vcvt.f32.f64	s14, d7
+   10870:	vstmia	r5!, {s14}
+   10874:	add	r2, sp, #4
+   10878:	mov	r1, sp
+   1087c:	mov	r0, r6
+   10880:	bl	10604 <__isoc99_scanf@plt>
+   10884:	cmp	r0, #2
+   10888:	beq	10850 <lernotas@@Base+0x30>
+   1088c:	mov	r0, r4
+   10890:	add	sp, sp, #8
+   10894:	vpop	{d8-d9}
+   10898:	ldrd	r4, [sp]
+   1089c:	ldr	r6, [sp, #8]
+   108a0:	add	sp, sp, #12
+   108a4:	pop	{pc}		; (ldr pc, [sp], #4)
+   108a8:	teqcc	r3, #-872415232	; 0xcc000000
+   108ac:	svccc	0x00e33333
+   108b0:	ldmibls	r9, {r1, r3, r4, r7, r8, fp, ip, pc}
+   108b4:	svccc	0x00d99999
+
+000108b8 <__libc_csu_init@@Base>:
+   108b8:	push	{r4, r5, r6, r7, r8, r9, sl, lr}
+   108bc:	mov	r7, r0
+   108c0:	ldr	r6, [pc, #72]	; 10910 <__libc_csu_init@@Base+0x58>
+   108c4:	ldr	r5, [pc, #72]	; 10914 <__libc_csu_init@@Base+0x5c>
+   108c8:	add	r6, pc, r6
+   108cc:	add	r5, pc, r5
+   108d0:	sub	r6, r6, r5
+   108d4:	mov	r8, r1
+   108d8:	mov	r9, r2
+   108dc:	bl	105b4 <printf@plt-0x20>
+   108e0:	asrs	r6, r6, #2
+   108e4:	popeq	{r4, r5, r6, r7, r8, r9, sl, pc}
+   108e8:	mov	r4, #0
+   108ec:	add	r4, r4, #1
+   108f0:	ldr	r3, [r5], #4
+   108f4:	mov	r2, r9
+   108f8:	mov	r1, r8
+   108fc:	mov	r0, r7
+   10900:	blx	r3
+   10904:	cmp	r6, r4
+   10908:	bne	108ec <__libc_csu_init@@Base+0x34>
+   1090c:	pop	{r4, r5, r6, r7, r8, r9, sl, pc}
+   10910:	andeq	r0, r1, r4, asr #12
+   10914:	andeq	r0, r1, ip, lsr r6
+
+00010918 <__libc_csu_fini@@Base>:
+   10918:	bx	lr
+
+Disassembly of section .fini:
+
+0001091c <.fini>:
+   1091c:	push	{r3, lr}
+   10920:	pop	{r3, pc}

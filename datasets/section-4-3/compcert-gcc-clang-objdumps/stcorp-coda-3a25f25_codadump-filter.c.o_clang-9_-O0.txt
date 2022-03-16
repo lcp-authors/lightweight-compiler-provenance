@@ -1,0 +1,564 @@
+
+../compcert-repos/stcorp-coda-3a25f25/CMakeFiles/codadump.dir/tools/codadump/codadump-filter.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <codadump_filter_create>:
+   0:	push	{fp, lr}
+   4:	mov	fp, sp
+   8:	sub	sp, sp, #8
+   c:	str	r0, [sp, #4]
+  10:	movw	r0, #0
+  14:	str	r0, [sp]
+  18:	ldr	r0, [sp, #4]
+  1c:	mov	r1, sp
+  20:	bl	30 <get_filter>
+  24:	ldr	r0, [sp]
+  28:	mov	sp, fp
+  2c:	pop	{fp, pc}
+
+00000030 <get_filter>:
+  30:	push	{fp, lr}
+  34:	mov	fp, sp
+  38:	sub	sp, sp, #16
+  3c:	str	r0, [fp, #-4]
+  40:	str	r1, [sp, #8]
+  44:	movw	r0, #0
+  48:	str	r0, [sp, #4]
+  4c:	ldr	r1, [fp, #-4]
+  50:	str	r1, [sp]
+  54:	ldr	r1, [fp, #-4]
+  58:	cmp	r1, r0
+  5c:	bne	64 <get_filter+0x34>
+  60:	b	bc <get_filter+0x8c>
+  64:	b	68 <get_filter+0x38>
+  68:	ldr	r0, [sp]
+  6c:	ldrb	r0, [r0]
+  70:	cmp	r0, #0
+  74:	beq	bc <get_filter+0x8c>
+  78:	ldr	r0, [sp]
+  7c:	add	r1, sp, #4
+  80:	mov	r2, sp
+  84:	bl	2c0 <get_filter_item>
+  88:	ldr	r0, [sp, #4]
+  8c:	movw	r1, #0
+  90:	cmp	r0, r1
+  94:	bne	a4 <get_filter+0x74>
+  98:	ldr	r0, [sp, #8]
+  9c:	bl	c4 <codadump_filter_remove>
+  a0:	b	bc <get_filter+0x8c>
+  a4:	ldr	r0, [sp, #8]
+  a8:	ldr	r1, [sp, #4]
+  ac:	bl	71c <add_filter>
+  b0:	movw	r0, #0
+  b4:	str	r0, [sp, #4]
+  b8:	b	68 <get_filter+0x38>
+  bc:	mov	sp, fp
+  c0:	pop	{fp, pc}
+
+000000c4 <codadump_filter_remove>:
+  c4:	push	{fp, lr}
+  c8:	mov	fp, sp
+  cc:	sub	sp, sp, #8
+  d0:	str	r0, [sp, #4]
+  d4:	ldr	r0, [sp, #4]
+  d8:	movw	r1, #0
+  dc:	cmp	r0, r1
+  e0:	beq	e8 <codadump_filter_remove+0x24>
+  e4:	b	108 <codadump_filter_remove+0x44>
+  e8:	movw	r0, #0
+  ec:	movt	r0, #0
+  f0:	movw	r1, #0
+  f4:	movt	r1, #0
+  f8:	movw	r2, #192	; 0xc0
+  fc:	movw	r3, #0
+ 100:	movt	r3, #0
+ 104:	bl	0 <__assert_fail>
+ 108:	ldr	r0, [sp, #4]
+ 10c:	ldr	r0, [r0]
+ 110:	movw	r1, #0
+ 114:	cmp	r0, r1
+ 118:	beq	1bc <codadump_filter_remove+0xf8>
+ 11c:	ldr	r0, [sp, #4]
+ 120:	ldr	r0, [r0]
+ 124:	ldr	r0, [r0, #8]
+ 128:	movw	r1, #0
+ 12c:	cmp	r0, r1
+ 130:	beq	144 <codadump_filter_remove+0x80>
+ 134:	ldr	r0, [sp, #4]
+ 138:	ldr	r0, [r0]
+ 13c:	add	r0, r0, #8
+ 140:	bl	c4 <codadump_filter_remove>
+ 144:	ldr	r0, [sp, #4]
+ 148:	ldr	r0, [r0]
+ 14c:	ldr	r0, [r0, #4]
+ 150:	movw	r1, #0
+ 154:	cmp	r0, r1
+ 158:	beq	16c <codadump_filter_remove+0xa8>
+ 15c:	ldr	r0, [sp, #4]
+ 160:	ldr	r0, [r0]
+ 164:	add	r0, r0, #4
+ 168:	bl	c4 <codadump_filter_remove>
+ 16c:	ldr	r0, [sp, #4]
+ 170:	ldr	r0, [r0]
+ 174:	ldr	r0, [r0]
+ 178:	movw	r1, #0
+ 17c:	cmp	r0, r1
+ 180:	beq	1a4 <codadump_filter_remove+0xe0>
+ 184:	ldr	r0, [sp, #4]
+ 188:	ldr	r0, [r0]
+ 18c:	ldr	r0, [r0]
+ 190:	bl	0 <free>
+ 194:	ldr	r0, [sp, #4]
+ 198:	ldr	r0, [r0]
+ 19c:	movw	r1, #0
+ 1a0:	str	r1, [r0]
+ 1a4:	ldr	r0, [sp, #4]
+ 1a8:	ldr	r0, [r0]
+ 1ac:	bl	0 <free>
+ 1b0:	ldr	r0, [sp, #4]
+ 1b4:	movw	r1, #0
+ 1b8:	str	r1, [r0]
+ 1bc:	mov	sp, fp
+ 1c0:	pop	{fp, pc}
+
+000001c4 <codadump_filter_get_fieldname>:
+ 1c4:	push	{fp, lr}
+ 1c8:	mov	fp, sp
+ 1cc:	sub	sp, sp, #8
+ 1d0:	str	r0, [sp, #4]
+ 1d4:	ldr	r0, [sp, #4]
+ 1d8:	movw	r1, #0
+ 1dc:	cmp	r0, r1
+ 1e0:	beq	1e8 <codadump_filter_get_fieldname+0x24>
+ 1e4:	b	208 <codadump_filter_get_fieldname+0x44>
+ 1e8:	movw	r0, #0
+ 1ec:	movt	r0, #0
+ 1f0:	movw	r1, #0
+ 1f4:	movt	r1, #0
+ 1f8:	movw	r2, #216	; 0xd8
+ 1fc:	movw	r3, #0
+ 200:	movt	r3, #0
+ 204:	bl	0 <__assert_fail>
+ 208:	ldr	r0, [sp, #4]
+ 20c:	ldr	r0, [r0]
+ 210:	mov	sp, fp
+ 214:	pop	{fp, pc}
+
+00000218 <codadump_filter_get_subfilter>:
+ 218:	push	{fp, lr}
+ 21c:	mov	fp, sp
+ 220:	sub	sp, sp, #8
+ 224:	str	r0, [sp, #4]
+ 228:	ldr	r0, [sp, #4]
+ 22c:	movw	r1, #0
+ 230:	cmp	r0, r1
+ 234:	beq	23c <codadump_filter_get_subfilter+0x24>
+ 238:	b	25c <codadump_filter_get_subfilter+0x44>
+ 23c:	movw	r0, #0
+ 240:	movt	r0, #0
+ 244:	movw	r1, #0
+ 248:	movt	r1, #0
+ 24c:	movw	r2, #223	; 0xdf
+ 250:	movw	r3, #0
+ 254:	movt	r3, #0
+ 258:	bl	0 <__assert_fail>
+ 25c:	ldr	r0, [sp, #4]
+ 260:	ldr	r0, [r0, #4]
+ 264:	mov	sp, fp
+ 268:	pop	{fp, pc}
+
+0000026c <codadump_filter_get_next_filter>:
+ 26c:	push	{fp, lr}
+ 270:	mov	fp, sp
+ 274:	sub	sp, sp, #8
+ 278:	str	r0, [sp, #4]
+ 27c:	ldr	r0, [sp, #4]
+ 280:	movw	r1, #0
+ 284:	cmp	r0, r1
+ 288:	beq	290 <codadump_filter_get_next_filter+0x24>
+ 28c:	b	2b0 <codadump_filter_get_next_filter+0x44>
+ 290:	movw	r0, #0
+ 294:	movt	r0, #0
+ 298:	movw	r1, #0
+ 29c:	movt	r1, #0
+ 2a0:	movw	r2, #230	; 0xe6
+ 2a4:	movw	r3, #0
+ 2a8:	movt	r3, #0
+ 2ac:	bl	0 <__assert_fail>
+ 2b0:	ldr	r0, [sp, #4]
+ 2b4:	ldr	r0, [r0, #8]
+ 2b8:	mov	sp, fp
+ 2bc:	pop	{fp, pc}
+
+000002c0 <get_filter_item>:
+ 2c0:	push	{fp, lr}
+ 2c4:	mov	fp, sp
+ 2c8:	sub	sp, sp, #40	; 0x28
+ 2cc:	str	r0, [fp, #-4]
+ 2d0:	str	r1, [fp, #-8]
+ 2d4:	str	r2, [fp, #-12]
+ 2d8:	movw	r0, #0
+ 2dc:	str	r0, [fp, #-16]
+ 2e0:	ldr	r1, [fp, #-4]
+ 2e4:	cmp	r1, r0
+ 2e8:	beq	2f0 <get_filter_item+0x30>
+ 2ec:	b	310 <get_filter_item+0x50>
+ 2f0:	movw	r0, #0
+ 2f4:	movt	r0, #0
+ 2f8:	movw	r1, #0
+ 2fc:	movt	r1, #0
+ 300:	movw	r2, #44	; 0x2c
+ 304:	movw	r3, #0
+ 308:	movt	r3, #0
+ 30c:	bl	0 <__assert_fail>
+ 310:	ldr	r0, [fp, #-8]
+ 314:	movw	r1, #0
+ 318:	cmp	r0, r1
+ 31c:	beq	324 <get_filter_item+0x64>
+ 320:	b	344 <get_filter_item+0x84>
+ 324:	movw	r0, #0
+ 328:	movt	r0, #0
+ 32c:	movw	r1, #0
+ 330:	movt	r1, #0
+ 334:	movw	r2, #45	; 0x2d
+ 338:	movw	r3, #0
+ 33c:	movt	r3, #0
+ 340:	bl	0 <__assert_fail>
+ 344:	ldr	r0, [fp, #-12]
+ 348:	movw	r1, #0
+ 34c:	cmp	r0, r1
+ 350:	beq	358 <get_filter_item+0x98>
+ 354:	b	378 <get_filter_item+0xb8>
+ 358:	movw	r0, #0
+ 35c:	movt	r0, #0
+ 360:	movw	r1, #0
+ 364:	movt	r1, #0
+ 368:	movw	r2, #46	; 0x2e
+ 36c:	movw	r3, #0
+ 370:	movt	r3, #0
+ 374:	bl	0 <__assert_fail>
+ 378:	b	37c <get_filter_item+0xbc>
+ 37c:	ldr	r0, [fp, #-4]
+ 380:	ldrb	r0, [r0]
+ 384:	cmp	r0, #32
+ 388:	movw	r0, #1
+ 38c:	str	r0, [sp, #16]
+ 390:	beq	3c4 <get_filter_item+0x104>
+ 394:	ldr	r0, [fp, #-4]
+ 398:	ldrb	r0, [r0]
+ 39c:	cmp	r0, #9
+ 3a0:	movw	r0, #1
+ 3a4:	str	r0, [sp, #16]
+ 3a8:	beq	3c4 <get_filter_item+0x104>
+ 3ac:	ldr	r0, [fp, #-4]
+ 3b0:	ldrb	r0, [r0]
+ 3b4:	cmp	r0, #10
+ 3b8:	movw	r0, #0
+ 3bc:	moveq	r0, #1
+ 3c0:	str	r0, [sp, #16]
+ 3c4:	ldr	r0, [sp, #16]
+ 3c8:	tst	r0, #1
+ 3cc:	beq	3e0 <get_filter_item+0x120>
+ 3d0:	ldr	r0, [fp, #-4]
+ 3d4:	add	r0, r0, #1
+ 3d8:	str	r0, [fp, #-4]
+ 3dc:	b	37c <get_filter_item+0xbc>
+ 3e0:	b	3e4 <get_filter_item+0x124>
+ 3e4:	ldr	r0, [fp, #-4]
+ 3e8:	ldr	r1, [fp, #-16]
+ 3ec:	add	r0, r0, r1
+ 3f0:	ldrb	r0, [r0]
+ 3f4:	cmp	r0, #0
+ 3f8:	movw	r0, #0
+ 3fc:	str	r0, [sp, #12]
+ 400:	beq	464 <get_filter_item+0x1a4>
+ 404:	ldr	r0, [fp, #-4]
+ 408:	ldr	r1, [fp, #-16]
+ 40c:	add	r0, r0, r1
+ 410:	ldrb	r0, [r0]
+ 414:	cmp	r0, #46	; 0x2e
+ 418:	movw	r0, #0
+ 41c:	str	r0, [sp, #12]
+ 420:	beq	464 <get_filter_item+0x1a4>
+ 424:	ldr	r0, [fp, #-4]
+ 428:	ldr	r1, [fp, #-16]
+ 42c:	add	r0, r0, r1
+ 430:	ldrb	r0, [r0]
+ 434:	cmp	r0, #59	; 0x3b
+ 438:	movw	r0, #0
+ 43c:	str	r0, [sp, #12]
+ 440:	beq	464 <get_filter_item+0x1a4>
+ 444:	ldr	r0, [fp, #-4]
+ 448:	ldr	r1, [fp, #-16]
+ 44c:	add	r0, r0, r1
+ 450:	ldrb	r0, [r0]
+ 454:	cmp	r0, #44	; 0x2c
+ 458:	movw	r0, #0
+ 45c:	movne	r0, #1
+ 460:	str	r0, [sp, #12]
+ 464:	ldr	r0, [sp, #12]
+ 468:	tst	r0, #1
+ 46c:	beq	480 <get_filter_item+0x1c0>
+ 470:	ldr	r0, [fp, #-16]
+ 474:	add	r0, r0, #1
+ 478:	str	r0, [fp, #-16]
+ 47c:	b	3e4 <get_filter_item+0x124>
+ 480:	ldr	r0, [fp, #-16]
+ 484:	cmp	r0, #0
+ 488:	ble	708 <get_filter_item+0x448>
+ 48c:	ldr	r0, [fp, #-16]
+ 490:	str	r0, [sp, #20]
+ 494:	movw	r0, #12
+ 498:	bl	0 <malloc>
+ 49c:	ldr	r1, [fp, #-8]
+ 4a0:	str	r0, [r1]
+ 4a4:	ldr	r0, [fp, #-8]
+ 4a8:	ldr	r0, [r0]
+ 4ac:	movw	r1, #0
+ 4b0:	cmp	r0, r1
+ 4b4:	bne	4e8 <get_filter_item+0x228>
+ 4b8:	mvn	r0, #0
+ 4bc:	movw	r1, #0
+ 4c0:	movt	r1, #0
+ 4c4:	movw	r2, #12
+ 4c8:	movw	r3, #0
+ 4cc:	movt	r3, #0
+ 4d0:	movw	ip, #69	; 0x45
+ 4d4:	str	ip, [sp]
+ 4d8:	bl	0 <coda_set_error>
+ 4dc:	movw	r0, #0
+ 4e0:	movt	r0, #0
+ 4e4:	blx	r0
+ 4e8:	ldr	r0, [fp, #-16]
+ 4ec:	add	r0, r0, #1
+ 4f0:	bl	0 <malloc>
+ 4f4:	ldr	r1, [fp, #-8]
+ 4f8:	ldr	r1, [r1]
+ 4fc:	str	r0, [r1]
+ 500:	ldr	r0, [fp, #-8]
+ 504:	ldr	r0, [r0]
+ 508:	ldr	r0, [r0]
+ 50c:	movw	r1, #0
+ 510:	cmp	r0, r1
+ 514:	bne	54c <get_filter_item+0x28c>
+ 518:	ldr	r0, [fp, #-16]
+ 51c:	add	r2, r0, #1
+ 520:	mvn	r0, #0
+ 524:	movw	r1, #0
+ 528:	movt	r1, #0
+ 52c:	movw	r3, #0
+ 530:	movt	r3, #0
+ 534:	movw	ip, #76	; 0x4c
+ 538:	str	ip, [sp]
+ 53c:	bl	0 <coda_set_error>
+ 540:	movw	r0, #0
+ 544:	movt	r0, #0
+ 548:	blx	r0
+ 54c:	ldr	r0, [fp, #-8]
+ 550:	ldr	r0, [r0]
+ 554:	ldr	r0, [r0]
+ 558:	ldr	r1, [fp, #-4]
+ 55c:	ldr	r2, [fp, #-16]
+ 560:	bl	0 <strncpy>
+ 564:	ldr	r1, [fp, #-8]
+ 568:	ldr	r1, [r1]
+ 56c:	movw	r2, #0
+ 570:	str	r2, [r1, #4]
+ 574:	ldr	r1, [fp, #-8]
+ 578:	ldr	r1, [r1]
+ 57c:	str	r2, [r1, #8]
+ 580:	ldr	r0, [fp, #-8]
+ 584:	ldr	r0, [r0]
+ 588:	ldr	r0, [r0]
+ 58c:	ldr	r1, [fp, #-16]
+ 590:	sub	r1, r1, #1
+ 594:	add	r0, r0, r1
+ 598:	ldrb	r0, [r0]
+ 59c:	cmp	r0, #32
+ 5a0:	movw	r0, #1
+ 5a4:	str	r0, [sp, #8]
+ 5a8:	beq	604 <get_filter_item+0x344>
+ 5ac:	ldr	r0, [fp, #-8]
+ 5b0:	ldr	r0, [r0]
+ 5b4:	ldr	r0, [r0]
+ 5b8:	ldr	r1, [fp, #-16]
+ 5bc:	sub	r1, r1, #1
+ 5c0:	add	r0, r0, r1
+ 5c4:	ldrb	r0, [r0]
+ 5c8:	cmp	r0, #9
+ 5cc:	movw	r0, #1
+ 5d0:	str	r0, [sp, #8]
+ 5d4:	beq	604 <get_filter_item+0x344>
+ 5d8:	ldr	r0, [fp, #-8]
+ 5dc:	ldr	r0, [r0]
+ 5e0:	ldr	r0, [r0]
+ 5e4:	ldr	r1, [fp, #-16]
+ 5e8:	sub	r1, r1, #1
+ 5ec:	add	r0, r0, r1
+ 5f0:	ldrb	r0, [r0]
+ 5f4:	cmp	r0, #10
+ 5f8:	movw	r0, #0
+ 5fc:	moveq	r0, #1
+ 600:	str	r0, [sp, #8]
+ 604:	ldr	r0, [sp, #8]
+ 608:	tst	r0, #1
+ 60c:	beq	624 <get_filter_item+0x364>
+ 610:	ldr	r0, [fp, #-16]
+ 614:	mvn	r1, #0
+ 618:	add	r0, r0, r1
+ 61c:	str	r0, [fp, #-16]
+ 620:	b	580 <get_filter_item+0x2c0>
+ 624:	ldr	r0, [fp, #-8]
+ 628:	ldr	r0, [r0]
+ 62c:	ldr	r0, [r0]
+ 630:	ldr	r1, [fp, #-16]
+ 634:	add	r0, r0, r1
+ 638:	movw	r1, #0
+ 63c:	strb	r1, [r0]
+ 640:	ldr	r0, [fp, #-4]
+ 644:	ldr	r1, [sp, #20]
+ 648:	add	r0, r0, r1
+ 64c:	ldrb	r0, [r0]
+ 650:	cmp	r0, #46	; 0x2e
+ 654:	bne	6a0 <get_filter_item+0x3e0>
+ 658:	ldr	r0, [fp, #-4]
+ 65c:	ldr	r1, [sp, #20]
+ 660:	add	r1, r1, #1
+ 664:	add	r0, r0, r1
+ 668:	ldr	r1, [fp, #-8]
+ 66c:	ldr	r1, [r1]
+ 670:	add	r1, r1, #4
+ 674:	ldr	r2, [fp, #-12]
+ 678:	bl	2c0 <get_filter_item>
+ 67c:	ldr	r0, [fp, #-8]
+ 680:	ldr	r0, [r0]
+ 684:	ldr	r0, [r0, #4]
+ 688:	movw	r1, #0
+ 68c:	cmp	r0, r1
+ 690:	bne	69c <get_filter_item+0x3dc>
+ 694:	ldr	r0, [fp, #-8]
+ 698:	bl	c4 <codadump_filter_remove>
+ 69c:	b	704 <get_filter_item+0x444>
+ 6a0:	ldr	r0, [fp, #-4]
+ 6a4:	ldr	r1, [sp, #20]
+ 6a8:	add	r0, r0, r1
+ 6ac:	ldrb	r0, [r0]
+ 6b0:	cmp	r0, #59	; 0x3b
+ 6b4:	beq	6d0 <get_filter_item+0x410>
+ 6b8:	ldr	r0, [fp, #-4]
+ 6bc:	ldr	r1, [sp, #20]
+ 6c0:	add	r0, r0, r1
+ 6c4:	ldrb	r0, [r0]
+ 6c8:	cmp	r0, #44	; 0x2c
+ 6cc:	bne	6ec <get_filter_item+0x42c>
+ 6d0:	ldr	r0, [fp, #-4]
+ 6d4:	ldr	r1, [sp, #20]
+ 6d8:	add	r1, r1, #1
+ 6dc:	add	r0, r0, r1
+ 6e0:	ldr	r1, [fp, #-12]
+ 6e4:	str	r0, [r1]
+ 6e8:	b	700 <get_filter_item+0x440>
+ 6ec:	ldr	r0, [fp, #-4]
+ 6f0:	ldr	r1, [sp, #20]
+ 6f4:	add	r0, r0, r1
+ 6f8:	ldr	r1, [fp, #-12]
+ 6fc:	str	r0, [r1]
+ 700:	b	704 <get_filter_item+0x444>
+ 704:	b	714 <get_filter_item+0x454>
+ 708:	ldr	r0, [fp, #-8]
+ 70c:	movw	r1, #0
+ 710:	str	r1, [r0]
+ 714:	mov	sp, fp
+ 718:	pop	{fp, pc}
+
+0000071c <add_filter>:
+ 71c:	push	{fp, lr}
+ 720:	mov	fp, sp
+ 724:	sub	sp, sp, #8
+ 728:	str	r0, [sp, #4]
+ 72c:	str	r1, [sp]
+ 730:	ldr	r0, [sp, #4]
+ 734:	movw	r1, #0
+ 738:	cmp	r0, r1
+ 73c:	beq	744 <add_filter+0x28>
+ 740:	b	764 <add_filter+0x48>
+ 744:	movw	r0, #0
+ 748:	movt	r0, #0
+ 74c:	movw	r1, #0
+ 750:	movt	r1, #0
+ 754:	movw	r2, #117	; 0x75
+ 758:	movw	r3, #0
+ 75c:	movt	r3, #0
+ 760:	bl	0 <__assert_fail>
+ 764:	ldr	r0, [sp]
+ 768:	movw	r1, #0
+ 76c:	cmp	r0, r1
+ 770:	bne	778 <add_filter+0x5c>
+ 774:	b	874 <add_filter+0x158>
+ 778:	ldr	r0, [sp, #4]
+ 77c:	ldr	r0, [r0]
+ 780:	movw	r1, #0
+ 784:	cmp	r0, r1
+ 788:	bne	79c <add_filter+0x80>
+ 78c:	ldr	r0, [sp]
+ 790:	ldr	r1, [sp, #4]
+ 794:	str	r0, [r1]
+ 798:	b	874 <add_filter+0x158>
+ 79c:	ldr	r0, [sp, #4]
+ 7a0:	ldr	r0, [r0]
+ 7a4:	ldr	r0, [r0]
+ 7a8:	ldr	r1, [sp]
+ 7ac:	ldr	r1, [r1]
+ 7b0:	bl	0 <strcmp>
+ 7b4:	cmp	r0, #0
+ 7b8:	bne	830 <add_filter+0x114>
+ 7bc:	ldr	r0, [sp, #4]
+ 7c0:	ldr	r0, [r0]
+ 7c4:	ldr	r0, [r0, #4]
+ 7c8:	movw	r1, #0
+ 7cc:	cmp	r0, r1
+ 7d0:	beq	824 <add_filter+0x108>
+ 7d4:	ldr	r0, [sp]
+ 7d8:	ldr	r0, [r0, #4]
+ 7dc:	movw	r1, #0
+ 7e0:	cmp	r0, r1
+ 7e4:	beq	810 <add_filter+0xf4>
+ 7e8:	ldr	r0, [sp, #4]
+ 7ec:	ldr	r0, [r0]
+ 7f0:	add	r0, r0, #4
+ 7f4:	ldr	r1, [sp]
+ 7f8:	ldr	r1, [r1, #4]
+ 7fc:	bl	71c <add_filter>
+ 800:	ldr	r0, [sp]
+ 804:	movw	r1, #0
+ 808:	str	r1, [r0, #4]
+ 80c:	b	820 <add_filter+0x104>
+ 810:	ldr	r0, [sp, #4]
+ 814:	ldr	r0, [r0]
+ 818:	add	r0, r0, #4
+ 81c:	bl	c4 <codadump_filter_remove>
+ 820:	b	824 <add_filter+0x108>
+ 824:	mov	r0, sp
+ 828:	bl	c4 <codadump_filter_remove>
+ 82c:	b	874 <add_filter+0x158>
+ 830:	ldr	r0, [sp, #4]
+ 834:	ldr	r0, [r0]
+ 838:	ldr	r0, [r0, #8]
+ 83c:	movw	r1, #0
+ 840:	cmp	r0, r1
+ 844:	beq	860 <add_filter+0x144>
+ 848:	ldr	r0, [sp, #4]
+ 84c:	ldr	r0, [r0]
+ 850:	add	r0, r0, #8
+ 854:	ldr	r1, [sp]
+ 858:	bl	71c <add_filter>
+ 85c:	b	870 <add_filter+0x154>
+ 860:	ldr	r0, [sp]
+ 864:	ldr	r1, [sp, #4]
+ 868:	ldr	r1, [r1]
+ 86c:	str	r0, [r1, #8]
+ 870:	b	874 <add_filter+0x158>
+ 874:	mov	sp, fp
+ 878:	pop	{fp, pc}

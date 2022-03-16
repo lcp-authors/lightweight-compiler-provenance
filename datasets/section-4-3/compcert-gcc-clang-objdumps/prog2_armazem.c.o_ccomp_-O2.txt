@@ -1,0 +1,186 @@
+
+../repos/prog2/CMakeFiles/5.1.dir/Aula05_Filas_e_Pilhas/1/armazem.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <armazem_novo>:
+   0:	mov	ip, sp
+   4:	sub	sp, sp, #24
+   8:	str	ip, [sp]
+   c:	str	lr, [sp, #4]
+  10:	str	r4, [sp, #8]
+  14:	str	r5, [sp, #12]
+  18:	str	r6, [sp, #16]
+  1c:	mov	r5, r1
+  20:	mov	r6, r0
+  24:	mov	r0, #12
+  28:	bl	0 <malloc>
+  2c:	mov	r4, r0
+  30:	str	r6, [r4]
+  34:	str	r5, [r4, #4]
+  38:	bl	0 <fila_nova>
+  3c:	str	r0, [r4, #8]
+  40:	mov	r0, r4
+  44:	ldr	r4, [sp, #8]
+  48:	ldr	r5, [sp, #12]
+  4c:	ldr	r6, [sp, #16]
+  50:	ldr	lr, [sp, #4]
+  54:	add	sp, sp, #24
+  58:	bx	lr
+
+0000005c <armazem_vazio>:
+  5c:	mov	ip, sp
+  60:	sub	sp, sp, #8
+  64:	str	ip, [sp]
+  68:	str	lr, [sp, #4]
+  6c:	cmp	r0, #0
+  70:	beq	8c <armazem_vazio+0x30>
+  74:	ldr	r0, [r0, #8]
+  78:	bl	0 <fila_tamanho>
+  7c:	cmp	r0, #0
+  80:	beq	8c <armazem_vazio+0x30>
+  84:	mov	r0, #0
+  88:	b	90 <armazem_vazio+0x34>
+  8c:	mov	r0, #1
+  90:	ldr	lr, [sp, #4]
+  94:	add	sp, sp, #8
+  98:	bx	lr
+
+0000009c <armazem_cheio>:
+  9c:	mov	ip, sp
+  a0:	sub	sp, sp, #16
+  a4:	str	ip, [sp]
+  a8:	str	lr, [sp, #4]
+  ac:	str	r4, [sp, #8]
+  b0:	mov	r4, r0
+  b4:	mov	r0, r4
+  b8:	bl	5c <armazem_vazio>
+  bc:	cmp	r0, #0
+  c0:	beq	cc <armazem_cheio+0x30>
+  c4:	mov	r0, #0
+  c8:	b	104 <armazem_cheio+0x68>
+  cc:	ldr	r0, [r4, #8]
+  d0:	bl	0 <fila_tamanho>
+  d4:	ldr	r1, [r4]
+  d8:	cmp	r0, r1
+  dc:	bne	100 <armazem_cheio+0x64>
+  e0:	ldr	r0, [r4, #8]
+  e4:	bl	0 <fila_back>
+  e8:	ldr	r0, [r0, #4]
+  ec:	ldr	r2, [r4, #4]
+  f0:	cmp	r0, r2
+  f4:	bne	100 <armazem_cheio+0x64>
+  f8:	mov	r0, #1
+  fc:	b	104 <armazem_cheio+0x68>
+ 100:	mov	r0, #0
+ 104:	ldr	r4, [sp, #8]
+ 108:	ldr	lr, [sp, #4]
+ 10c:	add	sp, sp, #16
+ 110:	bx	lr
+
+00000114 <armazenar_contentor>:
+ 114:	mov	ip, sp
+ 118:	sub	sp, sp, #24
+ 11c:	str	ip, [sp]
+ 120:	str	lr, [sp, #4]
+ 124:	str	r4, [sp, #8]
+ 128:	str	r5, [sp, #12]
+ 12c:	str	r6, [sp, #16]
+ 130:	mov	r6, r1
+ 134:	mov	r5, r0
+ 138:	bl	0 <pilha_nova>
+ 13c:	mov	r4, r0
+ 140:	mov	r1, #1
+ 144:	cmp	r6, #0
+ 148:	moveq	r0, #1
+ 14c:	movne	r0, #0
+ 150:	cmp	r5, #0
+ 154:	moveq	r1, r1
+ 158:	movne	r1, r0
+ 15c:	cmp	r1, #0
+ 160:	bne	1d0 <armazenar_contentor+0xbc>
+ 164:	mov	r0, r5
+ 168:	bl	9c <armazem_cheio>
+ 16c:	cmp	r0, #0
+ 170:	bne	1d0 <armazenar_contentor+0xbc>
+ 174:	mov	r0, r5
+ 178:	bl	5c <armazem_vazio>
+ 17c:	cmp	r0, #0
+ 180:	beq	194 <armazenar_contentor+0x80>
+ 184:	bl	0 <pilha_nova>
+ 188:	mov	r1, r0
+ 18c:	ldr	r0, [r5, #8]
+ 190:	bl	0 <fila_push>
+ 194:	ldr	r0, [r5, #8]
+ 198:	bl	0 <fila_back>
+ 19c:	ldr	r2, [r0, #4]
+ 1a0:	ldr	r0, [r5, #4]
+ 1a4:	cmp	r2, r0
+ 1a8:	bne	1b8 <armazenar_contentor+0xa4>
+ 1ac:	ldr	r0, [r5, #8]
+ 1b0:	mov	r1, r4
+ 1b4:	bl	0 <fila_push>
+ 1b8:	ldr	r0, [r5, #8]
+ 1bc:	bl	0 <fila_back>
+ 1c0:	mov	r1, r6
+ 1c4:	bl	0 <pilha_push>
+ 1c8:	mov	r0, #1
+ 1cc:	b	1d4 <armazenar_contentor+0xc0>
+ 1d0:	mov	r0, #0
+ 1d4:	ldr	r4, [sp, #8]
+ 1d8:	ldr	r5, [sp, #12]
+ 1dc:	ldr	r6, [sp, #16]
+ 1e0:	ldr	lr, [sp, #4]
+ 1e4:	add	sp, sp, #24
+ 1e8:	bx	lr
+
+000001ec <expedir_contentor>:
+ 1ec:	mov	ip, sp
+ 1f0:	sub	sp, sp, #16
+ 1f4:	str	ip, [sp]
+ 1f8:	str	lr, [sp, #4]
+ 1fc:	str	r4, [sp, #8]
+ 200:	str	r5, [sp, #12]
+ 204:	mov	r5, r0
+ 208:	mov	r0, r5
+ 20c:	bl	5c <armazem_vazio>
+ 210:	cmp	r0, #0
+ 214:	bne	294 <expedir_contentor+0xa8>
+ 218:	ldr	r0, [r5, #8]
+ 21c:	bl	0 <fila_front>
+ 220:	bl	0 <pilha_top>
+ 224:	cmp	r0, #0
+ 228:	beq	294 <expedir_contentor+0xa8>
+ 22c:	ldr	r0, [r5, #8]
+ 230:	bl	0 <fila_front>
+ 234:	bl	0 <pilha_top>
+ 238:	mov	r4, r0
+ 23c:	ldr	r0, [r5, #8]
+ 240:	bl	0 <fila_front>
+ 244:	bl	0 <pilha_top>
+ 248:	mov	r1, r0
+ 24c:	ldr	r0, [r4]
+ 250:	vldr	s0, [r1, #4]
+ 254:	vmov.f32	s0, s0
+ 258:	bl	0 <contentor_novo>
+ 25c:	mov	r4, r0
+ 260:	ldr	r0, [r5, #8]
+ 264:	bl	0 <fila_front>
+ 268:	ldr	r2, [r0, #4]
+ 26c:	cmp	r2, #1
+ 270:	ble	284 <expedir_contentor+0x98>
+ 274:	ldr	r0, [r5, #8]
+ 278:	bl	0 <fila_front>
+ 27c:	bl	0 <pilha_pop>
+ 280:	b	28c <expedir_contentor+0xa0>
+ 284:	ldr	r0, [r5, #8]
+ 288:	bl	0 <fila_pop>
+ 28c:	mov	r0, r4
+ 290:	b	298 <expedir_contentor+0xac>
+ 294:	mov	r0, #0
+ 298:	ldr	r4, [sp, #8]
+ 29c:	ldr	r5, [sp, #12]
+ 2a0:	ldr	lr, [sp, #4]
+ 2a4:	add	sp, sp, #16
+ 2a8:	bx	lr

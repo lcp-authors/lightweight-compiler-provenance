@@ -1,0 +1,201 @@
+
+../compcert-repos/prog2/CMakeFiles/0.3.dir/Aula00_Conceitos_base/03.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <avg>:
+   0:	push	{fp}		; (str fp, [sp, #-4]!)
+   4:	add	fp, sp, #0
+   8:	sub	sp, sp, #20
+   c:	str	r0, [fp, #-16]
+  10:	mov	r3, #0
+  14:	str	r3, [fp, #-12]
+  18:	mov	r3, #0
+  1c:	str	r3, [fp, #-8]
+  20:	b	50 <avg+0x50>
+  24:	ldr	r3, [fp, #-8]
+  28:	lsl	r3, r3, #2
+  2c:	ldr	r2, [fp, #-16]
+  30:	add	r3, r2, r3
+  34:	vldr	s15, [r3]
+  38:	vldr	s14, [fp, #-12]
+  3c:	vadd.f32	s15, s14, s15
+  40:	vstr	s15, [fp, #-12]
+  44:	ldr	r3, [fp, #-8]
+  48:	add	r3, r3, #1
+  4c:	str	r3, [fp, #-8]
+  50:	ldr	r3, [fp, #-8]
+  54:	cmp	r3, #9
+  58:	ble	24 <avg+0x24>
+  5c:	vldr	s15, [fp, #-12]
+  60:	vldr	s14, [pc, #20]	; 7c <avg+0x7c>
+  64:	vdiv.f32	s13, s15, s14
+  68:	vmov.f32	s15, s13
+  6c:	vmov.f32	s0, s15
+  70:	add	sp, fp, #0
+  74:	pop	{fp}		; (ldr fp, [sp], #4)
+  78:	bx	lr
+  7c:	.word	0x41200000
+
+00000080 <max>:
+  80:	push	{fp}		; (str fp, [sp, #-4]!)
+  84:	add	fp, sp, #0
+  88:	sub	sp, sp, #20
+  8c:	str	r0, [fp, #-16]
+  90:	ldr	r3, [fp, #-16]
+  94:	ldr	r3, [r3]
+  98:	str	r3, [fp, #-12]
+  9c:	mov	r3, #1
+  a0:	str	r3, [fp, #-8]
+  a4:	b	f0 <max+0x70>
+  a8:	ldr	r3, [fp, #-8]
+  ac:	lsl	r3, r3, #2
+  b0:	ldr	r2, [fp, #-16]
+  b4:	add	r3, r2, r3
+  b8:	vldr	s14, [r3]
+  bc:	vldr	s15, [fp, #-12]
+  c0:	vcmpe.f32	s14, s15
+  c4:	vmrs	APSR_nzcv, fpscr
+  c8:	ble	e4 <max+0x64>
+  cc:	ldr	r3, [fp, #-8]
+  d0:	lsl	r3, r3, #2
+  d4:	ldr	r2, [fp, #-16]
+  d8:	add	r3, r2, r3
+  dc:	ldr	r3, [r3]
+  e0:	str	r3, [fp, #-12]
+  e4:	ldr	r3, [fp, #-8]
+  e8:	add	r3, r3, #1
+  ec:	str	r3, [fp, #-8]
+  f0:	ldr	r3, [fp, #-8]
+  f4:	cmp	r3, #9
+  f8:	ble	a8 <max+0x28>
+  fc:	ldr	r3, [fp, #-12]
+ 100:	vmov	s15, r3
+ 104:	vmov.f32	s0, s15
+ 108:	add	sp, fp, #0
+ 10c:	pop	{fp}		; (ldr fp, [sp], #4)
+ 110:	bx	lr
+
+00000114 <min>:
+ 114:	push	{fp}		; (str fp, [sp, #-4]!)
+ 118:	add	fp, sp, #0
+ 11c:	sub	sp, sp, #20
+ 120:	str	r0, [fp, #-16]
+ 124:	ldr	r3, [fp, #-16]
+ 128:	ldr	r3, [r3]
+ 12c:	str	r3, [fp, #-12]
+ 130:	mov	r3, #1
+ 134:	str	r3, [fp, #-8]
+ 138:	b	184 <min+0x70>
+ 13c:	ldr	r3, [fp, #-8]
+ 140:	lsl	r3, r3, #2
+ 144:	ldr	r2, [fp, #-16]
+ 148:	add	r3, r2, r3
+ 14c:	vldr	s14, [r3]
+ 150:	vldr	s15, [fp, #-12]
+ 154:	vcmpe.f32	s14, s15
+ 158:	vmrs	APSR_nzcv, fpscr
+ 15c:	bpl	178 <min+0x64>
+ 160:	ldr	r3, [fp, #-8]
+ 164:	lsl	r3, r3, #2
+ 168:	ldr	r2, [fp, #-16]
+ 16c:	add	r3, r2, r3
+ 170:	ldr	r3, [r3]
+ 174:	str	r3, [fp, #-12]
+ 178:	ldr	r3, [fp, #-8]
+ 17c:	add	r3, r3, #1
+ 180:	str	r3, [fp, #-8]
+ 184:	ldr	r3, [fp, #-8]
+ 188:	cmp	r3, #9
+ 18c:	ble	13c <min+0x28>
+ 190:	ldr	r3, [fp, #-12]
+ 194:	vmov	s15, r3
+ 198:	vmov.f32	s0, s15
+ 19c:	add	sp, fp, #0
+ 1a0:	pop	{fp}		; (ldr fp, [sp], #4)
+ 1a4:	bx	lr
+
+000001a8 <main>:
+ 1a8:	push	{fp, lr}
+ 1ac:	add	fp, sp, #4
+ 1b0:	sub	sp, sp, #48	; 0x30
+ 1b4:	mov	r3, #0
+ 1b8:	str	r3, [fp, #-8]
+ 1bc:	b	1fc <main+0x54>
+ 1c0:	ldr	r3, [fp, #-8]
+ 1c4:	add	r3, r3, #1
+ 1c8:	mov	r1, r3
+ 1cc:	ldr	r0, [pc, #256]	; 2d4 <main+0x12c>
+ 1d0:	bl	0 <printf>
+ 1d4:	sub	r2, fp, #48	; 0x30
+ 1d8:	ldr	r3, [fp, #-8]
+ 1dc:	lsl	r3, r3, #2
+ 1e0:	add	r3, r2, r3
+ 1e4:	mov	r1, r3
+ 1e8:	ldr	r0, [pc, #232]	; 2d8 <main+0x130>
+ 1ec:	bl	0 <__isoc99_scanf>
+ 1f0:	ldr	r3, [fp, #-8]
+ 1f4:	add	r3, r3, #1
+ 1f8:	str	r3, [fp, #-8]
+ 1fc:	ldr	r3, [fp, #-8]
+ 200:	cmp	r3, #9
+ 204:	ble	1c0 <main+0x18>
+ 208:	sub	r3, fp, #48	; 0x30
+ 20c:	mov	r0, r3
+ 210:	bl	0 <avg>
+ 214:	vmov.f32	s15, s0
+ 218:	vcvt.f64.f32	d7, s15
+ 21c:	vmov	r2, r3, d7
+ 220:	ldr	r0, [pc, #180]	; 2dc <main+0x134>
+ 224:	bl	0 <printf>
+ 228:	sub	r3, fp, #48	; 0x30
+ 22c:	mov	r0, r3
+ 230:	bl	80 <max>
+ 234:	vmov.f32	s15, s0
+ 238:	vcvt.f64.f32	d7, s15
+ 23c:	vmov	r2, r3, d7
+ 240:	ldr	r0, [pc, #152]	; 2e0 <main+0x138>
+ 244:	bl	0 <printf>
+ 248:	sub	r3, fp, #48	; 0x30
+ 24c:	mov	r0, r3
+ 250:	bl	114 <min>
+ 254:	vmov.f32	s15, s0
+ 258:	vcvt.f64.f32	d7, s15
+ 25c:	vmov	r2, r3, d7
+ 260:	ldr	r0, [pc, #124]	; 2e4 <main+0x13c>
+ 264:	bl	0 <printf>
+ 268:	ldr	r0, [pc, #120]	; 2e8 <main+0x140>
+ 26c:	bl	0 <printf>
+ 270:	mov	r3, #0
+ 274:	str	r3, [fp, #-8]
+ 278:	b	2b0 <main+0x108>
+ 27c:	ldr	r3, [fp, #-8]
+ 280:	lsl	r3, r3, #2
+ 284:	sub	r2, fp, #4
+ 288:	add	r3, r2, r3
+ 28c:	sub	r3, r3, #44	; 0x2c
+ 290:	vldr	s15, [r3]
+ 294:	vcvt.f64.f32	d7, s15
+ 298:	vmov	r2, r3, d7
+ 29c:	ldr	r0, [pc, #72]	; 2ec <main+0x144>
+ 2a0:	bl	0 <printf>
+ 2a4:	ldr	r3, [fp, #-8]
+ 2a8:	add	r3, r3, #1
+ 2ac:	str	r3, [fp, #-8]
+ 2b0:	ldr	r3, [fp, #-8]
+ 2b4:	cmp	r3, #9
+ 2b8:	ble	27c <main+0xd4>
+ 2bc:	mov	r0, #10
+ 2c0:	bl	0 <putchar>
+ 2c4:	mov	r3, #0
+ 2c8:	mov	r0, r3
+ 2cc:	sub	sp, fp, #4
+ 2d0:	pop	{fp, pc}
+ 2d4:	.word	0x00000000
+ 2d8:	.word	0x00000018
+ 2dc:	.word	0x0000001c
+ 2e0:	.word	0x0000002c
+ 2e4:	.word	0x0000003c
+ 2e8:	.word	0x0000004c
+ 2ec:	.word	0x00000054

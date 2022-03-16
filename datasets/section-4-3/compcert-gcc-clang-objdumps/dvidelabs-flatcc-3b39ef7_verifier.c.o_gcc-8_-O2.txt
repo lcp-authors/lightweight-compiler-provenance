@@ -1,0 +1,1417 @@
+
+../compcert-repos/dvidelabs-flatcc-3b39ef7/test/json_test/CMakeFiles/json_test_uq.dir/__/__/src/runtime/verifier.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <flatcc_verify_typed_buffer_header.part.2>:
+       0:	cmp	r1, #0
+       4:	beq	1c <flatcc_verify_typed_buffer_header.part.2+0x1c>
+       8:	ldr	r0, [r0, #4]
+       c:	cmp	r1, r0
+      10:	movne	r0, #2
+      14:	moveq	r0, #0
+      18:	bx	lr
+      1c:	mov	r0, r1
+      20:	bx	lr
+
+00000024 <flatcc_verify_error_string>:
+      24:	cmp	r0, #36	; 0x24
+      28:	bhi	3c <flatcc_verify_error_string+0x18>
+      2c:	movw	r3, #0
+      30:	movt	r3, #0
+      34:	ldr	r0, [r3, r0, lsl #2]
+      38:	bx	lr
+      3c:	movw	r0, #0
+      40:	movt	r0, #0
+      44:	bx	lr
+
+00000048 <flatcc_verify_field>:
+      48:	ldrh	ip, [r0, #22]
+      4c:	add	r1, r1, #2
+      50:	lsl	r1, r1, #1
+      54:	uxth	r1, r1
+      58:	cmp	ip, r1
+      5c:	bls	a4 <flatcc_verify_field+0x5c>
+      60:	ldr	ip, [r0, #12]
+      64:	ldrh	r1, [ip, r1]
+      68:	cmp	r1, #0
+      6c:	beq	a4 <flatcc_verify_field+0x5c>
+      70:	ldrh	ip, [r0, #20]
+      74:	add	r2, r2, r1
+      78:	cmp	r2, ip
+      7c:	bhi	ac <flatcc_verify_field+0x64>
+      80:	ldr	r2, [r0]
+      84:	sub	r3, r3, #1
+      88:	ldr	r0, [r0, #16]
+      8c:	add	r2, r2, r0
+      90:	add	r1, r2, r1
+      94:	tst	r1, r3
+      98:	moveq	r0, #0
+      9c:	movne	r0, #12
+      a0:	bx	lr
+      a4:	mov	r0, #0
+      a8:	bx	lr
+      ac:	mov	r0, #13
+      b0:	bx	lr
+
+000000b4 <flatcc_verify_string_field>:
+      b4:	ldrh	r3, [r0, #22]
+      b8:	add	r1, r1, #2
+      bc:	lsl	r1, r1, #1
+      c0:	uxth	r1, r1
+      c4:	cmp	r3, r1
+      c8:	bls	164 <flatcc_verify_string_field+0xb0>
+      cc:	ldr	r3, [r0, #12]
+      d0:	ldrh	r3, [r3, r1]
+      d4:	cmp	r3, #0
+      d8:	beq	164 <flatcc_verify_string_field+0xb0>
+      dc:	ldrh	r2, [r0, #20]
+      e0:	add	r1, r3, #4
+      e4:	cmp	r1, r2
+      e8:	bhi	174 <flatcc_verify_string_field+0xc0>
+      ec:	ldr	r2, [r0, #16]
+      f0:	add	r3, r3, r2
+      f4:	tst	r3, #3
+      f8:	bne	17c <flatcc_verify_string_field+0xc8>
+      fc:	cmp	r3, #0
+     100:	beq	18c <flatcc_verify_string_field+0xd8>
+     104:	ldr	r1, [r0]
+     108:	ldr	r2, [r1, r3]
+     10c:	add	r2, r3, r2
+     110:	cmp	r3, r2
+     114:	bcs	15c <flatcc_verify_string_field+0xa8>
+     118:	ldr	r3, [r0, #4]
+     11c:	add	r0, r2, #4
+     120:	cmp	r3, r0
+     124:	bcc	15c <flatcc_verify_string_field+0xa8>
+     128:	tst	r2, #3
+     12c:	bne	15c <flatcc_verify_string_field+0xa8>
+     130:	ldr	r2, [r1, r2]
+     134:	sub	r3, r3, r0
+     138:	add	ip, r2, #1
+     13c:	cmp	r3, ip
+     140:	bcc	184 <flatcc_verify_string_field+0xd0>
+     144:	add	r1, r1, r0
+     148:	ldrb	r3, [r1, r2]
+     14c:	cmp	r3, #0
+     150:	moveq	r0, #0
+     154:	movne	r0, #7
+     158:	bx	lr
+     15c:	mov	r0, #17
+     160:	bx	lr
+     164:	cmp	r2, #0
+     168:	moveq	r0, #0
+     16c:	movne	r0, #4
+     170:	bx	lr
+     174:	mov	r0, #13
+     178:	bx	lr
+     17c:	mov	r0, #12
+     180:	bx	lr
+     184:	mov	r0, #8
+     188:	bx	lr
+     18c:	mov	r0, r3
+     190:	bx	lr
+
+00000194 <flatcc_verify_vector_field>:
+     194:	ldrh	ip, [r0, #22]
+     198:	add	r1, r1, #2
+     19c:	lsl	r1, r1, #1
+     1a0:	str	r4, [sp, #-8]!
+     1a4:	str	lr, [sp, #4]
+     1a8:	uxth	r1, r1
+     1ac:	ldrh	lr, [sp, #8]
+     1b0:	cmp	ip, r1
+     1b4:	bls	278 <flatcc_verify_vector_field+0xe4>
+     1b8:	ldr	ip, [r0, #12]
+     1bc:	ldrh	r1, [ip, r1]
+     1c0:	cmp	r1, #0
+     1c4:	beq	278 <flatcc_verify_vector_field+0xe4>
+     1c8:	ldrh	r2, [r0, #20]
+     1cc:	add	ip, r1, #4
+     1d0:	cmp	ip, r2
+     1d4:	movhi	r0, #13
+     1d8:	bhi	25c <flatcc_verify_vector_field+0xc8>
+     1dc:	ldr	r2, [r0, #16]
+     1e0:	add	r2, r1, r2
+     1e4:	tst	r2, #3
+     1e8:	movne	r0, #12
+     1ec:	bne	25c <flatcc_verify_vector_field+0xc8>
+     1f0:	cmp	r2, #0
+     1f4:	beq	290 <flatcc_verify_vector_field+0xfc>
+     1f8:	ldr	r4, [r0]
+     1fc:	ldr	ip, [r4, r2]
+     200:	add	ip, r2, ip
+     204:	cmp	r2, ip
+     208:	bcs	268 <flatcc_verify_vector_field+0xd4>
+     20c:	ldr	r1, [r0, #4]
+     210:	add	r0, ip, #4
+     214:	cmp	r1, r0
+     218:	bcc	268 <flatcc_verify_vector_field+0xd4>
+     21c:	cmp	lr, #4
+     220:	movcc	lr, #4
+     224:	sub	lr, lr, #1
+     228:	orr	lr, lr, #3
+     22c:	tst	lr, r0
+     230:	bne	268 <flatcc_verify_vector_field+0xd4>
+     234:	ldr	r2, [r4, ip]
+     238:	ldr	ip, [sp, #12]
+     23c:	cmp	ip, r2
+     240:	movcc	r0, #25
+     244:	bcc	25c <flatcc_verify_vector_field+0xc8>
+     248:	mul	r2, r2, r3
+     24c:	sub	r0, r1, r0
+     250:	cmp	r0, r2
+     254:	movcc	r0, #26
+     258:	movcs	r0, #0
+     25c:	ldr	r4, [sp]
+     260:	add	sp, sp, #4
+     264:	pop	{pc}		; (ldr pc, [sp], #4)
+     268:	ldr	r4, [sp]
+     26c:	add	sp, sp, #4
+     270:	mov	r0, #16
+     274:	pop	{pc}		; (ldr pc, [sp], #4)
+     278:	cmp	r2, #0
+     27c:	ldr	r4, [sp]
+     280:	add	sp, sp, #4
+     284:	moveq	r0, #0
+     288:	movne	r0, #4
+     28c:	pop	{pc}		; (ldr pc, [sp], #4)
+     290:	mov	r0, r2
+     294:	b	25c <flatcc_verify_vector_field+0xc8>
+
+00000298 <flatcc_verify_string_vector_field>:
+     298:	ldrh	r3, [r0, #22]
+     29c:	add	r1, r1, #2
+     2a0:	lsl	r1, r1, #1
+     2a4:	uxth	r1, r1
+     2a8:	cmp	r3, r1
+     2ac:	bls	408 <flatcc_verify_string_vector_field+0x170>
+     2b0:	ldr	r3, [r0, #12]
+     2b4:	ldrh	r3, [r3, r1]
+     2b8:	cmp	r3, #0
+     2bc:	beq	408 <flatcc_verify_string_vector_field+0x170>
+     2c0:	ldrh	r2, [r0, #20]
+     2c4:	add	r1, r3, #4
+     2c8:	cmp	r1, r2
+     2cc:	bhi	418 <flatcc_verify_string_vector_field+0x180>
+     2d0:	ldr	r2, [r0, #16]
+     2d4:	add	r3, r3, r2
+     2d8:	tst	r3, #3
+     2dc:	bne	420 <flatcc_verify_string_vector_field+0x188>
+     2e0:	cmp	r3, #0
+     2e4:	beq	458 <flatcc_verify_string_vector_field+0x1c0>
+     2e8:	ldr	r1, [r0]
+     2ec:	ldr	r2, [r1, r3]
+     2f0:	add	r2, r3, r2
+     2f4:	cmp	r3, r2
+     2f8:	bcs	400 <flatcc_verify_string_vector_field+0x168>
+     2fc:	ldr	ip, [r0, #4]
+     300:	add	r0, r2, #4
+     304:	cmp	ip, r0
+     308:	bcc	400 <flatcc_verify_string_vector_field+0x168>
+     30c:	tst	r0, #3
+     310:	bne	400 <flatcc_verify_string_vector_field+0x168>
+     314:	ldr	r3, [r1, r2]
+     318:	strd	r4, [sp, #-16]!
+     31c:	str	r6, [sp, #8]
+     320:	str	lr, [sp, #12]
+     324:	cmn	r3, #-1073741823	; 0xc0000001
+     328:	bhi	428 <flatcc_verify_string_vector_field+0x190>
+     32c:	lsl	lr, r3, #2
+     330:	sub	r4, ip, r0
+     334:	cmp	r4, lr
+     338:	bcc	428 <flatcc_verify_string_vector_field+0x190>
+     33c:	cmp	r3, #0
+     340:	beq	474 <flatcc_verify_string_vector_field+0x1dc>
+     344:	ldr	r2, [r1, r0]
+     348:	add	r2, r0, r2
+     34c:	cmp	r0, r2
+     350:	bcs	46c <flatcc_verify_string_vector_field+0x1d4>
+     354:	add	r4, r2, #4
+     358:	cmp	ip, r4
+     35c:	bcc	46c <flatcc_verify_string_vector_field+0x1d4>
+     360:	tst	r2, #3
+     364:	bne	46c <flatcc_verify_string_vector_field+0x1d4>
+     368:	ldr	r3, [r1, r2]
+     36c:	sub	r5, ip, r4
+     370:	add	r6, r3, #1
+     374:	cmp	r6, r5
+     378:	addls	lr, r0, lr
+     37c:	bhi	3d4 <flatcc_verify_string_vector_field+0x13c>
+     380:	add	r3, r1, r3
+     384:	add	r0, r0, #4
+     388:	ldrb	r3, [r3, r4]
+     38c:	cmp	r3, #0
+     390:	bne	460 <flatcc_verify_string_vector_field+0x1c8>
+     394:	cmp	r0, lr
+     398:	beq	474 <flatcc_verify_string_vector_field+0x1dc>
+     39c:	ldr	r2, [r1, r0]
+     3a0:	add	r2, r0, r2
+     3a4:	cmp	r2, r0
+     3a8:	add	r4, r2, #4
+     3ac:	bls	46c <flatcc_verify_string_vector_field+0x1d4>
+     3b0:	cmp	ip, r4
+     3b4:	bcc	46c <flatcc_verify_string_vector_field+0x1d4>
+     3b8:	tst	r2, #3
+     3bc:	sub	r5, ip, r4
+     3c0:	bne	46c <flatcc_verify_string_vector_field+0x1d4>
+     3c4:	ldr	r3, [r1, r2]
+     3c8:	add	r6, r3, #1
+     3cc:	cmp	r5, r6
+     3d0:	bcs	380 <flatcc_verify_string_vector_field+0xe8>
+     3d4:	ldr	r3, [r1, r2]
+     3d8:	add	r2, r3, #1
+     3dc:	cmp	r5, r2
+     3e0:	movcc	r0, #8
+     3e4:	bcc	448 <flatcc_verify_string_vector_field+0x1b0>
+     3e8:	add	r3, r1, r3
+     3ec:	ldrb	r3, [r3, r4]
+     3f0:	cmp	r3, #0
+     3f4:	moveq	r0, #0
+     3f8:	movne	r0, #7
+     3fc:	b	448 <flatcc_verify_string_vector_field+0x1b0>
+     400:	mov	r0, #16
+     404:	bx	lr
+     408:	cmp	r2, #0
+     40c:	movne	r0, #4
+     410:	moveq	r0, #0
+     414:	bx	lr
+     418:	mov	r0, #13
+     41c:	bx	lr
+     420:	mov	r0, #12
+     424:	bx	lr
+     428:	ldr	r3, [r1, r2]
+     42c:	cmn	r3, #-1073741823	; 0xc0000001
+     430:	movhi	r0, #25
+     434:	bhi	448 <flatcc_verify_string_vector_field+0x1b0>
+     438:	sub	r0, ip, r0
+     43c:	cmp	r0, r3, lsl #2
+     440:	movcs	r0, #0
+     444:	movcc	r0, #26
+     448:	ldrd	r4, [sp]
+     44c:	ldr	r6, [sp, #8]
+     450:	add	sp, sp, #12
+     454:	pop	{pc}		; (ldr pc, [sp], #4)
+     458:	mov	r0, r3
+     45c:	bx	lr
+     460:	cmp	ip, r4
+     464:	subcs	r5, ip, r4
+     468:	bcs	3d4 <flatcc_verify_string_vector_field+0x13c>
+     46c:	mov	r0, #17
+     470:	b	448 <flatcc_verify_string_vector_field+0x1b0>
+     474:	mov	r0, r3
+     478:	b	448 <flatcc_verify_string_vector_field+0x1b0>
+
+0000047c <flatcc_verify_table_field>:
+     47c:	ldrh	ip, [r0, #22]
+     480:	add	r1, r1, #2
+     484:	lsl	r1, r1, #1
+     488:	uxth	r1, r1
+     48c:	cmp	ip, r1
+     490:	bls	5b0 <flatcc_verify_table_field+0x134>
+     494:	ldr	ip, [r0, #12]
+     498:	ldrh	r1, [ip, r1]
+     49c:	cmp	r1, #0
+     4a0:	beq	5b0 <flatcc_verify_table_field+0x134>
+     4a4:	ldrh	r2, [r0, #20]
+     4a8:	add	ip, r1, #4
+     4ac:	cmp	ip, r2
+     4b0:	bhi	5c0 <flatcc_verify_table_field+0x144>
+     4b4:	ldr	r2, [r0, #16]
+     4b8:	add	r1, r1, r2
+     4bc:	tst	r1, #3
+     4c0:	bne	5c8 <flatcc_verify_table_field+0x14c>
+     4c4:	cmp	r1, #0
+     4c8:	beq	5d0 <flatcc_verify_table_field+0x154>
+     4cc:	ldr	ip, [r0]
+     4d0:	strd	r4, [sp, #-12]!
+     4d4:	ldr	r2, [r0, #8]
+     4d8:	str	lr, [sp, #8]
+     4dc:	sub	sp, sp, #28
+     4e0:	ldr	lr, [r0, #4]
+     4e4:	ldr	r0, [ip, r1]
+     4e8:	sub	r2, r2, #1
+     4ec:	cmp	r2, #0
+     4f0:	moveq	r0, #3
+     4f4:	str	r2, [sp, #8]
+     4f8:	beq	5a0 <flatcc_verify_table_field+0x124>
+     4fc:	add	r2, r1, r0
+     500:	cmp	r1, r2
+     504:	bcs	59c <flatcc_verify_table_field+0x120>
+     508:	add	r1, r2, #4
+     50c:	cmp	lr, r1
+     510:	bcc	59c <flatcc_verify_table_field+0x120>
+     514:	tst	r2, #3
+     518:	bne	59c <flatcc_verify_table_field+0x120>
+     51c:	str	r2, [sp, #16]
+     520:	ldr	r1, [ip, r2]
+     524:	subs	r1, r2, r1
+     528:	bmi	5d8 <flatcc_verify_table_field+0x15c>
+     52c:	tst	r1, #1
+     530:	bne	5d8 <flatcc_verify_table_field+0x15c>
+     534:	add	r4, r1, #2
+     538:	cmp	lr, r4
+     53c:	movcc	r0, #27
+     540:	bcc	5a0 <flatcc_verify_table_field+0x124>
+     544:	ldrh	r0, [ip, r1]
+     548:	add	r5, ip, r1
+     54c:	add	r1, r0, r1
+     550:	strh	r0, [sp, #22]
+     554:	cmp	lr, r1
+     558:	bcc	5e0 <flatcc_verify_table_field+0x164>
+     55c:	tst	r0, #1
+     560:	bne	5e0 <flatcc_verify_table_field+0x164>
+     564:	cmp	r0, #3
+     568:	movls	r0, #28
+     56c:	bls	5a0 <flatcc_verify_table_field+0x124>
+     570:	ldrh	r1, [ip, r4]
+     574:	sub	r2, lr, r2
+     578:	cmp	r2, r1
+     57c:	strh	r1, [sp, #20]
+     580:	movcc	r0, #20
+     584:	bcc	5a0 <flatcc_verify_table_field+0x124>
+     588:	mov	r0, sp
+     58c:	stm	sp, {ip, lr}
+     590:	str	r5, [sp, #12]
+     594:	blx	r3
+     598:	b	5a0 <flatcc_verify_table_field+0x124>
+     59c:	mov	r0, #15
+     5a0:	add	sp, sp, #28
+     5a4:	ldrd	r4, [sp]
+     5a8:	add	sp, sp, #8
+     5ac:	pop	{pc}		; (ldr pc, [sp], #4)
+     5b0:	cmp	r2, #0
+     5b4:	moveq	r0, #0
+     5b8:	movne	r0, #4
+     5bc:	bx	lr
+     5c0:	mov	r0, #13
+     5c4:	bx	lr
+     5c8:	mov	r0, #12
+     5cc:	bx	lr
+     5d0:	mov	r0, r1
+     5d4:	bx	lr
+     5d8:	mov	r0, #29
+     5dc:	b	5a0 <flatcc_verify_table_field+0x124>
+     5e0:	mov	r0, #30
+     5e4:	b	5a0 <flatcc_verify_table_field+0x124>
+
+000005e8 <flatcc_verify_table_vector_field>:
+     5e8:	ldrh	ip, [r0, #22]
+     5ec:	add	r1, r1, #2
+     5f0:	lsl	r1, r1, #1
+     5f4:	uxth	r1, r1
+     5f8:	cmp	ip, r1
+     5fc:	bls	874 <flatcc_verify_table_vector_field+0x28c>
+     600:	ldr	ip, [r0, #12]
+     604:	ldrh	r1, [ip, r1]
+     608:	cmp	r1, #0
+     60c:	beq	874 <flatcc_verify_table_vector_field+0x28c>
+     610:	ldrh	r2, [r0, #20]
+     614:	add	ip, r1, #4
+     618:	cmp	ip, r2
+     61c:	bhi	884 <flatcc_verify_table_vector_field+0x29c>
+     620:	ldr	r2, [r0, #16]
+     624:	add	r1, r1, r2
+     628:	tst	r1, #3
+     62c:	bne	89c <flatcc_verify_table_vector_field+0x2b4>
+     630:	cmp	r1, #0
+     634:	beq	87c <flatcc_verify_table_vector_field+0x294>
+     638:	ldr	ip, [r0, #8]
+     63c:	strd	r4, [sp, #-36]!	; 0xffffffdc
+     640:	strd	r6, [sp, #8]
+     644:	ldr	r6, [r0]
+     648:	strd	r8, [sp, #16]
+     64c:	cmp	ip, #0
+     650:	strd	sl, [sp, #24]
+     654:	str	lr, [sp, #32]
+     658:	sub	sp, sp, #36	; 0x24
+     65c:	ldr	r2, [r6, r1]
+     660:	ble	894 <flatcc_verify_table_vector_field+0x2ac>
+     664:	add	r2, r1, r2
+     668:	cmp	r1, r2
+     66c:	bcs	854 <flatcc_verify_table_vector_field+0x26c>
+     670:	ldr	r8, [r0, #4]
+     674:	add	r5, r2, #4
+     678:	cmp	r8, r5
+     67c:	bcc	854 <flatcc_verify_table_vector_field+0x26c>
+     680:	tst	r5, #3
+     684:	bne	854 <flatcc_verify_table_vector_field+0x26c>
+     688:	ldr	r1, [r6, r2]
+     68c:	cmn	r1, #-1073741823	; 0xc0000001
+     690:	bhi	8a4 <flatcc_verify_table_vector_field+0x2bc>
+     694:	lsl	r9, r1, #2
+     698:	sub	r0, r8, r5
+     69c:	cmp	r0, r9
+     6a0:	bcc	8a4 <flatcc_verify_table_vector_field+0x2bc>
+     6a4:	cmp	r1, #0
+     6a8:	beq	8c4 <flatcc_verify_table_vector_field+0x2dc>
+     6ac:	sub	r7, ip, #2
+     6b0:	add	fp, r6, r5
+     6b4:	ldr	r1, [r6, r5]
+     6b8:	cmp	r7, #0
+     6bc:	str	r7, [sp, #16]
+     6c0:	beq	894 <flatcc_verify_table_vector_field+0x2ac>
+     6c4:	add	r1, r5, r1
+     6c8:	mov	sl, r3
+     6cc:	cmp	r5, r1
+     6d0:	bcs	8e4 <flatcc_verify_table_vector_field+0x2fc>
+     6d4:	add	r3, r1, #4
+     6d8:	cmp	r8, r3
+     6dc:	bcc	8e4 <flatcc_verify_table_vector_field+0x2fc>
+     6e0:	tst	r1, #3
+     6e4:	bne	8e4 <flatcc_verify_table_vector_field+0x2fc>
+     6e8:	movw	r3, #65532	; 0xfffc
+     6ec:	movt	r3, #65535	; 0xffff
+     6f0:	sub	r3, r3, r2
+     6f4:	add	r2, r2, #8
+     6f8:	add	r9, r5, r9
+     6fc:	add	fp, fp, r3
+     700:	add	r4, r6, r2
+     704:	str	r1, [sp, #24]
+     708:	add	r3, fp, r5
+     70c:	ldr	r2, [r6, r1]
+     710:	subs	r2, r1, r2
+     714:	bmi	7a8 <flatcc_verify_table_vector_field+0x1c0>
+     718:	tst	r2, #1
+     71c:	bne	7a8 <flatcc_verify_table_vector_field+0x1c0>
+     720:	add	lr, r2, #2
+     724:	cmp	r8, lr
+     728:	bcc	7a8 <flatcc_verify_table_vector_field+0x1c0>
+     72c:	ldrh	r0, [r6, r2]
+     730:	add	ip, r6, r2
+     734:	add	r2, r0, r2
+     738:	strh	r0, [sp, #30]
+     73c:	cmp	r8, r2
+     740:	bcc	7a8 <flatcc_verify_table_vector_field+0x1c0>
+     744:	tst	r0, #1
+     748:	bne	7a8 <flatcc_verify_table_vector_field+0x1c0>
+     74c:	cmp	r0, #3
+     750:	bls	7a8 <flatcc_verify_table_vector_field+0x1c0>
+     754:	ldrh	r2, [r6, lr]
+     758:	sub	r1, r8, r1
+     75c:	cmp	r1, r2
+     760:	strh	r2, [sp, #28]
+     764:	bcc	7a8 <flatcc_verify_table_vector_field+0x1c0>
+     768:	add	r0, sp, #8
+     76c:	stmib	sp, {r3, r6, r8}
+     770:	str	ip, [sp, #20]
+     774:	blx	sl
+     778:	cmp	r0, #0
+     77c:	ldr	r3, [sp, #4]
+     780:	bne	7a8 <flatcc_verify_table_vector_field+0x1c0>
+     784:	add	r5, r5, #4
+     788:	cmp	r5, r9
+     78c:	beq	8c4 <flatcc_verify_table_vector_field+0x2dc>
+     790:	mov	r3, r4
+     794:	ldr	r1, [r4], #4
+     798:	str	r7, [sp, #16]
+     79c:	add	r1, r1, r5
+     7a0:	cmp	r5, r1
+     7a4:	bcc	8cc <flatcc_verify_table_vector_field+0x2e4>
+     7a8:	ldr	r3, [r3]
+     7ac:	str	r7, [sp, #16]
+     7b0:	add	r3, r5, r3
+     7b4:	cmp	r3, r5
+     7b8:	bls	8ec <flatcc_verify_table_vector_field+0x304>
+     7bc:	add	r2, r3, #4
+     7c0:	cmp	r8, r2
+     7c4:	bcc	8ec <flatcc_verify_table_vector_field+0x304>
+     7c8:	tst	r3, #3
+     7cc:	bne	8ec <flatcc_verify_table_vector_field+0x304>
+     7d0:	str	r3, [sp, #24]
+     7d4:	ldr	r2, [r6, r3]
+     7d8:	subs	r2, r3, r2
+     7dc:	bmi	8f4 <flatcc_verify_table_vector_field+0x30c>
+     7e0:	tst	r2, #1
+     7e4:	bne	8f4 <flatcc_verify_table_vector_field+0x30c>
+     7e8:	add	r0, r2, #2
+     7ec:	cmp	r8, r0
+     7f0:	movcc	r0, #27
+     7f4:	bcc	858 <flatcc_verify_table_vector_field+0x270>
+     7f8:	ldrh	r1, [r6, r2]
+     7fc:	add	ip, r6, r2
+     800:	add	r2, r1, r2
+     804:	strh	r1, [sp, #30]
+     808:	cmp	r8, r2
+     80c:	bcc	8fc <flatcc_verify_table_vector_field+0x314>
+     810:	tst	r1, #1
+     814:	bne	8fc <flatcc_verify_table_vector_field+0x314>
+     818:	cmp	r1, #3
+     81c:	movls	r0, #28
+     820:	bls	858 <flatcc_verify_table_vector_field+0x270>
+     824:	ldrh	r2, [r6, r0]
+     828:	sub	r3, r8, r3
+     82c:	cmp	r3, r2
+     830:	strh	r2, [sp, #28]
+     834:	movcc	r0, #20
+     838:	bcc	858 <flatcc_verify_table_vector_field+0x270>
+     83c:	add	r0, sp, #8
+     840:	str	r6, [sp, #8]
+     844:	str	r8, [sp, #12]
+     848:	str	ip, [sp, #20]
+     84c:	blx	sl
+     850:	b	858 <flatcc_verify_table_vector_field+0x270>
+     854:	mov	r0, #16
+     858:	add	sp, sp, #36	; 0x24
+     85c:	ldrd	r4, [sp]
+     860:	ldrd	r6, [sp, #8]
+     864:	ldrd	r8, [sp, #16]
+     868:	ldrd	sl, [sp, #24]
+     86c:	add	sp, sp, #32
+     870:	pop	{pc}		; (ldr pc, [sp], #4)
+     874:	cmp	r2, #0
+     878:	bne	88c <flatcc_verify_table_vector_field+0x2a4>
+     87c:	mov	r0, #0
+     880:	bx	lr
+     884:	mov	r0, #13
+     888:	bx	lr
+     88c:	mov	r0, #4
+     890:	bx	lr
+     894:	mov	r0, #3
+     898:	b	858 <flatcc_verify_table_vector_field+0x270>
+     89c:	mov	r0, #12
+     8a0:	bx	lr
+     8a4:	ldr	r3, [r6, r2]
+     8a8:	cmn	r3, #-1073741823	; 0xc0000001
+     8ac:	movhi	r0, #25
+     8b0:	bhi	858 <flatcc_verify_table_vector_field+0x270>
+     8b4:	sub	r5, r8, r5
+     8b8:	cmp	r5, r3, lsl #2
+     8bc:	movcc	r0, #26
+     8c0:	bcc	858 <flatcc_verify_table_vector_field+0x270>
+     8c4:	mov	r0, #0
+     8c8:	b	858 <flatcc_verify_table_vector_field+0x270>
+     8cc:	add	r2, r1, #4
+     8d0:	cmp	r8, r2
+     8d4:	bcc	7a8 <flatcc_verify_table_vector_field+0x1c0>
+     8d8:	tst	r1, #3
+     8dc:	beq	704 <flatcc_verify_table_vector_field+0x11c>
+     8e0:	b	7a8 <flatcc_verify_table_vector_field+0x1c0>
+     8e4:	mov	r3, fp
+     8e8:	b	7a8 <flatcc_verify_table_vector_field+0x1c0>
+     8ec:	mov	r0, #15
+     8f0:	b	858 <flatcc_verify_table_vector_field+0x270>
+     8f4:	mov	r0, #29
+     8f8:	b	858 <flatcc_verify_table_vector_field+0x270>
+     8fc:	mov	r0, #30
+     900:	b	858 <flatcc_verify_table_vector_field+0x270>
+
+00000904 <flatcc_verify_union_table>:
+     904:	strd	r4, [sp, #-12]!
+     908:	ldr	r3, [r0, #8]
+     90c:	ldr	ip, [r0, #4]
+     910:	ldr	r2, [r0, #16]
+     914:	sub	r3, r3, #1
+     918:	str	lr, [sp, #8]
+     91c:	sub	sp, sp, #28
+     920:	cmp	r3, #0
+     924:	ldr	lr, [r0]
+     928:	str	r3, [sp, #8]
+     92c:	ldr	r3, [r0, #20]
+     930:	moveq	r0, #3
+     934:	beq	948 <flatcc_verify_union_table+0x44>
+     938:	add	r3, r2, r3
+     93c:	cmp	r2, r3
+     940:	bcc	958 <flatcc_verify_union_table+0x54>
+     944:	mov	r0, #15
+     948:	add	sp, sp, #28
+     94c:	ldrd	r4, [sp]
+     950:	add	sp, sp, #8
+     954:	pop	{pc}		; (ldr pc, [sp], #4)
+     958:	add	r2, r3, #4
+     95c:	cmp	ip, r2
+     960:	bcc	944 <flatcc_verify_union_table+0x40>
+     964:	tst	r3, #3
+     968:	bne	944 <flatcc_verify_union_table+0x40>
+     96c:	str	r3, [sp, #16]
+     970:	ldr	r2, [lr, r3]
+     974:	subs	r2, r3, r2
+     978:	bmi	9f8 <flatcc_verify_union_table+0xf4>
+     97c:	tst	r2, #1
+     980:	bne	9f8 <flatcc_verify_union_table+0xf4>
+     984:	add	r4, r2, #2
+     988:	cmp	ip, r4
+     98c:	movcc	r0, #27
+     990:	bcc	948 <flatcc_verify_union_table+0x44>
+     994:	ldrh	r0, [lr, r2]
+     998:	add	r5, lr, r2
+     99c:	add	r2, r0, r2
+     9a0:	strh	r0, [sp, #22]
+     9a4:	cmp	ip, r2
+     9a8:	bcc	9f0 <flatcc_verify_union_table+0xec>
+     9ac:	tst	r0, #1
+     9b0:	bne	9f0 <flatcc_verify_union_table+0xec>
+     9b4:	cmp	r0, #3
+     9b8:	movls	r0, #28
+     9bc:	bls	948 <flatcc_verify_union_table+0x44>
+     9c0:	ldrh	r2, [lr, r4]
+     9c4:	sub	r3, ip, r3
+     9c8:	cmp	r3, r2
+     9cc:	strh	r2, [sp, #20]
+     9d0:	movcc	r0, #20
+     9d4:	bcc	948 <flatcc_verify_union_table+0x44>
+     9d8:	mov	r0, sp
+     9dc:	str	lr, [sp]
+     9e0:	str	ip, [sp, #4]
+     9e4:	str	r5, [sp, #12]
+     9e8:	blx	r1
+     9ec:	b	948 <flatcc_verify_union_table+0x44>
+     9f0:	mov	r0, #30
+     9f4:	b	948 <flatcc_verify_union_table+0x44>
+     9f8:	mov	r0, #29
+     9fc:	b	948 <flatcc_verify_union_table+0x44>
+
+00000a00 <flatcc_verify_union_struct>:
+     a00:	push	{lr}		; (str lr, [sp, #-4]!)
+     a04:	ldr	ip, [r0, #20]
+     a08:	ldr	lr, [r0, #4]
+     a0c:	ldr	r3, [r0, #16]
+     a10:	cmp	ip, #0
+     a14:	beq	a48 <flatcc_verify_union_struct+0x48>
+     a18:	add	r3, r3, ip
+     a1c:	cmp	lr, r3
+     a20:	bcc	a48 <flatcc_verify_union_struct+0x48>
+     a24:	adds	r1, r1, r3
+     a28:	bcs	a58 <flatcc_verify_union_struct+0x58>
+     a2c:	cmp	lr, r1
+     a30:	bcc	a50 <flatcc_verify_union_struct+0x50>
+     a34:	sub	r2, r2, #1
+     a38:	tst	r2, r3
+     a3c:	moveq	r0, #0
+     a40:	movne	r0, #11
+     a44:	pop	{pc}		; (ldr pc, [sp], #4)
+     a48:	mov	r0, #18
+     a4c:	pop	{pc}		; (ldr pc, [sp], #4)
+     a50:	mov	r0, #9
+     a54:	pop	{pc}		; (ldr pc, [sp], #4)
+     a58:	mov	r0, #10
+     a5c:	b	a44 <flatcc_verify_union_struct+0x44>
+
+00000a60 <flatcc_verify_union_string>:
+     a60:	ldrd	r2, [r0, #16]
+     a64:	add	r3, r2, r3
+     a68:	cmp	r2, r3
+     a6c:	bcs	ab8 <flatcc_verify_union_string+0x58>
+     a70:	ldr	r2, [r0, #4]
+     a74:	add	r1, r3, #4
+     a78:	cmp	r2, r1
+     a7c:	bcc	ab8 <flatcc_verify_union_string+0x58>
+     a80:	tst	r3, #3
+     a84:	bne	ab8 <flatcc_verify_union_string+0x58>
+     a88:	ldr	r0, [r0]
+     a8c:	sub	r2, r2, r1
+     a90:	ldr	r3, [r0, r3]
+     a94:	add	ip, r3, #1
+     a98:	cmp	r2, ip
+     a9c:	bcc	ac0 <flatcc_verify_union_string+0x60>
+     aa0:	add	r1, r0, r1
+     aa4:	ldrb	r3, [r1, r3]
+     aa8:	cmp	r3, #0
+     aac:	moveq	r0, #0
+     ab0:	movne	r0, #7
+     ab4:	bx	lr
+     ab8:	mov	r0, #17
+     abc:	bx	lr
+     ac0:	mov	r0, #8
+     ac4:	bx	lr
+
+00000ac8 <flatcc_verify_buffer_header>:
+     ac8:	tst	r0, #3
+     acc:	bne	b38 <flatcc_verify_buffer_header+0x70>
+     ad0:	cmn	r1, #9
+     ad4:	bhi	b40 <flatcc_verify_buffer_header+0x78>
+     ad8:	cmp	r1, #7
+     adc:	bls	b30 <flatcc_verify_buffer_header+0x68>
+     ae0:	cmp	r2, #0
+     ae4:	beq	b48 <flatcc_verify_buffer_header+0x80>
+     ae8:	mov	r1, r2
+     aec:	mov	r2, #4
+     af0:	str	r4, [sp, #-8]!
+     af4:	str	lr, [sp, #4]
+     af8:	sub	sp, sp, #8
+     afc:	mov	r4, r0
+     b00:	add	r0, sp, r2
+     b04:	bl	0 <strncpy>
+     b08:	ldr	r2, [r4, #4]
+     b0c:	ldr	r3, [sp, #4]
+     b10:	cmp	r3, #0
+     b14:	cmpne	r2, r3
+     b18:	movne	r0, #2
+     b1c:	moveq	r0, #0
+     b20:	add	sp, sp, #8
+     b24:	ldr	r4, [sp]
+     b28:	add	sp, sp, #4
+     b2c:	pop	{pc}		; (ldr pc, [sp], #4)
+     b30:	mov	r0, #1
+     b34:	bx	lr
+     b38:	mov	r0, #5
+     b3c:	bx	lr
+     b40:	mov	r0, #6
+     b44:	bx	lr
+     b48:	mov	r0, #0
+     b4c:	bx	lr
+
+00000b50 <flatcc_verify_typed_buffer_header>:
+     b50:	tst	r0, #3
+     b54:	bne	b78 <flatcc_verify_typed_buffer_header+0x28>
+     b58:	cmn	r1, #9
+     b5c:	bhi	b80 <flatcc_verify_typed_buffer_header+0x30>
+     b60:	cmp	r1, #7
+     b64:	bls	b70 <flatcc_verify_typed_buffer_header+0x20>
+     b68:	mov	r1, r2
+     b6c:	b	0 <flatcc_verify_typed_buffer_header.part.2>
+     b70:	mov	r0, #1
+     b74:	bx	lr
+     b78:	mov	r0, #5
+     b7c:	bx	lr
+     b80:	mov	r0, #6
+     b84:	bx	lr
+
+00000b88 <flatcc_verify_struct_as_root>:
+     b88:	strd	r4, [sp, #-24]!	; 0xffffffe8
+     b8c:	mov	r4, r3
+     b90:	mov	r5, r1
+     b94:	strd	r6, [sp, #8]
+     b98:	mov	r7, r0
+     b9c:	ldrh	r6, [sp, #24]
+     ba0:	str	r8, [sp, #16]
+     ba4:	mov	r8, r2
+     ba8:	str	lr, [sp, #20]
+     bac:	bl	ac8 <flatcc_verify_buffer_header>
+     bb0:	cmp	r0, #0
+     bb4:	bne	c0c <flatcc_verify_struct_as_root+0x84>
+     bb8:	ldr	r2, [r7]
+     bbc:	cmp	r5, r2
+     bc0:	movcs	r3, #0
+     bc4:	movcc	r3, #1
+     bc8:	cmp	r2, #0
+     bcc:	moveq	r3, #1
+     bd0:	cmp	r3, #0
+     bd4:	movne	r0, #18
+     bd8:	bne	bf8 <flatcc_verify_struct_as_root+0x70>
+     bdc:	adds	r4, r4, r2
+     be0:	bcs	c38 <flatcc_verify_struct_as_root+0xb0>
+     be4:	cmp	r5, r4
+     be8:	bcc	c30 <flatcc_verify_struct_as_root+0xa8>
+     bec:	sub	r6, r6, #1
+     bf0:	tst	r6, r2
+     bf4:	movne	r0, #11
+     bf8:	ldrd	r4, [sp]
+     bfc:	ldrd	r6, [sp, #8]
+     c00:	ldr	r8, [sp, #16]
+     c04:	add	sp, sp, #20
+     c08:	pop	{pc}		; (ldr pc, [sp], #4)
+     c0c:	mov	r2, r8
+     c10:	mov	r1, r5
+     c14:	ldrd	r4, [sp]
+     c18:	mov	r0, r7
+     c1c:	ldrd	r6, [sp, #8]
+     c20:	ldr	r8, [sp, #16]
+     c24:	ldr	lr, [sp, #20]
+     c28:	add	sp, sp, #24
+     c2c:	b	ac8 <flatcc_verify_buffer_header>
+     c30:	mov	r0, #9
+     c34:	b	bf8 <flatcc_verify_struct_as_root+0x70>
+     c38:	mov	r0, #10
+     c3c:	b	bf8 <flatcc_verify_struct_as_root+0x70>
+
+00000c40 <flatcc_verify_struct_as_typed_root>:
+     c40:	tst	r0, #3
+     c44:	strd	r4, [sp, #-16]!
+     c48:	movne	r0, #5
+     c4c:	str	r6, [sp, #8]
+     c50:	ldrh	r6, [sp, #16]
+     c54:	str	lr, [sp, #12]
+     c58:	bne	ccc <flatcc_verify_struct_as_typed_root+0x8c>
+     c5c:	cmn	r1, #9
+     c60:	movhi	r0, #6
+     c64:	bhi	ccc <flatcc_verify_struct_as_typed_root+0x8c>
+     c68:	cmp	r1, #7
+     c6c:	movls	r0, #1
+     c70:	bls	ccc <flatcc_verify_struct_as_typed_root+0x8c>
+     c74:	mov	r5, r1
+     c78:	mov	r1, r2
+     c7c:	mov	r4, r0
+     c80:	bl	0 <flatcc_verify_typed_buffer_header.part.2>
+     c84:	cmp	r0, #0
+     c88:	bne	ccc <flatcc_verify_struct_as_typed_root+0x8c>
+     c8c:	ldr	r2, [r4]
+     c90:	cmp	r5, r2
+     c94:	movcs	r1, #0
+     c98:	movcc	r1, #1
+     c9c:	cmp	r2, #0
+     ca0:	moveq	r1, #1
+     ca4:	cmp	r1, #0
+     ca8:	movne	r0, #18
+     cac:	bne	ccc <flatcc_verify_struct_as_typed_root+0x8c>
+     cb0:	adds	r3, r3, r2
+     cb4:	bcs	ce4 <flatcc_verify_struct_as_typed_root+0xa4>
+     cb8:	cmp	r5, r3
+     cbc:	bcc	cdc <flatcc_verify_struct_as_typed_root+0x9c>
+     cc0:	sub	r6, r6, #1
+     cc4:	tst	r6, r2
+     cc8:	movne	r0, #11
+     ccc:	ldrd	r4, [sp]
+     cd0:	ldr	r6, [sp, #8]
+     cd4:	add	sp, sp, #12
+     cd8:	pop	{pc}		; (ldr pc, [sp], #4)
+     cdc:	mov	r0, #9
+     ce0:	b	ccc <flatcc_verify_struct_as_typed_root+0x8c>
+     ce4:	mov	r0, #10
+     ce8:	b	ccc <flatcc_verify_struct_as_typed_root+0x8c>
+
+00000cec <flatcc_verify_table_as_root>:
+     cec:	strd	r4, [sp, #-20]!	; 0xffffffec
+     cf0:	mov	r4, r0
+     cf4:	mov	r5, r1
+     cf8:	strd	r6, [sp, #8]
+     cfc:	mov	r7, r3
+     d00:	mov	r6, r2
+     d04:	str	lr, [sp, #16]
+     d08:	sub	sp, sp, #28
+     d0c:	bl	ac8 <flatcc_verify_buffer_header>
+     d10:	cmp	r0, #0
+     d14:	bne	dd8 <flatcc_verify_table_as_root+0xec>
+     d18:	ldr	r3, [r4]
+     d1c:	mov	r2, #99	; 0x63
+     d20:	str	r2, [sp, #8]
+     d24:	cmp	r3, #0
+     d28:	bne	d44 <flatcc_verify_table_as_root+0x58>
+     d2c:	mov	r0, #15
+     d30:	add	sp, sp, #28
+     d34:	ldrd	r4, [sp]
+     d38:	ldrd	r6, [sp, #8]
+     d3c:	add	sp, sp, #16
+     d40:	pop	{pc}		; (ldr pc, [sp], #4)
+     d44:	add	r2, r3, #4
+     d48:	cmp	r5, r2
+     d4c:	bcc	d2c <flatcc_verify_table_as_root+0x40>
+     d50:	tst	r3, #3
+     d54:	bne	d2c <flatcc_verify_table_as_root+0x40>
+     d58:	ldr	r2, [r4, r3]
+     d5c:	str	r3, [sp, #16]
+     d60:	subs	r2, r3, r2
+     d64:	bmi	dec <flatcc_verify_table_as_root+0x100>
+     d68:	tst	r2, #1
+     d6c:	bne	dec <flatcc_verify_table_as_root+0x100>
+     d70:	add	r0, r2, #2
+     d74:	cmp	r5, r0
+     d78:	movcc	r0, #27
+     d7c:	bcc	d30 <flatcc_verify_table_as_root+0x44>
+     d80:	ldrh	r1, [r4, r2]
+     d84:	add	ip, r4, r2
+     d88:	add	r2, r1, r2
+     d8c:	strh	r1, [sp, #22]
+     d90:	cmp	r5, r2
+     d94:	bcc	df4 <flatcc_verify_table_as_root+0x108>
+     d98:	tst	r1, #1
+     d9c:	bne	df4 <flatcc_verify_table_as_root+0x108>
+     da0:	cmp	r1, #3
+     da4:	movls	r0, #28
+     da8:	bls	d30 <flatcc_verify_table_as_root+0x44>
+     dac:	ldrh	r2, [r4, r0]
+     db0:	sub	r3, r5, r3
+     db4:	cmp	r3, r2
+     db8:	strh	r2, [sp, #20]
+     dbc:	movcc	r0, #20
+     dc0:	bcc	d30 <flatcc_verify_table_as_root+0x44>
+     dc4:	mov	r0, sp
+     dc8:	strd	r4, [sp]
+     dcc:	str	ip, [sp, #12]
+     dd0:	blx	r7
+     dd4:	b	d30 <flatcc_verify_table_as_root+0x44>
+     dd8:	mov	r2, r6
+     ddc:	mov	r1, r5
+     de0:	mov	r0, r4
+     de4:	bl	ac8 <flatcc_verify_buffer_header>
+     de8:	b	d30 <flatcc_verify_table_as_root+0x44>
+     dec:	mov	r0, #29
+     df0:	b	d30 <flatcc_verify_table_as_root+0x44>
+     df4:	mov	r0, #30
+     df8:	b	d30 <flatcc_verify_table_as_root+0x44>
+
+00000dfc <flatcc_verify_table_as_typed_root>:
+     dfc:	tst	r0, #3
+     e00:	bne	e50 <flatcc_verify_table_as_typed_root+0x54>
+     e04:	cmn	r1, #9
+     e08:	bhi	f18 <flatcc_verify_table_as_typed_root+0x11c>
+     e0c:	cmp	r1, #7
+     e10:	bls	e48 <flatcc_verify_table_as_typed_root+0x4c>
+     e14:	strd	r4, [sp, #-12]!
+     e18:	mov	r4, r1
+     e1c:	mov	r1, r2
+     e20:	str	lr, [sp, #8]
+     e24:	sub	sp, sp, #28
+     e28:	mov	r5, r0
+     e2c:	bl	0 <flatcc_verify_typed_buffer_header.part.2>
+     e30:	cmp	r0, #0
+     e34:	beq	e58 <flatcc_verify_table_as_typed_root+0x5c>
+     e38:	add	sp, sp, #28
+     e3c:	ldrd	r4, [sp]
+     e40:	add	sp, sp, #8
+     e44:	pop	{pc}		; (ldr pc, [sp], #4)
+     e48:	mov	r0, #1
+     e4c:	bx	lr
+     e50:	mov	r0, #5
+     e54:	bx	lr
+     e58:	ldr	r2, [r5]
+     e5c:	mov	r1, #99	; 0x63
+     e60:	str	r1, [sp, #8]
+     e64:	cmp	r2, #0
+     e68:	beq	f04 <flatcc_verify_table_as_typed_root+0x108>
+     e6c:	add	r1, r2, #4
+     e70:	cmp	r4, r1
+     e74:	bcc	f04 <flatcc_verify_table_as_typed_root+0x108>
+     e78:	tst	r2, #3
+     e7c:	bne	f04 <flatcc_verify_table_as_typed_root+0x108>
+     e80:	ldr	r1, [r5, r2]
+     e84:	str	r2, [sp, #16]
+     e88:	subs	r1, r2, r1
+     e8c:	bmi	f20 <flatcc_verify_table_as_typed_root+0x124>
+     e90:	tst	r1, #1
+     e94:	bne	f20 <flatcc_verify_table_as_typed_root+0x124>
+     e98:	add	ip, r1, #2
+     e9c:	cmp	r4, ip
+     ea0:	movcc	r0, #27
+     ea4:	bcc	e38 <flatcc_verify_table_as_typed_root+0x3c>
+     ea8:	ldrh	r0, [r5, r1]
+     eac:	add	lr, r5, r1
+     eb0:	add	r1, r0, r1
+     eb4:	strh	r0, [sp, #22]
+     eb8:	cmp	r4, r1
+     ebc:	bcc	f28 <flatcc_verify_table_as_typed_root+0x12c>
+     ec0:	tst	r0, #1
+     ec4:	bne	f28 <flatcc_verify_table_as_typed_root+0x12c>
+     ec8:	cmp	r0, #3
+     ecc:	movls	r0, #28
+     ed0:	bls	e38 <flatcc_verify_table_as_typed_root+0x3c>
+     ed4:	ldrh	r1, [r5, ip]
+     ed8:	sub	r2, r4, r2
+     edc:	cmp	r2, r1
+     ee0:	strh	r1, [sp, #20]
+     ee4:	movcc	r0, #20
+     ee8:	bcc	e38 <flatcc_verify_table_as_typed_root+0x3c>
+     eec:	mov	r0, sp
+     ef0:	str	r5, [sp]
+     ef4:	str	r4, [sp, #4]
+     ef8:	str	lr, [sp, #12]
+     efc:	blx	r3
+     f00:	b	e38 <flatcc_verify_table_as_typed_root+0x3c>
+     f04:	mov	r0, #15
+     f08:	add	sp, sp, #28
+     f0c:	ldrd	r4, [sp]
+     f10:	add	sp, sp, #8
+     f14:	pop	{pc}		; (ldr pc, [sp], #4)
+     f18:	mov	r0, #6
+     f1c:	bx	lr
+     f20:	mov	r0, #29
+     f24:	b	e38 <flatcc_verify_table_as_typed_root+0x3c>
+     f28:	mov	r0, #30
+     f2c:	b	e38 <flatcc_verify_table_as_typed_root+0x3c>
+
+00000f30 <flatcc_verify_struct_as_nested_root>:
+     f30:	strd	r4, [sp, #-24]!	; 0xffffffe8
+     f34:	mvn	ip, #0
+     f38:	mov	r4, r1
+     f3c:	strd	r6, [sp, #8]
+     f40:	mov	r6, r3
+     f44:	str	r8, [sp, #16]
+     f48:	mov	r8, r0
+     f4c:	str	lr, [sp, #20]
+     f50:	sub	sp, sp, #8
+     f54:	mov	lr, #1
+     f58:	ldrh	r5, [sp, #36]	; 0x24
+     f5c:	str	lr, [sp]
+     f60:	str	ip, [sp, #4]
+     f64:	ldr	r7, [sp, #32]
+     f68:	mov	r3, r5
+     f6c:	bl	194 <flatcc_verify_vector_field>
+     f70:	cmp	r0, #0
+     f74:	bne	fec <flatcc_verify_struct_as_nested_root+0xbc>
+     f78:	ldrh	r3, [r8, #22]
+     f7c:	add	r1, r4, #2
+     f80:	lsl	r1, r1, #1
+     f84:	uxth	r1, r1
+     f88:	cmp	r3, r1
+     f8c:	bls	fec <flatcc_verify_struct_as_nested_root+0xbc>
+     f90:	ldr	r3, [r8, #12]
+     f94:	ldrh	r3, [r3, r1]
+     f98:	cmp	r3, #0
+     f9c:	beq	fec <flatcc_verify_struct_as_nested_root+0xbc>
+     fa0:	ldr	r2, [r8]
+     fa4:	ldr	r1, [r8, #16]
+     fa8:	add	r3, r3, r1
+     fac:	adds	ip, r2, r3
+     fb0:	beq	fec <flatcc_verify_struct_as_nested_root+0xbc>
+     fb4:	ldr	r0, [r2, r3]
+     fb8:	mov	r3, r7
+     fbc:	mov	r2, r6
+     fc0:	ldr	r1, [ip, r0]
+     fc4:	add	r0, ip, r0
+     fc8:	add	r0, r0, #4
+     fcc:	str	r5, [sp, #32]
+     fd0:	add	sp, sp, #8
+     fd4:	ldrd	r4, [sp]
+     fd8:	ldrd	r6, [sp, #8]
+     fdc:	ldr	r8, [sp, #16]
+     fe0:	ldr	lr, [sp, #20]
+     fe4:	add	sp, sp, #24
+     fe8:	b	b88 <flatcc_verify_struct_as_root>
+     fec:	add	sp, sp, #8
+     ff0:	ldrd	r4, [sp]
+     ff4:	ldrd	r6, [sp, #8]
+     ff8:	ldr	r8, [sp, #16]
+     ffc:	add	sp, sp, #20
+    1000:	pop	{pc}		; (ldr pc, [sp], #4)
+
+00001004 <flatcc_verify_table_as_nested_root>:
+    1004:	mvn	ip, #0
+    1008:	strd	r4, [sp, #-24]!	; 0xffffffe8
+    100c:	mov	r5, r0
+    1010:	strd	r6, [sp, #8]
+    1014:	mov	r6, r3
+    1018:	mov	r4, r1
+    101c:	str	r8, [sp, #16]
+    1020:	str	lr, [sp, #20]
+    1024:	sub	sp, sp, #32
+    1028:	mov	lr, #1
+    102c:	ldrh	r3, [sp, #56]	; 0x38
+    1030:	str	lr, [sp]
+    1034:	str	ip, [sp, #4]
+    1038:	bl	194 <flatcc_verify_vector_field>
+    103c:	cmp	r0, #0
+    1040:	bne	1164 <flatcc_verify_table_as_nested_root+0x160>
+    1044:	ldrh	r3, [r5, #22]
+    1048:	add	r1, r4, #2
+    104c:	lsl	r1, r1, #1
+    1050:	uxth	r1, r1
+    1054:	cmp	r3, r1
+    1058:	bls	1164 <flatcc_verify_table_as_nested_root+0x160>
+    105c:	ldr	r3, [r5, #12]
+    1060:	ldrh	r3, [r3, r1]
+    1064:	cmp	r3, #0
+    1068:	beq	1164 <flatcc_verify_table_as_nested_root+0x160>
+    106c:	ldr	r2, [r5]
+    1070:	ldr	r1, [r5, #16]
+    1074:	add	r3, r3, r1
+    1078:	adds	r1, r2, r3
+    107c:	beq	1164 <flatcc_verify_table_as_nested_root+0x160>
+    1080:	ldr	r4, [r2, r3]
+    1084:	mov	r2, r6
+    1088:	ldr	r7, [r1, r4]
+    108c:	add	r4, r1, r4
+    1090:	add	r8, r4, #4
+    1094:	mov	r0, r8
+    1098:	mov	r1, r7
+    109c:	bl	ac8 <flatcc_verify_buffer_header>
+    10a0:	cmp	r0, #0
+    10a4:	bne	1184 <flatcc_verify_table_as_nested_root+0x180>
+    10a8:	ldr	r3, [r5, #8]
+    10ac:	ldr	r2, [r4, #4]
+    10b0:	sub	r3, r3, #1
+    10b4:	cmp	r3, #0
+    10b8:	moveq	r0, #3
+    10bc:	str	r3, [sp, #16]
+    10c0:	beq	1164 <flatcc_verify_table_as_nested_root+0x160>
+    10c4:	cmp	r2, #0
+    10c8:	beq	117c <flatcc_verify_table_as_nested_root+0x178>
+    10cc:	add	r3, r2, #4
+    10d0:	cmp	r7, r3
+    10d4:	bcc	117c <flatcc_verify_table_as_nested_root+0x178>
+    10d8:	tst	r2, #3
+    10dc:	bne	117c <flatcc_verify_table_as_nested_root+0x178>
+    10e0:	str	r2, [sp, #24]
+    10e4:	ldr	r3, [r8, r2]
+    10e8:	subs	r3, r2, r3
+    10ec:	bmi	1198 <flatcc_verify_table_as_nested_root+0x194>
+    10f0:	tst	r3, #1
+    10f4:	bne	1198 <flatcc_verify_table_as_nested_root+0x194>
+    10f8:	add	r0, r3, #2
+    10fc:	cmp	r7, r0
+    1100:	movcc	r0, #27
+    1104:	bcc	1164 <flatcc_verify_table_as_nested_root+0x160>
+    1108:	ldrh	r1, [r8, r3]
+    110c:	add	ip, r8, r3
+    1110:	add	r3, r1, r3
+    1114:	strh	r1, [sp, #30]
+    1118:	cmp	r7, r3
+    111c:	bcc	11a0 <flatcc_verify_table_as_nested_root+0x19c>
+    1120:	tst	r1, #1
+    1124:	bne	11a0 <flatcc_verify_table_as_nested_root+0x19c>
+    1128:	cmp	r1, #3
+    112c:	movls	r0, #28
+    1130:	bls	1164 <flatcc_verify_table_as_nested_root+0x160>
+    1134:	ldrh	r3, [r8, r0]
+    1138:	sub	r2, r7, r2
+    113c:	cmp	r2, r3
+    1140:	strh	r3, [sp, #28]
+    1144:	movcc	r0, #20
+    1148:	bcc	1164 <flatcc_verify_table_as_nested_root+0x160>
+    114c:	add	r0, sp, #8
+    1150:	ldr	r3, [sp, #60]	; 0x3c
+    1154:	str	r8, [sp, #8]
+    1158:	str	r7, [sp, #12]
+    115c:	str	ip, [sp, #20]
+    1160:	blx	r3
+    1164:	add	sp, sp, #32
+    1168:	ldrd	r4, [sp]
+    116c:	ldrd	r6, [sp, #8]
+    1170:	ldr	r8, [sp, #16]
+    1174:	add	sp, sp, #20
+    1178:	pop	{pc}		; (ldr pc, [sp], #4)
+    117c:	mov	r0, #15
+    1180:	b	1164 <flatcc_verify_table_as_nested_root+0x160>
+    1184:	mov	r2, r6
+    1188:	mov	r1, r7
+    118c:	mov	r0, r8
+    1190:	bl	ac8 <flatcc_verify_buffer_header>
+    1194:	b	1164 <flatcc_verify_table_as_nested_root+0x160>
+    1198:	mov	r0, #29
+    119c:	b	1164 <flatcc_verify_table_as_nested_root+0x160>
+    11a0:	mov	r0, #30
+    11a4:	b	1164 <flatcc_verify_table_as_nested_root+0x160>
+
+000011a8 <flatcc_verify_union_field>:
+    11a8:	strd	r4, [sp, #-20]!	; 0xffffffec
+    11ac:	add	r1, r1, #1
+    11b0:	ldr	r4, [r0, #12]
+    11b4:	lsl	r1, r1, #1
+    11b8:	strd	r6, [sp, #8]
+    11bc:	str	lr, [sp, #16]
+    11c0:	uxth	r1, r1
+    11c4:	sub	sp, sp, #28
+    11c8:	ldrh	lr, [r0, #22]
+    11cc:	cmp	r1, lr
+    11d0:	bcs	127c <flatcc_verify_union_field+0xd4>
+    11d4:	ldrh	ip, [r4, r1]
+    11d8:	cmp	ip, #0
+    11dc:	beq	127c <flatcc_verify_union_field+0xd4>
+    11e0:	ldrh	r5, [r0, #20]
+    11e4:	add	r6, ip, #1
+    11e8:	cmp	r6, r5
+    11ec:	bhi	12cc <flatcc_verify_union_field+0x124>
+    11f0:	ldr	r6, [r0]
+    11f4:	add	r1, r1, #2
+    11f8:	uxth	r1, r1
+    11fc:	ldr	r7, [r0, #16]
+    1200:	cmp	lr, r1
+    1204:	add	lr, ip, r7
+    1208:	ldrb	ip, [r6, lr]
+    120c:	bls	12d4 <flatcc_verify_union_field+0x12c>
+    1210:	cmp	ip, #0
+    1214:	ldrh	r1, [r4, r1]
+    1218:	beq	12bc <flatcc_verify_union_field+0x114>
+    121c:	cmp	r1, #0
+    1220:	beq	12e4 <flatcc_verify_union_field+0x13c>
+    1224:	add	r2, r1, #4
+    1228:	cmp	r5, r2
+    122c:	bcc	12cc <flatcc_verify_union_field+0x124>
+    1230:	add	r1, r1, r7
+    1234:	tst	r1, #3
+    1238:	movne	r0, #12
+    123c:	bne	12a8 <flatcc_verify_union_field+0x100>
+    1240:	cmp	r1, #0
+    1244:	beq	12f4 <flatcc_verify_union_field+0x14c>
+    1248:	mov	r2, r0
+    124c:	str	r1, [sp, #16]
+    1250:	mov	r0, sp
+    1254:	ldr	ip, [r2, #4]
+    1258:	ldr	r2, [r2, #8]
+    125c:	stm	sp, {r6, ip}
+    1260:	str	r2, [sp, #8]
+    1264:	ldr	r2, [r6, r1]
+    1268:	str	r2, [sp, #20]
+    126c:	ldrb	r2, [r6, lr]
+    1270:	strb	r2, [sp, #12]
+    1274:	blx	r3
+    1278:	b	12a8 <flatcc_verify_union_field+0x100>
+    127c:	add	r1, r1, #2
+    1280:	uxth	r1, r1
+    1284:	cmp	lr, r1
+    1288:	bls	129c <flatcc_verify_union_field+0xf4>
+    128c:	ldrh	r3, [r4, r1]
+    1290:	cmp	r3, #0
+    1294:	movne	r0, #23
+    1298:	bne	12a8 <flatcc_verify_union_field+0x100>
+    129c:	cmp	r2, #0
+    12a0:	moveq	r0, #0
+    12a4:	movne	r0, #21
+    12a8:	add	sp, sp, #28
+    12ac:	ldrd	r4, [sp]
+    12b0:	ldrd	r6, [sp, #8]
+    12b4:	add	sp, sp, #16
+    12b8:	pop	{pc}		; (ldr pc, [sp], #4)
+    12bc:	cmp	r1, #0
+    12c0:	movne	r0, #24
+    12c4:	moveq	r0, #0
+    12c8:	b	12a8 <flatcc_verify_union_field+0x100>
+    12cc:	mov	r0, #13
+    12d0:	b	12a8 <flatcc_verify_union_field+0x100>
+    12d4:	cmp	ip, #0
+    12d8:	bne	12e4 <flatcc_verify_union_field+0x13c>
+    12dc:	mov	r0, ip
+    12e0:	b	12a8 <flatcc_verify_union_field+0x100>
+    12e4:	cmp	r2, #0
+    12e8:	moveq	r0, #0
+    12ec:	movne	r0, #4
+    12f0:	b	12a8 <flatcc_verify_union_field+0x100>
+    12f4:	mov	r0, r1
+    12f8:	b	12a8 <flatcc_verify_union_field+0x100>
+
+000012fc <flatcc_verify_union_vector_field>:
+    12fc:	strd	r4, [sp, #-36]!	; 0xffffffdc
+    1300:	add	r4, r1, #1
+    1304:	sub	r1, r1, #1
+    1308:	strd	r6, [sp, #8]
+    130c:	lsl	r4, r4, #1
+    1310:	mov	r5, r0
+    1314:	ldrh	r6, [r0, #22]
+    1318:	uxth	r1, r1
+    131c:	uxth	r4, r4
+    1320:	strd	r8, [sp, #16]
+    1324:	mov	r9, r2
+    1328:	strd	sl, [sp, #24]
+    132c:	str	lr, [sp, #32]
+    1330:	sub	sp, sp, #36	; 0x24
+    1334:	ldr	r7, [r0, #12]
+    1338:	cmp	r4, r6
+    133c:	bcs	14cc <flatcc_verify_union_vector_field+0x1d0>
+    1340:	ldrh	sl, [r7, r4]
+    1344:	cmp	sl, #0
+    1348:	beq	14cc <flatcc_verify_union_vector_field+0x1d0>
+    134c:	mvn	ip, #0
+    1350:	mov	r8, r3
+    1354:	mov	r3, #1
+    1358:	stm	sp, {r3, ip}
+    135c:	bl	194 <flatcc_verify_vector_field>
+    1360:	subs	fp, r0, #0
+    1364:	bne	14ac <flatcc_verify_union_vector_field+0x1b0>
+    1368:	ldr	r2, [r5]
+    136c:	ldr	r3, [r5, #16]
+    1370:	add	sl, sl, r3
+    1374:	adds	r1, r2, sl
+    1378:	beq	14ac <flatcc_verify_union_vector_field+0x1b0>
+    137c:	add	r4, r4, #2
+    1380:	uxth	r4, r4
+    1384:	cmp	r6, r4
+    1388:	bls	1518 <flatcc_verify_union_vector_field+0x21c>
+    138c:	ldrh	r0, [r7, r4]
+    1390:	cmp	r0, #0
+    1394:	beq	1518 <flatcc_verify_union_vector_field+0x21c>
+    1398:	ldrh	ip, [r5, #20]
+    139c:	add	lr, r0, #4
+    13a0:	cmp	lr, ip
+    13a4:	movhi	fp, #13
+    13a8:	bhi	14ac <flatcc_verify_union_vector_field+0x1b0>
+    13ac:	add	r3, r3, r0
+    13b0:	tst	r3, #3
+    13b4:	movne	fp, #12
+    13b8:	bne	14ac <flatcc_verify_union_vector_field+0x1b0>
+    13bc:	cmp	r3, #0
+    13c0:	beq	14ac <flatcc_verify_union_vector_field+0x1b0>
+    13c4:	ldr	ip, [r5, #8]
+    13c8:	ldr	r0, [r2, r3]
+    13cc:	cmp	ip, #0
+    13d0:	movle	fp, #3
+    13d4:	ble	14ac <flatcc_verify_union_vector_field+0x1b0>
+    13d8:	add	r0, r3, r0
+    13dc:	cmp	r3, r0
+    13e0:	bcs	1528 <flatcc_verify_union_vector_field+0x22c>
+    13e4:	ldr	lr, [r5, #4]
+    13e8:	add	r3, r0, #4
+    13ec:	cmp	lr, r3
+    13f0:	bcc	1528 <flatcc_verify_union_vector_field+0x22c>
+    13f4:	tst	r3, #3
+    13f8:	bne	1528 <flatcc_verify_union_vector_field+0x22c>
+    13fc:	ldr	r4, [r2, r0]
+    1400:	add	r6, r2, r0
+    1404:	cmn	r4, #-1073741823	; 0xc0000001
+    1408:	bhi	1530 <flatcc_verify_union_vector_field+0x234>
+    140c:	sub	r5, lr, r3
+    1410:	cmp	r5, r4, lsl #2
+    1414:	bcc	1530 <flatcc_verify_union_vector_field+0x234>
+    1418:	ldr	r5, [r2, sl]
+    141c:	ldr	r7, [r1, r5]
+    1420:	add	r1, r1, r5
+    1424:	cmp	r7, r4
+    1428:	bne	1550 <flatcc_verify_union_vector_field+0x254>
+    142c:	sub	ip, ip, #1
+    1430:	cmp	r7, #0
+    1434:	str	r2, [sp, #8]
+    1438:	str	lr, [sp, #12]
+    143c:	str	ip, [sp, #16]
+    1440:	beq	14ac <flatcc_verify_union_vector_field+0x1b0>
+    1444:	add	r5, r1, #4
+    1448:	rsb	r4, r2, #4
+    144c:	add	r7, r7, r5
+    1450:	b	1464 <flatcc_verify_union_vector_field+0x168>
+    1454:	cmp	r2, #0
+    1458:	bne	1558 <flatcc_verify_union_vector_field+0x25c>
+    145c:	cmp	r7, r5
+    1460:	beq	14ac <flatcc_verify_union_vector_field+0x1b0>
+    1464:	add	r1, r4, r6
+    1468:	ldr	r3, [r6, #4]!
+    146c:	add	r0, sp, #8
+    1470:	add	r5, r5, #1
+    1474:	ldrb	r2, [r5, #-1]
+    1478:	cmp	r3, #0
+    147c:	beq	1454 <flatcc_verify_union_vector_field+0x158>
+    1480:	cmp	r2, #0
+    1484:	beq	1560 <flatcc_verify_union_vector_field+0x264>
+    1488:	strb	r2, [sp, #20]
+    148c:	str	r1, [sp, #24]
+    1490:	str	r3, [sp, #28]
+    1494:	blx	r8
+    1498:	cmp	r0, #0
+    149c:	beq	145c <flatcc_verify_union_vector_field+0x160>
+    14a0:	add	r0, sp, #8
+    14a4:	blx	r8
+    14a8:	mov	fp, r0
+    14ac:	mov	r0, fp
+    14b0:	add	sp, sp, #36	; 0x24
+    14b4:	ldrd	r4, [sp]
+    14b8:	ldrd	r6, [sp, #8]
+    14bc:	ldrd	r8, [sp, #16]
+    14c0:	ldrd	sl, [sp, #24]
+    14c4:	add	sp, sp, #32
+    14c8:	pop	{pc}		; (ldr pc, [sp], #4)
+    14cc:	add	r4, r4, #2
+    14d0:	uxth	r4, r4
+    14d4:	cmp	r6, r4
+    14d8:	bls	1508 <flatcc_verify_union_vector_field+0x20c>
+    14dc:	ldrh	r3, [r7, r4]
+    14e0:	cmp	r3, #0
+    14e4:	beq	1508 <flatcc_verify_union_vector_field+0x20c>
+    14e8:	mvn	ip, #0
+    14ec:	mov	r3, #1
+    14f0:	mov	r2, r9
+    14f4:	mov	r0, r5
+    14f8:	stm	sp, {r3, ip}
+    14fc:	bl	194 <flatcc_verify_vector_field>
+    1500:	mov	fp, r0
+    1504:	b	14ac <flatcc_verify_union_vector_field+0x1b0>
+    1508:	cmp	r9, #0
+    150c:	beq	14e8 <flatcc_verify_union_vector_field+0x1ec>
+    1510:	mov	fp, #22
+    1514:	b	14ac <flatcc_verify_union_vector_field+0x1b0>
+    1518:	cmp	r9, #0
+    151c:	moveq	fp, #0
+    1520:	movne	fp, #4
+    1524:	b	14ac <flatcc_verify_union_vector_field+0x1b0>
+    1528:	mov	fp, #16
+    152c:	b	14ac <flatcc_verify_union_vector_field+0x1b0>
+    1530:	ldr	r2, [r2, r0]
+    1534:	cmn	r2, #-1073741823	; 0xc0000001
+    1538:	movhi	fp, #25
+    153c:	bhi	14ac <flatcc_verify_union_vector_field+0x1b0>
+    1540:	sub	r3, lr, r3
+    1544:	cmp	r3, r2, lsl #2
+    1548:	movcc	fp, #26
+    154c:	b	14ac <flatcc_verify_union_vector_field+0x1b0>
+    1550:	mov	fp, #34	; 0x22
+    1554:	b	14ac <flatcc_verify_union_vector_field+0x1b0>
+    1558:	mov	fp, #32
+    155c:	b	14ac <flatcc_verify_union_vector_field+0x1b0>
+    1560:	mov	fp, #33	; 0x21
+    1564:	b	14ac <flatcc_verify_union_vector_field+0x1b0>

@@ -1,0 +1,136 @@
+
+../repos/prog2/CMakeFiles/0.3.dir/Aula00_Conceitos_base/03.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <avg>:
+   0:	mov	ip, sp
+   4:	sub	sp, sp, #8
+   8:	str	ip, [sp]
+   c:	str	lr, [sp, #4]
+  10:	vldr	s0, [pc, #48]	; 48 <avg+0x48>
+  14:	mov	r2, #0
+  18:	cmp	r2, #10
+  1c:	bge	34 <avg+0x34>
+  20:	add	r1, r0, r2, lsl #2
+  24:	vldr	s4, [r1]
+  28:	vadd.f32	s0, s0, s4
+  2c:	add	r2, r2, #1
+  30:	b	18 <avg+0x18>
+  34:	vmov.f32	s2, #36	; 0x41200000  10.0
+  38:	vdiv.f32	s0, s0, s2
+  3c:	ldr	lr, [sp, #4]
+  40:	add	sp, sp, #8
+  44:	bx	lr
+  48:	.word	0x00000000
+
+0000004c <max>:
+  4c:	mov	ip, sp
+  50:	sub	sp, sp, #8
+  54:	str	ip, [sp]
+  58:	str	lr, [sp, #4]
+  5c:	vldr	s0, [r0]
+  60:	mov	r2, #1
+  64:	cmp	r2, #10
+  68:	bge	90 <max+0x44>
+  6c:	add	r1, r0, r2, lsl #2
+  70:	vldr	s2, [r1]
+  74:	vcmp.f32	s2, s0
+  78:	vmrs	APSR_nzcv, fpscr
+  7c:	ble	88 <max+0x3c>
+  80:	add	r1, r0, r2, lsl #2
+  84:	vldr	s0, [r1]
+  88:	add	r2, r2, #1
+  8c:	b	64 <max+0x18>
+  90:	ldr	lr, [sp, #4]
+  94:	add	sp, sp, #8
+  98:	bx	lr
+
+0000009c <min>:
+  9c:	mov	ip, sp
+  a0:	sub	sp, sp, #8
+  a4:	str	ip, [sp]
+  a8:	str	lr, [sp, #4]
+  ac:	vldr	s0, [r0]
+  b0:	mov	r2, #1
+  b4:	cmp	r2, #10
+  b8:	bge	e0 <min+0x44>
+  bc:	add	r1, r0, r2, lsl #2
+  c0:	vldr	s2, [r1]
+  c4:	vcmp.f32	s2, s0
+  c8:	vmrs	APSR_nzcv, fpscr
+  cc:	bpl	d8 <min+0x3c>
+  d0:	add	r1, r0, r2, lsl #2
+  d4:	vldr	s0, [r1]
+  d8:	add	r2, r2, #1
+  dc:	b	b4 <min+0x18>
+  e0:	ldr	lr, [sp, #4]
+  e4:	add	sp, sp, #8
+  e8:	bx	lr
+
+000000ec <main>:
+  ec:	mov	ip, sp
+  f0:	sub	sp, sp, #56	; 0x38
+  f4:	str	ip, [sp]
+  f8:	str	lr, [sp, #4]
+  fc:	str	r4, [sp, #8]
+ 100:	mov	r4, #0
+ 104:	cmp	r4, #10
+ 108:	bge	130 <main+0x44>
+ 10c:	ldr	r0, [pc, #192]	; 1d4 <main+0xe8>
+ 110:	add	r1, r4, #1
+ 114:	bl	0 <printf>
+ 118:	ldr	r0, [pc, #188]	; 1dc <main+0xf0>
+ 11c:	add	r1, sp, #16
+ 120:	add	r1, r1, r4, lsl #2
+ 124:	bl	0 <scanf>
+ 128:	add	r4, r4, #1
+ 12c:	b	104 <main+0x18>
+ 130:	add	r0, sp, #16
+ 134:	bl	0 <avg>
+ 138:	ldr	r0, [pc, #144]	; 1d0 <main+0xe4>
+ 13c:	vcvt.f64.f32	d2, s0
+ 140:	vmov	r2, r3, d2
+ 144:	bl	0 <printf>
+ 148:	add	r0, sp, #16
+ 14c:	bl	4c <max>
+ 150:	ldr	r0, [pc, #140]	; 1e4 <main+0xf8>
+ 154:	vcvt.f64.f32	d2, s0
+ 158:	vmov	r2, r3, d2
+ 15c:	bl	0 <printf>
+ 160:	add	r0, sp, #16
+ 164:	bl	9c <min>
+ 168:	ldr	r0, [pc, #120]	; 1e8 <main+0xfc>
+ 16c:	vcvt.f64.f32	d2, s0
+ 170:	vmov	r2, r3, d2
+ 174:	bl	0 <printf>
+ 178:	ldr	r0, [pc, #96]	; 1e0 <main+0xf4>
+ 17c:	bl	0 <printf>
+ 180:	mov	r4, #0
+ 184:	cmp	r4, #10
+ 188:	bge	1b0 <main+0xc4>
+ 18c:	ldr	r0, [pc, #56]	; 1cc <main+0xe0>
+ 190:	add	r1, sp, #16
+ 194:	add	r2, r1, r4, lsl #2
+ 198:	vldr	s6, [r2]
+ 19c:	vcvt.f64.f32	d2, s6
+ 1a0:	vmov	r2, r3, d2
+ 1a4:	bl	0 <printf>
+ 1a8:	add	r4, r4, #1
+ 1ac:	b	184 <main+0x98>
+ 1b0:	ldr	r0, [pc, #32]	; 1d8 <main+0xec>
+ 1b4:	bl	0 <printf>
+ 1b8:	mov	r0, #0
+ 1bc:	ldr	r4, [sp, #8]
+ 1c0:	ldr	lr, [sp, #4]
+ 1c4:	add	sp, sp, #56	; 0x38
+ 1c8:	bx	lr
+ 1cc:	.word	0x00000000
+ 1d0:	.word	0x0000003f
+ 1d4:	.word	0x00000014
+ 1d8:	.word	0x0000002c
+ 1dc:	.word	0x0000003c
+ 1e0:	.word	0x0000004c
+ 1e4:	.word	0x00000006
+ 1e8:	.word	0x0000002e

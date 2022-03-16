@@ -1,0 +1,1779 @@
+
+../compcert-repos/dvidelabs-flatcc-3b39ef7/src/compiler/CMakeFiles/flatcc.dir/codegen_schema.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <clear_catalog>:
+       0:	str	r4, [sp, #-8]!
+       4:	mov	r4, r0
+       8:	ldr	r0, [r0, #16]
+       c:	str	lr, [sp, #4]
+      10:	cmp	r0, #0
+      14:	beq	1c <clear_catalog+0x1c>
+      18:	bl	0 <free>
+      1c:	ldr	r0, [r4, #20]
+      20:	cmp	r0, #0
+      24:	beq	2c <clear_catalog+0x2c>
+      28:	bl	0 <free>
+      2c:	ldr	r0, [r4, #24]
+      30:	cmp	r0, #0
+      34:	beq	3c <clear_catalog+0x3c>
+      38:	bl	0 <free>
+      3c:	mov	r3, #0
+      40:	str	r3, [r4]
+      44:	str	r3, [r4, #4]
+      48:	str	r3, [r4, #8]
+      4c:	str	r3, [r4, #12]
+      50:	str	r3, [r4, #16]
+      54:	str	r3, [r4, #20]
+      58:	str	r3, [r4, #24]
+      5c:	str	r3, [r4, #28]
+      60:	str	r3, [r4, #32]
+      64:	str	r3, [r4, #36]	; 0x24
+      68:	str	r3, [r4, #40]	; 0x28
+      6c:	ldr	r4, [sp]
+      70:	add	sp, sp, #4
+      74:	pop	{pc}		; (ldr pc, [sp], #4)
+
+00000078 <install_symbols>:
+      78:	add	r3, r1, #4
+      7c:	mov	r2, r0
+      80:	movw	r1, #0
+      84:	movt	r1, #0
+      88:	mov	r0, r3
+      8c:	b	0 <fb_symbol_table_visit>
+
+00000090 <count_symbols>:
+      90:	add	r3, r1, #4
+      94:	mov	r2, r0
+      98:	movw	r1, #0
+      9c:	movt	r1, #0
+      a0:	mov	r0, r3
+      a4:	b	0 <fb_symbol_table_visit>
+
+000000a8 <sort_entries>:
+      a8:	movw	r3, #0
+      ac:	movt	r3, #0
+      b0:	strd	r4, [sp, #-16]!
+      b4:	mov	r2, #8
+      b8:	mov	r4, r1
+      bc:	str	r6, [sp, #8]
+      c0:	mov	r5, r0
+      c4:	str	lr, [sp, #12]
+      c8:	bl	0 <qsort>
+      cc:	cmp	r4, #0
+      d0:	ble	ec <sort_entries+0x44>
+      d4:	mov	r3, #0
+      d8:	ldr	r2, [r5, r3, lsl #3]
+      dc:	str	r3, [r2, #124]	; 0x7c
+      e0:	add	r3, r3, #1
+      e4:	cmp	r4, r3
+      e8:	bne	d8 <sort_entries+0x30>
+      ec:	ldrd	r4, [sp]
+      f0:	ldr	r6, [sp, #8]
+      f4:	add	sp, sp, #12
+      f8:	pop	{pc}		; (ldr pc, [sp], #4)
+
+000000fc <compare_entries>:
+      fc:	ldr	r0, [r0, #4]
+     100:	ldr	r1, [r1, #4]
+     104:	b	0 <strcmp>
+
+00000108 <install_symbol>:
+     108:	ldrh	r3, [r1, #8]
+     10c:	cmp	r3, #4
+     110:	bxhi	lr
+     114:	strd	r4, [sp, #-32]!	; 0xffffffe0
+     118:	strd	r6, [sp, #8]
+     11c:	mov	r7, r0
+     120:	mov	r6, r1
+     124:	ldr	r0, [r0, #40]	; 0x28
+     128:	strd	r8, [sp, #16]
+     12c:	ldr	r1, [r1, #16]
+     130:	str	sl, [sp, #24]
+     134:	str	lr, [sp, #28]
+     138:	add	r0, r0, #172	; 0xac
+     13c:	bl	0 <ptr_set_find_item>
+     140:	cmp	r0, #0
+     144:	beq	1f4 <install_symbol+0xec>
+     148:	ldr	r3, [r7]
+     14c:	ldr	r9, [r7, #36]	; 0x24
+     150:	cmp	r3, #0
+     154:	moveq	r4, r9
+     158:	beq	198 <install_symbol+0x90>
+     15c:	ldr	r3, [r6, #12]
+     160:	mov	r4, r9
+     164:	ldr	r5, [r3]
+     168:	cmp	r5, #0
+     16c:	beq	198 <install_symbol+0x90>
+     170:	mov	r8, #46	; 0x2e
+     174:	ldr	r3, [r5, #4]
+     178:	mov	r0, r4
+     17c:	ldm	r3, {r1, r2}
+     180:	add	r4, r4, r2
+     184:	bl	0 <memcpy>
+     188:	strb	r8, [r4], #1
+     18c:	ldr	r5, [r5]
+     190:	cmp	r5, #0
+     194:	bne	174 <install_symbol+0x6c>
+     198:	ldr	r3, [r6, #4]
+     19c:	mov	r0, r4
+     1a0:	ldm	r3, {r1, r5}
+     1a4:	mov	r2, r5
+     1a8:	bl	0 <memcpy>
+     1ac:	mov	r2, #0
+     1b0:	add	r3, r4, r5
+     1b4:	add	r3, r3, #1
+     1b8:	strb	r2, [r4, r5]
+     1bc:	ldrh	r2, [r6, #8]
+     1c0:	str	r3, [r7, #36]	; 0x24
+     1c4:	cmp	r2, #4
+     1c8:	ldrls	pc, [pc, r2, lsl #2]
+     1cc:	b	1f4 <install_symbol+0xec>
+     1d0:	.word	0x0000020c
+     1d4:	.word	0x0000020c
+     1d8:	.word	0x000001f4
+     1dc:	.word	0x000001e4
+     1e0:	.word	0x000001e4
+     1e4:	ldr	r3, [r7, #32]
+     1e8:	add	r2, r3, #8
+     1ec:	stm	r3, {r6, r9}
+     1f0:	str	r2, [r7, #32]
+     1f4:	ldrd	r4, [sp]
+     1f8:	ldrd	r6, [sp, #8]
+     1fc:	ldrd	r8, [sp, #16]
+     200:	ldr	sl, [sp, #24]
+     204:	add	sp, sp, #28
+     208:	pop	{pc}		; (ldr pc, [sp], #4)
+     20c:	ldr	r3, [r7, #28]
+     210:	add	r2, r3, #8
+     214:	stm	r3, {r6, r9}
+     218:	str	r2, [r7, #28]
+     21c:	b	1f4 <install_symbol+0xec>
+
+00000220 <export_type.isra.6>:
+     220:	sub	r2, r2, #2
+     224:	strd	r4, [sp, #-24]!	; 0xffffffe8
+     228:	mov	r4, r0
+     22c:	strd	r6, [sp, #8]
+     230:	str	r8, [sp, #16]
+     234:	str	lr, [sp, #20]
+     238:	cmp	r2, #13
+     23c:	ldrls	pc, [pc, r2, lsl #2]
+     240:	b	3e0 <export_type.isra.6+0x1c0>
+     244:	.word	0x0000035c
+     248:	.word	0x000003e0
+     24c:	.word	0x000003e0
+     250:	.word	0x000003e0
+     254:	.word	0x000003e0
+     258:	.word	0x0000036c
+     25c:	.word	0x0000027c
+     260:	.word	0x00000418
+     264:	.word	0x000003e0
+     268:	.word	0x000003e0
+     26c:	.word	0x000003e0
+     270:	.word	0x000003e0
+     274:	.word	0x00000398
+     278:	.word	0x000003c0
+     27c:	mvn	r6, #0
+     280:	sub	r1, r1, #1
+     284:	cmp	r1, #10
+     288:	bhi	40c <export_type.isra.6+0x1ec>
+     28c:	movw	r3, #0
+     290:	movt	r3, #0
+     294:	ldrsb	r7, [r3, r1]
+     298:	mov	r5, #0
+     29c:	mov	r1, #3
+     2a0:	mov	r0, r4
+     2a4:	bl	0 <flatcc_builder_start_table>
+     2a8:	cmp	r0, #0
+     2ac:	bne	3f4 <export_type.isra.6+0x1d4>
+     2b0:	cmn	r6, #1
+     2b4:	beq	2d8 <export_type.isra.6+0xb8>
+     2b8:	mov	r3, #4
+     2bc:	mov	r1, #2
+     2c0:	mov	r2, r3
+     2c4:	mov	r0, r4
+     2c8:	bl	0 <flatcc_builder_table_add>
+     2cc:	cmp	r0, #0
+     2d0:	beq	3f4 <export_type.isra.6+0x1d4>
+     2d4:	str	r6, [r0]
+     2d8:	cmp	r7, #0
+     2dc:	beq	300 <export_type.isra.6+0xe0>
+     2e0:	mov	r3, #1
+     2e4:	mov	r1, #0
+     2e8:	mov	r2, r3
+     2ec:	mov	r0, r4
+     2f0:	bl	0 <flatcc_builder_table_add>
+     2f4:	cmp	r0, #0
+     2f8:	beq	3f4 <export_type.isra.6+0x1d4>
+     2fc:	strb	r7, [r0]
+     300:	cmp	r5, #0
+     304:	beq	328 <export_type.isra.6+0x108>
+     308:	mov	r3, #1
+     30c:	mov	r0, r4
+     310:	mov	r2, r3
+     314:	mov	r1, r3
+     318:	bl	0 <flatcc_builder_table_add>
+     31c:	cmp	r0, #0
+     320:	beq	3f4 <export_type.isra.6+0x1d4>
+     324:	strb	r5, [r0]
+     328:	mov	r2, #0
+     32c:	ldr	r1, [pc, #324]	; 478 <export_type.isra.6+0x258>
+     330:	mov	r0, r4
+     334:	bl	0 <flatcc_builder_check_required>
+     338:	cmp	r0, #0
+     33c:	beq	45c <export_type.isra.6+0x23c>
+     340:	mov	r0, r4
+     344:	ldrd	r4, [sp]
+     348:	ldrd	r6, [sp, #8]
+     34c:	ldr	r8, [sp, #16]
+     350:	ldr	lr, [sp, #20]
+     354:	add	sp, sp, #24
+     358:	b	0 <flatcc_builder_end_table>
+     35c:	mvn	r6, #0
+     360:	mov	r7, #13
+     364:	mov	r5, #0
+     368:	b	29c <export_type.isra.6+0x7c>
+     36c:	mvn	r6, #0
+     370:	sub	r1, r1, #1
+     374:	cmp	r1, #10
+     378:	movhi	r5, #0
+     37c:	movhi	r7, #14
+     380:	bhi	29c <export_type.isra.6+0x7c>
+     384:	movw	r3, #0
+     388:	movt	r3, #0
+     38c:	ldrsb	r5, [r3, r1]
+     390:	mov	r7, #14
+     394:	b	29c <export_type.isra.6+0x7c>
+     398:	ldrh	r3, [r1, #8]
+     39c:	ldr	r6, [r1, #124]	; 0x7c
+     3a0:	cmp	r3, #4
+     3a4:	ldrls	pc, [pc, r3, lsl #2]
+     3a8:	b	3e0 <export_type.isra.6+0x1c0>
+     3ac:	.word	0x0000043c
+     3b0:	.word	0x0000043c
+     3b4:	.word	0x000003e0
+     3b8:	.word	0x00000448
+     3bc:	.word	0x00000434
+     3c0:	ldrh	r3, [r1, #8]
+     3c4:	ldr	r6, [r1, #124]	; 0x7c
+     3c8:	cmp	r3, #1
+     3cc:	bls	450 <export_type.isra.6+0x230>
+     3d0:	cmp	r3, #3
+     3d4:	bne	40c <export_type.isra.6+0x1ec>
+     3d8:	ldr	r1, [r1, #40]	; 0x28
+     3dc:	b	370 <export_type.isra.6+0x150>
+     3e0:	mov	r1, #3
+     3e4:	mov	r0, r4
+     3e8:	bl	0 <flatcc_builder_start_table>
+     3ec:	cmp	r0, #0
+     3f0:	beq	328 <export_type.isra.6+0x108>
+     3f4:	ldrd	r4, [sp]
+     3f8:	mov	r0, #0
+     3fc:	ldrd	r6, [sp, #8]
+     400:	ldr	r8, [sp, #16]
+     404:	add	sp, sp, #20
+     408:	pop	{pc}		; (ldr pc, [sp], #4)
+     40c:	mov	r5, #0
+     410:	mov	r7, r5
+     414:	b	29c <export_type.isra.6+0x7c>
+     418:	mov	r1, #3
+     41c:	bl	0 <flatcc_builder_start_table>
+     420:	cmp	r0, #0
+     424:	bne	3f4 <export_type.isra.6+0x1d4>
+     428:	mov	r5, #13
+     42c:	mov	r7, #14
+     430:	b	2e0 <export_type.isra.6+0xc0>
+     434:	mov	r7, #16
+     438:	b	364 <export_type.isra.6+0x144>
+     43c:	mov	r5, #0
+     440:	mov	r7, #15
+     444:	b	29c <export_type.isra.6+0x7c>
+     448:	ldr	r1, [r1, #40]	; 0x28
+     44c:	b	280 <export_type.isra.6+0x60>
+     450:	mov	r5, #15
+     454:	mov	r7, #14
+     458:	b	29c <export_type.isra.6+0x7c>
+     45c:	movw	r1, #0
+     460:	movt	r1, #0
+     464:	ldr	r3, [pc, #16]	; 47c <export_type.isra.6+0x25c>
+     468:	movw	r0, #0
+     46c:	movt	r0, #0
+     470:	mov	r2, #23
+     474:	bl	0 <__assert_fail>
+     478:	.word	0x0000000c
+     47c:	.word	0x00000010
+
+00000480 <count_symbol>:
+     480:	ldrh	r3, [r1, #8]
+     484:	cmp	r3, #4
+     488:	bxhi	lr
+     48c:	strd	r4, [sp, #-16]!
+     490:	mov	r4, r0
+     494:	mov	r5, r1
+     498:	ldr	r0, [r0, #40]	; 0x28
+     49c:	ldr	r1, [r1, #16]
+     4a0:	str	r6, [sp, #8]
+     4a4:	str	lr, [sp, #12]
+     4a8:	add	r0, r0, #172	; 0xac
+     4ac:	bl	0 <ptr_set_find_item>
+     4b0:	cmp	r0, #0
+     4b4:	beq	540 <count_symbol+0xc0>
+     4b8:	ldr	ip, [r4]
+     4bc:	cmp	ip, #0
+     4c0:	beq	4f4 <count_symbol+0x74>
+     4c4:	ldr	r3, [r5, #12]
+     4c8:	ldr	r3, [r3]
+     4cc:	cmp	r3, #0
+     4d0:	beq	56c <count_symbol+0xec>
+     4d4:	mov	ip, #0
+     4d8:	ldr	r2, [r3, #4]
+     4dc:	ldr	r3, [r3]
+     4e0:	ldr	r2, [r2, #4]
+     4e4:	cmp	r3, #0
+     4e8:	add	r2, r2, #1
+     4ec:	add	ip, ip, r2
+     4f0:	bne	4d8 <count_symbol+0x58>
+     4f4:	ldr	r3, [r5, #4]
+     4f8:	ldr	r1, [r4, #12]
+     4fc:	ldrh	r2, [r5, #8]
+     500:	ldr	r3, [r3, #4]
+     504:	add	r3, r3, r1
+     508:	add	r3, r3, #1
+     50c:	add	ip, r3, ip
+     510:	str	ip, [r4, #12]
+     514:	cmp	r2, #4
+     518:	ldrls	pc, [pc, r2, lsl #2]
+     51c:	b	540 <count_symbol+0xc0>
+     520:	.word	0x00000550
+     524:	.word	0x00000550
+     528:	.word	0x00000540
+     52c:	.word	0x00000534
+     530:	.word	0x00000534
+     534:	ldr	r3, [r4, #8]
+     538:	add	r3, r3, #1
+     53c:	str	r3, [r4, #8]
+     540:	ldrd	r4, [sp]
+     544:	ldr	r6, [sp, #8]
+     548:	add	sp, sp, #12
+     54c:	pop	{pc}		; (ldr pc, [sp], #4)
+     550:	ldr	r3, [r4, #4]
+     554:	ldr	r6, [sp, #8]
+     558:	add	r3, r3, #1
+     55c:	str	r3, [r4, #4]
+     560:	ldrd	r4, [sp]
+     564:	add	sp, sp, #12
+     568:	pop	{pc}		; (ldr pc, [sp], #4)
+     56c:	mov	ip, r3
+     570:	b	4f4 <count_symbol+0x74>
+
+00000574 <export_schema.isra.8>:
+     574:	strd	r4, [sp, #-36]!	; 0xffffffdc
+     578:	mov	r5, r2
+     57c:	strd	r6, [sp, #8]
+     580:	ldr	r7, [r3, #60]	; 0x3c
+     584:	strd	r8, [sp, #16]
+     588:	strd	sl, [sp, #24]
+     58c:	mov	fp, r0
+     590:	str	lr, [sp, #32]
+     594:	vpush	{d8}
+     598:	sub	sp, sp, #100	; 0x64
+     59c:	add	r2, sp, #52	; 0x34
+     5a0:	mov	r0, r7
+     5a4:	str	r3, [sp, #8]
+     5a8:	str	r1, [sp, #52]	; 0x34
+     5ac:	mov	r1, r3
+     5b0:	mov	r3, #0
+     5b4:	str	r3, [sp, #56]	; 0x38
+     5b8:	str	r1, [sp, #92]	; 0x5c
+     5bc:	movw	r1, #0
+     5c0:	movt	r1, #0
+     5c4:	str	r3, [sp, #60]	; 0x3c
+     5c8:	str	r3, [sp, #64]	; 0x40
+     5cc:	str	r3, [sp, #68]	; 0x44
+     5d0:	str	r3, [sp, #72]	; 0x48
+     5d4:	str	r3, [sp, #76]	; 0x4c
+     5d8:	str	r3, [sp, #80]	; 0x50
+     5dc:	str	r3, [sp, #84]	; 0x54
+     5e0:	str	r3, [sp, #88]	; 0x58
+     5e4:	bl	0 <fb_scope_table_visit>
+     5e8:	ldr	r6, [sp, #56]	; 0x38
+     5ec:	mov	r1, #8
+     5f0:	mov	r0, r6
+     5f4:	bl	0 <calloc>
+     5f8:	ldr	r8, [sp, #60]	; 0x3c
+     5fc:	mov	sl, r0
+     600:	mov	r1, #8
+     604:	str	r0, [sp, #68]	; 0x44
+     608:	mov	r0, r8
+     60c:	bl	0 <calloc>
+     610:	ldr	r4, [sp, #64]	; 0x40
+     614:	mov	r9, r0
+     618:	str	r0, [sp, #72]	; 0x48
+     61c:	mov	r0, r4
+     620:	bl	0 <malloc>
+     624:	cmp	r6, #0
+     628:	str	r0, [sp, #76]	; 0x4c
+     62c:	movle	r6, #0
+     630:	movgt	r6, #1
+     634:	str	sl, [sp, #80]	; 0x50
+     638:	cmp	sl, #0
+     63c:	str	r9, [sp, #84]	; 0x54
+     640:	movne	r6, #0
+     644:	str	r0, [sp, #88]	; 0x58
+     648:	cmp	r6, #0
+     64c:	bne	1060 <export_schema.isra.8+0xaec>
+     650:	cmp	r8, #0
+     654:	movle	r8, #0
+     658:	movgt	r8, #1
+     65c:	cmp	r9, #0
+     660:	movne	r8, #0
+     664:	cmp	r8, #0
+     668:	bne	1060 <export_schema.isra.8+0xaec>
+     66c:	adds	r4, r4, #0
+     670:	movne	r4, #1
+     674:	cmp	r0, #0
+     678:	movne	r4, #0
+     67c:	cmp	r4, #0
+     680:	bne	1060 <export_schema.isra.8+0xaec>
+     684:	add	r2, sp, #52	; 0x34
+     688:	mov	r0, r7
+     68c:	movw	r1, #0
+     690:	movt	r1, #0
+     694:	bl	0 <fb_scope_table_visit>
+     698:	ldr	r1, [sp, #56]	; 0x38
+     69c:	ldr	r0, [sp, #68]	; 0x44
+     6a0:	bl	a8 <sort_entries>
+     6a4:	ldr	r1, [sp, #60]	; 0x3c
+     6a8:	ldr	r0, [sp, #72]	; 0x48
+     6ac:	bl	a8 <sort_entries>
+     6b0:	ldr	r0, [sp, #56]	; 0x38
+     6b4:	cmp	r0, #0
+     6b8:	strle	r4, [sp, #4]
+     6bc:	bgt	104c <export_schema.isra.8+0xad8>
+     6c0:	ldr	r3, [r5]
+     6c4:	movw	r1, #0
+     6c8:	movt	r1, #0
+     6cc:	mov	r2, #0
+     6d0:	mov	r0, fp
+     6d4:	cmp	r3, #0
+     6d8:	movne	r3, #2
+     6dc:	bl	0 <flatcc_builder_start_buffer>
+     6e0:	cmp	r0, #0
+     6e4:	bne	6f4 <export_schema.isra.8+0x180>
+     6e8:	mov	r1, #5
+     6ec:	mov	r0, fp
+     6f0:	bl	0 <flatcc_builder_start_table>
+     6f4:	ldr	r3, [sp, #8]
+     6f8:	ldrh	r4, [r3, #16]
+     6fc:	cmp	r4, #2
+     700:	beq	10a4 <export_schema.isra.8+0xb30>
+     704:	ldr	r3, [sp, #8]
+     708:	ldrh	r3, [r3, #32]
+     70c:	cmp	r3, #2
+     710:	beq	1070 <export_schema.isra.8+0xafc>
+     714:	ldr	r3, [sp, #56]	; 0x38
+     718:	ldr	r2, [sp, #68]	; 0x44
+     71c:	cmp	r3, #0
+     720:	str	r3, [sp, #20]
+     724:	str	r2, [sp, #28]
+     728:	ble	b54 <export_schema.isra.8+0x5e0>
+     72c:	ldr	r3, [sp, #4]
+     730:	mov	sl, #0
+     734:	str	sl, [sp, #12]
+     738:	sub	r3, r3, #4
+     73c:	str	r3, [sp, #24]
+     740:	ldr	r3, [sp, #28]
+     744:	add	r3, r3, #4
+     748:	str	r3, [sp, #44]	; 0x2c
+     74c:	ldr	r4, [sp, #12]
+     750:	mov	r1, #5
+     754:	mov	r0, fp
+     758:	ldr	r3, [sp, #28]
+     75c:	ldr	sl, [r3, r4, lsl #3]
+     760:	bl	0 <flatcc_builder_start_table>
+     764:	ldr	r3, [sp, #44]	; 0x2c
+     768:	mov	r0, fp
+     76c:	ldr	r1, [r3, r4, lsl #3]
+     770:	bl	0 <flatcc_builder_create_string_str>
+     774:	subs	r4, r0, #0
+     778:	beq	790 <export_schema.isra.8+0x21c>
+     77c:	mov	r1, #0
+     780:	mov	r0, fp
+     784:	bl	0 <flatcc_builder_table_add_offset>
+     788:	cmp	r0, #0
+     78c:	strne	r4, [r0]
+     790:	mov	r0, fp
+     794:	bl	0 <flatcc_builder_start_offset_vector>
+     798:	ldr	r9, [sl, #20]
+     79c:	cmp	r9, #0
+     7a0:	beq	ab4 <export_schema.isra.8+0x540>
+     7a4:	movw	r3, #0
+     7a8:	movt	r3, #0
+     7ac:	str	sl, [sp, #16]
+     7b0:	mov	r8, #0
+     7b4:	str	r3, [sp, #40]	; 0x28
+     7b8:	b	8cc <export_schema.isra.8+0x358>
+     7bc:	mov	r1, #9
+     7c0:	mov	r0, fp
+     7c4:	bl	0 <flatcc_builder_start_table>
+     7c8:	ldr	r3, [r9, #4]
+     7cc:	mov	r0, fp
+     7d0:	ldm	r3, {r1, r2}
+     7d4:	bl	0 <flatcc_builder_create_string>
+     7d8:	subs	r6, r0, #0
+     7dc:	beq	7f4 <export_schema.isra.8+0x280>
+     7e0:	mov	r1, #0
+     7e4:	mov	r0, fp
+     7e8:	bl	0 <flatcc_builder_table_add_offset>
+     7ec:	cmp	r0, #0
+     7f0:	strne	r6, [r0]
+     7f4:	ldrh	r2, [r9, #24]
+     7f8:	mov	r0, fp
+     7fc:	ldr	r1, [r9, #16]
+     800:	bl	220 <export_type.isra.6>
+     804:	subs	r6, r0, #0
+     808:	beq	820 <export_schema.isra.8+0x2ac>
+     80c:	mov	r1, #1
+     810:	mov	r0, fp
+     814:	bl	0 <flatcc_builder_table_add_offset>
+     818:	cmp	r0, #0
+     81c:	strne	r6, [r0]
+     820:	ldr	r3, [sp, #16]
+     824:	ldrh	r3, [r3, #8]
+     828:	cmp	r3, #0
+     82c:	beq	eb0 <export_schema.isra.8+0x93c>
+     830:	cmp	r3, #1
+     834:	bne	860 <export_schema.isra.8+0x2ec>
+     838:	ldrh	r5, [r9, #80]	; 0x50
+     83c:	cmp	r5, #0
+     840:	beq	860 <export_schema.isra.8+0x2ec>
+     844:	mov	r3, #2
+     848:	mov	r1, #3
+     84c:	mov	r2, r3
+     850:	mov	r0, fp
+     854:	bl	0 <flatcc_builder_table_add>
+     858:	cmp	r0, #0
+     85c:	strhne	r5, [r0]
+     860:	ldr	r3, [sp, #32]
+     864:	cmp	r3, #0
+     868:	beq	88c <export_schema.isra.8+0x318>
+     86c:	mov	r3, #1
+     870:	mov	r1, #6
+     874:	mov	r2, r3
+     878:	mov	r0, fp
+     87c:	bl	0 <flatcc_builder_table_add>
+     880:	cmp	r0, #0
+     884:	ldrne	r3, [sp, #36]	; 0x24
+     888:	strbne	r3, [r0]
+     88c:	mov	r2, #2
+     890:	ldr	r1, [pc, #2276]	; 117c <export_schema.isra.8+0xc08>
+     894:	mov	r0, fp
+     898:	bl	0 <flatcc_builder_check_required>
+     89c:	cmp	r0, #0
+     8a0:	beq	10d4 <export_schema.isra.8+0xb60>
+     8a4:	mov	r0, fp
+     8a8:	bl	0 <flatcc_builder_end_table>
+     8ac:	subs	r1, r0, #0
+     8b0:	beq	8bc <export_schema.isra.8+0x348>
+     8b4:	mov	r0, fp
+     8b8:	bl	0 <flatcc_builder_offset_vector_push>
+     8bc:	ldr	r9, [r9]
+     8c0:	orr	r8, r8, r4
+     8c4:	cmp	r9, #0
+     8c8:	beq	ab0 <export_schema.isra.8+0x53c>
+     8cc:	cmp	r8, #0
+     8d0:	ldrh	r5, [r9, #72]	; 0x48
+     8d4:	movne	r4, #0
+     8d8:	movne	sl, r4
+     8dc:	bne	8f4 <export_schema.isra.8+0x380>
+     8e0:	tst	r5, #128	; 0x80
+     8e4:	movne	r4, #1
+     8e8:	moveq	r4, r8
+     8ec:	moveq	sl, r8
+     8f0:	movne	sl, r4
+     8f4:	ldrh	r3, [r9, #24]
+     8f8:	and	r2, r5, #4
+     8fc:	str	r2, [sp, #32]
+     900:	ubfx	r2, r5, #2, #1
+     904:	cmp	r3, #14
+     908:	str	r2, [sp, #36]	; 0x24
+     90c:	bne	7bc <export_schema.isra.8+0x248>
+     910:	ldr	r3, [r9, #16]
+     914:	ldrh	r3, [r3, #8]
+     918:	cmp	r3, #4
+     91c:	bne	7bc <export_schema.isra.8+0x248>
+     920:	mov	r1, #9
+     924:	mov	r0, fp
+     928:	bl	0 <flatcc_builder_start_table>
+     92c:	mov	r0, fp
+     930:	bl	0 <flatcc_builder_start_string>
+     934:	ldr	r3, [r9, #4]
+     938:	mov	r0, fp
+     93c:	ldm	r3, {r1, r2}
+     940:	bl	0 <flatcc_builder_append_string>
+     944:	mov	r2, #5
+     948:	mov	r0, fp
+     94c:	ldr	r1, [sp, #40]	; 0x28
+     950:	bl	0 <flatcc_builder_append_string>
+     954:	mov	r0, fp
+     958:	bl	0 <flatcc_builder_end_string>
+     95c:	subs	r6, r0, #0
+     960:	beq	978 <export_schema.isra.8+0x404>
+     964:	mov	r1, #0
+     968:	mov	r0, fp
+     96c:	bl	0 <flatcc_builder_table_add_offset>
+     970:	cmp	r0, #0
+     974:	strne	r6, [r0]
+     978:	mov	r1, #3
+     97c:	mov	r0, fp
+     980:	bl	0 <flatcc_builder_start_table>
+     984:	subs	r7, r0, #0
+     988:	bne	9ec <export_schema.isra.8+0x478>
+     98c:	mov	r3, #1
+     990:	mov	r1, r7
+     994:	mov	r2, r3
+     998:	mov	r0, fp
+     99c:	bl	0 <flatcc_builder_table_add>
+     9a0:	subs	r3, r0, #0
+     9a4:	beq	9ec <export_schema.isra.8+0x478>
+     9a8:	mov	r6, #1
+     9ac:	mov	r2, r7
+     9b0:	ldr	r1, [pc, #1992]	; 1180 <export_schema.isra.8+0xc0c>
+     9b4:	mov	r0, fp
+     9b8:	strb	r6, [r3]
+     9bc:	bl	0 <flatcc_builder_check_required>
+     9c0:	cmp	r0, #0
+     9c4:	beq	1144 <export_schema.isra.8+0xbd0>
+     9c8:	mov	r0, fp
+     9cc:	bl	0 <flatcc_builder_end_table>
+     9d0:	subs	r7, r0, #0
+     9d4:	beq	9ec <export_schema.isra.8+0x478>
+     9d8:	mov	r1, r6
+     9dc:	mov	r0, fp
+     9e0:	bl	0 <flatcc_builder_table_add_offset>
+     9e4:	cmp	r0, #0
+     9e8:	strne	r7, [r0]
+     9ec:	ldrh	r6, [r9, #96]	; 0x60
+     9f0:	add	r7, r6, #1
+     9f4:	lsl	r7, r7, #1
+     9f8:	uxth	r7, r7
+     9fc:	cmp	r7, #0
+     a00:	beq	a24 <export_schema.isra.8+0x4b0>
+     a04:	mov	r3, #2
+     a08:	mov	r1, #3
+     a0c:	mov	r2, r3
+     a10:	mov	r0, fp
+     a14:	bl	0 <flatcc_builder_table_add>
+     a18:	cmp	r0, #0
+     a1c:	ldrh	r6, [r9, #96]	; 0x60
+     a20:	strhne	r7, [r0]
+     a24:	sub	r6, r6, #1
+     a28:	uxth	r6, r6
+     a2c:	cmp	r6, #0
+     a30:	beq	a50 <export_schema.isra.8+0x4dc>
+     a34:	mov	r3, #2
+     a38:	mov	r0, fp
+     a3c:	mov	r2, r3
+     a40:	mov	r1, r3
+     a44:	bl	0 <flatcc_builder_table_add>
+     a48:	cmp	r0, #0
+     a4c:	strhne	r6, [r0]
+     a50:	and	r3, r5, #4
+     a54:	cmp	r3, #0
+     a58:	beq	a7c <export_schema.isra.8+0x508>
+     a5c:	mov	r3, #1
+     a60:	mov	r1, #6
+     a64:	mov	r2, r3
+     a68:	mov	r0, fp
+     a6c:	bl	0 <flatcc_builder_table_add>
+     a70:	cmp	r0, #0
+     a74:	ubfxne	r3, r5, #2, #1
+     a78:	strbne	r3, [r0]
+     a7c:	mov	r2, #2
+     a80:	ldr	r1, [pc, #1780]	; 117c <export_schema.isra.8+0xc08>
+     a84:	mov	r0, fp
+     a88:	bl	0 <flatcc_builder_check_required>
+     a8c:	cmp	r0, #0
+     a90:	beq	10d4 <export_schema.isra.8+0xb60>
+     a94:	mov	r0, fp
+     a98:	bl	0 <flatcc_builder_end_table>
+     a9c:	subs	r1, r0, #0
+     aa0:	beq	7bc <export_schema.isra.8+0x248>
+     aa4:	mov	r0, fp
+     aa8:	bl	0 <flatcc_builder_offset_vector_push>
+     aac:	b	7bc <export_schema.isra.8+0x248>
+     ab0:	ldr	sl, [sp, #16]
+     ab4:	mov	r0, fp
+     ab8:	bl	0 <flatcc_builder_end_offset_vector>
+     abc:	subs	r4, r0, #0
+     ac0:	beq	ad8 <export_schema.isra.8+0x564>
+     ac4:	mov	r1, #1
+     ac8:	mov	r0, fp
+     acc:	bl	0 <flatcc_builder_table_add_offset>
+     ad0:	cmp	r0, #0
+     ad4:	strne	r4, [r0]
+     ad8:	ldrh	r3, [sl, #8]
+     adc:	cmp	r3, #1
+     ae0:	beq	1000 <export_schema.isra.8+0xa8c>
+     ae4:	ldrh	r4, [sl, #104]	; 0x68
+     ae8:	cmp	r4, #0
+     aec:	beq	b0c <export_schema.isra.8+0x598>
+     af0:	mov	r3, #4
+     af4:	mov	r1, #3
+     af8:	mov	r2, r3
+     afc:	mov	r0, fp
+     b00:	bl	0 <flatcc_builder_table_add>
+     b04:	cmp	r0, #0
+     b08:	strne	r4, [r0]
+     b0c:	mov	r2, #2
+     b10:	ldr	r1, [pc, #1644]	; 1184 <export_schema.isra.8+0xc10>
+     b14:	mov	r0, fp
+     b18:	bl	0 <flatcc_builder_check_required>
+     b1c:	cmp	r0, #0
+     b20:	beq	110c <export_schema.isra.8+0xb98>
+     b24:	ldr	r3, [sp, #12]
+     b28:	mov	r0, fp
+     b2c:	add	r3, r3, #1
+     b30:	mov	r4, r3
+     b34:	str	r3, [sp, #12]
+     b38:	bl	0 <flatcc_builder_end_table>
+     b3c:	ldr	r2, [sp, #20]
+     b40:	ldr	r3, [sp, #24]
+     b44:	cmp	r2, r4
+     b48:	str	r0, [r3, #4]!
+     b4c:	str	r3, [sp, #24]
+     b50:	bne	74c <export_schema.isra.8+0x1d8>
+     b54:	mov	r0, fp
+     b58:	ldr	r1, [sp, #4]
+     b5c:	ldr	r2, [sp, #20]
+     b60:	bl	0 <flatcc_builder_create_offset_vector>
+     b64:	subs	r4, r0, #0
+     b68:	beq	b80 <export_schema.isra.8+0x60c>
+     b6c:	mov	r1, #0
+     b70:	mov	r0, fp
+     b74:	bl	0 <flatcc_builder_table_add_offset>
+     b78:	cmp	r0, #0
+     b7c:	strne	r4, [r0]
+     b80:	ldr	sl, [sp, #60]	; 0x3c
+     b84:	mov	r0, fp
+     b88:	ldr	r3, [sp, #72]	; 0x48
+     b8c:	str	r3, [sp, #12]
+     b90:	bl	0 <flatcc_builder_start_offset_vector>
+     b94:	cmp	sl, #0
+     b98:	ble	ddc <export_schema.isra.8+0x868>
+     b9c:	ldr	r3, [sp, #12]
+     ba0:	mov	r5, #0
+     ba4:	add	r3, r3, #4
+     ba8:	str	r3, [sp, #16]
+     bac:	ldr	r3, [sp, #12]
+     bb0:	mov	r1, #4
+     bb4:	mov	r0, fp
+     bb8:	ldr	r8, [r3, r5, lsl #3]
+     bbc:	ldrh	r9, [r8, #8]
+     bc0:	bl	0 <flatcc_builder_start_table>
+     bc4:	ldr	r3, [sp, #16]
+     bc8:	mov	r0, fp
+     bcc:	ldr	r1, [r3, r5, lsl #3]
+     bd0:	bl	0 <flatcc_builder_create_string_str>
+     bd4:	subs	r4, r0, #0
+     bd8:	beq	bf0 <export_schema.isra.8+0x67c>
+     bdc:	mov	r1, #0
+     be0:	mov	r0, fp
+     be4:	bl	0 <flatcc_builder_table_add_offset>
+     be8:	cmp	r0, #0
+     bec:	strne	r4, [r0]
+     bf0:	mov	r0, fp
+     bf4:	bl	0 <flatcc_builder_start_offset_vector>
+     bf8:	ldr	r4, [r8, #20]
+     bfc:	cmp	r4, #0
+     c00:	bne	ca0 <export_schema.isra.8+0x72c>
+     c04:	b	d28 <export_schema.isra.8+0x7b4>
+     c08:	bl	0 <flatcc_builder_start_table>
+     c0c:	ldr	r3, [r4, #4]
+     c10:	mov	r0, fp
+     c14:	ldm	r3, {r1, r2}
+     c18:	bl	0 <flatcc_builder_create_string>
+     c1c:	subs	r6, r0, #0
+     c20:	beq	c3c <export_schema.isra.8+0x6c8>
+     c24:	mov	r1, #0
+     c28:	mov	r0, fp
+     c2c:	bl	0 <flatcc_builder_table_add_offset>
+     c30:	cmp	r0, #0
+     c34:	beq	c3c <export_schema.isra.8+0x6c8>
+     c38:	str	r6, [r0]
+     c3c:	ldrd	r6, [r4, #48]	; 0x30
+     c40:	orrs	r3, r6, r7
+     c44:	beq	c64 <export_schema.isra.8+0x6f0>
+     c48:	mov	r3, #8
+     c4c:	mov	r1, #1
+     c50:	mov	r2, r3
+     c54:	mov	r0, fp
+     c58:	bl	0 <flatcc_builder_table_add>
+     c5c:	cmp	r0, #0
+     c60:	strdne	r6, [r0]
+     c64:	mov	r2, #1
+     c68:	ldr	r1, [pc, #1304]	; 1188 <export_schema.isra.8+0xc14>
+     c6c:	mov	r0, fp
+     c70:	bl	0 <flatcc_builder_check_required>
+     c74:	cmp	r0, #0
+     c78:	beq	10f0 <export_schema.isra.8+0xb7c>
+     c7c:	mov	r0, fp
+     c80:	bl	0 <flatcc_builder_end_table>
+     c84:	subs	r1, r0, #0
+     c88:	beq	c94 <export_schema.isra.8+0x720>
+     c8c:	mov	r0, fp
+     c90:	bl	0 <flatcc_builder_offset_vector_push>
+     c94:	ldr	r4, [r4]
+     c98:	cmp	r4, #0
+     c9c:	beq	d28 <export_schema.isra.8+0x7b4>
+     ca0:	cmp	r9, #4
+     ca4:	mov	r1, #3
+     ca8:	mov	r0, fp
+     cac:	bne	c08 <export_schema.isra.8+0x694>
+     cb0:	bl	0 <flatcc_builder_start_table>
+     cb4:	ldr	r3, [r4, #4]
+     cb8:	mov	r0, fp
+     cbc:	ldm	r3, {r1, r2}
+     cc0:	bl	0 <flatcc_builder_create_string>
+     cc4:	subs	r6, r0, #0
+     cc8:	beq	ce0 <export_schema.isra.8+0x76c>
+     ccc:	mov	r1, #0
+     cd0:	mov	r0, fp
+     cd4:	bl	0 <flatcc_builder_table_add_offset>
+     cd8:	cmp	r0, #0
+     cdc:	strne	r6, [r0]
+     ce0:	ldr	r3, [sp, #4]
+     ce4:	cmp	r3, #0
+     ce8:	beq	c3c <export_schema.isra.8+0x6c8>
+     cec:	ldrh	r3, [r4, #24]
+     cf0:	cmp	r3, #14
+     cf4:	bne	c3c <export_schema.isra.8+0x6c8>
+     cf8:	ldr	r3, [r4, #16]
+     cfc:	ldr	r2, [sp, #4]
+     d00:	ldr	r3, [r3, #124]	; 0x7c
+     d04:	ldr	r6, [r2, r3, lsl #2]
+     d08:	cmp	r6, #0
+     d0c:	beq	c3c <export_schema.isra.8+0x6c8>
+     d10:	mov	r1, #2
+     d14:	mov	r0, fp
+     d18:	bl	0 <flatcc_builder_table_add_offset>
+     d1c:	cmp	r0, #0
+     d20:	bne	c38 <export_schema.isra.8+0x6c4>
+     d24:	b	c3c <export_schema.isra.8+0x6c8>
+     d28:	mov	r0, fp
+     d2c:	bl	0 <flatcc_builder_end_offset_vector>
+     d30:	subs	r4, r0, #0
+     d34:	beq	d4c <export_schema.isra.8+0x7d8>
+     d38:	mov	r1, #1
+     d3c:	mov	r0, fp
+     d40:	bl	0 <flatcc_builder_table_add_offset>
+     d44:	cmp	r0, #0
+     d48:	strne	r4, [r0]
+     d4c:	cmp	r9, #4
+     d50:	bne	d74 <export_schema.isra.8+0x800>
+     d54:	mov	r3, #1
+     d58:	mov	r1, #2
+     d5c:	mov	r2, r3
+     d60:	mov	r0, fp
+     d64:	bl	0 <flatcc_builder_table_add>
+     d68:	cmp	r0, #0
+     d6c:	movne	r3, #1
+     d70:	strbne	r3, [r0]
+     d74:	ldrh	r2, [r8, #48]	; 0x30
+     d78:	mov	r0, fp
+     d7c:	ldr	r1, [r8, #40]	; 0x28
+     d80:	bl	220 <export_type.isra.6>
+     d84:	subs	r4, r0, #0
+     d88:	beq	da0 <export_schema.isra.8+0x82c>
+     d8c:	mov	r1, #3
+     d90:	mov	r0, fp
+     d94:	bl	0 <flatcc_builder_table_add_offset>
+     d98:	cmp	r0, #0
+     d9c:	strne	r4, [r0]
+     da0:	mov	r2, #3
+     da4:	ldr	r1, [pc, #992]	; 118c <export_schema.isra.8+0xc18>
+     da8:	mov	r0, fp
+     dac:	bl	0 <flatcc_builder_check_required>
+     db0:	cmp	r0, #0
+     db4:	beq	1128 <export_schema.isra.8+0xbb4>
+     db8:	mov	r0, fp
+     dbc:	bl	0 <flatcc_builder_end_table>
+     dc0:	subs	r1, r0, #0
+     dc4:	beq	dd0 <export_schema.isra.8+0x85c>
+     dc8:	mov	r0, fp
+     dcc:	bl	0 <flatcc_builder_offset_vector_push>
+     dd0:	add	r5, r5, #1
+     dd4:	cmp	sl, r5
+     dd8:	bne	bac <export_schema.isra.8+0x638>
+     ddc:	mov	r0, fp
+     de0:	bl	0 <flatcc_builder_end_offset_vector>
+     de4:	subs	r4, r0, #0
+     de8:	beq	e00 <export_schema.isra.8+0x88c>
+     dec:	mov	r1, #1
+     df0:	mov	r0, fp
+     df4:	bl	0 <flatcc_builder_table_add_offset>
+     df8:	cmp	r0, #0
+     dfc:	strne	r4, [r0]
+     e00:	ldr	r3, [sp, #8]
+     e04:	ldr	r3, [r3, #52]	; 0x34
+     e08:	cmp	r3, #0
+     e0c:	beq	e44 <export_schema.isra.8+0x8d0>
+     e10:	ldrh	r2, [r3, #8]
+     e14:	cmp	r2, #0
+     e18:	bne	e44 <export_schema.isra.8+0x8d0>
+     e1c:	ldr	r2, [sp, #4]
+     e20:	ldr	r3, [r3, #124]	; 0x7c
+     e24:	ldr	r4, [r2, r3, lsl #2]
+     e28:	cmp	r4, #0
+     e2c:	beq	e44 <export_schema.isra.8+0x8d0>
+     e30:	mov	r1, #4
+     e34:	mov	r0, fp
+     e38:	bl	0 <flatcc_builder_table_add_offset>
+     e3c:	cmp	r0, #0
+     e40:	strne	r4, [r0]
+     e44:	mov	r2, #2
+     e48:	ldr	r1, [pc, #832]	; 1190 <export_schema.isra.8+0xc1c>
+     e4c:	mov	r0, fp
+     e50:	bl	0 <flatcc_builder_check_required>
+     e54:	cmp	r0, #0
+     e58:	beq	1160 <export_schema.isra.8+0xbec>
+     e5c:	mov	r0, fp
+     e60:	bl	0 <flatcc_builder_end_table>
+     e64:	mov	r1, r0
+     e68:	mov	r0, fp
+     e6c:	bl	0 <flatcc_builder_end_buffer>
+     e70:	add	r0, sp, #52	; 0x34
+     e74:	bl	0 <clear_catalog>
+     e78:	ldr	r3, [sp, #4]
+     e7c:	cmp	r3, #0
+     e80:	beq	e8c <export_schema.isra.8+0x918>
+     e84:	mov	r0, r3
+     e88:	bl	0 <free>
+     e8c:	mov	r0, #0
+     e90:	add	sp, sp, #100	; 0x64
+     e94:	vpop	{d8}
+     e98:	ldrd	r4, [sp]
+     e9c:	ldrd	r6, [sp, #8]
+     ea0:	ldrd	r8, [sp, #16]
+     ea4:	ldrd	sl, [sp, #24]
+     ea8:	add	sp, sp, #32
+     eac:	pop	{pc}		; (ldr pc, [sp], #4)
+     eb0:	ldrh	r3, [r9, #56]	; 0x38
+     eb4:	sub	r3, r3, #3
+     eb8:	cmp	r3, #3
+     ebc:	ldrls	pc, [pc, r3, lsl #2]
+     ec0:	b	f00 <export_schema.isra.8+0x98c>
+     ec4:	.word	0x00000fa4
+     ec8:	.word	0x00000f9c
+     ecc:	.word	0x00000f9c
+     ed0:	.word	0x00000ed4
+     ed4:	ldrb	r6, [r9, #48]	; 0x30
+     ed8:	mov	r7, #0
+     edc:	orrs	r3, r6, r7
+     ee0:	beq	f00 <export_schema.isra.8+0x98c>
+     ee4:	mov	r3, #8
+     ee8:	mov	r1, #4
+     eec:	mov	r2, r3
+     ef0:	mov	r0, fp
+     ef4:	bl	0 <flatcc_builder_table_add>
+     ef8:	cmp	r0, #0
+     efc:	strdne	r6, [r0]
+     f00:	ldrh	r6, [r9, #96]	; 0x60
+     f04:	cmp	r6, #0
+     f08:	moveq	r6, #4
+     f0c:	beq	fe0 <export_schema.isra.8+0xa6c>
+     f10:	mov	r3, #2
+     f14:	mov	r0, fp
+     f18:	mov	r2, r3
+     f1c:	mov	r1, r3
+     f20:	bl	0 <flatcc_builder_table_add>
+     f24:	cmp	r0, #0
+     f28:	strhne	r6, [r0]
+     f2c:	ldrh	r6, [r9, #96]	; 0x60
+     f30:	add	r6, r6, #2
+     f34:	lsl	r6, r6, #1
+     f38:	uxth	r6, r6
+     f3c:	cmp	r6, #0
+     f40:	bne	fe0 <export_schema.isra.8+0xa6c>
+     f44:	cmp	sl, #0
+     f48:	beq	f6c <export_schema.isra.8+0x9f8>
+     f4c:	mov	r3, #1
+     f50:	mov	r1, #8
+     f54:	mov	r2, r3
+     f58:	mov	r0, fp
+     f5c:	bl	0 <flatcc_builder_table_add>
+     f60:	cmp	r0, #0
+     f64:	movne	r3, #1
+     f68:	strbne	r3, [r0]
+     f6c:	tst	r5, #256	; 0x100
+     f70:	beq	860 <export_schema.isra.8+0x2ec>
+     f74:	mov	r3, #1
+     f78:	mov	r1, #7
+     f7c:	mov	r2, r3
+     f80:	mov	r0, fp
+     f84:	bl	0 <flatcc_builder_table_add>
+     f88:	cmp	r0, #0
+     f8c:	beq	860 <export_schema.isra.8+0x2ec>
+     f90:	mov	r3, #1
+     f94:	strb	r3, [r0]
+     f98:	b	860 <export_schema.isra.8+0x2ec>
+     f9c:	ldrd	r6, [r9, #48]	; 0x30
+     fa0:	b	edc <export_schema.isra.8+0x968>
+     fa4:	vldr	d8, [r9, #48]	; 0x30
+     fa8:	vcmp.f64	d8, #0.0
+     fac:	vmrs	APSR_nzcv, fpscr
+     fb0:	beq	f00 <export_schema.isra.8+0x98c>
+     fb4:	mov	r3, #8
+     fb8:	mov	r1, #5
+     fbc:	mov	r2, r3
+     fc0:	mov	r0, fp
+     fc4:	bl	0 <flatcc_builder_table_add>
+     fc8:	ldrh	r6, [r9, #96]	; 0x60
+     fcc:	cmp	r0, #0
+     fd0:	vstrne	d8, [r0]
+     fd4:	cmp	r6, #0
+     fd8:	moveq	r6, #4
+     fdc:	bne	f10 <export_schema.isra.8+0x99c>
+     fe0:	mov	r3, #2
+     fe4:	mov	r1, #3
+     fe8:	mov	r2, r3
+     fec:	mov	r0, fp
+     ff0:	bl	0 <flatcc_builder_table_add>
+     ff4:	cmp	r0, #0
+     ff8:	strhne	r6, [r0]
+     ffc:	b	f44 <export_schema.isra.8+0x9d0>
+    1000:	ldr	r4, [sl, #112]	; 0x70
+    1004:	cmp	r4, #0
+    1008:	beq	1028 <export_schema.isra.8+0xab4>
+    100c:	mov	r3, #4
+    1010:	mov	r0, fp
+    1014:	mov	r2, r3
+    1018:	mov	r1, r3
+    101c:	bl	0 <flatcc_builder_table_add>
+    1020:	cmp	r0, #0
+    1024:	strne	r4, [r0]
+    1028:	mov	r3, #1
+    102c:	mov	r1, #2
+    1030:	mov	r2, r3
+    1034:	mov	r0, fp
+    1038:	bl	0 <flatcc_builder_table_add>
+    103c:	cmp	r0, #0
+    1040:	movne	r3, #1
+    1044:	strbne	r3, [r0]
+    1048:	b	ae4 <export_schema.isra.8+0x570>
+    104c:	lsl	r0, r0, #2
+    1050:	bl	0 <malloc>
+    1054:	subs	r3, r0, #0
+    1058:	str	r3, [sp, #4]
+    105c:	bne	6c0 <export_schema.isra.8+0x14c>
+    1060:	add	r0, sp, #52	; 0x34
+    1064:	bl	0 <clear_catalog>
+    1068:	mvn	r0, #0
+    106c:	b	e90 <export_schema.isra.8+0x91c>
+    1070:	ldr	r3, [sp, #8]
+    1074:	mov	r0, fp
+    1078:	ldr	r1, [r3, #24]
+    107c:	ldr	r2, [r3, #28]
+    1080:	bl	0 <flatcc_builder_create_string>
+    1084:	subs	r4, r0, #0
+    1088:	beq	714 <export_schema.isra.8+0x1a0>
+    108c:	mov	r1, #3
+    1090:	mov	r0, fp
+    1094:	bl	0 <flatcc_builder_table_add_offset>
+    1098:	cmp	r0, #0
+    109c:	strne	r4, [r0]
+    10a0:	b	714 <export_schema.isra.8+0x1a0>
+    10a4:	mov	r0, fp
+    10a8:	ldr	r1, [r3, #8]
+    10ac:	ldr	r2, [r3, #12]
+    10b0:	bl	0 <flatcc_builder_create_string>
+    10b4:	subs	r5, r0, #0
+    10b8:	beq	704 <export_schema.isra.8+0x190>
+    10bc:	mov	r1, r4
+    10c0:	mov	r0, fp
+    10c4:	bl	0 <flatcc_builder_table_add_offset>
+    10c8:	cmp	r0, #0
+    10cc:	strne	r5, [r0]
+    10d0:	b	704 <export_schema.isra.8+0x190>
+    10d4:	movw	r1, #0
+    10d8:	movt	r1, #0
+    10dc:	ldr	r3, [pc, #176]	; 1194 <export_schema.isra.8+0xc20>
+    10e0:	movw	r0, #0
+    10e4:	movt	r0, #0
+    10e8:	mov	r2, #29
+    10ec:	bl	0 <__assert_fail>
+    10f0:	movw	r1, #0
+    10f4:	movt	r1, #0
+    10f8:	ldr	r3, [pc, #152]	; 1198 <export_schema.isra.8+0xc24>
+    10fc:	movw	r0, #0
+    1100:	movt	r0, #0
+    1104:	mov	r2, #25
+    1108:	bl	0 <__assert_fail>
+    110c:	movw	r1, #0
+    1110:	movt	r1, #0
+    1114:	ldr	r3, [pc, #128]	; 119c <export_schema.isra.8+0xc28>
+    1118:	movw	r0, #0
+    111c:	movt	r0, #0
+    1120:	mov	r2, #31
+    1124:	bl	0 <__assert_fail>
+    1128:	movw	r1, #0
+    112c:	movt	r1, #0
+    1130:	ldr	r3, [pc, #104]	; 11a0 <export_schema.isra.8+0xc2c>
+    1134:	movw	r0, #0
+    1138:	movt	r0, #0
+    113c:	mov	r2, #27
+    1140:	bl	0 <__assert_fail>
+    1144:	movw	r1, #0
+    1148:	movt	r1, #0
+    114c:	ldr	r3, [pc, #80]	; 11a4 <export_schema.isra.8+0xc30>
+    1150:	movw	r0, #0
+    1154:	movt	r0, #0
+    1158:	mov	r2, #23
+    115c:	bl	0 <__assert_fail>
+    1160:	movw	r1, #0
+    1164:	movt	r1, #0
+    1168:	ldr	r3, [pc, #56]	; 11a8 <export_schema.isra.8+0xc34>
+    116c:	movw	r0, #0
+    1170:	movt	r0, #0
+    1174:	mov	r2, #33	; 0x21
+    1178:	bl	0 <__assert_fail>
+    117c:	.word	0x00000024
+    1180:	.word	0x0000000c
+    1184:	.word	0x00000044
+    1188:	.word	0x00000064
+    118c:	.word	0x00000080
+    1190:	.word	0x0000009c
+    1194:	.word	0x0000002c
+    1198:	.word	0x00000068
+    119c:	.word	0x0000004c
+    11a0:	.word	0x00000088
+    11a4:	.word	0x00000010
+    11a8:	.word	0x000000a4
+
+000011ac <sort_fields>:
+    11ac:	cmp	r0, #0
+    11b0:	strd	r4, [sp, #-36]!	; 0xffffffdc
+    11b4:	strd	r6, [sp, #8]
+    11b8:	strd	r8, [sp, #16]
+    11bc:	strd	sl, [sp, #24]
+    11c0:	str	lr, [sp, #32]
+    11c4:	sub	sp, sp, #36	; 0x24
+    11c8:	beq	11e0 <sort_fields+0x34>
+    11cc:	ldr	r2, [r0, #4]
+    11d0:	movw	r3, #17986	; 0x4642
+    11d4:	movt	r3, #21314	; 0x5342
+    11d8:	cmp	r2, r3
+    11dc:	beq	11fc <sort_fields+0x50>
+    11e0:	movw	r1, #0
+    11e4:	movt	r1, #0
+    11e8:	ldr	r3, [pc, #1672]	; 1878 <sort_fields+0x6cc>
+    11ec:	movw	r0, #0
+    11f0:	movt	r0, #0
+    11f4:	mov	r2, #237	; 0xed
+    11f8:	bl	0 <__assert_fail>
+    11fc:	ldr	r2, [r0]
+    1200:	adds	r3, r0, r2
+    1204:	beq	11e0 <sort_fields+0x34>
+    1208:	ldr	r2, [r0, r2]
+    120c:	sub	r2, r3, r2
+    1210:	ldrh	r1, [r2]
+    1214:	cmp	r1, #5
+    1218:	bls	185c <sort_fields+0x6b0>
+    121c:	ldrh	r1, [r2, #4]
+    1220:	cmp	r1, #0
+    1224:	beq	185c <sort_fields+0x6b0>
+    1228:	ldr	r2, [r3, r1]
+    122c:	add	r3, r3, r1
+    1230:	add	r2, r2, #4
+    1234:	adds	r0, r3, r2
+    1238:	str	r0, [sp, #24]
+    123c:	beq	17ec <sort_fields+0x640>
+    1240:	ldr	r1, [r0, #-4]
+    1244:	cmp	r1, #0
+    1248:	beq	17ec <sort_fields+0x640>
+    124c:	ldr	r3, [r3, r2]
+    1250:	adds	r2, r0, r3
+    1254:	beq	1840 <sort_fields+0x694>
+    1258:	ldr	r3, [r0, r3]
+    125c:	sub	r3, r2, r3
+    1260:	ldrh	r0, [r3]
+    1264:	cmp	r0, #7
+    1268:	bls	1778 <sort_fields+0x5cc>
+    126c:	ldrh	r3, [r3, #6]
+    1270:	cmp	r3, #0
+    1274:	movne	r0, #0
+    1278:	strne	r0, [sp, #20]
+    127c:	beq	1778 <sort_fields+0x5cc>
+    1280:	ldr	r0, [r2, r3]
+    1284:	add	r2, r2, r3
+    1288:	add	r3, r0, #4
+    128c:	adds	fp, r2, r3
+    1290:	beq	172c <sort_fields+0x580>
+    1294:	ldr	r3, [fp, #-4]
+    1298:	cmp	r3, #0
+    129c:	str	r3, [sp, #28]
+    12a0:	beq	172c <sort_fields+0x580>
+    12a4:	lsr	r2, r3, #1
+    12a8:	sub	sl, r3, #1
+    12ac:	mov	r3, r2
+    12b0:	lsl	r2, r2, #1
+    12b4:	str	sl, [sp, #4]
+    12b8:	mov	sl, r3
+    12bc:	str	r2, [sp, #8]
+    12c0:	ldr	r3, [sp, #4]
+    12c4:	ldr	r2, [sp, #8]
+    12c8:	cmp	r3, r2
+    12cc:	bcc	14cc <sort_fields+0x320>
+    12d0:	mov	r7, sl
+    12d4:	str	sl, [sp, #16]
+    12d8:	ldr	r4, [sp, #8]
+    12dc:	b	1338 <sort_fields+0x18c>
+    12e0:	ldr	r8, [r0, #-4]
+    12e4:	str	r3, [sp, #12]
+    12e8:	cmp	r9, r8
+    12ec:	movcc	r2, r9
+    12f0:	movcs	r2, r8
+    12f4:	bl	0 <strncmp>
+    12f8:	cmp	r0, #0
+    12fc:	ldr	r3, [sp, #12]
+    1300:	beq	14c0 <sort_fields+0x314>
+    1304:	bge	14c8 <sort_fields+0x31c>
+    1308:	ldr	r0, [sp, #4]
+    130c:	sub	r2, r7, r4
+    1310:	lsl	r1, r4, #1
+    1314:	lsl	r2, r2, #2
+    1318:	mov	r7, r4
+    131c:	sub	r6, r6, r2
+    1320:	add	r5, r5, r2
+    1324:	cmp	r0, r1
+    1328:	str	r6, [fp, r3]
+    132c:	str	r5, [fp, sl]
+    1330:	bcc	14c8 <sort_fields+0x31c>
+    1334:	mov	r4, r1
+    1338:	ldr	r3, [sp, #4]
+    133c:	ldr	r6, [fp, #-4]
+    1340:	cmp	r3, r4
+    1344:	bls	1414 <sort_fields+0x268>
+    1348:	lsl	r3, r4, #2
+    134c:	cmp	r6, r4
+    1350:	add	r0, fp, r3
+    1354:	bls	1824 <sort_fields+0x678>
+    1358:	ldr	r1, [fp, r4, lsl #2]
+    135c:	adds	r2, r0, r1
+    1360:	beq	1808 <sort_fields+0x65c>
+    1364:	ldr	r1, [r0, r1]
+    1368:	sub	r1, r2, r1
+    136c:	ldrh	r0, [r1]
+    1370:	cmp	r0, #5
+    1374:	bls	17d0 <sort_fields+0x624>
+    1378:	ldrh	r1, [r1, #4]
+    137c:	cmp	r1, #0
+    1380:	beq	17d0 <sort_fields+0x624>
+    1384:	ldr	r0, [r2, r1]
+    1388:	add	r8, r4, #1
+    138c:	add	r3, r3, #4
+    1390:	add	r2, r2, r1
+    1394:	cmp	r8, r6
+    1398:	add	ip, fp, r3
+    139c:	add	r0, r0, #4
+    13a0:	add	r0, r2, r0
+    13a4:	bcs	1824 <sort_fields+0x678>
+    13a8:	ldr	r3, [fp, r3]
+    13ac:	adds	r1, ip, r3
+    13b0:	beq	1808 <sort_fields+0x65c>
+    13b4:	ldr	r3, [ip, r3]
+    13b8:	sub	r3, r1, r3
+    13bc:	ldrh	r2, [r3]
+    13c0:	cmp	r2, #5
+    13c4:	bls	17d0 <sort_fields+0x624>
+    13c8:	ldrh	r2, [r3, #4]
+    13cc:	cmp	r2, #0
+    13d0:	beq	17d0 <sort_fields+0x624>
+    13d4:	ldr	r3, [r1, r2]
+    13d8:	add	r1, r1, r2
+    13dc:	add	r3, r3, #4
+    13e0:	adds	r1, r1, r3
+    13e4:	ldrne	r9, [r1, #-4]
+    13e8:	moveq	r9, #0
+    13ec:	cmp	r0, #0
+    13f0:	beq	1794 <sort_fields+0x5e8>
+    13f4:	ldr	r5, [r0, #-4]
+    13f8:	cmp	r9, r5
+    13fc:	movcc	r2, r9
+    1400:	movcs	r2, r5
+    1404:	bl	0 <strncmp>
+    1408:	cmp	r0, #0
+    140c:	beq	1798 <sort_fields+0x5ec>
+    1410:	movlt	r4, r8
+    1414:	lsl	r3, r7, #2
+    1418:	cmp	r6, r7
+    141c:	add	r1, fp, r3
+    1420:	bls	1824 <sort_fields+0x678>
+    1424:	ldr	r5, [fp, r7, lsl #2]
+    1428:	adds	r2, r1, r5
+    142c:	beq	1808 <sort_fields+0x65c>
+    1430:	ldr	r1, [r1, r5]
+    1434:	sub	r1, r2, r1
+    1438:	ldrh	r0, [r1]
+    143c:	cmp	r0, #5
+    1440:	bls	17d0 <sort_fields+0x624>
+    1444:	ldrh	r1, [r1, #4]
+    1448:	cmp	r1, #0
+    144c:	beq	17d0 <sort_fields+0x624>
+    1450:	ldr	r0, [r2, r1]
+    1454:	lsl	sl, r4, #2
+    1458:	add	r2, r2, r1
+    145c:	cmp	r4, r6
+    1460:	add	r1, fp, sl
+    1464:	add	r0, r0, #4
+    1468:	add	r0, r2, r0
+    146c:	bcs	1824 <sort_fields+0x678>
+    1470:	ldr	r6, [fp, r4, lsl #2]
+    1474:	adds	r2, r1, r6
+    1478:	beq	1808 <sort_fields+0x65c>
+    147c:	ldr	r1, [r1, r6]
+    1480:	sub	r1, r2, r1
+    1484:	ldrh	ip, [r1]
+    1488:	cmp	ip, #5
+    148c:	bls	17d0 <sort_fields+0x624>
+    1490:	ldrh	ip, [r1, #4]
+    1494:	cmp	ip, #0
+    1498:	beq	17d0 <sort_fields+0x624>
+    149c:	ldr	r1, [r2, ip]
+    14a0:	add	r2, r2, ip
+    14a4:	add	r1, r1, #4
+    14a8:	adds	r1, r2, r1
+    14ac:	ldrne	r9, [r1, #-4]
+    14b0:	moveq	r9, r1
+    14b4:	cmp	r0, #0
+    14b8:	bne	12e0 <sort_fields+0x134>
+    14bc:	mov	r8, r0
+    14c0:	cmp	r9, r8
+    14c4:	bhi	1308 <sort_fields+0x15c>
+    14c8:	ldr	sl, [sp, #16]
+    14cc:	sub	sl, sl, #1
+    14d0:	ldr	r3, [sp, #8]
+    14d4:	cmn	sl, #1
+    14d8:	sub	r3, r3, #2
+    14dc:	str	r3, [sp, #8]
+    14e0:	bne	12c0 <sort_fields+0x114>
+    14e4:	ldr	sl, [sp, #4]
+    14e8:	cmp	sl, #0
+    14ec:	beq	1724 <sort_fields+0x578>
+    14f0:	ldr	r3, [sp, #28]
+    14f4:	add	r2, fp, #4
+    14f8:	str	r2, [sp, #16]
+    14fc:	add	r3, fp, r3, lsl #2
+    1500:	ldr	r2, [sp, #16]
+    1504:	sub	lr, r3, #4
+    1508:	mov	r7, #0
+    150c:	sub	sl, sl, #1
+    1510:	mov	r4, r7
+    1514:	ldr	r1, [r3, #-4]
+    1518:	str	lr, [sp, #12]
+    151c:	ldr	r0, [fp]
+    1520:	sub	ip, r3, r2
+    1524:	sub	r2, r2, r3
+    1528:	add	r1, r1, ip
+    152c:	add	r2, r2, r0
+    1530:	str	r1, [fp]
+    1534:	str	r2, [r3, #-4]
+    1538:	b	15a0 <sort_fields+0x3f4>
+    153c:	cmp	r0, #0
+    1540:	ldr	r9, [r1, #-4]
+    1544:	beq	17a4 <sort_fields+0x5f8>
+    1548:	ldr	r8, [r0, #-4]
+    154c:	str	r3, [sp, #8]
+    1550:	cmp	r9, r8
+    1554:	movcc	r2, r9
+    1558:	movcs	r2, r8
+    155c:	bl	0 <strncmp>
+    1560:	cmp	r0, #0
+    1564:	ldr	r3, [sp, #8]
+    1568:	beq	17a8 <sort_fields+0x5fc>
+    156c:	bge	1718 <sort_fields+0x56c>
+    1570:	sub	r2, r7, r4
+    1574:	lsl	r1, r4, #1
+    1578:	mov	r7, r4
+    157c:	lsl	r2, r2, #2
+    1580:	cmp	sl, r1
+    1584:	sub	r6, r6, r2
+    1588:	add	r5, r5, r2
+    158c:	ldr	r2, [sp, #4]
+    1590:	str	r6, [fp, r2]
+    1594:	str	r5, [fp, r3]
+    1598:	bcc	1718 <sort_fields+0x56c>
+    159c:	mov	r4, r1
+    15a0:	cmp	sl, r4
+    15a4:	ldr	r6, [fp, #-4]
+    15a8:	bls	1678 <sort_fields+0x4cc>
+    15ac:	lsl	r2, r4, #2
+    15b0:	cmp	r6, r4
+    15b4:	add	ip, fp, r2
+    15b8:	bls	1824 <sort_fields+0x678>
+    15bc:	ldr	r0, [fp, r4, lsl #2]
+    15c0:	adds	r1, ip, r0
+    15c4:	beq	1808 <sort_fields+0x65c>
+    15c8:	ldr	r0, [ip, r0]
+    15cc:	sub	r0, r1, r0
+    15d0:	ldrh	ip, [r0]
+    15d4:	cmp	ip, #5
+    15d8:	bls	17d0 <sort_fields+0x624>
+    15dc:	ldrh	ip, [r0, #4]
+    15e0:	cmp	ip, #0
+    15e4:	beq	17d0 <sort_fields+0x624>
+    15e8:	ldr	r0, [r1, ip]
+    15ec:	add	r8, r4, #1
+    15f0:	add	r1, r1, ip
+    15f4:	add	r2, r2, #4
+    15f8:	cmp	r6, r8
+    15fc:	add	ip, fp, r2
+    1600:	add	r0, r0, #4
+    1604:	add	r0, r1, r0
+    1608:	bls	1824 <sort_fields+0x678>
+    160c:	ldr	r2, [fp, r2]
+    1610:	adds	r1, ip, r2
+    1614:	beq	1808 <sort_fields+0x65c>
+    1618:	ldr	r2, [ip, r2]
+    161c:	sub	r2, r1, r2
+    1620:	ldrh	ip, [r2]
+    1624:	cmp	ip, #5
+    1628:	bls	17d0 <sort_fields+0x624>
+    162c:	ldrh	ip, [r2, #4]
+    1630:	cmp	ip, #0
+    1634:	beq	17d0 <sort_fields+0x624>
+    1638:	ldr	r2, [r1, ip]
+    163c:	add	r1, r1, ip
+    1640:	add	r2, r2, #4
+    1644:	adds	r1, r1, r2
+    1648:	beq	1678 <sort_fields+0x4cc>
+    164c:	cmp	r0, #0
+    1650:	ldr	r9, [r1, #-4]
+    1654:	beq	17c0 <sort_fields+0x614>
+    1658:	ldr	r5, [r0, #-4]
+    165c:	cmp	r9, r5
+    1660:	movcc	r2, r9
+    1664:	movcs	r2, r5
+    1668:	bl	0 <strncmp>
+    166c:	cmp	r0, #0
+    1670:	beq	17c4 <sort_fields+0x618>
+    1674:	movlt	r4, r8
+    1678:	lsl	r3, r7, #2
+    167c:	cmp	r6, r7
+    1680:	add	r2, fp, r3
+    1684:	str	r3, [sp, #4]
+    1688:	bls	1824 <sort_fields+0x678>
+    168c:	ldr	r5, [fp, r7, lsl #2]
+    1690:	adds	r0, r2, r5
+    1694:	beq	1808 <sort_fields+0x65c>
+    1698:	ldr	r2, [r2, r5]
+    169c:	sub	r2, r0, r2
+    16a0:	ldrh	r1, [r2]
+    16a4:	cmp	r1, #5
+    16a8:	bls	17d0 <sort_fields+0x624>
+    16ac:	ldrh	r2, [r2, #4]
+    16b0:	cmp	r2, #0
+    16b4:	beq	17d0 <sort_fields+0x624>
+    16b8:	ldr	r1, [r0, r2]
+    16bc:	lsl	r3, r4, #2
+    16c0:	add	r0, r0, r2
+    16c4:	cmp	r6, r4
+    16c8:	add	r2, fp, r3
+    16cc:	add	r1, r1, #4
+    16d0:	add	r0, r0, r1
+    16d4:	bls	1824 <sort_fields+0x678>
+    16d8:	ldr	r6, [fp, r4, lsl #2]
+    16dc:	adds	r1, r2, r6
+    16e0:	beq	1808 <sort_fields+0x65c>
+    16e4:	ldr	r2, [r2, r6]
+    16e8:	sub	r2, r1, r2
+    16ec:	ldrh	ip, [r2]
+    16f0:	cmp	ip, #5
+    16f4:	bls	17d0 <sort_fields+0x624>
+    16f8:	ldrh	ip, [r2, #4]
+    16fc:	cmp	ip, #0
+    1700:	beq	17d0 <sort_fields+0x624>
+    1704:	ldr	r2, [r1, ip]
+    1708:	add	r1, r1, ip
+    170c:	add	r2, r2, #4
+    1710:	adds	r1, r1, r2
+    1714:	bne	153c <sort_fields+0x390>
+    1718:	cmp	sl, #0
+    171c:	ldr	r3, [sp, #12]
+    1720:	bne	1500 <sort_fields+0x354>
+    1724:	ldr	r3, [sp, #24]
+    1728:	ldr	r1, [r3, #-4]
+    172c:	ldr	r3, [sp, #20]
+    1730:	add	r3, r3, #1
+    1734:	cmp	r3, r1
+    1738:	str	r3, [sp, #20]
+    173c:	bcs	17ec <sort_fields+0x640>
+    1740:	ldr	r0, [sp, #20]
+    1744:	ldr	r2, [sp, #24]
+    1748:	ldr	r3, [r2, r0, lsl #2]
+    174c:	add	r0, r2, r0, lsl #2
+    1750:	adds	r2, r0, r3
+    1754:	beq	1840 <sort_fields+0x694>
+    1758:	ldr	r3, [r0, r3]
+    175c:	sub	r3, r2, r3
+    1760:	ldrh	r0, [r3]
+    1764:	cmp	r0, #7
+    1768:	bls	1778 <sort_fields+0x5cc>
+    176c:	ldrh	r3, [r3, #6]
+    1770:	cmp	r3, #0
+    1774:	bne	1280 <sort_fields+0xd4>
+    1778:	movw	r1, #0
+    177c:	movt	r1, #0
+    1780:	ldr	r3, [pc, #244]	; 187c <sort_fields+0x6d0>
+    1784:	movw	r0, #0
+    1788:	movt	r0, #0
+    178c:	mov	r2, #224	; 0xe0
+    1790:	bl	0 <__assert_fail>
+    1794:	mov	r5, r0
+    1798:	cmp	r9, r5
+    179c:	movhi	r4, r8
+    17a0:	b	1414 <sort_fields+0x268>
+    17a4:	mov	r8, #0
+    17a8:	cmp	r9, r8
+    17ac:	bhi	1570 <sort_fields+0x3c4>
+    17b0:	cmp	sl, #0
+    17b4:	ldr	r3, [sp, #12]
+    17b8:	bne	1500 <sort_fields+0x354>
+    17bc:	b	1724 <sort_fields+0x578>
+    17c0:	mov	r5, r0
+    17c4:	cmp	r9, r5
+    17c8:	movhi	r4, r8
+    17cc:	b	1678 <sort_fields+0x4cc>
+    17d0:	movw	r1, #0
+    17d4:	movt	r1, #0
+    17d8:	ldr	r3, [pc, #160]	; 1880 <sort_fields+0x6d4>
+    17dc:	movw	r0, #0
+    17e0:	movt	r0, #0
+    17e4:	mov	r2, #195	; 0xc3
+    17e8:	bl	0 <__assert_fail>
+    17ec:	add	sp, sp, #36	; 0x24
+    17f0:	ldrd	r4, [sp]
+    17f4:	ldrd	r6, [sp, #8]
+    17f8:	ldrd	r8, [sp, #16]
+    17fc:	ldrd	sl, [sp, #24]
+    1800:	add	sp, sp, #32
+    1804:	pop	{pc}		; (ldr pc, [sp], #4)
+    1808:	movw	r1, #0
+    180c:	movt	r1, #0
+    1810:	ldr	r3, [pc, #104]	; 1880 <sort_fields+0x6d4>
+    1814:	movw	r0, #0
+    1818:	movt	r0, #0
+    181c:	mov	r2, #195	; 0xc3
+    1820:	bl	0 <__assert_fail>
+    1824:	movw	r1, #0
+    1828:	movt	r1, #0
+    182c:	ldr	r3, [pc, #80]	; 1884 <sort_fields+0x6d8>
+    1830:	movw	r0, #0
+    1834:	movt	r0, #0
+    1838:	mov	r2, #192	; 0xc0
+    183c:	bl	0 <__assert_fail>
+    1840:	movw	r1, #0
+    1844:	movt	r1, #0
+    1848:	ldr	r3, [pc, #44]	; 187c <sort_fields+0x6d0>
+    184c:	movw	r0, #0
+    1850:	movt	r0, #0
+    1854:	mov	r2, #224	; 0xe0
+    1858:	bl	0 <__assert_fail>
+    185c:	movw	r1, #0
+    1860:	movt	r1, #0
+    1864:	ldr	r3, [pc, #12]	; 1878 <sort_fields+0x6cc>
+    1868:	movw	r0, #0
+    186c:	movt	r0, #0
+    1870:	mov	r2, #237	; 0xed
+    1874:	bl	0 <__assert_fail>
+    1878:	.word	0x000000bc
+    187c:	.word	0x000000d8
+    1880:	.word	0x0000010c
+    1884:	.word	0x000000f4
+
+00001888 <__flatcc_fb_codegen_bfbs_to_buffer>:
+    1888:	strd	r4, [sp, #-20]!	; 0xffffffec
+    188c:	mov	r4, r2
+    1890:	mov	r5, r3
+    1894:	strd	r6, [sp, #8]
+    1898:	mov	r6, r0
+    189c:	mov	r7, r1
+    18a0:	str	lr, [sp, #16]
+    18a4:	sub	sp, sp, #236	; 0xec
+    18a8:	mov	r0, sp
+    18ac:	bl	0 <flatcc_builder_init>
+    18b0:	mov	r3, r7
+    18b4:	add	r2, r6, #188	; 0xbc
+    18b8:	ldr	r1, [r6, #184]	; 0xb8
+    18bc:	mov	r0, sp
+    18c0:	bl	574 <export_schema.isra.8>
+    18c4:	mov	r1, r4
+    18c8:	mov	r0, sp
+    18cc:	ldr	r2, [r5]
+    18d0:	bl	0 <flatcc_builder_copy_buffer>
+    18d4:	cmp	r0, #0
+    18d8:	beq	18e4 <__flatcc_fb_codegen_bfbs_to_buffer+0x5c>
+    18dc:	mov	r0, r4
+    18e0:	bl	11ac <sort_fields>
+    18e4:	mov	r0, sp
+    18e8:	bl	0 <flatcc_builder_get_buffer_size>
+    18ec:	str	r0, [r5]
+    18f0:	mov	r0, sp
+    18f4:	bl	0 <flatcc_builder_clear>
+    18f8:	mov	r0, r4
+    18fc:	add	sp, sp, #236	; 0xec
+    1900:	ldrd	r4, [sp]
+    1904:	ldrd	r6, [sp, #8]
+    1908:	add	sp, sp, #16
+    190c:	pop	{pc}		; (ldr pc, [sp], #4)
+
+00001910 <__flatcc_fb_codegen_bfbs_alloc_buffer>:
+    1910:	strd	r4, [sp, #-16]!
+    1914:	mov	r4, r0
+    1918:	mov	r5, r1
+    191c:	str	r6, [sp, #8]
+    1920:	mov	r6, r2
+    1924:	str	lr, [sp, #12]
+    1928:	sub	sp, sp, #232	; 0xe8
+    192c:	mov	r0, sp
+    1930:	bl	0 <flatcc_builder_init>
+    1934:	add	r2, r4, #188	; 0xbc
+    1938:	mov	r3, r5
+    193c:	ldr	r1, [r4, #184]	; 0xb8
+    1940:	mov	r0, sp
+    1944:	bl	574 <export_schema.isra.8>
+    1948:	cmp	r0, #0
+    194c:	movne	r4, #0
+    1950:	bne	196c <__flatcc_fb_codegen_bfbs_alloc_buffer+0x5c>
+    1954:	mov	r1, r6
+    1958:	mov	r0, sp
+    195c:	bl	0 <flatcc_builder_finalize_buffer>
+    1960:	subs	r4, r0, #0
+    1964:	beq	196c <__flatcc_fb_codegen_bfbs_alloc_buffer+0x5c>
+    1968:	bl	11ac <sort_fields>
+    196c:	mov	r0, sp
+    1970:	bl	0 <flatcc_builder_clear>
+    1974:	mov	r0, r4
+    1978:	add	sp, sp, #232	; 0xe8
+    197c:	ldrd	r4, [sp]
+    1980:	ldr	r6, [sp, #8]
+    1984:	add	sp, sp, #12
+    1988:	pop	{pc}		; (ldr pc, [sp], #4)
+
+0000198c <__flatcc_fb_codegen_bfbs_to_file>:
+    198c:	strd	r4, [sp, #-28]!	; 0xffffffe4
+    1990:	mov	r5, r0
+    1994:	ldr	r4, [r0, #216]	; 0xd8
+    1998:	strd	r6, [sp, #8]
+    199c:	mov	r6, r1
+    19a0:	strd	r8, [sp, #16]
+    19a4:	str	lr, [sp, #24]
+    19a8:	sub	sp, sp, #20
+    19ac:	ldr	r7, [r0, #108]	; 0x6c
+    19b0:	cmp	r4, #0
+    19b4:	beq	1ab4 <__flatcc_fb_codegen_bfbs_to_file+0x128>
+    19b8:	mov	r0, r4
+    19bc:	bl	0 <strlen>
+    19c0:	mov	r8, r0
+    19c4:	cmp	r7, #0
+    19c8:	beq	1a58 <__flatcc_fb_codegen_bfbs_to_file+0xcc>
+    19cc:	movw	r3, #0
+    19d0:	movt	r3, #0
+    19d4:	ldr	r4, [r3]
+    19d8:	cmp	r4, #0
+    19dc:	beq	1b20 <__flatcc_fb_codegen_bfbs_to_file+0x194>
+    19e0:	mov	r1, r6
+    19e4:	mov	r0, r5
+    19e8:	add	r2, sp, #12
+    19ec:	bl	1910 <__flatcc_fb_codegen_bfbs_alloc_buffer>
+    19f0:	subs	r6, r0, #0
+    19f4:	beq	1aec <__flatcc_fb_codegen_bfbs_to_file+0x160>
+    19f8:	mov	r3, r4
+    19fc:	mov	r1, #1
+    1a00:	ldr	r2, [sp, #12]
+    1a04:	bl	0 <fwrite>
+    1a08:	ldr	r3, [sp, #12]
+    1a0c:	cmp	r0, r3
+    1a10:	moveq	r5, #0
+    1a14:	bne	1ac4 <__flatcc_fb_codegen_bfbs_to_file+0x138>
+    1a18:	mov	r0, r6
+    1a1c:	bl	0 <free>
+    1a20:	movw	r3, #0
+    1a24:	movt	r3, #0
+    1a28:	ldr	r3, [r3]
+    1a2c:	cmp	r3, r4
+    1a30:	beq	1a3c <__flatcc_fb_codegen_bfbs_to_file+0xb0>
+    1a34:	mov	r0, r4
+    1a38:	bl	0 <fclose>
+    1a3c:	mov	r0, r5
+    1a40:	add	sp, sp, #20
+    1a44:	ldrd	r4, [sp]
+    1a48:	ldrd	r6, [sp, #8]
+    1a4c:	ldrd	r8, [sp, #16]
+    1a50:	add	sp, sp, #24
+    1a54:	pop	{pc}		; (ldr pc, [sp], #4)
+    1a58:	ldr	r7, [r6, #160]	; 0xa0
+    1a5c:	mov	r9, #1
+    1a60:	mov	r0, r7
+    1a64:	bl	0 <strlen>
+    1a68:	movw	ip, #0
+    1a6c:	movt	ip, #0
+    1a70:	mov	r3, r0
+    1a74:	mov	r2, r7
+    1a78:	mov	r1, r8
+    1a7c:	mov	r0, r4
+    1a80:	str	ip, [sp]
+    1a84:	str	r9, [sp, #4]
+    1a88:	bl	0 <__flatcc_fb_create_join_path_n>
+    1a8c:	subs	r7, r0, #0
+    1a90:	beq	1b28 <__flatcc_fb_codegen_bfbs_to_file+0x19c>
+    1a94:	movw	r1, #0
+    1a98:	movt	r1, #0
+    1a9c:	bl	0 <fopen>
+    1aa0:	subs	r4, r0, #0
+    1aa4:	beq	1b00 <__flatcc_fb_codegen_bfbs_to_file+0x174>
+    1aa8:	mov	r0, r7
+    1aac:	bl	0 <free>
+    1ab0:	b	19d8 <__flatcc_fb_codegen_bfbs_to_file+0x4c>
+    1ab4:	mov	r8, r4
+    1ab8:	movw	r4, #0
+    1abc:	movt	r4, #0
+    1ac0:	b	19c4 <__flatcc_fb_codegen_bfbs_to_file+0x38>
+    1ac4:	movw	r3, #0
+    1ac8:	movt	r3, #0
+    1acc:	movw	r0, #0
+    1ad0:	movt	r0, #0
+    1ad4:	ldr	r3, [r3]
+    1ad8:	mov	r2, #38	; 0x26
+    1adc:	mov	r1, #1
+    1ae0:	mvn	r5, #0
+    1ae4:	bl	0 <fwrite>
+    1ae8:	b	1a18 <__flatcc_fb_codegen_bfbs_to_file+0x8c>
+    1aec:	movw	r0, #0
+    1af0:	movt	r0, #0
+    1af4:	bl	0 <puts>
+    1af8:	mvn	r5, #0
+    1afc:	b	1a20 <__flatcc_fb_codegen_bfbs_to_file+0x94>
+    1b00:	movw	r3, #0
+    1b04:	movt	r3, #0
+    1b08:	movw	r1, #0
+    1b0c:	movt	r1, #0
+    1b10:	ldr	r0, [r3]
+    1b14:	mov	r2, r7
+    1b18:	bl	0 <fprintf>
+    1b1c:	b	1aa8 <__flatcc_fb_codegen_bfbs_to_file+0x11c>
+    1b20:	mvn	r5, #0
+    1b24:	b	1a3c <__flatcc_fb_codegen_bfbs_to_file+0xb0>
+    1b28:	movw	r3, #0
+    1b2c:	movt	r3, #0
+    1b30:	movw	r0, #0
+    1b34:	movt	r0, #0
+    1b38:	ldr	r3, [r3]
+    1b3c:	mov	r2, #34	; 0x22
+    1b40:	mov	r1, r9
+    1b44:	bl	0 <fwrite>
+    1b48:	mov	r0, r9
+    1b4c:	bl	0 <exit>

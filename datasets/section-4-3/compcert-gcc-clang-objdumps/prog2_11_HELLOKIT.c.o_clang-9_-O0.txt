@@ -1,0 +1,206 @@
+
+../compcert-repos/prog2/CMakeFiles/0.11.2.dir/Aula00_Conceitos_base/11_HELLOKIT.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <main>:
+   0:	push	{fp, lr}
+   4:	mov	fp, sp
+   8:	sub	sp, sp, #128	; 0x80
+   c:	movw	r0, #0
+  10:	str	r0, [fp, #-4]
+  14:	sub	r1, fp, #40	; 0x28
+  18:	str	r0, [sp, #24]
+  1c:	mov	r0, r1
+  20:	movw	r1, #0
+  24:	and	r1, r1, #255	; 0xff
+  28:	movw	r2, #26
+  2c:	bl	0 <memset>
+  30:	ldr	r0, [sp, #24]
+  34:	str	r0, [sp, #28]
+  38:	sub	r1, fp, #14
+  3c:	movw	r0, #0
+  40:	movt	r0, #0
+  44:	bl	0 <__isoc99_scanf>
+  48:	ldrb	r1, [fp, #-14]
+  4c:	cmp	r1, #46	; 0x2e
+  50:	bne	58 <main+0x58>
+  54:	b	11c <main+0x11c>
+  58:	movw	r0, #0
+  5c:	movt	r0, #0
+  60:	add	r1, sp, #32
+  64:	bl	0 <__isoc99_scanf>
+  68:	sub	r1, fp, #40	; 0x28
+  6c:	sub	r2, fp, #14
+  70:	movw	r3, #0
+  74:	str	r3, [sp, #28]
+  78:	ldr	r3, [sp, #32]
+  7c:	str	r0, [sp, #20]
+  80:	mov	r0, r2
+  84:	mov	r2, r3
+  88:	bl	128 <StringSet>
+  8c:	add	r1, sp, #62	; 0x3e
+  90:	sub	r0, fp, #40	; 0x28
+  94:	bl	18c <R_ShiftString>
+  98:	ldr	r0, [sp, #28]
+  9c:	cmp	r0, #0
+  a0:	movw	r0, #0
+  a4:	movne	r0, #1
+  a8:	mvn	r1, #0
+  ac:	eor	r0, r0, r1
+  b0:	tst	r0, #1
+  b4:	beq	118 <main+0x118>
+  b8:	add	r1, sp, #62	; 0x3e
+  bc:	sub	r0, fp, #40	; 0x28
+  c0:	bl	0 <strcmp>
+  c4:	cmp	r0, #0
+  c8:	bne	d4 <main+0xd4>
+  cc:	movw	r0, #1
+  d0:	str	r0, [sp, #28]
+  d4:	sub	r1, fp, #40	; 0x28
+  d8:	movw	r0, #0
+  dc:	movt	r0, #0
+  e0:	bl	0 <printf>
+  e4:	sub	r1, fp, #40	; 0x28
+  e8:	add	r2, sp, #36	; 0x24
+  ec:	str	r0, [sp, #16]
+  f0:	mov	r0, r2
+  f4:	str	r1, [sp, #12]
+  f8:	str	r2, [sp, #8]
+  fc:	bl	0 <strcpy>
+ 100:	ldr	r1, [sp, #8]
+ 104:	str	r0, [sp, #4]
+ 108:	mov	r0, r1
+ 10c:	ldr	r1, [sp, #12]
+ 110:	bl	244 <L_ShiftString>
+ 114:	b	98 <main+0x98>
+ 118:	b	38 <main+0x38>
+ 11c:	ldr	r0, [fp, #-4]
+ 120:	mov	sp, fp
+ 124:	pop	{fp, pc}
+
+00000128 <StringSet>:
+ 128:	push	{fp, lr}
+ 12c:	mov	fp, sp
+ 130:	sub	sp, sp, #16
+ 134:	str	r0, [fp, #-4]
+ 138:	str	r1, [sp, #8]
+ 13c:	str	r2, [sp, #4]
+ 140:	ldr	r0, [sp, #8]
+ 144:	movw	r1, #0
+ 148:	movt	r1, #0
+ 14c:	bl	0 <strcpy>
+ 150:	movw	r1, #0
+ 154:	str	r1, [sp]
+ 158:	ldr	r0, [sp]
+ 15c:	ldr	r1, [sp, #4]
+ 160:	cmp	r0, r1
+ 164:	bge	184 <StringSet+0x5c>
+ 168:	ldr	r0, [sp, #8]
+ 16c:	ldr	r1, [fp, #-4]
+ 170:	bl	0 <strcat>
+ 174:	ldr	r0, [sp]
+ 178:	add	r0, r0, #1
+ 17c:	str	r0, [sp]
+ 180:	b	158 <StringSet+0x30>
+ 184:	mov	sp, fp
+ 188:	pop	{fp, pc}
+
+0000018c <R_ShiftString>:
+ 18c:	push	{fp, lr}
+ 190:	mov	fp, sp
+ 194:	sub	sp, sp, #24
+ 198:	str	r0, [fp, #-4]
+ 19c:	str	r1, [fp, #-8]
+ 1a0:	ldr	r0, [fp, #-4]
+ 1a4:	ldr	r1, [fp, #-4]
+ 1a8:	str	r0, [sp, #8]
+ 1ac:	mov	r0, r1
+ 1b0:	bl	0 <strlen>
+ 1b4:	sub	r0, r0, #1
+ 1b8:	ldr	r1, [sp, #8]
+ 1bc:	add	r0, r1, r0
+ 1c0:	ldrb	r0, [r0]
+ 1c4:	ldr	r1, [fp, #-8]
+ 1c8:	strb	r0, [r1]
+ 1cc:	movw	r0, #1
+ 1d0:	str	r0, [sp, #12]
+ 1d4:	ldr	r0, [sp, #12]
+ 1d8:	ldr	r1, [fp, #-4]
+ 1dc:	str	r0, [sp, #4]
+ 1e0:	mov	r0, r1
+ 1e4:	bl	0 <strlen>
+ 1e8:	ldr	r1, [sp, #4]
+ 1ec:	cmp	r1, r0
+ 1f0:	bcs	228 <R_ShiftString+0x9c>
+ 1f4:	ldr	r0, [fp, #-4]
+ 1f8:	ldr	r1, [sp, #12]
+ 1fc:	sub	r1, r1, #1
+ 200:	add	r0, r0, r1
+ 204:	ldrb	r0, [r0]
+ 208:	ldr	r1, [fp, #-8]
+ 20c:	ldr	r2, [sp, #12]
+ 210:	add	r1, r1, r2
+ 214:	strb	r0, [r1]
+ 218:	ldr	r0, [sp, #12]
+ 21c:	add	r0, r0, #1
+ 220:	str	r0, [sp, #12]
+ 224:	b	1d4 <R_ShiftString+0x48>
+ 228:	ldr	r0, [fp, #-8]
+ 22c:	ldr	r1, [sp, #12]
+ 230:	add	r0, r0, r1
+ 234:	movw	r1, #0
+ 238:	strb	r1, [r0]
+ 23c:	mov	sp, fp
+ 240:	pop	{fp, pc}
+
+00000244 <L_ShiftString>:
+ 244:	push	{fp, lr}
+ 248:	mov	fp, sp
+ 24c:	sub	sp, sp, #24
+ 250:	str	r0, [fp, #-4]
+ 254:	str	r1, [fp, #-8]
+ 258:	ldr	r0, [fp, #-4]
+ 25c:	ldrb	r0, [r0]
+ 260:	ldr	r1, [fp, #-8]
+ 264:	ldr	r2, [fp, #-4]
+ 268:	str	r0, [sp, #8]
+ 26c:	mov	r0, r2
+ 270:	str	r1, [sp, #4]
+ 274:	bl	0 <strlen>
+ 278:	sub	r0, r0, #1
+ 27c:	ldr	r1, [sp, #4]
+ 280:	add	r0, r1, r0
+ 284:	ldr	r1, [sp, #8]
+ 288:	strb	r1, [r0]
+ 28c:	movw	r0, #1
+ 290:	str	r0, [sp, #12]
+ 294:	ldr	r0, [sp, #12]
+ 298:	ldr	r1, [fp, #-4]
+ 29c:	str	r0, [sp]
+ 2a0:	mov	r0, r1
+ 2a4:	bl	0 <strlen>
+ 2a8:	ldr	r1, [sp]
+ 2ac:	cmp	r1, r0
+ 2b0:	bcs	2e8 <L_ShiftString+0xa4>
+ 2b4:	ldr	r0, [fp, #-4]
+ 2b8:	ldr	r1, [sp, #12]
+ 2bc:	add	r0, r0, r1
+ 2c0:	ldrb	r0, [r0]
+ 2c4:	ldr	r1, [fp, #-8]
+ 2c8:	ldr	r2, [sp, #12]
+ 2cc:	sub	r2, r2, #1
+ 2d0:	add	r1, r1, r2
+ 2d4:	strb	r0, [r1]
+ 2d8:	ldr	r0, [sp, #12]
+ 2dc:	add	r0, r0, #1
+ 2e0:	str	r0, [sp, #12]
+ 2e4:	b	294 <L_ShiftString+0x50>
+ 2e8:	ldr	r0, [fp, #-8]
+ 2ec:	ldr	r1, [sp, #12]
+ 2f0:	add	r0, r0, r1
+ 2f4:	movw	r1, #0
+ 2f8:	strb	r1, [r0]
+ 2fc:	mov	sp, fp
+ 300:	pop	{fp, pc}

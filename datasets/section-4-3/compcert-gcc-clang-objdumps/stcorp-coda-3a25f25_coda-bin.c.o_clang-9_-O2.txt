@@ -1,0 +1,278 @@
+
+../compcert-repos/stcorp-coda-3a25f25/CMakeFiles/coda_static.dir/libcoda/coda-bin.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <coda_bin_product_open>:
+   0:	push	{r4, r5, r6, r7, fp, lr}
+   4:	add	fp, sp, #16
+   8:	sub	sp, sp, #8
+   c:	mov	r4, r0
+  10:	mov	r5, #0
+  14:	mvn	r0, #0
+  18:	str	r5, [r4, #52]	; 0x34
+  1c:	str	r0, [r4, #56]	; 0x38
+  20:	ldr	r0, [pc, #276]	; 13c <coda_bin_product_open+0x13c>
+  24:	ldr	r1, [pc, r0]
+  28:	bl	0 <__aeabi_read_tp>
+  2c:	ldr	r0, [r0, r1]
+  30:	cmp	r0, #0
+  34:	beq	b0 <coda_bin_product_open+0xb0>
+  38:	add	r6, r4, #8
+  3c:	ldrd	r0, [r6]
+  40:	subs	r0, r0, #1
+  44:	sbcs	r0, r1, #0
+  48:	blt	b0 <coda_bin_product_open+0xb0>
+  4c:	mov	r0, #1
+  50:	mov	r1, #0
+  54:	mov	r7, #0
+  58:	str	r0, [r4, #52]	; 0x34
+  5c:	ldr	r0, [r4]
+  60:	bl	0 <open>
+  64:	cmn	r0, #1
+  68:	ble	c8 <coda_bin_product_open+0xc8>
+  6c:	ldr	r1, [r6]
+  70:	mov	r5, r0
+  74:	stm	sp, {r0, r7}
+  78:	mov	r0, #0
+  7c:	mov	r2, #1
+  80:	mov	r3, #1
+  84:	bl	0 <mmap>
+  88:	cmn	r0, #1
+  8c:	str	r0, [r4, #48]	; 0x30
+  90:	beq	f4 <coda_bin_product_open+0xf4>
+  94:	mov	r0, r5
+  98:	add	r4, r4, #40	; 0x28
+  9c:	bl	0 <close>
+  a0:	ldrd	r0, [r6]
+  a4:	mov	r5, #0
+  a8:	strd	r0, [r4]
+  ac:	b	130 <coda_bin_product_open+0x130>
+  b0:	ldr	r0, [r4]
+  b4:	mov	r1, #0
+  b8:	bl	0 <open>
+  bc:	cmn	r0, #1
+  c0:	str	r0, [r4, #56]	; 0x38
+  c4:	bgt	130 <coda_bin_product_open+0x130>
+  c8:	ldr	r4, [r4]
+  cc:	bl	0 <__errno_location>
+  d0:	ldr	r0, [r0]
+  d4:	bl	0 <strerror>
+  d8:	movw	r1, #0
+  dc:	mov	r3, r0
+  e0:	mvn	r0, #20
+  e4:	mov	r2, r4
+  e8:	movt	r1, #0
+  ec:	bl	0 <coda_set_error>
+  f0:	b	12c <coda_bin_product_open+0x12c>
+  f4:	ldr	r6, [r4]
+  f8:	bl	0 <__errno_location>
+  fc:	ldr	r0, [r0]
+ 100:	bl	0 <strerror>
+ 104:	movw	r1, #0
+ 108:	mov	r3, r0
+ 10c:	mvn	r0, #20
+ 110:	mov	r2, r6
+ 114:	movt	r1, #0
+ 118:	bl	0 <coda_set_error>
+ 11c:	mov	r0, #0
+ 120:	str	r0, [r4, #48]	; 0x30
+ 124:	mov	r0, r5
+ 128:	bl	0 <close>
+ 12c:	mvn	r5, #0
+ 130:	mov	r0, r5
+ 134:	sub	sp, fp, #16
+ 138:	pop	{r4, r5, r6, r7, fp, pc}
+ 13c:	.word	0x00000110
+
+00000140 <coda_bin_product_close>:
+ 140:	push	{r4, sl, fp, lr}
+ 144:	add	fp, sp, #8
+ 148:	mov	r4, r0
+ 14c:	ldr	r0, [r0, #52]	; 0x34
+ 150:	cmp	r0, #0
+ 154:	beq	184 <coda_bin_product_close+0x44>
+ 158:	ldr	r0, [r4, #48]	; 0x30
+ 15c:	cmp	r0, #0
+ 160:	beq	174 <coda_bin_product_close+0x34>
+ 164:	ldr	r1, [r4, #8]
+ 168:	bl	0 <munmap>
+ 16c:	mov	r0, #0
+ 170:	str	r0, [r4, #48]	; 0x30
+ 174:	mov	r0, #0
+ 178:	str	r0, [r4, #52]	; 0x34
+ 17c:	mov	r0, #0
+ 180:	pop	{r4, sl, fp, pc}
+ 184:	ldr	r0, [r4, #56]	; 0x38
+ 188:	cmp	r0, #0
+ 18c:	bmi	19c <coda_bin_product_close+0x5c>
+ 190:	bl	0 <close>
+ 194:	mvn	r0, #0
+ 198:	str	r0, [r4, #56]	; 0x38
+ 19c:	mov	r0, #0
+ 1a0:	pop	{r4, sl, fp, pc}
+
+000001a4 <coda_bin_open>:
+ 1a4:	push	{r4, r5, r6, r7, r8, sl, fp, lr}
+ 1a8:	add	fp, sp, #24
+ 1ac:	sub	sp, sp, #8
+ 1b0:	mov	r8, r0
+ 1b4:	mov	r0, #64	; 0x40
+ 1b8:	mov	r6, r3
+ 1bc:	mov	r7, r2
+ 1c0:	bl	0 <malloc>
+ 1c4:	cmp	r0, #0
+ 1c8:	beq	250 <coda_bin_open+0xac>
+ 1cc:	vmov.i32	q8, #0	; 0x00000000
+ 1d0:	mov	r4, r0
+ 1d4:	mov	r0, #0
+ 1d8:	mvn	r5, #0
+ 1dc:	mov	r1, #1
+ 1e0:	str	r0, [r4]
+ 1e4:	str	r0, [r4, #24]
+ 1e8:	str	r0, [r4, #28]
+ 1ec:	str	r0, [r4, #32]
+ 1f0:	str	r5, [r4, #56]	; 0x38
+ 1f4:	str	r6, [r4, #12]
+ 1f8:	add	r0, r4, #40	; 0x28
+ 1fc:	mov	r6, r4
+ 200:	str	r1, [r4, #16]
+ 204:	vst1.64	{d16-d17}, [r0]
+ 208:	str	r7, [r6, #8]!
+ 20c:	bl	0 <coda_type_raw_file_singleton>
+ 210:	cmp	r0, #0
+ 214:	str	r0, [r4, #20]
+ 218:	beq	27c <coda_bin_open+0xd8>
+ 21c:	mov	r0, r8
+ 220:	bl	0 <strdup>
+ 224:	cmp	r0, #0
+ 228:	str	r0, [r4]
+ 22c:	beq	288 <coda_bin_open+0xe4>
+ 230:	mov	r0, r4
+ 234:	bl	0 <coda_bin_product_open>
+ 238:	cmp	r0, #0
+ 23c:	bne	2a4 <coda_bin_open+0x100>
+ 240:	ldr	r0, [fp, #8]
+ 244:	mov	r5, #0
+ 248:	str	r4, [r0]
+ 24c:	b	30c <coda_bin_open+0x168>
+ 250:	movw	r1, #0
+ 254:	movw	r3, #0
+ 258:	mov	r0, #241	; 0xf1
+ 25c:	mov	r2, #64	; 0x40
+ 260:	mvn	r5, #0
+ 264:	movt	r1, #0
+ 268:	movt	r3, #0
+ 26c:	str	r0, [sp]
+ 270:	mvn	r0, #0
+ 274:	bl	0 <coda_set_error>
+ 278:	b	30c <coda_bin_open+0x168>
+ 27c:	mov	r0, r4
+ 280:	bl	0 <free>
+ 284:	b	30c <coda_bin_open+0x168>
+ 288:	movw	r1, #0
+ 28c:	movw	r2, #0
+ 290:	mvn	r0, #0
+ 294:	mov	r3, #268	; 0x10c
+ 298:	movt	r1, #0
+ 29c:	movt	r2, #0
+ 2a0:	bl	0 <coda_set_error>
+ 2a4:	ldr	r0, [r4, #52]	; 0x34
+ 2a8:	cmp	r0, #0
+ 2ac:	beq	2d8 <coda_bin_open+0x134>
+ 2b0:	ldr	r0, [r4, #48]	; 0x30
+ 2b4:	cmp	r0, #0
+ 2b8:	beq	2cc <coda_bin_open+0x128>
+ 2bc:	ldr	r1, [r6]
+ 2c0:	bl	0 <munmap>
+ 2c4:	mov	r0, #0
+ 2c8:	str	r0, [r4, #48]	; 0x30
+ 2cc:	mov	r0, #0
+ 2d0:	str	r0, [r4, #52]	; 0x34
+ 2d4:	b	2f0 <coda_bin_open+0x14c>
+ 2d8:	ldr	r0, [r4, #56]	; 0x38
+ 2dc:	cmp	r0, #0
+ 2e0:	bmi	2f0 <coda_bin_open+0x14c>
+ 2e4:	bl	0 <close>
+ 2e8:	mvn	r0, #0
+ 2ec:	str	r0, [r4, #56]	; 0x38
+ 2f0:	ldr	r0, [r4]
+ 2f4:	cmp	r0, #0
+ 2f8:	beq	300 <coda_bin_open+0x15c>
+ 2fc:	bl	0 <free>
+ 300:	mov	r0, r4
+ 304:	bl	0 <free>
+ 308:	mvn	r5, #0
+ 30c:	mov	r0, r5
+ 310:	sub	sp, fp, #24
+ 314:	pop	{r4, r5, r6, r7, r8, sl, fp, pc}
+
+00000318 <coda_bin_close>:
+ 318:	push	{r4, sl, fp, lr}
+ 31c:	add	fp, sp, #8
+ 320:	mov	r4, r0
+ 324:	ldr	r0, [r0, #52]	; 0x34
+ 328:	cmp	r0, #0
+ 32c:	beq	358 <coda_bin_close+0x40>
+ 330:	ldr	r0, [r4, #48]	; 0x30
+ 334:	cmp	r0, #0
+ 338:	beq	34c <coda_bin_close+0x34>
+ 33c:	ldr	r1, [r4, #8]
+ 340:	bl	0 <munmap>
+ 344:	mov	r0, #0
+ 348:	str	r0, [r4, #48]	; 0x30
+ 34c:	mov	r0, #0
+ 350:	str	r0, [r4, #52]	; 0x34
+ 354:	b	370 <coda_bin_close+0x58>
+ 358:	ldr	r0, [r4, #56]	; 0x38
+ 35c:	cmp	r0, #0
+ 360:	bmi	370 <coda_bin_close+0x58>
+ 364:	bl	0 <close>
+ 368:	mvn	r0, #0
+ 36c:	str	r0, [r4, #56]	; 0x38
+ 370:	ldr	r0, [r4]
+ 374:	cmp	r0, #0
+ 378:	beq	380 <coda_bin_close+0x68>
+ 37c:	bl	0 <free>
+ 380:	mov	r0, r4
+ 384:	bl	0 <free>
+ 388:	mov	r0, #0
+ 38c:	pop	{r4, sl, fp, pc}
+
+00000390 <coda_bin_reopen_with_definition>:
+ 390:	push	{fp, lr}
+ 394:	mov	fp, sp
+ 398:	cmp	r1, #0
+ 39c:	beq	3ec <coda_bin_reopen_with_definition+0x5c>
+ 3a0:	ldr	r0, [r0]
+ 3a4:	ldr	r2, [r0, #16]
+ 3a8:	cmp	r2, #1
+ 3ac:	bne	404 <coda_bin_reopen_with_definition+0x74>
+ 3b0:	ldr	r2, [r1]
+ 3b4:	cmp	r2, #1
+ 3b8:	ldreq	r2, [r1, #28]
+ 3bc:	streq	r2, [r0, #20]
+ 3c0:	streq	r1, [r0, #24]
+ 3c4:	moveq	r0, #0
+ 3c8:	popeq	{fp, pc}
+ 3cc:	movw	r0, #0
+ 3d0:	movw	r1, #0
+ 3d4:	movw	r3, #0
+ 3d8:	movw	r2, #290	; 0x122
+ 3dc:	movt	r0, #0
+ 3e0:	movt	r1, #0
+ 3e4:	movt	r3, #0
+ 3e8:	bl	0 <__assert_fail>
+ 3ec:	movw	r0, #0
+ 3f0:	movw	r1, #0
+ 3f4:	movw	r3, #0
+ 3f8:	mov	r2, #288	; 0x120
+ 3fc:	movt	r0, #0
+ 400:	b	3e0 <coda_bin_reopen_with_definition+0x50>
+ 404:	movw	r0, #0
+ 408:	movw	r1, #0
+ 40c:	movw	r3, #0
+ 410:	movw	r2, #289	; 0x121
+ 414:	movt	r0, #0
+ 418:	b	3e0 <coda_bin_reopen_with_definition+0x50>

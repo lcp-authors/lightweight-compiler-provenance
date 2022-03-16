@@ -1,0 +1,205 @@
+
+../compcert-repos/prog2/CMakeFiles/5.1.dir/Aula05_Filas_e_Pilhas/1/armazem.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <armazem_novo>:
+   0:	push	{fp, lr}
+   4:	mov	fp, sp
+   8:	sub	sp, sp, #16
+   c:	str	r0, [fp, #-4]
+  10:	str	r1, [sp, #8]
+  14:	movw	r0, #12
+  18:	bl	0 <malloc>
+  1c:	movw	r1, #0
+  20:	movt	r1, #0
+  24:	str	r0, [sp]
+  28:	ldr	r0, [fp, #-4]
+  2c:	ldr	lr, [sp]
+  30:	str	r0, [lr]
+  34:	ldr	r0, [sp, #8]
+  38:	ldr	lr, [sp]
+  3c:	str	r0, [lr, #4]
+  40:	blx	r1
+  44:	ldr	r1, [sp]
+  48:	str	r0, [r1, #8]
+  4c:	ldr	r0, [sp]
+  50:	mov	sp, fp
+  54:	pop	{fp, pc}
+
+00000058 <armazem_vazio>:
+  58:	push	{fp, lr}
+  5c:	mov	fp, sp
+  60:	sub	sp, sp, #8
+  64:	str	r0, [sp]
+  68:	ldr	r0, [sp]
+  6c:	movw	r1, #0
+  70:	cmp	r0, r1
+  74:	beq	8c <armazem_vazio+0x34>
+  78:	ldr	r0, [sp]
+  7c:	ldr	r0, [r0, #8]
+  80:	bl	0 <fila_tamanho>
+  84:	cmp	r0, #0
+  88:	bne	98 <armazem_vazio+0x40>
+  8c:	movw	r0, #1
+  90:	str	r0, [sp, #4]
+  94:	b	a0 <armazem_vazio+0x48>
+  98:	movw	r0, #0
+  9c:	str	r0, [sp, #4]
+  a0:	ldr	r0, [sp, #4]
+  a4:	mov	sp, fp
+  a8:	pop	{fp, pc}
+
+000000ac <armazem_cheio>:
+  ac:	push	{fp, lr}
+  b0:	mov	fp, sp
+  b4:	sub	sp, sp, #8
+  b8:	str	r0, [sp]
+  bc:	ldr	r0, [sp]
+  c0:	bl	58 <armazem_vazio>
+  c4:	cmp	r0, #0
+  c8:	beq	d8 <armazem_cheio+0x2c>
+  cc:	movw	r0, #0
+  d0:	str	r0, [sp, #4]
+  d4:	b	128 <armazem_cheio+0x7c>
+  d8:	ldr	r0, [sp]
+  dc:	ldr	r0, [r0, #8]
+  e0:	bl	0 <fila_tamanho>
+  e4:	ldr	lr, [sp]
+  e8:	ldr	lr, [lr]
+  ec:	cmp	r0, lr
+  f0:	bne	120 <armazem_cheio+0x74>
+  f4:	ldr	r0, [sp]
+  f8:	ldr	r0, [r0, #8]
+  fc:	bl	0 <fila_back>
+ 100:	ldr	r0, [r0, #4]
+ 104:	ldr	lr, [sp]
+ 108:	ldr	lr, [lr, #4]
+ 10c:	cmp	r0, lr
+ 110:	bne	120 <armazem_cheio+0x74>
+ 114:	movw	r0, #1
+ 118:	str	r0, [sp, #4]
+ 11c:	b	128 <armazem_cheio+0x7c>
+ 120:	movw	r0, #0
+ 124:	str	r0, [sp, #4]
+ 128:	ldr	r0, [sp, #4]
+ 12c:	mov	sp, fp
+ 130:	pop	{fp, pc}
+
+00000134 <armazenar_contentor>:
+ 134:	push	{fp, lr}
+ 138:	mov	fp, sp
+ 13c:	sub	sp, sp, #24
+ 140:	movw	r2, #0
+ 144:	movt	r2, #0
+ 148:	str	r0, [fp, #-8]
+ 14c:	str	r1, [sp, #12]
+ 150:	blx	r2
+ 154:	str	r0, [sp, #8]
+ 158:	ldr	r0, [fp, #-8]
+ 15c:	movw	r1, #0
+ 160:	cmp	r0, r1
+ 164:	beq	188 <armazenar_contentor+0x54>
+ 168:	ldr	r0, [sp, #12]
+ 16c:	movw	r1, #0
+ 170:	cmp	r0, r1
+ 174:	beq	188 <armazenar_contentor+0x54>
+ 178:	ldr	r0, [fp, #-8]
+ 17c:	bl	ac <armazem_cheio>
+ 180:	cmp	r0, #0
+ 184:	beq	194 <armazenar_contentor+0x60>
+ 188:	movw	r0, #0
+ 18c:	str	r0, [fp, #-4]
+ 190:	b	21c <armazenar_contentor+0xe8>
+ 194:	ldr	r0, [fp, #-8]
+ 198:	bl	58 <armazem_vazio>
+ 19c:	cmp	r0, #0
+ 1a0:	beq	1d0 <armazenar_contentor+0x9c>
+ 1a4:	movw	r0, #0
+ 1a8:	movt	r0, #0
+ 1ac:	ldr	r1, [fp, #-8]
+ 1b0:	ldr	r1, [r1, #8]
+ 1b4:	str	r1, [sp, #4]
+ 1b8:	blx	r0
+ 1bc:	ldr	r1, [sp, #4]
+ 1c0:	str	r0, [sp]
+ 1c4:	mov	r0, r1
+ 1c8:	ldr	r1, [sp]
+ 1cc:	bl	0 <fila_push>
+ 1d0:	ldr	r0, [fp, #-8]
+ 1d4:	ldr	r0, [r0, #8]
+ 1d8:	bl	0 <fila_back>
+ 1dc:	ldr	r0, [r0, #4]
+ 1e0:	ldr	lr, [fp, #-8]
+ 1e4:	ldr	lr, [lr, #4]
+ 1e8:	cmp	r0, lr
+ 1ec:	bne	200 <armazenar_contentor+0xcc>
+ 1f0:	ldr	r0, [fp, #-8]
+ 1f4:	ldr	r0, [r0, #8]
+ 1f8:	ldr	r1, [sp, #8]
+ 1fc:	bl	0 <fila_push>
+ 200:	ldr	r0, [fp, #-8]
+ 204:	ldr	r0, [r0, #8]
+ 208:	bl	0 <fila_back>
+ 20c:	ldr	r1, [sp, #12]
+ 210:	bl	0 <pilha_push>
+ 214:	movw	r0, #1
+ 218:	str	r0, [fp, #-4]
+ 21c:	ldr	r0, [fp, #-4]
+ 220:	mov	sp, fp
+ 224:	pop	{fp, pc}
+
+00000228 <expedir_contentor>:
+ 228:	push	{fp, lr}
+ 22c:	mov	fp, sp
+ 230:	sub	sp, sp, #16
+ 234:	str	r0, [sp, #8]
+ 238:	ldr	r0, [sp, #8]
+ 23c:	bl	58 <armazem_vazio>
+ 240:	cmp	r0, #0
+ 244:	bne	264 <expedir_contentor+0x3c>
+ 248:	ldr	r0, [sp, #8]
+ 24c:	ldr	r0, [r0, #8]
+ 250:	bl	0 <fila_front>
+ 254:	bl	0 <pilha_top>
+ 258:	movw	lr, #0
+ 25c:	cmp	r0, lr
+ 260:	bne	270 <expedir_contentor+0x48>
+ 264:	movw	r0, #0
+ 268:	str	r0, [fp, #-4]
+ 26c:	b	2ec <expedir_contentor+0xc4>
+ 270:	ldr	r0, [sp, #8]
+ 274:	ldr	r0, [r0, #8]
+ 278:	bl	0 <fila_front>
+ 27c:	bl	0 <pilha_top>
+ 280:	ldr	r0, [r0]
+ 284:	ldr	lr, [sp, #8]
+ 288:	ldr	lr, [lr, #8]
+ 28c:	str	r0, [sp]
+ 290:	mov	r0, lr
+ 294:	bl	0 <fila_front>
+ 298:	bl	0 <pilha_top>
+ 29c:	vldr	s0, [r0, #4]
+ 2a0:	ldr	r0, [sp]
+ 2a4:	bl	0 <contentor_novo>
+ 2a8:	str	r0, [sp, #4]
+ 2ac:	ldr	r0, [sp, #8]
+ 2b0:	ldr	r0, [r0, #8]
+ 2b4:	bl	0 <fila_front>
+ 2b8:	ldr	r0, [r0, #4]
+ 2bc:	cmp	r0, #1
+ 2c0:	bgt	2d4 <expedir_contentor+0xac>
+ 2c4:	ldr	r0, [sp, #8]
+ 2c8:	ldr	r0, [r0, #8]
+ 2cc:	bl	0 <fila_pop>
+ 2d0:	b	2e4 <expedir_contentor+0xbc>
+ 2d4:	ldr	r0, [sp, #8]
+ 2d8:	ldr	r0, [r0, #8]
+ 2dc:	bl	0 <fila_front>
+ 2e0:	bl	0 <pilha_pop>
+ 2e4:	ldr	r0, [sp, #4]
+ 2e8:	str	r0, [fp, #-4]
+ 2ec:	ldr	r0, [fp, #-4]
+ 2f0:	mov	sp, fp
+ 2f4:	pop	{fp, pc}

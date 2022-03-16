@@ -1,0 +1,106 @@
+
+../compcert-repos/stcorp-coda-3a25f25/CMakeFiles/codadd.dir/tools/codadd/codadd-detect.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <indent>:
+   0:	ldr	r3, [pc, #64]	; 48 <indent+0x48>
+   4:	push	{r4, r5, r6, lr}
+   8:	ldr	r4, [r3]
+   c:	cmp	r4, #0
+  10:	blt	34 <indent+0x34>
+  14:	ldrne	r5, [pc, #48]	; 4c <indent+0x4c>
+  18:	beq	30 <indent+0x30>
+  1c:	mov	r0, r5
+  20:	bl	0 <printf>
+  24:	subs	r4, r4, #1
+  28:	bne	1c <indent+0x1c>
+  2c:	pop	{r4, r5, r6, pc}
+  30:	pop	{r4, r5, r6, pc}
+  34:	ldr	r3, [pc, #20]	; 50 <indent+0x50>
+  38:	mov	r2, #52	; 0x34
+  3c:	ldr	r1, [pc, #16]	; 54 <indent+0x54>
+  40:	ldr	r0, [pc, #16]	; 58 <indent+0x58>
+  44:	bl	0 <__assert_fail>
+  48:	.word	0x00000000
+  4c:	.word	0x00000060
+	...
+  58:	.word	0x00000054
+
+0000005c <generate_detection_tree_sub>:
+  5c:	push	{r4, r5, r6, r7, r8, lr}
+  60:	subs	r6, r0, #0
+  64:	popeq	{r4, r5, r6, r7, r8, pc}
+  68:	ldr	r3, [r6]
+  6c:	mov	r7, r1
+  70:	cmp	r3, #0
+  74:	beq	130 <generate_detection_tree_sub+0xd4>
+  78:	bl	0 <indent>
+  7c:	ldr	r1, [r6]
+  80:	ldr	r0, [pc, #204]	; 154 <generate_detection_tree_sub+0xf8>
+  84:	bl	0 <printf>
+  88:	ldr	r3, [r6, #8]
+  8c:	cmp	r3, #0
+  90:	beq	cc <generate_detection_tree_sub+0x70>
+  94:	ldr	r3, [r3, #8]
+  98:	ldr	r0, [pc, #184]	; 158 <generate_detection_tree_sub+0xfc>
+  9c:	ldr	r2, [r3, #44]	; 0x2c
+  a0:	ldr	r3, [r3, #4]
+  a4:	ldr	r1, [r2, #20]
+  a8:	ldr	r2, [r2]
+  ac:	ldr	r1, [r1]
+  b0:	bl	0 <printf>
+  b4:	ldr	r2, [r6, #12]
+  b8:	mov	r1, r7
+  bc:	cmp	r2, #0
+  c0:	ble	124 <generate_detection_tree_sub+0xc8>
+  c4:	ldr	r0, [pc, #144]	; 15c <generate_detection_tree_sub+0x100>
+  c8:	bl	0 <printf>
+  cc:	mov	r0, #10
+  d0:	bl	0 <putchar>
+  d4:	ldr	r3, [r6, #12]
+  d8:	cmp	r3, #0
+  dc:	pople	{r4, r5, r6, r7, r8, pc}
+  e0:	ldr	r5, [pc, #120]	; 160 <generate_detection_tree_sub+0x104>
+  e4:	mov	r4, #0
+  e8:	ldr	r3, [r5]
+  ec:	ldr	r2, [r6, #16]
+  f0:	add	r3, r3, #1
+  f4:	add	r1, r7, r4
+  f8:	ldr	r0, [r2, r4, lsl #2]
+  fc:	str	r3, [r5]
+ 100:	bl	5c <generate_detection_tree_sub>
+ 104:	ldr	r3, [r5]
+ 108:	ldr	r2, [r6, #12]
+ 10c:	add	r4, r4, #1
+ 110:	sub	r3, r3, #1
+ 114:	cmp	r2, r4
+ 118:	str	r3, [r5]
+ 11c:	bgt	ec <generate_detection_tree_sub+0x90>
+ 120:	pop	{r4, r5, r6, r7, r8, pc}
+ 124:	ldr	r0, [pc, #56]	; 164 <generate_detection_tree_sub+0x108>
+ 128:	bl	0 <printf>
+ 12c:	b	cc <generate_detection_tree_sub+0x70>
+ 130:	ldr	r3, [r6, #4]
+ 134:	cmp	r3, #0
+ 138:	beq	d4 <generate_detection_tree_sub+0x78>
+ 13c:	bl	0 <indent>
+ 140:	ldr	r1, [pc, #32]	; 168 <generate_detection_tree_sub+0x10c>
+ 144:	ldr	r0, [r6, #4]
+ 148:	add	r7, r7, #1
+ 14c:	bl	0 <coda_expression_print>
+ 150:	b	88 <generate_detection_tree_sub+0x2c>
+ 154:	.word	0x00000064
+ 158:	.word	0x00000070
+ 15c:	.word	0x00000080
+ 160:	.word	0x00000000
+ 164:	.word	0x00000090
+ 168:	.word	0x00000000
+
+0000016c <generate_detection_tree>:
+ 16c:	push	{r4, lr}
+ 170:	bl	0 <coda_data_dictionary_get_detection_tree>
+ 174:	mov	r1, #0
+ 178:	pop	{r4, lr}
+ 17c:	b	5c <generate_detection_tree_sub>

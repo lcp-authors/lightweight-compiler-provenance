@@ -1,0 +1,215 @@
+
+../compcert-repos/prog2/CMakeFiles/8.dir/Aula08_Grafos_T2/vetor.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <vetor_novo>:
+   0:	mov	r0, #12
+   4:	str	r4, [sp, #-8]!
+   8:	str	lr, [sp, #4]
+   c:	bl	0 <malloc>
+  10:	cmp	r0, #0
+  14:	beq	28 <vetor_novo+0x28>
+  18:	mov	r3, #0
+  1c:	str	r3, [r0]
+  20:	str	r3, [r0, #4]
+  24:	str	r3, [r0, #8]
+  28:	ldr	r4, [sp]
+  2c:	add	sp, sp, #4
+  30:	pop	{pc}		; (ldr pc, [sp], #4)
+
+00000034 <vetor_apaga>:
+  34:	str	r4, [sp, #-8]!
+  38:	subs	r4, r0, #0
+  3c:	str	lr, [sp, #4]
+  40:	beq	60 <vetor_apaga+0x2c>
+  44:	ldr	r0, [r4, #8]
+  48:	bl	0 <free>
+  4c:	mov	r0, r4
+  50:	ldr	r4, [sp]
+  54:	ldr	lr, [sp, #4]
+  58:	add	sp, sp, #8
+  5c:	b	0 <free>
+  60:	ldr	r4, [sp]
+  64:	add	sp, sp, #4
+  68:	pop	{pc}		; (ldr pc, [sp], #4)
+
+0000006c <vetor_atribui>:
+  6c:	cmp	r0, #0
+  70:	lsrne	r3, r1, #31
+  74:	moveq	r3, #1
+  78:	cmp	r3, #0
+  7c:	bne	9c <vetor_atribui+0x30>
+  80:	ldr	r3, [r0]
+  84:	cmp	r3, r1
+  88:	ble	9c <vetor_atribui+0x30>
+  8c:	ldr	r3, [r0, #8]
+  90:	mov	r0, r1
+  94:	str	r2, [r3, r1, lsl #2]
+  98:	bx	lr
+  9c:	mvn	r0, #0
+  a0:	bx	lr
+
+000000a4 <vetor_tamanho>:
+  a4:	cmp	r0, #0
+  a8:	ldrne	r0, [r0]
+  ac:	mvneq	r0, #0
+  b0:	bx	lr
+
+000000b4 <vetor_elemento>:
+  b4:	cmp	r0, #0
+  b8:	lsrne	r3, r1, #31
+  bc:	moveq	r3, #1
+  c0:	cmp	r3, #0
+  c4:	bne	e0 <vetor_elemento+0x2c>
+  c8:	ldr	r3, [r0]
+  cc:	cmp	r3, r1
+  d0:	ble	e0 <vetor_elemento+0x2c>
+  d4:	ldr	r3, [r0, #8]
+  d8:	ldr	r0, [r3, r1, lsl #2]
+  dc:	bx	lr
+  e0:	mov	r0, #-2147483648	; 0x80000000
+  e4:	bx	lr
+
+000000e8 <vetor_insere>:
+  e8:	cmn	r2, #1
+  ec:	movge	r3, #0
+  f0:	movlt	r3, #1
+  f4:	cmp	r0, #0
+  f8:	moveq	r3, #1
+  fc:	cmp	r3, #0
+ 100:	bne	1b8 <vetor_insere+0xd0>
+ 104:	strd	r4, [sp, #-16]!
+ 108:	mov	r4, r2
+ 10c:	mov	r5, r0
+ 110:	str	r6, [sp, #8]
+ 114:	mov	r6, r1
+ 118:	ldr	r1, [r0]
+ 11c:	str	lr, [sp, #12]
+ 120:	cmp	r1, r2
+ 124:	blt	1b0 <vetor_insere+0xc8>
+ 128:	ldr	r3, [r0, #4]
+ 12c:	cmn	r2, #1
+ 130:	moveq	r4, r1
+ 134:	ldr	r0, [r0, #8]
+ 138:	cmp	r1, r3
+ 13c:	beq	180 <vetor_insere+0x98>
+ 140:	cmp	r4, r1
+ 144:	addlt	r3, r0, r1, lsl #2
+ 148:	addlt	r2, r0, r4, lsl #2
+ 14c:	bge	160 <vetor_insere+0x78>
+ 150:	ldr	ip, [r3, #-4]
+ 154:	str	ip, [r3], #-4
+ 158:	cmp	r2, r3
+ 15c:	bne	150 <vetor_insere+0x68>
+ 160:	add	r1, r1, #1
+ 164:	str	r6, [r0, r4, lsl #2]
+ 168:	mov	r0, r4
+ 16c:	str	r1, [r5]
+ 170:	ldrd	r4, [sp]
+ 174:	ldr	r6, [sp, #8]
+ 178:	add	sp, sp, #12
+ 17c:	pop	{pc}		; (ldr pc, [sp], #4)
+ 180:	cmp	r1, #0
+ 184:	lslne	r3, r1, #1
+ 188:	moveq	r3, #1
+ 18c:	moveq	r1, #4
+ 190:	lslne	r1, r1, #3
+ 194:	str	r3, [r5, #4]
+ 198:	bl	0 <realloc>
+ 19c:	cmp	r0, #0
+ 1a0:	str	r0, [r5, #8]
+ 1a4:	beq	1b0 <vetor_insere+0xc8>
+ 1a8:	ldr	r1, [r5]
+ 1ac:	b	140 <vetor_insere+0x58>
+ 1b0:	mvn	r0, #0
+ 1b4:	b	170 <vetor_insere+0x88>
+ 1b8:	mvn	r0, #0
+ 1bc:	bx	lr
+
+000001c0 <vetor_remove>:
+ 1c0:	cmp	r0, #0
+ 1c4:	lsrne	r3, r1, #31
+ 1c8:	moveq	r3, #1
+ 1cc:	cmp	r3, #0
+ 1d0:	bne	220 <vetor_remove+0x60>
+ 1d4:	ldr	ip, [r0]
+ 1d8:	cmp	ip, r1
+ 1dc:	ble	220 <vetor_remove+0x60>
+ 1e0:	add	r3, r1, #1
+ 1e4:	cmp	ip, r3
+ 1e8:	ble	20c <vetor_remove+0x4c>
+ 1ec:	ldr	r3, [r0, #8]
+ 1f0:	sub	r2, r3, #4
+ 1f4:	add	r1, r3, r1, lsl #2
+ 1f8:	add	r2, r2, ip, lsl #2
+ 1fc:	ldr	r3, [r1, #4]
+ 200:	str	r3, [r1], #4
+ 204:	cmp	r1, r2
+ 208:	bne	1fc <vetor_remove+0x3c>
+ 20c:	sub	ip, ip, #1
+ 210:	mov	r3, #0
+ 214:	str	ip, [r0]
+ 218:	mov	r0, r3
+ 21c:	bx	lr
+ 220:	mvn	r3, #0
+ 224:	b	218 <vetor_remove+0x58>
+
+00000228 <vetor_pesquisa>:
+ 228:	cmp	r0, #0
+ 22c:	beq	26c <vetor_pesquisa+0x44>
+ 230:	ldr	ip, [r0]
+ 234:	cmp	ip, #0
+ 238:	ble	26c <vetor_pesquisa+0x44>
+ 23c:	ldr	r3, [r0, #8]
+ 240:	mov	r0, #0
+ 244:	ldr	r2, [r3]
+ 248:	cmp	r1, r2
+ 24c:	bne	260 <vetor_pesquisa+0x38>
+ 250:	b	274 <vetor_pesquisa+0x4c>
+ 254:	ldr	r2, [r3, #4]!
+ 258:	cmp	r2, r1
+ 25c:	beq	274 <vetor_pesquisa+0x4c>
+ 260:	add	r0, r0, #1
+ 264:	cmp	ip, r0
+ 268:	bne	254 <vetor_pesquisa+0x2c>
+ 26c:	mvn	r0, #0
+ 270:	bx	lr
+ 274:	bx	lr
+
+00000278 <vetor_ordena>:
+ 278:	cmp	r0, #0
+ 27c:	beq	2f8 <vetor_ordena+0x80>
+ 280:	strd	r4, [sp, #-16]!
+ 284:	ldr	r5, [r0]
+ 288:	str	r6, [sp, #8]
+ 28c:	str	lr, [sp, #12]
+ 290:	cmp	r5, #1
+ 294:	ble	2e4 <vetor_ordena+0x6c>
+ 298:	ldr	r6, [r0, #8]
+ 29c:	mov	lr, #1
+ 2a0:	mov	r4, r6
+ 2a4:	ldr	ip, [r4, #4]!
+ 2a8:	mov	r2, lr
+ 2ac:	mov	r3, r4
+ 2b0:	ldr	r1, [r3, #-4]
+ 2b4:	mov	r0, r3
+ 2b8:	cmp	r1, ip
+ 2bc:	ble	2d4 <vetor_ordena+0x5c>
+ 2c0:	subs	r2, r2, #1
+ 2c4:	str	r1, [r3]
+ 2c8:	sub	r3, r0, #4
+ 2cc:	bne	2b0 <vetor_ordena+0x38>
+ 2d0:	mov	r0, r6
+ 2d4:	add	lr, lr, #1
+ 2d8:	str	ip, [r0]
+ 2dc:	cmp	lr, r5
+ 2e0:	bne	2a4 <vetor_ordena+0x2c>
+ 2e4:	ldrd	r4, [sp]
+ 2e8:	mov	r0, #0
+ 2ec:	ldr	r6, [sp, #8]
+ 2f0:	add	sp, sp, #12
+ 2f4:	pop	{pc}		; (ldr pc, [sp], #4)
+ 2f8:	mvn	r0, #0
+ 2fc:	bx	lr

@@ -1,0 +1,122 @@
+
+../compcert-repos/prog2/CMakeFiles/0.3.dir/Aula00_Conceitos_base/03.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <avg>:
+   0:	vldr	s15, [pc, #28]	; 24 <avg+0x24>
+   4:	add	r3, r0, #40	; 0x28
+   8:	vldmia	r0!, {s14}
+   c:	cmp	r0, r3
+  10:	vadd.f32	s15, s15, s14
+  14:	bne	8 <avg+0x8>
+  18:	vldr	s0, [pc, #8]	; 28 <avg+0x28>
+  1c:	vdiv.f32	s0, s15, s0
+  20:	bx	lr
+  24:	.word	0x00000000
+  28:	.word	0x41200000
+
+0000002c <max>:
+  2c:	add	r3, r0, #40	; 0x28
+  30:	vldmia	r0!, {s0}
+  34:	vldmia	r0!, {s15}
+  38:	vcmp.f32	s15, s0
+  3c:	vmrs	APSR_nzcv, fpscr
+  40:	vmovgt.f32	s0, s15
+  44:	cmp	r0, r3
+  48:	bne	34 <max+0x8>
+  4c:	bx	lr
+
+00000050 <min>:
+  50:	add	r3, r0, #40	; 0x28
+  54:	vldmia	r0!, {s0}
+  58:	vldmia	r0!, {s15}
+  5c:	vcmp.f32	s15, s0
+  60:	vmrs	APSR_nzcv, fpscr
+  64:	vmovmi.f32	s0, s15
+  68:	cmp	r0, r3
+  6c:	bne	58 <min+0x8>
+  70:	bx	lr
+
+Disassembly of section .text.startup:
+
+00000000 <main>:
+   0:	push	{r4, r5, r6, r7, r8, lr}
+   4:	sub	sp, sp, #40	; 0x28
+   8:	ldr	r8, [pc, #268]	; 11c <main+0x11c>
+   c:	ldr	r7, [pc, #268]	; 120 <main+0x120>
+  10:	mov	r6, sp
+  14:	mov	r5, sp
+  18:	mov	r4, #0
+  1c:	add	r4, r4, #1
+  20:	mov	r1, r4
+  24:	mov	r0, r8
+  28:	bl	0 <printf>
+  2c:	mov	r1, r5
+  30:	mov	r0, r7
+  34:	bl	0 <__isoc99_scanf>
+  38:	cmp	r4, #10
+  3c:	add	r5, r5, #4
+  40:	bne	1c <main+0x1c>
+  44:	vldr	s15, [pc, #200]	; 114 <main+0x114>
+  48:	add	r3, sp, #40	; 0x28
+  4c:	mov	r5, r6
+  50:	vldmia	r5!, {s14}
+  54:	cmp	r5, r3
+  58:	vadd.f32	s15, s15, s14
+  5c:	bne	50 <main+0x50>
+  60:	vldr	s13, [pc, #176]	; 118 <main+0x118>
+  64:	ldr	r0, [pc, #184]	; 124 <main+0x124>
+  68:	add	r7, sp, #4
+  6c:	mov	r4, r7
+  70:	vdiv.f32	s14, s15, s13
+  74:	vcvt.f64.f32	d7, s14
+  78:	vmov	r2, r3, d7
+  7c:	bl	0 <printf>
+  80:	vldr	s15, [sp]
+  84:	vldmia	r4!, {s14}
+  88:	vcmp.f32	s14, s15
+  8c:	vmrs	APSR_nzcv, fpscr
+  90:	vmovgt.f32	s15, s14
+  94:	cmp	r5, r4
+  98:	bne	84 <main+0x84>
+  9c:	vcvt.f64.f32	d7, s15
+  a0:	ldr	r0, [pc, #128]	; 128 <main+0x128>
+  a4:	vmov	r2, r3, d7
+  a8:	bl	0 <printf>
+  ac:	vldr	s15, [sp]
+  b0:	vldmia	r7!, {s14}
+  b4:	vcmp.f32	s14, s15
+  b8:	vmrs	APSR_nzcv, fpscr
+  bc:	vmovmi.f32	s15, s14
+  c0:	cmp	r4, r7
+  c4:	bne	b0 <main+0xb0>
+  c8:	vcvt.f64.f32	d7, s15
+  cc:	ldr	r0, [pc, #88]	; 12c <main+0x12c>
+  d0:	ldr	r5, [pc, #88]	; 130 <main+0x130>
+  d4:	vmov	r2, r3, d7
+  d8:	bl	0 <printf>
+  dc:	ldr	r0, [pc, #80]	; 134 <main+0x134>
+  e0:	bl	0 <printf>
+  e4:	vldmia	r6!, {s15}
+  e8:	mov	r0, r5
+  ec:	vcvt.f64.f32	d7, s15
+  f0:	vmov	r2, r3, d7
+  f4:	bl	0 <printf>
+  f8:	cmp	r6, r4
+  fc:	bne	e4 <main+0xe4>
+ 100:	mov	r0, #10
+ 104:	bl	0 <putchar>
+ 108:	mov	r0, #0
+ 10c:	add	sp, sp, #40	; 0x28
+ 110:	pop	{r4, r5, r6, r7, r8, pc}
+ 114:	.word	0x00000000
+ 118:	.word	0x41200000
+ 11c:	.word	0x00000000
+ 120:	.word	0x00000018
+ 124:	.word	0x0000001c
+ 128:	.word	0x0000002c
+ 12c:	.word	0x0000003c
+ 130:	.word	0x00000054
+ 134:	.word	0x0000004c

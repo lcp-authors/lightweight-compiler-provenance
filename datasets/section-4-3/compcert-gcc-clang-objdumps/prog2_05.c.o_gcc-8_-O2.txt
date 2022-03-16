@@ -1,0 +1,116 @@
+
+../compcert-repos/prog2/CMakeFiles/1.5.dir/Aula01_Ficheiros_e_Formatos_de_dados/05.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <IsIOFunction>:
+   0:	mov	r2, #1
+   4:	strd	r4, [sp, #-28]!	; 0xffffffe4
+   8:	mov	r5, r1
+   c:	strd	r6, [sp, #8]
+  10:	strd	r8, [sp, #16]
+  14:	mov	r9, r0
+  18:	mov	r0, r1
+  1c:	mvn	r1, #0
+  20:	str	lr, [sp, #24]
+  24:	sub	sp, sp, #12
+  28:	bl	0 <fseek>
+  2c:	mov	r0, r9
+  30:	mov	r8, sp
+  34:	bl	0 <strlen>
+  38:	mov	r3, #0
+  3c:	subs	r7, r0, #0
+  40:	str	r3, [sp]
+  44:	strh	r3, [sp, #4]
+  48:	strb	r3, [sp, #6]
+  4c:	beq	6c <IsIOFunction+0x6c>
+  50:	mov	r4, r8
+  54:	add	r6, r8, r7
+  58:	mov	r0, r5
+  5c:	bl	0 <fgetc>
+  60:	strb	r0, [r4], #1
+  64:	cmp	r4, r6
+  68:	bne	58 <IsIOFunction+0x58>
+  6c:	add	r3, sp, #8
+  70:	mov	ip, #0
+  74:	add	r3, r3, r7
+  78:	rsb	r1, r7, #1
+  7c:	mov	r2, #1
+  80:	mov	r0, r5
+  84:	strb	ip, [r3, #-8]
+  88:	bl	0 <fseek>
+  8c:	mov	r1, r8
+  90:	mov	r0, r9
+  94:	bl	0 <strcmp>
+  98:	clz	r0, r0
+  9c:	lsr	r0, r0, #5
+  a0:	add	sp, sp, #12
+  a4:	ldrd	r4, [sp]
+  a8:	ldrd	r6, [sp, #8]
+  ac:	ldrd	r8, [sp, #16]
+  b0:	add	sp, sp, #24
+  b4:	pop	{pc}		; (ldr pc, [sp], #4)
+
+Disassembly of section .text.startup:
+
+00000000 <main>:
+   0:	movw	r1, #0
+   4:	movt	r1, #0
+   8:	strd	r4, [sp, #-24]!	; 0xffffffe8
+   c:	movw	r0, #0
+  10:	movt	r0, #0
+  14:	strd	r6, [sp, #8]
+  18:	str	r8, [sp, #16]
+  1c:	movw	r7, #0
+  20:	movt	r7, #0
+  24:	str	lr, [sp, #20]
+  28:	movw	r6, #0
+  2c:	movt	r6, #0
+  30:	bl	0 <fopen>
+  34:	mov	r5, #0
+  38:	mov	r4, r0
+  3c:	mov	r0, r4
+  40:	bl	0 <fgetc>
+  44:	uxtb	r0, r0
+  48:	cmp	r0, #10
+  4c:	beq	3c <main+0x3c>
+  50:	cmp	r0, #115	; 0x73
+  54:	beq	a4 <main+0xa4>
+  58:	cmp	r0, #112	; 0x70
+  5c:	beq	b4 <main+0xb4>
+  60:	cmp	r0, #47	; 0x2f
+  64:	beq	c4 <main+0xc4>
+  68:	cmp	r0, #42	; 0x2a
+  6c:	bne	3c <main+0x3c>
+  70:	mov	r0, r4
+  74:	bl	0 <fgetc>
+  78:	cmp	r0, #47	; 0x2f
+  7c:	movne	r0, #0
+  80:	andeq	r0, r5, #1
+  84:	cmp	r0, #0
+  88:	movne	r5, #0
+  8c:	bne	3c <main+0x3c>
+  90:	mov	r2, #1
+  94:	mvn	r1, #0
+  98:	mov	r0, r4
+  9c:	bl	0 <fseek>
+  a0:	b	3c <main+0x3c>
+  a4:	mov	r1, r4
+  a8:	mov	r0, r6
+  ac:	bl	0 <main>
+  b0:	b	3c <main+0x3c>
+  b4:	mov	r1, r4
+  b8:	mov	r0, r7
+  bc:	bl	0 <main>
+  c0:	b	3c <main+0x3c>
+  c4:	mov	r0, r4
+  c8:	bl	0 <fgetc>
+  cc:	eor	r3, r5, #1
+  d0:	cmp	r0, #42	; 0x2a
+  d4:	movne	r0, #0
+  d8:	andeq	r0, r3, #1
+  dc:	cmp	r0, #0
+  e0:	movne	r5, #1
+  e4:	beq	90 <main+0x90>
+  e8:	b	3c <main+0x3c>

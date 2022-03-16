@@ -1,0 +1,712 @@
+
+../compcert-repos/prog2/CMakeFiles/MT1E1-2.1.dir/Extras/Miniteste1-Exemplo2/1/prob1.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <tira_carta>:
+   0:	push	{r4, r5, r6, r7, r8, sl, fp, lr}
+   4:	add	fp, sp, #24
+   8:	ldr	r8, [r0]
+   c:	ldr	r4, [r1]
+  10:	mov	r5, r0
+  14:	ldr	r6, [r8]
+  18:	ldr	r0, [r4]
+  1c:	mov	r1, r6
+  20:	bl	0 <strcmp>
+  24:	mov	r7, #0
+  28:	cmp	r0, #0
+  2c:	beq	4c <tira_carta+0x4c>
+  30:	ldr	r4, [r4, #4]
+  34:	mov	r1, r6
+  38:	ldr	r0, [r4]
+  3c:	bl	0 <strcmp>
+  40:	add	r7, r7, #1
+  44:	cmp	r0, #0
+  48:	bne	30 <tira_carta+0x30>
+  4c:	mov	r0, r5
+  50:	mov	r1, r8
+  54:	bl	0 <lista_remove>
+  58:	mov	r0, r7
+  5c:	pop	{r4, r5, r6, r7, r8, sl, fp, pc}
+
+00000060 <faz_jogada>:
+  60:	push	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+  64:	add	fp, sp, #28
+  68:	sub	sp, sp, #20
+  6c:	ldr	r4, [r0]
+  70:	str	r0, [sp, #16]
+  74:	str	r2, [sp, #12]
+  78:	mov	r7, r1
+  7c:	lsl	r0, r4, #2
+  80:	bl	0 <malloc>
+  84:	mov	r6, r0
+  88:	mvn	r5, #0
+  8c:	cmp	r4, #1
+  90:	blt	144 <faz_jogada+0xe4>
+  94:	mov	r8, #0
+  98:	str	r6, [sp, #8]
+  9c:	str	r7, [sp, #4]
+  a0:	ldr	r0, [sp, #12]
+  a4:	ldr	r4, [r7]
+  a8:	ldr	r9, [r0]
+  ac:	ldr	r6, [r4]
+  b0:	ldr	r0, [r9]
+  b4:	mov	r1, r6
+  b8:	bl	0 <strcmp>
+  bc:	cmp	r0, #0
+  c0:	mov	sl, #0
+  c4:	beq	e8 <faz_jogada+0x88>
+  c8:	mov	sl, #0
+  cc:	ldr	r9, [r9, #4]
+  d0:	mov	r1, r6
+  d4:	ldr	r0, [r9]
+  d8:	bl	0 <strcmp>
+  dc:	add	sl, sl, #1
+  e0:	cmp	r0, #0
+  e4:	bne	cc <faz_jogada+0x6c>
+  e8:	ldr	r7, [sp, #4]
+  ec:	mov	r1, r4
+  f0:	mov	r0, r7
+  f4:	bl	0 <lista_remove>
+  f8:	ldr	r6, [sp, #8]
+  fc:	ldr	r0, [sp, #16]
+ 100:	str	sl, [r6, r8, lsl #2]
+ 104:	add	r8, r8, #1
+ 108:	ldr	r0, [r0]
+ 10c:	cmp	r8, r0
+ 110:	blt	a0 <faz_jogada+0x40>
+ 114:	cmp	r0, #1
+ 118:	blt	144 <faz_jogada+0xe4>
+ 11c:	mov	r1, #0
+ 120:	mvn	r5, #0
+ 124:	mvn	r2, #0
+ 128:	ldr	r3, [r6, r1, lsl #2]
+ 12c:	cmp	r3, r2
+ 130:	movgt	r5, r1
+ 134:	add	r1, r1, #1
+ 138:	movgt	r2, r3
+ 13c:	cmp	r0, r1
+ 140:	bne	128 <faz_jogada+0xc8>
+ 144:	mov	r0, r6
+ 148:	bl	0 <free>
+ 14c:	ldr	r0, [sp, #16]
+ 150:	ldr	r0, [r0, #8]
+ 154:	ldr	r0, [r0, r5, lsl #2]
+ 158:	sub	sp, fp, #28
+ 15c:	pop	{r4, r5, r6, r7, r8, r9, sl, fp, pc}
+
+00000160 <numero_vitorias>:
+ 160:	push	{r4, r5, r6, r7, r8, sl, fp, lr}
+ 164:	add	fp, sp, #24
+ 168:	ldr	r6, [r0]
+ 16c:	cmp	r6, #1
+ 170:	movlt	r5, #0
+ 174:	movlt	r0, r5
+ 178:	poplt	{r4, r5, r6, r7, r8, sl, fp, pc}
+ 17c:	ldr	r7, [r0, #8]
+ 180:	mov	r8, r1
+ 184:	mov	r5, #0
+ 188:	mov	r4, #0
+ 18c:	ldr	r1, [r7, r4, lsl #2]
+ 190:	mov	r0, r8
+ 194:	bl	0 <strcmp>
+ 198:	cmp	r0, #0
+ 19c:	add	r4, r4, #1
+ 1a0:	addeq	r5, r5, #1
+ 1a4:	cmp	r4, r6
+ 1a8:	blt	18c <numero_vitorias+0x2c>
+ 1ac:	mov	r0, r5
+ 1b0:	pop	{r4, r5, r6, r7, r8, sl, fp, pc}
+
+000001b4 <insere_carta>:
+ 1b4:	push	{fp, lr}
+ 1b8:	mov	fp, sp
+ 1bc:	sub	sp, sp, #8
+ 1c0:	cmp	r1, #7
+ 1c4:	bgt	1dc <insere_carta+0x28>
+ 1c8:	mov	r2, #0
+ 1cc:	add	r1, r1, #50	; 0x32
+ 1d0:	strb	r2, [sp, #5]
+ 1d4:	strb	r1, [sp, #4]
+ 1d8:	b	234 <insere_carta+0x80>
+ 1dc:	sub	r1, r1, #8
+ 1e0:	cmp	r1, #4
+ 1e4:	bhi	234 <insere_carta+0x80>
+ 1e8:	add	r2, pc, #0
+ 1ec:	ldr	pc, [r2, r1, lsl #2]
+ 1f0:	.word	0x00000204
+ 1f4:	.word	0x00000214
+ 1f8:	.word	0x0000021c
+ 1fc:	.word	0x00000224
+ 200:	.word	0x0000022c
+ 204:	mov	r1, #0
+ 208:	strb	r1, [sp, #6]
+ 20c:	movw	r1, #12337	; 0x3031
+ 210:	b	230 <insere_carta+0x7c>
+ 214:	mov	r1, #74	; 0x4a
+ 218:	b	230 <insere_carta+0x7c>
+ 21c:	mov	r1, #81	; 0x51
+ 220:	b	230 <insere_carta+0x7c>
+ 224:	mov	r1, #75	; 0x4b
+ 228:	b	230 <insere_carta+0x7c>
+ 22c:	mov	r1, #65	; 0x41
+ 230:	strh	r1, [sp, #4]
+ 234:	ldr	r2, [r0]
+ 238:	add	r1, sp, #4
+ 23c:	bl	0 <lista_insere>
+ 240:	mov	sp, fp
+ 244:	pop	{fp, pc}
+
+00000248 <main>:
+ 248:	push	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+ 24c:	add	fp, sp, #28
+ 250:	sub	sp, sp, #20
+ 254:	bl	0 <vetor_novo>
+ 258:	movw	r4, #0
+ 25c:	mov	r2, #0
+ 260:	mov	r5, r0
+ 264:	mov	r7, #0
+ 268:	movt	r4, #0
+ 26c:	ldr	r1, [r4]
+ 270:	bl	0 <vetor_insere>
+ 274:	ldr	r1, [r4, #4]
+ 278:	mov	r0, r5
+ 27c:	mov	r2, #1
+ 280:	bl	0 <vetor_insere>
+ 284:	ldr	r1, [r4, #8]
+ 288:	mov	r0, r5
+ 28c:	mov	r2, #2
+ 290:	bl	0 <vetor_insere>
+ 294:	ldr	r1, [r4, #12]
+ 298:	mov	r0, r5
+ 29c:	mov	r2, #3
+ 2a0:	str	r5, [sp, #8]
+ 2a4:	bl	0 <vetor_insere>
+ 2a8:	bl	0 <lista_nova>
+ 2ac:	movw	r5, #0
+ 2b0:	mov	r4, r0
+ 2b4:	add	r6, sp, #16
+ 2b8:	mov	r8, #75	; 0x4b
+ 2bc:	mov	r9, #65	; 0x41
+ 2c0:	mov	sl, #0
+ 2c4:	movt	r5, #0
+ 2c8:	b	32c <main+0xe4>
+ 2cc:	sub	r0, r0, #8
+ 2d0:	cmp	r0, #4
+ 2d4:	bhi	344 <main+0xfc>
+ 2d8:	add	r1, pc, #0
+ 2dc:	ldr	pc, [r1, r0, lsl #2]
+ 2e0:	.word	0x000002f4
+ 2e4:	.word	0x00000304
+ 2e8:	.word	0x00000310
+ 2ec:	.word	0x0000031c
+ 2f0:	.word	0x00000324
+ 2f4:	movw	r0, #12337	; 0x3031
+ 2f8:	strb	r7, [sp, #18]
+ 2fc:	strh	r0, [sp, #16]
+ 300:	b	344 <main+0xfc>
+ 304:	mov	r0, #74	; 0x4a
+ 308:	strh	r0, [sp, #16]
+ 30c:	b	344 <main+0xfc>
+ 310:	mov	r0, #81	; 0x51
+ 314:	strh	r0, [sp, #16]
+ 318:	b	344 <main+0xfc>
+ 31c:	strh	r8, [sp, #16]
+ 320:	b	344 <main+0xfc>
+ 324:	strh	r9, [sp, #16]
+ 328:	b	344 <main+0xfc>
+ 32c:	ldr	r0, [r5, sl, lsl #2]
+ 330:	cmp	r0, #7
+ 334:	bgt	2cc <main+0x84>
+ 338:	add	r0, r0, #50	; 0x32
+ 33c:	strb	r7, [sp, #17]
+ 340:	strb	r0, [sp, #16]
+ 344:	ldr	r2, [r4]
+ 348:	mov	r0, r4
+ 34c:	mov	r1, r6
+ 350:	bl	0 <lista_insere>
+ 354:	add	sl, sl, #1
+ 358:	cmp	sl, #52	; 0x34
+ 35c:	bne	32c <main+0xe4>
+ 360:	bl	0 <lista_nova>
+ 364:	movw	r7, #0
+ 368:	mov	r2, #0
+ 36c:	mov	r8, r0
+ 370:	mov	r6, #0
+ 374:	movt	r7, #0
+ 378:	ldr	r1, [r7]
+ 37c:	bl	0 <lista_insere>
+ 380:	ldr	r1, [r7, #4]
+ 384:	mov	r0, r8
+ 388:	mov	r2, #0
+ 38c:	bl	0 <lista_insere>
+ 390:	ldr	r1, [r7, #8]
+ 394:	mov	r0, r8
+ 398:	mov	r2, #0
+ 39c:	bl	0 <lista_insere>
+ 3a0:	ldr	r1, [r7, #12]
+ 3a4:	mov	r0, r8
+ 3a8:	mov	r2, #0
+ 3ac:	bl	0 <lista_insere>
+ 3b0:	ldr	r1, [r7, #16]
+ 3b4:	mov	r0, r8
+ 3b8:	mov	r2, #0
+ 3bc:	bl	0 <lista_insere>
+ 3c0:	ldr	r1, [r7, #20]
+ 3c4:	mov	r0, r8
+ 3c8:	mov	r2, #0
+ 3cc:	bl	0 <lista_insere>
+ 3d0:	ldr	r1, [r7, #24]
+ 3d4:	mov	r0, r8
+ 3d8:	mov	r2, #0
+ 3dc:	bl	0 <lista_insere>
+ 3e0:	ldr	r1, [r7, #28]
+ 3e4:	mov	r0, r8
+ 3e8:	mov	r2, #0
+ 3ec:	bl	0 <lista_insere>
+ 3f0:	ldr	r1, [r7, #32]
+ 3f4:	mov	r0, r8
+ 3f8:	mov	r2, #0
+ 3fc:	bl	0 <lista_insere>
+ 400:	ldr	r1, [r7, #36]	; 0x24
+ 404:	mov	r0, r8
+ 408:	mov	r2, #0
+ 40c:	bl	0 <lista_insere>
+ 410:	ldr	r1, [r7, #40]	; 0x28
+ 414:	mov	r0, r8
+ 418:	mov	r2, #0
+ 41c:	bl	0 <lista_insere>
+ 420:	ldr	r1, [r7, #44]	; 0x2c
+ 424:	mov	r0, r8
+ 428:	mov	r2, #0
+ 42c:	bl	0 <lista_insere>
+ 430:	ldr	r1, [r7, #48]	; 0x30
+ 434:	mov	r0, r8
+ 438:	mov	r2, #0
+ 43c:	bl	0 <lista_insere>
+ 440:	movw	r0, #0
+ 444:	ldr	r1, [r4]
+ 448:	ldr	sl, [r8]
+ 44c:	movt	r0, #0
+ 450:	ldr	r0, [r0]
+ 454:	ldr	r9, [r1]
+ 458:	str	r1, [sp, #4]
+ 45c:	str	r0, [sp, #12]
+ 460:	ldr	r0, [sl]
+ 464:	mov	r1, r9
+ 468:	bl	0 <strcmp>
+ 46c:	cmp	r0, #0
+ 470:	mov	r7, #0
+ 474:	beq	498 <main+0x250>
+ 478:	mov	r7, #0
+ 47c:	ldr	sl, [sl, #4]
+ 480:	mov	r1, r9
+ 484:	ldr	r0, [sl]
+ 488:	bl	0 <strcmp>
+ 48c:	add	r7, r7, #1
+ 490:	cmp	r0, #0
+ 494:	bne	47c <main+0x234>
+ 498:	ldr	r1, [sp, #4]
+ 49c:	mov	r0, r4
+ 4a0:	bl	0 <lista_remove>
+ 4a4:	ldr	r0, [sp, #12]
+ 4a8:	movw	r1, #0
+ 4ac:	mov	r2, r7
+ 4b0:	movt	r1, #0
+ 4b4:	bl	0 <fprintf>
+ 4b8:	movw	r0, #0
+ 4bc:	ldr	sl, [r4]
+ 4c0:	ldr	r9, [r8]
+ 4c4:	movt	r0, #0
+ 4c8:	ldr	r0, [r0]
+ 4cc:	ldr	r7, [sl]
+ 4d0:	str	r0, [sp, #12]
+ 4d4:	ldr	r0, [r9]
+ 4d8:	mov	r1, r7
+ 4dc:	bl	0 <strcmp>
+ 4e0:	cmp	r0, #0
+ 4e4:	beq	508 <main+0x2c0>
+ 4e8:	mov	r6, #0
+ 4ec:	ldr	r9, [r9, #4]
+ 4f0:	mov	r1, r7
+ 4f4:	ldr	r0, [r9]
+ 4f8:	bl	0 <strcmp>
+ 4fc:	add	r6, r6, #1
+ 500:	cmp	r0, #0
+ 504:	bne	4ec <main+0x2a4>
+ 508:	mov	r0, r4
+ 50c:	mov	r1, sl
+ 510:	bl	0 <lista_remove>
+ 514:	ldr	r0, [sp, #12]
+ 518:	movw	r1, #0
+ 51c:	mov	r2, r6
+ 520:	movt	r1, #0
+ 524:	bl	0 <fprintf>
+ 528:	mov	r1, r4
+ 52c:	ldr	r4, [r8]
+ 530:	movw	r0, #0
+ 534:	ldr	sl, [r1]
+ 538:	movt	r0, #0
+ 53c:	str	r1, [sp, #12]
+ 540:	ldr	r9, [r0]
+ 544:	ldr	r0, [r4]
+ 548:	ldr	r7, [sl]
+ 54c:	mov	r1, r7
+ 550:	bl	0 <strcmp>
+ 554:	mov	r6, #0
+ 558:	cmp	r0, #0
+ 55c:	beq	57c <main+0x334>
+ 560:	ldr	r4, [r4, #4]
+ 564:	mov	r1, r7
+ 568:	ldr	r0, [r4]
+ 56c:	bl	0 <strcmp>
+ 570:	add	r6, r6, #1
+ 574:	cmp	r0, #0
+ 578:	bne	560 <main+0x318>
+ 57c:	ldr	r4, [sp, #12]
+ 580:	mov	r1, sl
+ 584:	mov	r0, r4
+ 588:	bl	0 <lista_remove>
+ 58c:	movw	r1, #0
+ 590:	mov	r0, r9
+ 594:	mov	r2, r6
+ 598:	movt	r1, #0
+ 59c:	bl	0 <fprintf>
+ 5a0:	ldr	r0, [r5, #196]	; 0xc4
+ 5a4:	mov	r6, r5
+ 5a8:	cmp	r0, #7
+ 5ac:	bgt	5c8 <main+0x380>
+ 5b0:	ldr	r5, [sp, #8]
+ 5b4:	mov	r1, #0
+ 5b8:	add	r0, r0, #50	; 0x32
+ 5bc:	strb	r1, [sp, #17]
+ 5c0:	strb	r0, [sp, #16]
+ 5c4:	b	624 <main+0x3dc>
+ 5c8:	ldr	r5, [sp, #8]
+ 5cc:	sub	r0, r0, #8
+ 5d0:	cmp	r0, #4
+ 5d4:	bhi	624 <main+0x3dc>
+ 5d8:	add	r1, pc, #0
+ 5dc:	ldr	pc, [r1, r0, lsl #2]
+ 5e0:	.word	0x000005f4
+ 5e4:	.word	0x00000604
+ 5e8:	.word	0x0000060c
+ 5ec:	.word	0x00000614
+ 5f0:	.word	0x0000061c
+ 5f4:	mov	r0, #0
+ 5f8:	strb	r0, [sp, #18]
+ 5fc:	movw	r0, #12337	; 0x3031
+ 600:	b	620 <main+0x3d8>
+ 604:	mov	r0, #74	; 0x4a
+ 608:	b	620 <main+0x3d8>
+ 60c:	mov	r0, #81	; 0x51
+ 610:	b	620 <main+0x3d8>
+ 614:	mov	r0, #75	; 0x4b
+ 618:	b	620 <main+0x3d8>
+ 61c:	mov	r0, #65	; 0x41
+ 620:	strh	r0, [sp, #16]
+ 624:	ldr	r2, [r4]
+ 628:	add	r1, sp, #16
+ 62c:	mov	r0, r4
+ 630:	bl	0 <lista_insere>
+ 634:	ldr	r0, [r6, #200]	; 0xc8
+ 638:	cmp	r0, #7
+ 63c:	bgt	654 <main+0x40c>
+ 640:	mov	r1, #0
+ 644:	add	r0, r0, #50	; 0x32
+ 648:	strb	r1, [sp, #17]
+ 64c:	strb	r0, [sp, #16]
+ 650:	b	6ac <main+0x464>
+ 654:	sub	r0, r0, #8
+ 658:	cmp	r0, #4
+ 65c:	bhi	6ac <main+0x464>
+ 660:	add	r1, pc, #0
+ 664:	ldr	pc, [r1, r0, lsl #2]
+ 668:	.word	0x0000067c
+ 66c:	.word	0x0000068c
+ 670:	.word	0x00000694
+ 674:	.word	0x0000069c
+ 678:	.word	0x000006a4
+ 67c:	mov	r0, #0
+ 680:	strb	r0, [sp, #18]
+ 684:	movw	r0, #12337	; 0x3031
+ 688:	b	6a8 <main+0x460>
+ 68c:	mov	r0, #74	; 0x4a
+ 690:	b	6a8 <main+0x460>
+ 694:	mov	r0, #81	; 0x51
+ 698:	b	6a8 <main+0x460>
+ 69c:	mov	r0, #75	; 0x4b
+ 6a0:	b	6a8 <main+0x460>
+ 6a4:	mov	r0, #65	; 0x41
+ 6a8:	strh	r0, [sp, #16]
+ 6ac:	ldr	r2, [r4]
+ 6b0:	add	r1, sp, #16
+ 6b4:	mov	r0, r4
+ 6b8:	bl	0 <lista_insere>
+ 6bc:	ldr	r0, [r6, #204]	; 0xcc
+ 6c0:	cmp	r0, #7
+ 6c4:	bgt	6dc <main+0x494>
+ 6c8:	mov	r1, #0
+ 6cc:	add	r0, r0, #50	; 0x32
+ 6d0:	strb	r1, [sp, #17]
+ 6d4:	strb	r0, [sp, #16]
+ 6d8:	b	734 <main+0x4ec>
+ 6dc:	sub	r0, r0, #8
+ 6e0:	cmp	r0, #4
+ 6e4:	bhi	734 <main+0x4ec>
+ 6e8:	add	r1, pc, #0
+ 6ec:	ldr	pc, [r1, r0, lsl #2]
+ 6f0:	.word	0x00000704
+ 6f4:	.word	0x00000714
+ 6f8:	.word	0x0000071c
+ 6fc:	.word	0x00000724
+ 700:	.word	0x0000072c
+ 704:	mov	r0, #0
+ 708:	strb	r0, [sp, #18]
+ 70c:	movw	r0, #12337	; 0x3031
+ 710:	b	730 <main+0x4e8>
+ 714:	mov	r0, #74	; 0x4a
+ 718:	b	730 <main+0x4e8>
+ 71c:	mov	r0, #81	; 0x51
+ 720:	b	730 <main+0x4e8>
+ 724:	mov	r0, #75	; 0x4b
+ 728:	b	730 <main+0x4e8>
+ 72c:	mov	r0, #65	; 0x41
+ 730:	strh	r0, [sp, #16]
+ 734:	ldr	r2, [r4]
+ 738:	add	r1, sp, #16
+ 73c:	mov	r0, r4
+ 740:	bl	0 <lista_insere>
+ 744:	mov	r7, #0
+ 748:	bl	0 <vetor_novo>
+ 74c:	movw	r9, #0
+ 750:	mov	r6, r0
+ 754:	movt	r9, #0
+ 758:	b	77c <main+0x534>
+ 75c:	movw	r0, #0
+ 760:	mov	r1, #44	; 0x2c
+ 764:	mov	r2, #1
+ 768:	movt	r0, #0
+ 76c:	ldr	r3, [r0]
+ 770:	mov	r0, r9
+ 774:	bl	0 <fwrite>
+ 778:	b	7b4 <main+0x56c>
+ 77c:	mov	r0, r5
+ 780:	mov	r1, r4
+ 784:	mov	r2, r8
+ 788:	bl	60 <faz_jogada>
+ 78c:	cmp	r0, #0
+ 790:	beq	7a4 <main+0x55c>
+ 794:	mov	r1, r0
+ 798:	mov	r0, r6
+ 79c:	mov	r2, r7
+ 7a0:	bl	0 <vetor_insere>
+ 7a4:	mov	r0, r5
+ 7a8:	bl	0 <vetor_tamanho>
+ 7ac:	cmp	r0, #4
+ 7b0:	bne	75c <main+0x514>
+ 7b4:	add	r7, r7, #1
+ 7b8:	cmp	r7, #13
+ 7bc:	bne	77c <main+0x534>
+ 7c0:	movw	r0, #0
+ 7c4:	str	r8, [sp, #4]
+ 7c8:	movt	r0, #0
+ 7cc:	bl	0 <puts>
+ 7d0:	ldr	r0, [r6]
+ 7d4:	cmp	r0, #1
+ 7d8:	bge	a8c <main+0x844>
+ 7dc:	mov	r0, r6
+ 7e0:	bl	0 <vetor_apaga>
+ 7e4:	bl	0 <vetor_novo>
+ 7e8:	movw	r7, #0
+ 7ec:	mov	r2, #0
+ 7f0:	mov	r9, r0
+ 7f4:	mov	r6, #0
+ 7f8:	movt	r7, #0
+ 7fc:	ldr	r1, [r7]
+ 800:	bl	0 <vetor_insere>
+ 804:	ldr	r1, [r7, #4]
+ 808:	mov	r0, r9
+ 80c:	mov	r2, #1
+ 810:	bl	0 <vetor_insere>
+ 814:	ldr	r1, [r7, #8]
+ 818:	mov	r0, r9
+ 81c:	mov	r2, #2
+ 820:	bl	0 <vetor_insere>
+ 824:	ldr	r1, [r7, #12]
+ 828:	mov	r0, r9
+ 82c:	mov	r2, #3
+ 830:	bl	0 <vetor_insere>
+ 834:	ldr	r1, [r7, #16]
+ 838:	mov	r0, r9
+ 83c:	mov	r2, #4
+ 840:	bl	0 <vetor_insere>
+ 844:	ldr	r1, [r7, #20]
+ 848:	mov	r0, r9
+ 84c:	mov	r2, #5
+ 850:	bl	0 <vetor_insere>
+ 854:	ldr	r1, [r7, #24]
+ 858:	mov	r0, r9
+ 85c:	mov	r2, #6
+ 860:	bl	0 <vetor_insere>
+ 864:	ldr	r1, [r7, #28]
+ 868:	mov	r0, r9
+ 86c:	mov	r2, #7
+ 870:	bl	0 <vetor_insere>
+ 874:	ldr	r1, [r7, #32]
+ 878:	mov	r0, r9
+ 87c:	mov	r2, #8
+ 880:	bl	0 <vetor_insere>
+ 884:	ldr	r1, [r7, #36]	; 0x24
+ 888:	mov	r0, r9
+ 88c:	mov	r2, #9
+ 890:	bl	0 <vetor_insere>
+ 894:	ldr	r1, [r7, #40]	; 0x28
+ 898:	mov	r0, r9
+ 89c:	mov	r2, #10
+ 8a0:	bl	0 <vetor_insere>
+ 8a4:	ldr	r1, [r7, #44]	; 0x2c
+ 8a8:	mov	r0, r9
+ 8ac:	mov	r2, #11
+ 8b0:	bl	0 <vetor_insere>
+ 8b4:	ldr	r1, [r7, #48]	; 0x30
+ 8b8:	mov	r0, r9
+ 8bc:	mov	r2, #12
+ 8c0:	bl	0 <vetor_insere>
+ 8c4:	mov	r0, #10
+ 8c8:	bl	0 <putchar>
+ 8cc:	movw	r0, #0
+ 8d0:	ldr	r8, [r9]
+ 8d4:	mov	sl, #0
+ 8d8:	movt	r0, #0
+ 8dc:	ldr	r7, [r0]
+ 8e0:	movw	r0, #0
+ 8e4:	movt	r0, #0
+ 8e8:	ldr	r5, [r0]
+ 8ec:	cmp	r8, #1
+ 8f0:	blt	918 <main+0x6d0>
+ 8f4:	ldr	r4, [r9, #8]
+ 8f8:	mov	sl, #0
+ 8fc:	ldr	r1, [r4], #4
+ 900:	mov	r0, r7
+ 904:	bl	0 <strcmp>
+ 908:	cmp	r0, #0
+ 90c:	addeq	sl, sl, #1
+ 910:	subs	r8, r8, #1
+ 914:	bne	8fc <main+0x6b4>
+ 918:	ldr	r8, [sp, #8]
+ 91c:	movw	r1, #0
+ 920:	mov	r0, r5
+ 924:	mov	r2, r7
+ 928:	mov	r3, sl
+ 92c:	movt	r1, #0
+ 930:	bl	0 <fprintf>
+ 934:	movw	r0, #0
+ 938:	ldr	r4, [r9]
+ 93c:	movt	r0, #0
+ 940:	ldr	r7, [r0, #4]
+ 944:	movw	r0, #0
+ 948:	movt	r0, #0
+ 94c:	ldr	sl, [r0]
+ 950:	cmp	r4, #1
+ 954:	blt	97c <main+0x734>
+ 958:	ldr	r5, [r9, #8]
+ 95c:	mov	r6, #0
+ 960:	ldr	r1, [r5], #4
+ 964:	mov	r0, r7
+ 968:	bl	0 <strcmp>
+ 96c:	cmp	r0, #0
+ 970:	addeq	r6, r6, #1
+ 974:	subs	r4, r4, #1
+ 978:	bne	960 <main+0x718>
+ 97c:	movw	r1, #0
+ 980:	mov	r0, sl
+ 984:	mov	r2, r7
+ 988:	mov	r3, r6
+ 98c:	movt	r1, #0
+ 990:	bl	0 <fprintf>
+ 994:	movw	r0, #0
+ 998:	ldr	r4, [r9]
+ 99c:	mov	r6, #0
+ 9a0:	mov	sl, #0
+ 9a4:	movt	r0, #0
+ 9a8:	ldr	r7, [r0, #8]
+ 9ac:	movw	r0, #0
+ 9b0:	movt	r0, #0
+ 9b4:	ldr	r0, [r0]
+ 9b8:	cmp	r4, #1
+ 9bc:	str	r0, [sp]
+ 9c0:	blt	9e8 <main+0x7a0>
+ 9c4:	ldr	r5, [r9, #8]
+ 9c8:	mov	sl, #0
+ 9cc:	ldr	r1, [r5], #4
+ 9d0:	mov	r0, r7
+ 9d4:	bl	0 <strcmp>
+ 9d8:	cmp	r0, #0
+ 9dc:	addeq	sl, sl, #1
+ 9e0:	subs	r4, r4, #1
+ 9e4:	bne	9cc <main+0x784>
+ 9e8:	ldr	r0, [sp]
+ 9ec:	movw	r1, #0
+ 9f0:	mov	r2, r7
+ 9f4:	mov	r3, sl
+ 9f8:	movt	r1, #0
+ 9fc:	bl	0 <fprintf>
+ a00:	movw	r0, #0
+ a04:	ldr	r4, [r9]
+ a08:	movt	r0, #0
+ a0c:	ldr	r7, [r0, #12]
+ a10:	movw	r0, #0
+ a14:	movt	r0, #0
+ a18:	ldr	sl, [r0]
+ a1c:	cmp	r4, #1
+ a20:	blt	a48 <main+0x800>
+ a24:	ldr	r5, [r9, #8]
+ a28:	mov	r6, #0
+ a2c:	ldr	r1, [r5], #4
+ a30:	mov	r0, r7
+ a34:	bl	0 <strcmp>
+ a38:	cmp	r0, #0
+ a3c:	addeq	r6, r6, #1
+ a40:	subs	r4, r4, #1
+ a44:	bne	a2c <main+0x7e4>
+ a48:	movw	r1, #0
+ a4c:	mov	r0, sl
+ a50:	mov	r2, r7
+ a54:	mov	r3, r6
+ a58:	movt	r1, #0
+ a5c:	bl	0 <fprintf>
+ a60:	mov	r0, r8
+ a64:	bl	0 <vetor_apaga>
+ a68:	ldr	r0, [sp, #12]
+ a6c:	bl	0 <lista_apaga>
+ a70:	ldr	r0, [sp, #4]
+ a74:	bl	0 <lista_apaga>
+ a78:	mov	r0, r9
+ a7c:	bl	0 <vetor_apaga>
+ a80:	mov	r0, #0
+ a84:	sub	sp, fp, #28
+ a88:	pop	{r4, r5, r6, r7, r8, r9, sl, fp, pc}
+ a8c:	movw	r9, #0
+ a90:	mov	r7, #1
+ a94:	movt	r9, #0
+ a98:	movw	r0, #0
+ a9c:	sub	r1, r7, #1
+ aa0:	movt	r0, #0
+ aa4:	ldr	sl, [r0]
+ aa8:	mov	r0, r6
+ aac:	bl	0 <vetor_elemento>
+ ab0:	mov	r3, r0
+ ab4:	mov	r0, sl
+ ab8:	mov	r1, r9
+ abc:	mov	r2, r7
+ ac0:	bl	0 <fprintf>
+ ac4:	cmp	r7, #2
+ ac8:	bhi	7dc <main+0x594>
+ acc:	ldr	r1, [r6]
+ ad0:	add	r0, r7, #1
+ ad4:	cmp	r7, r1
+ ad8:	mov	r7, r0
+ adc:	bge	7dc <main+0x594>
+ ae0:	b	a98 <main+0x850>

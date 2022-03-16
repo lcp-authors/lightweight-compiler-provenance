@@ -1,0 +1,789 @@
+
+../compcert-repos/dvidelabs-flatcc-3b39ef7/src/compiler/CMakeFiles/flatcc.dir/fileio.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <__flatcc_fb_copy_path_n>:
+   0:	push	{fp, lr}
+   4:	mov	fp, sp
+   8:	sub	sp, sp, #16
+   c:	str	r0, [fp, #-4]
+  10:	str	r1, [sp, #8]
+  14:	ldr	r0, [fp, #-4]
+  18:	ldr	r1, [sp, #8]
+  1c:	bl	70 <pstrnlen>
+  20:	str	r0, [sp, #4]
+  24:	ldr	r0, [sp, #4]
+  28:	add	r0, r0, #1
+  2c:	bl	0 <malloc>
+  30:	str	r0, [sp]
+  34:	movw	r1, #0
+  38:	cmp	r0, r1
+  3c:	beq	64 <__flatcc_fb_copy_path_n+0x64>
+  40:	ldr	r0, [sp]
+  44:	ldr	r1, [fp, #-4]
+  48:	ldr	r2, [sp, #4]
+  4c:	bl	0 <memcpy>
+  50:	ldr	r0, [sp]
+  54:	ldr	r1, [sp, #4]
+  58:	add	r0, r0, r1
+  5c:	movw	r1, #0
+  60:	strb	r1, [r0]
+  64:	ldr	r0, [sp]
+  68:	mov	sp, fp
+  6c:	pop	{fp, pc}
+
+00000070 <pstrnlen>:
+  70:	push	{fp, lr}
+  74:	mov	fp, sp
+  78:	sub	sp, sp, #16
+  7c:	str	r0, [fp, #-4]
+  80:	str	r1, [sp, #8]
+  84:	ldr	r0, [fp, #-4]
+  88:	ldr	r2, [sp, #8]
+  8c:	mov	r1, #0
+  90:	bl	0 <memchr>
+  94:	str	r0, [sp, #4]
+  98:	ldr	r0, [sp, #4]
+  9c:	movw	r1, #0
+  a0:	cmp	r0, r1
+  a4:	beq	bc <pstrnlen+0x4c>
+  a8:	ldr	r0, [sp, #4]
+  ac:	ldr	r1, [fp, #-4]
+  b0:	sub	r0, r0, r1
+  b4:	str	r0, [sp]
+  b8:	b	c4 <pstrnlen+0x54>
+  bc:	ldr	r0, [sp, #8]
+  c0:	str	r0, [sp]
+  c4:	ldr	r0, [sp]
+  c8:	mov	sp, fp
+  cc:	pop	{fp, pc}
+
+000000d0 <__flatcc_fb_copy_path>:
+  d0:	push	{fp, lr}
+  d4:	mov	fp, sp
+  d8:	sub	sp, sp, #16
+  dc:	str	r0, [fp, #-4]
+  e0:	ldr	r0, [fp, #-4]
+  e4:	bl	0 <strlen>
+  e8:	str	r0, [sp, #8]
+  ec:	ldr	r0, [sp, #8]
+  f0:	add	r0, r0, #1
+  f4:	bl	0 <malloc>
+  f8:	str	r0, [sp, #4]
+  fc:	movw	lr, #0
+ 100:	cmp	r0, lr
+ 104:	beq	12c <__flatcc_fb_copy_path+0x5c>
+ 108:	ldr	r0, [sp, #4]
+ 10c:	ldr	r1, [fp, #-4]
+ 110:	ldr	r2, [sp, #8]
+ 114:	bl	0 <memcpy>
+ 118:	ldr	r0, [sp, #4]
+ 11c:	ldr	r1, [sp, #8]
+ 120:	add	r0, r0, r1
+ 124:	movw	r1, #0
+ 128:	strb	r1, [r0]
+ 12c:	ldr	r0, [sp, #4]
+ 130:	mov	sp, fp
+ 134:	pop	{fp, pc}
+
+00000138 <__flatcc_fb_chomp>:
+ 138:	push	{fp, lr}
+ 13c:	mov	fp, sp
+ 140:	sub	sp, sp, #24
+ 144:	str	r0, [fp, #-4]
+ 148:	str	r1, [fp, #-8]
+ 14c:	str	r2, [sp, #12]
+ 150:	ldr	r0, [sp, #12]
+ 154:	movw	r1, #0
+ 158:	cmp	r0, r1
+ 15c:	beq	170 <__flatcc_fb_chomp+0x38>
+ 160:	ldr	r0, [sp, #12]
+ 164:	bl	0 <strlen>
+ 168:	str	r0, [sp, #4]
+ 16c:	b	17c <__flatcc_fb_chomp+0x44>
+ 170:	movw	r0, #0
+ 174:	str	r0, [sp, #4]
+ 178:	b	17c <__flatcc_fb_chomp+0x44>
+ 17c:	ldr	r0, [sp, #4]
+ 180:	str	r0, [sp, #8]
+ 184:	ldr	r0, [fp, #-8]
+ 188:	ldr	r1, [sp, #8]
+ 18c:	cmp	r0, r1
+ 190:	bls	1d8 <__flatcc_fb_chomp+0xa0>
+ 194:	ldr	r0, [fp, #-4]
+ 198:	ldr	r1, [fp, #-8]
+ 19c:	add	r0, r0, r1
+ 1a0:	ldr	r1, [sp, #8]
+ 1a4:	movw	r2, #0
+ 1a8:	sub	r1, r2, r1
+ 1ac:	add	r0, r0, r1
+ 1b0:	ldr	r1, [sp, #12]
+ 1b4:	ldr	r2, [sp, #8]
+ 1b8:	bl	0 <strncmp>
+ 1bc:	movw	r1, #0
+ 1c0:	cmp	r1, r0
+ 1c4:	bne	1d8 <__flatcc_fb_chomp+0xa0>
+ 1c8:	ldr	r0, [sp, #8]
+ 1cc:	ldr	r1, [fp, #-8]
+ 1d0:	sub	r0, r1, r0
+ 1d4:	str	r0, [fp, #-8]
+ 1d8:	ldr	r0, [fp, #-8]
+ 1dc:	mov	sp, fp
+ 1e0:	pop	{fp, pc}
+
+000001e4 <__flatcc_fb_create_join_path_n>:
+ 1e4:	push	{fp, lr}
+ 1e8:	mov	fp, sp
+ 1ec:	sub	sp, sp, #48	; 0x30
+ 1f0:	ldr	ip, [fp, #12]
+ 1f4:	ldr	lr, [fp, #8]
+ 1f8:	str	r0, [fp, #-8]
+ 1fc:	str	r1, [fp, #-12]
+ 200:	str	r2, [fp, #-16]
+ 204:	str	r3, [fp, #-20]	; 0xffffffec
+ 208:	ldr	r0, [fp, #8]
+ 20c:	movw	r1, #0
+ 210:	cmp	r0, r1
+ 214:	str	lr, [sp, #12]
+ 218:	str	ip, [sp, #8]
+ 21c:	beq	230 <__flatcc_fb_create_join_path_n+0x4c>
+ 220:	ldr	r0, [fp, #8]
+ 224:	bl	0 <strlen>
+ 228:	str	r0, [sp, #4]
+ 22c:	b	23c <__flatcc_fb_create_join_path_n+0x58>
+ 230:	movw	r0, #0
+ 234:	str	r0, [sp, #4]
+ 238:	b	23c <__flatcc_fb_create_join_path_n+0x58>
+ 23c:	ldr	r0, [sp, #4]
+ 240:	str	r0, [sp, #20]
+ 244:	ldr	r0, [fp, #-8]
+ 248:	movw	r1, #0
+ 24c:	cmp	r0, r1
+ 250:	beq	29c <__flatcc_fb_create_join_path_n+0xb8>
+ 254:	ldr	r0, [fp, #-20]	; 0xffffffec
+ 258:	cmp	r0, #0
+ 25c:	bls	280 <__flatcc_fb_create_join_path_n+0x9c>
+ 260:	ldr	r0, [fp, #-16]
+ 264:	ldrb	r0, [r0]
+ 268:	cmp	r0, #47	; 0x2f
+ 26c:	beq	29c <__flatcc_fb_create_join_path_n+0xb8>
+ 270:	ldr	r0, [fp, #-16]
+ 274:	ldrb	r0, [r0]
+ 278:	cmp	r0, #92	; 0x5c
+ 27c:	beq	29c <__flatcc_fb_create_join_path_n+0xb8>
+ 280:	ldr	r0, [fp, #-20]	; 0xffffffec
+ 284:	cmp	r0, #1
+ 288:	bls	2a4 <__flatcc_fb_create_join_path_n+0xc0>
+ 28c:	ldr	r0, [fp, #-16]
+ 290:	ldrb	r0, [r0, #1]
+ 294:	cmp	r0, #58	; 0x3a
+ 298:	bne	2a4 <__flatcc_fb_create_join_path_n+0xc0>
+ 29c:	movw	r0, #0
+ 2a0:	str	r0, [fp, #-12]
+ 2a4:	ldr	r0, [fp, #12]
+ 2a8:	cmp	r0, #0
+ 2ac:	beq	2fc <__flatcc_fb_create_join_path_n+0x118>
+ 2b0:	ldr	r0, [fp, #-12]
+ 2b4:	cmp	r0, #0
+ 2b8:	beq	2f4 <__flatcc_fb_create_join_path_n+0x110>
+ 2bc:	ldr	r0, [fp, #-8]
+ 2c0:	ldr	r1, [fp, #-12]
+ 2c4:	sub	r1, r1, #1
+ 2c8:	add	r0, r0, r1
+ 2cc:	ldrb	r0, [r0]
+ 2d0:	cmp	r0, #47	; 0x2f
+ 2d4:	beq	2f4 <__flatcc_fb_create_join_path_n+0x110>
+ 2d8:	ldr	r0, [fp, #-8]
+ 2dc:	ldr	r1, [fp, #-12]
+ 2e0:	sub	r1, r1, #1
+ 2e4:	add	r0, r0, r1
+ 2e8:	ldrb	r0, [r0]
+ 2ec:	cmp	r0, #92	; 0x5c
+ 2f0:	bne	2fc <__flatcc_fb_create_join_path_n+0x118>
+ 2f4:	movw	r0, #0
+ 2f8:	str	r0, [fp, #12]
+ 2fc:	ldr	r0, [fp, #-12]
+ 300:	ldr	r1, [fp, #12]
+ 304:	add	r0, r0, r1
+ 308:	ldr	r1, [fp, #-20]	; 0xffffffec
+ 30c:	add	r0, r0, r1
+ 310:	ldr	r1, [sp, #20]
+ 314:	add	r0, r0, r1
+ 318:	add	r0, r0, #1
+ 31c:	bl	0 <malloc>
+ 320:	str	r0, [sp, #24]
+ 324:	ldr	r0, [sp, #24]
+ 328:	movw	r1, #0
+ 32c:	cmp	r0, r1
+ 330:	bne	340 <__flatcc_fb_create_join_path_n+0x15c>
+ 334:	movw	r0, #0
+ 338:	str	r0, [fp, #-4]
+ 33c:	b	3fc <__flatcc_fb_create_join_path_n+0x218>
+ 340:	movw	r0, #0
+ 344:	str	r0, [sp, #16]
+ 348:	ldr	r0, [sp, #24]
+ 34c:	ldr	r1, [fp, #-8]
+ 350:	ldr	r2, [fp, #-12]
+ 354:	bl	0 <memcpy>
+ 358:	ldr	r0, [fp, #-12]
+ 35c:	ldr	r1, [sp, #16]
+ 360:	add	r0, r1, r0
+ 364:	str	r0, [sp, #16]
+ 368:	ldr	r0, [fp, #12]
+ 36c:	cmp	r0, #0
+ 370:	beq	390 <__flatcc_fb_create_join_path_n+0x1ac>
+ 374:	ldr	r0, [sp, #24]
+ 378:	ldr	r1, [sp, #16]
+ 37c:	add	r2, r1, #1
+ 380:	str	r2, [sp, #16]
+ 384:	add	r0, r0, r1
+ 388:	movw	r1, #47	; 0x2f
+ 38c:	strb	r1, [r0]
+ 390:	ldr	r0, [sp, #24]
+ 394:	ldr	r1, [sp, #16]
+ 398:	add	r0, r0, r1
+ 39c:	ldr	r1, [fp, #-16]
+ 3a0:	ldr	r2, [fp, #-20]	; 0xffffffec
+ 3a4:	bl	0 <memcpy>
+ 3a8:	ldr	r0, [fp, #-20]	; 0xffffffec
+ 3ac:	ldr	r1, [sp, #16]
+ 3b0:	add	r0, r1, r0
+ 3b4:	str	r0, [sp, #16]
+ 3b8:	ldr	r0, [sp, #24]
+ 3bc:	ldr	r1, [sp, #16]
+ 3c0:	add	r0, r0, r1
+ 3c4:	ldr	r1, [fp, #8]
+ 3c8:	ldr	r2, [sp, #20]
+ 3cc:	bl	0 <memcpy>
+ 3d0:	ldr	r0, [sp, #20]
+ 3d4:	ldr	r1, [sp, #16]
+ 3d8:	add	r0, r1, r0
+ 3dc:	str	r0, [sp, #16]
+ 3e0:	ldr	r0, [sp, #24]
+ 3e4:	ldr	r1, [sp, #16]
+ 3e8:	add	r0, r0, r1
+ 3ec:	movw	r1, #0
+ 3f0:	strb	r1, [r0]
+ 3f4:	ldr	r0, [sp, #24]
+ 3f8:	str	r0, [fp, #-4]
+ 3fc:	ldr	r0, [fp, #-4]
+ 400:	mov	sp, fp
+ 404:	pop	{fp, pc}
+
+00000408 <__flatcc_fb_create_join_path>:
+ 408:	push	{r4, r5, fp, lr}
+ 40c:	add	fp, sp, #8
+ 410:	sub	sp, sp, #56	; 0x38
+ 414:	str	r0, [fp, #-12]
+ 418:	str	r1, [fp, #-16]
+ 41c:	str	r2, [fp, #-20]	; 0xffffffec
+ 420:	str	r3, [fp, #-24]	; 0xffffffe8
+ 424:	ldr	r0, [fp, #-12]
+ 428:	ldr	r1, [fp, #-12]
+ 42c:	movw	r2, #0
+ 430:	cmp	r1, r2
+ 434:	str	r0, [fp, #-28]	; 0xffffffe4
+ 438:	beq	44c <__flatcc_fb_create_join_path+0x44>
+ 43c:	ldr	r0, [fp, #-12]
+ 440:	bl	0 <strlen>
+ 444:	str	r0, [sp, #32]
+ 448:	b	458 <__flatcc_fb_create_join_path+0x50>
+ 44c:	movw	r0, #0
+ 450:	str	r0, [sp, #32]
+ 454:	b	458 <__flatcc_fb_create_join_path+0x50>
+ 458:	ldr	r0, [sp, #32]
+ 45c:	ldr	r2, [fp, #-16]
+ 460:	ldr	r1, [fp, #-16]
+ 464:	movw	r3, #0
+ 468:	cmp	r1, r3
+ 46c:	str	r0, [sp, #28]
+ 470:	str	r2, [sp, #24]
+ 474:	beq	488 <__flatcc_fb_create_join_path+0x80>
+ 478:	ldr	r0, [fp, #-16]
+ 47c:	bl	0 <strlen>
+ 480:	str	r0, [sp, #20]
+ 484:	b	494 <__flatcc_fb_create_join_path+0x8c>
+ 488:	movw	r0, #0
+ 48c:	str	r0, [sp, #20]
+ 490:	b	494 <__flatcc_fb_create_join_path+0x8c>
+ 494:	ldr	r0, [sp, #20]
+ 498:	ldr	r1, [fp, #-20]	; 0xffffffec
+ 49c:	ldr	r2, [fp, #-24]	; 0xffffffe8
+ 4a0:	ldr	r3, [fp, #-28]	; 0xffffffe4
+ 4a4:	str	r0, [sp, #16]
+ 4a8:	mov	r0, r3
+ 4ac:	ldr	ip, [sp, #28]
+ 4b0:	str	r1, [sp, #12]
+ 4b4:	mov	r1, ip
+ 4b8:	ldr	lr, [sp, #24]
+ 4bc:	str	r2, [sp, #8]
+ 4c0:	mov	r2, lr
+ 4c4:	ldr	r3, [sp, #16]
+ 4c8:	ldr	r4, [sp, #12]
+ 4cc:	str	r4, [sp]
+ 4d0:	ldr	r5, [sp, #8]
+ 4d4:	str	r5, [sp, #4]
+ 4d8:	bl	1e4 <__flatcc_fb_create_join_path_n>
+ 4dc:	sub	sp, fp, #8
+ 4e0:	pop	{r4, r5, fp, pc}
+
+000004e4 <__flatcc_fb_create_path_ext_n>:
+ 4e4:	push	{fp, lr}
+ 4e8:	mov	fp, sp
+ 4ec:	sub	sp, sp, #32
+ 4f0:	str	r0, [fp, #-4]
+ 4f4:	str	r1, [fp, #-8]
+ 4f8:	str	r2, [fp, #-12]
+ 4fc:	ldr	r2, [fp, #-4]
+ 500:	ldr	r3, [fp, #-8]
+ 504:	ldr	r0, [fp, #-12]
+ 508:	movw	r1, #0
+ 50c:	str	r0, [sp, #16]
+ 510:	mov	r0, r1
+ 514:	str	r1, [sp, #12]
+ 518:	ldr	ip, [sp, #16]
+ 51c:	str	ip, [sp]
+ 520:	ldr	lr, [sp, #12]
+ 524:	str	lr, [sp, #4]
+ 528:	bl	1e4 <__flatcc_fb_create_join_path_n>
+ 52c:	mov	sp, fp
+ 530:	pop	{fp, pc}
+
+00000534 <__flatcc_fb_create_path_ext>:
+ 534:	push	{fp, lr}
+ 538:	mov	fp, sp
+ 53c:	sub	sp, sp, #16
+ 540:	str	r0, [fp, #-4]
+ 544:	str	r1, [sp, #8]
+ 548:	ldr	r1, [fp, #-4]
+ 54c:	ldr	r2, [sp, #8]
+ 550:	movw	r0, #0
+ 554:	str	r0, [sp, #4]
+ 558:	ldr	r3, [sp, #4]
+ 55c:	bl	408 <__flatcc_fb_create_join_path>
+ 560:	mov	sp, fp
+ 564:	pop	{fp, pc}
+
+00000568 <__flatcc_fb_create_make_path_n>:
+ 568:	push	{fp, lr}
+ 56c:	mov	fp, sp
+ 570:	sub	sp, sp, #32
+ 574:	str	r0, [fp, #-8]
+ 578:	str	r1, [fp, #-12]
+ 57c:	ldr	r0, [fp, #-12]
+ 580:	cmp	r0, #1
+ 584:	bne	600 <__flatcc_fb_create_make_path_n+0x98>
+ 588:	ldr	r0, [fp, #-8]
+ 58c:	ldrb	r0, [r0]
+ 590:	cmp	r0, #32
+ 594:	beq	5a8 <__flatcc_fb_create_make_path_n+0x40>
+ 598:	ldr	r0, [fp, #-8]
+ 59c:	ldrb	r0, [r0]
+ 5a0:	cmp	r0, #92	; 0x5c
+ 5a4:	bne	600 <__flatcc_fb_create_make_path_n+0x98>
+ 5a8:	movw	r0, #3
+ 5ac:	bl	0 <malloc>
+ 5b0:	str	r0, [sp, #4]
+ 5b4:	movw	lr, #0
+ 5b8:	cmp	r0, lr
+ 5bc:	bne	5cc <__flatcc_fb_create_make_path_n+0x64>
+ 5c0:	movw	r0, #0
+ 5c4:	str	r0, [fp, #-4]
+ 5c8:	b	86c <__flatcc_fb_create_make_path_n+0x304>
+ 5cc:	ldr	r0, [sp, #4]
+ 5d0:	movw	r1, #92	; 0x5c
+ 5d4:	strb	r1, [r0]
+ 5d8:	ldr	r0, [fp, #-8]
+ 5dc:	ldrb	r0, [r0]
+ 5e0:	ldr	r1, [sp, #4]
+ 5e4:	strb	r0, [r1, #1]
+ 5e8:	ldr	r0, [sp, #4]
+ 5ec:	movw	r1, #0
+ 5f0:	strb	r1, [r0, #2]
+ 5f4:	ldr	r0, [sp, #4]
+ 5f8:	str	r0, [fp, #-4]
+ 5fc:	b	86c <__flatcc_fb_create_make_path_n+0x304>
+ 600:	ldr	r0, [fp, #-12]
+ 604:	cmp	r0, #1
+ 608:	bhi	620 <__flatcc_fb_create_make_path_n+0xb8>
+ 60c:	ldr	r0, [fp, #-8]
+ 610:	ldr	r1, [fp, #-12]
+ 614:	bl	0 <__flatcc_fb_copy_path_n>
+ 618:	str	r0, [fp, #-4]
+ 61c:	b	86c <__flatcc_fb_create_make_path_n+0x304>
+ 620:	movw	r0, #0
+ 624:	str	r0, [sp, #16]
+ 628:	ldr	r0, [fp, #-12]
+ 62c:	str	r0, [sp, #8]
+ 630:	ldr	r0, [sp, #16]
+ 634:	ldr	r1, [fp, #-12]
+ 638:	sub	r1, r1, #1
+ 63c:	cmp	r0, r1
+ 640:	bcs	6c0 <__flatcc_fb_create_make_path_n+0x158>
+ 644:	ldr	r0, [fp, #-8]
+ 648:	ldr	r1, [sp, #16]
+ 64c:	add	r0, r0, r1
+ 650:	ldrb	r0, [r0]
+ 654:	cmp	r0, #92	; 0x5c
+ 658:	bne	684 <__flatcc_fb_create_make_path_n+0x11c>
+ 65c:	ldr	r0, [fp, #-8]
+ 660:	ldr	r1, [sp, #16]
+ 664:	add	r1, r1, #1
+ 668:	add	r0, r0, r1
+ 66c:	ldrb	r0, [r0]
+ 670:	cmp	r0, #32
+ 674:	bne	684 <__flatcc_fb_create_make_path_n+0x11c>
+ 678:	ldr	r0, [sp, #8]
+ 67c:	add	r0, r0, #1
+ 680:	str	r0, [sp, #8]
+ 684:	ldr	r0, [fp, #-8]
+ 688:	ldr	r1, [sp, #16]
+ 68c:	add	r0, r0, r1
+ 690:	ldrb	r0, [r0]
+ 694:	cmp	r0, #32
+ 698:	movw	r0, #0
+ 69c:	moveq	r0, #1
+ 6a0:	and	r0, r0, #1
+ 6a4:	ldr	r1, [sp, #8]
+ 6a8:	add	r0, r1, r0
+ 6ac:	str	r0, [sp, #8]
+ 6b0:	ldr	r0, [sp, #16]
+ 6b4:	add	r0, r0, #1
+ 6b8:	str	r0, [sp, #16]
+ 6bc:	b	630 <__flatcc_fb_create_make_path_n+0xc8>
+ 6c0:	ldr	r0, [fp, #-8]
+ 6c4:	ldr	r1, [sp, #16]
+ 6c8:	add	r0, r0, r1
+ 6cc:	ldrb	r0, [r0]
+ 6d0:	cmp	r0, #32
+ 6d4:	movw	r0, #0
+ 6d8:	moveq	r0, #1
+ 6dc:	and	r0, r0, #1
+ 6e0:	ldr	r1, [sp, #8]
+ 6e4:	add	r0, r1, r0
+ 6e8:	str	r0, [sp, #8]
+ 6ec:	ldr	r0, [sp, #8]
+ 6f0:	add	r0, r0, #1
+ 6f4:	bl	0 <malloc>
+ 6f8:	str	r0, [sp, #4]
+ 6fc:	movw	r1, #0
+ 700:	cmp	r0, r1
+ 704:	bne	714 <__flatcc_fb_create_make_path_n+0x1ac>
+ 708:	movw	r0, #0
+ 70c:	str	r0, [fp, #-4]
+ 710:	b	86c <__flatcc_fb_create_make_path_n+0x304>
+ 714:	movw	r0, #0
+ 718:	str	r0, [sp, #16]
+ 71c:	str	r0, [sp, #12]
+ 720:	ldr	r0, [sp, #16]
+ 724:	ldr	r1, [fp, #-12]
+ 728:	sub	r1, r1, #1
+ 72c:	cmp	r0, r1
+ 730:	bcs	7f4 <__flatcc_fb_create_make_path_n+0x28c>
+ 734:	ldr	r0, [fp, #-8]
+ 738:	ldr	r1, [sp, #16]
+ 73c:	add	r0, r0, r1
+ 740:	ldrb	r0, [r0]
+ 744:	cmp	r0, #92	; 0x5c
+ 748:	bne	784 <__flatcc_fb_create_make_path_n+0x21c>
+ 74c:	ldr	r0, [fp, #-8]
+ 750:	ldr	r1, [sp, #16]
+ 754:	add	r1, r1, #1
+ 758:	add	r0, r0, r1
+ 75c:	ldrb	r0, [r0]
+ 760:	cmp	r0, #32
+ 764:	bne	784 <__flatcc_fb_create_make_path_n+0x21c>
+ 768:	ldr	r0, [sp, #4]
+ 76c:	ldr	r1, [sp, #12]
+ 770:	add	r2, r1, #1
+ 774:	str	r2, [sp, #12]
+ 778:	add	r0, r0, r1
+ 77c:	movw	r1, #92	; 0x5c
+ 780:	strb	r1, [r0]
+ 784:	ldr	r0, [fp, #-8]
+ 788:	ldr	r1, [sp, #16]
+ 78c:	add	r0, r0, r1
+ 790:	ldrb	r0, [r0]
+ 794:	cmp	r0, #32
+ 798:	bne	7b8 <__flatcc_fb_create_make_path_n+0x250>
+ 79c:	ldr	r0, [sp, #4]
+ 7a0:	ldr	r1, [sp, #12]
+ 7a4:	add	r2, r1, #1
+ 7a8:	str	r2, [sp, #12]
+ 7ac:	add	r0, r0, r1
+ 7b0:	movw	r1, #92	; 0x5c
+ 7b4:	strb	r1, [r0]
+ 7b8:	ldr	r0, [fp, #-8]
+ 7bc:	ldr	r1, [sp, #16]
+ 7c0:	add	r0, r0, r1
+ 7c4:	ldrb	r0, [r0]
+ 7c8:	ldr	r1, [sp, #4]
+ 7cc:	ldr	r2, [sp, #12]
+ 7d0:	add	r1, r1, r2
+ 7d4:	strb	r0, [r1]
+ 7d8:	ldr	r0, [sp, #16]
+ 7dc:	add	r0, r0, #1
+ 7e0:	str	r0, [sp, #16]
+ 7e4:	ldr	r0, [sp, #12]
+ 7e8:	add	r0, r0, #1
+ 7ec:	str	r0, [sp, #12]
+ 7f0:	b	720 <__flatcc_fb_create_make_path_n+0x1b8>
+ 7f4:	ldr	r0, [fp, #-8]
+ 7f8:	ldr	r1, [sp, #16]
+ 7fc:	add	r0, r0, r1
+ 800:	ldrb	r0, [r0]
+ 804:	cmp	r0, #32
+ 808:	bne	828 <__flatcc_fb_create_make_path_n+0x2c0>
+ 80c:	ldr	r0, [sp, #4]
+ 810:	ldr	r1, [sp, #12]
+ 814:	add	r2, r1, #1
+ 818:	str	r2, [sp, #12]
+ 81c:	add	r0, r0, r1
+ 820:	movw	r1, #92	; 0x5c
+ 824:	strb	r1, [r0]
+ 828:	ldr	r0, [fp, #-8]
+ 82c:	ldr	r1, [sp, #16]
+ 830:	add	r0, r0, r1
+ 834:	ldrb	r0, [r0]
+ 838:	ldr	r1, [sp, #4]
+ 83c:	ldr	r2, [sp, #12]
+ 840:	add	r3, r2, #1
+ 844:	str	r3, [sp, #12]
+ 848:	add	r1, r1, r2
+ 84c:	strb	r0, [r1]
+ 850:	ldr	r0, [sp, #4]
+ 854:	ldr	r1, [sp, #12]
+ 858:	add	r0, r0, r1
+ 85c:	movw	r1, #0
+ 860:	strb	r1, [r0]
+ 864:	ldr	r0, [sp, #4]
+ 868:	str	r0, [fp, #-4]
+ 86c:	ldr	r0, [fp, #-4]
+ 870:	mov	sp, fp
+ 874:	pop	{fp, pc}
+
+00000878 <__flatcc_fb_create_make_path>:
+ 878:	push	{fp, lr}
+ 87c:	mov	fp, sp
+ 880:	sub	sp, sp, #16
+ 884:	str	r0, [fp, #-4]
+ 888:	ldr	r0, [fp, #-4]
+ 88c:	ldr	r1, [fp, #-4]
+ 890:	str	r0, [sp, #8]
+ 894:	mov	r0, r1
+ 898:	bl	0 <strlen>
+ 89c:	ldr	r1, [sp, #8]
+ 8a0:	str	r0, [sp, #4]
+ 8a4:	mov	r0, r1
+ 8a8:	ldr	r1, [sp, #4]
+ 8ac:	bl	568 <__flatcc_fb_create_make_path_n>
+ 8b0:	mov	sp, fp
+ 8b4:	pop	{fp, pc}
+
+000008b8 <__flatcc_fb_find_basename>:
+ 8b8:	sub	sp, sp, #12
+ 8bc:	str	r0, [sp, #8]
+ 8c0:	str	r1, [sp, #4]
+ 8c4:	ldr	r0, [sp, #8]
+ 8c8:	str	r0, [sp]
+ 8cc:	ldr	r0, [sp, #4]
+ 8d0:	ldr	r1, [sp]
+ 8d4:	add	r0, r1, r0
+ 8d8:	str	r0, [sp]
+ 8dc:	ldr	r0, [sp]
+ 8e0:	ldr	r1, [sp, #8]
+ 8e4:	cmp	r0, r1
+ 8e8:	beq	930 <__flatcc_fb_find_basename+0x78>
+ 8ec:	ldr	r0, [sp]
+ 8f0:	mvn	r1, #0
+ 8f4:	add	r0, r0, r1
+ 8f8:	str	r0, [sp]
+ 8fc:	ldr	r0, [sp]
+ 900:	ldrb	r0, [r0]
+ 904:	cmp	r0, #47	; 0x2f
+ 908:	beq	91c <__flatcc_fb_find_basename+0x64>
+ 90c:	ldr	r0, [sp]
+ 910:	ldrb	r0, [r0]
+ 914:	cmp	r0, #92	; 0x5c
+ 918:	bne	92c <__flatcc_fb_find_basename+0x74>
+ 91c:	ldr	r0, [sp]
+ 920:	add	r0, r0, #1
+ 924:	str	r0, [sp]
+ 928:	b	930 <__flatcc_fb_find_basename+0x78>
+ 92c:	b	8dc <__flatcc_fb_find_basename+0x24>
+ 930:	ldr	r0, [sp]
+ 934:	ldr	r1, [sp, #8]
+ 938:	sub	r0, r0, r1
+ 93c:	add	sp, sp, #12
+ 940:	bx	lr
+
+00000944 <__flatcc_fb_create_basename>:
+ 944:	push	{fp, lr}
+ 948:	mov	fp, sp
+ 94c:	sub	sp, sp, #24
+ 950:	str	r0, [fp, #-4]
+ 954:	str	r1, [fp, #-8]
+ 958:	str	r2, [sp, #12]
+ 95c:	ldr	r0, [fp, #-4]
+ 960:	ldr	r1, [fp, #-8]
+ 964:	bl	8b8 <__flatcc_fb_find_basename>
+ 968:	str	r0, [sp, #8]
+ 96c:	ldr	r0, [sp, #8]
+ 970:	ldr	r1, [fp, #-4]
+ 974:	add	r0, r1, r0
+ 978:	str	r0, [fp, #-4]
+ 97c:	ldr	r0, [sp, #8]
+ 980:	ldr	r1, [fp, #-8]
+ 984:	sub	r0, r1, r0
+ 988:	str	r0, [fp, #-8]
+ 98c:	ldr	r0, [fp, #-4]
+ 990:	ldr	r1, [fp, #-8]
+ 994:	ldr	r2, [sp, #12]
+ 998:	bl	138 <__flatcc_fb_chomp>
+ 99c:	str	r0, [fp, #-8]
+ 9a0:	ldr	r0, [fp, #-8]
+ 9a4:	add	r0, r0, #1
+ 9a8:	bl	0 <malloc>
+ 9ac:	str	r0, [sp, #4]
+ 9b0:	movw	r1, #0
+ 9b4:	cmp	r0, r1
+ 9b8:	beq	9e0 <__flatcc_fb_create_basename+0x9c>
+ 9bc:	ldr	r0, [sp, #4]
+ 9c0:	ldr	r1, [fp, #-4]
+ 9c4:	ldr	r2, [fp, #-8]
+ 9c8:	bl	0 <memcpy>
+ 9cc:	ldr	r0, [sp, #4]
+ 9d0:	ldr	r1, [fp, #-8]
+ 9d4:	add	r0, r0, r1
+ 9d8:	movw	r1, #0
+ 9dc:	strb	r1, [r0]
+ 9e0:	ldr	r0, [sp, #4]
+ 9e4:	mov	sp, fp
+ 9e8:	pop	{fp, pc}
+
+000009ec <__flatcc_fb_read_file>:
+ 9ec:	push	{fp, lr}
+ 9f0:	mov	fp, sp
+ 9f4:	sub	sp, sp, #64	; 0x40
+ 9f8:	str	r0, [fp, #-8]
+ 9fc:	str	r1, [fp, #-12]
+ a00:	str	r2, [fp, #-16]
+ a04:	ldr	r0, [fp, #-16]
+ a08:	movw	r1, #0
+ a0c:	cmp	r0, r1
+ a10:	beq	a20 <__flatcc_fb_read_file+0x34>
+ a14:	ldr	r0, [fp, #-16]
+ a18:	str	r0, [sp, #20]
+ a1c:	b	a2c <__flatcc_fb_read_file+0x40>
+ a20:	add	r0, sp, #28
+ a24:	str	r0, [sp, #20]
+ a28:	b	a2c <__flatcc_fb_read_file+0x40>
+ a2c:	ldr	r0, [sp, #20]
+ a30:	str	r0, [fp, #-16]
+ a34:	ldr	r0, [fp, #-8]
+ a38:	movw	r1, #0
+ a3c:	movt	r1, #0
+ a40:	bl	0 <fopen>
+ a44:	str	r0, [fp, #-20]	; 0xffffffec
+ a48:	movw	r0, #0
+ a4c:	str	r0, [fp, #-24]	; 0xffffffe8
+ a50:	str	r0, [sp, #24]
+ a54:	ldr	r1, [fp, #-20]	; 0xffffffec
+ a58:	cmp	r1, r0
+ a5c:	bne	a64 <__flatcc_fb_read_file+0x78>
+ a60:	b	b84 <__flatcc_fb_read_file+0x198>
+ a64:	ldr	r0, [fp, #-20]	; 0xffffffec
+ a68:	movw	r1, #0
+ a6c:	movw	r2, #2
+ a70:	bl	0 <fseek>
+ a74:	ldr	r1, [fp, #-20]	; 0xffffffec
+ a78:	str	r0, [sp, #16]
+ a7c:	mov	r0, r1
+ a80:	bl	0 <ftell>
+ a84:	str	r0, [fp, #-24]	; 0xffffffe8
+ a88:	ldr	r0, [fp, #-24]	; 0xffffffe8
+ a8c:	ldr	r1, [fp, #-16]
+ a90:	str	r0, [r1]
+ a94:	ldr	r0, [fp, #-12]
+ a98:	cmp	r0, #0
+ a9c:	bls	ab4 <__flatcc_fb_read_file+0xc8>
+ aa0:	ldr	r0, [fp, #-24]	; 0xffffffe8
+ aa4:	ldr	r1, [fp, #-12]
+ aa8:	cmp	r0, r1
+ aac:	bls	ab4 <__flatcc_fb_read_file+0xc8>
+ ab0:	b	b84 <__flatcc_fb_read_file+0x198>
+ ab4:	ldr	r0, [fp, #-20]	; 0xffffffec
+ ab8:	bl	0 <rewind>
+ abc:	ldr	r0, [fp, #-24]	; 0xffffffe8
+ ac0:	cmp	r0, #0
+ ac4:	beq	ad4 <__flatcc_fb_read_file+0xe8>
+ ac8:	ldr	r0, [fp, #-24]	; 0xffffffe8
+ acc:	str	r0, [sp, #12]
+ ad0:	b	ae0 <__flatcc_fb_read_file+0xf4>
+ ad4:	movw	r0, #1
+ ad8:	str	r0, [sp, #12]
+ adc:	b	ae0 <__flatcc_fb_read_file+0xf4>
+ ae0:	ldr	r0, [sp, #12]
+ ae4:	bl	0 <malloc>
+ ae8:	str	r0, [sp, #24]
+ aec:	ldr	r0, [sp, #24]
+ af0:	movw	lr, #0
+ af4:	cmp	r0, lr
+ af8:	bne	b00 <__flatcc_fb_read_file+0x114>
+ afc:	b	b84 <__flatcc_fb_read_file+0x198>
+ b00:	movw	r0, #0
+ b04:	str	r0, [fp, #-28]	; 0xffffffe4
+ b08:	ldr	r0, [sp, #24]
+ b0c:	ldr	r1, [fp, #-28]	; 0xffffffe4
+ b10:	add	r0, r0, r1
+ b14:	ldr	r1, [fp, #-24]	; 0xffffffe8
+ b18:	ldr	r2, [fp, #-28]	; 0xffffffe4
+ b1c:	sub	r2, r1, r2
+ b20:	ldr	r3, [fp, #-20]	; 0xffffffec
+ b24:	movw	r1, #1
+ b28:	bl	0 <fread>
+ b2c:	str	r0, [sp, #32]
+ b30:	cmp	r0, #0
+ b34:	beq	b4c <__flatcc_fb_read_file+0x160>
+ b38:	ldr	r0, [sp, #32]
+ b3c:	ldr	r1, [fp, #-28]	; 0xffffffe4
+ b40:	add	r0, r1, r0
+ b44:	str	r0, [fp, #-28]	; 0xffffffe4
+ b48:	b	b08 <__flatcc_fb_read_file+0x11c>
+ b4c:	ldr	r0, [fp, #-28]	; 0xffffffe4
+ b50:	ldr	r1, [fp, #-24]	; 0xffffffe8
+ b54:	cmp	r0, r1
+ b58:	beq	b60 <__flatcc_fb_read_file+0x174>
+ b5c:	b	b84 <__flatcc_fb_read_file+0x198>
+ b60:	ldr	r0, [fp, #-20]	; 0xffffffec
+ b64:	bl	0 <fclose>
+ b68:	ldr	lr, [fp, #-24]	; 0xffffffe8
+ b6c:	ldr	r1, [fp, #-16]
+ b70:	str	lr, [r1]
+ b74:	ldr	r1, [sp, #24]
+ b78:	str	r1, [fp, #-4]
+ b7c:	str	r0, [sp, #8]
+ b80:	b	bcc <__flatcc_fb_read_file+0x1e0>
+ b84:	ldr	r0, [fp, #-20]	; 0xffffffec
+ b88:	movw	r1, #0
+ b8c:	cmp	r0, r1
+ b90:	beq	ba0 <__flatcc_fb_read_file+0x1b4>
+ b94:	ldr	r0, [fp, #-20]	; 0xffffffec
+ b98:	bl	0 <fclose>
+ b9c:	str	r0, [sp, #4]
+ ba0:	ldr	r0, [sp, #24]
+ ba4:	movw	r1, #0
+ ba8:	cmp	r0, r1
+ bac:	beq	bb8 <__flatcc_fb_read_file+0x1cc>
+ bb0:	ldr	r0, [sp, #24]
+ bb4:	bl	0 <free>
+ bb8:	ldr	r0, [fp, #-24]	; 0xffffffe8
+ bbc:	ldr	r1, [fp, #-16]
+ bc0:	str	r0, [r1]
+ bc4:	movw	r0, #0
+ bc8:	str	r0, [fp, #-4]
+ bcc:	ldr	r0, [fp, #-4]
+ bd0:	mov	sp, fp
+ bd4:	pop	{fp, pc}

@@ -1,0 +1,475 @@
+
+../repos/prog2/CMakeFiles/7.1.dir/Aula07_Arvores/bst.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <bst_nova>:
+   0:	mov	ip, sp
+   4:	sub	sp, sp, #8
+   8:	str	ip, [sp]
+   c:	str	lr, [sp, #4]
+  10:	mov	r0, #4
+  14:	bl	0 <malloc>
+  18:	cmp	r0, #0
+  1c:	bne	28 <bst_nova+0x28>
+  20:	mov	r0, #0
+  24:	b	30 <bst_nova+0x30>
+  28:	mov	r1, #0
+  2c:	str	r1, [r0]
+  30:	ldr	lr, [sp, #4]
+  34:	add	sp, sp, #8
+  38:	bx	lr
+
+0000003c <bst_apaga>:
+  3c:	mov	ip, sp
+  40:	sub	sp, sp, #16
+  44:	str	ip, [sp]
+  48:	str	lr, [sp, #4]
+  4c:	str	r4, [sp, #8]
+  50:	mov	r4, r0
+  54:	ldr	r2, [r4]
+  58:	cmp	r2, #0
+  5c:	beq	78 <bst_apaga+0x3c>
+  60:	ldr	r0, [r4]
+  64:	ldr	r1, [r4]
+  68:	ldr	r1, [r1]
+  6c:	bl	464 <bst_remove_impl>
+  70:	str	r0, [r4]
+  74:	b	54 <bst_apaga+0x18>
+  78:	mov	r0, r4
+  7c:	bl	0 <free>
+  80:	ldr	r4, [sp, #8]
+  84:	ldr	lr, [sp, #4]
+  88:	add	sp, sp, #16
+  8c:	bx	lr
+
+00000090 <bst_pesquisa>:
+  90:	mov	ip, sp
+  94:	sub	sp, sp, #8
+  98:	str	ip, [sp]
+  9c:	str	lr, [sp, #4]
+  a0:	cmp	r0, #0
+  a4:	beq	b8 <bst_pesquisa+0x28>
+  a8:	cmp	r1, #0
+  ac:	moveq	r2, #1
+  b0:	movne	r2, #0
+  b4:	b	bc <bst_pesquisa+0x2c>
+  b8:	mov	r2, #1
+  bc:	cmp	r2, #0
+  c0:	beq	cc <bst_pesquisa+0x3c>
+  c4:	mov	r0, #0
+  c8:	b	d4 <bst_pesquisa+0x44>
+  cc:	ldr	r0, [r0]
+  d0:	bl	338 <bst_pesquisa_impl>
+  d4:	ldr	lr, [sp, #4]
+  d8:	add	sp, sp, #8
+  dc:	bx	lr
+
+000000e0 <bst_insere>:
+  e0:	mov	ip, sp
+  e4:	sub	sp, sp, #16
+  e8:	str	ip, [sp]
+  ec:	str	lr, [sp, #4]
+  f0:	str	r4, [sp, #8]
+  f4:	mov	r4, r0
+  f8:	cmp	r4, #0
+  fc:	beq	110 <bst_insere+0x30>
+ 100:	cmp	r1, #0
+ 104:	moveq	r2, #1
+ 108:	movne	r2, #0
+ 10c:	b	114 <bst_insere+0x34>
+ 110:	mov	r2, #1
+ 114:	cmp	r2, #0
+ 118:	beq	124 <bst_insere+0x44>
+ 11c:	mvn	r0, #0
+ 120:	b	134 <bst_insere+0x54>
+ 124:	ldr	r0, [r4]
+ 128:	bl	3cc <bst_insere_impl>
+ 12c:	str	r0, [r4]
+ 130:	mov	r0, #0
+ 134:	ldr	r4, [sp, #8]
+ 138:	ldr	lr, [sp, #4]
+ 13c:	add	sp, sp, #16
+ 140:	bx	lr
+
+00000144 <bst_remove>:
+ 144:	mov	ip, sp
+ 148:	sub	sp, sp, #16
+ 14c:	str	ip, [sp]
+ 150:	str	lr, [sp, #4]
+ 154:	str	r4, [sp, #8]
+ 158:	mov	r4, r0
+ 15c:	cmp	r4, #0
+ 160:	beq	174 <bst_remove+0x30>
+ 164:	cmp	r1, #0
+ 168:	moveq	r2, #1
+ 16c:	movne	r2, #0
+ 170:	b	178 <bst_remove+0x34>
+ 174:	mov	r2, #1
+ 178:	cmp	r2, #0
+ 17c:	beq	188 <bst_remove+0x44>
+ 180:	mvn	r0, #0
+ 184:	b	198 <bst_remove+0x54>
+ 188:	ldr	r0, [r4]
+ 18c:	bl	464 <bst_remove_impl>
+ 190:	str	r0, [r4]
+ 194:	mov	r0, #0
+ 198:	ldr	r4, [sp, #8]
+ 19c:	ldr	lr, [sp, #4]
+ 1a0:	add	sp, sp, #16
+ 1a4:	bx	lr
+
+000001a8 <bst_min>:
+ 1a8:	mov	ip, sp
+ 1ac:	sub	sp, sp, #8
+ 1b0:	str	ip, [sp]
+ 1b4:	str	lr, [sp, #4]
+ 1b8:	cmp	r0, #0
+ 1bc:	bne	1c8 <bst_min+0x20>
+ 1c0:	mov	r0, #0
+ 1c4:	b	1d4 <bst_min+0x2c>
+ 1c8:	ldr	r0, [r0]
+ 1cc:	bl	2d8 <bst_no_valormin>
+ 1d0:	ldr	r0, [r0]
+ 1d4:	ldr	lr, [sp, #4]
+ 1d8:	add	sp, sp, #8
+ 1dc:	bx	lr
+
+000001e0 <bst_max>:
+ 1e0:	mov	ip, sp
+ 1e4:	sub	sp, sp, #8
+ 1e8:	str	ip, [sp]
+ 1ec:	str	lr, [sp, #4]
+ 1f0:	cmp	r0, #0
+ 1f4:	bne	200 <bst_max+0x20>
+ 1f8:	mov	r0, #0
+ 1fc:	b	20c <bst_max+0x2c>
+ 200:	ldr	r0, [r0]
+ 204:	bl	308 <bst_no_valormax>
+ 208:	ldr	r0, [r0]
+ 20c:	ldr	lr, [sp, #4]
+ 210:	add	sp, sp, #8
+ 214:	bx	lr
+
+00000218 <bst_imprime>:
+ 218:	mov	ip, sp
+ 21c:	sub	sp, sp, #16
+ 220:	str	ip, [sp]
+ 224:	str	lr, [sp, #4]
+ 228:	str	r4, [sp, #8]
+ 22c:	mov	r4, r0
+ 230:	cmp	r4, #0
+ 234:	beq	250 <bst_imprime+0x38>
+ 238:	ldr	r0, [pc, #32]	; 260 <bst_imprime+0x48>
+ 23c:	bl	0 <printf>
+ 240:	ldr	r0, [r4]
+ 244:	bl	688 <bst_preordem_impl>
+ 248:	ldr	r0, [pc, #20]	; 264 <bst_imprime+0x4c>
+ 24c:	bl	0 <printf>
+ 250:	ldr	r4, [sp, #8]
+ 254:	ldr	lr, [sp, #4]
+ 258:	add	sp, sp, #16
+ 25c:	bx	lr
+ 260:	.word	0x00000002
+ 264:	.word	0x00000000
+
+00000268 <bst_novo_no>:
+ 268:	mov	ip, sp
+ 26c:	sub	sp, sp, #16
+ 270:	str	ip, [sp]
+ 274:	str	lr, [sp, #4]
+ 278:	str	r4, [sp, #8]
+ 27c:	str	r5, [sp, #12]
+ 280:	mov	r4, r0
+ 284:	mov	r0, #12
+ 288:	bl	0 <malloc>
+ 28c:	mov	r5, r0
+ 290:	mov	r0, r4
+ 294:	bl	0 <strlen>
+ 298:	add	r0, r0, #1
+ 29c:	bl	0 <malloc>
+ 2a0:	str	r0, [r5]
+ 2a4:	ldr	r0, [r5]
+ 2a8:	mov	r1, r4
+ 2ac:	bl	0 <strcpy>
+ 2b0:	mov	r2, #0
+ 2b4:	str	r2, [r5, #4]
+ 2b8:	mov	r1, #0
+ 2bc:	str	r1, [r5, #8]
+ 2c0:	mov	r0, r5
+ 2c4:	ldr	r4, [sp, #8]
+ 2c8:	ldr	r5, [sp, #12]
+ 2cc:	ldr	lr, [sp, #4]
+ 2d0:	add	sp, sp, #16
+ 2d4:	bx	lr
+
+000002d8 <bst_no_valormin>:
+ 2d8:	mov	ip, sp
+ 2dc:	sub	sp, sp, #8
+ 2e0:	str	ip, [sp]
+ 2e4:	str	lr, [sp, #4]
+ 2e8:	ldr	r1, [r0, #4]
+ 2ec:	cmp	r1, #0
+ 2f0:	beq	2fc <bst_no_valormin+0x24>
+ 2f4:	ldr	r0, [r0, #4]
+ 2f8:	b	2e8 <bst_no_valormin+0x10>
+ 2fc:	ldr	lr, [sp, #4]
+ 300:	add	sp, sp, #8
+ 304:	bx	lr
+
+00000308 <bst_no_valormax>:
+ 308:	mov	ip, sp
+ 30c:	sub	sp, sp, #8
+ 310:	str	ip, [sp]
+ 314:	str	lr, [sp, #4]
+ 318:	ldr	r1, [r0, #8]
+ 31c:	cmp	r1, #0
+ 320:	beq	32c <bst_no_valormax+0x24>
+ 324:	ldr	r0, [r0, #8]
+ 328:	b	318 <bst_no_valormax+0x10>
+ 32c:	ldr	lr, [sp, #4]
+ 330:	add	sp, sp, #8
+ 334:	bx	lr
+
+00000338 <bst_pesquisa_impl>:
+ 338:	mov	ip, sp
+ 33c:	sub	sp, sp, #16
+ 340:	str	ip, [sp]
+ 344:	str	lr, [sp, #4]
+ 348:	str	r4, [sp, #8]
+ 34c:	str	r5, [sp, #12]
+ 350:	mov	r5, r1
+ 354:	mov	r4, r0
+ 358:	cmp	r4, #0
+ 35c:	bne	368 <bst_pesquisa_impl+0x30>
+ 360:	mov	r4, #0
+ 364:	b	3b4 <bst_pesquisa_impl+0x7c>
+ 368:	ldr	r1, [r4]
+ 36c:	mov	r0, r5
+ 370:	bl	0 <strcmp>
+ 374:	cmp	r0, #0
+ 378:	blt	3a4 <bst_pesquisa_impl+0x6c>
+ 37c:	ldr	r1, [r4]
+ 380:	mov	r0, r5
+ 384:	bl	0 <strcmp>
+ 388:	cmp	r0, #0
+ 38c:	ble	3b4 <bst_pesquisa_impl+0x7c>
+ 390:	ldr	r0, [r4, #8]
+ 394:	mov	r1, r5
+ 398:	bl	338 <bst_pesquisa_impl>
+ 39c:	mov	r4, r0
+ 3a0:	b	3b4 <bst_pesquisa_impl+0x7c>
+ 3a4:	ldr	r0, [r4, #4]
+ 3a8:	mov	r1, r5
+ 3ac:	bl	338 <bst_pesquisa_impl>
+ 3b0:	mov	r4, r0
+ 3b4:	mov	r0, r4
+ 3b8:	ldr	r4, [sp, #8]
+ 3bc:	ldr	r5, [sp, #12]
+ 3c0:	ldr	lr, [sp, #4]
+ 3c4:	add	sp, sp, #16
+ 3c8:	bx	lr
+
+000003cc <bst_insere_impl>:
+ 3cc:	mov	ip, sp
+ 3d0:	sub	sp, sp, #16
+ 3d4:	str	ip, [sp]
+ 3d8:	str	lr, [sp, #4]
+ 3dc:	str	r4, [sp, #8]
+ 3e0:	str	r5, [sp, #12]
+ 3e4:	mov	r4, r1
+ 3e8:	mov	r5, r0
+ 3ec:	cmp	r5, #0
+ 3f0:	bne	400 <bst_insere_impl+0x34>
+ 3f4:	mov	r0, r4
+ 3f8:	bl	268 <bst_novo_no>
+ 3fc:	b	450 <bst_insere_impl+0x84>
+ 400:	ldr	r1, [r5]
+ 404:	mov	r0, r4
+ 408:	bl	0 <strcmp>
+ 40c:	cmp	r0, #0
+ 410:	blt	43c <bst_insere_impl+0x70>
+ 414:	ldr	r1, [r5]
+ 418:	mov	r0, r4
+ 41c:	bl	0 <strcmp>
+ 420:	cmp	r0, #0
+ 424:	ble	44c <bst_insere_impl+0x80>
+ 428:	ldr	r0, [r5, #8]
+ 42c:	mov	r1, r4
+ 430:	bl	3cc <bst_insere_impl>
+ 434:	str	r0, [r5, #8]
+ 438:	b	44c <bst_insere_impl+0x80>
+ 43c:	ldr	r0, [r5, #4]
+ 440:	mov	r1, r4
+ 444:	bl	3cc <bst_insere_impl>
+ 448:	str	r0, [r5, #4]
+ 44c:	mov	r0, r5
+ 450:	ldr	r4, [sp, #8]
+ 454:	ldr	r5, [sp, #12]
+ 458:	ldr	lr, [sp, #4]
+ 45c:	add	sp, sp, #16
+ 460:	bx	lr
+
+00000464 <bst_remove_impl>:
+ 464:	mov	ip, sp
+ 468:	sub	sp, sp, #16
+ 46c:	str	ip, [sp]
+ 470:	str	lr, [sp, #4]
+ 474:	str	r4, [sp, #8]
+ 478:	str	r5, [sp, #12]
+ 47c:	mov	r4, r1
+ 480:	mov	r5, r0
+ 484:	cmp	r5, #0
+ 488:	beq	5c4 <bst_remove_impl+0x160>
+ 48c:	ldr	r1, [r5]
+ 490:	mov	r0, r4
+ 494:	bl	0 <strcmp>
+ 498:	cmp	r0, #0
+ 49c:	blt	5b4 <bst_remove_impl+0x150>
+ 4a0:	ldr	r1, [r5]
+ 4a4:	mov	r0, r4
+ 4a8:	bl	0 <strcmp>
+ 4ac:	cmp	r0, #0
+ 4b0:	bgt	5a0 <bst_remove_impl+0x13c>
+ 4b4:	ldr	r0, [r5, #4]
+ 4b8:	cmp	r0, #0
+ 4bc:	beq	4d4 <bst_remove_impl+0x70>
+ 4c0:	ldr	r2, [r5, #8]
+ 4c4:	cmp	r2, #0
+ 4c8:	moveq	r1, #1
+ 4cc:	movne	r1, #0
+ 4d0:	b	4d8 <bst_remove_impl+0x74>
+ 4d4:	mov	r1, #1
+ 4d8:	cmp	r1, #0
+ 4dc:	beq	558 <bst_remove_impl+0xf4>
+ 4e0:	ldr	r0, [r5, #4]
+ 4e4:	cmp	r0, #0
+ 4e8:	bne	4f4 <bst_remove_impl+0x90>
+ 4ec:	ldr	r4, [r5, #8]
+ 4f0:	b	4f8 <bst_remove_impl+0x94>
+ 4f4:	ldr	r4, [r5, #4]
+ 4f8:	cmp	r4, #0
+ 4fc:	beq	53c <bst_remove_impl+0xd8>
+ 500:	ldr	r0, [r4]
+ 504:	bl	0 <strlen>
+ 508:	ldr	r2, [r5]
+ 50c:	add	r1, r0, #1
+ 510:	mov	r0, r2
+ 514:	bl	0 <realloc>
+ 518:	str	r0, [r5]
+ 51c:	ldr	r0, [r5]
+ 520:	ldr	r1, [r4]
+ 524:	bl	0 <strcpy>
+ 528:	ldr	r2, [r4, #4]
+ 52c:	str	r2, [r5, #4]
+ 530:	ldr	r1, [r4, #8]
+ 534:	str	r1, [r5, #8]
+ 538:	b	544 <bst_remove_impl+0xe0>
+ 53c:	mov	r4, r5
+ 540:	mov	r5, #0
+ 544:	ldr	r0, [r4]
+ 548:	bl	0 <free>
+ 54c:	mov	r0, r4
+ 550:	bl	0 <free>
+ 554:	b	5c4 <bst_remove_impl+0x160>
+ 558:	ldr	r0, [r5, #8]
+ 55c:	bl	2d8 <bst_no_valormin>
+ 560:	mov	r4, r0
+ 564:	ldr	r0, [r4]
+ 568:	bl	0 <strlen>
+ 56c:	mov	r1, r0
+ 570:	ldr	r0, [r5]
+ 574:	add	r1, r1, #1
+ 578:	bl	0 <realloc>
+ 57c:	str	r0, [r5]
+ 580:	ldr	r0, [r5]
+ 584:	ldr	r1, [r4]
+ 588:	bl	0 <strcpy>
+ 58c:	ldr	r0, [r5, #8]
+ 590:	ldr	r1, [r4]
+ 594:	bl	464 <bst_remove_impl>
+ 598:	str	r0, [r5, #8]
+ 59c:	b	5c4 <bst_remove_impl+0x160>
+ 5a0:	ldr	r0, [r5, #8]
+ 5a4:	mov	r1, r4
+ 5a8:	bl	464 <bst_remove_impl>
+ 5ac:	str	r0, [r5, #8]
+ 5b0:	b	5c4 <bst_remove_impl+0x160>
+ 5b4:	ldr	r0, [r5, #4]
+ 5b8:	mov	r1, r4
+ 5bc:	bl	464 <bst_remove_impl>
+ 5c0:	str	r0, [r5, #4]
+ 5c4:	mov	r0, r5
+ 5c8:	ldr	r4, [sp, #8]
+ 5cc:	ldr	r5, [sp, #12]
+ 5d0:	ldr	lr, [sp, #4]
+ 5d4:	add	sp, sp, #16
+ 5d8:	bx	lr
+
+000005dc <bst_altura>:
+ 5dc:	mov	ip, sp
+ 5e0:	sub	sp, sp, #16
+ 5e4:	str	ip, [sp]
+ 5e8:	str	lr, [sp, #4]
+ 5ec:	str	r4, [sp, #8]
+ 5f0:	str	r5, [sp, #12]
+ 5f4:	mov	r4, r0
+ 5f8:	cmp	r4, #0
+ 5fc:	bne	608 <bst_altura+0x2c>
+ 600:	mvn	r0, #0
+ 604:	b	674 <bst_altura+0x98>
+ 608:	ldr	r2, [r4, #8]
+ 60c:	cmp	r2, #0
+ 610:	bne	628 <bst_altura+0x4c>
+ 614:	ldr	r0, [r4, #4]
+ 618:	cmp	r0, #0
+ 61c:	moveq	r1, #1
+ 620:	movne	r1, #0
+ 624:	b	62c <bst_altura+0x50>
+ 628:	mov	r1, #0
+ 62c:	cmp	r1, #0
+ 630:	bne	670 <bst_altura+0x94>
+ 634:	ldr	r0, [r4, #4]
+ 638:	bl	5dc <bst_altura>
+ 63c:	mov	r5, r0
+ 640:	ldr	r0, [r4, #8]
+ 644:	bl	5dc <bst_altura>
+ 648:	cmp	r5, r0
+ 64c:	bgt	660 <bst_altura+0x84>
+ 650:	ldr	r0, [r4, #8]
+ 654:	bl	5dc <bst_altura>
+ 658:	add	r0, r0, #1
+ 65c:	b	674 <bst_altura+0x98>
+ 660:	ldr	r0, [r4, #4]
+ 664:	bl	5dc <bst_altura>
+ 668:	add	r0, r0, #1
+ 66c:	b	674 <bst_altura+0x98>
+ 670:	mov	r0, #0
+ 674:	ldr	r4, [sp, #8]
+ 678:	ldr	r5, [sp, #12]
+ 67c:	ldr	lr, [sp, #4]
+ 680:	add	sp, sp, #16
+ 684:	bx	lr
+
+00000688 <bst_preordem_impl>:
+ 688:	mov	ip, sp
+ 68c:	sub	sp, sp, #16
+ 690:	str	ip, [sp]
+ 694:	str	lr, [sp, #4]
+ 698:	str	r4, [sp, #8]
+ 69c:	mov	r4, r0
+ 6a0:	cmp	r4, #0
+ 6a4:	beq	6c4 <bst_preordem_impl+0x3c>
+ 6a8:	ldr	r0, [pc, #36]	; 6d4 <bst_preordem_impl+0x4c>
+ 6ac:	ldr	r1, [r4]
+ 6b0:	bl	0 <printf>
+ 6b4:	ldr	r0, [r4, #4]
+ 6b8:	bl	688 <bst_preordem_impl>
+ 6bc:	ldr	r0, [r4, #8]
+ 6c0:	bl	688 <bst_preordem_impl>
+ 6c4:	ldr	r4, [sp, #8]
+ 6c8:	ldr	lr, [sp, #4]
+ 6cc:	add	sp, sp, #16
+ 6d0:	bx	lr
+ 6d4:	.word	0x0000000d

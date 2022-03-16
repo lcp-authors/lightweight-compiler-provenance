@@ -1,0 +1,758 @@
+
+../repos/dvidelabs-flatcc-3b39ef7/src/compiler/CMakeFiles/flatcc.dir/hash_tables/symbol_table.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <ht_default_hash_function>:
+   0:	mov	ip, sp
+   4:	sub	sp, sp, #32
+   8:	str	ip, [sp, #8]
+   c:	str	lr, [sp, #12]
+  10:	str	r4, [sp, #16]
+  14:	mov	r3, #0
+  18:	movw	r2, #15186	; 0x3b52
+  1c:	movt	r2, #12137	; 0x2f69
+  20:	add	r4, sp, #24
+  24:	str	r4, [sp, #4]
+  28:	str	r2, [sp]
+  2c:	mov	r2, r1
+  30:	bl	0 <cmetrohash64_1>
+  34:	ldr	r0, [sp, #24]
+  38:	ldr	r4, [sp, #16]
+  3c:	ldr	lr, [sp, #12]
+  40:	add	sp, sp, #32
+  44:	bx	lr
+
+00000048 <fb_symbol_table_clear>:
+  48:	mov	ip, sp
+  4c:	sub	sp, sp, #8
+  50:	str	ip, [sp]
+  54:	str	lr, [sp, #4]
+  58:	bl	a08 <ht_clear>
+  5c:	ldr	lr, [sp, #4]
+  60:	add	sp, sp, #8
+  64:	bx	lr
+
+00000068 <fb_symbol_table_destroy>:
+  68:	mov	ip, sp
+  6c:	sub	sp, sp, #16
+  70:	str	ip, [sp]
+  74:	str	lr, [sp, #4]
+  78:	str	r4, [sp, #8]
+  7c:	mov	r4, r0
+  80:	cmp	r1, #0
+  84:	beq	90 <fb_symbol_table_destroy+0x28>
+  88:	mov	r0, r4
+  8c:	bl	96c <ht_visit>
+  90:	mov	r0, r4
+  94:	bl	a08 <ht_clear>
+  98:	ldr	r4, [sp, #8]
+  9c:	ldr	lr, [sp, #4]
+  a0:	add	sp, sp, #16
+  a4:	bx	lr
+
+000000a8 <fb_symbol_table_init>:
+  a8:	mov	ip, sp
+  ac:	sub	sp, sp, #8
+  b0:	str	ip, [sp]
+  b4:	str	lr, [sp, #4]
+  b8:	bl	2ac <ht_init>
+  bc:	ldr	lr, [sp, #4]
+  c0:	add	sp, sp, #8
+  c4:	bx	lr
+
+000000c8 <fb_symbol_table_resize>:
+  c8:	mov	ip, sp
+  cc:	sub	sp, sp, #8
+  d0:	str	ip, [sp]
+  d4:	str	lr, [sp, #4]
+  d8:	bl	3dc <ht_resize>
+  dc:	ldr	lr, [sp, #4]
+  e0:	add	sp, sp, #8
+  e4:	bx	lr
+
+000000e8 <fb_symbol_table_insert>:
+  e8:	mov	ip, sp
+  ec:	sub	sp, sp, #24
+  f0:	str	ip, [sp, #4]
+  f4:	str	lr, [sp, #8]
+  f8:	str	r4, [sp, #16]
+  fc:	ldr	r4, [ip]
+ 100:	str	r4, [sp]
+ 104:	bl	4dc <ht_insert>
+ 108:	ldr	r4, [sp, #16]
+ 10c:	ldr	lr, [sp, #8]
+ 110:	add	sp, sp, #24
+ 114:	bx	lr
+
+00000118 <fb_symbol_table_insert_item>:
+ 118:	mov	ip, sp
+ 11c:	sub	sp, sp, #32
+ 120:	str	ip, [sp, #4]
+ 124:	str	lr, [sp, #8]
+ 128:	str	r4, [sp, #16]
+ 12c:	str	r5, [sp, #20]
+ 130:	str	r6, [sp, #24]
+ 134:	str	r7, [sp, #28]
+ 138:	mov	r5, r2
+ 13c:	mov	r4, r1
+ 140:	mov	r6, r0
+ 144:	mov	r0, r4
+ 148:	bl	ad0 <ht_key>
+ 14c:	mov	r7, r0
+ 150:	mov	r0, r4
+ 154:	bl	af4 <ht_key_len>
+ 158:	mov	r2, r0
+ 15c:	str	r5, [sp]
+ 160:	mov	r3, r4
+ 164:	mov	r1, r7
+ 168:	mov	r0, r6
+ 16c:	bl	4dc <ht_insert>
+ 170:	ldr	r4, [sp, #16]
+ 174:	ldr	r5, [sp, #20]
+ 178:	ldr	r6, [sp, #24]
+ 17c:	ldr	r7, [sp, #28]
+ 180:	ldr	lr, [sp, #8]
+ 184:	add	sp, sp, #32
+ 188:	bx	lr
+
+0000018c <fb_symbol_table_find>:
+ 18c:	mov	ip, sp
+ 190:	sub	sp, sp, #8
+ 194:	str	ip, [sp]
+ 198:	str	lr, [sp, #4]
+ 19c:	bl	770 <ht_find>
+ 1a0:	ldr	lr, [sp, #4]
+ 1a4:	add	sp, sp, #8
+ 1a8:	bx	lr
+
+000001ac <fb_symbol_table_find_item>:
+ 1ac:	mov	ip, sp
+ 1b0:	sub	sp, sp, #24
+ 1b4:	str	ip, [sp]
+ 1b8:	str	lr, [sp, #4]
+ 1bc:	str	r4, [sp, #8]
+ 1c0:	str	r5, [sp, #12]
+ 1c4:	str	r6, [sp, #16]
+ 1c8:	mov	r4, r1
+ 1cc:	mov	r5, r0
+ 1d0:	mov	r0, r4
+ 1d4:	bl	ad0 <ht_key>
+ 1d8:	mov	r6, r0
+ 1dc:	mov	r0, r4
+ 1e0:	bl	af4 <ht_key_len>
+ 1e4:	mov	r2, r0
+ 1e8:	mov	r1, r6
+ 1ec:	mov	r0, r5
+ 1f0:	bl	770 <ht_find>
+ 1f4:	ldr	r4, [sp, #8]
+ 1f8:	ldr	r5, [sp, #12]
+ 1fc:	ldr	r6, [sp, #16]
+ 200:	ldr	lr, [sp, #4]
+ 204:	add	sp, sp, #24
+ 208:	bx	lr
+
+0000020c <fb_symbol_table_remove>:
+ 20c:	mov	ip, sp
+ 210:	sub	sp, sp, #8
+ 214:	str	ip, [sp]
+ 218:	str	lr, [sp, #4]
+ 21c:	bl	85c <ht_remove>
+ 220:	ldr	lr, [sp, #4]
+ 224:	add	sp, sp, #8
+ 228:	bx	lr
+
+0000022c <fb_symbol_table_remove_item>:
+ 22c:	mov	ip, sp
+ 230:	sub	sp, sp, #24
+ 234:	str	ip, [sp]
+ 238:	str	lr, [sp, #4]
+ 23c:	str	r4, [sp, #8]
+ 240:	str	r5, [sp, #12]
+ 244:	str	r6, [sp, #16]
+ 248:	mov	r4, r1
+ 24c:	mov	r5, r0
+ 250:	mov	r0, r4
+ 254:	bl	ad0 <ht_key>
+ 258:	mov	r6, r0
+ 25c:	mov	r0, r4
+ 260:	bl	af4 <ht_key_len>
+ 264:	mov	r2, r0
+ 268:	mov	r1, r6
+ 26c:	mov	r0, r5
+ 270:	bl	85c <ht_remove>
+ 274:	ldr	r4, [sp, #8]
+ 278:	ldr	r5, [sp, #12]
+ 27c:	ldr	r6, [sp, #16]
+ 280:	ldr	lr, [sp, #4]
+ 284:	add	sp, sp, #24
+ 288:	bx	lr
+
+0000028c <fb_symbol_table_visit>:
+ 28c:	mov	ip, sp
+ 290:	sub	sp, sp, #8
+ 294:	str	ip, [sp]
+ 298:	str	lr, [sp, #4]
+ 29c:	bl	96c <ht_visit>
+ 2a0:	ldr	lr, [sp, #4]
+ 2a4:	add	sp, sp, #8
+ 2a8:	bx	lr
+
+000002ac <ht_init>:
+ 2ac:	mov	ip, sp
+ 2b0:	sub	sp, sp, #16
+ 2b4:	str	ip, [sp]
+ 2b8:	str	lr, [sp, #4]
+ 2bc:	str	r4, [sp, #8]
+ 2c0:	str	r5, [sp, #12]
+ 2c4:	mov	r4, r0
+ 2c8:	mov	r5, #4
+ 2cc:	vldr	d7, [pc, #256]	; 3d4 <ht_init+0x128>
+ 2d0:	vcvt.f32.f64	s8, d7
+ 2d4:	vldr	s2, [pc, #244]	; 3d0 <ht_init+0x124>
+ 2d8:	vmul.f32	s10, s8, s2
+ 2dc:	vcvt.s32.f32	s12, s10
+ 2e0:	vmov	r3, s12
+ 2e4:	cmp	r3, #256	; 0x100
+ 2e8:	bgt	314 <ht_init+0x68>
+ 2ec:	vldr	d0, [pc, #224]	; 3d4 <ht_init+0x128>
+ 2f0:	vcvt.f32.f64	s6, d0
+ 2f4:	vldr	s4, [pc, #212]	; 3d0 <ht_init+0x124>
+ 2f8:	vmul.f32	s10, s6, s4
+ 2fc:	vcvt.s32.f32	s12, s10
+ 300:	vmov	r0, s12
+ 304:	cmp	r0, #1
+ 308:	movlt	r2, #1
+ 30c:	movge	r2, #0
+ 310:	b	318 <ht_init+0x6c>
+ 314:	mov	r2, #1
+ 318:	cmp	r2, #0
+ 31c:	beq	344 <ht_init+0x98>
+ 320:	ldr	r0, [pc, #164]	; 3cc <ht_init+0x120>
+ 324:	ldr	r0, [r0]
+ 328:	ldr	r1, [pc, #152]	; 3c8 <ht_init+0x11c>
+ 32c:	ldr	r2, [pc, #144]	; 3c4 <ht_init+0x118>
+ 330:	bl	0 <fprintf>
+ 334:	mov	r0, #1
+ 338:	bl	0 <exit>
+ 33c:	mvn	r0, #0
+ 340:	b	3b0 <ht_init+0x104>
+ 344:	vldr	d2, [pc, #136]	; 3d4 <ht_init+0x128>
+ 348:	vcvt.f32.f64	s12, d2
+ 34c:	vldr	s2, [pc, #124]	; 3d0 <ht_init+0x124>
+ 350:	vmul.f32	s0, s12, s2
+ 354:	vcvt.s32.f32	s12, s0
+ 358:	vmov	r0, s12
+ 35c:	mul	r2, r5, r0
+ 360:	lsr	ip, r2, #8
+ 364:	cmp	r1, ip
+ 368:	bls	374 <ht_init+0xc8>
+ 36c:	lsl	r5, r5, #1
+ 370:	b	344 <ht_init+0x98>
+ 374:	mov	r1, #4
+ 378:	mov	r0, r5
+ 37c:	bl	0 <calloc>
+ 380:	str	r0, [r4]
+ 384:	ldr	r1, [r4]
+ 388:	cmp	r1, #0
+ 38c:	bne	398 <ht_init+0xec>
+ 390:	mvn	r0, #0
+ 394:	b	3b0 <ht_init+0x104>
+ 398:	mov	r2, #0
+ 39c:	str	r2, [r4, #4]
+ 3a0:	str	r5, [r4, #12]
+ 3a4:	mov	r3, #0
+ 3a8:	str	r3, [r4, #8]
+ 3ac:	mov	r0, #0
+ 3b0:	ldr	r4, [sp, #8]
+ 3b4:	ldr	r5, [sp, #12]
+ 3b8:	ldr	lr, [sp, #4]
+ 3bc:	add	sp, sp, #16
+ 3c0:	bx	lr
+ 3c4:	.word	0x0000006a
+ 3c8:	.word	0x000000f7
+ 3cc:	.word	0x00000000
+ 3d0:	.word	0x43800000
+ 3d4:	.word	0x66666666
+ 3d8:	.word	0x3fe66666
+
+000003dc <ht_resize>:
+ 3dc:	mov	ip, sp
+ 3e0:	sub	sp, sp, #56	; 0x38
+ 3e4:	str	ip, [sp, #4]
+ 3e8:	str	lr, [sp, #8]
+ 3ec:	str	r4, [sp, #16]
+ 3f0:	str	r5, [sp, #20]
+ 3f4:	str	r6, [sp, #24]
+ 3f8:	str	r7, [sp, #28]
+ 3fc:	str	r8, [sp, #32]
+ 400:	mov	r5, r0
+ 404:	ldr	r7, [r5]
+ 408:	ldr	r2, [r5, #8]
+ 40c:	cmp	r1, r2
+ 410:	bcs	418 <ht_resize+0x3c>
+ 414:	ldr	r1, [r5, #8]
+ 418:	add	r0, sp, #40	; 0x28
+ 41c:	bl	2ac <ht_init>
+ 420:	cmp	r0, #0
+ 424:	beq	430 <ht_resize+0x54>
+ 428:	mvn	r0, #0
+ 42c:	b	4bc <ht_resize+0xe0>
+ 430:	mov	r8, #0
+ 434:	ldr	r0, [r5, #12]
+ 438:	cmp	r8, r0
+ 43c:	bcs	4a0 <ht_resize+0xc4>
+ 440:	ldr	r4, [r7, r8, lsl #2]
+ 444:	cmp	r4, #0
+ 448:	bne	454 <ht_resize+0x78>
+ 44c:	mov	r0, #0
+ 450:	b	460 <ht_resize+0x84>
+ 454:	cmp	r4, #2
+ 458:	movne	r0, #1
+ 45c:	moveq	r0, #0
+ 460:	cmp	r0, #0
+ 464:	beq	498 <ht_resize+0xbc>
+ 468:	mov	r0, r4
+ 46c:	bl	ad0 <ht_key>
+ 470:	mov	r6, r0
+ 474:	mov	r0, r4
+ 478:	bl	af4 <ht_key_len>
+ 47c:	mov	r2, r0
+ 480:	add	r0, sp, #40	; 0x28
+ 484:	mov	r1, #3
+ 488:	str	r1, [sp]
+ 48c:	mov	r3, r4
+ 490:	mov	r1, r6
+ 494:	bl	4dc <ht_insert>
+ 498:	add	r8, r8, #1
+ 49c:	b	434 <ht_resize+0x58>
+ 4a0:	mov	r0, r5
+ 4a4:	bl	a08 <ht_clear>
+ 4a8:	add	r1, sp, #40	; 0x28
+ 4ac:	mov	r2, #16
+ 4b0:	mov	r0, r5
+ 4b4:	bl	0 <memcpy>
+ 4b8:	mov	r0, #0
+ 4bc:	ldr	r4, [sp, #16]
+ 4c0:	ldr	r5, [sp, #20]
+ 4c4:	ldr	r6, [sp, #24]
+ 4c8:	ldr	r7, [sp, #28]
+ 4cc:	ldr	r8, [sp, #32]
+ 4d0:	ldr	lr, [sp, #8]
+ 4d4:	add	sp, sp, #56	; 0x38
+ 4d8:	bx	lr
+
+000004dc <ht_insert>:
+ 4dc:	mov	ip, sp
+ 4e0:	sub	sp, sp, #56	; 0x38
+ 4e4:	str	ip, [sp]
+ 4e8:	str	lr, [sp, #4]
+ 4ec:	str	r4, [sp, #24]
+ 4f0:	str	r5, [sp, #28]
+ 4f4:	str	r6, [sp, #32]
+ 4f8:	str	r7, [sp, #36]	; 0x24
+ 4fc:	str	r8, [sp, #40]	; 0x28
+ 500:	str	r9, [sp, #44]	; 0x2c
+ 504:	str	sl, [sp, #48]	; 0x30
+ 508:	str	fp, [sp, #52]	; 0x34
+ 50c:	ldr	ip, [ip]
+ 510:	str	ip, [sp, #20]
+ 514:	mov	r7, r3
+ 518:	str	r2, [sp, #12]
+ 51c:	str	r1, [sp, #16]
+ 520:	mov	r9, r0
+ 524:	mov	sl, #0
+ 528:	cmp	r7, #0
+ 52c:	bne	544 <ht_insert+0x68>
+ 530:	ldr	r0, [pc, #548]	; 75c <ht_insert+0x280>
+ 534:	ldr	r1, [pc, #536]	; 754 <ht_insert+0x278>
+ 538:	mov	r2, #114	; 0x72
+ 53c:	ldr	r3, [pc, #520]	; 74c <ht_insert+0x270>
+ 540:	bl	0 <__assert_fail>
+ 544:	cmp	r7, #2
+ 548:	bne	560 <ht_insert+0x84>
+ 54c:	ldr	r0, [pc, #496]	; 744 <ht_insert+0x268>
+ 550:	ldr	r1, [pc, #508]	; 754 <ht_insert+0x278>
+ 554:	mov	r2, #115	; 0x73
+ 558:	ldr	r3, [pc, #492]	; 74c <ht_insert+0x270>
+ 55c:	bl	0 <__assert_fail>
+ 560:	cmp	r7, #1
+ 564:	bne	57c <ht_insert+0xa0>
+ 568:	ldr	r0, [pc, #472]	; 748 <ht_insert+0x26c>
+ 56c:	ldr	r1, [pc, #480]	; 754 <ht_insert+0x278>
+ 570:	mov	r2, #116	; 0x74
+ 574:	ldr	r3, [pc, #464]	; 74c <ht_insert+0x270>
+ 578:	bl	0 <__assert_fail>
+ 57c:	ldr	ip, [r9, #8]
+ 580:	ldr	r3, [r9, #12]
+ 584:	vldr	d6, [pc, #476]	; 768 <ht_insert+0x28c>
+ 588:	vcvt.f32.f64	s0, d6
+ 58c:	vldr	s2, [pc, #464]	; 764 <ht_insert+0x288>
+ 590:	vmul.f32	s2, s0, s2
+ 594:	vcvt.s32.f32	s12, s2
+ 598:	vmov	r1, s12
+ 59c:	mul	r1, r3, r1
+ 5a0:	lsr	r0, r1, #8
+ 5a4:	cmp	ip, r0
+ 5a8:	bcc	5e8 <ht_insert+0x10c>
+ 5ac:	ldr	ip, [r9, #8]
+ 5b0:	lsl	r1, ip, #1
+ 5b4:	mov	r0, r9
+ 5b8:	bl	3dc <ht_resize>
+ 5bc:	cmp	r0, #0
+ 5c0:	beq	5e8 <ht_insert+0x10c>
+ 5c4:	ldr	r0, [pc, #396]	; 758 <ht_insert+0x27c>
+ 5c8:	ldr	r0, [r0]
+ 5cc:	ldr	r1, [pc, #380]	; 750 <ht_insert+0x274>
+ 5d0:	ldr	r2, [pc, #392]	; 760 <ht_insert+0x284>
+ 5d4:	bl	0 <fprintf>
+ 5d8:	mov	r0, #1
+ 5dc:	bl	0 <exit>
+ 5e0:	mov	r0, #1
+ 5e4:	b	718 <ht_insert+0x23c>
+ 5e8:	ldr	fp, [r9]
+ 5ec:	ldr	r2, [r9, #12]
+ 5f0:	sub	r8, r2, #1
+ 5f4:	ldr	r1, [sp, #12]
+ 5f8:	ldr	r0, [sp, #16]
+ 5fc:	bl	0 <ht_default_hash_function>
+ 600:	str	r0, [sp, #8]
+ 604:	mov	r6, #0
+ 608:	ldr	r3, [sp, #8]
+ 60c:	add	ip, r3, r6
+ 610:	and	r5, ip, r8
+ 614:	ldr	r0, [sp, #20]
+ 618:	cmp	r0, #2
+ 61c:	beq	630 <ht_insert+0x154>
+ 620:	cmp	r0, #3
+ 624:	moveq	ip, #1
+ 628:	movne	ip, #0
+ 62c:	b	634 <ht_insert+0x158>
+ 630:	mov	ip, #1
+ 634:	cmp	ip, #0
+ 638:	beq	694 <ht_insert+0x1b8>
+ 63c:	ldr	r3, [r9, #8]
+ 640:	add	r1, r3, #1
+ 644:	str	r1, [r9, #8]
+ 648:	ldr	r3, [fp, r5, lsl #2]
+ 64c:	cmp	r3, #0
+ 650:	beq	668 <ht_insert+0x18c>
+ 654:	ldr	r3, [fp, r5, lsl #2]
+ 658:	cmp	r3, #2
+ 65c:	movne	r0, #1
+ 660:	moveq	r0, #0
+ 664:	b	66c <ht_insert+0x190>
+ 668:	mov	r0, #0
+ 66c:	cmp	r0, #0
+ 670:	beq	688 <ht_insert+0x1ac>
+ 674:	add	r6, r6, #1
+ 678:	ldr	r1, [sp, #8]
+ 67c:	add	r2, r1, r6
+ 680:	and	r5, r2, r8
+ 684:	b	648 <ht_insert+0x16c>
+ 688:	str	r7, [fp, r5, lsl #2]
+ 68c:	mov	r0, #0
+ 690:	b	718 <ht_insert+0x23c>
+ 694:	ldr	r4, [fp, r5, lsl #2]
+ 698:	cmp	r4, #0
+ 69c:	beq	6f8 <ht_insert+0x21c>
+ 6a0:	cmp	r4, #2
+ 6a4:	beq	6d8 <ht_insert+0x1fc>
+ 6a8:	mov	r2, r4
+ 6ac:	ldr	r1, [sp, #12]
+ 6b0:	ldr	r0, [sp, #16]
+ 6b4:	bl	a54 <ht_match>
+ 6b8:	cmp	r0, #0
+ 6bc:	beq	6e4 <ht_insert+0x208>
+ 6c0:	ldr	r2, [sp, #20]
+ 6c4:	cmp	r2, #0
+ 6c8:	bne	6d0 <ht_insert+0x1f4>
+ 6cc:	str	r7, [fp, r5, lsl #2]
+ 6d0:	mov	r0, r4
+ 6d4:	b	718 <ht_insert+0x23c>
+ 6d8:	cmp	sl, #0
+ 6dc:	bne	6e4 <ht_insert+0x208>
+ 6e0:	add	sl, fp, r5, lsl #2
+ 6e4:	add	r6, r6, #1
+ 6e8:	ldr	ip, [sp, #8]
+ 6ec:	add	r0, ip, r6
+ 6f0:	and	r5, r0, r8
+ 6f4:	b	694 <ht_insert+0x1b8>
+ 6f8:	cmp	sl, #0
+ 6fc:	bne	704 <ht_insert+0x228>
+ 700:	add	sl, fp, r5, lsl #2
+ 704:	ldr	r0, [r9, #8]
+ 708:	add	r2, r0, #1
+ 70c:	str	r2, [r9, #8]
+ 710:	str	r7, [sl]
+ 714:	mov	r0, #0
+ 718:	ldr	r4, [sp, #24]
+ 71c:	ldr	r5, [sp, #28]
+ 720:	ldr	r6, [sp, #32]
+ 724:	ldr	r7, [sp, #36]	; 0x24
+ 728:	ldr	r8, [sp, #40]	; 0x28
+ 72c:	ldr	r9, [sp, #44]	; 0x2c
+ 730:	ldr	sl, [sp, #48]	; 0x30
+ 734:	ldr	fp, [sp, #52]	; 0x34
+ 738:	ldr	lr, [sp, #4]
+ 73c:	add	sp, sp, #56	; 0x38
+ 740:	bx	lr
+ 744:	.word	0x000000cb
+ 748:	.word	0x000000e2
+ 74c:	.word	0x00000134
+ 750:	.word	0x000000f7
+	...
+ 75c:	.word	0x0000010e
+ 760:	.word	0x00000098
+ 764:	.word	0x43800000
+ 768:	.word	0x66666666
+ 76c:	.word	0x3fe66666
+
+00000770 <ht_find>:
+ 770:	mov	ip, sp
+ 774:	sub	sp, sp, #40	; 0x28
+ 778:	str	ip, [sp]
+ 77c:	str	lr, [sp, #4]
+ 780:	str	r4, [sp, #8]
+ 784:	str	r5, [sp, #12]
+ 788:	str	r6, [sp, #16]
+ 78c:	str	r7, [sp, #20]
+ 790:	str	r8, [sp, #24]
+ 794:	str	r9, [sp, #28]
+ 798:	str	sl, [sp, #32]
+ 79c:	mov	r6, r2
+ 7a0:	mov	r7, r1
+ 7a4:	ldr	r8, [r0]
+ 7a8:	cmp	r8, #0
+ 7ac:	bne	7b8 <ht_find+0x48>
+ 7b0:	mov	r5, #0
+ 7b4:	b	830 <ht_find+0xc0>
+ 7b8:	ldr	r0, [r0, #12]
+ 7bc:	sub	r9, r0, #1
+ 7c0:	mov	r1, r6
+ 7c4:	mov	r0, r7
+ 7c8:	bl	0 <ht_default_hash_function>
+ 7cc:	mov	r4, r0
+ 7d0:	mov	sl, #0
+ 7d4:	add	ip, r4, sl
+ 7d8:	and	r3, ip, r9
+ 7dc:	ldr	r5, [r8, r3, lsl #2]
+ 7e0:	cmp	r5, #0
+ 7e4:	beq	82c <ht_find+0xbc>
+ 7e8:	cmp	r5, #2
+ 7ec:	beq	810 <ht_find+0xa0>
+ 7f0:	mov	r2, r5
+ 7f4:	mov	r1, r6
+ 7f8:	mov	r0, r7
+ 7fc:	bl	a54 <ht_match>
+ 800:	cmp	r0, #0
+ 804:	movne	r0, #1
+ 808:	moveq	r0, #0
+ 80c:	b	814 <ht_find+0xa4>
+ 810:	mov	r0, #0
+ 814:	cmp	r0, #0
+ 818:	bne	830 <ht_find+0xc0>
+ 81c:	add	sl, sl, #1
+ 820:	add	r2, r4, sl
+ 824:	and	r3, r2, r9
+ 828:	b	7dc <ht_find+0x6c>
+ 82c:	mov	r5, #0
+ 830:	mov	r0, r5
+ 834:	ldr	r4, [sp, #8]
+ 838:	ldr	r5, [sp, #12]
+ 83c:	ldr	r6, [sp, #16]
+ 840:	ldr	r7, [sp, #20]
+ 844:	ldr	r8, [sp, #24]
+ 848:	ldr	r9, [sp, #28]
+ 84c:	ldr	sl, [sp, #32]
+ 850:	ldr	lr, [sp, #4]
+ 854:	add	sp, sp, #40	; 0x28
+ 858:	bx	lr
+
+0000085c <ht_remove>:
+ 85c:	mov	ip, sp
+ 860:	sub	sp, sp, #48	; 0x30
+ 864:	str	ip, [sp]
+ 868:	str	lr, [sp, #4]
+ 86c:	str	r4, [sp, #12]
+ 870:	str	r5, [sp, #16]
+ 874:	str	r6, [sp, #20]
+ 878:	str	r7, [sp, #24]
+ 87c:	str	r8, [sp, #28]
+ 880:	str	r9, [sp, #32]
+ 884:	str	sl, [sp, #36]	; 0x24
+ 888:	str	fp, [sp, #40]	; 0x28
+ 88c:	str	r2, [sp, #8]
+ 890:	mov	fp, r1
+ 894:	mov	sl, r0
+ 898:	ldr	r4, [sl]
+ 89c:	cmp	r4, #0
+ 8a0:	bne	8ac <ht_remove+0x50>
+ 8a4:	mov	r0, #0
+ 8a8:	b	940 <ht_remove+0xe4>
+ 8ac:	ldr	ip, [sl, #12]
+ 8b0:	sub	r5, ip, #1
+ 8b4:	ldr	r1, [sp, #8]
+ 8b8:	mov	r0, fp
+ 8bc:	bl	0 <ht_default_hash_function>
+ 8c0:	mov	r6, r0
+ 8c4:	mov	r9, #0
+ 8c8:	add	r3, r6, r9
+ 8cc:	and	r8, r3, r5
+ 8d0:	ldr	r7, [r4, r8, lsl #2]
+ 8d4:	cmp	r7, #0
+ 8d8:	beq	93c <ht_remove+0xe0>
+ 8dc:	cmp	r7, #2
+ 8e0:	beq	904 <ht_remove+0xa8>
+ 8e4:	mov	r2, r7
+ 8e8:	ldr	r1, [sp, #8]
+ 8ec:	mov	r0, fp
+ 8f0:	bl	a54 <ht_match>
+ 8f4:	cmp	r0, #0
+ 8f8:	movne	r1, #1
+ 8fc:	moveq	r1, #0
+ 900:	b	908 <ht_remove+0xac>
+ 904:	mov	r1, #0
+ 908:	cmp	r1, #0
+ 90c:	beq	92c <ht_remove+0xd0>
+ 910:	mov	ip, #2
+ 914:	str	ip, [r4, r8, lsl #2]
+ 918:	ldr	r3, [sl, #8]
+ 91c:	sub	r2, r3, #1
+ 920:	str	r2, [sl, #8]
+ 924:	mov	r0, r7
+ 928:	b	940 <ht_remove+0xe4>
+ 92c:	add	r9, r9, #1
+ 930:	add	r0, r6, r9
+ 934:	and	r8, r0, r5
+ 938:	b	8d0 <ht_remove+0x74>
+ 93c:	mov	r0, #0
+ 940:	ldr	r4, [sp, #12]
+ 944:	ldr	r5, [sp, #16]
+ 948:	ldr	r6, [sp, #20]
+ 94c:	ldr	r7, [sp, #24]
+ 950:	ldr	r8, [sp, #28]
+ 954:	ldr	r9, [sp, #32]
+ 958:	ldr	sl, [sp, #36]	; 0x24
+ 95c:	ldr	fp, [sp, #40]	; 0x28
+ 960:	ldr	lr, [sp, #4]
+ 964:	add	sp, sp, #48	; 0x30
+ 968:	bx	lr
+
+0000096c <ht_visit>:
+ 96c:	mov	ip, sp
+ 970:	sub	sp, sp, #32
+ 974:	str	ip, [sp]
+ 978:	str	lr, [sp, #4]
+ 97c:	str	r4, [sp, #8]
+ 980:	str	r5, [sp, #12]
+ 984:	str	r6, [sp, #16]
+ 988:	str	r7, [sp, #20]
+ 98c:	str	r8, [sp, #24]
+ 990:	mov	r4, r2
+ 994:	mov	r5, r1
+ 998:	mov	r6, r0
+ 99c:	ldr	r8, [r6]
+ 9a0:	mov	r7, #0
+ 9a4:	ldr	r1, [r6, #12]
+ 9a8:	cmp	r7, r1
+ 9ac:	bcs	9e8 <ht_visit+0x7c>
+ 9b0:	ldr	r1, [r8, r7, lsl #2]
+ 9b4:	cmp	r1, #0
+ 9b8:	bne	9c4 <ht_visit+0x58>
+ 9bc:	mov	r3, #0
+ 9c0:	b	9d0 <ht_visit+0x64>
+ 9c4:	cmp	r1, #2
+ 9c8:	movne	r3, #1
+ 9cc:	moveq	r3, #0
+ 9d0:	cmp	r3, #0
+ 9d4:	beq	9e0 <ht_visit+0x74>
+ 9d8:	mov	r0, r4
+ 9dc:	blx	r5
+ 9e0:	add	r7, r7, #1
+ 9e4:	b	9a4 <ht_visit+0x38>
+ 9e8:	ldr	r4, [sp, #8]
+ 9ec:	ldr	r5, [sp, #12]
+ 9f0:	ldr	r6, [sp, #16]
+ 9f4:	ldr	r7, [sp, #20]
+ 9f8:	ldr	r8, [sp, #24]
+ 9fc:	ldr	lr, [sp, #4]
+ a00:	add	sp, sp, #32
+ a04:	bx	lr
+
+00000a08 <ht_clear>:
+ a08:	mov	ip, sp
+ a0c:	sub	sp, sp, #16
+ a10:	str	ip, [sp]
+ a14:	str	lr, [sp, #4]
+ a18:	str	r4, [sp, #8]
+ a1c:	mov	r4, r0
+ a20:	ldr	r1, [r4]
+ a24:	cmp	r1, #0
+ a28:	beq	a34 <ht_clear+0x2c>
+ a2c:	ldr	r0, [r4]
+ a30:	bl	0 <free>
+ a34:	mov	r1, #0
+ a38:	mov	r2, #16
+ a3c:	mov	r0, r4
+ a40:	bl	0 <memset>
+ a44:	ldr	r4, [sp, #8]
+ a48:	ldr	lr, [sp, #4]
+ a4c:	add	sp, sp, #16
+ a50:	bx	lr
+
+00000a54 <ht_match>:
+ a54:	mov	ip, sp
+ a58:	sub	sp, sp, #24
+ a5c:	str	ip, [sp]
+ a60:	str	lr, [sp, #4]
+ a64:	str	r4, [sp, #8]
+ a68:	str	r5, [sp, #12]
+ a6c:	str	r6, [sp, #16]
+ a70:	mov	r4, r2
+ a74:	mov	r5, r1
+ a78:	mov	r6, r0
+ a7c:	mov	r0, r4
+ a80:	bl	af4 <ht_key_len>
+ a84:	cmp	r5, r0
+ a88:	bne	ab4 <ht_match+0x60>
+ a8c:	mov	r0, r4
+ a90:	bl	ad0 <ht_key>
+ a94:	mov	r1, r0
+ a98:	mov	r2, r5
+ a9c:	mov	r0, r6
+ aa0:	bl	0 <memcmp>
+ aa4:	cmp	r0, #0
+ aa8:	moveq	r0, #1
+ aac:	movne	r0, #0
+ ab0:	b	ab8 <ht_match+0x64>
+ ab4:	mov	r0, #0
+ ab8:	ldr	r4, [sp, #8]
+ abc:	ldr	r5, [sp, #12]
+ ac0:	ldr	r6, [sp, #16]
+ ac4:	ldr	lr, [sp, #4]
+ ac8:	add	sp, sp, #24
+ acc:	bx	lr
+
+00000ad0 <ht_key>:
+ ad0:	mov	ip, sp
+ ad4:	sub	sp, sp, #8
+ ad8:	str	ip, [sp]
+ adc:	str	lr, [sp, #4]
+ ae0:	ldr	r0, [r0, #4]
+ ae4:	ldr	r0, [r0]
+ ae8:	ldr	lr, [sp, #4]
+ aec:	add	sp, sp, #8
+ af0:	bx	lr
+
+00000af4 <ht_key_len>:
+ af4:	mov	ip, sp
+ af8:	sub	sp, sp, #8
+ afc:	str	ip, [sp]
+ b00:	str	lr, [sp, #4]
+ b04:	ldr	r0, [r0, #4]
+ b08:	ldr	r0, [r0, #4]
+ b0c:	ldr	lr, [sp, #4]
+ b10:	add	sp, sp, #8
+ b14:	bx	lr

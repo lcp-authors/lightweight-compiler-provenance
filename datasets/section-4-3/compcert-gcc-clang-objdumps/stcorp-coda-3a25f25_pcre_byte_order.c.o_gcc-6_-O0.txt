@@ -1,0 +1,249 @@
+
+../compcert-repos/stcorp-coda-3a25f25/CMakeFiles/coda_static.dir/libcoda/pcre/pcre_byte_order.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <swap_uint32>:
+   0:	push	{fp}		; (str fp, [sp, #-4]!)
+   4:	add	fp, sp, #0
+   8:	sub	sp, sp, #12
+   c:	str	r0, [fp, #-8]
+  10:	ldr	r3, [fp, #-8]
+  14:	lsl	r2, r3, #24
+  18:	ldr	r3, [fp, #-8]
+  1c:	lsl	r3, r3, #8
+  20:	and	r3, r3, #16711680	; 0xff0000
+  24:	orr	r2, r2, r3
+  28:	ldr	r3, [fp, #-8]
+  2c:	lsr	r3, r3, #8
+  30:	and	r3, r3, #65280	; 0xff00
+  34:	orr	r2, r2, r3
+  38:	ldr	r3, [fp, #-8]
+  3c:	lsr	r3, r3, #24
+  40:	orr	r3, r2, r3
+  44:	mov	r0, r3
+  48:	add	sp, fp, #0
+  4c:	pop	{fp}		; (ldr fp, [sp], #4)
+  50:	bx	lr
+
+00000054 <swap_uint16>:
+  54:	push	{fp}		; (str fp, [sp, #-4]!)
+  58:	add	fp, sp, #0
+  5c:	sub	sp, sp, #12
+  60:	mov	r3, r0
+  64:	strh	r3, [fp, #-6]
+  68:	ldrh	r3, [fp, #-6]
+  6c:	lsr	r3, r3, #8
+  70:	uxth	r3, r3
+  74:	sxth	r2, r3
+  78:	ldrh	r3, [fp, #-6]
+  7c:	lsl	r3, r3, #8
+  80:	sxth	r3, r3
+  84:	orr	r3, r2, r3
+  88:	sxth	r3, r3
+  8c:	uxth	r3, r3
+  90:	mov	r0, r3
+  94:	add	sp, fp, #0
+  98:	pop	{fp}		; (ldr fp, [sp], #4)
+  9c:	bx	lr
+
+000000a0 <coda_pcre_pattern_to_host_byte_order>:
+  a0:	push	{fp, lr}
+  a4:	add	fp, sp, #4
+  a8:	sub	sp, sp, #24
+  ac:	str	r0, [fp, #-16]
+  b0:	str	r1, [fp, #-20]	; 0xffffffec
+  b4:	str	r2, [fp, #-24]	; 0xffffffe8
+  b8:	ldr	r3, [fp, #-16]
+  bc:	str	r3, [fp, #-8]
+  c0:	ldr	r3, [fp, #-8]
+  c4:	cmp	r3, #0
+  c8:	bne	d4 <coda_pcre_pattern_to_host_byte_order+0x34>
+  cc:	mvn	r3, #1
+  d0:	b	3a4 <coda_pcre_pattern_to_host_byte_order+0x304>
+  d4:	ldr	r3, [fp, #-8]
+  d8:	ldr	r3, [r3]
+  dc:	ldr	r2, [pc, #716]	; 3b0 <coda_pcre_pattern_to_host_byte_order+0x310>
+  e0:	cmp	r3, r2
+  e4:	bne	118 <coda_pcre_pattern_to_host_byte_order+0x78>
+  e8:	ldr	r3, [fp, #-8]
+  ec:	ldr	r3, [r3, #12]
+  f0:	and	r3, r3, #1
+  f4:	cmp	r3, #0
+  f8:	bne	104 <coda_pcre_pattern_to_host_byte_order+0x64>
+  fc:	mvn	r3, #27
+ 100:	b	3a4 <coda_pcre_pattern_to_host_byte_order+0x304>
+ 104:	ldr	r3, [fp, #-8]
+ 108:	ldr	r2, [fp, #-24]	; 0xffffffe8
+ 10c:	str	r2, [r3, #48]	; 0x30
+ 110:	mov	r3, #0
+ 114:	b	3a4 <coda_pcre_pattern_to_host_byte_order+0x304>
+ 118:	ldr	r3, [fp, #-8]
+ 11c:	ldr	r3, [r3]
+ 120:	ldr	r2, [pc, #652]	; 3b4 <coda_pcre_pattern_to_host_byte_order+0x314>
+ 124:	cmp	r3, r2
+ 128:	beq	134 <coda_pcre_pattern_to_host_byte_order+0x94>
+ 12c:	mvn	r3, #3
+ 130:	b	3a4 <coda_pcre_pattern_to_host_byte_order+0x304>
+ 134:	ldr	r3, [fp, #-8]
+ 138:	ldr	r3, [r3, #12]
+ 13c:	mov	r0, r3
+ 140:	bl	0 <swap_uint32>
+ 144:	mov	r3, r0
+ 148:	and	r3, r3, #1
+ 14c:	cmp	r3, #0
+ 150:	bne	15c <coda_pcre_pattern_to_host_byte_order+0xbc>
+ 154:	mvn	r3, #27
+ 158:	b	3a4 <coda_pcre_pattern_to_host_byte_order+0x304>
+ 15c:	ldr	r3, [fp, #-8]
+ 160:	ldr	r2, [pc, #584]	; 3b0 <coda_pcre_pattern_to_host_byte_order+0x310>
+ 164:	str	r2, [r3]
+ 168:	ldr	r3, [fp, #-8]
+ 16c:	ldr	r3, [r3, #4]
+ 170:	mov	r0, r3
+ 174:	bl	0 <swap_uint32>
+ 178:	mov	r2, r0
+ 17c:	ldr	r3, [fp, #-8]
+ 180:	str	r2, [r3, #4]
+ 184:	ldr	r3, [fp, #-8]
+ 188:	ldr	r3, [r3, #8]
+ 18c:	mov	r0, r3
+ 190:	bl	0 <swap_uint32>
+ 194:	mov	r2, r0
+ 198:	ldr	r3, [fp, #-8]
+ 19c:	str	r2, [r3, #8]
+ 1a0:	ldr	r3, [fp, #-8]
+ 1a4:	ldr	r3, [r3, #12]
+ 1a8:	mov	r0, r3
+ 1ac:	bl	0 <swap_uint32>
+ 1b0:	mov	r2, r0
+ 1b4:	ldr	r3, [fp, #-8]
+ 1b8:	str	r2, [r3, #12]
+ 1bc:	ldr	r3, [fp, #-8]
+ 1c0:	ldr	r3, [r3, #16]
+ 1c4:	mov	r0, r3
+ 1c8:	bl	0 <swap_uint32>
+ 1cc:	mov	r2, r0
+ 1d0:	ldr	r3, [fp, #-8]
+ 1d4:	str	r2, [r3, #16]
+ 1d8:	ldr	r3, [fp, #-8]
+ 1dc:	ldr	r3, [r3, #20]
+ 1e0:	mov	r0, r3
+ 1e4:	bl	0 <swap_uint32>
+ 1e8:	mov	r2, r0
+ 1ec:	ldr	r3, [fp, #-8]
+ 1f0:	str	r2, [r3, #20]
+ 1f4:	ldr	r3, [fp, #-8]
+ 1f8:	ldrh	r3, [r3, #24]
+ 1fc:	mov	r0, r3
+ 200:	bl	54 <swap_uint16>
+ 204:	mov	r3, r0
+ 208:	mov	r2, r3
+ 20c:	ldr	r3, [fp, #-8]
+ 210:	strh	r2, [r3, #24]
+ 214:	ldr	r3, [fp, #-8]
+ 218:	ldrh	r3, [r3, #26]
+ 21c:	mov	r0, r3
+ 220:	bl	54 <swap_uint16>
+ 224:	mov	r3, r0
+ 228:	mov	r2, r3
+ 22c:	ldr	r3, [fp, #-8]
+ 230:	strh	r2, [r3, #26]
+ 234:	ldr	r3, [fp, #-8]
+ 238:	ldrh	r3, [r3, #28]
+ 23c:	mov	r0, r3
+ 240:	bl	54 <swap_uint16>
+ 244:	mov	r3, r0
+ 248:	mov	r2, r3
+ 24c:	ldr	r3, [fp, #-8]
+ 250:	strh	r2, [r3, #28]
+ 254:	ldr	r3, [fp, #-8]
+ 258:	ldrh	r3, [r3, #30]
+ 25c:	mov	r0, r3
+ 260:	bl	54 <swap_uint16>
+ 264:	mov	r3, r0
+ 268:	mov	r2, r3
+ 26c:	ldr	r3, [fp, #-8]
+ 270:	strh	r2, [r3, #30]
+ 274:	ldr	r3, [fp, #-8]
+ 278:	ldrh	r3, [r3, #32]
+ 27c:	mov	r0, r3
+ 280:	bl	54 <swap_uint16>
+ 284:	mov	r3, r0
+ 288:	mov	r2, r3
+ 28c:	ldr	r3, [fp, #-8]
+ 290:	strh	r2, [r3, #32]
+ 294:	ldr	r3, [fp, #-8]
+ 298:	ldrh	r3, [r3, #34]	; 0x22
+ 29c:	mov	r0, r3
+ 2a0:	bl	54 <swap_uint16>
+ 2a4:	mov	r3, r0
+ 2a8:	mov	r2, r3
+ 2ac:	ldr	r3, [fp, #-8]
+ 2b0:	strh	r2, [r3, #34]	; 0x22
+ 2b4:	ldr	r3, [fp, #-8]
+ 2b8:	ldrh	r3, [r3, #36]	; 0x24
+ 2bc:	mov	r0, r3
+ 2c0:	bl	54 <swap_uint16>
+ 2c4:	mov	r3, r0
+ 2c8:	mov	r2, r3
+ 2cc:	ldr	r3, [fp, #-8]
+ 2d0:	strh	r2, [r3, #36]	; 0x24
+ 2d4:	ldr	r3, [fp, #-8]
+ 2d8:	ldrh	r3, [r3, #38]	; 0x26
+ 2dc:	mov	r0, r3
+ 2e0:	bl	54 <swap_uint16>
+ 2e4:	mov	r3, r0
+ 2e8:	mov	r2, r3
+ 2ec:	ldr	r3, [fp, #-8]
+ 2f0:	strh	r2, [r3, #38]	; 0x26
+ 2f4:	ldr	r3, [fp, #-8]
+ 2f8:	ldrh	r3, [r3, #40]	; 0x28
+ 2fc:	mov	r0, r3
+ 300:	bl	54 <swap_uint16>
+ 304:	mov	r3, r0
+ 308:	mov	r2, r3
+ 30c:	ldr	r3, [fp, #-8]
+ 310:	strh	r2, [r3, #40]	; 0x28
+ 314:	ldr	r3, [fp, #-8]
+ 318:	ldr	r2, [fp, #-24]	; 0xffffffe8
+ 31c:	str	r2, [r3, #48]	; 0x30
+ 320:	ldr	r3, [fp, #-20]	; 0xffffffec
+ 324:	cmp	r3, #0
+ 328:	beq	3a0 <coda_pcre_pattern_to_host_byte_order+0x300>
+ 32c:	ldr	r3, [fp, #-20]	; 0xffffffec
+ 330:	ldr	r3, [r3]
+ 334:	and	r3, r3, #1
+ 338:	cmp	r3, #0
+ 33c:	beq	3a0 <coda_pcre_pattern_to_host_byte_order+0x300>
+ 340:	ldr	r3, [fp, #-20]	; 0xffffffec
+ 344:	ldr	r3, [r3, #4]
+ 348:	str	r3, [fp, #-12]
+ 34c:	ldr	r3, [fp, #-12]
+ 350:	ldr	r3, [r3]
+ 354:	mov	r0, r3
+ 358:	bl	0 <swap_uint32>
+ 35c:	mov	r2, r0
+ 360:	ldr	r3, [fp, #-12]
+ 364:	str	r2, [r3]
+ 368:	ldr	r3, [fp, #-12]
+ 36c:	ldr	r3, [r3, #4]
+ 370:	mov	r0, r3
+ 374:	bl	0 <swap_uint32>
+ 378:	mov	r2, r0
+ 37c:	ldr	r3, [fp, #-12]
+ 380:	str	r2, [r3, #4]
+ 384:	ldr	r3, [fp, #-12]
+ 388:	ldr	r3, [r3, #40]	; 0x28
+ 38c:	mov	r0, r3
+ 390:	bl	0 <swap_uint32>
+ 394:	mov	r2, r0
+ 398:	ldr	r3, [fp, #-12]
+ 39c:	str	r2, [r3, #40]	; 0x28
+ 3a0:	mov	r3, #0
+ 3a4:	mov	r0, r3
+ 3a8:	sub	sp, fp, #4
+ 3ac:	pop	{fp, pc}
+ 3b0:	.word	0x50435245
+ 3b4:	.word	0x45524350

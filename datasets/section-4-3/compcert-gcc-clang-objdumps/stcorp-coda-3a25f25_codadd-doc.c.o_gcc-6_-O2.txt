@@ -1,0 +1,2495 @@
+
+../compcert-repos/stcorp-coda-3a25f25/CMakeFiles/codadd.dir/tools/codadd/codadd-doc.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <ff_printf>:
+       0:	push	{r0, r1, r2, r3}
+       4:	ldr	r1, [pc, #44]	; 38 <ff_printf+0x38>
+       8:	push	{lr}		; (str lr, [sp, #-4]!)
+       c:	sub	sp, sp, #12
+      10:	add	r3, sp, #20
+      14:	mov	r2, r3
+      18:	ldr	r0, [r1]
+      1c:	ldr	r1, [sp, #16]
+      20:	str	r3, [sp, #4]
+      24:	bl	0 <vfprintf>
+      28:	add	sp, sp, #12
+      2c:	pop	{lr}		; (ldr lr, [sp], #4)
+      30:	add	sp, sp, #16
+      34:	bx	lr
+      38:	.word	0x00000000
+
+0000003c <compare_named_types>:
+      3c:	ldr	r2, [r1]
+      40:	ldr	r3, [r0]
+      44:	ldr	r1, [r2, #16]
+      48:	ldr	r0, [r3, #16]
+      4c:	b	0 <strcasecmp>
+
+00000050 <indent>:
+      50:	push	{r4, r5, r6, r7, r8, lr}
+      54:	ldr	r5, [pc, #80]	; ac <indent+0x5c>
+      58:	ldr	r4, [r5, #4]
+      5c:	cmp	r4, #0
+      60:	blt	98 <indent+0x48>
+      64:	beq	94 <indent+0x44>
+      68:	ldr	r8, [pc, #64]	; b0 <indent+0x60>
+      6c:	mov	r7, #2
+      70:	mov	r6, #1
+      74:	ldr	r3, [r5]
+      78:	mov	r2, r7
+      7c:	mov	r1, r6
+      80:	mov	r0, r8
+      84:	bl	0 <fwrite>
+      88:	subs	r4, r4, #1
+      8c:	bne	74 <indent+0x24>
+      90:	pop	{r4, r5, r6, r7, r8, pc}
+      94:	pop	{r4, r5, r6, r7, r8, pc}
+      98:	ldr	r3, [pc, #20]	; b4 <indent+0x64>
+      9c:	mov	r2, #69	; 0x45
+      a0:	ldr	r1, [pc, #16]	; b8 <indent+0x68>
+      a4:	ldr	r0, [pc, #16]	; bc <indent+0x6c>
+      a8:	bl	0 <__assert_fail>
+      ac:	.word	0x00000000
+      b0:	.word	0x0000005c
+	...
+      bc:	.word	0x00000050
+
+000000c0 <fi_printf>:
+      c0:	push	{r0, r1, r2, r3}
+      c4:	push	{lr}		; (str lr, [sp, #-4]!)
+      c8:	sub	sp, sp, #12
+      cc:	bl	50 <indent>
+      d0:	ldr	r2, [pc, #36]	; fc <fi_printf+0x3c>
+      d4:	add	r3, sp, #20
+      d8:	ldr	r1, [sp, #16]
+      dc:	ldr	r0, [r2]
+      e0:	mov	r2, r3
+      e4:	str	r3, [sp, #4]
+      e8:	bl	0 <vfprintf>
+      ec:	add	sp, sp, #12
+      f0:	pop	{lr}		; (ldr lr, [sp], #4)
+      f4:	add	sp, sp, #16
+      f8:	bx	lr
+      fc:	.word	0x00000000
+
+00000100 <html_attr_begin>:
+     100:	subs	r3, r1, #0
+     104:	mov	r1, r0
+     108:	beq	120 <html_attr_begin+0x20>
+     10c:	ldr	r2, [r3]
+     110:	cmp	r2, #0
+     114:	movne	r2, #0
+     118:	strne	r2, [r3]
+     11c:	beq	128 <html_attr_begin+0x28>
+     120:	ldr	r0, [pc, #40]	; 150 <html_attr_begin+0x50>
+     124:	b	c0 <fi_printf>
+     128:	push	{lr}		; (str lr, [sp, #-4]!)
+     12c:	sub	sp, sp, #12
+     130:	str	r0, [sp, #4]
+     134:	ldr	r0, [pc, #24]	; 154 <html_attr_begin+0x54>
+     138:	bl	c0 <fi_printf>
+     13c:	ldr	r1, [sp, #4]
+     140:	ldr	r0, [pc, #8]	; 150 <html_attr_begin+0x50>
+     144:	add	sp, sp, #12
+     148:	pop	{lr}		; (ldr lr, [sp], #4)
+     14c:	b	c0 <fi_printf>
+     150:	.word	0x00000070
+     154:	.word	0x00000060
+
+00000158 <type_uses_type>:
+     158:	push	{r4, r5, r6, r7, lr}
+     15c:	subs	r5, r0, #0
+     160:	sub	sp, sp, #12
+     164:	beq	24c <type_uses_type+0xf4>
+     168:	cmp	r2, #0
+     16c:	sub	r4, r5, r1
+     170:	clz	r4, r4
+     174:	lsr	r4, r4, #5
+     178:	moveq	r4, #0
+     17c:	cmp	r4, #0
+     180:	bne	214 <type_uses_type+0xbc>
+     184:	ldr	r7, [r5, #8]
+     188:	mov	r6, r1
+     18c:	cmp	r7, #1
+     190:	beq	22c <type_uses_type+0xd4>
+     194:	bcc	1c0 <type_uses_type+0x68>
+     198:	cmp	r7, #6
+     19c:	bne	220 <type_uses_type+0xc8>
+     1a0:	add	r1, sp, #4
+     1a4:	bl	0 <coda_type_get_special_base_type>
+     1a8:	mov	r1, r6
+     1ac:	mov	r2, #1
+     1b0:	ldr	r0, [sp, #4]
+     1b4:	bl	158 <type_uses_type>
+     1b8:	add	sp, sp, #12
+     1bc:	pop	{r4, r5, r6, r7, pc}
+     1c0:	mov	r1, sp
+     1c4:	bl	0 <coda_type_get_num_record_fields>
+     1c8:	ldr	r3, [sp]
+     1cc:	cmp	r3, #0
+     1d0:	movgt	r7, #1
+     1d4:	bgt	1e8 <type_uses_type+0x90>
+     1d8:	b	24c <type_uses_type+0xf4>
+     1dc:	ldr	r3, [sp]
+     1e0:	cmp	r4, r3
+     1e4:	bge	24c <type_uses_type+0xf4>
+     1e8:	mov	r1, r4
+     1ec:	add	r2, sp, #4
+     1f0:	mov	r0, r5
+     1f4:	bl	0 <coda_type_get_record_field_type>
+     1f8:	mov	r2, r7
+     1fc:	mov	r1, r6
+     200:	ldr	r0, [sp, #4]
+     204:	bl	158 <type_uses_type>
+     208:	add	r4, r4, #1
+     20c:	cmp	r0, #0
+     210:	beq	1dc <type_uses_type+0x84>
+     214:	mov	r0, #1
+     218:	add	sp, sp, #12
+     21c:	pop	{r4, r5, r6, r7, pc}
+     220:	mov	r0, r4
+     224:	add	sp, sp, #12
+     228:	pop	{r4, r5, r6, r7, pc}
+     22c:	add	r1, sp, #4
+     230:	bl	0 <coda_type_get_array_base_type>
+     234:	mov	r2, r7
+     238:	mov	r1, r6
+     23c:	ldr	r0, [sp, #4]
+     240:	bl	158 <type_uses_type>
+     244:	add	sp, sp, #12
+     248:	pop	{r4, r5, r6, r7, pc}
+     24c:	mov	r0, #0
+     250:	add	sp, sp, #12
+     254:	pop	{r4, r5, r6, r7, pc}
+
+00000258 <generate_escaped_html_string.part.3>:
+     258:	cmp	r1, #0
+     25c:	push	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+     260:	mov	r4, r0
+     264:	sub	sp, sp, #12
+     268:	blt	4dc <generate_escaped_html_string.part.3+0x284>
+     26c:	cmp	r1, #0
+     270:	ble	40c <generate_escaped_html_string.part.3+0x1b4>
+     274:	ldr	fp, [pc, #620]	; 4e8 <generate_escaped_html_string.part.3+0x290>
+     278:	ldr	sl, [pc, #620]	; 4ec <generate_escaped_html_string.part.3+0x294>
+     27c:	ldr	r9, [pc, #620]	; 4f0 <generate_escaped_html_string.part.3+0x298>
+     280:	ldr	r8, [pc, #620]	; 4f4 <generate_escaped_html_string.part.3+0x29c>
+     284:	ldr	r7, [pc, #620]	; 4f8 <generate_escaped_html_string.part.3+0x2a0>
+     288:	ldr	r6, [pc, #620]	; 4fc <generate_escaped_html_string.part.3+0x2a4>
+     28c:	add	r5, r4, r1
+     290:	ldrb	r1, [r4], #1
+     294:	sub	r3, r1, #7
+     298:	cmp	r3, #85	; 0x55
+     29c:	ldrls	pc, [pc, r3, lsl #2]
+     2a0:	b	4b0 <generate_escaped_html_string.part.3+0x258>
+     2a4:	.word	0x000004a4
+     2a8:	.word	0x00000498
+     2ac:	.word	0x0000048c
+     2b0:	.word	0x00000480
+     2b4:	.word	0x00000474
+     2b8:	.word	0x00000468
+     2bc:	.word	0x0000045c
+     2c0:	.word	0x000004b0
+     2c4:	.word	0x000004b0
+     2c8:	.word	0x000004b0
+     2cc:	.word	0x000004b0
+     2d0:	.word	0x000004b0
+     2d4:	.word	0x000004b0
+     2d8:	.word	0x000004b0
+     2dc:	.word	0x000004b0
+     2e0:	.word	0x000004b0
+     2e4:	.word	0x000004b0
+     2e8:	.word	0x000004b0
+     2ec:	.word	0x000004b0
+     2f0:	.word	0x000004b0
+     2f4:	.word	0x00000450
+     2f8:	.word	0x000004b0
+     2fc:	.word	0x000004b0
+     300:	.word	0x000004b0
+     304:	.word	0x000004b0
+     308:	.word	0x00000444
+     30c:	.word	0x000004b0
+     310:	.word	0x00000438
+     314:	.word	0x000004b0
+     318:	.word	0x000004b0
+     31c:	.word	0x000004b0
+     320:	.word	0x0000042c
+     324:	.word	0x000004b0
+     328:	.word	0x000004b0
+     32c:	.word	0x000004b0
+     330:	.word	0x000004b0
+     334:	.word	0x000004b0
+     338:	.word	0x000004b0
+     33c:	.word	0x000004b0
+     340:	.word	0x000004b0
+     344:	.word	0x000004b0
+     348:	.word	0x000004b0
+     34c:	.word	0x000004b0
+     350:	.word	0x000004b0
+     354:	.word	0x000004b0
+     358:	.word	0x000004b0
+     35c:	.word	0x000004b0
+     360:	.word	0x000004b0
+     364:	.word	0x000004b0
+     368:	.word	0x000004b0
+     36c:	.word	0x000004b0
+     370:	.word	0x000004b0
+     374:	.word	0x000004b0
+     378:	.word	0x00000420
+     37c:	.word	0x000004b0
+     380:	.word	0x00000414
+     384:	.word	0x000004b0
+     388:	.word	0x000004b0
+     38c:	.word	0x000004b0
+     390:	.word	0x000004b0
+     394:	.word	0x000004b0
+     398:	.word	0x000004b0
+     39c:	.word	0x000004b0
+     3a0:	.word	0x000004b0
+     3a4:	.word	0x000004b0
+     3a8:	.word	0x000004b0
+     3ac:	.word	0x000004b0
+     3b0:	.word	0x000004b0
+     3b4:	.word	0x000004b0
+     3b8:	.word	0x000004b0
+     3bc:	.word	0x000004b0
+     3c0:	.word	0x000004b0
+     3c4:	.word	0x000004b0
+     3c8:	.word	0x000004b0
+     3cc:	.word	0x000004b0
+     3d0:	.word	0x000004b0
+     3d4:	.word	0x000004b0
+     3d8:	.word	0x000004b0
+     3dc:	.word	0x000004b0
+     3e0:	.word	0x000004b0
+     3e4:	.word	0x000004b0
+     3e8:	.word	0x000004b0
+     3ec:	.word	0x000004b0
+     3f0:	.word	0x000004b0
+     3f4:	.word	0x000004b0
+     3f8:	.word	0x000003fc
+     3fc:	ldr	r0, [pc, #252]	; 500 <generate_escaped_html_string.part.3+0x2a8>
+     400:	bl	0 <ff_printf>
+     404:	cmp	r5, r4
+     408:	bne	290 <generate_escaped_html_string.part.3+0x38>
+     40c:	add	sp, sp, #12
+     410:	pop	{r4, r5, r6, r7, r8, r9, sl, fp, pc}
+     414:	mov	r0, r7
+     418:	bl	0 <ff_printf>
+     41c:	b	404 <generate_escaped_html_string.part.3+0x1ac>
+     420:	mov	r0, r6
+     424:	bl	0 <ff_printf>
+     428:	b	404 <generate_escaped_html_string.part.3+0x1ac>
+     42c:	mov	r0, r8
+     430:	bl	0 <ff_printf>
+     434:	b	404 <generate_escaped_html_string.part.3+0x1ac>
+     438:	ldr	r0, [pc, #196]	; 504 <generate_escaped_html_string.part.3+0x2ac>
+     43c:	bl	0 <ff_printf>
+     440:	b	404 <generate_escaped_html_string.part.3+0x1ac>
+     444:	mov	r0, r9
+     448:	bl	0 <ff_printf>
+     44c:	b	404 <generate_escaped_html_string.part.3+0x1ac>
+     450:	ldr	r0, [pc, #176]	; 508 <generate_escaped_html_string.part.3+0x2b0>
+     454:	bl	0 <ff_printf>
+     458:	b	404 <generate_escaped_html_string.part.3+0x1ac>
+     45c:	ldr	r0, [pc, #168]	; 50c <generate_escaped_html_string.part.3+0x2b4>
+     460:	bl	0 <ff_printf>
+     464:	b	404 <generate_escaped_html_string.part.3+0x1ac>
+     468:	ldr	r0, [pc, #160]	; 510 <generate_escaped_html_string.part.3+0x2b8>
+     46c:	bl	0 <ff_printf>
+     470:	b	404 <generate_escaped_html_string.part.3+0x1ac>
+     474:	ldr	r0, [pc, #152]	; 514 <generate_escaped_html_string.part.3+0x2bc>
+     478:	bl	0 <ff_printf>
+     47c:	b	404 <generate_escaped_html_string.part.3+0x1ac>
+     480:	ldr	r0, [pc, #144]	; 518 <generate_escaped_html_string.part.3+0x2c0>
+     484:	bl	0 <ff_printf>
+     488:	b	404 <generate_escaped_html_string.part.3+0x1ac>
+     48c:	ldr	r0, [pc, #136]	; 51c <generate_escaped_html_string.part.3+0x2c4>
+     490:	bl	0 <ff_printf>
+     494:	b	404 <generate_escaped_html_string.part.3+0x1ac>
+     498:	ldr	r0, [pc, #128]	; 520 <generate_escaped_html_string.part.3+0x2c8>
+     49c:	bl	0 <ff_printf>
+     4a0:	b	404 <generate_escaped_html_string.part.3+0x1ac>
+     4a4:	ldr	r0, [pc, #120]	; 524 <generate_escaped_html_string.part.3+0x2cc>
+     4a8:	bl	0 <ff_printf>
+     4ac:	b	404 <generate_escaped_html_string.part.3+0x1ac>
+     4b0:	str	r1, [sp, #4]
+     4b4:	bl	0 <__ctype_b_loc>
+     4b8:	ldr	r1, [sp, #4]
+     4bc:	lsl	r3, r1, #1
+     4c0:	ldr	r2, [r0]
+     4c4:	ldrh	r3, [r2, r3]
+     4c8:	tst	r3, #16384	; 0x4000
+     4cc:	moveq	r0, sl
+     4d0:	movne	r0, fp
+     4d4:	bl	0 <ff_printf>
+     4d8:	b	404 <generate_escaped_html_string.part.3+0x1ac>
+     4dc:	bl	0 <strlen>
+     4e0:	mov	r1, r0
+     4e4:	b	26c <generate_escaped_html_string.part.3+0x14>
+     4e8:	.word	0x000000fc
+     4ec:	.word	0x000000f4
+     4f0:	.word	0x000000ec
+     4f4:	.word	0x000000e4
+     4f8:	.word	0x000000dc
+     4fc:	.word	0x000000d4
+     500:	.word	0x000000cc
+     504:	.word	0x000000d0
+     508:	.word	0x000000ac
+     50c:	.word	0x000000c0
+     510:	.word	0x000000b8
+     514:	.word	0x000000c8
+     518:	.word	0x000000bc
+     51c:	.word	0x000000c4
+     520:	.word	0x000000b4
+     524:	.word	0x000000b0
+
+00000528 <generate_xml_string.part.0.constprop.4>:
+     528:	push	{r4, r5, r6, r7, r8, r9, sl, lr}
+     52c:	mov	r4, r0
+     530:	bl	0 <strlen>
+     534:	cmp	r0, #0
+     538:	pople	{r4, r5, r6, r7, r8, r9, sl, pc}
+     53c:	ldr	r9, [pc, #108]	; 5b0 <generate_xml_string.part.0.constprop.4+0x88>
+     540:	ldr	r8, [pc, #108]	; 5b4 <generate_xml_string.part.0.constprop.4+0x8c>
+     544:	ldr	r6, [pc, #108]	; 5b8 <generate_xml_string.part.0.constprop.4+0x90>
+     548:	ldr	r7, [pc, #108]	; 5bc <generate_xml_string.part.0.constprop.4+0x94>
+     54c:	add	r5, r4, r0
+     550:	b	578 <generate_xml_string.part.0.constprop.4+0x50>
+     554:	cmp	r3, #62	; 0x3e
+     558:	mov	r1, r3
+     55c:	mov	r0, r6
+     560:	beq	5a4 <generate_xml_string.part.0.constprop.4+0x7c>
+     564:	cmp	r3, #38	; 0x26
+     568:	beq	598 <generate_xml_string.part.0.constprop.4+0x70>
+     56c:	bl	0 <ff_printf>
+     570:	cmp	r4, r5
+     574:	beq	594 <generate_xml_string.part.0.constprop.4+0x6c>
+     578:	ldrb	r3, [r4], #1
+     57c:	cmp	r3, #60	; 0x3c
+     580:	bne	554 <generate_xml_string.part.0.constprop.4+0x2c>
+     584:	mov	r0, r9
+     588:	bl	0 <ff_printf>
+     58c:	cmp	r4, r5
+     590:	bne	578 <generate_xml_string.part.0.constprop.4+0x50>
+     594:	pop	{r4, r5, r6, r7, r8, r9, sl, pc}
+     598:	mov	r0, r7
+     59c:	bl	0 <ff_printf>
+     5a0:	b	570 <generate_xml_string.part.0.constprop.4+0x48>
+     5a4:	mov	r0, r8
+     5a8:	bl	0 <ff_printf>
+     5ac:	b	570 <generate_xml_string.part.0.constprop.4+0x48>
+     5b0:	.word	0x000000d4
+     5b4:	.word	0x000000dc
+     5b8:	.word	0x000000fc
+     5bc:	.word	0x000000e4
+
+000005c0 <element_name_and_namespace_from_xml_name>:
+     5c0:	push	{r4, r5, r6, r7, r8, lr}
+     5c4:	mov	r6, r0
+     5c8:	ldrb	r5, [r0]
+     5cc:	mov	r8, r1
+     5d0:	mov	r7, r2
+     5d4:	tst	r5, #223	; 0xdf
+     5d8:	beq	5e8 <element_name_and_namespace_from_xml_name+0x28>
+     5dc:	ldrb	r5, [r0, #1]!
+     5e0:	tst	r5, #223	; 0xdf
+     5e4:	bne	5dc <element_name_and_namespace_from_xml_name+0x1c>
+     5e8:	cmp	r5, #0
+     5ec:	beq	620 <element_name_and_namespace_from_xml_name+0x60>
+     5f0:	add	r4, r0, #1
+     5f4:	mov	r0, r4
+     5f8:	bl	0 <strdup>
+     5fc:	sub	r4, r4, r6
+     600:	str	r0, [r8]
+     604:	mov	r0, r6
+     608:	bl	0 <strdup>
+     60c:	mov	r3, #0
+     610:	add	r4, r0, r4
+     614:	str	r0, [r7]
+     618:	strb	r3, [r4, #-1]
+     61c:	pop	{r4, r5, r6, r7, r8, pc}
+     620:	mov	r0, r6
+     624:	bl	0 <strdup>
+     628:	str	r0, [r8]
+     62c:	str	r5, [r7]
+     630:	pop	{r4, r5, r6, r7, r8, pc}
+
+00000634 <generate_html_type>:
+     634:	push	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+     638:	sub	sp, sp, #108	; 0x6c
+     63c:	mov	r4, r2
+     640:	mov	r3, #1
+     644:	mov	fp, r0
+     648:	ldr	r0, [pc, #2720]	; 10f0 <generate_html_type+0xabc>
+     64c:	mov	r5, r1
+     650:	str	r3, [sp, #28]
+     654:	bl	c0 <fi_printf>
+     658:	cmp	r4, #0
+     65c:	beq	c30 <generate_html_type+0x5fc>
+     660:	ldr	r0, [pc, #2700]	; 10f4 <generate_html_type+0xac0>
+     664:	bl	0 <ff_printf>
+     668:	add	r1, sp, #64	; 0x40
+     66c:	mov	r0, fp
+     670:	bl	0 <coda_type_get_bit_size>
+     674:	ldr	r0, [pc, #2684]	; 10f8 <generate_html_type+0xac4>
+     678:	bl	c0 <fi_printf>
+     67c:	ldr	r0, [pc, #2680]	; 10fc <generate_html_type+0xac8>
+     680:	bl	c0 <fi_printf>
+     684:	ldrd	r2, [sp, #64]	; 0x40
+     688:	cmp	r2, #0
+     68c:	sbcs	r3, r3, #0
+     690:	blt	1460 <generate_html_type+0xe2c>
+     694:	ldr	r0, [fp]
+     698:	bl	0 <coda_type_get_format_name>
+     69c:	mov	r1, r0
+     6a0:	ldr	r0, [pc, #2648]	; 1100 <generate_html_type+0xacc>
+     6a4:	bl	0 <ff_printf>
+     6a8:	ldr	r3, [fp, #8]
+     6ac:	cmp	r3, #1
+     6b0:	beq	c7c <generate_html_type+0x648>
+     6b4:	bcc	c4c <generate_html_type+0x618>
+     6b8:	cmp	r3, #6
+     6bc:	bne	838 <generate_html_type+0x204>
+     6c0:	add	r1, sp, #20
+     6c4:	mov	r0, fp
+     6c8:	bl	0 <coda_type_get_special_type>
+     6cc:	ldr	r0, [sp, #20]
+     6d0:	bl	0 <coda_type_get_special_type_name>
+     6d4:	adds	r5, r5, #0
+     6d8:	movne	r5, #1
+     6dc:	mov	r1, r0
+     6e0:	ldr	r0, [pc, #2848]	; 1208 <generate_html_type+0xbd4>
+     6e4:	bl	0 <ff_printf>
+     6e8:	ldr	r2, [fp, #16]
+     6ec:	cmp	r2, #0
+     6f0:	beq	700 <generate_html_type+0xcc>
+     6f4:	mov	r1, r2
+     6f8:	ldr	r0, [pc, #2564]	; 1104 <generate_html_type+0xad0>
+     6fc:	bl	0 <ff_printf>
+     700:	ldr	r0, [pc, #2560]	; 1108 <generate_html_type+0xad4>
+     704:	bl	0 <ff_printf>
+     708:	ldrd	r2, [sp, #64]	; 0x40
+     70c:	cmp	r2, #0
+     710:	sbcs	r3, r3, #0
+     714:	blt	76c <generate_html_type+0x138>
+     718:	ldr	r0, [pc, #2540]	; 110c <generate_html_type+0xad8>
+     71c:	bl	c0 <fi_printf>
+     720:	ldr	r0, [sp, #64]	; 0x40
+     724:	ldr	r1, [sp, #68]	; 0x44
+     728:	add	r4, sp, #72	; 0x48
+     72c:	lsr	r0, r0, #3
+     730:	orr	r0, r0, r1, lsl #29
+     734:	mov	r2, r4
+     738:	asr	r1, r1, #3
+     73c:	bl	0 <coda_str64>
+     740:	ldrd	r2, [sp, #64]	; 0x40
+     744:	mov	r1, #0
+     748:	and	r0, r2, #7
+     74c:	orrs	r1, r0, r1
+     750:	beq	c3c <generate_html_type+0x608>
+     754:	and	r2, r2, #7
+     758:	mov	r1, r4
+     75c:	ldr	r0, [pc, #2476]	; 1110 <generate_html_type+0xadc>
+     760:	bl	0 <ff_printf>
+     764:	ldr	r0, [pc, #2472]	; 1114 <generate_html_type+0xae0>
+     768:	bl	0 <ff_printf>
+     76c:	ldr	r0, [pc, #2648]	; 11cc <generate_html_type+0xb98>
+     770:	bl	c0 <fi_printf>
+     774:	ldr	r3, [fp, #16]
+     778:	cmp	r3, #0
+     77c:	orreq	r5, r5, #1
+     780:	cmp	r5, #0
+     784:	beq	8e4 <generate_html_type+0x2b0>
+     788:	ldr	r0, [pc, #2440]	; 1118 <generate_html_type+0xae4>
+     78c:	bl	c0 <fi_printf>
+     790:	ldr	r0, [pc, #2436]	; 111c <generate_html_type+0xae8>
+     794:	bl	c0 <fi_printf>
+     798:	ldr	r3, [fp, #20]
+     79c:	cmp	r3, #0
+     7a0:	beq	7c8 <generate_html_type+0x194>
+     7a4:	bl	50 <indent>
+     7a8:	ldr	r0, [fp, #20]
+     7ac:	cmp	r0, #0
+     7b0:	beq	7b8 <generate_html_type+0x184>
+     7b4:	bl	528 <generate_xml_string.part.0.constprop.4>
+     7b8:	ldr	r0, [pc, #2400]	; 1120 <generate_html_type+0xaec>
+     7bc:	bl	0 <ff_printf>
+     7c0:	mov	r3, #0
+     7c4:	str	r3, [sp, #28]
+     7c8:	ldr	r3, [fp, #32]
+     7cc:	cmp	r3, #0
+     7d0:	beq	80c <generate_html_type+0x1d8>
+     7d4:	ldrd	r0, [fp, #24]
+     7d8:	mvn	r3, #0
+     7dc:	mvn	r2, #7
+     7e0:	cmp	r1, r3
+     7e4:	cmpeq	r0, r2
+     7e8:	add	r1, sp, #28
+     7ec:	ldreq	r0, [pc, #2352]	; 1124 <generate_html_type+0xaf0>
+     7f0:	ldrne	r0, [pc, #2352]	; 1128 <generate_html_type+0xaf4>
+     7f4:	bl	100 <html_attr_begin>
+     7f8:	ldr	r1, [pc, #2544]	; 11f0 <generate_html_type+0xbbc>
+     7fc:	ldr	r0, [fp, #32]
+     800:	bl	0 <coda_expression_print_html>
+     804:	ldr	r0, [pc, #2600]	; 1234 <generate_html_type+0xc00>
+     808:	bl	0 <ff_printf>
+     80c:	ldr	r3, [fp, #8]
+     810:	cmp	r3, #6
+     814:	ldrls	pc, [pc, r3, lsl #2]
+     818:	b	94c <generate_html_type+0x318>
+     81c:	.word	0x00000d1c
+     820:	.word	0x00000f6c
+     824:	.word	0x00000dd4
+     828:	.word	0x00000dd4
+     82c:	.word	0x00000d94
+     830:	.word	0x00000d4c
+     834:	.word	0x000008f4
+     838:	add	r1, sp, #24
+     83c:	mov	r0, fp
+     840:	bl	0 <coda_type_get_read_type>
+     844:	ldr	r0, [sp, #24]
+     848:	bl	0 <coda_type_get_native_type_name>
+     84c:	mov	r1, r0
+     850:	ldr	r0, [pc, #2480]	; 1208 <generate_html_type+0xbd4>
+     854:	bl	0 <ff_printf>
+     858:	ldr	r3, [fp, #8]
+     85c:	cmp	r3, #4
+     860:	beq	fec <generate_html_type+0x9b8>
+     864:	sub	r3, r3, #2
+     868:	cmp	r3, #1
+     86c:	bls	101c <generate_html_type+0x9e8>
+     870:	adds	r5, r5, #0
+     874:	movne	r5, #1
+     878:	ldr	r2, [fp, #16]
+     87c:	b	6ec <generate_html_type+0xb8>
+     880:	ldr	fp, [sp, #12]
+     884:	ldr	r3, [fp, #8]
+     888:	cmp	r3, #1
+     88c:	beq	143c <generate_html_type+0xe08>
+     890:	bcc	106c <generate_html_type+0xa38>
+     894:	cmp	r3, #6
+     898:	bne	8d4 <generate_html_type+0x2a0>
+     89c:	ldr	r3, [sp, #28]
+     8a0:	cmp	r3, #0
+     8a4:	beq	159c <generate_html_type+0xf68>
+     8a8:	ldr	r0, [pc, #2372]	; 11f4 <generate_html_type+0xbc0>
+     8ac:	bl	c0 <fi_printf>
+     8b0:	mov	r0, fp
+     8b4:	add	r1, sp, #72	; 0x48
+     8b8:	bl	0 <coda_type_get_special_base_type>
+     8bc:	ldr	r0, [sp, #72]	; 0x48
+     8c0:	mov	r2, #1
+     8c4:	mov	r1, #0
+     8c8:	bl	634 <generate_html_type>
+     8cc:	ldr	r0, [pc, #2136]	; 112c <generate_html_type+0xaf8>
+     8d0:	bl	c0 <fi_printf>
+     8d4:	ldr	r0, [pc, #2284]	; 11c8 <generate_html_type+0xb94>
+     8d8:	bl	c0 <fi_printf>
+     8dc:	ldr	r0, [pc, #2280]	; 11cc <generate_html_type+0xb98>
+     8e0:	bl	c0 <fi_printf>
+     8e4:	ldr	r0, [pc, #2324]	; 1200 <generate_html_type+0xbcc>
+     8e8:	bl	c0 <fi_printf>
+     8ec:	add	sp, sp, #108	; 0x6c
+     8f0:	pop	{r4, r5, r6, r7, r8, r9, sl, fp, pc}
+     8f4:	ldr	r3, [fp, #48]	; 0x30
+     8f8:	cmp	r3, #0
+     8fc:	beq	920 <generate_html_type+0x2ec>
+     900:	add	r1, sp, #28
+     904:	ldr	r0, [pc, #2084]	; 1130 <generate_html_type+0xafc>
+     908:	bl	100 <html_attr_begin>
+     90c:	ldr	r1, [fp, #48]	; 0x30
+     910:	ldr	r0, [pc, #2076]	; 1134 <generate_html_type+0xb00>
+     914:	bl	0 <ff_printf>
+     918:	ldr	r0, [pc, #2324]	; 1234 <generate_html_type+0xc00>
+     91c:	bl	0 <ff_printf>
+     920:	ldr	r3, [fp, #52]	; 0x34
+     924:	cmp	r3, #0
+     928:	beq	94c <generate_html_type+0x318>
+     92c:	add	r1, sp, #28
+     930:	ldr	r0, [pc, #2048]	; 1138 <generate_html_type+0xb04>
+     934:	bl	100 <html_attr_begin>
+     938:	ldr	r1, [pc, #2224]	; 11f0 <generate_html_type+0xbbc>
+     93c:	ldr	r0, [fp, #52]	; 0x34
+     940:	bl	0 <coda_expression_print_html>
+     944:	ldr	r0, [pc, #2280]	; 1234 <generate_html_type+0xc00>
+     948:	bl	0 <ff_printf>
+     94c:	ldr	r5, [fp, #36]	; 0x24
+     950:	cmp	r5, #0
+     954:	beq	884 <generate_html_type+0x250>
+     958:	add	r1, sp, #32
+     95c:	mov	r0, r5
+     960:	bl	0 <coda_type_get_num_record_fields>
+     964:	ldr	r3, [sp, #28]
+     968:	cmp	r3, #0
+     96c:	beq	146c <generate_html_type+0xe38>
+     970:	ldr	r3, [sp, #32]
+     974:	cmp	r3, #0
+     978:	ble	884 <generate_html_type+0x250>
+     97c:	add	r3, sp, #36	; 0x24
+     980:	str	r3, [sp, #4]
+     984:	add	r3, sp, #40	; 0x28
+     988:	mov	r6, #0
+     98c:	str	r3, [sp, #8]
+     990:	add	r3, sp, #44	; 0x2c
+     994:	str	fp, [sp, #12]
+     998:	ldr	r8, [pc, #2108]	; 11dc <generate_html_type+0xba8>
+     99c:	ldr	r7, [pc, #2192]	; 1234 <generate_html_type+0xc00>
+     9a0:	mov	r4, r6
+     9a4:	add	sl, sp, #52	; 0x34
+     9a8:	add	r9, sp, #56	; 0x38
+     9ac:	mov	fp, r3
+     9b0:	b	ac8 <generate_html_type+0x494>
+     9b4:	ldr	r0, [pc, #1920]	; 113c <generate_html_type+0xb08>
+     9b8:	bl	c0 <fi_printf>
+     9bc:	ldr	r0, [pc, #1916]	; 1140 <generate_html_type+0xb0c>
+     9c0:	bl	c0 <fi_printf>
+     9c4:	ldr	r1, [pc, #1912]	; 1144 <generate_html_type+0xb10>
+     9c8:	mov	r0, r8
+     9cc:	bl	c0 <fi_printf>
+     9d0:	ldr	r3, [sp, #52]	; 0x34
+     9d4:	ldr	r1, [sp, #40]	; 0x28
+     9d8:	cmp	r3, #0
+     9dc:	ldrne	r0, [pc, #2084]	; 1208 <generate_html_type+0xbd4>
+     9e0:	ldreq	r0, [pc, #1888]	; 1148 <generate_html_type+0xb14>
+     9e4:	bl	c0 <fi_printf>
+     9e8:	ldr	r0, [pc, #1884]	; 114c <generate_html_type+0xb18>
+     9ec:	bl	0 <ff_printf>
+     9f0:	ldr	r1, [sp, #44]	; 0x2c
+     9f4:	ldr	r0, [sp, #40]	; 0x28
+     9f8:	bl	0 <strcmp>
+     9fc:	cmp	r0, #0
+     a00:	bne	b40 <generate_html_type+0x50c>
+     a04:	mov	r2, #1
+     a08:	mov	r1, #0
+     a0c:	ldr	r0, [sp, #36]	; 0x24
+     a10:	bl	634 <generate_html_type>
+     a14:	ldr	r3, [sp, #52]	; 0x34
+     a18:	cmp	r3, #0
+     a1c:	beq	a48 <generate_html_type+0x414>
+     a20:	ldr	r3, [sp, #48]	; 0x30
+     a24:	cmp	r3, #0
+     a28:	bne	bd4 <generate_html_type+0x5a0>
+     a2c:	add	r1, sp, #48	; 0x30
+     a30:	ldr	r0, [pc, #1924]	; 11bc <generate_html_type+0xb88>
+     a34:	bl	100 <html_attr_begin>
+     a38:	ldr	r0, [pc, #1920]	; 11c0 <generate_html_type+0xb8c>
+     a3c:	bl	0 <ff_printf>
+     a40:	mov	r0, r7
+     a44:	bl	0 <ff_printf>
+     a48:	ldr	r3, [sp, #56]	; 0x38
+     a4c:	cmn	r3, #1
+     a50:	beq	b88 <generate_html_type+0x554>
+     a54:	ldr	r3, [r5, #52]	; 0x34
+     a58:	ldr	r3, [r3, r6]
+     a5c:	ldr	r3, [r3, #32]
+     a60:	cmp	r3, #0
+     a64:	beq	a9c <generate_html_type+0x468>
+     a68:	ldr	r3, [sp, #48]	; 0x30
+     a6c:	cmp	r3, #0
+     a70:	bne	bc8 <generate_html_type+0x594>
+     a74:	add	r1, sp, #48	; 0x30
+     a78:	ldr	r0, [pc, #1860]	; 11c4 <generate_html_type+0xb90>
+     a7c:	bl	100 <html_attr_begin>
+     a80:	ldr	r3, [r5, #52]	; 0x34
+     a84:	ldr	r1, [pc, #1892]	; 11f0 <generate_html_type+0xbbc>
+     a88:	ldr	r3, [r3, r6]
+     a8c:	ldr	r0, [r3, #32]
+     a90:	bl	0 <coda_expression_print_html>
+     a94:	mov	r0, r7
+     a98:	bl	0 <ff_printf>
+     a9c:	mov	r0, r7
+     aa0:	bl	0 <ff_printf>
+     aa4:	ldr	r0, [pc, #1700]	; 1150 <generate_html_type+0xb1c>
+     aa8:	bl	0 <ff_printf>
+     aac:	ldr	r0, [pc, #1868]	; 1200 <generate_html_type+0xbcc>
+     ab0:	bl	c0 <fi_printf>
+     ab4:	ldr	r3, [sp, #32]
+     ab8:	add	r4, r4, #1
+     abc:	cmp	r4, r3
+     ac0:	add	r6, r6, #4
+     ac4:	bge	880 <generate_html_type+0x24c>
+     ac8:	mov	r3, #1
+     acc:	ldr	r2, [sp, #4]
+     ad0:	mov	r1, r4
+     ad4:	mov	r0, r5
+     ad8:	str	r3, [sp, #48]	; 0x30
+     adc:	bl	0 <coda_type_get_record_field_type>
+     ae0:	ldr	r2, [sp, #8]
+     ae4:	mov	r1, r4
+     ae8:	mov	r0, r5
+     aec:	bl	0 <coda_type_get_record_field_name>
+     af0:	mov	r2, fp
+     af4:	mov	r1, r4
+     af8:	mov	r0, r5
+     afc:	bl	0 <coda_type_get_record_field_real_name>
+     b00:	mov	r2, sl
+     b04:	mov	r1, r4
+     b08:	mov	r0, r5
+     b0c:	bl	0 <coda_type_get_record_field_hidden_status>
+     b10:	mov	r2, r9
+     b14:	mov	r1, r4
+     b18:	mov	r0, r5
+     b1c:	bl	0 <coda_type_get_record_field_available_status>
+     b20:	ldr	r3, [sp, #28]
+     b24:	cmp	r3, #0
+     b28:	movne	r3, #0
+     b2c:	strne	r3, [sp, #28]
+     b30:	bne	9b4 <generate_html_type+0x380>
+     b34:	ldr	r0, [pc, #1764]	; 1220 <generate_html_type+0xbec>
+     b38:	bl	c0 <fi_printf>
+     b3c:	b	9b4 <generate_html_type+0x380>
+     b40:	ldr	r1, [pc, #1680]	; 11d8 <generate_html_type+0xba4>
+     b44:	mov	r0, r8
+     b48:	bl	c0 <fi_printf>
+     b4c:	ldr	r0, [pc, #1676]	; 11e0 <generate_html_type+0xbac>
+     b50:	bl	0 <ff_printf>
+     b54:	ldr	r3, [r5]
+     b58:	cmp	r3, #2
+     b5c:	beq	be0 <generate_html_type+0x5ac>
+     b60:	ldr	r1, [sp, #44]	; 0x2c
+     b64:	ldr	r0, [pc, #1692]	; 1208 <generate_html_type+0xbd4>
+     b68:	bl	0 <ff_printf>
+     b6c:	ldr	r0, [pc, #1648]	; 11e4 <generate_html_type+0xbb0>
+     b70:	bl	0 <ff_printf>
+     b74:	mov	r0, r7
+     b78:	bl	0 <ff_printf>
+     b7c:	ldr	r0, [pc, #1656]	; 11fc <generate_html_type+0xbc8>
+     b80:	bl	0 <ff_printf>
+     b84:	b	a04 <generate_html_type+0x3d0>
+     b88:	ldr	r3, [sp, #48]	; 0x30
+     b8c:	cmp	r3, #0
+     b90:	bne	c24 <generate_html_type+0x5f0>
+     b94:	ldr	r0, [pc, #1616]	; 11ec <generate_html_type+0xbb8>
+     b98:	add	r1, sp, #48	; 0x30
+     b9c:	bl	100 <html_attr_begin>
+     ba0:	ldr	r3, [r5, #52]	; 0x34
+     ba4:	ldr	r3, [r3, r6]
+     ba8:	ldr	r0, [r3, #20]
+     bac:	cmp	r0, #0
+     bb0:	beq	1054 <generate_html_type+0xa20>
+     bb4:	ldr	r1, [pc, #1588]	; 11f0 <generate_html_type+0xbbc>
+     bb8:	bl	0 <coda_expression_print_html>
+     bbc:	mov	r0, r7
+     bc0:	bl	0 <ff_printf>
+     bc4:	b	a54 <generate_html_type+0x420>
+     bc8:	ldr	r0, [pc, #1616]	; 1220 <generate_html_type+0xbec>
+     bcc:	bl	c0 <fi_printf>
+     bd0:	b	a74 <generate_html_type+0x440>
+     bd4:	ldr	r0, [pc, #1604]	; 1220 <generate_html_type+0xbec>
+     bd8:	bl	c0 <fi_printf>
+     bdc:	b	a2c <generate_html_type+0x3f8>
+     be0:	add	r1, sp, #60	; 0x3c
+     be4:	add	r2, sp, #72	; 0x48
+     be8:	ldr	r0, [sp, #44]	; 0x2c
+     bec:	bl	5c0 <element_name_and_namespace_from_xml_name>
+     bf0:	ldr	r1, [sp, #72]	; 0x48
+     bf4:	cmp	r1, #0
+     bf8:	beq	c0c <generate_html_type+0x5d8>
+     bfc:	ldr	r0, [pc, #1536]	; 1204 <generate_html_type+0xbd0>
+     c00:	bl	0 <ff_printf>
+     c04:	ldr	r0, [sp, #72]	; 0x48
+     c08:	bl	0 <free>
+     c0c:	ldr	r1, [sp, #60]	; 0x3c
+     c10:	ldr	r0, [pc, #1520]	; 1208 <generate_html_type+0xbd4>
+     c14:	bl	0 <ff_printf>
+     c18:	ldr	r0, [sp, #60]	; 0x3c
+     c1c:	bl	0 <free>
+     c20:	b	b6c <generate_html_type+0x538>
+     c24:	ldr	r0, [pc, #1524]	; 1220 <generate_html_type+0xbec>
+     c28:	bl	c0 <fi_printf>
+     c2c:	b	b94 <generate_html_type+0x560>
+     c30:	ldr	r0, [pc, #1308]	; 1154 <generate_html_type+0xb20>
+     c34:	bl	0 <ff_printf>
+     c38:	b	660 <generate_html_type+0x2c>
+     c3c:	mov	r1, r4
+     c40:	ldr	r0, [pc, #1472]	; 1208 <generate_html_type+0xbd4>
+     c44:	bl	0 <ff_printf>
+     c48:	b	764 <generate_html_type+0x130>
+     c4c:	add	r1, sp, #72	; 0x48
+     c50:	mov	r0, fp
+     c54:	bl	0 <coda_type_get_record_union_status>
+     c58:	ldr	r3, [sp, #72]	; 0x48
+     c5c:	cmp	r3, #0
+     c60:	ldrne	r0, [pc, #1264]	; 1158 <generate_html_type+0xb24>
+     c64:	ldreq	r0, [pc, #1264]	; 115c <generate_html_type+0xb28>
+     c68:	bl	0 <ff_printf>
+     c6c:	adds	r5, r5, #0
+     c70:	movne	r5, #1
+     c74:	ldr	r2, [fp, #16]
+     c78:	b	6ec <generate_html_type+0xb8>
+     c7c:	ldr	r0, [pc, #1244]	; 1160 <generate_html_type+0xb2c>
+     c80:	bl	0 <ff_printf>
+     c84:	adds	r6, r5, #0
+     c88:	ldr	r2, [fp, #16]
+     c8c:	movne	r6, #1
+     c90:	cmp	r2, #0
+     c94:	movne	r5, r6
+     c98:	orreq	r5, r6, #1
+     c9c:	cmp	r5, #0
+     ca0:	beq	6f4 <generate_html_type+0xc0>
+     ca4:	add	r4, sp, #72	; 0x48
+     ca8:	mov	r2, r4
+     cac:	add	r1, sp, #60	; 0x3c
+     cb0:	mov	r0, fp
+     cb4:	bl	0 <coda_type_get_array_dim>
+     cb8:	ldr	r0, [pc, #1188]	; 1164 <generate_html_type+0xb30>
+     cbc:	bl	0 <ff_printf>
+     cc0:	ldr	r3, [sp, #60]	; 0x3c
+     cc4:	cmp	r3, #0
+     cc8:	ble	d08 <generate_html_type+0x6d4>
+     ccc:	ldr	r8, [pc, #1172]	; 1168 <generate_html_type+0xb34>
+     cd0:	ldr	r9, [pc, #1172]	; 116c <generate_html_type+0xb38>
+     cd4:	ldr	r7, [pc, #1372]	; 1238 <generate_html_type+0xc04>
+     cd8:	mov	r5, #0
+     cdc:	ldr	r1, [r4], #4
+     ce0:	mov	r0, r8
+     ce4:	cmn	r1, #1
+     ce8:	moveq	r1, r5
+     cec:	moveq	r0, r9
+     cf0:	bl	0 <ff_printf>
+     cf4:	ldr	r3, [sp, #60]	; 0x3c
+     cf8:	add	r5, r5, #1
+     cfc:	cmp	r5, r3
+     d00:	mov	r0, r7
+     d04:	blt	104c <generate_html_type+0xa18>
+     d08:	ldr	r0, [pc, #1120]	; 1170 <generate_html_type+0xb3c>
+     d0c:	bl	0 <ff_printf>
+     d10:	mov	r5, r6
+     d14:	ldr	r2, [fp, #16]
+     d18:	b	6ec <generate_html_type+0xb8>
+     d1c:	ldr	r3, [fp, #68]	; 0x44
+     d20:	cmp	r3, #0
+     d24:	beq	1060 <generate_html_type+0xa2c>
+     d28:	add	r1, sp, #28
+     d2c:	ldr	r0, [pc, #1088]	; 1174 <generate_html_type+0xb40>
+     d30:	bl	100 <html_attr_begin>
+     d34:	ldr	r1, [pc, #1204]	; 11f0 <generate_html_type+0xbbc>
+     d38:	ldr	r0, [fp, #68]	; 0x44
+     d3c:	bl	0 <coda_expression_print_html>
+     d40:	ldr	r0, [pc, #1260]	; 1234 <generate_html_type+0xc00>
+     d44:	bl	0 <ff_printf>
+     d48:	b	94c <generate_html_type+0x318>
+     d4c:	ldr	r3, [fp, #44]	; 0x2c
+     d50:	cmp	r3, #0
+     d54:	beq	1500 <generate_html_type+0xecc>
+     d58:	add	r1, sp, #28
+     d5c:	ldr	r0, [pc, #1044]	; 1178 <generate_html_type+0xb44>
+     d60:	bl	100 <html_attr_begin>
+     d64:	ldr	r0, [pc, #1040]	; 117c <generate_html_type+0xb48>
+     d68:	bl	0 <ff_printf>
+     d6c:	ldr	r0, [fp, #44]	; 0x2c
+     d70:	ldr	r1, [fp, #40]	; 0x28
+     d74:	cmp	r0, #0
+     d78:	cmpne	r1, #0
+     d7c:	bne	dcc <generate_html_type+0x798>
+     d80:	ldr	r0, [pc, #1012]	; 117c <generate_html_type+0xb48>
+     d84:	bl	0 <ff_printf>
+     d88:	ldr	r0, [pc, #1188]	; 1234 <generate_html_type+0xc00>
+     d8c:	bl	0 <ff_printf>
+     d90:	b	94c <generate_html_type+0x318>
+     d94:	ldr	r3, [fp, #40]	; 0x28
+     d98:	cmp	r3, #0
+     d9c:	beq	1500 <generate_html_type+0xecc>
+     da0:	add	r1, sp, #28
+     da4:	ldr	r0, [pc, #972]	; 1178 <generate_html_type+0xb44>
+     da8:	bl	100 <html_attr_begin>
+     dac:	ldr	r0, [pc, #968]	; 117c <generate_html_type+0xb48>
+     db0:	bl	0 <ff_printf>
+     db4:	ldr	r4, [fp, #40]	; 0x28
+     db8:	mov	r0, r4
+     dbc:	bl	0 <strlen>
+     dc0:	subs	r1, r0, #0
+     dc4:	beq	d80 <generate_html_type+0x74c>
+     dc8:	mov	r0, r4
+     dcc:	bl	258 <generate_escaped_html_string.part.3>
+     dd0:	b	d80 <generate_html_type+0x74c>
+     dd4:	ldr	r3, [fp, #40]	; 0x28
+     dd8:	cmp	r3, #0
+     ddc:	beq	e00 <generate_html_type+0x7cc>
+     de0:	add	r1, sp, #28
+     de4:	ldr	r0, [pc, #836]	; 1130 <generate_html_type+0xafc>
+     de8:	bl	100 <html_attr_begin>
+     dec:	ldr	r1, [fp, #40]	; 0x28
+     df0:	ldr	r0, [pc, #828]	; 1134 <generate_html_type+0xb00>
+     df4:	bl	0 <ff_printf>
+     df8:	ldr	r0, [pc, #1076]	; 1234 <generate_html_type+0xc00>
+     dfc:	bl	0 <ff_printf>
+     e00:	ldr	r3, [fp, #48]	; 0x30
+     e04:	cmp	r3, #0
+     e08:	beq	ea8 <generate_html_type+0x874>
+     e0c:	add	r1, sp, #28
+     e10:	ldr	r0, [pc, #872]	; 1180 <generate_html_type+0xb4c>
+     e14:	bl	100 <html_attr_begin>
+     e18:	ldr	r2, [fp, #48]	; 0x30
+     e1c:	ldr	r3, [pc, #864]	; 1184 <generate_html_type+0xb50>
+     e20:	ldr	r0, [pc, #864]	; 1188 <generate_html_type+0xb54>
+     e24:	ldr	r1, [r2, #32]
+     e28:	cmp	r1, #0
+     e2c:	moveq	r1, r3
+     e30:	bl	0 <ff_printf>
+     e34:	ldr	r3, [fp, #48]	; 0x30
+     e38:	vldr	d7, [pc, #680]	; 10e8 <generate_html_type+0xab4>
+     e3c:	vldr	d0, [r3]
+     e40:	vcmp.f64	d0, d7
+     e44:	vmrs	APSR_nzcv, fpscr
+     e48:	bne	1510 <generate_html_type+0xedc>
+     e4c:	vldr	d6, [r3, #8]
+     e50:	vcmp.f64	d6, d7
+     e54:	vmrs	APSR_nzcv, fpscr
+     e58:	bne	1510 <generate_html_type+0xedc>
+     e5c:	vldr	d0, [r3, #16]
+     e60:	vcmp.f64	d0, #0.0
+     e64:	vmrs	APSR_nzcv, fpscr
+     e68:	beq	162c <generate_html_type+0xff8>
+     e6c:	add	r4, sp, #72	; 0x48
+     e70:	mov	r0, r4
+     e74:	bl	0 <coda_strfl>
+     e78:	mov	r1, r4
+     e7c:	ldr	r0, [pc, #776]	; 118c <generate_html_type+0xb58>
+     e80:	bl	0 <ff_printf>
+     e84:	ldr	r3, [fp, #48]	; 0x30
+     e88:	vldr	d0, [r3, #24]
+     e8c:	bl	0 <coda_isNaN>
+     e90:	cmp	r0, #0
+     e94:	beq	1604 <generate_html_type+0xfd0>
+     e98:	ldr	r0, [pc, #752]	; 1190 <generate_html_type+0xb5c>
+     e9c:	bl	0 <ff_printf>
+     ea0:	ldr	r0, [pc, #908]	; 1234 <generate_html_type+0xc00>
+     ea4:	bl	0 <ff_printf>
+     ea8:	ldr	r3, [fp, #44]	; 0x2c
+     eac:	cmp	r3, #1
+     eb0:	beq	15e4 <generate_html_type+0xfb0>
+     eb4:	ldr	r6, [fp, #52]	; 0x34
+     eb8:	cmp	r6, #0
+     ebc:	beq	94c <generate_html_type+0x318>
+     ec0:	ldr	r3, [r6, #8]
+     ec4:	cmp	r3, #0
+     ec8:	ble	94c <generate_html_type+0x318>
+     ecc:	ldr	sl, [pc, #680]	; 117c <generate_html_type+0xb48>
+     ed0:	ldr	r9, [pc, #700]	; 1194 <generate_html_type+0xb60>
+     ed4:	ldr	r8, [pc, #856]	; 1234 <generate_html_type+0xc00>
+     ed8:	mov	r5, #0
+     edc:	add	r4, sp, #72	; 0x48
+     ee0:	b	f30 <generate_html_type+0x8fc>
+     ee4:	mov	r0, r9
+     ee8:	bl	0 <ff_printf>
+     eec:	ldr	r3, [fp, #8]
+     ef0:	mov	r0, r4
+     ef4:	cmp	r3, #2
+     ef8:	ldr	r3, [r6, #12]
+     efc:	beq	1484 <generate_html_type+0xe50>
+     f00:	ldr	r3, [r3, r7]
+     f04:	vldr	d0, [r3, #8]
+     f08:	bl	0 <coda_strfl>
+     f0c:	mov	r1, r4
+     f10:	ldr	r0, [pc, #752]	; 1208 <generate_html_type+0xbd4>
+     f14:	bl	0 <ff_printf>
+     f18:	mov	r0, r8
+     f1c:	bl	0 <ff_printf>
+     f20:	ldr	r3, [r6, #8]
+     f24:	add	r5, r5, #1
+     f28:	cmp	r3, r5
+     f2c:	ble	94c <generate_html_type+0x318>
+     f30:	add	r1, sp, #28
+     f34:	ldr	r0, [pc, #604]	; 1198 <generate_html_type+0xb64>
+     f38:	bl	100 <html_attr_begin>
+     f3c:	mov	r0, sl
+     f40:	bl	0 <ff_printf>
+     f44:	ldr	r3, [r6, #12]
+     f48:	lsl	r7, r5, #2
+     f4c:	ldr	r3, [r3, r5, lsl #2]
+     f50:	ldr	r0, [r3, #4]
+     f54:	ldr	r1, [r3]
+     f58:	cmp	r0, #0
+     f5c:	cmpne	r1, #0
+     f60:	beq	ee4 <generate_html_type+0x8b0>
+     f64:	bl	258 <generate_escaped_html_string.part.3>
+     f68:	b	ee4 <generate_html_type+0x8b0>
+     f6c:	ldr	r2, [fp, #48]	; 0x30
+     f70:	cmp	r2, #0
+     f74:	ble	1430 <generate_html_type+0xdfc>
+     f78:	ldr	r8, [pc, #540]	; 119c <generate_html_type+0xb68>
+     f7c:	ldr	r7, [pc, #688]	; 1234 <generate_html_type+0xc00>
+     f80:	ldr	r9, [pc, #536]	; 11a0 <generate_html_type+0xb6c>
+     f84:	ldr	r6, [pc, #612]	; 11f0 <generate_html_type+0xbbc>
+     f88:	add	r5, fp, #52	; 0x34
+     f8c:	mov	r4, #0
+     f90:	b	fa0 <generate_html_type+0x96c>
+     f94:	add	r4, r4, #1
+     f98:	cmp	r2, r4
+     f9c:	ble	94c <generate_html_type+0x318>
+     fa0:	ldr	r3, [r5], #4
+     fa4:	cmp	r3, #0
+     fa8:	bge	f94 <generate_html_type+0x960>
+     fac:	mov	r2, r4
+     fb0:	mov	r1, r8
+     fb4:	add	r0, sp, #72	; 0x48
+     fb8:	bl	0 <sprintf>
+     fbc:	add	r1, sp, #28
+     fc0:	add	r0, sp, #72	; 0x48
+     fc4:	bl	100 <html_attr_begin>
+     fc8:	ldr	r0, [r5, #28]
+     fcc:	mov	r1, r6
+     fd0:	cmp	r0, #0
+     fd4:	beq	15cc <generate_html_type+0xf98>
+     fd8:	bl	0 <coda_expression_print_html>
+     fdc:	mov	r0, r7
+     fe0:	bl	0 <ff_printf>
+     fe4:	ldr	r2, [fp, #48]	; 0x30
+     fe8:	b	f94 <generate_html_type+0x960>
+     fec:	ldr	r3, [fp]
+     ff0:	cmp	r3, #0
+     ff4:	bne	870 <generate_html_type+0x23c>
+     ff8:	ldr	r3, [fp, #44]	; 0x2c
+     ffc:	sub	r3, r3, #1
+    1000:	cmp	r3, #3
+    1004:	ldrls	pc, [pc, r3, lsl #2]
+    1008:	b	870 <generate_html_type+0x23c>
+    100c:	.word	0x0000157c
+    1010:	.word	0x0000156c
+    1014:	.word	0x0000156c
+    1018:	.word	0x0000158c
+    101c:	ldr	r3, [fp, #48]	; 0x30
+    1020:	cmp	r3, #0
+    1024:	beq	870 <generate_html_type+0x23c>
+    1028:	mov	r0, #9
+    102c:	bl	0 <coda_type_get_native_type_name>
+    1030:	mov	r1, r0
+    1034:	ldr	r0, [pc, #360]	; 11a4 <generate_html_type+0xb70>
+    1038:	bl	0 <ff_printf>
+    103c:	adds	r5, r5, #0
+    1040:	ldr	r2, [fp, #16]
+    1044:	movne	r5, #1
+    1048:	b	6ec <generate_html_type+0xb8>
+    104c:	bl	0 <ff_printf>
+    1050:	b	cdc <generate_html_type+0x6a8>
+    1054:	ldr	r0, [pc, #456]	; 1224 <generate_html_type+0xbf0>
+    1058:	bl	0 <ff_printf>
+    105c:	b	bbc <generate_html_type+0x588>
+    1060:	ldr	r5, [fp, #36]	; 0x24
+    1064:	cmp	r5, #0
+    1068:	bne	958 <generate_html_type+0x324>
+    106c:	add	r1, sp, #32
+    1070:	mov	r0, fp
+    1074:	bl	0 <coda_type_get_num_record_fields>
+    1078:	ldr	r3, [sp, #32]
+    107c:	cmp	r3, #0
+    1080:	beq	8d4 <generate_html_type+0x2a0>
+    1084:	ldr	r3, [sp, #28]
+    1088:	cmp	r3, #0
+    108c:	beq	15c0 <generate_html_type+0xf8c>
+    1090:	ldr	r0, [pc, #272]	; 11a8 <generate_html_type+0xb74>
+    1094:	bl	c0 <fi_printf>
+    1098:	ldr	r0, [pc, #268]	; 11ac <generate_html_type+0xb78>
+    109c:	bl	c0 <fi_printf>
+    10a0:	ldr	r3, [sp, #32]
+    10a4:	cmp	r3, #0
+    10a8:	ble	14a4 <generate_html_type+0xe70>
+    10ac:	add	r3, sp, #36	; 0x24
+    10b0:	str	r3, [sp, #4]
+    10b4:	add	r3, sp, #40	; 0x28
+    10b8:	mov	r5, #0
+    10bc:	str	r3, [sp, #8]
+    10c0:	add	r3, sp, #44	; 0x2c
+    10c4:	ldr	r6, [pc, #228]	; 11b0 <generate_html_type+0xb7c>
+    10c8:	ldr	r7, [pc, #228]	; 11b4 <generate_html_type+0xb80>
+    10cc:	ldr	r8, [pc, #228]	; 11b8 <generate_html_type+0xb84>
+    10d0:	mov	r4, r5
+    10d4:	str	r3, [sp, #12]
+    10d8:	add	sl, sp, #52	; 0x34
+    10dc:	add	r9, sp, #56	; 0x38
+    10e0:	b	12fc <generate_html_type+0xcc8>
+    10e4:	nop			; (mov r0, r0)
+    10e8:	.word	0x00000000
+    10ec:	.word	0x3ff00000
+    10f0:	.word	0x00000104
+    10f4:	.word	0x0000011c
+    10f8:	.word	0x00000120
+    10fc:	.word	0x00000128
+    1100:	.word	0x00000140
+    1104:	.word	0x000001e0
+    1108:	.word	0x0000021c
+    110c:	.word	0x00000224
+    1110:	.word	0x0000025c
+    1114:	.word	0x00000264
+    1118:	.word	0x00000274
+    111c:	.word	0x00000288
+    1120:	.word	0x0000029c
+    1124:	.word	0x000002a0
+    1128:	.word	0x000002b0
+    112c:	.word	0x00000614
+    1130:	.word	0x0000030c
+    1134:	.word	0x00000314
+    1138:	.word	0x000003b8
+    113c:	.word	0x000003d0
+    1140:	.word	0x00000414
+    1144:	.word	0x00000448
+    1148:	.word	0x00000454
+    114c:	.word	0x00000460
+    1150:	.word	0x000004d8
+    1154:	.word	0x0000010c
+    1158:	.word	0x00000158
+    115c:	.word	0x00000160
+    1160:	.word	0x00000168
+    1164:	.word	0x00000170
+    1168:	.word	0x00000194
+    116c:	.word	0x0000017c
+    1170:	.word	0x00000174
+    1174:	.word	0x000002cc
+    1178:	.word	0x000003a4
+    117c:	.word	0x0000038c
+    1180:	.word	0x0000031c
+    1184:	.word	0x00000100
+    1188:	.word	0x00000330
+    118c:	.word	0x0000034c
+    1190:	.word	0x00000364
+    1194:	.word	0x00000390
+    1198:	.word	0x00000384
+    119c:	.word	0x000002dc
+    11a0:	.word	0x000002e4
+    11a4:	.word	0x000001d8
+    11a8:	.word	0x000004f0
+    11ac:	.word	0x00000530
+    11b0:	.word	0x000005a0
+    11b4:	.word	0x000005b4
+    11b8:	.word	0x000005e4
+    11bc:	.word	0x000004a4
+    11c0:	.word	0x000004ac
+    11c4:	.word	0x000004cc
+    11c8:	.word	0x000005fc
+    11cc:	.word	0x0000026c
+    11d0:	.word	0x000005c0
+    11d4:	.word	0x000005d0
+    11d8:	.word	0x00000484
+    11dc:	.word	0x00000070
+    11e0:	.word	0x00000490
+    11e4:	.word	0x0000049c
+    11e8:	.word	0x000005ec
+    11ec:	.word	0x000004b4
+    11f0:	.word	0x00000000
+    11f4:	.word	0x00000604
+    11f8:	.word	0x00000130
+    11fc:	.word	0x000003c0
+    1200:	.word	0x000004e4
+    1204:	.word	0x00000494
+    1208:	.word	0x000001a0
+    120c:	.word	0x00000338
+    1210:	.word	0x00000348
+    1214:	.word	0x000001bc
+    1218:	.word	0x000001a4
+    121c:	.word	0x000001c4
+    1220:	.word	0x000003c8
+    1224:	.word	0x000004c0
+    1228:	.word	0x00000060
+    122c:	.word	0x00000368
+    1230:	.word	0x00000374
+    1234:	.word	0x000002c0
+    1238:	.word	0x00000178
+    123c:	.word	0x00000354
+    1240:	mov	r2, #1
+    1244:	mov	r1, #0
+    1248:	ldr	r0, [sp, #36]	; 0x24
+    124c:	bl	634 <generate_html_type>
+    1250:	ldr	r3, [sp, #52]	; 0x34
+    1254:	cmp	r3, #0
+    1258:	beq	1284 <generate_html_type+0xc50>
+    125c:	ldr	r3, [sp, #48]	; 0x30
+    1260:	cmp	r3, #0
+    1264:	bne	1478 <generate_html_type+0xe44>
+    1268:	add	r1, sp, #48	; 0x30
+    126c:	ldr	r0, [pc, #-184]	; 11bc <generate_html_type+0xb88>
+    1270:	bl	100 <html_attr_begin>
+    1274:	ldr	r0, [pc, #-188]	; 11c0 <generate_html_type+0xb8c>
+    1278:	bl	0 <ff_printf>
+    127c:	ldr	r0, [pc, #-80]	; 1234 <generate_html_type+0xc00>
+    1280:	bl	0 <ff_printf>
+    1284:	ldr	r3, [sp, #56]	; 0x38
+    1288:	cmn	r3, #1
+    128c:	beq	13e4 <generate_html_type+0xdb0>
+    1290:	ldr	r3, [fp, #52]	; 0x34
+    1294:	ldr	r3, [r3, r5]
+    1298:	ldr	r3, [r3, #32]
+    129c:	cmp	r3, #0
+    12a0:	beq	12d8 <generate_html_type+0xca4>
+    12a4:	ldr	r3, [sp, #48]	; 0x30
+    12a8:	cmp	r3, #0
+    12ac:	bne	1424 <generate_html_type+0xdf0>
+    12b0:	add	r1, sp, #48	; 0x30
+    12b4:	ldr	r0, [pc, #-248]	; 11c4 <generate_html_type+0xb90>
+    12b8:	bl	100 <html_attr_begin>
+    12bc:	ldr	r3, [fp, #52]	; 0x34
+    12c0:	ldr	r1, [pc, #-216]	; 11f0 <generate_html_type+0xbbc>
+    12c4:	ldr	r3, [r3, r5]
+    12c8:	ldr	r0, [r3, #32]
+    12cc:	bl	0 <coda_expression_print_html>
+    12d0:	ldr	r0, [pc, #-164]	; 1234 <generate_html_type+0xc00>
+    12d4:	bl	0 <ff_printf>
+    12d8:	ldr	r0, [pc, #-280]	; 11c8 <generate_html_type+0xb94>
+    12dc:	bl	c0 <fi_printf>
+    12e0:	ldr	r0, [pc, #-284]	; 11cc <generate_html_type+0xb98>
+    12e4:	bl	c0 <fi_printf>
+    12e8:	ldr	r3, [sp, #32]
+    12ec:	add	r4, r4, #1
+    12f0:	cmp	r3, r4
+    12f4:	add	r5, r5, #4
+    12f8:	ble	14a4 <generate_html_type+0xe70>
+    12fc:	mov	r3, #1
+    1300:	ldr	r2, [sp, #4]
+    1304:	mov	r1, r4
+    1308:	mov	r0, fp
+    130c:	str	r3, [sp, #48]	; 0x30
+    1310:	bl	0 <coda_type_get_record_field_type>
+    1314:	ldr	r2, [sp, #8]
+    1318:	mov	r1, r4
+    131c:	mov	r0, fp
+    1320:	bl	0 <coda_type_get_record_field_name>
+    1324:	ldr	r2, [sp, #12]
+    1328:	mov	r1, r4
+    132c:	mov	r0, fp
+    1330:	bl	0 <coda_type_get_record_field_real_name>
+    1334:	mov	r2, sl
+    1338:	mov	r1, r4
+    133c:	mov	r0, fp
+    1340:	bl	0 <coda_type_get_record_field_hidden_status>
+    1344:	mov	r2, r9
+    1348:	mov	r1, r4
+    134c:	mov	r0, fp
+    1350:	bl	0 <coda_type_get_record_field_available_status>
+    1354:	mov	r0, r6
+    1358:	bl	c0 <fi_printf>
+    135c:	mov	r1, r4
+    1360:	mov	r0, r7
+    1364:	bl	c0 <fi_printf>
+    1368:	ldr	r3, [sp, #52]	; 0x34
+    136c:	ldr	r1, [sp, #40]	; 0x28
+    1370:	cmp	r3, #0
+    1374:	ldrne	r0, [pc, #-428]	; 11d0 <generate_html_type+0xb9c>
+    1378:	ldreq	r0, [pc, #-428]	; 11d4 <generate_html_type+0xba0>
+    137c:	bl	c0 <fi_printf>
+    1380:	mov	r0, r8
+    1384:	bl	c0 <fi_printf>
+    1388:	ldr	r1, [sp, #44]	; 0x2c
+    138c:	ldr	r0, [sp, #40]	; 0x28
+    1390:	bl	0 <strcmp>
+    1394:	cmp	r0, #0
+    1398:	beq	1240 <generate_html_type+0xc0c>
+    139c:	ldr	r1, [pc, #-460]	; 11d8 <generate_html_type+0xba4>
+    13a0:	ldr	r0, [pc, #-460]	; 11dc <generate_html_type+0xba8>
+    13a4:	bl	c0 <fi_printf>
+    13a8:	ldr	r0, [pc, #-464]	; 11e0 <generate_html_type+0xbac>
+    13ac:	bl	0 <ff_printf>
+    13b0:	ldr	r3, [fp]
+    13b4:	cmp	r3, #2
+    13b8:	beq	14b0 <generate_html_type+0xe7c>
+    13bc:	ldr	r1, [sp, #44]	; 0x2c
+    13c0:	ldr	r0, [pc, #-448]	; 1208 <generate_html_type+0xbd4>
+    13c4:	bl	0 <ff_printf>
+    13c8:	ldr	r0, [pc, #-492]	; 11e4 <generate_html_type+0xbb0>
+    13cc:	bl	0 <ff_printf>
+    13d0:	ldr	r0, [pc, #-420]	; 1234 <generate_html_type+0xc00>
+    13d4:	bl	0 <ff_printf>
+    13d8:	ldr	r0, [pc, #-504]	; 11e8 <generate_html_type+0xbb4>
+    13dc:	bl	0 <ff_printf>
+    13e0:	b	1240 <generate_html_type+0xc0c>
+    13e4:	ldr	r3, [sp, #48]	; 0x30
+    13e8:	cmp	r3, #0
+    13ec:	bne	14f4 <generate_html_type+0xec0>
+    13f0:	ldr	r0, [pc, #-524]	; 11ec <generate_html_type+0xbb8>
+    13f4:	add	r1, sp, #48	; 0x30
+    13f8:	bl	100 <html_attr_begin>
+    13fc:	ldr	r3, [fp, #52]	; 0x34
+    1400:	ldr	r3, [r3, r5]
+    1404:	ldr	r0, [r3, #20]
+    1408:	cmp	r0, #0
+    140c:	beq	15b4 <generate_html_type+0xf80>
+    1410:	ldr	r1, [pc, #-552]	; 11f0 <generate_html_type+0xbbc>
+    1414:	bl	0 <coda_expression_print_html>
+    1418:	ldr	r0, [pc, #-492]	; 1234 <generate_html_type+0xc00>
+    141c:	bl	0 <ff_printf>
+    1420:	b	1290 <generate_html_type+0xc5c>
+    1424:	ldr	r0, [pc, #-524]	; 1220 <generate_html_type+0xbec>
+    1428:	bl	c0 <fi_printf>
+    142c:	b	12b0 <generate_html_type+0xc7c>
+    1430:	ldr	r5, [fp, #36]	; 0x24
+    1434:	cmp	r5, #0
+    1438:	bne	958 <generate_html_type+0x324>
+    143c:	ldr	r3, [sp, #28]
+    1440:	cmp	r3, #0
+    1444:	beq	15a8 <generate_html_type+0xf74>
+    1448:	ldr	r0, [pc, #-604]	; 11f4 <generate_html_type+0xbc0>
+    144c:	bl	c0 <fi_printf>
+    1450:	mov	r0, fp
+    1454:	add	r1, sp, #72	; 0x48
+    1458:	bl	0 <coda_type_get_array_base_type>
+    145c:	b	8bc <generate_html_type+0x288>
+    1460:	ldr	r0, [pc, #-624]	; 11f8 <generate_html_type+0xbc4>
+    1464:	bl	0 <ff_printf>
+    1468:	b	694 <generate_html_type+0x60>
+    146c:	ldr	r0, [pc, #-632]	; 11fc <generate_html_type+0xbc8>
+    1470:	bl	c0 <fi_printf>
+    1474:	b	970 <generate_html_type+0x33c>
+    1478:	ldr	r0, [pc, #-608]	; 1220 <generate_html_type+0xbec>
+    147c:	bl	c0 <fi_printf>
+    1480:	b	1268 <generate_html_type+0xc34>
+    1484:	ldr	r3, [r3, r7]
+    1488:	mov	r2, r4
+    148c:	ldrd	r0, [r3, #8]
+    1490:	bl	0 <coda_str64>
+    1494:	mov	r1, r4
+    1498:	ldr	r0, [pc, #-664]	; 1208 <generate_html_type+0xbd4>
+    149c:	bl	0 <ff_printf>
+    14a0:	b	f18 <generate_html_type+0x8e4>
+    14a4:	ldr	r0, [pc, #-684]	; 1200 <generate_html_type+0xbcc>
+    14a8:	bl	c0 <fi_printf>
+    14ac:	b	8d4 <generate_html_type+0x2a0>
+    14b0:	add	r1, sp, #60	; 0x3c
+    14b4:	add	r2, sp, #72	; 0x48
+    14b8:	ldr	r0, [sp, #44]	; 0x2c
+    14bc:	bl	5c0 <element_name_and_namespace_from_xml_name>
+    14c0:	ldr	r1, [sp, #72]	; 0x48
+    14c4:	cmp	r1, #0
+    14c8:	beq	14dc <generate_html_type+0xea8>
+    14cc:	ldr	r0, [pc, #-720]	; 1204 <generate_html_type+0xbd0>
+    14d0:	bl	0 <ff_printf>
+    14d4:	ldr	r0, [sp, #72]	; 0x48
+    14d8:	bl	0 <free>
+    14dc:	ldr	r1, [sp, #60]	; 0x3c
+    14e0:	ldr	r0, [pc, #-736]	; 1208 <generate_html_type+0xbd4>
+    14e4:	bl	0 <ff_printf>
+    14e8:	ldr	r0, [sp, #60]	; 0x3c
+    14ec:	bl	0 <free>
+    14f0:	b	13c8 <generate_html_type+0xd94>
+    14f4:	ldr	r0, [pc, #-732]	; 1220 <generate_html_type+0xbec>
+    14f8:	bl	c0 <fi_printf>
+    14fc:	b	13f0 <generate_html_type+0xdbc>
+    1500:	ldr	r5, [fp, #36]	; 0x24
+    1504:	cmp	r5, #0
+    1508:	bne	958 <generate_html_type+0x324>
+    150c:	b	8d4 <generate_html_type+0x2a0>
+    1510:	add	r4, sp, #72	; 0x48
+    1514:	mov	r0, r4
+    1518:	bl	0 <coda_strfl>
+    151c:	mov	r1, r4
+    1520:	ldr	r0, [pc, #-796]	; 120c <generate_html_type+0xbd8>
+    1524:	bl	0 <ff_printf>
+    1528:	ldr	r3, [fp, #48]	; 0x30
+    152c:	mov	r0, r4
+    1530:	vldr	d0, [r3, #8]
+    1534:	bl	0 <coda_strfl>
+    1538:	mov	r1, r4
+    153c:	ldr	r0, [pc, #-820]	; 1210 <generate_html_type+0xbdc>
+    1540:	bl	0 <ff_printf>
+    1544:	ldr	r3, [fp, #48]	; 0x30
+    1548:	vldr	d7, [r3, #16]
+    154c:	vcmp.f64	d7, #0.0
+    1550:	vmrs	APSR_nzcv, fpscr
+    1554:	beq	e88 <generate_html_type+0x854>
+    1558:	ldr	r0, [pc, #-808]	; 1238 <generate_html_type+0xc04>
+    155c:	bl	0 <ff_printf>
+    1560:	ldr	r3, [fp, #48]	; 0x30
+    1564:	vldr	d0, [r3, #16]
+    1568:	b	e70 <generate_html_type+0x83c>
+    156c:	ldr	r0, [pc, #-864]	; 1214 <generate_html_type+0xbe0>
+    1570:	bl	0 <ff_printf>
+    1574:	ldr	r3, [fp, #8]
+    1578:	b	864 <generate_html_type+0x230>
+    157c:	ldr	r0, [pc, #-876]	; 1218 <generate_html_type+0xbe4>
+    1580:	bl	0 <ff_printf>
+    1584:	ldr	r3, [fp, #8]
+    1588:	b	864 <generate_html_type+0x230>
+    158c:	ldr	r0, [pc, #-888]	; 121c <generate_html_type+0xbe8>
+    1590:	bl	0 <ff_printf>
+    1594:	ldr	r3, [fp, #8]
+    1598:	b	864 <generate_html_type+0x230>
+    159c:	ldr	r0, [pc, #-900]	; 1220 <generate_html_type+0xbec>
+    15a0:	bl	c0 <fi_printf>
+    15a4:	b	8a8 <generate_html_type+0x274>
+    15a8:	ldr	r0, [pc, #-912]	; 1220 <generate_html_type+0xbec>
+    15ac:	bl	c0 <fi_printf>
+    15b0:	b	1448 <generate_html_type+0xe14>
+    15b4:	ldr	r0, [pc, #-920]	; 1224 <generate_html_type+0xbf0>
+    15b8:	bl	0 <ff_printf>
+    15bc:	b	1418 <generate_html_type+0xde4>
+    15c0:	ldr	r0, [pc, #-928]	; 1228 <generate_html_type+0xbf4>
+    15c4:	bl	c0 <fi_printf>
+    15c8:	b	1090 <generate_html_type+0xa5c>
+    15cc:	ldr	r0, [fp]
+    15d0:	bl	0 <coda_type_get_format_name>
+    15d4:	mov	r1, r0
+    15d8:	mov	r0, r9
+    15dc:	bl	0 <ff_printf>
+    15e0:	b	fdc <generate_html_type+0x9a8>
+    15e4:	add	r1, sp, #28
+    15e8:	ldr	r0, [pc, #-964]	; 122c <generate_html_type+0xbf8>
+    15ec:	bl	100 <html_attr_begin>
+    15f0:	ldr	r0, [pc, #-968]	; 1230 <generate_html_type+0xbfc>
+    15f4:	bl	0 <ff_printf>
+    15f8:	ldr	r0, [pc, #-972]	; 1234 <generate_html_type+0xc00>
+    15fc:	bl	0 <ff_printf>
+    1600:	b	eb4 <generate_html_type+0x880>
+    1604:	ldr	r0, [pc, #-980]	; 1238 <generate_html_type+0xc04>
+    1608:	bl	0 <ff_printf>
+    160c:	ldr	r3, [fp, #48]	; 0x30
+    1610:	mov	r0, r4
+    1614:	vldr	d0, [r3, #24]
+    1618:	bl	0 <coda_strfl>
+    161c:	mov	r1, r4
+    1620:	ldr	r0, [pc, #-1004]	; 123c <generate_html_type+0xc08>
+    1624:	bl	0 <ff_printf>
+    1628:	b	e98 <generate_html_type+0x864>
+    162c:	vldr	d0, [r3, #24]
+    1630:	bl	0 <coda_isNaN>
+    1634:	cmp	r0, #0
+    1638:	addeq	r4, sp, #72	; 0x48
+    163c:	beq	160c <generate_html_type+0xfd8>
+    1640:	b	e98 <generate_html_type+0x864>
+
+00001644 <generate_html>:
+    1644:	push	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+    1648:	sub	sp, sp, #44	; 0x2c
+    164c:	str	r0, [sp, #28]
+    1650:	bl	0 <strlen>
+    1654:	add	r0, r0, #1000	; 0x3e8
+    1658:	bl	0 <malloc>
+    165c:	subs	r3, r0, #0
+    1660:	str	r3, [sp, #24]
+    1664:	beq	24b8 <generate_html+0xe74>
+    1668:	ldr	r2, [sp, #28]
+    166c:	ldr	r1, [pc, #3700]	; 24e8 <generate_html+0xea4>
+    1670:	bl	0 <sprintf>
+    1674:	ldr	r1, [pc, #3696]	; 24ec <generate_html+0xea8>
+    1678:	ldr	r0, [sp, #24]
+    167c:	bl	0 <fopen>
+    1680:	ldr	r3, [pc, #3688]	; 24f0 <generate_html+0xeac>
+    1684:	cmp	r0, #0
+    1688:	str	r0, [r3]
+    168c:	beq	24cc <generate_html+0xe88>
+    1690:	ldr	r0, [pc, #3676]	; 24f4 <generate_html+0xeb0>
+    1694:	bl	c0 <fi_printf>
+    1698:	ldr	r0, [pc, #3672]	; 24f8 <generate_html+0xeb4>
+    169c:	bl	c0 <fi_printf>
+    16a0:	ldr	r0, [pc, #3668]	; 24fc <generate_html+0xeb8>
+    16a4:	bl	0 <ff_printf>
+    16a8:	ldr	r0, [pc, #3664]	; 2500 <generate_html+0xebc>
+    16ac:	bl	c0 <fi_printf>
+    16b0:	ldr	r0, [pc, #3660]	; 2504 <generate_html+0xec0>
+    16b4:	bl	c0 <fi_printf>
+    16b8:	ldr	r0, [pc, #3656]	; 2508 <generate_html+0xec4>
+    16bc:	bl	c0 <fi_printf>
+    16c0:	ldr	r0, [pc, #3652]	; 250c <generate_html+0xec8>
+    16c4:	bl	c0 <fi_printf>
+    16c8:	ldr	r0, [pc, #3648]	; 2510 <generate_html+0xecc>
+    16cc:	bl	c0 <fi_printf>
+    16d0:	ldr	r0, [pc, #3644]	; 2514 <generate_html+0xed0>
+    16d4:	bl	c0 <fi_printf>
+    16d8:	ldr	r0, [pc, #3640]	; 2518 <generate_html+0xed4>
+    16dc:	bl	c0 <fi_printf>
+    16e0:	ldr	r0, [pc, #3636]	; 251c <generate_html+0xed8>
+    16e4:	bl	c0 <fi_printf>
+    16e8:	ldr	r0, [pc, #3632]	; 2520 <generate_html+0xedc>
+    16ec:	bl	0 <ff_printf>
+    16f0:	ldr	r0, [pc, #3628]	; 2524 <generate_html+0xee0>
+    16f4:	bl	0 <ff_printf>
+    16f8:	ldr	r0, [pc, #3624]	; 2528 <generate_html+0xee4>
+    16fc:	bl	0 <ff_printf>
+    1700:	ldr	r0, [pc, #3620]	; 252c <generate_html+0xee8>
+    1704:	bl	c0 <fi_printf>
+    1708:	ldr	r0, [pc, #3616]	; 2530 <generate_html+0xeec>
+    170c:	bl	c0 <fi_printf>
+    1710:	ldr	r3, [pc, #3612]	; 2534 <generate_html+0xef0>
+    1714:	bl	0 <__aeabi_read_tp>
+    1718:	ldr	r3, [pc, r3]
+    171c:	ldr	r3, [r0, r3]
+    1720:	ldr	r2, [r3]
+    1724:	cmp	r2, #0
+    1728:	ble	17a4 <generate_html+0x160>
+    172c:	ldr	r7, [pc, #3588]	; 2538 <generate_html+0xef4>
+    1730:	ldr	r6, [pc, #3588]	; 253c <generate_html+0xef8>
+    1734:	ldr	r5, [pc, #3588]	; 2540 <generate_html+0xefc>
+    1738:	mov	r4, #0
+    173c:	ldr	r3, [r3, #4]
+    1740:	ldr	r8, [r3, r4, lsl #2]
+    1744:	ldr	r0, [r8, #28]
+    1748:	cmp	r0, #0
+    174c:	ble	1788 <generate_html+0x144>
+    1750:	ldr	r2, [r8, #32]
+    1754:	ldr	r3, [r2]
+    1758:	ldr	r3, [r3, #8]
+    175c:	cmp	r3, #0
+    1760:	movle	r3, #0
+    1764:	ble	177c <generate_html+0x138>
+    1768:	b	1888 <generate_html+0x244>
+    176c:	ldr	r1, [r2, #4]!
+    1770:	ldr	r1, [r1, #8]
+    1774:	cmp	r1, #0
+    1778:	bgt	1888 <generate_html+0x244>
+    177c:	add	r3, r3, #1
+    1780:	cmp	r3, r0
+    1784:	bne	176c <generate_html+0x128>
+    1788:	ldr	r3, [pc, r7]
+    178c:	bl	0 <__aeabi_read_tp>
+    1790:	add	r4, r4, #1
+    1794:	ldr	r3, [r0, r3]
+    1798:	ldr	r2, [r3]
+    179c:	cmp	r4, r2
+    17a0:	blt	173c <generate_html+0xf8>
+    17a4:	ldr	r0, [pc, #3480]	; 2544 <generate_html+0xf00>
+    17a8:	bl	c0 <fi_printf>
+    17ac:	ldr	r0, [pc, #3476]	; 2548 <generate_html+0xf04>
+    17b0:	bl	c0 <fi_printf>
+    17b4:	ldr	r0, [pc, #3472]	; 254c <generate_html+0xf08>
+    17b8:	bl	c0 <fi_printf>
+    17bc:	ldr	r0, [pc, #3468]	; 2550 <generate_html+0xf0c>
+    17c0:	bl	c0 <fi_printf>
+    17c4:	ldr	r3, [pc, #3364]	; 24f0 <generate_html+0xeac>
+    17c8:	ldr	r0, [r3]
+    17cc:	bl	0 <fclose>
+    17d0:	ldr	r3, [pc, #3452]	; 2554 <generate_html+0xf10>
+    17d4:	bl	0 <__aeabi_read_tp>
+    17d8:	ldr	r3, [pc, r3]
+    17dc:	ldr	r3, [r0, r3]
+    17e0:	ldr	r2, [r3]
+    17e4:	cmp	r2, #0
+    17e8:	movgt	r2, #0
+    17ec:	strgt	r2, [sp, #36]	; 0x24
+    17f0:	ble	1878 <generate_html+0x234>
+    17f4:	ldr	r3, [r3, #4]
+    17f8:	ldr	r2, [sp, #36]	; 0x24
+    17fc:	ldr	r3, [r3, r2, lsl #2]
+    1800:	str	r3, [sp, #16]
+    1804:	ldr	r0, [r3, #28]
+    1808:	cmp	r0, #0
+    180c:	ble	184c <generate_html+0x208>
+    1810:	ldr	r3, [sp, #16]
+    1814:	ldr	r2, [r3, #32]
+    1818:	ldr	r3, [r2]
+    181c:	ldr	r3, [r3, #8]
+    1820:	cmp	r3, #0
+    1824:	movle	r3, #0
+    1828:	ble	1840 <generate_html+0x1fc>
+    182c:	b	18b8 <generate_html+0x274>
+    1830:	ldr	r1, [r2, #4]!
+    1834:	ldr	r1, [r1, #8]
+    1838:	cmp	r1, #0
+    183c:	bgt	18b8 <generate_html+0x274>
+    1840:	add	r3, r3, #1
+    1844:	cmp	r3, r0
+    1848:	bne	1830 <generate_html+0x1ec>
+    184c:	ldr	r2, [sp, #36]	; 0x24
+    1850:	ldr	r3, [pc, #3328]	; 2558 <generate_html+0xf14>
+    1854:	add	r2, r2, #1
+    1858:	str	r2, [sp, #36]	; 0x24
+    185c:	ldr	r3, [pc, r3]
+    1860:	bl	0 <__aeabi_read_tp>
+    1864:	mov	r1, r2
+    1868:	ldr	r3, [r0, r3]
+    186c:	ldr	r2, [r3]
+    1870:	cmp	r2, r1
+    1874:	bgt	17f4 <generate_html+0x1b0>
+    1878:	ldr	r0, [sp, #24]
+    187c:	add	sp, sp, #44	; 0x2c
+    1880:	pop	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+    1884:	b	0 <free>
+    1888:	ldr	r2, [r8]
+    188c:	mov	r0, r6
+    1890:	mov	r1, r2
+    1894:	bl	c0 <fi_printf>
+    1898:	ldr	r0, [r8, #4]
+    189c:	cmp	r0, #0
+    18a0:	beq	18a8 <generate_html+0x264>
+    18a4:	bl	528 <generate_xml_string.part.0.constprop.4>
+    18a8:	ldr	r1, [r8, #12]
+    18ac:	mov	r0, r5
+    18b0:	bl	0 <ff_printf>
+    18b4:	b	1788 <generate_html+0x144>
+    18b8:	ldr	r5, [sp, #16]
+    18bc:	ldr	r4, [sp, #24]
+    18c0:	ldr	r6, [sp, #28]
+    18c4:	ldr	r3, [r5]
+    18c8:	mov	r2, r6
+    18cc:	ldr	r1, [pc, #3208]	; 255c <generate_html+0xf18>
+    18d0:	mov	r0, r4
+    18d4:	bl	0 <sprintf>
+    18d8:	ldr	r1, [pc, #3200]	; 2560 <generate_html+0xf1c>
+    18dc:	mov	r0, r4
+    18e0:	bl	0 <mkdir>
+    18e4:	ldr	r3, [r5]
+    18e8:	mov	r2, r6
+    18ec:	ldr	r1, [pc, #3184]	; 2564 <generate_html+0xf20>
+    18f0:	mov	r0, r4
+    18f4:	bl	0 <sprintf>
+    18f8:	ldr	r1, [pc, #3052]	; 24ec <generate_html+0xea8>
+    18fc:	mov	r0, r4
+    1900:	bl	0 <fopen>
+    1904:	ldr	r3, [pc, #3044]	; 24f0 <generate_html+0xeac>
+    1908:	cmp	r0, #0
+    190c:	str	r0, [r3]
+    1910:	beq	24cc <generate_html+0xe88>
+    1914:	ldr	r0, [pc, #3032]	; 24f4 <generate_html+0xeb0>
+    1918:	bl	c0 <fi_printf>
+    191c:	ldr	r0, [pc, #3028]	; 24f8 <generate_html+0xeb4>
+    1920:	bl	c0 <fi_printf>
+    1924:	ldr	r0, [pc, #3024]	; 24fc <generate_html+0xeb8>
+    1928:	bl	0 <ff_printf>
+    192c:	ldr	r0, [pc, #3020]	; 2500 <generate_html+0xebc>
+    1930:	bl	c0 <fi_printf>
+    1934:	ldr	r0, [pc, #3016]	; 2504 <generate_html+0xec0>
+    1938:	bl	c0 <fi_printf>
+    193c:	ldr	r4, [sp, #16]
+    1940:	ldr	r0, [pc, #3104]	; 2568 <generate_html+0xf24>
+    1944:	ldr	r1, [r4]
+    1948:	bl	c0 <fi_printf>
+    194c:	ldr	r0, [pc, #3096]	; 256c <generate_html+0xf28>
+    1950:	bl	c0 <fi_printf>
+    1954:	ldr	r0, [pc, #2996]	; 2510 <generate_html+0xecc>
+    1958:	bl	c0 <fi_printf>
+    195c:	ldr	r0, [pc, #2992]	; 2514 <generate_html+0xed0>
+    1960:	bl	c0 <fi_printf>
+    1964:	ldr	r1, [r4]
+    1968:	ldr	r0, [pc, #3072]	; 2570 <generate_html+0xf2c>
+    196c:	bl	c0 <fi_printf>
+    1970:	ldr	r3, [r4, #4]
+    1974:	cmp	r3, #0
+    1978:	beq	199c <generate_html+0x358>
+    197c:	ldr	r0, [pc, #3056]	; 2574 <generate_html+0xf30>
+    1980:	bl	c0 <fi_printf>
+    1984:	ldr	r0, [r4, #4]
+    1988:	cmp	r0, #0
+    198c:	beq	1994 <generate_html+0x350>
+    1990:	bl	528 <generate_xml_string.part.0.constprop.4>
+    1994:	ldr	r0, [pc, #3036]	; 2578 <generate_html+0xf34>
+    1998:	bl	0 <ff_printf>
+    199c:	ldr	r3, [sp, #16]
+    19a0:	ldr	r3, [r3, #16]
+    19a4:	cmp	r3, #0
+    19a8:	ble	19b4 <generate_html+0x370>
+    19ac:	ldr	r0, [pc, #3016]	; 257c <generate_html+0xf38>
+    19b0:	bl	c0 <fi_printf>
+    19b4:	ldr	r0, [pc, #3012]	; 2580 <generate_html+0xf3c>
+    19b8:	bl	c0 <fi_printf>
+    19bc:	ldr	r0, [pc, #2920]	; 252c <generate_html+0xee8>
+    19c0:	bl	c0 <fi_printf>
+    19c4:	ldr	r3, [pc, #2852]	; 24f0 <generate_html+0xeac>
+    19c8:	ldr	r2, [pc, #2848]	; 24f0 <generate_html+0xeac>
+    19cc:	ldr	r0, [pc, #2992]	; 2584 <generate_html+0xf40>
+    19d0:	ldr	r3, [r3, #4]
+    19d4:	add	r3, r3, #1
+    19d8:	str	r3, [r2, #4]
+    19dc:	bl	c0 <fi_printf>
+    19e0:	ldr	r3, [sp, #16]
+    19e4:	ldr	r3, [r3, #28]
+    19e8:	cmp	r3, #0
+    19ec:	ble	1ab8 <generate_html+0x474>
+    19f0:	ldr	r8, [pc, #2960]	; 2588 <generate_html+0xf44>
+    19f4:	ldr	r9, [pc, #2960]	; 258c <generate_html+0xf48>
+    19f8:	ldr	r7, [pc, #2960]	; 2590 <generate_html+0xf4c>
+    19fc:	mov	r6, #0
+    1a00:	b	1a10 <generate_html+0x3cc>
+    1a04:	add	r6, r6, #1
+    1a08:	cmp	r6, r3
+    1a0c:	bge	1ab8 <generate_html+0x474>
+    1a10:	ldr	r2, [sp, #16]
+    1a14:	ldr	r2, [r2, #32]
+    1a18:	ldr	sl, [r2, r6, lsl #2]
+    1a1c:	ldr	r2, [sl, #8]
+    1a20:	cmp	r2, #0
+    1a24:	beq	1a04 <generate_html+0x3c0>
+    1a28:	add	r3, r2, #1
+    1a2c:	mov	r1, r3
+    1a30:	ldr	r2, [sl]
+    1a34:	mov	r0, r8
+    1a38:	bl	c0 <fi_printf>
+    1a3c:	ldr	r0, [sl, #4]
+    1a40:	cmp	r0, #0
+    1a44:	beq	1a4c <generate_html+0x408>
+    1a48:	bl	528 <generate_xml_string.part.0.constprop.4>
+    1a4c:	mov	r0, r9
+    1a50:	bl	0 <ff_printf>
+    1a54:	ldr	r3, [sl, #8]
+    1a58:	cmp	r3, #0
+    1a5c:	movgt	r4, #0
+    1a60:	ble	1a9c <generate_html+0x458>
+    1a64:	ldr	r3, [sl, #12]
+    1a68:	ldr	r5, [r3, r4, lsl #2]
+    1a6c:	add	r4, r4, #1
+    1a70:	ldm	r5, {r0, fp}
+    1a74:	bl	0 <coda_type_get_format_name>
+    1a78:	ldr	r3, [r5, #8]
+    1a7c:	mov	r1, fp
+    1a80:	str	r3, [sp]
+    1a84:	mov	r2, r0
+    1a88:	mov	r0, r7
+    1a8c:	bl	c0 <fi_printf>
+    1a90:	ldr	r3, [sl, #8]
+    1a94:	cmp	r4, r3
+    1a98:	blt	1a64 <generate_html+0x420>
+    1a9c:	ldr	r0, [pc, #2648]	; 24fc <generate_html+0xeb8>
+    1aa0:	bl	0 <ff_printf>
+    1aa4:	ldr	r3, [sp, #16]
+    1aa8:	add	r6, r6, #1
+    1aac:	ldr	r3, [r3, #28]
+    1ab0:	cmp	r6, r3
+    1ab4:	blt	1a10 <generate_html+0x3cc>
+    1ab8:	ldr	r3, [pc, #2608]	; 24f0 <generate_html+0xeac>
+    1abc:	ldr	r2, [pc, #2604]	; 24f0 <generate_html+0xeac>
+    1ac0:	ldr	r0, [pc, #2684]	; 2544 <generate_html+0xf00>
+    1ac4:	ldr	r3, [r3, #4]
+    1ac8:	sub	r3, r3, #1
+    1acc:	str	r3, [r2, #4]
+    1ad0:	bl	c0 <fi_printf>
+    1ad4:	ldr	r0, [pc, #2672]	; 254c <generate_html+0xf08>
+    1ad8:	bl	c0 <fi_printf>
+    1adc:	ldr	r0, [pc, #2668]	; 2550 <generate_html+0xf0c>
+    1ae0:	bl	c0 <fi_printf>
+    1ae4:	ldr	r3, [pc, #2564]	; 24f0 <generate_html+0xeac>
+    1ae8:	ldr	r0, [r3]
+    1aec:	bl	0 <fclose>
+    1af0:	ldr	r4, [sp, #16]
+    1af4:	ldr	r5, [sp, #24]
+    1af8:	ldr	r2, [sp, #28]
+    1afc:	ldr	r3, [r4]
+    1b00:	ldr	r1, [pc, #2700]	; 2594 <generate_html+0xf50>
+    1b04:	mov	r0, r5
+    1b08:	bl	0 <sprintf>
+    1b0c:	ldr	r1, [pc, #2636]	; 2560 <generate_html+0xf1c>
+    1b10:	mov	r0, r5
+    1b14:	bl	0 <mkdir>
+    1b18:	ldr	r3, [r4, #28]
+    1b1c:	cmp	r3, #0
+    1b20:	movgt	r2, #0
+    1b24:	strgt	r2, [sp, #32]
+    1b28:	ble	1d98 <generate_html+0x754>
+    1b2c:	ldr	r2, [sp, #16]
+    1b30:	ldr	r1, [sp, #32]
+    1b34:	ldr	r2, [r2, #32]
+    1b38:	ldr	r2, [r2, r1, lsl #2]
+    1b3c:	str	r2, [sp, #20]
+    1b40:	ldr	r2, [r2, #8]
+    1b44:	cmp	r2, #0
+    1b48:	movgt	r3, #0
+    1b4c:	strgt	r3, [sp, #12]
+    1b50:	ble	1d84 <generate_html+0x740>
+    1b54:	ldr	r4, [sp, #20]
+    1b58:	ldr	r5, [sp, #12]
+    1b5c:	ldr	r3, [sp, #16]
+    1b60:	ldr	r1, [r4, #12]
+    1b64:	ldr	r6, [sp, #24]
+    1b68:	ldr	r3, [r3]
+    1b6c:	ldr	r0, [r1, r5, lsl #2]
+    1b70:	ldr	r2, [sp, #28]
+    1b74:	ldr	r1, [pc, #2588]	; 2598 <generate_html+0xf54>
+    1b78:	ldr	ip, [r0, #8]
+    1b7c:	mov	r0, r6
+    1b80:	str	ip, [sp]
+    1b84:	bl	0 <sprintf>
+    1b88:	ldr	r3, [r4, #12]
+    1b8c:	ldr	r1, [pc, #2392]	; 24ec <generate_html+0xea8>
+    1b90:	mov	r0, r6
+    1b94:	ldr	fp, [r3, r5, lsl #2]
+    1b98:	bl	0 <fopen>
+    1b9c:	ldr	r3, [pc, #2380]	; 24f0 <generate_html+0xeac>
+    1ba0:	cmp	r0, #0
+    1ba4:	str	r0, [r3]
+    1ba8:	beq	24cc <generate_html+0xe88>
+    1bac:	ldr	r0, [pc, #2368]	; 24f4 <generate_html+0xeb0>
+    1bb0:	bl	c0 <fi_printf>
+    1bb4:	ldr	r0, [pc, #2528]	; 259c <generate_html+0xf58>
+    1bb8:	bl	c0 <fi_printf>
+    1bbc:	ldr	r0, [pc, #2364]	; 2500 <generate_html+0xebc>
+    1bc0:	bl	c0 <fi_printf>
+    1bc4:	ldr	r0, [pc, #2360]	; 2504 <generate_html+0xec0>
+    1bc8:	bl	c0 <fi_printf>
+    1bcc:	ldr	r3, [fp, #44]	; 0x2c
+    1bd0:	ldr	r2, [fp, #4]
+    1bd4:	ldr	r0, [pc, #2500]	; 25a0 <generate_html+0xf5c>
+    1bd8:	ldr	r1, [r3]
+    1bdc:	bl	c0 <fi_printf>
+    1be0:	ldr	r0, [pc, #2492]	; 25a4 <generate_html+0xf60>
+    1be4:	bl	c0 <fi_printf>
+    1be8:	ldr	r0, [pc, #2336]	; 2510 <generate_html+0xecc>
+    1bec:	bl	c0 <fi_printf>
+    1bf0:	ldr	r0, [pc, #2480]	; 25a8 <generate_html+0xf64>
+    1bf4:	bl	c0 <fi_printf>
+    1bf8:	ldr	r3, [fp, #44]	; 0x2c
+    1bfc:	ldr	r2, [fp, #4]
+    1c00:	ldr	r0, [pc, #2468]	; 25ac <generate_html+0xf68>
+    1c04:	ldr	r1, [r3]
+    1c08:	bl	c0 <fi_printf>
+    1c0c:	ldr	r1, [fp, #8]
+    1c10:	ldr	r0, [pc, #2456]	; 25b0 <generate_html+0xf6c>
+    1c14:	bl	c0 <fi_printf>
+    1c18:	ldr	r3, [fp, #12]
+    1c1c:	cmp	r3, #0
+    1c20:	beq	1c44 <generate_html+0x600>
+    1c24:	ldr	r0, [pc, #2376]	; 2574 <generate_html+0xf30>
+    1c28:	bl	c0 <fi_printf>
+    1c2c:	ldr	r0, [fp, #12]
+    1c30:	cmp	r0, #0
+    1c34:	beq	1c3c <generate_html+0x5f8>
+    1c38:	bl	528 <generate_xml_string.part.0.constprop.4>
+    1c3c:	ldr	r0, [pc, #2356]	; 2578 <generate_html+0xf34>
+    1c40:	bl	0 <ff_printf>
+    1c44:	ldr	r3, [fp, #28]
+    1c48:	cmp	r3, #0
+    1c4c:	beq	1c68 <generate_html+0x624>
+    1c50:	ldr	r0, [pc, #2396]	; 25b4 <generate_html+0xf70>
+    1c54:	bl	c0 <fi_printf>
+    1c58:	mov	r2, #0
+    1c5c:	mov	r1, #1
+    1c60:	ldr	r0, [fp, #28]
+    1c64:	bl	634 <generate_html_type>
+    1c68:	ldr	r0, [pc, #2376]	; 25b8 <generate_html+0xf74>
+    1c6c:	bl	c0 <fi_printf>
+    1c70:	ldr	r3, [fp, #16]
+    1c74:	cmp	r3, #0
+    1c78:	bne	201c <generate_html+0x9d8>
+    1c7c:	ldr	r0, [pc, #2360]	; 25bc <generate_html+0xf78>
+    1c80:	bl	c0 <fi_printf>
+    1c84:	ldr	r3, [fp, #32]
+    1c88:	cmp	r3, #0
+    1c8c:	ble	1d44 <generate_html+0x700>
+    1c90:	ldr	r0, [pc, #2344]	; 25c0 <generate_html+0xf7c>
+    1c94:	bl	c0 <fi_printf>
+    1c98:	ldr	r0, [pc, #2340]	; 25c4 <generate_html+0xf80>
+    1c9c:	bl	c0 <fi_printf>
+    1ca0:	ldr	r0, [pc, #2336]	; 25c8 <generate_html+0xf84>
+    1ca4:	bl	c0 <fi_printf>
+    1ca8:	ldr	r3, [fp, #32]
+    1cac:	cmp	r3, #0
+    1cb0:	ble	1d3c <generate_html+0x6f8>
+    1cb4:	ldr	r9, [pc, #2320]	; 25cc <generate_html+0xf88>
+    1cb8:	ldr	sl, [pc, #2320]	; 25d0 <generate_html+0xf8c>
+    1cbc:	ldr	r6, [pc, #2320]	; 25d4 <generate_html+0xf90>
+    1cc0:	ldr	r8, [pc, #2320]	; 25d8 <generate_html+0xf94>
+    1cc4:	ldr	r7, [pc, #2320]	; 25dc <generate_html+0xf98>
+    1cc8:	mov	r5, #0
+    1ccc:	ldr	r3, [fp, #36]	; 0x24
+    1cd0:	ldr	r1, [fp, #8]
+    1cd4:	mov	r0, r9
+    1cd8:	ldr	r4, [r3, r5, lsl #2]
+    1cdc:	ldr	r3, [r4]
+    1ce0:	mov	r2, r3
+    1ce4:	bl	c0 <fi_printf>
+    1ce8:	ldr	r3, [r4, #4]
+    1cec:	cmp	r3, #0
+    1cf0:	beq	1d10 <generate_html+0x6cc>
+    1cf4:	mov	r0, sl
+    1cf8:	bl	0 <ff_printf>
+    1cfc:	mov	r1, r6
+    1d00:	ldr	r0, [r4, #4]
+    1d04:	bl	0 <coda_expression_print_html>
+    1d08:	ldr	r0, [pc, #2256]	; 25e0 <generate_html+0xf9c>
+    1d0c:	bl	0 <ff_printf>
+    1d10:	mov	r0, r8
+    1d14:	bl	0 <ff_printf>
+    1d18:	mov	r1, r6
+    1d1c:	ldr	r0, [r4, #8]
+    1d20:	bl	0 <coda_expression_print_html>
+    1d24:	mov	r0, r7
+    1d28:	bl	0 <ff_printf>
+    1d2c:	ldr	r3, [fp, #32]
+    1d30:	add	r5, r5, #1
+    1d34:	cmp	r5, r3
+    1d38:	blt	1ccc <generate_html+0x688>
+    1d3c:	ldr	r0, [pc, #2048]	; 2544 <generate_html+0xf00>
+    1d40:	bl	c0 <fi_printf>
+    1d44:	ldr	r0, [pc, #2048]	; 254c <generate_html+0xf08>
+    1d48:	bl	c0 <fi_printf>
+    1d4c:	ldr	r0, [pc, #2192]	; 25e4 <generate_html+0xfa0>
+    1d50:	bl	c0 <fi_printf>
+    1d54:	ldr	r3, [pc, #1940]	; 24f0 <generate_html+0xeac>
+    1d58:	ldr	r0, [r3]
+    1d5c:	bl	0 <fclose>
+    1d60:	ldr	r3, [sp, #20]
+    1d64:	ldr	r2, [sp, #12]
+    1d68:	ldr	r3, [r3, #8]
+    1d6c:	add	r2, r2, #1
+    1d70:	cmp	r3, r2
+    1d74:	str	r2, [sp, #12]
+    1d78:	bgt	1b54 <generate_html+0x510>
+    1d7c:	ldr	r3, [sp, #16]
+    1d80:	ldr	r3, [r3, #28]
+    1d84:	ldr	r2, [sp, #32]
+    1d88:	add	r2, r2, #1
+    1d8c:	cmp	r3, r2
+    1d90:	str	r2, [sp, #32]
+    1d94:	bgt	1b2c <generate_html+0x4e8>
+    1d98:	ldr	r3, [sp, #16]
+    1d9c:	ldr	r3, [r3, #16]
+    1da0:	cmp	r3, #0
+    1da4:	ble	184c <generate_html+0x208>
+    1da8:	ldr	r3, [sp, #16]
+    1dac:	ldr	r4, [sp, #24]
+    1db0:	ldr	r2, [sp, #28]
+    1db4:	ldr	r3, [r3]
+    1db8:	ldr	r1, [pc, #2088]	; 25e8 <generate_html+0xfa4>
+    1dbc:	mov	r0, r4
+    1dc0:	bl	0 <sprintf>
+    1dc4:	ldr	r1, [pc, #1824]	; 24ec <generate_html+0xea8>
+    1dc8:	mov	r0, r4
+    1dcc:	bl	0 <fopen>
+    1dd0:	ldr	r3, [pc, #1816]	; 24f0 <generate_html+0xeac>
+    1dd4:	cmp	r0, #0
+    1dd8:	str	r0, [r3]
+    1ddc:	beq	24cc <generate_html+0xe88>
+    1de0:	ldr	r0, [pc, #1804]	; 24f4 <generate_html+0xeb0>
+    1de4:	bl	c0 <fi_printf>
+    1de8:	ldr	r0, [pc, #1964]	; 259c <generate_html+0xf58>
+    1dec:	bl	c0 <fi_printf>
+    1df0:	ldr	r0, [pc, #1800]	; 2500 <generate_html+0xebc>
+    1df4:	bl	c0 <fi_printf>
+    1df8:	ldr	r0, [pc, #1796]	; 2504 <generate_html+0xec0>
+    1dfc:	bl	c0 <fi_printf>
+    1e00:	ldr	r4, [sp, #16]
+    1e04:	ldr	r0, [pc, #2016]	; 25ec <generate_html+0xfa8>
+    1e08:	ldr	r1, [r4]
+    1e0c:	bl	c0 <fi_printf>
+    1e10:	ldr	r0, [pc, #1876]	; 256c <generate_html+0xf28>
+    1e14:	bl	c0 <fi_printf>
+    1e18:	ldr	r0, [pc, #1776]	; 2510 <generate_html+0xecc>
+    1e1c:	bl	c0 <fi_printf>
+    1e20:	ldr	r0, [pc, #1920]	; 25a8 <generate_html+0xf64>
+    1e24:	bl	c0 <fi_printf>
+    1e28:	ldr	r1, [r4]
+    1e2c:	ldr	r0, [pc, #1980]	; 25f0 <generate_html+0xfac>
+    1e30:	bl	c0 <fi_printf>
+    1e34:	ldr	r0, [pc, #1776]	; 252c <generate_html+0xee8>
+    1e38:	bl	c0 <fi_printf>
+    1e3c:	ldr	r0, [pc, #1968]	; 25f4 <generate_html+0xfb0>
+    1e40:	bl	c0 <fi_printf>
+    1e44:	ldr	r4, [r4, #16]
+    1e48:	lsl	r5, r4, #2
+    1e4c:	mov	r0, r5
+    1e50:	bl	0 <malloc>
+    1e54:	subs	r3, r0, #0
+    1e58:	str	r3, [sp, #12]
+    1e5c:	beq	24a4 <generate_html+0xe60>
+    1e60:	mov	r2, r5
+    1e64:	ldr	r5, [sp, #16]
+    1e68:	ldr	r1, [r5, #20]
+    1e6c:	bl	0 <memcpy>
+    1e70:	ldr	r3, [pc, #1920]	; 25f8 <generate_html+0xfb4>
+    1e74:	mov	r1, r4
+    1e78:	mov	r2, #4
+    1e7c:	ldr	r0, [sp, #12]
+    1e80:	bl	0 <qsort>
+    1e84:	ldr	r3, [r5, #16]
+    1e88:	cmp	r3, #0
+    1e8c:	ble	22e8 <generate_html+0xca4>
+    1e90:	ldr	r3, [sp, #12]
+    1e94:	ldr	sl, [sp, #16]
+    1e98:	sub	r3, r3, #4
+    1e9c:	str	r3, [sp, #32]
+    1ea0:	mov	r3, #0
+    1ea4:	str	r3, [sp, #20]
+    1ea8:	ldr	r3, [sp, #32]
+    1eac:	ldr	r0, [pc, #1864]	; 25fc <generate_html+0xfb8>
+    1eb0:	ldr	r7, [r3, #4]!
+    1eb4:	str	r3, [sp, #32]
+    1eb8:	bl	c0 <fi_printf>
+    1ebc:	ldr	r2, [r7, #16]
+    1ec0:	ldr	r0, [pc, #1848]	; 2600 <generate_html+0xfbc>
+    1ec4:	mov	r1, r2
+    1ec8:	bl	c0 <fi_printf>
+    1ecc:	ldr	r0, [pc, #1840]	; 2604 <generate_html+0xfc0>
+    1ed0:	bl	c0 <fi_printf>
+    1ed4:	ldr	r2, [sl, #28]
+    1ed8:	cmp	r2, #0
+    1edc:	ble	2474 <generate_html+0xe30>
+    1ee0:	mov	r6, #0
+    1ee4:	ldr	r9, [pc, #1820]	; 2608 <generate_html+0xfc4>
+    1ee8:	mov	fp, r6
+    1eec:	mov	r8, #1
+    1ef0:	str	sl, [sp, #8]
+    1ef4:	ldr	r3, [sp, #8]
+    1ef8:	ldr	r3, [r3, #32]
+    1efc:	ldr	sl, [r3, fp, lsl #2]
+    1f00:	ldr	r1, [sl, #8]
+    1f04:	cmp	r1, #0
+    1f08:	ble	1f7c <generate_html+0x938>
+    1f0c:	mov	r4, #0
+    1f10:	b	1f40 <generate_html+0x8fc>
+    1f14:	ldr	r0, [pc, #1776]	; 260c <generate_html+0xfc8>
+    1f18:	bl	c0 <fi_printf>
+    1f1c:	ldr	r2, [r5, #8]
+    1f20:	mov	r0, r9
+    1f24:	mov	r1, r2
+    1f28:	bl	0 <ff_printf>
+    1f2c:	add	r6, r6, #1
+    1f30:	ldr	r3, [sl, #8]
+    1f34:	add	r4, r4, #1
+    1f38:	cmp	r4, r3
+    1f3c:	bge	1f74 <generate_html+0x930>
+    1f40:	ldr	r3, [sl, #12]
+    1f44:	mov	r2, r8
+    1f48:	mov	r1, r7
+    1f4c:	ldr	r5, [r3, r4, lsl #2]
+    1f50:	ldr	r0, [r5, #28]
+    1f54:	bl	158 <type_uses_type>
+    1f58:	cmp	r0, #0
+    1f5c:	beq	1f30 <generate_html+0x8ec>
+    1f60:	cmp	r6, #0
+    1f64:	beq	1f14 <generate_html+0x8d0>
+    1f68:	ldr	r0, [pc, #1696]	; 2610 <generate_html+0xfcc>
+    1f6c:	bl	0 <ff_printf>
+    1f70:	b	1f1c <generate_html+0x8d8>
+    1f74:	ldr	r3, [sp, #8]
+    1f78:	ldr	r2, [r3, #28]
+    1f7c:	add	fp, fp, #1
+    1f80:	cmp	fp, r2
+    1f84:	blt	1ef4 <generate_html+0x8b0>
+    1f88:	cmp	r6, #0
+    1f8c:	ldr	sl, [sp, #8]
+    1f90:	bne	2448 <generate_html+0xe04>
+    1f94:	ldr	r3, [sl, #16]
+    1f98:	cmp	r3, #0
+    1f9c:	ble	2468 <generate_html+0xe24>
+    1fa0:	mov	r4, #0
+    1fa4:	ldr	r8, [pc, #1640]	; 2614 <generate_html+0xfd0>
+    1fa8:	mov	r9, r4
+    1fac:	mov	r5, r4
+    1fb0:	b	1fe8 <generate_html+0x9a4>
+    1fb4:	mov	r0, r8
+    1fb8:	bl	c0 <fi_printf>
+    1fbc:	ldr	r3, [sl, #20]
+    1fc0:	ldr	r0, [pc, #1616]	; 2618 <generate_html+0xfd4>
+    1fc4:	add	r4, r4, #1
+    1fc8:	ldr	r3, [r3, fp]
+    1fcc:	ldr	r2, [r3, #16]
+    1fd0:	mov	r1, r2
+    1fd4:	bl	0 <ff_printf>
+    1fd8:	ldr	r3, [sl, #16]
+    1fdc:	add	r9, r9, #1
+    1fe0:	cmp	r9, r3
+    1fe4:	bge	22b0 <generate_html+0xc6c>
+    1fe8:	ldr	r3, [sl, #20]
+    1fec:	mov	r2, r5
+    1ff0:	mov	r1, r7
+    1ff4:	ldr	r0, [r3, r9, lsl #2]
+    1ff8:	bl	158 <type_uses_type>
+    1ffc:	lsl	fp, r9, #2
+    2000:	cmp	r0, #0
+    2004:	beq	1fd8 <generate_html+0x994>
+    2008:	cmp	r4, #0
+    200c:	beq	1fb4 <generate_html+0x970>
+    2010:	ldr	r0, [pc, #1528]	; 2610 <generate_html+0xfcc>
+    2014:	bl	0 <ff_printf>
+    2018:	b	1fbc <generate_html+0x978>
+    201c:	ldr	r0, [pc, #1528]	; 261c <generate_html+0xfd8>
+    2020:	bl	c0 <fi_printf>
+    2024:	ldr	r0, [pc, #1524]	; 2620 <generate_html+0xfdc>
+    2028:	bl	c0 <fi_printf>
+    202c:	ldr	r3, [pc, #1212]	; 24f0 <generate_html+0xeac>
+    2030:	ldr	r2, [pc, #1208]	; 24f0 <generate_html+0xeac>
+    2034:	ldr	r0, [pc, #1512]	; 2624 <generate_html+0xfe0>
+    2038:	ldr	r3, [r3, #4]
+    203c:	add	r3, r3, #1
+    2040:	str	r3, [r2, #4]
+    2044:	bl	c0 <fi_printf>
+    2048:	ldr	r3, [pc, #1184]	; 24f0 <generate_html+0xeac>
+    204c:	ldr	r2, [pc, #1180]	; 24f0 <generate_html+0xeac>
+    2050:	ldr	r0, [pc, #1488]	; 2628 <generate_html+0xfe4>
+    2054:	ldr	r3, [r3, #4]
+    2058:	add	r3, r3, #1
+    205c:	str	r3, [r2, #4]
+    2060:	bl	c0 <fi_printf>
+    2064:	ldr	r3, [pc, #1156]	; 24f0 <generate_html+0xeac>
+    2068:	ldr	r2, [fp, #16]
+    206c:	ldr	r1, [pc, #1148]	; 24f0 <generate_html+0xeac>
+    2070:	ldr	r3, [r3, #4]
+    2074:	cmp	r2, #0
+    2078:	add	r3, r3, #1
+    207c:	str	r3, [r1, #4]
+    2080:	ble	21fc <generate_html+0xbb8>
+    2084:	mov	r3, #0
+    2088:	ldr	r9, [pc, #1436]	; 262c <generate_html+0xfe8>
+    208c:	ldr	sl, [pc, #1344]	; 25d4 <generate_html+0xf90>
+    2090:	str	fp, [sp, #8]
+    2094:	mov	fp, r3
+    2098:	ldr	r3, [sp, #8]
+    209c:	ldr	r3, [r3, #20]
+    20a0:	ldr	r5, [r3, fp, lsl #2]
+    20a4:	ldr	r3, [r5]
+    20a8:	cmp	r3, #0
+    20ac:	movgt	r8, #0
+    20b0:	movgt	r4, r8
+    20b4:	movgt	r6, #4
+    20b8:	bgt	2144 <generate_html+0xb00>
+    20bc:	b	21d8 <generate_html+0xb94>
+    20c0:	ldr	r0, [pc, #1384]	; 2630 <generate_html+0xfec>
+    20c4:	bl	0 <ff_printf>
+    20c8:	ldr	r3, [r5, #4]
+    20cc:	ldr	r3, [r3, r4, lsl #2]
+    20d0:	ldr	r0, [r3]
+    20d4:	cmp	r0, #0
+    20d8:	beq	20e4 <generate_html+0xaa0>
+    20dc:	mvn	r1, #0
+    20e0:	bl	258 <generate_escaped_html_string.part.3>
+    20e4:	mov	r0, r9
+    20e8:	bl	0 <ff_printf>
+    20ec:	ldr	r3, [r5, #4]
+    20f0:	ldr	r3, [r3, r7]
+    20f4:	ldr	r0, [r3, #4]
+    20f8:	cmp	r0, #0
+    20fc:	beq	21c0 <generate_html+0xb7c>
+    2100:	ldr	r3, [r3]
+    2104:	cmp	r3, #0
+    2108:	bne	224c <generate_html+0xc08>
+    210c:	mov	r1, sl
+    2110:	bl	0 <coda_expression_print_html>
+    2114:	ldr	r3, [r5]
+    2118:	mov	r8, #1
+    211c:	sub	r3, r3, #1
+    2120:	cmp	r4, r3
+    2124:	blt	21b4 <generate_html+0xb70>
+    2128:	ldr	r0, [pc, #972]	; 24fc <generate_html+0xeb8>
+    212c:	bl	0 <ff_printf>
+    2130:	ldr	r3, [r5]
+    2134:	add	r4, r4, #1
+    2138:	cmp	r4, r3
+    213c:	add	r6, r6, #4
+    2140:	bge	21d0 <generate_html+0xb8c>
+    2144:	ldr	r2, [r5, #4]
+    2148:	lsl	r7, r4, #2
+    214c:	ldr	r2, [r2, r4, lsl #2]
+    2150:	ldr	r1, [r2]
+    2154:	cmp	r1, #0
+    2158:	bne	20c0 <generate_html+0xa7c>
+    215c:	ldr	r0, [r2, #4]
+    2160:	cmp	r0, #0
+    2164:	beq	2174 <generate_html+0xb30>
+    2168:	mov	r1, sl
+    216c:	bl	0 <coda_expression_print_html>
+    2170:	ldr	r3, [r5]
+    2174:	cmp	r8, #2
+    2178:	bne	211c <generate_html+0xad8>
+    217c:	sub	r3, r3, #1
+    2180:	cmp	r3, r4
+    2184:	beq	21a0 <generate_html+0xb5c>
+    2188:	ldr	r2, [r5, #4]
+    218c:	ldr	r2, [r2, r6]
+    2190:	ldr	r2, [r2]
+    2194:	cmp	r2, #0
+    2198:	moveq	r8, #2
+    219c:	beq	2120 <generate_html+0xadc>
+    21a0:	mov	r0, r9
+    21a4:	bl	0 <ff_printf>
+    21a8:	mov	r8, #2
+    21ac:	ldr	r3, [r5]
+    21b0:	b	211c <generate_html+0xad8>
+    21b4:	ldr	r0, [pc, #1144]	; 2634 <generate_html+0xff0>
+    21b8:	bl	0 <ff_printf>
+    21bc:	b	2128 <generate_html+0xae4>
+    21c0:	ldr	r3, [r5]
+    21c4:	mov	r8, #1
+    21c8:	sub	r3, r3, #1
+    21cc:	b	2120 <generate_html+0xadc>
+    21d0:	ldr	r3, [sp, #8]
+    21d4:	ldr	r2, [r3, #16]
+    21d8:	sub	r3, r2, #1
+    21dc:	cmp	r3, fp
+    21e0:	bgt	229c <generate_html+0xc58>
+    21e4:	add	fp, fp, #1
+    21e8:	cmp	fp, r2
+    21ec:	blt	2098 <generate_html+0xa54>
+    21f0:	ldr	r3, [pc, #760]	; 24f0 <generate_html+0xeac>
+    21f4:	ldr	fp, [sp, #8]
+    21f8:	ldr	r3, [r3, #4]
+    21fc:	ldr	r2, [pc, #748]	; 24f0 <generate_html+0xeac>
+    2200:	sub	r3, r3, #1
+    2204:	ldr	r0, [pc, #1068]	; 2638 <generate_html+0xff4>
+    2208:	str	r3, [r2, #4]
+    220c:	bl	c0 <fi_printf>
+    2210:	ldr	r3, [pc, #728]	; 24f0 <generate_html+0xeac>
+    2214:	ldr	r2, [pc, #724]	; 24f0 <generate_html+0xeac>
+    2218:	ldr	r0, [pc, #1052]	; 263c <generate_html+0xff8>
+    221c:	ldr	r3, [r3, #4]
+    2220:	sub	r3, r3, #1
+    2224:	str	r3, [r2, #4]
+    2228:	bl	c0 <fi_printf>
+    222c:	ldr	r3, [pc, #700]	; 24f0 <generate_html+0xeac>
+    2230:	ldr	r2, [pc, #696]	; 24f0 <generate_html+0xeac>
+    2234:	ldr	r0, [pc, #776]	; 2544 <generate_html+0xf00>
+    2238:	ldr	r3, [r3, #4]
+    223c:	sub	r3, r3, #1
+    2240:	str	r3, [r2, #4]
+    2244:	bl	c0 <fi_printf>
+    2248:	b	1c84 <generate_html+0x640>
+    224c:	ldr	r0, [pc, #992]	; 2634 <generate_html+0xff0>
+    2250:	bl	0 <ff_printf>
+    2254:	ldr	r0, [pc, #996]	; 2640 <generate_html+0xffc>
+    2258:	bl	0 <ff_printf>
+    225c:	ldr	r3, [r5, #4]
+    2260:	ldr	r3, [r3, r7]
+    2264:	ldr	r0, [r3]
+    2268:	cmp	r0, #0
+    226c:	beq	2278 <generate_html+0xc34>
+    2270:	mvn	r1, #0
+    2274:	bl	258 <generate_escaped_html_string.part.3>
+    2278:	ldr	r0, [pc, #964]	; 2644 <generate_html+0x1000>
+    227c:	bl	0 <ff_printf>
+    2280:	ldr	r3, [r5, #4]
+    2284:	mov	r1, sl
+    2288:	ldr	r3, [r3, r7]
+    228c:	ldr	r0, [r3, #4]
+    2290:	bl	0 <coda_expression_print_html>
+    2294:	ldr	r3, [r5]
+    2298:	b	217c <generate_html+0xb38>
+    229c:	ldr	r0, [pc, #932]	; 2648 <generate_html+0x1004>
+    22a0:	bl	c0 <fi_printf>
+    22a4:	ldr	r3, [sp, #8]
+    22a8:	ldr	r2, [r3, #16]
+    22ac:	b	21e4 <generate_html+0xba0>
+    22b0:	cmp	r4, #0
+    22b4:	beq	2460 <generate_html+0xe1c>
+    22b8:	ldr	r0, [pc, #908]	; 264c <generate_html+0x1008>
+    22bc:	bl	0 <ff_printf>
+    22c0:	ldr	r0, [pc, #904]	; 2650 <generate_html+0x100c>
+    22c4:	bl	c0 <fi_printf>
+    22c8:	ldr	r0, [pc, #872]	; 2638 <generate_html+0xff4>
+    22cc:	bl	c0 <fi_printf>
+    22d0:	ldr	r2, [sp, #20]
+    22d4:	ldr	r3, [sl, #16]
+    22d8:	add	r2, r2, #1
+    22dc:	cmp	r2, r3
+    22e0:	str	r2, [sp, #20]
+    22e4:	blt	1ea8 <generate_html+0x864>
+    22e8:	ldr	r0, [pc, #596]	; 2544 <generate_html+0xf00>
+    22ec:	bl	c0 <fi_printf>
+    22f0:	ldr	r0, [pc, #596]	; 254c <generate_html+0xf08>
+    22f4:	bl	c0 <fi_printf>
+    22f8:	ldr	r0, [pc, #740]	; 25e4 <generate_html+0xfa0>
+    22fc:	bl	c0 <fi_printf>
+    2300:	ldr	r0, [sp, #12]
+    2304:	bl	0 <free>
+    2308:	ldr	r3, [pc, #480]	; 24f0 <generate_html+0xeac>
+    230c:	ldr	r0, [r3]
+    2310:	bl	0 <fclose>
+    2314:	ldr	r4, [sp, #16]
+    2318:	ldr	r5, [sp, #24]
+    231c:	ldr	r2, [sp, #28]
+    2320:	ldr	r3, [r4]
+    2324:	ldr	r1, [pc, #808]	; 2654 <generate_html+0x1010>
+    2328:	mov	r0, r5
+    232c:	bl	0 <sprintf>
+    2330:	ldr	r1, [pc, #552]	; 2560 <generate_html+0xf1c>
+    2334:	mov	r0, r5
+    2338:	bl	0 <mkdir>
+    233c:	ldr	r3, [r4, #16]
+    2340:	cmp	r3, #0
+    2344:	ble	184c <generate_html+0x208>
+    2348:	ldr	r8, [pc, #776]	; 2658 <generate_html+0x1014>
+    234c:	ldr	r7, [pc, #584]	; 259c <generate_html+0xf58>
+    2350:	ldr	r6, [pc, #424]	; 2500 <generate_html+0xebc>
+    2354:	ldr	r9, [pc, #424]	; 2504 <generate_html+0xec0>
+    2358:	ldr	fp, [sp, #24]
+    235c:	ldr	sl, [sp, #16]
+    2360:	mov	r4, #0
+    2364:	ldr	r1, [sl, #20]
+    2368:	ldr	r3, [sl]
+    236c:	ldr	r2, [sp, #28]
+    2370:	ldr	r0, [r1, r4, lsl #2]
+    2374:	mov	r1, r8
+    2378:	ldr	ip, [r0, #16]
+    237c:	mov	r0, fp
+    2380:	str	ip, [sp]
+    2384:	bl	0 <sprintf>
+    2388:	ldr	r3, [sl, #20]
+    238c:	ldr	r5, [r3, r4, lsl #2]
+    2390:	ldr	r3, [r5, #16]
+    2394:	cmp	r3, #0
+    2398:	beq	2490 <generate_html+0xe4c>
+    239c:	ldr	r1, [pc, #328]	; 24ec <generate_html+0xea8>
+    23a0:	mov	r0, fp
+    23a4:	bl	0 <fopen>
+    23a8:	ldr	r3, [pc, #320]	; 24f0 <generate_html+0xeac>
+    23ac:	cmp	r0, #0
+    23b0:	str	r0, [r3]
+    23b4:	beq	24cc <generate_html+0xe88>
+    23b8:	ldr	r0, [pc, #308]	; 24f4 <generate_html+0xeb0>
+    23bc:	bl	c0 <fi_printf>
+    23c0:	mov	r0, r7
+    23c4:	bl	c0 <fi_printf>
+    23c8:	mov	r0, r6
+    23cc:	bl	c0 <fi_printf>
+    23d0:	mov	r0, r9
+    23d4:	bl	c0 <fi_printf>
+    23d8:	ldr	r1, [r5, #16]
+    23dc:	ldr	r0, [pc, #388]	; 2568 <generate_html+0xf24>
+    23e0:	bl	c0 <fi_printf>
+    23e4:	ldr	r0, [pc, #440]	; 25a4 <generate_html+0xf60>
+    23e8:	bl	c0 <fi_printf>
+    23ec:	ldr	r0, [pc, #284]	; 2510 <generate_html+0xecc>
+    23f0:	bl	c0 <fi_printf>
+    23f4:	ldr	r0, [pc, #428]	; 25a8 <generate_html+0xf64>
+    23f8:	bl	c0 <fi_printf>
+    23fc:	ldr	r1, [r5, #16]
+    2400:	ldr	r0, [pc, #596]	; 265c <generate_html+0x1018>
+    2404:	bl	c0 <fi_printf>
+    2408:	mov	r2, #0
+    240c:	mov	r1, #1
+    2410:	mov	r0, r5
+    2414:	bl	634 <generate_html_type>
+    2418:	ldr	r0, [pc, #300]	; 254c <generate_html+0xf08>
+    241c:	bl	c0 <fi_printf>
+    2420:	ldr	r0, [pc, #444]	; 25e4 <generate_html+0xfa0>
+    2424:	bl	c0 <fi_printf>
+    2428:	ldr	r3, [pc, #192]	; 24f0 <generate_html+0xeac>
+    242c:	add	r4, r4, #1
+    2430:	ldr	r0, [r3]
+    2434:	bl	0 <fclose>
+    2438:	ldr	r3, [sl, #16]
+    243c:	cmp	r3, r4
+    2440:	bgt	2364 <generate_html+0xd20>
+    2444:	b	184c <generate_html+0x208>
+    2448:	ldr	r0, [pc, #508]	; 264c <generate_html+0x1008>
+    244c:	bl	0 <ff_printf>
+    2450:	ldr	r3, [sl, #16]
+    2454:	cmp	r3, #0
+    2458:	bgt	1fa0 <generate_html+0x95c>
+    245c:	b	22c0 <generate_html+0xc7c>
+    2460:	cmp	r6, #0
+    2464:	bne	22c0 <generate_html+0xc7c>
+    2468:	ldr	r0, [pc, #496]	; 2660 <generate_html+0x101c>
+    246c:	bl	c0 <fi_printf>
+    2470:	b	22c0 <generate_html+0xc7c>
+    2474:	ldr	r3, [sl, #16]
+    2478:	cmp	r3, #0
+    247c:	movgt	r6, #0
+    2480:	bgt	1fa0 <generate_html+0x95c>
+    2484:	ldr	r0, [pc, #468]	; 2660 <generate_html+0x101c>
+    2488:	bl	c0 <fi_printf>
+    248c:	b	22c0 <generate_html+0xc7c>
+    2490:	ldr	r3, [pc, #460]	; 2664 <generate_html+0x1020>
+    2494:	ldr	r2, [pc, #460]	; 2668 <generate_html+0x1024>
+    2498:	ldr	r1, [pc, #460]	; 266c <generate_html+0x1028>
+    249c:	ldr	r0, [pc, #460]	; 2670 <generate_html+0x102c>
+    24a0:	bl	0 <__assert_fail>
+    24a4:	ldr	r3, [pc, #456]	; 2674 <generate_html+0x1030>
+    24a8:	ldr	r2, [pc, #456]	; 2678 <generate_html+0x1034>
+    24ac:	ldr	r1, [pc, #440]	; 266c <generate_html+0x1028>
+    24b0:	ldr	r0, [pc, #452]	; 267c <generate_html+0x1038>
+    24b4:	bl	0 <__assert_fail>
+    24b8:	ldr	r3, [pc, #448]	; 2680 <generate_html+0x103c>
+    24bc:	ldr	r2, [pc, #448]	; 2684 <generate_html+0x1040>
+    24c0:	ldr	r1, [pc, #420]	; 266c <generate_html+0x1028>
+    24c4:	ldr	r0, [pc, #444]	; 2688 <generate_html+0x1044>
+    24c8:	bl	0 <__assert_fail>
+    24cc:	ldr	r3, [pc, #440]	; 268c <generate_html+0x1048>
+    24d0:	ldr	r2, [sp, #24]
+    24d4:	ldr	r1, [pc, #436]	; 2690 <generate_html+0x104c>
+    24d8:	ldr	r0, [r3]
+    24dc:	bl	0 <fprintf>
+    24e0:	mov	r0, #1
+    24e4:	bl	0 <exit>
+    24e8:	.word	0x00000638
+    24ec:	.word	0x00000648
+    24f0:	.word	0x00000000
+    24f4:	.word	0x00000668
+    24f8:	.word	0x00000698
+    24fc:	.word	0x0000029c
+    2500:	.word	0x000006fc
+    2504:	.word	0x00000708
+    2508:	.word	0x00000710
+    250c:	.word	0x0000073c
+    2510:	.word	0x0000077c
+    2514:	.word	0x00000788
+    2518:	.word	0x00000794
+    251c:	.word	0x000007bc
+    2520:	.word	0x00000820
+    2524:	.word	0x00000878
+    2528:	.word	0x00000994
+    252c:	.word	0x00000a80
+    2530:	.word	0x00000a98
+    2534:	.word	0x00000e14
+    2538:	.word	0x00000da8
+    253c:	.word	0x000012e0
+    2540:	.word	0x00000b80
+    2544:	.word	0x000004e4
+    2548:	.word	0x00000ae4
+    254c:	.word	0x00000b6c
+    2550:	.word	0x00000b78
+    2554:	.word	0x00000d74
+    2558:	.word	0x00000cf4
+    255c:	.word	0x00001310
+    2560:	.word	0x000001ff
+    2564:	.word	0x00001318
+    2568:	.word	0x00000b98
+    256c:	.word	0x00000bac
+    2570:	.word	0x00000bf0
+    2574:	.word	0x00000c0c
+    2578:	.word	0x00000c10
+    257c:	.word	0x00000c18
+    2580:	.word	0x00000c84
+    2584:	.word	0x00000ca0
+    2588:	.word	0x00000d18
+    258c:	.word	0x00000d48
+    2590:	.word	0x00000db4
+    2594:	.word	0x00000d08
+    2598:	.word	0x00000e0c
+    259c:	.word	0x00000e24
+    25a0:	.word	0x00000e88
+    25a4:	.word	0x00000ea0
+    25a8:	.word	0x00000ee4
+    25ac:	.word	0x00000eec
+    25b0:	.word	0x00000f04
+    25b4:	.word	0x00000f14
+    25b8:	.word	0x00000f28
+    25bc:	.word	0x00000f44
+    25c0:	.word	0x00001088
+    25c4:	.word	0x000010a4
+    25c8:	.word	0x000010e4
+    25cc:	.word	0x00001120
+    25d0:	.word	0x00000170
+    25d4:	.word	0x00000000
+    25d8:	.word	0x00001140
+    25dc:	.word	0x000004d8
+    25e0:	.word	0x00000174
+    25e4:	.word	0x0000114c
+    25e8:	.word	0x00001158
+    25ec:	.word	0x0000116c
+    25f0:	.word	0x0000118c
+    25f4:	.word	0x000011a8
+    25f8:	.word	0x00000000
+    25fc:	.word	0x00000120
+    2600:	.word	0x00001200
+    2604:	.word	0x00001228
+    2608:	.word	0x0000123c
+    260c:	.word	0x00001230
+    2610:	.word	0x00000178
+    2614:	.word	0x00001260
+    2618:	.word	0x00001270
+    261c:	.word	0x00000f98
+    2620:	.word	0x00000ff0
+    2624:	.word	0x00001030
+    2628:	.word	0x000005e4
+    262c:	.word	0x00000364
+    2630:	.word	0x00001038
+    2634:	.word	0x00001050
+    2638:	.word	0x0000026c
+    263c:	.word	0x000005fc
+    2640:	.word	0x0000132c
+    2644:	.word	0x00001048
+    2648:	.word	0x00001064
+    264c:	.word	0x000005ec
+    2650:	.word	0x00000264
+    2654:	.word	0x000011f4
+    2658:	.word	0x000012a8
+    265c:	.word	0x000012d0
+    2660:	.word	0x00001290
+    2664:	.word	0x00000038
+    2668:	.word	0x0000036b
+    266c:	.word	0x00000000
+    2670:	.word	0x000012bc
+    2674:	.word	0x00000018
+    2678:	.word	0x00000465
+    267c:	.word	0x000011e0
+    2680:	.word	0x00000008
+    2684:	.word	0x0000056c
+    2688:	.word	0x00000624
+    268c:	.word	0x00000000
+    2690:	.word	0x0000064c
