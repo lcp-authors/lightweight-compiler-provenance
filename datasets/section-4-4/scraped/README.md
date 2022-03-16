@@ -9,3 +9,5 @@ This dataset is too large to upload to GitHub. Instead, we make it available (wh
 * raspbian-scrape-objdumps: 52.1 GB
 * ubuntu-scrape: 5.6 GB
 * ubuntu-scrape-objdumps: 34.5 GB
+
+(Total size: 115.4 GB)
