@@ -1,0 +1,233 @@
+
+../repos/charybdis/extensions/.libs/chm_quietunreg_compat.so:     file format elf32-littlearm
+
+
+Disassembly of section .init:
+
+00000408 <_init>:
+ 408:	push	{r3, lr}
+ 40c:	bl	458 <call_weak_fn>
+ 410:	pop	{r3, pc}
+
+Disassembly of section .plt:
+
+00000414 <.plt>:
+ 414:	push	{lr}		; (str lr, [sp, #-4]!)
+ 418:	ldr	lr, [pc, #4]	; 424 <.plt+0x10>
+ 41c:	add	lr, pc, lr
+ 420:	ldr	pc, [lr, #8]!
+ 424:	.word	0x00010bdc
+
+00000428 <__cxa_finalize@plt>:
+ 428:	add	ip, pc, #0, 12
+ 42c:	add	ip, ip, #16, 20	; 0x10000
+ 430:	ldr	pc, [ip, #3036]!	; 0xbdc
+
+00000434 <chm_nosuch@plt>:
+ 434:	add	ip, pc, #0, 12
+ 438:	add	ip, ip, #16, 20	; 0x10000
+ 43c:	ldr	pc, [ip, #3028]!	; 0xbd4
+
+00000440 <__gmon_start__@plt>:
+ 440:	add	ip, pc, #0, 12
+ 444:	add	ip, ip, #16, 20	; 0x10000
+ 448:	ldr	pc, [ip, #3020]!	; 0xbcc
+
+0000044c <chm_ban@plt>:
+ 44c:	add	ip, pc, #0, 12
+ 450:	add	ip, ip, #16, 20	; 0x10000
+ 454:	ldr	pc, [ip, #3012]!	; 0xbc4
+
+Disassembly of section .text:
+
+00000458 <call_weak_fn>:
+ 458:	ldr	r3, [pc, #20]	; 474 <call_weak_fn+0x1c>
+ 45c:	ldr	r2, [pc, #20]	; 478 <call_weak_fn+0x20>
+ 460:	add	r3, pc, r3
+ 464:	ldr	r2, [r3, r2]
+ 468:	cmp	r2, #0
+ 46c:	bxeq	lr
+ 470:	b	440 <__gmon_start__@plt>
+ 474:	.word	0x00010b98
+ 478:	.word	0x00000028
+
+0000047c <deregister_tm_clones>:
+ 47c:	ldr	r0, [pc, #44]	; 4b0 <deregister_tm_clones+0x34>
+ 480:	ldr	r3, [pc, #44]	; 4b4 <deregister_tm_clones+0x38>
+ 484:	add	r0, pc, r0
+ 488:	add	r3, pc, r3
+ 48c:	cmp	r3, r0
+ 490:	ldr	r3, [pc, #32]	; 4b8 <deregister_tm_clones+0x3c>
+ 494:	add	r3, pc, r3
+ 498:	bxeq	lr
+ 49c:	ldr	r2, [pc, #24]	; 4bc <deregister_tm_clones+0x40>
+ 4a0:	ldr	r3, [r3, r2]
+ 4a4:	cmp	r3, #0
+ 4a8:	bxeq	lr
+ 4ac:	bx	r3
+ 4b0:	.word	0x00010bd4
+ 4b4:	.word	0x00010bd0
+ 4b8:	.word	0x00010b64
+ 4bc:	.word	0x00000020
+
+000004c0 <register_tm_clones>:
+ 4c0:	ldr	r0, [pc, #56]	; 500 <register_tm_clones+0x40>
+ 4c4:	ldr	r3, [pc, #56]	; 504 <register_tm_clones+0x44>
+ 4c8:	add	r0, pc, r0
+ 4cc:	add	r3, pc, r3
+ 4d0:	sub	r1, r3, r0
+ 4d4:	ldr	r3, [pc, #44]	; 508 <register_tm_clones+0x48>
+ 4d8:	asr	r1, r1, #2
+ 4dc:	add	r3, pc, r3
+ 4e0:	add	r1, r1, r1, lsr #31
+ 4e4:	asrs	r1, r1, #1
+ 4e8:	bxeq	lr
+ 4ec:	ldr	r2, [pc, #24]	; 50c <register_tm_clones+0x4c>
+ 4f0:	ldr	r3, [r3, r2]
+ 4f4:	cmp	r3, #0
+ 4f8:	bxeq	lr
+ 4fc:	bx	r3
+ 500:	.word	0x00010b90
+ 504:	.word	0x00010b8c
+ 508:	.word	0x00010b1c
+ 50c:	.word	0x00000030
+
+00000510 <__do_global_dtors_aux>:
+ 510:	ldr	r3, [pc, #76]	; 564 <__do_global_dtors_aux+0x54>
+ 514:	ldr	r2, [pc, #76]	; 568 <__do_global_dtors_aux+0x58>
+ 518:	add	r3, pc, r3
+ 51c:	add	r2, pc, r2
+ 520:	ldrb	r3, [r3]
+ 524:	cmp	r3, #0
+ 528:	bxne	lr
+ 52c:	ldr	r3, [pc, #56]	; 56c <__do_global_dtors_aux+0x5c>
+ 530:	push	{r4, lr}
+ 534:	ldr	r3, [r2, r3]
+ 538:	cmp	r3, #0
+ 53c:	beq	54c <__do_global_dtors_aux+0x3c>
+ 540:	ldr	r3, [pc, #40]	; 570 <__do_global_dtors_aux+0x60>
+ 544:	ldr	r0, [pc, r3]
+ 548:	bl	428 <__cxa_finalize@plt>
+ 54c:	bl	47c <deregister_tm_clones>
+ 550:	ldr	r3, [pc, #28]	; 574 <__do_global_dtors_aux+0x64>
+ 554:	mov	r2, #1
+ 558:	add	r3, pc, r3
+ 55c:	strb	r2, [r3]
+ 560:	pop	{r4, pc}
+ 564:	.word	0x00010b40
+ 568:	.word	0x00010adc
+ 56c:	.word	0x0000001c
+ 570:	.word	0x00010ae8
+ 574:	.word	0x00010b00
+
+00000578 <frame_dummy>:
+ 578:	b	4c0 <register_tm_clones>
+
+0000057c <_modinit>:
+ 57c:	ldr	r0, [pc, #28]	; 5a0 <_modinit+0x24>
+ 580:	ldr	r0, [pc, r0]
+ 584:	ldr	r1, [pc, #24]	; 5a4 <_modinit+0x28>
+ 588:	add	r1, pc, r1
+ 58c:	str	r1, [r0, #656]	; 0x290
+ 590:	movw	r1, #0
+ 594:	str	r1, [r0, #660]	; 0x294
+ 598:	mov	r0, r1
+ 59c:	bx	lr
+ 5a0:	.word	0x00010aa4
+ 5a4:	.word	0x00000040
+
+000005a8 <_moddeinit>:
+ 5a8:	ldr	r0, [pc, #24]	; 5c8 <_moddeinit+0x20>
+ 5ac:	ldr	r0, [pc, r0]
+ 5b0:	ldr	r1, [pc, #20]	; 5cc <_moddeinit+0x24>
+ 5b4:	ldr	r1, [pc, r1]
+ 5b8:	str	r1, [r0, #656]	; 0x290
+ 5bc:	movw	r1, #0
+ 5c0:	str	r1, [r0, #660]	; 0x294
+ 5c4:	bx	lr
+ 5c8:	.word	0x00010a78
+ 5cc:	.word	0x00010a68
+
+000005d0 <chm_quietunreg>:
+ 5d0:	push	{r4, r5, r6, r7, fp, lr}
+ 5d4:	add	fp, sp, #16
+ 5d8:	sub	sp, sp, #64	; 0x40
+ 5dc:	ldr	ip, [fp, #28]
+ 5e0:	ldr	lr, [fp, #24]
+ 5e4:	ldr	r4, [fp, #20]
+ 5e8:	ldr	r5, [fp, #16]
+ 5ec:	ldr	r6, [fp, #12]
+ 5f0:	ldr	r7, [fp, #8]
+ 5f4:	str	r0, [fp, #-20]	; 0xffffffec
+ 5f8:	str	r1, [fp, #-24]	; 0xffffffe8
+ 5fc:	str	r2, [fp, #-28]	; 0xffffffe4
+ 600:	str	r3, [fp, #-32]	; 0xffffffe0
+ 604:	strb	lr, [fp, #-33]	; 0xffffffdf
+ 608:	mov	r0, #0
+ 60c:	str	r0, [sp, #40]	; 0x28
+ 610:	ldr	r0, [pc, #228]	; 6fc <chm_quietunreg+0x12c>
+ 614:	ldr	r0, [pc, r0]
+ 618:	str	r0, [sp, #36]	; 0x24
+ 61c:	ldr	r0, [fp, #-20]	; 0xffffffec
+ 620:	ldrb	r0, [r0, #65]	; 0x41
+ 624:	tst	r0, #32
+ 628:	beq	6a8 <chm_quietunreg+0xd8>
+ 62c:	b	630 <chm_quietunreg+0x60>
+ 630:	ldr	r0, [fp, #-20]	; 0xffffffec
+ 634:	ldrh	r0, [r0, #80]	; 0x50
+ 638:	cmp	r0, #64	; 0x40
+ 63c:	bne	6a8 <chm_quietunreg+0xd8>
+ 640:	ldr	r0, [pc, #176]	; 6f8 <chm_quietunreg+0x128>
+ 644:	add	r1, sp, #36	; 0x24
+ 648:	ldr	r2, [fp, #-20]	; 0xffffffec
+ 64c:	ldr	r3, [fp, #-24]	; 0xffffffe8
+ 650:	ldr	ip, [fp, #-28]	; 0xffffffe4
+ 654:	ldr	lr, [fp, #16]
+ 658:	ldr	r4, [fp, #20]
+ 65c:	str	r0, [sp, #32]
+ 660:	mov	r0, r2
+ 664:	str	r1, [sp, #28]
+ 668:	mov	r1, r3
+ 66c:	mov	r2, ip
+ 670:	movw	r3, #1
+ 674:	add	ip, sp, #40	; 0x28
+ 678:	str	ip, [sp]
+ 67c:	ldr	ip, [sp, #28]
+ 680:	str	ip, [sp, #4]
+ 684:	str	lr, [sp, #8]
+ 688:	str	r4, [sp, #12]
+ 68c:	movw	lr, #113	; 0x71
+ 690:	and	lr, lr, #255	; 0xff
+ 694:	str	lr, [sp, #16]
+ 698:	ldr	lr, [sp, #32]
+ 69c:	str	lr, [sp, #20]
+ 6a0:	bl	44c <chm_ban@plt>
+ 6a4:	b	6f0 <chm_quietunreg+0x120>
+ 6a8:	ldr	r0, [fp, #-20]	; 0xffffffec
+ 6ac:	ldr	r1, [fp, #-24]	; 0xffffffe8
+ 6b0:	ldr	r2, [fp, #-28]	; 0xffffffe4
+ 6b4:	ldr	r3, [fp, #-32]	; 0xffffffe0
+ 6b8:	ldr	ip, [fp, #8]
+ 6bc:	ldr	lr, [fp, #12]
+ 6c0:	ldr	r4, [fp, #16]
+ 6c4:	ldr	r5, [fp, #20]
+ 6c8:	ldrb	r6, [fp, #-33]	; 0xffffffdf
+ 6cc:	ldr	r7, [fp, #28]
+ 6d0:	str	ip, [sp]
+ 6d4:	str	lr, [sp, #4]
+ 6d8:	str	r4, [sp, #8]
+ 6dc:	str	r5, [sp, #12]
+ 6e0:	and	ip, r6, #255	; 0xff
+ 6e4:	str	ip, [sp, #16]
+ 6e8:	str	r7, [sp, #20]
+ 6ec:	bl	434 <chm_nosuch@plt>
+ 6f0:	sub	sp, fp, #16
+ 6f4:	pop	{r4, r5, r6, r7, fp, pc}
+ 6f8:	.word	0x80000000
+ 6fc:	.word	0x000108d8
+
+Disassembly of section .fini:
+
+00000700 <_fini>:
+ 700:	push	{r3, lr}
+ 704:	pop	{r3, pc}

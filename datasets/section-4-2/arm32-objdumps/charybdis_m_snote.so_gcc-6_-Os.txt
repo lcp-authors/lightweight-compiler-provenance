@@ -1,0 +1,169 @@
+
+../repos/charybdis/modules/.libs/m_snote.so:     file format elf32-littlearm
+
+
+Disassembly of section .init:
+
+00000418 <_init>:
+ 418:	push	{r3, lr}
+ 41c:	bl	45c <call_weak_fn>
+ 420:	pop	{r3, pc}
+
+Disassembly of section .plt:
+
+00000424 <.plt>:
+ 424:	push	{lr}		; (str lr, [sp, #-4]!)
+ 428:	ldr	lr, [pc, #4]	; 434 <.plt+0x10>
+ 42c:	add	lr, pc, lr
+ 430:	ldr	pc, [lr, #8]!
+ 434:	.word	0x00010bcc
+
+00000438 <__cxa_finalize@plt>:
+ 438:	add	ip, pc, #0, 12
+ 43c:	add	ip, ip, #16, 20	; 0x10000
+ 440:	ldr	pc, [ip, #3020]!	; 0xbcc
+
+00000444 <__gmon_start__@plt>:
+ 444:	add	ip, pc, #0, 12
+ 448:	add	ip, ip, #16, 20	; 0x10000
+ 44c:	ldr	pc, [ip, #3012]!	; 0xbc4
+
+00000450 <sendto_realops_snomask_from@plt>:
+ 450:	add	ip, pc, #0, 12
+ 454:	add	ip, ip, #16, 20	; 0x10000
+ 458:	ldr	pc, [ip, #3004]!	; 0xbbc
+
+Disassembly of section .text:
+
+0000045c <call_weak_fn>:
+ 45c:	ldr	r3, [pc, #20]	; 478 <call_weak_fn+0x1c>
+ 460:	ldr	r2, [pc, #20]	; 47c <call_weak_fn+0x20>
+ 464:	add	r3, pc, r3
+ 468:	ldr	r2, [r3, r2]
+ 46c:	cmp	r2, #0
+ 470:	bxeq	lr
+ 474:	b	444 <__gmon_start__@plt>
+ 478:	.word	0x00010b94
+ 47c:	.word	0x00000020
+
+00000480 <deregister_tm_clones>:
+ 480:	ldr	r3, [pc, #52]	; 4bc <deregister_tm_clones+0x3c>
+ 484:	ldr	r0, [pc, #52]	; 4c0 <deregister_tm_clones+0x40>
+ 488:	add	r3, pc, r3
+ 48c:	add	r0, pc, r0
+ 490:	add	r3, r3, #3
+ 494:	sub	r3, r3, r0
+ 498:	cmp	r3, #6
+ 49c:	ldr	r3, [pc, #32]	; 4c4 <deregister_tm_clones+0x44>
+ 4a0:	add	r3, pc, r3
+ 4a4:	bxls	lr
+ 4a8:	ldr	r2, [pc, #24]	; 4c8 <deregister_tm_clones+0x48>
+ 4ac:	ldr	r3, [r3, r2]
+ 4b0:	cmp	r3, #0
+ 4b4:	bxeq	lr
+ 4b8:	bx	r3
+ 4bc:	.word	0x00010c18
+ 4c0:	.word	0x00010c14
+ 4c4:	.word	0x00010b58
+ 4c8:	.word	0x0000001c
+
+000004cc <register_tm_clones>:
+ 4cc:	ldr	r1, [pc, #56]	; 50c <register_tm_clones+0x40>
+ 4d0:	ldr	r0, [pc, #56]	; 510 <register_tm_clones+0x44>
+ 4d4:	add	r1, pc, r1
+ 4d8:	add	r0, pc, r0
+ 4dc:	sub	r1, r1, r0
+ 4e0:	ldr	r3, [pc, #44]	; 514 <register_tm_clones+0x48>
+ 4e4:	asr	r1, r1, #2
+ 4e8:	add	r3, pc, r3
+ 4ec:	add	r1, r1, r1, lsr #31
+ 4f0:	asrs	r1, r1, #1
+ 4f4:	bxeq	lr
+ 4f8:	ldr	r2, [pc, #24]	; 518 <register_tm_clones+0x4c>
+ 4fc:	ldr	r3, [r3, r2]
+ 500:	cmp	r3, #0
+ 504:	bxeq	lr
+ 508:	bx	r3
+ 50c:	.word	0x00010bcc
+ 510:	.word	0x00010bc8
+ 514:	.word	0x00010b10
+ 518:	.word	0x0000002c
+
+0000051c <__do_global_dtors_aux>:
+ 51c:	ldr	r3, [pc, #76]	; 570 <__do_global_dtors_aux+0x54>
+ 520:	ldr	r2, [pc, #76]	; 574 <__do_global_dtors_aux+0x58>
+ 524:	add	r3, pc, r3
+ 528:	add	r2, pc, r2
+ 52c:	ldrb	r3, [r3]
+ 530:	cmp	r3, #0
+ 534:	bxne	lr
+ 538:	ldr	r3, [pc, #56]	; 578 <__do_global_dtors_aux+0x5c>
+ 53c:	push	{r4, lr}
+ 540:	ldr	r3, [r2, r3]
+ 544:	cmp	r3, #0
+ 548:	beq	558 <__do_global_dtors_aux+0x3c>
+ 54c:	ldr	r3, [pc, #40]	; 57c <__do_global_dtors_aux+0x60>
+ 550:	ldr	r0, [pc, r3]
+ 554:	bl	438 <__cxa_finalize@plt>
+ 558:	bl	480 <deregister_tm_clones>
+ 55c:	ldr	r3, [pc, #28]	; 580 <__do_global_dtors_aux+0x64>
+ 560:	mov	r2, #1
+ 564:	add	r3, pc, r3
+ 568:	strb	r2, [r3]
+ 56c:	pop	{r4, pc}
+ 570:	.word	0x00010b7c
+ 574:	.word	0x00010ad0
+ 578:	.word	0x00000018
+ 57c:	.word	0x00010ad8
+ 580:	.word	0x00010b3c
+
+00000584 <frame_dummy>:
+ 584:	ldr	r0, [pc, #56]	; 5c4 <frame_dummy+0x40>
+ 588:	ldr	r3, [pc, #56]	; 5c8 <frame_dummy+0x44>
+ 58c:	add	r0, pc, r0
+ 590:	ldr	r2, [r0]
+ 594:	add	r3, pc, r3
+ 598:	cmp	r2, #0
+ 59c:	bne	5a4 <frame_dummy+0x20>
+ 5a0:	b	4cc <register_tm_clones>
+ 5a4:	ldr	r2, [pc, #32]	; 5cc <frame_dummy+0x48>
+ 5a8:	ldr	r3, [r3, r2]
+ 5ac:	cmp	r3, #0
+ 5b0:	beq	5a0 <frame_dummy+0x1c>
+ 5b4:	push	{r4, lr}
+ 5b8:	blx	r3
+ 5bc:	pop	{r4, lr}
+ 5c0:	b	4cc <register_tm_clones>
+ 5c4:	.word	0x00010968
+ 5c8:	.word	0x00010a64
+ 5cc:	.word	0x00000028
+
+000005d0 <me_snote>:
+ 5d0:	ldr	r0, [pc, #68]	; 61c <me_snote+0x4c>
+ 5d4:	cmp	r3, #3
+ 5d8:	add	r0, pc, r0
+ 5dc:	ldr	r1, [sp]
+ 5e0:	bxgt	lr
+ 5e4:	ldrh	r3, [r2, #80]	; 0x50
+ 5e8:	cmp	r3, #32
+ 5ec:	bxne	lr
+ 5f0:	ldr	r3, [pc, #40]	; 620 <me_snote+0x50>
+ 5f4:	ldr	r0, [r0, r3]
+ 5f8:	ldr	r3, [r1, #4]
+ 5fc:	ldrb	ip, [r3]
+ 600:	ldr	r3, [r1, #8]
+ 604:	mov	r1, #0
+ 608:	str	r3, [sp]
+ 60c:	ldr	r3, [pc, #16]	; 624 <me_snote+0x54>
+ 610:	ldr	r0, [r0, ip, lsl #2]
+ 614:	add	r3, pc, r3
+ 618:	b	450 <sendto_realops_snomask_from@plt>
+ 61c:	.word	0x00010a20
+ 620:	.word	0x00000024
+ 624:	.word	0x00000042
+
+Disassembly of section .fini:
+
+00000628 <_fini>:
+ 628:	push	{r3, lr}
+ 62c:	pop	{r3, pc}

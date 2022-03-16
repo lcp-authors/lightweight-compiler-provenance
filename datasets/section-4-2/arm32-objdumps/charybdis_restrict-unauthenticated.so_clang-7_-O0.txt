@@ -1,0 +1,156 @@
+
+../repos/charybdis/extensions/.libs/restrict-unauthenticated.so:     file format elf32-littlearm
+
+
+Disassembly of section .init:
+
+0000038c <_init>:
+ 38c:	push	{r3, lr}
+ 390:	bl	3c4 <call_weak_fn>
+ 394:	pop	{r3, pc}
+
+Disassembly of section .plt:
+
+00000398 <.plt>:
+ 398:	push	{lr}		; (str lr, [sp, #-4]!)
+ 39c:	ldr	lr, [pc, #4]	; 3a8 <.plt+0x10>
+ 3a0:	add	lr, pc, lr
+ 3a4:	ldr	pc, [lr, #8]!
+ 3a8:	.word	0x00010c58
+
+000003ac <__cxa_finalize@plt>:
+ 3ac:	add	ip, pc, #0, 12
+ 3b0:	add	ip, ip, #16, 20	; 0x10000
+ 3b4:	ldr	pc, [ip, #3160]!	; 0xc58
+
+000003b8 <__gmon_start__@plt>:
+ 3b8:	add	ip, pc, #0, 12
+ 3bc:	add	ip, ip, #16, 20	; 0x10000
+ 3c0:	ldr	pc, [ip, #3152]!	; 0xc50
+
+Disassembly of section .text:
+
+000003c4 <call_weak_fn>:
+ 3c4:	ldr	r3, [pc, #20]	; 3e0 <call_weak_fn+0x1c>
+ 3c8:	ldr	r2, [pc, #20]	; 3e4 <call_weak_fn+0x20>
+ 3cc:	add	r3, pc, r3
+ 3d0:	ldr	r2, [r3, r2]
+ 3d4:	cmp	r2, #0
+ 3d8:	bxeq	lr
+ 3dc:	b	3b8 <__gmon_start__@plt>
+ 3e0:	.word	0x00010c2c
+ 3e4:	.word	0x0000001c
+
+000003e8 <deregister_tm_clones>:
+ 3e8:	ldr	r0, [pc, #44]	; 41c <deregister_tm_clones+0x34>
+ 3ec:	ldr	r3, [pc, #44]	; 420 <deregister_tm_clones+0x38>
+ 3f0:	add	r0, pc, r0
+ 3f4:	add	r3, pc, r3
+ 3f8:	cmp	r3, r0
+ 3fc:	ldr	r3, [pc, #32]	; 424 <deregister_tm_clones+0x3c>
+ 400:	add	r3, pc, r3
+ 404:	bxeq	lr
+ 408:	ldr	r2, [pc, #24]	; 428 <deregister_tm_clones+0x40>
+ 40c:	ldr	r3, [r3, r2]
+ 410:	cmp	r3, #0
+ 414:	bxeq	lr
+ 418:	bx	r3
+ 41c:	.word	0x00010c70
+ 420:	.word	0x00010c6c
+ 424:	.word	0x00010bf8
+ 428:	.word	0x00000018
+
+0000042c <register_tm_clones>:
+ 42c:	ldr	r0, [pc, #56]	; 46c <register_tm_clones+0x40>
+ 430:	ldr	r3, [pc, #56]	; 470 <register_tm_clones+0x44>
+ 434:	add	r0, pc, r0
+ 438:	add	r3, pc, r3
+ 43c:	sub	r1, r3, r0
+ 440:	ldr	r3, [pc, #44]	; 474 <register_tm_clones+0x48>
+ 444:	asr	r1, r1, #2
+ 448:	add	r3, pc, r3
+ 44c:	add	r1, r1, r1, lsr #31
+ 450:	asrs	r1, r1, #1
+ 454:	bxeq	lr
+ 458:	ldr	r2, [pc, #24]	; 478 <register_tm_clones+0x4c>
+ 45c:	ldr	r3, [r3, r2]
+ 460:	cmp	r3, #0
+ 464:	bxeq	lr
+ 468:	bx	r3
+ 46c:	.word	0x00010c2c
+ 470:	.word	0x00010c28
+ 474:	.word	0x00010bb0
+ 478:	.word	0x00000020
+
+0000047c <__do_global_dtors_aux>:
+ 47c:	ldr	r3, [pc, #76]	; 4d0 <__do_global_dtors_aux+0x54>
+ 480:	ldr	r2, [pc, #76]	; 4d4 <__do_global_dtors_aux+0x58>
+ 484:	add	r3, pc, r3
+ 488:	add	r2, pc, r2
+ 48c:	ldrb	r3, [r3]
+ 490:	cmp	r3, #0
+ 494:	bxne	lr
+ 498:	ldr	r3, [pc, #56]	; 4d8 <__do_global_dtors_aux+0x5c>
+ 49c:	push	{r4, lr}
+ 4a0:	ldr	r3, [r2, r3]
+ 4a4:	cmp	r3, #0
+ 4a8:	beq	4b8 <__do_global_dtors_aux+0x3c>
+ 4ac:	ldr	r3, [pc, #40]	; 4dc <__do_global_dtors_aux+0x60>
+ 4b0:	ldr	r0, [pc, r3]
+ 4b4:	bl	3ac <__cxa_finalize@plt>
+ 4b8:	bl	3e8 <deregister_tm_clones>
+ 4bc:	ldr	r3, [pc, #28]	; 4e0 <__do_global_dtors_aux+0x64>
+ 4c0:	mov	r2, #1
+ 4c4:	add	r3, pc, r3
+ 4c8:	strb	r2, [r3]
+ 4cc:	pop	{r4, pc}
+ 4d0:	.word	0x00010bdc
+ 4d4:	.word	0x00010b70
+ 4d8:	.word	0x00000014
+ 4dc:	.word	0x00010b6c
+ 4e0:	.word	0x00010b9c
+
+000004e4 <frame_dummy>:
+ 4e4:	b	42c <register_tm_clones>
+
+000004e8 <hack_channel_access>:
+ 4e8:	sub	sp, sp, #8
+ 4ec:	str	r0, [sp, #4]
+ 4f0:	ldr	r0, [sp, #4]
+ 4f4:	str	r0, [sp]
+ 4f8:	ldr	r0, [sp]
+ 4fc:	ldr	r0, [r0]
+ 500:	ldrb	r0, [r0, #65]	; 0x41
+ 504:	tst	r0, #32
+ 508:	beq	524 <hack_channel_access+0x3c>
+ 50c:	b	510 <hack_channel_access+0x28>
+ 510:	ldr	r0, [sp]
+ 514:	ldr	r0, [r0]
+ 518:	ldrh	r0, [r0, #80]	; 0x50
+ 51c:	cmp	r0, #64	; 0x40
+ 520:	beq	528 <hack_channel_access+0x40>
+ 524:	b	568 <hack_channel_access+0x80>
+ 528:	ldr	r0, [sp]
+ 52c:	ldr	r0, [r0]
+ 530:	ldr	r0, [r0, #24]
+ 534:	add	r0, r0, #40	; 0x28
+ 538:	movw	r1, #0
+ 53c:	cmp	r0, r1
+ 540:	beq	55c <hack_channel_access+0x74>
+ 544:	ldr	r0, [sp]
+ 548:	ldr	r0, [r0]
+ 54c:	ldr	r0, [r0, #24]
+ 550:	ldrb	r0, [r0, #40]	; 0x28
+ 554:	cmp	r0, #0
+ 558:	bne	568 <hack_channel_access+0x80>
+ 55c:	ldr	r0, [sp]
+ 560:	movw	r1, #0
+ 564:	str	r1, [r0, #16]
+ 568:	add	sp, sp, #8
+ 56c:	bx	lr
+
+Disassembly of section .fini:
+
+00000570 <_fini>:
+ 570:	push	{r3, lr}
+ 574:	pop	{r3, pc}
