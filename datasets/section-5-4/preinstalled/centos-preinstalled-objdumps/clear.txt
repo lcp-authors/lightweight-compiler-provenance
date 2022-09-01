@@ -1,0 +1,224 @@
+
+centos-preinstalled/clear:     file format elf32-littlearm
+
+
+Disassembly of section .init:
+
+000105a8 <_init@@Base>:
+   105a8:	push	{r3, lr}
+   105ac:	bl	10714 <tigetstr@plt+0xf8>
+   105b0:	pop	{r3, pc}
+
+Disassembly of section .plt:
+
+000105b4 <setupterm@plt-0x14>:
+   105b4:	push	{lr}		; (str lr, [sp, #-4]!)
+   105b8:	ldr	lr, [pc, #4]	; 105c4 <_init@@Base+0x1c>
+   105bc:	add	lr, pc, lr
+   105c0:	ldr	pc, [lr, #8]!
+   105c4:	andeq	r0, r1, ip, lsr sl
+
+000105c8 <setupterm@plt>:
+   105c8:	add	ip, pc, #0, 12
+   105cc:	add	ip, ip, #16, 20	; 0x10000
+   105d0:	ldr	pc, [ip, #2620]!	; 0xa3c
+
+000105d4 <tputs@plt>:
+   105d4:	add	ip, pc, #0, 12
+   105d8:	add	ip, ip, #16, 20	; 0x10000
+   105dc:	ldr	pc, [ip, #2612]!	; 0xa34
+
+000105e0 <_IO_putc@plt>:
+   105e0:	add	ip, pc, #0, 12
+   105e4:	add	ip, ip, #16, 20	; 0x10000
+   105e8:	ldr	pc, [ip, #2604]!	; 0xa2c
+
+000105ec <__libc_start_main@plt>:
+   105ec:	add	ip, pc, #0, 12
+   105f0:	add	ip, ip, #16, 20	; 0x10000
+   105f4:	ldr	pc, [ip, #2596]!	; 0xa24
+
+000105f8 <__gmon_start__@plt>:
+   105f8:	add	ip, pc, #0, 12
+   105fc:	add	ip, ip, #16, 20	; 0x10000
+   10600:	ldr	pc, [ip, #2588]!	; 0xa1c
+
+00010604 <exit@plt>:
+   10604:	add	ip, pc, #0, 12
+   10608:	add	ip, ip, #16, 20	; 0x10000
+   1060c:	ldr	pc, [ip, #2580]!	; 0xa14
+
+00010610 <abort@plt>:
+   10610:	add	ip, pc, #0, 12
+   10614:	add	ip, ip, #16, 20	; 0x10000
+   10618:	ldr	pc, [ip, #2572]!	; 0xa0c
+
+0001061c <tigetstr@plt>:
+   1061c:	add	ip, pc, #0, 12
+   10620:	add	ip, ip, #16, 20	; 0x10000
+   10624:	ldr	pc, [ip, #2564]!	; 0xa04
+
+Disassembly of section .text:
+
+00010628 <.text>:
+   10628:	mov	r0, #0
+   1062c:	mov	r1, #1
+   10630:	push	{r4, lr}
+   10634:	mov	r2, r0
+   10638:	bl	105c8 <setupterm@plt>
+   1063c:	ldr	r0, [pc, #128]	; 106c4 <tigetstr@plt+0xa8>
+   10640:	ldr	r4, [pc, #128]	; 106c8 <tigetstr@plt+0xac>
+   10644:	add	r0, pc, r0
+   10648:	bl	1061c <tigetstr@plt>
+   1064c:	add	r4, pc, r4
+   10650:	sub	r3, r0, #1
+   10654:	cmn	r3, #3
+   10658:	ldr	r3, [pc, #108]	; 106cc <tigetstr@plt+0xb0>
+   1065c:	bls	1069c <tigetstr@plt+0x80>
+   10660:	ldr	r4, [r4, r3]
+   10664:	ldr	r3, [r4]
+   10668:	ldr	r2, [pc, #96]	; 106d0 <tigetstr@plt+0xb4>
+   1066c:	ldr	r1, [r3, #12]
+   10670:	add	r2, pc, r2
+   10674:	ldr	r3, [r3, #16]
+   10678:	ldrsh	r1, [r1, #4]
+   1067c:	ldr	r0, [r3, #20]
+   10680:	cmp	r1, #1
+   10684:	movlt	r1, #1
+   10688:	bl	105d4 <tputs@plt>
+   1068c:	cmn	r0, #1
+   10690:	movne	r0, #0
+   10694:	moveq	r0, #1
+   10698:	bl	10604 <exit@plt>
+   1069c:	ldr	r4, [r4, r3]
+   106a0:	ldr	r2, [pc, #44]	; 106d4 <tigetstr@plt+0xb8>
+   106a4:	ldr	r3, [r4]
+   106a8:	add	r2, pc, r2
+   106ac:	ldr	r3, [r3, #12]
+   106b0:	ldrsh	r1, [r3, #4]
+   106b4:	cmp	r1, #1
+   106b8:	movlt	r1, #1
+   106bc:	bl	105d4 <tputs@plt>
+   106c0:	b	10664 <tigetstr@plt+0x48>
+   106c4:	andeq	r0, r0, r8, asr r2
+   106c8:	andeq	r0, r1, ip, lsr #19
+   106cc:	andeq	r0, r0, r4, lsr r0
+   106d0:	muleq	r0, r4, r1
+   106d4:	andeq	r0, r0, ip, asr r1
+   106d8:	mov	fp, #0
+   106dc:	mov	lr, #0
+   106e0:	pop	{r1}		; (ldr r1, [sp], #4)
+   106e4:	mov	r2, sp
+   106e8:	push	{r2}		; (str r2, [sp, #-4]!)
+   106ec:	push	{r0}		; (str r0, [sp, #-4]!)
+   106f0:	ldr	ip, [pc, #16]	; 10708 <tigetstr@plt+0xec>
+   106f4:	push	{ip}		; (str ip, [sp, #-4]!)
+   106f8:	ldr	r0, [pc, #12]	; 1070c <tigetstr@plt+0xf0>
+   106fc:	ldr	r3, [pc, #12]	; 10710 <tigetstr@plt+0xf4>
+   10700:	bl	105ec <__libc_start_main@plt>
+   10704:	bl	10610 <abort@plt>
+   10708:	muleq	r1, r0, r8
+   1070c:	andeq	r0, r1, r8, lsr #12
+   10710:	andeq	r0, r1, ip, lsr #16
+   10714:	ldr	r3, [pc, #20]	; 10730 <tigetstr@plt+0x114>
+   10718:	ldr	r2, [pc, #20]	; 10734 <tigetstr@plt+0x118>
+   1071c:	add	r3, pc, r3
+   10720:	ldr	r2, [r3, r2]
+   10724:	cmp	r2, #0
+   10728:	bxeq	lr
+   1072c:	b	105f8 <__gmon_start__@plt>
+   10730:	ldrdeq	r0, [r1], -ip
+   10734:	andeq	r0, r0, ip, lsr #32
+   10738:	push	{r3, lr}
+   1073c:	movw	r0, #4156	; 0x103c
+   10740:	ldr	r3, [pc, #36]	; 1076c <tigetstr@plt+0x150>
+   10744:	movt	r0, #2
+   10748:	rsb	r3, r0, r3
+   1074c:	cmp	r3, #6
+   10750:	popls	{r3, pc}
+   10754:	movw	r3, #0
+   10758:	movt	r3, #0
+   1075c:	cmp	r3, #0
+   10760:	popeq	{r3, pc}
+   10764:	blx	r3
+   10768:	pop	{r3, pc}
+   1076c:	andeq	r1, r2, pc, lsr r0
+   10770:	push	{r3, lr}
+   10774:	movw	r0, #4156	; 0x103c
+   10778:	movw	r3, #4156	; 0x103c
+   1077c:	movt	r0, #2
+   10780:	movt	r3, #2
+   10784:	rsb	r3, r0, r3
+   10788:	asr	r3, r3, #2
+   1078c:	add	r3, r3, r3, lsr #31
+   10790:	asrs	r1, r3, #1
+   10794:	popeq	{r3, pc}
+   10798:	movw	r2, #0
+   1079c:	movt	r2, #0
+   107a0:	cmp	r2, #0
+   107a4:	popeq	{r3, pc}
+   107a8:	blx	r2
+   107ac:	pop	{r3, pc}
+   107b0:	push	{r4, lr}
+   107b4:	movw	r4, #4156	; 0x103c
+   107b8:	movt	r4, #2
+   107bc:	ldrb	r3, [r4]
+   107c0:	cmp	r3, #0
+   107c4:	popne	{r4, pc}
+   107c8:	bl	10738 <tigetstr@plt+0x11c>
+   107cc:	mov	r3, #1
+   107d0:	strb	r3, [r4]
+   107d4:	pop	{r4, pc}
+   107d8:	movw	r0, #3844	; 0xf04
+   107dc:	movt	r0, #2
+   107e0:	push	{r3, lr}
+   107e4:	ldr	r3, [r0]
+   107e8:	cmp	r3, #0
+   107ec:	beq	10804 <tigetstr@plt+0x1e8>
+   107f0:	movw	r3, #0
+   107f4:	movt	r3, #0
+   107f8:	cmp	r3, #0
+   107fc:	beq	10804 <tigetstr@plt+0x1e8>
+   10800:	blx	r3
+   10804:	pop	{r3, lr}
+   10808:	b	10770 <tigetstr@plt+0x154>
+   1080c:	ldr	r3, [pc, #16]	; 10824 <tigetstr@plt+0x208>
+   10810:	ldr	r2, [pc, #16]	; 10828 <tigetstr@plt+0x20c>
+   10814:	add	r3, pc, r3
+   10818:	ldr	r3, [r3, r2]
+   1081c:	ldr	r1, [r3]
+   10820:	b	105e0 <_IO_putc@plt>
+   10824:	andeq	r0, r1, r4, ror #15
+   10828:	andeq	r0, r0, r0, lsr r0
+   1082c:	push	{r3, r4, r5, r6, r7, r8, r9, lr}
+   10830:	mov	r7, r0
+   10834:	ldr	r6, [pc, #76]	; 10888 <tigetstr@plt+0x26c>
+   10838:	mov	r8, r1
+   1083c:	ldr	r5, [pc, #72]	; 1088c <tigetstr@plt+0x270>
+   10840:	mov	r9, r2
+   10844:	add	r6, pc, r6
+   10848:	bl	105a8 <_init@@Base>
+   1084c:	add	r5, pc, r5
+   10850:	rsb	r6, r5, r6
+   10854:	asrs	r6, r6, #2
+   10858:	popeq	{r3, r4, r5, r6, r7, r8, r9, pc}
+   1085c:	sub	r5, r5, #4
+   10860:	mov	r4, #0
+   10864:	add	r4, r4, #1
+   10868:	ldr	r3, [r5, #4]!
+   1086c:	mov	r0, r7
+   10870:	mov	r1, r8
+   10874:	mov	r2, r9
+   10878:	blx	r3
+   1087c:	cmp	r4, r6
+   10880:	bne	10864 <tigetstr@plt+0x248>
+   10884:	pop	{r3, r4, r5, r6, r7, r8, r9, pc}
+   10888:			; <UNDEFINED> instruction: 0x000106b4
+   1088c:	andeq	r0, r1, r8, lsr #13
+   10890:	bx	lr
+
+Disassembly of section .fini:
+
+00010894 <_fini@@Base>:
+   10894:	push	{r3, lr}
+   10898:	pop	{r3, pc}

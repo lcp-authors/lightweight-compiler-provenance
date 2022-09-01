@@ -1,0 +1,63 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//div.module_gcc_-O1:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_divmod64s>:
+   0:	stp	x29, x30, [sp, #-64]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	str	x21, [sp, #32]
+  10:	mov	x20, x0
+  14:	mov	x19, x1
+  18:	mov	x21, x2
+  1c:	cmp	x1, #0x0
+  20:	cneg	x1, x1, lt  // lt = tstop
+  24:	cmp	x0, #0x0
+  28:	add	x2, sp, #0x38
+  2c:	cneg	x0, x0, lt  // lt = tstop
+  30:	bl	0 <grub_divmod64>
+  34:	ldr	x1, [sp, #56]
+  38:	tbnz	x20, #63, 5c <grub_divmod64s+0x5c>
+  3c:	cmp	x19, #0x0
+  40:	cneg	x0, x0, lt  // lt = tstop
+  44:	cbz	x21, 4c <grub_divmod64s+0x4c>
+  48:	str	x1, [x21]
+  4c:	ldp	x19, x20, [sp, #16]
+  50:	ldr	x21, [sp, #32]
+  54:	ldp	x29, x30, [sp], #64
+  58:	ret
+  5c:	neg	x0, x0
+  60:	neg	x1, x1
+  64:	b	3c <grub_divmod64s+0x3c>
+
+0000000000000068 <grub_divmod32>:
+  68:	stp	x29, x30, [sp, #-48]!
+  6c:	mov	x29, sp
+  70:	str	x19, [sp, #16]
+  74:	mov	x19, x2
+  78:	add	x2, sp, #0x28
+  7c:	mov	w1, w1
+  80:	mov	w0, w0
+  84:	bl	0 <grub_divmod64>
+  88:	ldr	x1, [sp, #40]
+  8c:	str	w1, [x19]
+  90:	ldr	x19, [sp, #16]
+  94:	ldp	x29, x30, [sp], #48
+  98:	ret
+
+000000000000009c <grub_divmod32s>:
+  9c:	stp	x29, x30, [sp, #-48]!
+  a0:	mov	x29, sp
+  a4:	str	x19, [sp, #16]
+  a8:	mov	x19, x2
+  ac:	add	x2, sp, #0x28
+  b0:	sxtw	x1, w1
+  b4:	sxtw	x0, w0
+  b8:	bl	0 <grub_divmod64s>
+  bc:	ldr	x1, [sp, #40]
+  c0:	str	w1, [x19]
+  c4:	ldr	x19, [sp, #16]
+  c8:	ldp	x29, x30, [sp], #48
+  cc:	ret

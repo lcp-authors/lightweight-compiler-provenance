@@ -1,0 +1,787 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//http.module_gcc_-Os:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <http_packets_pulled>:
+   0:	ldr	x1, [x0, #8]
+   4:	ldr	x1, [x1, #8]
+   8:	ldr	x2, [x1, #40]
+   c:	cmp	x2, #0x13
+  10:	b.hi	48 <http_packets_pulled+0x48>  // b.pmore
+  14:	ldr	w2, [x1, #64]
+  18:	ldr	x0, [x0, #80]
+  1c:	cbnz	w2, 24 <http_packets_pulled+0x24>
+  20:	str	wzr, [x1, #68]
+  24:	cbz	x0, 48 <http_packets_pulled+0x48>
+  28:	ldr	x0, [x0, #32]
+  2c:	cbz	x0, 48 <http_packets_pulled+0x48>
+  30:	stp	x29, x30, [sp, #-16]!
+  34:	mov	x29, sp
+  38:	bl	0 <grub_net_tcp_unstall>
+  3c:	mov	w0, #0x0                   	// #0
+  40:	ldp	x29, x30, [sp], #16
+  44:	ret
+  48:	mov	w0, #0x0                   	// #0
+  4c:	ret
+
+0000000000000050 <http_close>:
+  50:	stp	x29, x30, [sp, #-32]!
+  54:	mov	x29, sp
+  58:	str	x19, [sp, #16]
+  5c:	ldr	x19, [x0, #80]
+  60:	cbz	x19, 90 <http_close+0x40>
+  64:	ldr	x0, [x19, #32]
+  68:	cbz	x0, 74 <http_close+0x24>
+  6c:	mov	w1, #0x2                   	// #2
+  70:	bl	0 <grub_net_tcp_close>
+  74:	ldr	x0, [x19]
+  78:	cbz	x0, 80 <http_close+0x30>
+  7c:	bl	0 <grub_free>
+  80:	ldr	x0, [x19, #40]
+  84:	bl	0 <grub_free>
+  88:	mov	x0, x19
+  8c:	bl	0 <grub_free>
+  90:	mov	w0, #0x0                   	// #0
+  94:	ldr	x19, [sp, #16]
+  98:	ldp	x29, x30, [sp], #32
+  9c:	ret
+
+00000000000000a0 <grub_net_put_packet>:
+  a0:	stp	x29, x30, [sp, #-32]!
+  a4:	mov	x29, sp
+  a8:	stp	x19, x20, [sp, #16]
+  ac:	mov	x19, x0
+  b0:	mov	x20, x1
+  b4:	mov	x0, #0x20                  	// #32
+  b8:	bl	0 <grub_malloc>
+  bc:	cbnz	x0, d8 <grub_net_put_packet+0x38>
+  c0:	adrp	x0, 0 <http_packets_pulled>
+  c4:	ldr	x0, [x0]
+  c8:	ldr	w0, [x0]
+  cc:	ldp	x19, x20, [sp, #16]
+  d0:	ldp	x29, x30, [sp], #32
+  d4:	ret
+  d8:	ldr	x1, [x19]
+  dc:	stp	xzr, xzr, [x0]
+  e0:	stp	x19, x20, [x0, #16]
+  e4:	cbz	x1, 10c <grub_net_put_packet+0x6c>
+  e8:	ldr	x1, [x19, #8]
+  ec:	str	x0, [x1]
+  f0:	str	x0, [x19, #8]
+  f4:	str	x0, [x0, #8]
+  f8:	ldr	x0, [x19, #16]
+  fc:	add	x0, x0, #0x1
+ 100:	str	x0, [x19, #16]
+ 104:	mov	w0, #0x0                   	// #0
+ 108:	b	cc <grub_net_put_packet+0x2c>
+ 10c:	stp	x0, x0, [x19]
+ 110:	b	f8 <grub_net_put_packet+0x58>
+ 114:	nop
+	...
+
+0000000000000120 <grub_memcpy>:
+ 120:	b	0 <grub_memmove>
+
+0000000000000124 <http_establish>:
+ 124:	stp	x29, x30, [sp, #-80]!
+ 128:	mov	x29, sp
+ 12c:	stp	x19, x20, [sp, #16]
+ 130:	ldr	x20, [x0, #80]
+ 134:	stp	x21, x22, [sp, #32]
+ 138:	mov	x21, x0
+ 13c:	mov	x22, x1
+ 140:	stp	x23, x24, [sp, #48]
+ 144:	mov	w23, w2
+ 148:	ldr	x0, [x20, #40]
+ 14c:	str	x25, [sp, #64]
+ 150:	bl	0 <grub_strlen>
+ 154:	mov	x19, x0
+ 158:	ldr	x0, [x21, #8]
+ 15c:	ldr	x0, [x0, #8]
+ 160:	ldr	x0, [x0]
+ 164:	bl	0 <grub_strlen>
+ 168:	add	x0, x19, x0
+ 16c:	add	x0, x0, #0xbd
+ 170:	bl	0 <grub_netbuff_alloc>
+ 174:	cbnz	x0, 188 <http_establish+0x64>
+ 178:	adrp	x0, 0 <http_packets_pulled>
+ 17c:	ldr	x0, [x0]
+ 180:	ldr	w19, [x0]
+ 184:	b	1b4 <http_establish+0x90>
+ 188:	mov	x24, x0
+ 18c:	mov	x1, #0x68                  	// #104
+ 190:	bl	0 <grub_netbuff_reserve>
+ 194:	mov	x0, x24
+ 198:	mov	x1, #0x4                   	// #4
+ 19c:	ldr	x25, [x24, #16]
+ 1a0:	bl	0 <grub_netbuff_put>
+ 1a4:	mov	w19, w0
+ 1a8:	cbz	w0, 1d0 <http_establish+0xac>
+ 1ac:	mov	x0, x24
+ 1b0:	bl	0 <grub_netbuff_free>
+ 1b4:	mov	w0, w19
+ 1b8:	ldp	x19, x20, [sp, #16]
+ 1bc:	ldp	x21, x22, [sp, #32]
+ 1c0:	ldp	x23, x24, [sp, #48]
+ 1c4:	ldr	x25, [sp, #64]
+ 1c8:	ldp	x29, x30, [sp], #80
+ 1cc:	ret
+ 1d0:	adrp	x0, 0 <http_packets_pulled>
+ 1d4:	mov	x2, #0x4                   	// #4
+ 1d8:	ldr	x1, [x0]
+ 1dc:	mov	x0, x25
+ 1e0:	bl	120 <grub_memcpy>
+ 1e4:	ldr	x0, [x20, #40]
+ 1e8:	ldr	x25, [x24, #16]
+ 1ec:	bl	0 <grub_strlen>
+ 1f0:	mov	x1, x0
+ 1f4:	mov	x0, x24
+ 1f8:	bl	0 <grub_netbuff_put>
+ 1fc:	mov	w19, w0
+ 200:	cbnz	w0, 1ac <http_establish+0x88>
+ 204:	ldr	x19, [x20, #40]
+ 208:	mov	x0, x19
+ 20c:	bl	0 <grub_strlen>
+ 210:	mov	x2, x0
+ 214:	mov	x1, x19
+ 218:	mov	x0, x25
+ 21c:	bl	120 <grub_memcpy>
+ 220:	mov	x0, x24
+ 224:	mov	x1, #0x11                  	// #17
+ 228:	ldr	x25, [x24, #16]
+ 22c:	bl	0 <grub_netbuff_put>
+ 230:	mov	w19, w0
+ 234:	cbnz	w0, 1ac <http_establish+0x88>
+ 238:	adrp	x0, 0 <http_packets_pulled>
+ 23c:	mov	x2, #0x11                  	// #17
+ 240:	ldr	x1, [x0]
+ 244:	mov	x0, x25
+ 248:	bl	120 <grub_memcpy>
+ 24c:	ldr	x0, [x21, #8]
+ 250:	ldr	x25, [x24, #16]
+ 254:	ldr	x0, [x0, #8]
+ 258:	ldr	x0, [x0]
+ 25c:	bl	0 <grub_strlen>
+ 260:	mov	x1, x0
+ 264:	mov	x0, x24
+ 268:	bl	0 <grub_netbuff_put>
+ 26c:	mov	w19, w0
+ 270:	cbnz	w0, 1ac <http_establish+0x88>
+ 274:	ldr	x0, [x21, #8]
+ 278:	ldr	x0, [x0, #8]
+ 27c:	ldr	x19, [x0]
+ 280:	mov	x0, x19
+ 284:	bl	0 <grub_strlen>
+ 288:	mov	x2, x0
+ 28c:	mov	x1, x19
+ 290:	mov	x0, x25
+ 294:	bl	120 <grub_memcpy>
+ 298:	mov	x0, x24
+ 29c:	mov	x1, #0x19                  	// #25
+ 2a0:	ldr	x25, [x24, #16]
+ 2a4:	bl	0 <grub_netbuff_put>
+ 2a8:	mov	w19, w0
+ 2ac:	cbnz	w0, 1ac <http_establish+0x88>
+ 2b0:	adrp	x0, 0 <http_packets_pulled>
+ 2b4:	mov	x2, #0x19                  	// #25
+ 2b8:	ldr	x1, [x0]
+ 2bc:	mov	x0, x25
+ 2c0:	bl	120 <grub_memcpy>
+ 2c4:	cbnz	w23, 2f8 <http_establish+0x1d4>
+ 2c8:	adrp	x0, 0 <http_packets_pulled>
+ 2cc:	mov	x3, x22
+ 2d0:	ldr	x19, [x24, #16]
+ 2d4:	mov	x1, #0x25                  	// #37
+ 2d8:	ldr	x2, [x0]
+ 2dc:	mov	x0, x19
+ 2e0:	bl	0 <grub_snprintf>
+ 2e4:	mov	x0, x19
+ 2e8:	bl	0 <grub_strlen>
+ 2ec:	mov	x1, x0
+ 2f0:	mov	x0, x24
+ 2f4:	bl	0 <grub_netbuff_put>
+ 2f8:	mov	x1, #0x2                   	// #2
+ 2fc:	mov	x0, x24
+ 300:	ldr	x19, [x24, #16]
+ 304:	bl	0 <grub_netbuff_put>
+ 308:	adrp	x0, 0 <http_packets_pulled>
+ 30c:	mov	x2, #0x2                   	// #2
+ 310:	ldr	x1, [x0]
+ 314:	mov	x0, x19
+ 318:	bl	120 <grub_memcpy>
+ 31c:	ldr	x0, [x21, #8]
+ 320:	adrp	x1, 0 <http_packets_pulled>
+ 324:	mov	x5, x21
+ 328:	ldr	x4, [x1]
+ 32c:	adrp	x1, 0 <http_packets_pulled>
+ 330:	ldr	x0, [x0, #8]
+ 334:	mov	x3, x4
+ 338:	ldr	x2, [x1]
+ 33c:	mov	w1, #0x50                  	// #80
+ 340:	ldr	x0, [x0]
+ 344:	bl	0 <grub_net_tcp_open>
+ 348:	str	x0, [x20, #32]
+ 34c:	cbnz	x0, 35c <http_establish+0x238>
+ 350:	mov	x0, x24
+ 354:	bl	0 <grub_netbuff_free>
+ 358:	b	178 <http_establish+0x54>
+ 35c:	mov	x1, x24
+ 360:	mov	w2, #0x1                   	// #1
+ 364:	bl	0 <grub_net_send_tcp_packet>
+ 368:	mov	w19, w0
+ 36c:	cbz	w0, 3dc <http_establish+0x2b8>
+ 370:	ldr	x0, [x20, #32]
+ 374:	mov	w1, #0x2                   	// #2
+ 378:	bl	0 <grub_net_tcp_close>
+ 37c:	b	1b4 <http_establish+0x90>
+ 380:	bl	0 <grub_net_tcp_retransmit>
+ 384:	mov	x1, x22
+ 388:	mov	w0, #0x12c                 	// #300
+ 38c:	bl	0 <grub_net_poll_cards>
+ 390:	ldr	w0, [x20, #16]
+ 394:	cbnz	w0, 1b4 <http_establish+0x90>
+ 398:	subs	w21, w21, #0x1
+ 39c:	b.ne	380 <http_establish+0x25c>  // b.any
+ 3a0:	ldr	x0, [x20, #32]
+ 3a4:	mov	w1, #0x2                   	// #2
+ 3a8:	bl	0 <grub_net_tcp_close>
+ 3ac:	ldr	w0, [x20, #48]
+ 3b0:	cbnz	w0, 3e8 <http_establish+0x2c4>
+ 3b4:	adrp	x0, 0 <http_packets_pulled>
+ 3b8:	ldp	x21, x22, [sp, #32]
+ 3bc:	ldr	x2, [x20, #40]
+ 3c0:	ldp	x19, x20, [sp, #16]
+ 3c4:	ldp	x23, x24, [sp, #48]
+ 3c8:	ldr	x25, [sp, #64]
+ 3cc:	ldp	x29, x30, [sp], #80
+ 3d0:	ldr	x1, [x0]
+ 3d4:	mov	w0, #0x1c                  	// #28
+ 3d8:	b	0 <grub_error>
+ 3dc:	add	x22, x20, #0x10
+ 3e0:	mov	w21, #0x65                  	// #101
+ 3e4:	b	390 <http_establish+0x26c>
+ 3e8:	adrp	x1, 0 <http_packets_pulled>
+ 3ec:	ldr	x19, [x20, #56]
+ 3f0:	ldr	x1, [x1]
+ 3f4:	mov	x2, x19
+ 3f8:	bl	0 <grub_error>
+ 3fc:	mov	x0, x19
+ 400:	bl	0 <grub_free>
+ 404:	ldr	w19, [x20, #48]
+ 408:	str	xzr, [x20, #56]
+ 40c:	b	1b4 <http_establish+0x90>
+	...
+
+0000000000000460 <http_seek>:
+ 460:	stp	x29, x30, [sp, #-48]!
+ 464:	mov	x29, sp
+ 468:	stp	x21, x22, [sp, #32]
+ 46c:	mov	x21, x1
+ 470:	ldr	x22, [x0, #80]
+ 474:	stp	x19, x20, [sp, #16]
+ 478:	mov	x19, x0
+ 47c:	ldr	x0, [x22, #32]
+ 480:	cbz	x0, 48c <http_seek+0x2c>
+ 484:	mov	w1, #0x2                   	// #2
+ 488:	bl	0 <grub_net_tcp_close>
+ 48c:	str	xzr, [x22, #32]
+ 490:	ldr	x0, [x19, #8]
+ 494:	ldr	x0, [x0, #8]
+ 498:	ldr	x1, [x0, #24]
+ 49c:	cbnz	x1, 4d8 <http_seek+0x78>
+ 4a0:	str	x21, [x0, #48]
+ 4a4:	str	xzr, [x0, #64]
+ 4a8:	mov	x0, #0x58                  	// #88
+ 4ac:	bl	0 <grub_zalloc>
+ 4b0:	mov	x20, x0
+ 4b4:	cbnz	x0, 530 <http_seek+0xd0>
+ 4b8:	adrp	x0, 0 <http_packets_pulled>
+ 4bc:	ldr	x0, [x0]
+ 4c0:	ldr	w21, [x0]
+ 4c4:	mov	w0, w21
+ 4c8:	ldp	x19, x20, [sp, #16]
+ 4cc:	ldp	x21, x22, [sp, #32]
+ 4d0:	ldp	x29, x30, [sp], #48
+ 4d4:	ret
+ 4d8:	ldr	x0, [x1, #24]
+ 4dc:	bl	0 <grub_netbuff_free>
+ 4e0:	ldr	x0, [x19, #8]
+ 4e4:	ldr	x0, [x0, #8]
+ 4e8:	ldr	x0, [x0, #24]
+ 4ec:	ldr	x1, [x0, #16]
+ 4f0:	ldr	x3, [x0]
+ 4f4:	ldr	x2, [x1, #16]
+ 4f8:	sub	x2, x2, #0x1
+ 4fc:	str	x2, [x1, #16]
+ 500:	ldr	x2, [x0, #8]
+ 504:	cbz	x2, 520 <http_seek+0xc0>
+ 508:	str	x3, [x2]
+ 50c:	ldr	x3, [x0]
+ 510:	cbz	x3, 528 <http_seek+0xc8>
+ 514:	str	x2, [x3, #8]
+ 518:	bl	0 <grub_free>
+ 51c:	b	490 <http_seek+0x30>
+ 520:	str	x3, [x1]
+ 524:	b	50c <http_seek+0xac>
+ 528:	str	x2, [x1, #8]
+ 52c:	b	518 <http_seek+0xb8>
+ 530:	mov	w1, #0x1                   	// #1
+ 534:	str	w1, [x0, #24]
+ 538:	ldr	x1, [x22, #40]
+ 53c:	str	x1, [x0, #40]
+ 540:	cbnz	x1, 550 <http_seek+0xf0>
+ 544:	bl	0 <grub_free>
+ 548:	str	xzr, [x19, #80]
+ 54c:	b	4b8 <http_seek+0x58>
+ 550:	mov	x0, x22
+ 554:	bl	0 <grub_free>
+ 558:	str	x20, [x19, #80]
+ 55c:	mov	x1, x21
+ 560:	mov	x0, x19
+ 564:	mov	w2, #0x0                   	// #0
+ 568:	bl	124 <http_establish>
+ 56c:	mov	w21, w0
+ 570:	cbz	w0, 4c4 <http_seek+0x64>
+ 574:	ldr	x0, [x20, #40]
+ 578:	bl	0 <grub_free>
+ 57c:	mov	x0, x20
+ 580:	bl	0 <grub_free>
+ 584:	str	xzr, [x19, #80]
+ 588:	b	4c4 <http_seek+0x64>
+ 58c:	nop
+	...
+
+0000000000000598 <http_open>:
+ 598:	stp	x29, x30, [sp, #-48]!
+ 59c:	mov	x29, sp
+ 5a0:	stp	x19, x20, [sp, #16]
+ 5a4:	mov	x20, x0
+ 5a8:	mov	x0, #0x58                  	// #88
+ 5ac:	str	x21, [sp, #32]
+ 5b0:	mov	x21, x1
+ 5b4:	bl	0 <grub_zalloc>
+ 5b8:	cbnz	x0, 5dc <http_open+0x44>
+ 5bc:	adrp	x0, 0 <http_packets_pulled>
+ 5c0:	ldr	x0, [x0]
+ 5c4:	ldr	w20, [x0]
+ 5c8:	mov	w0, w20
+ 5cc:	ldp	x19, x20, [sp, #16]
+ 5d0:	ldr	x21, [sp, #32]
+ 5d4:	ldp	x29, x30, [sp], #48
+ 5d8:	ret
+ 5dc:	mov	x19, x0
+ 5e0:	mov	x0, #0xffffffffffffffff    	// #-1
+ 5e4:	str	x0, [x20, #64]
+ 5e8:	mov	x0, x21
+ 5ec:	bl	0 <grub_strdup>
+ 5f0:	str	x0, [x19, #40]
+ 5f4:	cbnz	x0, 604 <http_open+0x6c>
+ 5f8:	mov	x0, x19
+ 5fc:	bl	0 <grub_free>
+ 600:	b	5bc <http_open+0x24>
+ 604:	str	wzr, [x20, #72]
+ 608:	mov	x0, x20
+ 60c:	str	x19, [x20, #80]
+ 610:	mov	w2, #0x1                   	// #1
+ 614:	mov	x1, #0x0                   	// #0
+ 618:	bl	124 <http_establish>
+ 61c:	mov	w20, w0
+ 620:	cbz	w0, 5c8 <http_open+0x30>
+ 624:	ldr	x0, [x19, #40]
+ 628:	bl	0 <grub_free>
+ 62c:	mov	x0, x19
+ 630:	bl	0 <grub_free>
+ 634:	b	5c8 <http_open+0x30>
+	...
+
+0000000000000640 <have_ahead.isra.0>:
+ 640:	ldr	x1, [x0, #8]
+ 644:	ldr	x0, [x1, #48]
+ 648:	ldr	x1, [x1, #24]
+ 64c:	cbnz	x1, 654 <have_ahead.isra.0+0x14>
+ 650:	ret
+ 654:	ldr	x3, [x1, #24]
+ 658:	ldr	x1, [x1]
+ 65c:	ldr	x2, [x3, #16]
+ 660:	ldr	x3, [x3, #8]
+ 664:	sub	x2, x2, x3
+ 668:	add	x0, x0, x2
+ 66c:	b	64c <have_ahead.isra.0+0xc>
+
+0000000000000670 <http_err>:
+ 670:	stp	x29, x30, [sp, #-32]!
+ 674:	mov	x29, sp
+ 678:	stp	x19, x20, [sp, #16]
+ 67c:	mov	x19, x1
+ 680:	ldr	x20, [x1, #80]
+ 684:	ldr	x0, [x20, #32]
+ 688:	cbz	x0, 694 <http_err+0x24>
+ 68c:	mov	w1, #0x2                   	// #2
+ 690:	bl	0 <grub_net_tcp_close>
+ 694:	ldr	x0, [x20]
+ 698:	str	xzr, [x20, #32]
+ 69c:	cbz	x0, 6a4 <http_err+0x34>
+ 6a0:	bl	0 <grub_free>
+ 6a4:	ldr	x0, [x19, #8]
+ 6a8:	mov	x2, #0x100000001           	// #4294967297
+ 6ac:	ldr	x1, [x0, #8]
+ 6b0:	str	xzr, [x20]
+ 6b4:	str	x2, [x1, #64]
+ 6b8:	ldr	x1, [x19, #64]
+ 6bc:	cmn	x1, #0x1
+ 6c0:	b.ne	6cc <http_err+0x5c>  // b.any
+ 6c4:	bl	640 <have_ahead.isra.0>
+ 6c8:	str	x0, [x19, #64]
+ 6cc:	ldp	x19, x20, [sp, #16]
+ 6d0:	ldp	x29, x30, [sp], #32
+ 6d4:	ret
+
+00000000000006d8 <parse_line>:
+ 6d8:	stp	x29, x30, [sp, #-64]!
+ 6dc:	add	x3, x2, x3
+ 6e0:	mov	x29, sp
+ 6e4:	stp	x19, x20, [sp, #16]
+ 6e8:	mov	x20, x0
+ 6ec:	mov	x19, x1
+ 6f0:	str	x21, [sp, #32]
+ 6f4:	str	x2, [sp, #56]
+ 6f8:	cmp	x2, x3
+ 6fc:	b.cs	70c <parse_line+0x34>  // b.hs, b.nlast
+ 700:	ldurb	w0, [x3, #-1]
+ 704:	cmp	w0, #0xd
+ 708:	b.eq	72c <parse_line+0x54>  // b.none
+ 70c:	strb	wzr, [x3]
+ 710:	ldr	w1, [x19, #80]
+ 714:	cmp	w1, #0x1
+ 718:	b.ne	734 <parse_line+0x5c>  // b.any
+ 71c:	mov	w0, #0x2                   	// #2
+ 720:	str	w0, [x19, #80]
+ 724:	mov	w20, #0x0                   	// #0
+ 728:	b	86c <parse_line+0x194>
+ 72c:	sub	x3, x3, #0x1
+ 730:	b	6f8 <parse_line+0x20>
+ 734:	cmp	w1, #0x2
+ 738:	ldr	x0, [sp, #56]
+ 73c:	b.ne	78c <parse_line+0xb4>  // b.any
+ 740:	mov	x1, #0x0                   	// #0
+ 744:	mov	w2, #0x10                  	// #16
+ 748:	bl	0 <grub_strtoul>
+ 74c:	str	x0, [x19, #72]
+ 750:	adrp	x1, 0 <http_packets_pulled>
+ 754:	ldr	x1, [x1]
+ 758:	str	wzr, [x1]
+ 75c:	cbnz	x0, 784 <parse_line+0xac>
+ 760:	ldr	x0, [x20, #8]
+ 764:	mov	x2, #0x100000001           	// #4294967297
+ 768:	ldr	x1, [x0, #8]
+ 76c:	str	x2, [x1, #64]
+ 770:	ldr	x1, [x20, #64]
+ 774:	cmn	x1, #0x1
+ 778:	b.ne	784 <parse_line+0xac>  // b.any
+ 77c:	bl	640 <have_ahead.isra.0>
+ 780:	str	x0, [x20, #64]
+ 784:	str	wzr, [x19, #80]
+ 788:	b	724 <parse_line+0x4c>
+ 78c:	cmp	x3, x0
+ 790:	b.ne	7a8 <parse_line+0xd0>  // b.any
+ 794:	mov	w0, #0x1                   	// #1
+ 798:	str	w0, [x19, #16]
+ 79c:	ldr	w0, [x19, #64]
+ 7a0:	cbnz	w0, 71c <parse_line+0x44>
+ 7a4:	b	724 <parse_line+0x4c>
+ 7a8:	ldr	w1, [x19, #20]
+ 7ac:	cbnz	w1, 8b0 <parse_line+0x1d8>
+ 7b0:	adrp	x1, 0 <http_packets_pulled>
+ 7b4:	mov	x2, #0x9                   	// #9
+ 7b8:	ldr	x1, [x1]
+ 7bc:	bl	0 <grub_memcmp>
+ 7c0:	cbz	w0, 7f0 <parse_line+0x118>
+ 7c4:	adrp	x0, 0 <http_packets_pulled>
+ 7c8:	ldr	x0, [x0]
+ 7cc:	ldr	x1, [x0]
+ 7d0:	adrp	x0, 0 <http_packets_pulled>
+ 7d4:	ldr	x0, [x0]
+ 7d8:	blr	x1
+ 7dc:	bl	0 <grub_strdup>
+ 7e0:	str	x0, [x19, #56]
+ 7e4:	mov	w0, #0x1                   	// #1
+ 7e8:	str	w0, [x19, #20]
+ 7ec:	b	724 <parse_line+0x4c>
+ 7f0:	ldr	x0, [sp, #56]
+ 7f4:	add	x1, sp, #0x38
+ 7f8:	mov	w2, #0xa                   	// #10
+ 7fc:	add	x0, x0, #0x9
+ 800:	str	x0, [sp, #56]
+ 804:	bl	0 <grub_strtoul>
+ 808:	mov	x21, x0
+ 80c:	adrp	x0, 0 <http_packets_pulled>
+ 810:	ldr	x0, [x0]
+ 814:	ldr	w20, [x0]
+ 818:	cbnz	w20, 86c <parse_line+0x194>
+ 81c:	cmp	w21, #0xce
+ 820:	b.eq	834 <parse_line+0x15c>  // b.none
+ 824:	cmp	w21, #0x194
+ 828:	b.eq	840 <parse_line+0x168>  // b.none
+ 82c:	cmp	w21, #0xc8
+ 830:	b.ne	880 <parse_line+0x1a8>  // b.any
+ 834:	mov	w0, #0x1                   	// #1
+ 838:	str	w0, [x19, #20]
+ 83c:	b	86c <parse_line+0x194>
+ 840:	mov	w0, #0x5                   	// #5
+ 844:	str	w0, [x19, #48]
+ 848:	adrp	x0, 0 <http_packets_pulled>
+ 84c:	ldr	x0, [x0]
+ 850:	ldr	x1, [x0]
+ 854:	adrp	x0, 0 <http_packets_pulled>
+ 858:	ldr	x0, [x0]
+ 85c:	blr	x1
+ 860:	ldr	x1, [x19, #40]
+ 864:	bl	0 <grub_xasprintf>
+ 868:	str	x0, [x19, #56]
+ 86c:	mov	w0, w20
+ 870:	ldp	x19, x20, [sp, #16]
+ 874:	ldr	x21, [sp, #32]
+ 878:	ldp	x29, x30, [sp], #64
+ 87c:	ret
+ 880:	mov	w0, #0x29                  	// #41
+ 884:	str	w0, [x19, #48]
+ 888:	adrp	x0, 0 <http_packets_pulled>
+ 88c:	ldr	x0, [x0]
+ 890:	ldr	x1, [x0]
+ 894:	adrp	x0, 0 <http_packets_pulled>
+ 898:	ldr	x0, [x0]
+ 89c:	blr	x1
+ 8a0:	ldr	x2, [sp, #56]
+ 8a4:	mov	w1, w21
+ 8a8:	bl	0 <grub_xasprintf>
+ 8ac:	b	868 <parse_line+0x190>
+ 8b0:	adrp	x1, 0 <http_packets_pulled>
+ 8b4:	mov	x2, #0x10                  	// #16
+ 8b8:	ldr	x1, [x1]
+ 8bc:	bl	0 <grub_memcmp>
+ 8c0:	cbnz	w0, 8f4 <parse_line+0x21c>
+ 8c4:	ldr	w0, [x19, #24]
+ 8c8:	cbnz	w0, 8f4 <parse_line+0x21c>
+ 8cc:	ldr	x0, [sp, #56]
+ 8d0:	add	x1, sp, #0x38
+ 8d4:	mov	w2, #0xa                   	// #10
+ 8d8:	add	x0, x0, #0x10
+ 8dc:	str	x0, [sp, #56]
+ 8e0:	bl	0 <grub_strtoull>
+ 8e4:	str	x0, [x20, #64]
+ 8e8:	mov	w0, #0x1                   	// #1
+ 8ec:	str	w0, [x19, #24]
+ 8f0:	b	724 <parse_line+0x4c>
+ 8f4:	adrp	x0, 0 <http_packets_pulled>
+ 8f8:	mov	x2, #0x1a                  	// #26
+ 8fc:	ldr	x1, [x0]
+ 900:	ldr	x0, [sp, #56]
+ 904:	bl	0 <grub_memcmp>
+ 908:	cbnz	w0, 724 <parse_line+0x4c>
+ 90c:	mov	w0, #0x1                   	// #1
+ 910:	str	w0, [x19, #64]
+ 914:	b	724 <parse_line+0x4c>
+	...
+
+0000000000000958 <http_receive>:
+ 958:	stp	x29, x30, [sp, #-80]!
+ 95c:	mov	x29, sp
+ 960:	stp	x19, x20, [sp, #16]
+ 964:	mov	x20, x1
+ 968:	ldr	x19, [x2, #80]
+ 96c:	stp	x21, x22, [sp, #32]
+ 970:	stp	x23, x24, [sp, #48]
+ 974:	ldr	x0, [x19, #32]
+ 978:	str	x25, [sp, #64]
+ 97c:	cbz	x0, b74 <http_receive+0x21c>
+ 980:	mov	x22, x2
+ 984:	mov	w23, #0x1                   	// #1
+ 988:	ldr	w0, [x19, #16]
+ 98c:	ldr	x21, [x20, #8]
+ 990:	cbz	w0, 99c <http_receive+0x44>
+ 994:	ldr	w0, [x19, #80]
+ 998:	cbz	w0, 9f8 <http_receive+0xa0>
+ 99c:	ldr	x0, [x19]
+ 9a0:	cbz	x0, 9f8 <http_receive+0xa0>
+ 9a4:	ldr	x1, [x20, #16]
+ 9a8:	mov	x24, x21
+ 9ac:	cmp	x24, x1
+ 9b0:	b.cc	ab4 <http_receive+0x15c>  // b.lo, b.ul, b.last
+ 9b4:	mov	x24, x1
+ 9b8:	mov	w25, #0x0                   	// #0
+ 9bc:	ldr	x1, [x19, #8]
+ 9c0:	sub	x21, x24, x21
+ 9c4:	add	x1, x21, x1
+ 9c8:	bl	0 <grub_realloc>
+ 9cc:	cbnz	x0, ac8 <http_receive+0x170>
+ 9d0:	mov	x0, x20
+ 9d4:	bl	0 <grub_netbuff_free>
+ 9d8:	ldr	x0, [x19, #32]
+ 9dc:	mov	w1, #0x2                   	// #2
+ 9e0:	bl	0 <grub_net_tcp_close>
+ 9e4:	adrp	x0, 0 <http_packets_pulled>
+ 9e8:	ldr	x0, [x0]
+ 9ec:	ldr	w21, [x0]
+ 9f0:	b	b80 <http_receive+0x228>
+ 9f4:	mov	x21, x24
+ 9f8:	ldr	x0, [x20, #16]
+ 9fc:	cmp	x0, x21
+ a00:	b.ls	a14 <http_receive+0xbc>  // b.plast
+ a04:	ldr	w1, [x19, #16]
+ a08:	cbz	w1, b34 <http_receive+0x1dc>
+ a0c:	ldr	w1, [x19, #80]
+ a10:	cbnz	w1, b34 <http_receive+0x1dc>
+ a14:	sub	x0, x0, x21
+ a18:	cmp	x0, #0x0
+ a1c:	b.le	b74 <http_receive+0x21c>
+ a20:	ldr	x1, [x20, #8]
+ a24:	mov	x0, x20
+ a28:	sub	x1, x21, x1
+ a2c:	bl	0 <grub_netbuff_pull>
+ a30:	mov	w21, w0
+ a34:	cbnz	w0, b1c <http_receive+0x1c4>
+ a38:	ldr	w0, [x19, #64]
+ a3c:	cbz	w0, a54 <http_receive+0xfc>
+ a40:	ldp	x2, x1, [x20, #8]
+ a44:	ldr	x0, [x19, #72]
+ a48:	sub	x1, x1, x2
+ a4c:	cmp	x0, x1
+ a50:	b.lt	b9c <http_receive+0x244>  // b.tstop
+ a54:	ldr	x0, [x22, #8]
+ a58:	mov	x1, x20
+ a5c:	ldr	x0, [x0, #8]
+ a60:	add	x0, x0, #0x18
+ a64:	bl	a0 <grub_net_put_packet>
+ a68:	ldr	x0, [x22, #8]
+ a6c:	ldr	x1, [x0, #8]
+ a70:	ldr	x0, [x1, #40]
+ a74:	cmp	x0, #0x13
+ a78:	b.ls	a94 <http_receive+0x13c>  // b.plast
+ a7c:	mov	w2, #0x1                   	// #1
+ a80:	str	w2, [x1, #68]
+ a84:	cmp	x0, #0x63
+ a88:	b.ls	a94 <http_receive+0x13c>  // b.plast
+ a8c:	ldr	x0, [x19, #32]
+ a90:	bl	0 <grub_net_tcp_stall>
+ a94:	ldr	w0, [x19, #64]
+ a98:	cbz	w0, b80 <http_receive+0x228>
+ a9c:	ldp	x1, x0, [x20, #8]
+ aa0:	sub	x1, x0, x1
+ aa4:	ldr	x0, [x19, #72]
+ aa8:	sub	x0, x0, x1
+ aac:	str	x0, [x19, #72]
+ ab0:	b	b80 <http_receive+0x228>
+ ab4:	ldrb	w2, [x24], #1
+ ab8:	cmp	w2, #0xa
+ abc:	b.ne	9ac <http_receive+0x54>  // b.any
+ ac0:	mov	w25, #0x1                   	// #1
+ ac4:	b	9bc <http_receive+0x64>
+ ac8:	ldr	x3, [x19, #8]
+ acc:	ldr	x1, [x20, #8]
+ ad0:	str	x0, [x19]
+ ad4:	add	x0, x0, x3
+ ad8:	sub	x2, x24, x1
+ adc:	bl	120 <grub_memcpy>
+ ae0:	ldr	x3, [x20, #8]
+ ae4:	ldr	x0, [x19, #8]
+ ae8:	sub	x3, x24, x3
+ aec:	add	x3, x3, x0
+ af0:	str	x3, [x19, #8]
+ af4:	cbz	w25, b74 <http_receive+0x21c>
+ af8:	ldr	x2, [x19]
+ afc:	mov	x1, x19
+ b00:	mov	x0, x22
+ b04:	bl	6d8 <parse_line>
+ b08:	mov	w21, w0
+ b0c:	ldr	x0, [x19]
+ b10:	bl	0 <grub_free>
+ b14:	stp	xzr, xzr, [x19]
+ b18:	cbz	w21, 9f4 <http_receive+0x9c>
+ b1c:	ldr	x0, [x19, #32]
+ b20:	mov	w1, #0x2                   	// #2
+ b24:	bl	0 <grub_net_tcp_close>
+ b28:	mov	x0, x20
+ b2c:	bl	0 <grub_netbuff_free>
+ b30:	b	b80 <http_receive+0x228>
+ b34:	mov	x24, x21
+ b38:	ldrb	w1, [x24]
+ b3c:	cmp	w1, #0xa
+ b40:	b.eq	c0c <http_receive+0x2b4>  // b.none
+ b44:	add	x24, x24, #0x1
+ b48:	cmp	x0, x24
+ b4c:	b.ne	b38 <http_receive+0x1e0>  // b.any
+ b50:	sub	x0, x0, x21
+ b54:	bl	0 <grub_malloc>
+ b58:	str	x0, [x19]
+ b5c:	cbz	x0, 9d0 <http_receive+0x78>
+ b60:	ldr	x2, [x20, #16]
+ b64:	mov	x1, x21
+ b68:	sub	x2, x2, x21
+ b6c:	str	x2, [x19, #8]
+ b70:	bl	120 <grub_memcpy>
+ b74:	mov	w21, #0x0                   	// #0
+ b78:	mov	x0, x20
+ b7c:	bl	0 <grub_netbuff_free>
+ b80:	mov	w0, w21
+ b84:	ldp	x19, x20, [sp, #16]
+ b88:	ldp	x21, x22, [sp, #32]
+ b8c:	ldp	x23, x24, [sp, #48]
+ b90:	ldr	x25, [sp, #64]
+ b94:	ldp	x29, x30, [sp], #80
+ b98:	ret
+ b9c:	cbz	x0, c04 <http_receive+0x2ac>
+ ba0:	bl	0 <grub_netbuff_alloc>
+ ba4:	mov	x21, x0
+ ba8:	cbz	x0, 9e4 <http_receive+0x8c>
+ bac:	ldr	x1, [x19, #72]
+ bb0:	bl	0 <grub_netbuff_put>
+ bb4:	ldr	x1, [x20, #8]
+ bb8:	ldr	x0, [x21, #8]
+ bbc:	ldr	x2, [x19, #72]
+ bc0:	bl	120 <grub_memcpy>
+ bc4:	ldr	x0, [x22, #8]
+ bc8:	ldr	x0, [x0, #8]
+ bcc:	ldr	x1, [x0, #40]
+ bd0:	cmp	x1, #0x13
+ bd4:	b.ls	be4 <http_receive+0x28c>  // b.plast
+ bd8:	str	w23, [x0, #68]
+ bdc:	ldr	x0, [x19, #32]
+ be0:	bl	0 <grub_net_tcp_stall>
+ be4:	ldr	x0, [x22, #8]
+ be8:	mov	x1, x21
+ bec:	ldr	x0, [x0, #8]
+ bf0:	add	x0, x0, #0x18
+ bf4:	bl	a0 <grub_net_put_packet>
+ bf8:	ldr	x1, [x19, #72]
+ bfc:	mov	x0, x20
+ c00:	bl	0 <grub_netbuff_pull>
+ c04:	str	w23, [x19, #80]
+ c08:	b	988 <http_receive+0x30>
+ c0c:	sub	x3, x24, x21
+ c10:	mov	x2, x21
+ c14:	mov	x1, x19
+ c18:	mov	x0, x22
+ c1c:	bl	6d8 <parse_line>
+ c20:	mov	w21, w0
+ c24:	cbnz	w0, b1c <http_receive+0x1c4>
+ c28:	add	x21, x24, #0x1
+ c2c:	b	9f8 <http_receive+0xa0>
+	...
+
+0000000000000c38 <grub_mod_init>:
+ c38:	adrp	x0, 0 <http_packets_pulled>
+ c3c:	ldr	x1, [x0]
+ c40:	adrp	x0, 0 <http_packets_pulled>
+ c44:	ldr	x0, [x0]
+ c48:	b	0 <grub_list_push>
+ c4c:	nop
+	...
+
+0000000000000c60 <grub_mod_fini>:
+ c60:	adrp	x0, 0 <http_packets_pulled>
+ c64:	ldr	x0, [x0]
+ c68:	b	0 <grub_list_remove>
+ c6c:	nop
+	...

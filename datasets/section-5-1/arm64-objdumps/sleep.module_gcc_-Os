@@ -1,0 +1,106 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//sleep.module_gcc_-Os:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_cmd_sleep>:
+   0:	cmp	w1, #0x1
+   4:	b.eq	18 <grub_cmd_sleep+0x18>  // b.none
+   8:	adrp	x0, 0 <grub_cmd_sleep>
+   c:	ldr	x1, [x0]
+  10:	mov	w0, #0x12                  	// #18
+  14:	b	0 <grub_error>
+  18:	stp	x29, x30, [sp, #-64]!
+  1c:	mov	x3, x2
+  20:	mov	x1, #0x0                   	// #0
+  24:	mov	x29, sp
+  28:	stp	x21, x22, [sp, #32]
+  2c:	mov	w2, #0xa                   	// #10
+  30:	ldr	x21, [x0, #8]
+  34:	stp	x19, x20, [sp, #16]
+  38:	ldr	x0, [x3]
+  3c:	str	x23, [sp, #48]
+  40:	bl	0 <grub_strtoul>
+  44:	mov	w19, w0
+  48:	cbnz	w0, 64 <grub_cmd_sleep+0x64>
+  4c:	mov	w0, #0x0                   	// #0
+  50:	ldp	x19, x20, [sp, #16]
+  54:	ldp	x21, x22, [sp, #32]
+  58:	ldr	x23, [sp, #48]
+  5c:	ldp	x29, x30, [sp], #64
+  60:	ret
+  64:	bl	0 <grub_refresh>
+  68:	adrp	x23, 0 <grub_cmd_sleep>
+  6c:	bl	0 <grub_term_save_pos>
+  70:	adrp	x1, 0 <grub_cmd_sleep>
+  74:	ldr	x20, [x1]
+  78:	str	x0, [x20]
+  7c:	ldr	w0, [x21]
+  80:	cbz	w0, 9c <grub_cmd_sleep+0x9c>
+  84:	ldr	x0, [x20]
+  88:	bl	0 <grub_term_restore_pos>
+  8c:	ldr	x0, [x23]
+  90:	mov	w1, w19
+  94:	bl	0 <grub_printf>
+  98:	bl	0 <grub_refresh>
+  9c:	ldr	w0, [x21, #16]
+  a0:	cbz	w0, 100 <grub_cmd_sleep+0x100>
+  a4:	bl	0 <grub_get_time_ms>
+  a8:	mov	x22, x0
+  ac:	bl	0 <grub_get_time_ms>
+  b0:	sub	x1, x0, x22
+  b4:	cmp	x1, #0x3e7
+  b8:	b.ls	ec <grub_cmd_sleep+0xec>  // b.plast
+  bc:	subs	w19, w19, #0x1
+  c0:	b.ne	7c <grub_cmd_sleep+0x7c>  // b.any
+  c4:	ldr	w0, [x21]
+  c8:	cbz	w0, 4c <grub_cmd_sleep+0x4c>
+  cc:	ldr	x0, [x20]
+  d0:	bl	0 <grub_term_restore_pos>
+  d4:	adrp	x0, 0 <grub_cmd_sleep>
+  d8:	mov	w1, #0x0                   	// #0
+  dc:	ldr	x0, [x0]
+  e0:	bl	0 <grub_printf>
+  e4:	bl	0 <grub_refresh>
+  e8:	b	4c <grub_cmd_sleep+0x4c>
+  ec:	bl	0 <grub_getkey_noblock>
+  f0:	cmp	w0, #0x1b
+  f4:	b.ne	ac <grub_cmd_sleep+0xac>  // b.any
+  f8:	mov	w0, #0x1                   	// #1
+  fc:	b	50 <grub_cmd_sleep+0x50>
+ 100:	mov	w0, #0x3e8                 	// #1000
+ 104:	bl	0 <grub_millisleep>
+ 108:	b	bc <grub_cmd_sleep+0xbc>
+ 10c:	nop
+	...
+
+0000000000000128 <grub_mod_init>:
+ 128:	stp	x29, x30, [sp, #-16]!
+ 12c:	adrp	x0, 0 <grub_cmd_sleep>
+ 130:	mov	w2, #0x0                   	// #0
+ 134:	mov	x29, sp
+ 138:	ldr	x5, [x0]
+ 13c:	adrp	x0, 0 <grub_cmd_sleep>
+ 140:	ldr	x4, [x0]
+ 144:	adrp	x0, 0 <grub_cmd_sleep>
+ 148:	ldr	x3, [x0]
+ 14c:	adrp	x0, 0 <grub_cmd_sleep>
+ 150:	ldr	x1, [x0]
+ 154:	adrp	x0, 0 <grub_cmd_sleep>
+ 158:	ldr	x0, [x0]
+ 15c:	bl	0 <grub_register_extcmd>
+ 160:	adrp	x1, 0 <grub_cmd_sleep>
+ 164:	ldr	x1, [x1]
+ 168:	str	x0, [x1, #8]
+ 16c:	ldp	x29, x30, [sp], #16
+ 170:	ret
+ 174:	nop
+	...
+
+00000000000001a8 <grub_mod_fini>:
+ 1a8:	adrp	x0, 0 <grub_cmd_sleep>
+ 1ac:	ldr	x0, [x0]
+ 1b0:	ldr	x0, [x0, #8]
+ 1b4:	b	0 <grub_unregister_extcmd>
+	...

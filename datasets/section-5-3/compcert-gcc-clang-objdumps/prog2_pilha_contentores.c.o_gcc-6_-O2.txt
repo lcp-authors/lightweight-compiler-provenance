@@ -1,0 +1,104 @@
+
+../compcert-repos/prog2/CMakeFiles/5.1.dir/Aula05_Filas_e_Pilhas/1/pilha_contentores.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <pilha_novo_elemento>:
+   0:	push	{r4, r5, r6, lr}
+   4:	mov	r5, r0
+   8:	mov	r0, #8
+   c:	bl	0 <malloc>
+  10:	subs	r4, r0, #0
+  14:	beq	3c <pilha_novo_elemento+0x3c>
+  18:	vldr	s0, [r5, #4]
+  1c:	ldr	r0, [r5]
+  20:	bl	0 <contentor_novo>
+  24:	cmp	r0, #0
+  28:	movne	r3, #0
+  2c:	mov	r5, r0
+  30:	str	r0, [r4]
+  34:	strne	r3, [r4, #4]
+  38:	beq	44 <pilha_novo_elemento+0x44>
+  3c:	mov	r0, r4
+  40:	pop	{r4, r5, r6, pc}
+  44:	mov	r0, r4
+  48:	bl	0 <free>
+  4c:	mov	r4, r5
+  50:	b	3c <pilha_novo_elemento+0x3c>
+
+00000054 <pilha_nova>:
+  54:	push	{r4, lr}
+  58:	mov	r0, #8
+  5c:	bl	0 <malloc>
+  60:	cmp	r0, #0
+  64:	movne	r3, #0
+  68:	strne	r3, [r0]
+  6c:	strne	r3, [r0, #4]
+  70:	pop	{r4, pc}
+
+00000074 <pilha_apaga>:
+  74:	push	{r4, r5, r6, lr}
+  78:	subs	r5, r0, #0
+  7c:	bne	98 <pilha_apaga+0x24>
+  80:	b	b0 <pilha_apaga+0x3c>
+  84:	ldm	r4, {r0, r3}
+  88:	str	r3, [r5]
+  8c:	bl	0 <contentor_apaga>
+  90:	mov	r0, r4
+  94:	bl	0 <free>
+  98:	ldr	r4, [r5]
+  9c:	cmp	r4, #0
+  a0:	bne	84 <pilha_apaga+0x10>
+  a4:	mov	r0, r5
+  a8:	pop	{r4, r5, r6, lr}
+  ac:	b	0 <free>
+  b0:	pop	{r4, r5, r6, pc}
+
+000000b4 <pilha_tamanho>:
+  b4:	cmp	r0, #0
+  b8:	ldrne	r0, [r0, #4]
+  bc:	mvneq	r0, #0
+  c0:	bx	lr
+
+000000c4 <pilha_top>:
+  c4:	cmp	r0, #0
+  c8:	bxeq	lr
+  cc:	ldr	r3, [r0, #4]
+  d0:	cmp	r3, #0
+  d4:	ldrne	r3, [r0]
+  d8:	ldrne	r0, [r3]
+  dc:	moveq	r0, r3
+  e0:	bx	lr
+
+000000e4 <pilha_push>:
+  e4:	push	{r4, lr}
+  e8:	subs	r4, r0, #0
+  ec:	popeq	{r4, pc}
+  f0:	mov	r0, r1
+  f4:	bl	0 <pilha_novo_elemento>
+  f8:	cmp	r0, #0
+  fc:	popeq	{r4, pc}
+ 100:	ldm	r4, {r2, r3}
+ 104:	add	r3, r3, #1
+ 108:	cmp	r2, #0
+ 10c:	str	r3, [r4, #4]
+ 110:	strne	r2, [r0, #4]
+ 114:	str	r0, [r4]
+ 118:	pop	{r4, pc}
+
+0000011c <pilha_pop>:
+ 11c:	subs	r3, r0, #0
+ 120:	bxeq	lr
+ 124:	ldr	r2, [r3, #4]
+ 128:	cmp	r2, #0
+ 12c:	bxeq	lr
+ 130:	push	{r4, lr}
+ 134:	sub	r2, r2, #1
+ 138:	ldr	r4, [r3]
+ 13c:	ldm	r4, {r0, r1}
+ 140:	stm	r3, {r1, r2}
+ 144:	bl	0 <contentor_apaga>
+ 148:	mov	r0, r4
+ 14c:	pop	{r4, lr}
+ 150:	b	0 <free>

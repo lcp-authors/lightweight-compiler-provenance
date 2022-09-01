@@ -1,0 +1,1423 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//f2fs.module_gcc_-O3:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_f2fs_close>:
+       0:	stp	x29, x30, [sp, #-16]!
+       4:	mov	x29, sp
+       8:	ldr	x0, [x0, #80]
+       c:	bl	0 <grub_free>
+      10:	adrp	x0, 0 <grub_f2fs_close>
+      14:	ldr	x0, [x0]
+      18:	ldr	x0, [x0]
+      1c:	bl	0 <grub_dl_unref>
+      20:	mov	w0, #0x0                   	// #0
+      24:	ldp	x29, x30, [sp], #16
+      28:	ret
+      2c:	nop
+	...
+
+0000000000000038 <grub_f2fs_utf16_to_utf8>:
+      38:	sub	sp, sp, #0x420
+      3c:	stp	x29, x30, [sp]
+      40:	mov	x29, sp
+      44:	str	x19, [sp, #16]
+      48:	mov	x19, x0
+      4c:	mov	x0, #0x801                 	// #2049
+      50:	bl	0 <grub_malloc>
+      54:	cbz	x0, 12c <grub_f2fs_utf16_to_utf8+0xf4>
+      58:	ldrh	w1, [x19]
+      5c:	cbz	w1, 204 <grub_f2fs_utf16_to_utf8+0x1cc>
+      60:	tst	x19, #0x7
+      64:	b.ne	1d8 <grub_f2fs_utf16_to_utf8+0x1a0>  // b.any
+      68:	add	x6, sp, #0x20
+      6c:	mov	x1, x19
+      70:	mov	x2, x6
+      74:	add	x4, sp, #0x420
+      78:	ldr	x3, [x1], #8
+      7c:	str	x3, [x2], #8
+      80:	cmp	x4, x2
+      84:	b.ne	78 <grub_f2fs_utf16_to_utf8+0x40>  // b.any
+      88:	mov	x1, x0
+      8c:	mov	x5, #0x200                 	// #512
+      90:	mov	w8, #0x0                   	// #0
+      94:	mov	w10, #0xffff2800            	// #-55296
+      98:	mov	w9, #0xffff2400            	// #-56320
+      9c:	mov	w11, #0x3f                  	// #63
+      a0:	mov	w12, #0x2400                	// #9216
+      a4:	b	104 <grub_f2fs_utf16_to_utf8+0xcc>
+      a8:	add	w4, w2, w9
+      ac:	cmp	w4, #0x3ff
+      b0:	b.hi	13c <grub_f2fs_utf16_to_utf8+0x104>  // b.pmore
+      b4:	add	w4, w8, w10
+      b8:	mov	x6, x3
+      bc:	add	x1, x1, #0x4
+      c0:	mov	w8, #0x0                   	// #0
+      c4:	add	w2, w2, w4, lsl #10
+      c8:	add	w2, w2, w12
+      cc:	and	w3, w2, #0x3f
+      d0:	lsr	w7, w2, #18
+      d4:	ubfx	x4, x2, #12, #6
+      d8:	ubfx	x2, x2, #6, #6
+      dc:	orr	w7, w7, #0xfffffff0
+      e0:	orr	w4, w4, #0xffffff80
+      e4:	orr	w2, w2, #0xffffff80
+      e8:	orr	w3, w3, #0xffffff80
+      ec:	sturb	w7, [x1, #-4]
+      f0:	sturb	w4, [x1, #-3]
+      f4:	sturb	w2, [x1, #-2]
+      f8:	sturb	w3, [x1, #-1]
+      fc:	subs	x5, x5, #0x1
+     100:	b.eq	128 <grub_f2fs_utf16_to_utf8+0xf0>  // b.none
+     104:	mov	x3, x6
+     108:	ldrh	w2, [x3], #2
+     10c:	cbnz	w8, a8 <grub_f2fs_utf16_to_utf8+0x70>
+     110:	cmp	w2, #0x7f
+     114:	b.hi	148 <grub_f2fs_utf16_to_utf8+0x110>  // b.pmore
+     118:	strb	w2, [x1], #1
+     11c:	mov	x6, x3
+     120:	subs	x5, x5, #0x1
+     124:	b.ne	104 <grub_f2fs_utf16_to_utf8+0xcc>  // b.any
+     128:	strb	wzr, [x1]
+     12c:	ldp	x29, x30, [sp]
+     130:	ldr	x19, [sp, #16]
+     134:	add	sp, sp, #0x420
+     138:	ret
+     13c:	mov	w8, #0x0                   	// #0
+     140:	strb	w11, [x1], #1
+     144:	b	fc <grub_f2fs_utf16_to_utf8+0xc4>
+     148:	cmp	w2, #0x7ff
+     14c:	b.hi	178 <grub_f2fs_utf16_to_utf8+0x140>  // b.pmore
+     150:	mov	x4, x1
+     154:	lsr	w7, w2, #6
+     158:	orr	w7, w7, #0xffffffc0
+     15c:	and	w2, w2, #0x3f
+     160:	orr	w2, w2, #0xffffff80
+     164:	mov	x6, x3
+     168:	strb	w7, [x4], #2
+     16c:	strb	w2, [x1, #1]
+     170:	mov	x1, x4
+     174:	b	fc <grub_f2fs_utf16_to_utf8+0xc4>
+     178:	add	w4, w2, w10
+     17c:	cmp	w4, #0x3ff
+     180:	b.ls	1cc <grub_f2fs_utf16_to_utf8+0x194>  // b.plast
+     184:	add	w4, w2, w9
+     188:	cmp	w4, #0x3ff
+     18c:	b.hi	19c <grub_f2fs_utf16_to_utf8+0x164>  // b.pmore
+     190:	mov	x6, x3
+     194:	strb	w11, [x1], #1
+     198:	b	fc <grub_f2fs_utf16_to_utf8+0xc4>
+     19c:	lsr	w7, w2, #12
+     1a0:	ubfx	x4, x2, #6, #6
+     1a4:	and	w2, w2, #0x3f
+     1a8:	mov	x6, x3
+     1ac:	orr	w7, w7, #0xffffffe0
+     1b0:	orr	w3, w4, #0xffffff80
+     1b4:	orr	w2, w2, #0xffffff80
+     1b8:	add	x1, x1, #0x3
+     1bc:	sturb	w7, [x1, #-3]
+     1c0:	sturb	w3, [x1, #-2]
+     1c4:	sturb	w2, [x1, #-1]
+     1c8:	b	fc <grub_f2fs_utf16_to_utf8+0xc4>
+     1cc:	mov	w8, w2
+     1d0:	mov	x6, x3
+     1d4:	b	fc <grub_f2fs_utf16_to_utf8+0xc4>
+     1d8:	sub	x1, x19, #0x2
+     1dc:	add	x6, sp, #0x20
+     1e0:	mov	x2, #0x1                   	// #1
+     1e4:	nop
+     1e8:	add	x3, x6, x2, lsl #1
+     1ec:	ldrh	w4, [x1, x2, lsl #1]
+     1f0:	add	x2, x2, #0x1
+     1f4:	cmp	x2, #0x201
+     1f8:	sturh	w4, [x3, #-2]
+     1fc:	b.ne	1e8 <grub_f2fs_utf16_to_utf8+0x1b0>  // b.any
+     200:	b	88 <grub_f2fs_utf16_to_utf8+0x50>
+     204:	mov	x1, x0
+     208:	strb	wzr, [x1]
+     20c:	b	12c <grub_f2fs_utf16_to_utf8+0xf4>
+
+0000000000000210 <validate_checkpoint>:
+     210:	stp	x29, x30, [sp, #-64]!
+     214:	mov	x29, sp
+     218:	stp	x19, x20, [sp, #16]
+     21c:	mov	x20, x0
+     220:	mov	w19, w1
+     224:	mov	x0, #0x1000                	// #4096
+     228:	stp	x21, x22, [sp, #32]
+     22c:	mov	x21, x2
+     230:	bl	0 <grub_malloc>
+     234:	mov	x22, x0
+     238:	cbz	x0, 43c <validate_checkpoint+0x22c>
+     23c:	mov	x4, x0
+     240:	ubfiz	x1, x19, #3, #32
+     244:	ldr	x0, [x20, #6808]
+     248:	mov	x3, #0x1000                	// #4096
+     24c:	mov	x2, #0x0                   	// #0
+     250:	bl	0 <grub_disk_read>
+     254:	cbnz	w0, 430 <validate_checkpoint+0x220>
+     258:	ldr	w0, [x22, #164]
+     25c:	cmp	w0, #0xffc
+     260:	b.ne	430 <validate_checkpoint+0x220>  // b.any
+     264:	ldr	w8, [x22, #4092]
+     268:	mov	w1, #0x2010                	// #8208
+     26c:	mov	w3, #0x8320                	// #33568
+     270:	add	x7, x22, #0xffc
+     274:	mov	x6, x22
+     278:	movk	w1, #0xf2f5, lsl #16
+     27c:	movk	w3, #0xedb8, lsl #16
+     280:	ldrb	w2, [x6], #1
+     284:	eor	w2, w2, w1
+     288:	lsr	w1, w2, #1
+     28c:	tst	x2, #0x1
+     290:	eor	w0, w1, w3
+     294:	csel	w1, w0, w1, ne  // ne = any
+     298:	lsr	w5, w1, #1
+     29c:	tst	x1, #0x1
+     2a0:	eor	w0, w5, w3
+     2a4:	csel	w5, w0, w5, ne  // ne = any
+     2a8:	lsr	w4, w5, #1
+     2ac:	tst	x5, #0x1
+     2b0:	eor	w0, w4, w3
+     2b4:	csel	w4, w0, w4, ne  // ne = any
+     2b8:	lsr	w5, w4, #1
+     2bc:	tst	x4, #0x1
+     2c0:	eor	w0, w5, w3
+     2c4:	csel	w5, w0, w5, ne  // ne = any
+     2c8:	lsr	w4, w5, #1
+     2cc:	tst	x5, #0x1
+     2d0:	eor	w0, w4, w3
+     2d4:	csel	w4, w0, w4, ne  // ne = any
+     2d8:	lsr	w5, w4, #1
+     2dc:	tst	x4, #0x1
+     2e0:	eor	w0, w5, w3
+     2e4:	csel	w5, w0, w5, ne  // ne = any
+     2e8:	lsr	w4, w5, #1
+     2ec:	tst	x5, #0x1
+     2f0:	eor	w0, w4, w3
+     2f4:	csel	w4, w0, w4, ne  // ne = any
+     2f8:	lsr	w1, w4, #1
+     2fc:	tst	x4, #0x1
+     300:	eor	w0, w1, w3
+     304:	csel	w1, w0, w1, ne  // ne = any
+     308:	cmp	x6, x7
+     30c:	b.ne	280 <validate_checkpoint+0x70>  // b.any
+     310:	cmp	w8, w1
+     314:	b.ne	430 <validate_checkpoint+0x220>  // b.any
+     318:	mov	x0, #0x1000                	// #4096
+     31c:	stp	x23, x24, [sp, #48]
+     320:	ldr	x23, [x22]
+     324:	bl	0 <grub_malloc>
+     328:	mov	x24, x0
+     32c:	cbz	x0, 464 <validate_checkpoint+0x254>
+     330:	ldr	w2, [x22, #136]
+     334:	mov	x4, x0
+     338:	ldr	x0, [x20, #6808]
+     33c:	sub	w1, w19, #0x1
+     340:	add	w1, w1, w2
+     344:	mov	x3, #0x1000                	// #4096
+     348:	mov	x2, #0x0                   	// #0
+     34c:	lsl	x1, x1, #3
+     350:	bl	0 <grub_disk_read>
+     354:	cbnz	w0, 424 <validate_checkpoint+0x214>
+     358:	ldr	w0, [x24, #164]
+     35c:	cmp	w0, #0xffc
+     360:	b.ne	424 <validate_checkpoint+0x214>  // b.any
+     364:	ldr	w6, [x24, #4092]
+     368:	mov	w3, #0x2010                	// #8208
+     36c:	mov	w1, #0x8320                	// #33568
+     370:	add	x4, x24, #0xffc
+     374:	mov	x5, x24
+     378:	movk	w3, #0xf2f5, lsl #16
+     37c:	movk	w1, #0xedb8, lsl #16
+     380:	ldrb	w2, [x5], #1
+     384:	eor	w3, w2, w3
+     388:	lsr	w2, w3, #1
+     38c:	tst	x3, #0x1
+     390:	eor	w0, w2, w1
+     394:	csel	w2, w0, w2, ne  // ne = any
+     398:	lsr	w3, w2, #1
+     39c:	tst	x2, #0x1
+     3a0:	eor	w0, w3, w1
+     3a4:	csel	w3, w0, w3, ne  // ne = any
+     3a8:	lsr	w2, w3, #1
+     3ac:	tst	x3, #0x1
+     3b0:	eor	w0, w2, w1
+     3b4:	csel	w2, w0, w2, ne  // ne = any
+     3b8:	lsr	w3, w2, #1
+     3bc:	tst	x2, #0x1
+     3c0:	eor	w0, w3, w1
+     3c4:	csel	w3, w0, w3, ne  // ne = any
+     3c8:	lsr	w2, w3, #1
+     3cc:	tst	x3, #0x1
+     3d0:	eor	w0, w2, w1
+     3d4:	csel	w2, w0, w2, ne  // ne = any
+     3d8:	lsr	w3, w2, #1
+     3dc:	tst	x2, #0x1
+     3e0:	eor	w2, w3, w1
+     3e4:	csel	w3, w2, w3, ne  // ne = any
+     3e8:	lsr	w2, w3, #1
+     3ec:	tst	x3, #0x1
+     3f0:	eor	w3, w2, w1
+     3f4:	csel	w2, w3, w2, ne  // ne = any
+     3f8:	lsr	w3, w2, #1
+     3fc:	tst	x2, #0x1
+     400:	eor	w2, w3, w1
+     404:	csel	w3, w2, w3, ne  // ne = any
+     408:	cmp	x4, x5
+     40c:	b.ne	380 <validate_checkpoint+0x170>  // b.any
+     410:	cmp	w6, w3
+     414:	b.ne	424 <validate_checkpoint+0x214>  // b.any
+     418:	ldr	x0, [x24]
+     41c:	cmp	x23, x0
+     420:	b.eq	450 <validate_checkpoint+0x240>  // b.none
+     424:	mov	x0, x24
+     428:	bl	0 <grub_free>
+     42c:	ldp	x23, x24, [sp, #48]
+     430:	mov	x0, x22
+     434:	mov	x22, #0x0                   	// #0
+     438:	bl	0 <grub_free>
+     43c:	mov	x0, x22
+     440:	ldp	x19, x20, [sp, #16]
+     444:	ldp	x21, x22, [sp, #32]
+     448:	ldp	x29, x30, [sp], #64
+     44c:	ret
+     450:	str	x23, [x21]
+     454:	mov	x0, x24
+     458:	bl	0 <grub_free>
+     45c:	ldp	x23, x24, [sp, #48]
+     460:	b	43c <validate_checkpoint+0x22c>
+     464:	ldp	x23, x24, [sp, #48]
+     468:	b	430 <validate_checkpoint+0x220>
+     46c:	nop
+
+0000000000000470 <grub_f2fs_read_node>:
+     470:	stp	x29, x30, [sp, #-64]!
+     474:	mov	x29, sp
+     478:	stp	x19, x20, [sp, #16]
+     47c:	mov	w20, w1
+     480:	ldrh	w1, [x0, #6292]
+     484:	stp	x21, x22, [sp, #32]
+     488:	mov	x19, x0
+     48c:	mov	x21, x2
+     490:	cbz	w1, 504 <grub_f2fs_read_node+0x94>
+     494:	mov	x2, #0x1896                	// #6294
+     498:	mov	w3, #0x0                   	// #0
+     49c:	add	x0, x0, x2
+     4a0:	b	4b0 <grub_f2fs_read_node+0x40>
+     4a4:	add	w3, w3, #0x1
+     4a8:	cmp	w1, w3, uxth
+     4ac:	b.ls	504 <grub_f2fs_read_node+0x94>  // b.plast
+     4b0:	ldr	w2, [x0]
+     4b4:	add	x0, x0, #0xd
+     4b8:	cmp	w20, w2
+     4bc:	b.ne	4a4 <grub_f2fs_read_node+0x34>  // b.any
+     4c0:	sxtw	x0, w3
+     4c4:	add	x3, x0, w3, sxtw #1
+     4c8:	add	x3, x0, x3, lsl #2
+     4cc:	mov	x0, #0x1800                	// #6144
+     4d0:	add	x3, x19, x3
+     4d4:	add	x3, x3, x0
+     4d8:	ldur	w22, [x3, #159]
+     4dc:	cbz	w22, 504 <grub_f2fs_read_node+0x94>
+     4e0:	mov	x4, x21
+     4e4:	ubfiz	x1, x22, #3, #32
+     4e8:	ldp	x21, x22, [sp, #32]
+     4ec:	mov	x3, #0x1000                	// #4096
+     4f0:	ldr	x0, [x19, #6808]
+     4f4:	mov	x2, #0x0                   	// #0
+     4f8:	ldp	x19, x20, [sp, #16]
+     4fc:	ldp	x29, x30, [sp], #64
+     500:	b	0 <grub_disk_read>
+     504:	mov	x0, #0x1000                	// #4096
+     508:	bl	0 <grub_malloc>
+     50c:	mov	x22, x0
+     510:	cbz	x0, 5bc <grub_f2fs_read_node+0x14c>
+     514:	mov	w6, #0x121                 	// #289
+     518:	ldr	w1, [x19, #6280]
+     51c:	movk	w6, #0x2012, lsl #16
+     520:	ldr	w11, [x19, #6288]
+     524:	mov	x4, x0
+     528:	sub	w5, w1, #0x1
+     52c:	umull	x6, w20, w6
+     530:	mov	w8, #0x1                   	// #1
+     534:	ldr	x10, [x19, #6800]
+     538:	mov	x3, #0x1000                	// #4096
+     53c:	lsr	x7, x6, #32
+     540:	mov	x2, #0x0                   	// #0
+     544:	sub	w6, w20, w7
+     548:	ldr	x0, [x19, #6808]
+     54c:	add	w6, w7, w6, lsr #1
+     550:	str	x23, [sp, #48]
+     554:	lsr	w23, w6, #8
+     558:	lsr	w6, w6, #11
+     55c:	and	w5, w5, w23
+     560:	mvn	w9, w23
+     564:	add	w7, w5, w11
+     568:	and	w9, w9, #0x7
+     56c:	udiv	w5, w23, w1
+     570:	ldrb	w10, [x10, w6, uxtw]
+     574:	lsl	w6, w8, w9
+     578:	tst	w10, w6
+     57c:	mul	w5, w5, w1
+     580:	add	w5, w7, w5, lsl #1
+     584:	add	w1, w5, w1
+     588:	csel	w1, w1, w5, ne  // ne = any
+     58c:	lsl	x1, x1, #3
+     590:	bl	0 <grub_disk_read>
+     594:	cbnz	w0, 5d8 <grub_f2fs_read_node+0x168>
+     598:	mov	w1, #0x1c7                 	// #455
+     59c:	mov	x0, x22
+     5a0:	msub	w20, w23, w1, w20
+     5a4:	add	x20, x20, x20, lsl #3
+     5a8:	add	x20, x22, x20
+     5ac:	ldur	w22, [x20, #5]
+     5b0:	bl	0 <grub_free>
+     5b4:	ldr	x23, [sp, #48]
+     5b8:	cbnz	w22, 4e0 <grub_f2fs_read_node+0x70>
+     5bc:	adrp	x0, 0 <grub_f2fs_close>
+     5c0:	ldp	x19, x20, [sp, #16]
+     5c4:	ldr	x0, [x0]
+     5c8:	ldp	x21, x22, [sp, #32]
+     5cc:	ldr	w0, [x0]
+     5d0:	ldp	x29, x30, [sp], #64
+     5d4:	ret
+     5d8:	mov	x0, x22
+     5dc:	bl	0 <grub_free>
+     5e0:	adrp	x0, 0 <grub_f2fs_close>
+     5e4:	ldp	x19, x20, [sp, #16]
+     5e8:	ldr	x0, [x0]
+     5ec:	ldp	x21, x22, [sp, #32]
+     5f0:	ldr	w0, [x0]
+     5f4:	ldr	x23, [sp, #48]
+     5f8:	ldp	x29, x30, [sp], #64
+     5fc:	ret
+	...
+
+0000000000000608 <grub_f2fs_check_dentries>:
+     608:	ldr	w3, [x0, #48]
+     60c:	cmp	w3, #0x0
+     610:	b.le	778 <grub_f2fs_check_dentries+0x170>
+     614:	stp	x29, x30, [sp, #-96]!
+     618:	mov	x29, sp
+     61c:	stp	x19, x20, [sp, #16]
+     620:	mov	x20, x0
+     624:	mov	w19, #0x0                   	// #0
+     628:	stp	x21, x22, [sp, #32]
+     62c:	mov	w21, #0x1                   	// #1
+     630:	mov	w22, #0xb                   	// #11
+     634:	stp	x23, x24, [sp, #48]
+     638:	stp	x25, x26, [sp, #64]
+     63c:	str	x27, [sp, #80]
+     640:	b	650 <grub_f2fs_check_dentries+0x48>
+     644:	add	w19, w19, #0x1
+     648:	cmp	w19, w3
+     64c:	b.ge	724 <grub_f2fs_check_dentries+0x11c>  // b.tcont
+     650:	ldr	x2, [x20, #24]
+     654:	asr	w1, w19, #3
+     658:	and	w0, w19, #0x7
+     65c:	ldrb	w1, [x2, w1, sxtw]
+     660:	lsl	w0, w21, w0
+     664:	tst	w1, w0
+     668:	b.eq	644 <grub_f2fs_check_dentries+0x3c>  // b.none
+     66c:	ldr	x0, [x20, #40]
+     670:	smull	x25, w19, w22
+     674:	add	x0, x0, x25
+     678:	ldrh	w24, [x0, #8]
+     67c:	ldrb	w26, [x0, #10]
+     680:	add	w0, w24, #0x1
+     684:	sxtw	x0, w0
+     688:	bl	0 <grub_malloc>
+     68c:	mov	x23, x0
+     690:	cbz	x0, 724 <grub_f2fs_check_dentries+0x11c>
+     694:	ldr	x1, [x20, #32]
+     698:	and	x27, x24, #0xffff
+     69c:	mov	x2, x27
+     6a0:	add	x1, x1, w19, sxtw #3
+     6a4:	bl	0 <grub_memmove>
+     6a8:	strb	wzr, [x23, x27]
+     6ac:	mov	x0, #0x1020                	// #4128
+     6b0:	bl	0 <grub_malloc>
+     6b4:	mov	x2, x0
+     6b8:	cbz	x0, 74c <grub_f2fs_check_dentries+0x144>
+     6bc:	cmp	w26, #0x2
+     6c0:	b.eq	6d4 <grub_f2fs_check_dentries+0xcc>  // b.none
+     6c4:	cmp	w26, #0x7
+     6c8:	b.eq	744 <grub_f2fs_check_dentries+0x13c>  // b.none
+     6cc:	cmp	w26, #0x1
+     6d0:	cset	w26, eq  // eq = none
+     6d4:	ldr	x0, [x20, #40]
+     6d8:	mov	w1, w26
+     6dc:	ldp	x4, x3, [x20, #8]
+     6e0:	add	x25, x0, x25
+     6e4:	ldr	x0, [x20]
+     6e8:	ldr	w5, [x25, #4]
+     6ec:	str	x0, [x2]
+     6f0:	mov	x0, x23
+     6f4:	str	w5, [x2, #4120]
+     6f8:	str	wzr, [x2, #4124]
+     6fc:	blr	x4
+     700:	mov	w25, w0
+     704:	mov	x0, x23
+     708:	bl	0 <grub_free>
+     70c:	cbnz	w25, 758 <grub_f2fs_check_dentries+0x150>
+     710:	add	w24, w24, #0x7
+     714:	ldr	w3, [x20, #48]
+     718:	add	w19, w19, w24, lsr #3
+     71c:	cmp	w19, w3
+     720:	b.lt	650 <grub_f2fs_check_dentries+0x48>  // b.tstop
+     724:	mov	w0, #0x0                   	// #0
+     728:	ldp	x19, x20, [sp, #16]
+     72c:	ldp	x21, x22, [sp, #32]
+     730:	ldp	x23, x24, [sp, #48]
+     734:	ldp	x25, x26, [sp, #64]
+     738:	ldr	x27, [sp, #80]
+     73c:	ldp	x29, x30, [sp], #96
+     740:	ret
+     744:	mov	w26, #0x3                   	// #3
+     748:	b	6d4 <grub_f2fs_check_dentries+0xcc>
+     74c:	mov	x0, x23
+     750:	bl	0 <grub_free>
+     754:	b	724 <grub_f2fs_check_dentries+0x11c>
+     758:	mov	w0, #0x1                   	// #1
+     75c:	ldp	x19, x20, [sp, #16]
+     760:	ldp	x21, x22, [sp, #32]
+     764:	ldp	x23, x24, [sp, #48]
+     768:	ldp	x25, x26, [sp, #64]
+     76c:	ldr	x27, [sp, #80]
+     770:	ldp	x29, x30, [sp], #96
+     774:	ret
+     778:	mov	w0, #0x0                   	// #0
+     77c:	ret
+
+0000000000000780 <grub_f2fs_read_symlink>:
+     780:	sub	sp, sp, #0x50
+     784:	stp	x29, x30, [sp, #32]
+     788:	add	x29, sp, #0x20
+     78c:	stp	x19, x20, [sp, #48]
+     790:	mov	x19, x0
+     794:	ldr	w0, [x0, #4124]
+     798:	stp	x21, x22, [sp, #64]
+     79c:	cbz	w0, 808 <grub_f2fs_read_symlink+0x88>
+     7a0:	add	x21, x19, #0x8
+     7a4:	ldr	x22, [x21, #16]
+     7a8:	add	x0, x22, #0x1
+     7ac:	bl	0 <grub_malloc>
+     7b0:	mov	x20, x0
+     7b4:	cbz	x0, 82c <grub_f2fs_read_symlink+0xac>
+     7b8:	ldrb	w1, [x21, #3]
+     7bc:	ldr	x2, [x21, #16]
+     7c0:	tbz	w1, #1, 848 <grub_f2fs_read_symlink+0xc8>
+     7c4:	cmp	x2, #0xda0
+     7c8:	b.hi	7dc <grub_f2fs_read_symlink+0x5c>  // b.pmore
+     7cc:	cmp	x22, x2
+     7d0:	add	x1, x19, #0x174
+     7d4:	csel	x2, x22, x2, ls  // ls = plast
+     7d8:	bl	0 <grub_memmove>
+     7dc:	adrp	x0, 0 <grub_f2fs_close>
+     7e0:	ldr	x0, [x0]
+     7e4:	ldr	w0, [x0]
+     7e8:	cbnz	w0, 888 <grub_f2fs_read_symlink+0x108>
+     7ec:	strb	wzr, [x20, x22]
+     7f0:	mov	x0, x20
+     7f4:	ldp	x29, x30, [sp, #32]
+     7f8:	ldp	x19, x20, [sp, #48]
+     7fc:	ldp	x21, x22, [sp, #64]
+     800:	add	sp, sp, #0x50
+     804:	ret
+     808:	ldr	w1, [x19, #4120]
+     80c:	add	x21, x19, #0x8
+     810:	ldr	x0, [x19]
+     814:	mov	x2, x21
+     818:	bl	470 <grub_f2fs_read_node>
+     81c:	adrp	x0, 0 <grub_f2fs_close>
+     820:	ldr	x0, [x0]
+     824:	ldr	w0, [x0]
+     828:	cbz	w0, 7a4 <grub_f2fs_read_symlink+0x24>
+     82c:	mov	x20, #0x0                   	// #0
+     830:	mov	x0, x20
+     834:	ldp	x29, x30, [sp, #32]
+     838:	ldp	x19, x20, [sp, #48]
+     83c:	ldp	x21, x22, [sp, #64]
+     840:	add	sp, sp, #0x50
+     844:	ret
+     848:	mov	x6, x0
+     84c:	adrp	x4, 0 <grub_f2fs_close>
+     850:	ldr	x0, [x19]
+     854:	mov	w3, #0x3                   	// #3
+     858:	ldr	x7, [x4]
+     85c:	mov	x1, x19
+     860:	ldr	x0, [x0, #6808]
+     864:	str	x2, [sp]
+     868:	str	w3, [sp, #8]
+     86c:	mov	x5, x22
+     870:	str	xzr, [sp, #16]
+     874:	mov	x4, #0x0                   	// #0
+     878:	mov	x3, #0x0                   	// #0
+     87c:	mov	x2, #0x0                   	// #0
+     880:	bl	0 <grub_fshelp_read_file>
+     884:	b	7dc <grub_f2fs_read_symlink+0x5c>
+     888:	mov	x0, x20
+     88c:	mov	x20, #0x0                   	// #0
+     890:	bl	0 <grub_free>
+     894:	b	7f0 <grub_f2fs_read_symlink+0x70>
+	...
+
+00000000000008a8 <grub_f2fs_dir_iter>:
+     8a8:	stp	x29, x30, [sp, #-64]!
+     8ac:	mov	x29, sp
+     8b0:	stp	x19, x20, [sp, #16]
+     8b4:	mov	x19, x2
+     8b8:	mov	w20, w1
+     8bc:	mov	x2, #0x10                  	// #16
+     8c0:	mov	w1, #0x0                   	// #0
+     8c4:	stp	x21, x22, [sp, #32]
+     8c8:	mov	x22, x0
+     8cc:	mov	x21, x3
+     8d0:	add	x0, sp, #0x30
+     8d4:	bl	0 <grub_memset>
+     8d8:	ldr	w0, [x19, #4124]
+     8dc:	cbz	w0, 934 <grub_f2fs_dir_iter+0x8c>
+     8e0:	ldrb	w0, [sp, #48]
+     8e4:	ldr	x1, [x19, #56]
+     8e8:	orr	w0, w0, #0x2
+     8ec:	strb	w0, [sp, #48]
+     8f0:	str	w1, [sp, #52]
+     8f4:	and	w20, w20, #0xff
+     8f8:	ldrb	w1, [sp, #48]
+     8fc:	cmp	w20, #0x2
+     900:	mov	x0, x19
+     904:	cset	w2, eq  // eq = none
+     908:	bfxil	w1, w2, #0, #1
+     90c:	strb	w1, [sp, #48]
+     910:	bl	0 <grub_free>
+     914:	ldp	x3, x2, [x21]
+     918:	add	x1, sp, #0x30
+     91c:	mov	x0, x22
+     920:	blr	x3
+     924:	ldp	x19, x20, [sp, #16]
+     928:	ldp	x21, x22, [sp, #32]
+     92c:	ldp	x29, x30, [sp], #64
+     930:	ret
+     934:	ldr	w1, [x19, #4120]
+     938:	add	x2, x19, #0x8
+     93c:	ldr	x0, [x21, #16]
+     940:	bl	470 <grub_f2fs_read_node>
+     944:	adrp	x0, 0 <grub_f2fs_close>
+     948:	ldr	x0, [x0]
+     94c:	ldr	w1, [x0]
+     950:	cbnz	w1, 960 <grub_f2fs_dir_iter+0xb8>
+     954:	mov	w0, #0x1                   	// #1
+     958:	str	w0, [x19, #4124]
+     95c:	b	8e0 <grub_f2fs_dir_iter+0x38>
+     960:	ldr	w1, [x19, #4124]
+     964:	str	wzr, [x0]
+     968:	cbz	w1, 8f4 <grub_f2fs_dir_iter+0x4c>
+     96c:	b	8e0 <grub_f2fs_dir_iter+0x38>
+	...
+
+0000000000000978 <grub_f2fs_get_block>:
+     978:	stp	x29, x30, [sp, #-112]!
+     97c:	mov	x29, sp
+     980:	stp	x19, x20, [sp, #16]
+     984:	mov	x19, x0
+     988:	mov	w0, #0x369                 	// #873
+     98c:	stp	x21, x22, [sp, #32]
+     990:	mov	w21, #0x39b                 	// #923
+     994:	ldrb	w2, [x19, #11]
+     998:	tst	x2, #0x1
+     99c:	csel	w21, w21, w0, eq  // eq = none
+     9a0:	cmp	w1, w21
+     9a4:	b.cc	af4 <grub_f2fs_get_block+0x17c>  // b.lo, b.ul, b.last
+     9a8:	stp	x23, x24, [sp, #48]
+     9ac:	sub	w21, w1, w21
+     9b0:	cmp	w21, #0x3f9
+     9b4:	ldr	x24, [x19]
+     9b8:	b.ls	a4c <grub_f2fs_get_block+0xd4>  // b.plast
+     9bc:	sub	w0, w21, #0x3fa
+     9c0:	cmp	w0, #0x3f9
+     9c4:	b.ls	b18 <grub_f2fs_get_block+0x1a0>  // b.plast
+     9c8:	sub	w1, w21, #0x7f4
+     9cc:	mov	w0, #0xd023                	// #53283
+     9d0:	movk	w0, #0xf, lsl #16
+     9d4:	cmp	w1, w0
+     9d8:	b.ls	b2c <grub_f2fs_get_block+0x1b4>  // b.plast
+     9dc:	sub	w1, w21, #0xfd, lsl #12
+     9e0:	sub	w1, w1, #0x818
+     9e4:	cmp	w1, w0
+     9e8:	b.ls	b64 <grub_f2fs_get_block+0x1ec>  // b.plast
+     9ec:	sub	w21, w21, #0x1fa, lsl #12
+     9f0:	mov	w0, #0xaf27                	// #44839
+     9f4:	sub	w21, w21, #0x83c
+     9f8:	movk	w0, #0x3ee1, lsl #16
+     9fc:	cmp	w21, w0
+     a00:	b.hi	b58 <grub_f2fs_get_block+0x1e0>  // b.pmore
+     a04:	mov	w0, #0x21b3                	// #8627
+     a08:	mov	w2, #0x66cd                	// #26317
+     a0c:	movk	w0, #0x80c1, lsl #16
+     a10:	movk	w2, #0x8183, lsl #16
+     a14:	mov	w3, #0x3fa                 	// #1018
+     a18:	mov	w20, #0x4                   	// #4
+     a1c:	umull	x1, w21, w0
+     a20:	mov	w23, #0x3                   	// #3
+     a24:	umull	x2, w21, w2
+     a28:	lsr	x1, x1, #41
+     a2c:	lsr	x2, x2, #51
+     a30:	umull	x0, w1, w0
+     a34:	msub	w21, w1, w3, w21
+     a38:	str	w21, [sp, #92]
+     a3c:	lsr	x0, x0, #41
+     a40:	msub	w0, w0, w3, w1
+     a44:	stp	w2, w0, [sp, #84]
+     a48:	b	a58 <grub_f2fs_get_block+0xe0>
+     a4c:	mov	w20, #0x0                   	// #0
+     a50:	mov	w23, #0x1                   	// #1
+     a54:	str	w21, [sp, #84]
+     a58:	mov	x0, #0x1000                	// #4096
+     a5c:	bl	0 <grub_malloc>
+     a60:	mov	x22, x0
+     a64:	cbz	x0, b58 <grub_f2fs_get_block+0x1e0>
+     a68:	add	x1, x19, w20, sxtw #2
+     a6c:	adrp	x0, 0 <grub_f2fs_close>
+     a70:	add	x20, sp, #0x60
+     a74:	stp	x25, x26, [sp, #64]
+     a78:	add	x26, sp, #0x50
+     a7c:	ldr	x25, [x0]
+     a80:	mov	x19, #0x1                   	// #1
+     a84:	ldr	w0, [x1, #4060]
+     a88:	str	w0, [sp, #100]
+     a8c:	nop
+     a90:	ldr	w1, [x20, #4]
+     a94:	mov	x2, x22
+     a98:	mov	x0, x24
+     a9c:	bl	470 <grub_f2fs_read_node>
+     aa0:	ldr	w0, [x25]
+     aa4:	cmp	w23, w19
+     aa8:	cbnz	w0, b10 <grub_f2fs_get_block+0x198>
+     aac:	b.le	abc <grub_f2fs_get_block+0x144>
+     ab0:	ldrsw	x0, [x26, x19, lsl #2]
+     ab4:	ldr	w0, [x22, x0, lsl #2]
+     ab8:	str	w0, [x20, #8]
+     abc:	add	x19, x19, #0x1
+     ac0:	add	x20, x20, #0x4
+     ac4:	cmp	w23, w19
+     ac8:	b.ge	a90 <grub_f2fs_get_block+0x118>  // b.tcont
+     acc:	ldr	w19, [x22, w21, uxtw #2]
+     ad0:	mov	x0, x22
+     ad4:	bl	0 <grub_free>
+     ad8:	mov	x0, x19
+     adc:	ldp	x19, x20, [sp, #16]
+     ae0:	ldp	x21, x22, [sp, #32]
+     ae4:	ldp	x23, x24, [sp, #48]
+     ae8:	ldp	x25, x26, [sp, #64]
+     aec:	ldp	x29, x30, [sp], #112
+     af0:	ret
+     af4:	add	x1, x19, w1, uxtw #2
+     af8:	ldr	w19, [x1, #368]
+     afc:	mov	x0, x19
+     b00:	ldp	x19, x20, [sp, #16]
+     b04:	ldp	x21, x22, [sp, #32]
+     b08:	ldp	x29, x30, [sp], #112
+     b0c:	ret
+     b10:	mov	x19, #0xffffffff            	// #4294967295
+     b14:	b	ad0 <grub_f2fs_get_block+0x158>
+     b18:	mov	w20, #0x1                   	// #1
+     b1c:	mov	w21, w0
+     b20:	mov	w23, w20
+     b24:	str	w0, [sp, #84]
+     b28:	b	a58 <grub_f2fs_get_block+0xe0>
+     b2c:	mov	w21, #0x21b3                	// #8627
+     b30:	mov	w0, #0x3fa                 	// #1018
+     b34:	movk	w21, #0x80c1, lsl #16
+     b38:	mov	w20, #0x2                   	// #2
+     b3c:	umull	x21, w1, w21
+     b40:	mov	w23, #0x2                   	// #2
+     b44:	lsr	x21, x21, #41
+     b48:	str	w21, [sp, #84]
+     b4c:	msub	w21, w21, w0, w1
+     b50:	str	w21, [sp, #88]
+     b54:	b	a58 <grub_f2fs_get_block+0xe0>
+     b58:	mov	x19, #0xffffffffffffffff    	// #-1
+     b5c:	ldp	x23, x24, [sp, #48]
+     b60:	b	afc <grub_f2fs_get_block+0x184>
+     b64:	mov	w21, #0x21b3                	// #8627
+     b68:	mov	w0, #0x3fa                 	// #1018
+     b6c:	movk	w21, #0x80c1, lsl #16
+     b70:	mov	w20, #0x3                   	// #3
+     b74:	b	b3c <grub_f2fs_get_block+0x1c4>
+	...
+
+0000000000000b80 <grub_f2fs_mount>:
+     b80:	stp	x29, x30, [sp, #-80]!
+     b84:	mov	x29, sp
+     b88:	stp	x19, x20, [sp, #16]
+     b8c:	mov	x20, x0
+     b90:	mov	x0, #0x2ac8                	// #10952
+     b94:	bl	0 <grub_malloc>
+     b98:	mov	x19, x0
+     b9c:	cbz	x0, d4c <grub_f2fs_mount+0x1cc>
+     ba0:	stp	x21, x22, [sp, #32]
+     ba4:	mov	x0, x20
+     ba8:	mov	x4, x19
+     bac:	str	x20, [x19, #6808]
+     bb0:	mov	x3, #0x884                 	// #2180
+     bb4:	mov	x2, #0x0                   	// #0
+     bb8:	mov	x1, #0x2                   	// #2
+     bbc:	bl	0 <grub_disk_read>
+     bc0:	cbnz	w0, d5c <grub_f2fs_mount+0x1dc>
+     bc4:	ldr	w1, [x19]
+     bc8:	mov	w0, #0x2010                	// #8208
+     bcc:	movk	w0, #0xf2f5, lsl #16
+     bd0:	cmp	w1, w0
+     bd4:	b.ne	d5c <grub_f2fs_mount+0x1dc>  // b.any
+     bd8:	ldr	w0, [x19, #16]
+     bdc:	cmp	w0, #0xc
+     be0:	b.ne	d5c <grub_f2fs_mount+0x1dc>  // b.any
+     be4:	ldp	w0, w2, [x19, #8]
+     be8:	sub	w1, w0, #0x9
+     bec:	cmp	w1, #0x3
+     bf0:	b.hi	d5c <grub_f2fs_mount+0x1dc>  // b.pmore
+     bf4:	add	w0, w0, w2
+     bf8:	cmp	w0, #0xc
+     bfc:	b.ne	d5c <grub_f2fs_mount+0x1dc>  // b.any
+     c00:	ldr	w5, [x19, #20]
+     c04:	mov	w3, #0x1                   	// #1
+     c08:	ldr	w4, [x19, #84]
+     c0c:	add	x2, sp, #0x40
+     c10:	ldr	w21, [x19, #76]
+     c14:	mov	x0, x19
+     c18:	ldr	w1, [x19, #96]
+     c1c:	lsl	w3, w3, w5
+     c20:	str	w1, [x19, #6276]
+     c24:	mov	w1, w21
+     c28:	str	w3, [x19, #6280]
+     c2c:	str	w21, [x19, #6284]
+     c30:	str	w4, [x19, #6288]
+     c34:	stp	xzr, xzr, [sp, #64]
+     c38:	bl	210 <validate_checkpoint>
+     c3c:	mov	x20, x0
+     c40:	cbz	x0, df8 <grub_f2fs_mount+0x278>
+     c44:	ldr	w1, [x19, #6280]
+     c48:	add	x2, sp, #0x48
+     c4c:	mov	x0, x19
+     c50:	add	w1, w21, w1
+     c54:	bl	210 <validate_checkpoint>
+     c58:	mov	x22, x0
+     c5c:	cbz	x0, e84 <grub_f2fs_mount+0x304>
+     c60:	ldp	x0, x1, [sp, #64]
+     c64:	cmp	x1, x0
+     c68:	csel	x1, x22, x20, hi  // hi = pmore
+     c6c:	mov	x2, #0x1000                	// #4096
+     c70:	add	x21, x19, #0x884
+     c74:	mov	x0, x21
+     c78:	bl	0 <grub_memmove>
+     c7c:	mov	x0, x20
+     c80:	bl	0 <grub_free>
+     c84:	mov	x0, x22
+     c88:	bl	0 <grub_free>
+     c8c:	ldr	w1, [x19, #1664]
+     c90:	add	x0, x19, #0x944
+     c94:	cbnz	w1, ca0 <grub_f2fs_mount+0x120>
+     c98:	ldr	w1, [x21, #156]
+     c9c:	add	x0, x0, x1
+     ca0:	str	x0, [x19, #6800]
+     ca4:	mov	x0, #0x1000                	// #4096
+     ca8:	bl	0 <grub_malloc>
+     cac:	mov	x20, x0
+     cb0:	cbz	x0, eec <grub_f2fs_mount+0x36c>
+     cb4:	ldr	w2, [x19, #2312]
+     cb8:	ldr	x0, [x21]
+     cbc:	ldr	w1, [x19, #6284]
+     cc0:	and	x0, x0, #0x1
+     cc4:	tbz	w2, #2, e34 <grub_f2fs_mount+0x2b4>
+     cc8:	cbz	x0, ea4 <grub_f2fs_mount+0x324>
+     ccc:	ldr	w0, [x21, #140]
+     cd0:	add	w1, w1, w0
+     cd4:	ldr	x0, [x19, #6808]
+     cd8:	ubfiz	x1, x1, #3, #32
+     cdc:	mov	x4, x20
+     ce0:	mov	x3, #0x1000                	// #4096
+     ce4:	mov	x2, #0x0                   	// #0
+     ce8:	bl	0 <grub_disk_read>
+     cec:	mov	w21, w0
+     cf0:	cbnz	w0, d10 <grub_f2fs_mount+0x190>
+     cf4:	ldr	w1, [x19, #2312]
+     cf8:	mov	x2, #0x1894                	// #6292
+     cfc:	add	x0, x19, x2
+     d00:	mov	x2, #0x1fb                 	// #507
+     d04:	tbz	w1, #2, e54 <grub_f2fs_mount+0x2d4>
+     d08:	mov	x1, x20
+     d0c:	bl	0 <grub_memmove>
+     d10:	mov	x0, x20
+     d14:	bl	0 <grub_free>
+     d18:	cbnz	w21, dd8 <grub_f2fs_mount+0x258>
+     d1c:	mov	x1, #0x1ab0                	// #6832
+     d20:	add	x2, x19, x1
+     d24:	ldr	w1, [x19, #6276]
+     d28:	mov	w0, #0x1                   	// #1
+     d2c:	str	x2, [x19, #6816]
+     d30:	str	x19, [x19, #6824]
+     d34:	str	w1, [x19, #10944]
+     d38:	str	w0, [x19, #10948]
+     d3c:	mov	x0, x19
+     d40:	bl	470 <grub_f2fs_read_node>
+     d44:	cbnz	w0, dd8 <grub_f2fs_mount+0x258>
+     d48:	ldp	x21, x22, [sp, #32]
+     d4c:	mov	x0, x19
+     d50:	ldp	x19, x20, [sp, #16]
+     d54:	ldp	x29, x30, [sp], #80
+     d58:	ret
+     d5c:	ldr	x0, [x19, #6808]
+     d60:	mov	x4, x19
+     d64:	mov	x3, #0x884                 	// #2180
+     d68:	mov	x2, #0x0                   	// #0
+     d6c:	mov	x1, #0xa                   	// #10
+     d70:	bl	0 <grub_disk_read>
+     d74:	cbnz	w0, db4 <grub_f2fs_mount+0x234>
+     d78:	ldr	w1, [x19]
+     d7c:	mov	w0, #0x2010                	// #8208
+     d80:	movk	w0, #0xf2f5, lsl #16
+     d84:	cmp	w1, w0
+     d88:	b.ne	db4 <grub_f2fs_mount+0x234>  // b.any
+     d8c:	ldr	w0, [x19, #16]
+     d90:	cmp	w0, #0xc
+     d94:	b.ne	db4 <grub_f2fs_mount+0x234>  // b.any
+     d98:	ldp	w0, w2, [x19, #8]
+     d9c:	sub	w1, w0, #0x9
+     da0:	cmp	w1, #0x3
+     da4:	b.hi	db4 <grub_f2fs_mount+0x234>  // b.pmore
+     da8:	add	w0, w0, w2
+     dac:	cmp	w0, #0xc
+     db0:	b.eq	c00 <grub_f2fs_mount+0x80>  // b.none
+     db4:	adrp	x0, 0 <grub_f2fs_close>
+     db8:	ldr	x0, [x0]
+     dbc:	ldr	w0, [x0]
+     dc0:	cbnz	w0, dd8 <grub_f2fs_mount+0x258>
+     dc4:	adrp	x1, 0 <grub_f2fs_close>
+     dc8:	mov	w0, #0x9                   	// #9
+     dcc:	ldr	x1, [x1]
+     dd0:	bl	0 <grub_error>
+     dd4:	nop
+     dd8:	mov	x0, x19
+     ddc:	bl	0 <grub_free>
+     de0:	ldp	x21, x22, [sp, #32]
+     de4:	mov	x19, #0x0                   	// #0
+     de8:	mov	x0, x19
+     dec:	ldp	x19, x20, [sp, #16]
+     df0:	ldp	x29, x30, [sp], #80
+     df4:	ret
+     df8:	adrp	x0, 0 <grub_f2fs_close>
+     dfc:	str	x23, [sp, #48]
+     e00:	ldr	x23, [x0]
+     e04:	ldr	w0, [x23]
+     e08:	cbnz	w0, ed4 <grub_f2fs_mount+0x354>
+     e0c:	ldr	w1, [x19, #6280]
+     e10:	add	x2, sp, #0x48
+     e14:	mov	x0, x19
+     e18:	add	w1, w21, w1
+     e1c:	bl	210 <validate_checkpoint>
+     e20:	mov	x1, x0
+     e24:	cbz	x0, eb0 <grub_f2fs_mount+0x330>
+     e28:	mov	x22, x0
+     e2c:	ldr	x23, [sp, #48]
+     e30:	b	c6c <grub_f2fs_mount+0xec>
+     e34:	tbz	w2, #0, e68 <grub_f2fs_mount+0x2e8>
+     e38:	cbnz	x0, e44 <grub_f2fs_mount+0x2c4>
+     e3c:	ldr	w0, [x19, #6280]
+     e40:	add	w1, w1, w0
+     e44:	ldr	w0, [x21, #136]
+     e48:	sub	w0, w0, #0x7
+     e4c:	add	w1, w0, w1
+     e50:	b	cd4 <grub_f2fs_mount+0x154>
+     e54:	add	x1, x20, #0xe00
+     e58:	bl	0 <grub_memmove>
+     e5c:	mov	x0, x20
+     e60:	bl	0 <grub_free>
+     e64:	b	d18 <grub_f2fs_mount+0x198>
+     e68:	cbnz	x0, e74 <grub_f2fs_mount+0x2f4>
+     e6c:	ldr	w0, [x19, #6280]
+     e70:	add	w1, w1, w0
+     e74:	ldr	w0, [x21, #136]
+     e78:	sub	w0, w0, #0x4
+     e7c:	add	w1, w0, w1
+     e80:	b	cd4 <grub_f2fs_mount+0x154>
+     e84:	adrp	x0, 0 <grub_f2fs_close>
+     e88:	str	x23, [sp, #48]
+     e8c:	ldr	x23, [x0]
+     e90:	ldr	w0, [x23]
+     e94:	cbnz	w0, eb8 <grub_f2fs_mount+0x338>
+     e98:	mov	x1, x20
+     e9c:	ldr	x23, [sp, #48]
+     ea0:	b	c6c <grub_f2fs_mount+0xec>
+     ea4:	ldr	w0, [x19, #6280]
+     ea8:	add	w1, w1, w0
+     eac:	b	ccc <grub_f2fs_mount+0x14c>
+     eb0:	ldr	w0, [x23]
+     eb4:	cbz	w0, efc <grub_f2fs_mount+0x37c>
+     eb8:	mov	x0, x20
+     ebc:	bl	0 <grub_free>
+     ec0:	ldr	w0, [x23]
+     ec4:	cbnz	w0, ed4 <grub_f2fs_mount+0x354>
+     ec8:	add	x21, x19, #0x884
+     ecc:	ldr	x23, [sp, #48]
+     ed0:	b	c8c <grub_f2fs_mount+0x10c>
+     ed4:	mov	x0, x19
+     ed8:	mov	x19, #0x0                   	// #0
+     edc:	ldr	x23, [sp, #48]
+     ee0:	bl	0 <grub_free>
+     ee4:	ldp	x21, x22, [sp, #32]
+     ee8:	b	de8 <grub_f2fs_mount+0x268>
+     eec:	adrp	x0, 0 <grub_f2fs_close>
+     ef0:	ldr	x0, [x0]
+     ef4:	ldr	w21, [x0]
+     ef8:	b	d18 <grub_f2fs_mount+0x198>
+     efc:	adrp	x1, 0 <grub_f2fs_close>
+     f00:	mov	w0, #0x9                   	// #9
+     f04:	ldr	x1, [x1]
+     f08:	bl	0 <grub_error>
+     f0c:	b	ec4 <grub_f2fs_mount+0x344>
+	...
+
+0000000000000f28 <grub_f2fs_uuid>:
+     f28:	sub	sp, sp, #0x80
+     f2c:	adrp	x2, 0 <grub_f2fs_close>
+     f30:	stp	x29, x30, [sp, #80]
+     f34:	add	x29, sp, #0x50
+     f38:	stp	x19, x20, [sp, #96]
+     f3c:	mov	x20, x1
+     f40:	ldr	x19, [x0]
+     f44:	str	x21, [sp, #112]
+     f48:	ldr	x21, [x2]
+     f4c:	ldr	x0, [x21]
+     f50:	bl	0 <grub_dl_ref>
+     f54:	mov	x0, x19
+     f58:	bl	b80 <grub_f2fs_mount>
+     f5c:	mov	x19, x0
+     f60:	cbz	x0, 1008 <grub_f2fs_uuid+0xe0>
+     f64:	ldrb	w8, [x0, #123]
+     f68:	adrp	x0, 0 <grub_f2fs_close>
+     f6c:	ldrb	w7, [x19, #114]
+     f70:	ldrb	w6, [x19, #113]
+     f74:	ldrb	w5, [x19, #112]
+     f78:	ldrb	w4, [x19, #111]
+     f7c:	ldrb	w3, [x19, #110]
+     f80:	ldrb	w2, [x19, #109]
+     f84:	ldrb	w1, [x19, #108]
+     f88:	str	w8, [sp, #64]
+     f8c:	ldr	x0, [x0]
+     f90:	ldrb	w8, [x19, #122]
+     f94:	str	w8, [sp, #56]
+     f98:	ldrb	w8, [x19, #121]
+     f9c:	str	w8, [sp, #48]
+     fa0:	ldrb	w8, [x19, #120]
+     fa4:	str	w8, [sp, #40]
+     fa8:	ldrb	w8, [x19, #119]
+     fac:	str	w8, [sp, #32]
+     fb0:	ldrb	w8, [x19, #118]
+     fb4:	str	w8, [sp, #24]
+     fb8:	ldrb	w8, [x19, #117]
+     fbc:	str	w8, [sp, #16]
+     fc0:	ldrb	w8, [x19, #116]
+     fc4:	str	w8, [sp, #8]
+     fc8:	ldrb	w8, [x19, #115]
+     fcc:	str	w8, [sp]
+     fd0:	bl	0 <grub_xasprintf>
+     fd4:	str	x0, [x20]
+     fd8:	mov	x0, x19
+     fdc:	bl	0 <grub_free>
+     fe0:	ldr	x0, [x21]
+     fe4:	bl	0 <grub_dl_unref>
+     fe8:	adrp	x0, 0 <grub_f2fs_close>
+     fec:	ldp	x29, x30, [sp, #80]
+     ff0:	ldr	x0, [x0]
+     ff4:	ldp	x19, x20, [sp, #96]
+     ff8:	ldr	w0, [x0]
+     ffc:	ldr	x21, [sp, #112]
+    1000:	add	sp, sp, #0x80
+    1004:	ret
+    1008:	str	xzr, [x20]
+    100c:	b	fd8 <grub_f2fs_uuid+0xb0>
+	...
+
+0000000000001028 <grub_f2fs_label>:
+    1028:	stp	x29, x30, [sp, #-48]!
+    102c:	adrp	x2, 0 <grub_f2fs_close>
+    1030:	mov	x29, sp
+    1034:	stp	x19, x20, [sp, #16]
+    1038:	mov	x20, x1
+    103c:	ldr	x19, [x0]
+    1040:	str	x21, [sp, #32]
+    1044:	ldr	x21, [x2]
+    1048:	ldr	x0, [x21]
+    104c:	bl	0 <grub_dl_ref>
+    1050:	mov	x0, x19
+    1054:	bl	b80 <grub_f2fs_mount>
+    1058:	mov	x19, x0
+    105c:	cbz	x0, 1098 <grub_f2fs_label+0x70>
+    1060:	add	x0, x0, #0x7c
+    1064:	bl	38 <grub_f2fs_utf16_to_utf8>
+    1068:	str	x0, [x20]
+    106c:	mov	x0, x19
+    1070:	bl	0 <grub_free>
+    1074:	ldr	x0, [x21]
+    1078:	bl	0 <grub_dl_unref>
+    107c:	adrp	x0, 0 <grub_f2fs_close>
+    1080:	ldp	x19, x20, [sp, #16]
+    1084:	ldr	x0, [x0]
+    1088:	ldr	x21, [sp, #32]
+    108c:	ldr	w0, [x0]
+    1090:	ldp	x29, x30, [sp], #48
+    1094:	ret
+    1098:	str	xzr, [x20]
+    109c:	b	106c <grub_f2fs_label+0x44>
+	...
+
+00000000000010b0 <grub_f2fs_open>:
+    10b0:	stp	x29, x30, [sp, #-80]!
+    10b4:	adrp	x2, 0 <grub_f2fs_close>
+    10b8:	mov	x29, sp
+    10bc:	stp	x21, x22, [sp, #32]
+    10c0:	mov	x21, x1
+    10c4:	ldr	x22, [x2]
+    10c8:	stp	x19, x20, [sp, #16]
+    10cc:	mov	x20, x0
+    10d0:	stp	x23, x24, [sp, #48]
+    10d4:	ldr	x0, [x22]
+    10d8:	str	xzr, [sp, #72]
+    10dc:	bl	0 <grub_dl_ref>
+    10e0:	ldr	x0, [x20, #8]
+    10e4:	ldr	x0, [x0]
+    10e8:	bl	b80 <grub_f2fs_mount>
+    10ec:	mov	x19, x0
+    10f0:	cbz	x0, 11b0 <grub_f2fs_open+0x100>
+    10f4:	adrp	x1, 0 <grub_f2fs_close>
+    10f8:	adrp	x2, 0 <grub_f2fs_close>
+    10fc:	mov	x0, #0x1aa8                	// #6824
+    1100:	add	x24, x19, x0
+    1104:	ldr	x4, [x1]
+    1108:	mov	x0, x21
+    110c:	ldr	x3, [x2]
+    1110:	mov	x1, x24
+    1114:	add	x2, sp, #0x48
+    1118:	mov	w5, #0x1                   	// #1
+    111c:	bl	0 <grub_fshelp_find_file>
+    1120:	adrp	x0, 0 <grub_f2fs_close>
+    1124:	ldr	x23, [x0]
+    1128:	ldr	w21, [x23]
+    112c:	cbnz	w21, 11bc <grub_f2fs_open+0x10c>
+    1130:	ldr	x0, [sp, #72]
+    1134:	add	x2, x0, #0x8
+    1138:	ldr	w1, [x0, #4124]
+    113c:	cbnz	w1, 115c <grub_f2fs_open+0xac>
+    1140:	ldr	w1, [x0, #4120]
+    1144:	mov	x0, x19
+    1148:	bl	470 <grub_f2fs_read_node>
+    114c:	ldr	w0, [x23]
+    1150:	cbnz	w0, 11bc <grub_f2fs_open+0x10c>
+    1154:	ldr	x2, [sp, #72]
+    1158:	add	x2, x2, #0x8
+    115c:	ldr	x0, [x19, #6816]
+    1160:	mov	x1, x2
+    1164:	mov	x2, #0x1010                	// #4112
+    1168:	bl	0 <grub_memmove>
+    116c:	ldr	x0, [sp, #72]
+    1170:	bl	0 <grub_free>
+    1174:	ldr	x0, [x19, #6816]
+    1178:	ldr	x1, [x0, #16]
+    117c:	str	xzr, [x20, #24]
+    1180:	str	x1, [x20, #64]
+    1184:	str	x19, [x20, #80]
+    1188:	cmp	x1, #0xda0
+    118c:	ldrb	w0, [x0, #3]
+    1190:	and	w0, w0, #0x2
+    1194:	ccmp	w0, #0x0, #0x4, hi  // hi = pmore
+    1198:	b.eq	11e0 <grub_f2fs_open+0x130>  // b.none
+    119c:	adrp	x1, 0 <grub_f2fs_close>
+    11a0:	mov	w0, #0x9                   	// #9
+    11a4:	ldr	x1, [x1]
+    11a8:	bl	0 <grub_error>
+    11ac:	b	11e0 <grub_f2fs_open+0x130>
+    11b0:	adrp	x0, 0 <grub_f2fs_close>
+    11b4:	mov	x24, #0x1aa8                	// #6824
+    11b8:	ldr	x23, [x0]
+    11bc:	ldr	x0, [sp, #72]
+    11c0:	cmp	x0, x24
+    11c4:	b.eq	11cc <grub_f2fs_open+0x11c>  // b.none
+    11c8:	bl	0 <grub_free>
+    11cc:	mov	x0, x19
+    11d0:	bl	0 <grub_free>
+    11d4:	ldr	x0, [x22]
+    11d8:	bl	0 <grub_dl_unref>
+    11dc:	ldr	w21, [x23]
+    11e0:	mov	w0, w21
+    11e4:	ldp	x19, x20, [sp, #16]
+    11e8:	ldp	x21, x22, [sp, #32]
+    11ec:	ldp	x23, x24, [sp, #48]
+    11f0:	ldp	x29, x30, [sp], #80
+    11f4:	ret
+	...
+
+0000000000001220 <grub_f2fs_iterate_dir>:
+    1220:	sub	sp, sp, #0xb0
+    1224:	stp	x29, x30, [sp, #32]
+    1228:	add	x29, sp, #0x20
+    122c:	stp	x1, x2, [sp, #128]
+    1230:	ldr	w1, [x0, #4124]
+    1234:	stp	x21, x22, [sp, #64]
+    1238:	mov	x22, x0
+    123c:	ldr	x0, [x0]
+    1240:	str	x0, [sp, #120]
+    1244:	stp	xzr, xzr, [sp, #144]
+    1248:	stp	xzr, xzr, [sp, #160]
+    124c:	cbz	w1, 136c <grub_f2fs_iterate_dir+0x14c>
+    1250:	ldrb	w0, [x22, #11]
+    1254:	add	x21, x22, #0x8
+    1258:	tbnz	w0, #2, 1394 <grub_f2fs_iterate_dir+0x174>
+    125c:	ldr	x0, [x21, #16]
+    1260:	stp	x19, x20, [sp, #48]
+    1264:	mov	x20, #0x0                   	// #0
+    1268:	cbz	x0, 1410 <grub_f2fs_iterate_dir+0x1f0>
+    126c:	stp	x23, x24, [sp, #80]
+    1270:	add	x23, x22, #0x174
+    1274:	mov	x24, #0x1000                	// #4096
+    1278:	stp	x25, x26, [sp, #96]
+    127c:	adrp	x26, 0 <grub_f2fs_close>
+    1280:	mov	w25, #0x3                   	// #3
+    1284:	b	12f0 <grub_f2fs_iterate_dir+0xd0>
+    1288:	cmp	x3, #0xda0
+    128c:	b.hi	129c <grub_f2fs_iterate_dir+0x7c>  // b.pmore
+    1290:	cmp	x2, #0x1, lsl #12
+    1294:	csel	x2, x2, x24, ls  // ls = plast
+    1298:	bl	0 <grub_memmove>
+    129c:	adrp	x1, 0 <grub_f2fs_close>
+    12a0:	add	x3, x19, #0x1e
+    12a4:	add	x4, x19, #0x950
+    12a8:	add	x0, sp, #0x78
+    12ac:	ldr	x1, [x1]
+    12b0:	add	x20, x20, #0x1, lsl #12
+    12b4:	mov	w2, #0xd6                  	// #214
+    12b8:	ldr	w1, [x1]
+    12bc:	cbnz	w1, 13c8 <grub_f2fs_iterate_dir+0x1a8>
+    12c0:	stp	x19, x4, [sp, #144]
+    12c4:	str	x3, [sp, #160]
+    12c8:	str	w2, [sp, #168]
+    12cc:	bl	608 <grub_f2fs_check_dentries>
+    12d0:	mov	w1, w0
+    12d4:	mov	x0, x19
+    12d8:	mov	w19, w1
+    12dc:	bl	0 <grub_free>
+    12e0:	cbnz	w19, 13f0 <grub_f2fs_iterate_dir+0x1d0>
+    12e4:	ldr	x0, [x21, #16]
+    12e8:	cmp	x20, x0
+    12ec:	b.cs	134c <grub_f2fs_iterate_dir+0x12c>  // b.hs, b.nlast
+    12f0:	mov	x0, #0x1000                	// #4096
+    12f4:	bl	0 <grub_zalloc>
+    12f8:	add	x1, x23, x20
+    12fc:	mov	x19, x0
+    1300:	cbz	x0, 134c <grub_f2fs_iterate_dir+0x12c>
+    1304:	ldrb	w4, [x21, #3]
+    1308:	ldr	x3, [x21, #16]
+    130c:	sub	x2, x3, x20
+    1310:	tbnz	w4, #1, 1288 <grub_f2fs_iterate_dir+0x68>
+    1314:	mov	x6, x0
+    1318:	mov	x4, x20
+    131c:	ldr	x0, [x22]
+    1320:	mov	x1, x22
+    1324:	ldr	x7, [x26]
+    1328:	mov	x5, #0x1000                	// #4096
+    132c:	ldr	x0, [x0, #6808]
+    1330:	str	x3, [sp]
+    1334:	str	w25, [sp, #8]
+    1338:	mov	x2, #0x0                   	// #0
+    133c:	str	xzr, [sp, #16]
+    1340:	mov	x3, #0x0                   	// #0
+    1344:	bl	0 <grub_fshelp_read_file>
+    1348:	b	129c <grub_f2fs_iterate_dir+0x7c>
+    134c:	ldp	x19, x20, [sp, #48]
+    1350:	ldp	x23, x24, [sp, #80]
+    1354:	ldp	x25, x26, [sp, #96]
+    1358:	mov	w0, #0x0                   	// #0
+    135c:	ldp	x29, x30, [sp, #32]
+    1360:	ldp	x21, x22, [sp, #64]
+    1364:	add	sp, sp, #0xb0
+    1368:	ret
+    136c:	ldr	w1, [x22, #4120]
+    1370:	add	x21, x22, #0x8
+    1374:	mov	x2, x21
+    1378:	bl	470 <grub_f2fs_read_node>
+    137c:	adrp	x0, 0 <grub_f2fs_close>
+    1380:	ldr	x0, [x0]
+    1384:	ldr	w0, [x0]
+    1388:	cbnz	w0, 1358 <grub_f2fs_iterate_dir+0x138>
+    138c:	ldrb	w0, [x21, #3]
+    1390:	tbz	w0, #2, 125c <grub_f2fs_iterate_dir+0x3c>
+    1394:	add	x3, x22, #0x174
+    1398:	add	x2, x22, #0x192
+    139c:	mov	w1, #0xb6                  	// #182
+    13a0:	add	x22, x22, #0x964
+    13a4:	add	x0, sp, #0x78
+    13a8:	stp	x3, x22, [sp, #144]
+    13ac:	str	x2, [sp, #160]
+    13b0:	str	w1, [sp, #168]
+    13b4:	bl	608 <grub_f2fs_check_dentries>
+    13b8:	ldp	x29, x30, [sp, #32]
+    13bc:	ldp	x21, x22, [sp, #64]
+    13c0:	add	sp, sp, #0xb0
+    13c4:	ret
+    13c8:	mov	x0, x19
+    13cc:	bl	0 <grub_free>
+    13d0:	mov	w0, #0x0                   	// #0
+    13d4:	ldp	x29, x30, [sp, #32]
+    13d8:	ldp	x19, x20, [sp, #48]
+    13dc:	ldp	x21, x22, [sp, #64]
+    13e0:	ldp	x23, x24, [sp, #80]
+    13e4:	ldp	x25, x26, [sp, #96]
+    13e8:	add	sp, sp, #0xb0
+    13ec:	ret
+    13f0:	mov	w0, #0x1                   	// #1
+    13f4:	ldp	x29, x30, [sp, #32]
+    13f8:	ldp	x19, x20, [sp, #48]
+    13fc:	ldp	x21, x22, [sp, #64]
+    1400:	ldp	x23, x24, [sp, #80]
+    1404:	ldp	x25, x26, [sp, #96]
+    1408:	add	sp, sp, #0xb0
+    140c:	ret
+    1410:	ldp	x19, x20, [sp, #48]
+    1414:	b	1358 <grub_f2fs_iterate_dir+0x138>
+	...
+
+0000000000001428 <grub_f2fs_dir>:
+    1428:	stp	x29, x30, [sp, #-80]!
+    142c:	adrp	x4, 0 <grub_f2fs_close>
+    1430:	mov	x29, sp
+    1434:	str	x21, [sp, #32]
+    1438:	ldr	x21, [x4]
+    143c:	stp	x19, x20, [sp, #16]
+    1440:	mov	x19, x0
+    1444:	mov	x20, x1
+    1448:	stp	xzr, x2, [sp, #48]
+    144c:	ldr	x0, [x21]
+    1450:	stp	x3, xzr, [sp, #64]
+    1454:	bl	0 <grub_dl_ref>
+    1458:	ldr	x0, [x19]
+    145c:	bl	b80 <grub_f2fs_mount>
+    1460:	str	x0, [sp, #72]
+    1464:	cbz	x0, 14fc <grub_f2fs_dir+0xd4>
+    1468:	adrp	x3, 0 <grub_f2fs_close>
+    146c:	adrp	x2, 0 <grub_f2fs_close>
+    1470:	mov	x4, #0x1aa8                	// #6824
+    1474:	add	x1, x0, x4
+    1478:	ldr	x4, [x3]
+    147c:	mov	x0, x20
+    1480:	ldr	x3, [x2]
+    1484:	mov	w5, #0x2                   	// #2
+    1488:	add	x2, sp, #0x30
+    148c:	bl	0 <grub_fshelp_find_file>
+    1490:	adrp	x0, 0 <grub_f2fs_close>
+    1494:	ldr	x19, [x0]
+    1498:	ldr	w0, [x19]
+    149c:	cbz	w0, 14e4 <grub_f2fs_dir+0xbc>
+    14a0:	ldr	x0, [sp, #72]
+    14a4:	mov	x1, #0x1aa8                	// #6824
+    14a8:	ldr	x2, [sp, #48]
+    14ac:	add	x1, x0, x1
+    14b0:	cmp	x2, x1
+    14b4:	b.eq	14c4 <grub_f2fs_dir+0x9c>  // b.none
+    14b8:	mov	x0, x2
+    14bc:	bl	0 <grub_free>
+    14c0:	ldr	x0, [sp, #72]
+    14c4:	bl	0 <grub_free>
+    14c8:	ldr	x0, [x21]
+    14cc:	bl	0 <grub_dl_unref>
+    14d0:	ldr	w0, [x19]
+    14d4:	ldp	x19, x20, [sp, #16]
+    14d8:	ldr	x21, [sp, #32]
+    14dc:	ldp	x29, x30, [sp], #80
+    14e0:	ret
+    14e4:	adrp	x1, 0 <grub_f2fs_close>
+    14e8:	add	x2, sp, #0x38
+    14ec:	ldr	x0, [sp, #48]
+    14f0:	ldr	x1, [x1]
+    14f4:	bl	1220 <grub_f2fs_iterate_dir>
+    14f8:	b	14a0 <grub_f2fs_dir+0x78>
+    14fc:	adrp	x1, 0 <grub_f2fs_close>
+    1500:	ldr	x19, [x1]
+    1504:	b	14a4 <grub_f2fs_dir+0x7c>
+	...
+
+0000000000001530 <grub_f2fs_read>:
+    1530:	sub	sp, sp, #0x40
+    1534:	mov	x3, x0
+    1538:	mov	x5, x2
+    153c:	mov	x2, #0x1ab0                	// #6832
+    1540:	mov	x0, x1
+    1544:	stp	x29, x30, [sp, #32]
+    1548:	add	x29, sp, #0x20
+    154c:	ldr	x9, [x3, #80]
+    1550:	ldr	x4, [x3, #24]
+    1554:	add	x2, x9, x2
+    1558:	ldr	x8, [x9, #6848]
+    155c:	ldrb	w1, [x2, #3]
+    1560:	tbz	w1, #1, 15a0 <grub_f2fs_read+0x70>
+    1564:	cmp	x8, #0xda0
+    1568:	b.hi	15e0 <grub_f2fs_read+0xb0>  // b.pmore
+    156c:	sub	x8, x8, x4
+    1570:	add	x2, x2, #0x16c
+    1574:	cmp	x8, x5
+    1578:	str	x19, [sp, #48]
+    157c:	csel	x19, x8, x5, ls  // ls = plast
+    1580:	add	x1, x2, x4
+    1584:	mov	x2, x19
+    1588:	bl	0 <grub_memmove>
+    158c:	mov	x0, x19
+    1590:	ldr	x19, [sp, #48]
+    1594:	ldp	x29, x30, [sp, #32]
+    1598:	add	sp, sp, #0x40
+    159c:	ret
+    15a0:	ldr	x10, [x9, #6824]
+    15a4:	adrp	x6, 0 <grub_f2fs_close>
+    15a8:	ldp	x2, x3, [x3, #88]
+    15ac:	mov	w1, #0x3                   	// #3
+    15b0:	ldr	x7, [x6]
+    15b4:	mov	x6, x0
+    15b8:	ldr	x0, [x10, #6808]
+    15bc:	str	x8, [sp]
+    15c0:	str	w1, [sp, #8]
+    15c4:	mov	x1, #0x1aa8                	// #6824
+    15c8:	str	xzr, [sp, #16]
+    15cc:	add	x1, x9, x1
+    15d0:	bl	0 <grub_fshelp_read_file>
+    15d4:	ldp	x29, x30, [sp, #32]
+    15d8:	add	sp, sp, #0x40
+    15dc:	ret
+    15e0:	mov	x0, #0xffffffffffffffff    	// #-1
+    15e4:	b	1594 <grub_f2fs_read+0x64>
+	...
+
+00000000000015f0 <grub_mod_init>:
+    15f0:	stp	x29, x30, [sp, #-32]!
+    15f4:	adrp	x2, 0 <grub_f2fs_close>
+    15f8:	adrp	x1, 0 <grub_f2fs_close>
+    15fc:	mov	x29, sp
+    1600:	ldr	x1, [x1]
+    1604:	str	x19, [sp, #16]
+    1608:	mov	x19, x0
+    160c:	ldr	x0, [x2]
+    1610:	bl	0 <grub_list_push>
+    1614:	adrp	x0, 0 <grub_f2fs_close>
+    1618:	ldr	x0, [x0]
+    161c:	str	x19, [x0]
+    1620:	ldr	x19, [sp, #16]
+    1624:	ldp	x29, x30, [sp], #32
+    1628:	ret
+    162c:	nop
+	...
+
+0000000000001648 <grub_mod_fini>:
+    1648:	adrp	x0, 0 <grub_f2fs_close>
+    164c:	ldr	x0, [x0]
+    1650:	b	0 <grub_list_remove>
+    1654:	nop
+	...

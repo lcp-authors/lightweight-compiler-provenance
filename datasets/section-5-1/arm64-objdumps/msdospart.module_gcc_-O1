@@ -1,0 +1,217 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//msdospart.module_gcc_-O1:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_pcpart_type>:
+   0:	sub	sp, sp, #0x240
+   4:	stp	x29, x30, [sp]
+   8:	mov	x29, sp
+   c:	stp	x19, x20, [sp, #16]
+  10:	stp	x21, x22, [sp, #32]
+  14:	str	x23, [sp, #48]
+  18:	mov	x20, x0
+  1c:	mov	x22, x1
+  20:	ldr	x0, [x0]
+  24:	ldr	x21, [x0, #40]
+  28:	ldr	w23, [x21, #32]
+  2c:	ldr	x1, [x21, #40]
+  30:	str	x1, [x0, #40]
+  34:	add	x4, sp, #0x40
+  38:	mov	x3, #0x200                 	// #512
+  3c:	mov	x2, #0x0                   	// #0
+  40:	ldr	x1, [x21, #24]
+  44:	ldr	x0, [x20]
+  48:	bl	0 <grub_disk_read>
+  4c:	cbnz	w0, 8c <grub_pcpart_type+0x8c>
+  50:	mov	w19, w0
+  54:	ldr	w0, [x22]
+  58:	cbnz	w0, a4 <grub_pcpart_type+0xa4>
+  5c:	sxtw	x0, w23
+  60:	add	x0, x0, #0x1b
+  64:	lsl	x0, x0, #4
+  68:	add	x1, sp, #0x52
+  6c:	ldrb	w0, [x1, x0]
+  70:	ldr	w1, [x22, #16]
+  74:	cbz	w1, c4 <grub_pcpart_type+0xc4>
+  78:	ldr	w1, [x22, #24]
+  7c:	cbz	w1, bc <grub_pcpart_type+0xbc>
+  80:	orr	w0, w0, #0x10
+  84:	mov	w1, w0
+  88:	b	cc <grub_pcpart_type+0xcc>
+  8c:	ldr	x0, [x20]
+  90:	str	x21, [x0, #40]
+  94:	adrp	x0, 0 <grub_pcpart_type>
+  98:	ldr	x0, [x0]
+  9c:	ldr	w19, [x0]
+  a0:	b	f8 <grub_pcpart_type+0xf8>
+  a4:	mov	w2, #0x0                   	// #0
+  a8:	mov	x1, #0x0                   	// #0
+  ac:	ldr	x0, [x22, #8]
+  b0:	bl	0 <grub_strtoul>
+  b4:	and	w0, w0, #0xff
+  b8:	b	70 <grub_pcpart_type+0x70>
+  bc:	and	w0, w0, #0xffffffef
+  c0:	and	w0, w0, #0xff
+  c4:	cbz	w0, dc <grub_pcpart_type+0xdc>
+  c8:	mov	w1, w0
+  cc:	and	w2, w1, #0xffffff7f
+  d0:	cmp	w2, #0x5
+  d4:	ccmp	w1, #0xf, #0x4, ne  // ne = any
+  d8:	b.ne	114 <grub_pcpart_type+0x114>  // b.any
+  dc:	ldr	x0, [x20]
+  e0:	str	x21, [x0, #40]
+  e4:	adrp	x0, 0 <grub_pcpart_type>
+  e8:	ldr	x1, [x0]
+  ec:	mov	w0, #0x12                  	// #18
+  f0:	bl	0 <grub_error>
+  f4:	mov	w19, w0
+  f8:	mov	w0, w19
+  fc:	ldp	x19, x20, [sp, #16]
+ 100:	ldp	x21, x22, [sp, #32]
+ 104:	ldr	x23, [sp, #48]
+ 108:	ldp	x29, x30, [sp]
+ 10c:	add	sp, sp, #0x240
+ 110:	ret
+ 114:	sxtw	x23, w23
+ 118:	add	x23, x23, #0x1b
+ 11c:	lsl	x23, x23, #4
+ 120:	add	x2, sp, #0x52
+ 124:	strb	w0, [x2, x23]
+ 128:	adrp	x0, 0 <grub_pcpart_type>
+ 12c:	ldr	x0, [x0]
+ 130:	bl	0 <grub_printf_>
+ 134:	add	x4, sp, #0x40
+ 138:	mov	x3, #0x200                 	// #512
+ 13c:	mov	x2, #0x0                   	// #0
+ 140:	ldr	x1, [x21, #24]
+ 144:	ldr	x0, [x20]
+ 148:	bl	0 <grub_disk_write>
+ 14c:	ldr	x0, [x20]
+ 150:	str	x21, [x0, #40]
+ 154:	b	f8 <grub_pcpart_type+0xf8>
+	...
+
+0000000000000170 <grub_pcpart_boot>:
+ 170:	sub	sp, sp, #0x240
+ 174:	stp	x29, x30, [sp]
+ 178:	mov	x29, sp
+ 17c:	stp	x19, x20, [sp, #16]
+ 180:	stp	x21, x22, [sp, #32]
+ 184:	mov	x19, x0
+ 188:	mov	x21, x1
+ 18c:	ldr	x0, [x0]
+ 190:	ldr	x22, [x0, #40]
+ 194:	ldr	x1, [x22, #24]
+ 198:	cbnz	x1, 218 <grub_pcpart_boot+0xa8>
+ 19c:	str	x23, [sp, #48]
+ 1a0:	ldr	w23, [x22, #32]
+ 1a4:	ldr	x1, [x22, #40]
+ 1a8:	str	x1, [x0, #40]
+ 1ac:	add	x4, sp, #0x40
+ 1b0:	mov	x3, #0x200                 	// #512
+ 1b4:	mov	x2, #0x0                   	// #0
+ 1b8:	mov	x1, #0x0                   	// #0
+ 1bc:	ldr	x0, [x19]
+ 1c0:	bl	0 <grub_disk_read>
+ 1c4:	mov	w20, w0
+ 1c8:	cbnz	w0, 230 <grub_pcpart_boot+0xc0>
+ 1cc:	ldr	w0, [x21]
+ 1d0:	cbz	w0, 24c <grub_pcpart_boot+0xdc>
+ 1d4:	ldr	w0, [x21, #8]
+ 1d8:	cbz	w0, 24c <grub_pcpart_boot+0xdc>
+ 1dc:	strb	wzr, [sp, #510]
+ 1e0:	strb	wzr, [sp, #526]
+ 1e4:	strb	wzr, [sp, #542]
+ 1e8:	strb	wzr, [sp, #558]
+ 1ec:	sxtw	x0, w23
+ 1f0:	add	x0, x0, #0x1b
+ 1f4:	lsl	x0, x0, #4
+ 1f8:	add	x1, sp, #0x4e
+ 1fc:	mov	w2, #0xffffff80            	// #-128
+ 200:	strb	w2, [x1, x0]
+ 204:	mov	w1, w23
+ 208:	adrp	x0, 0 <grub_pcpart_type>
+ 20c:	ldr	x0, [x0]
+ 210:	bl	0 <grub_printf_>
+ 214:	b	270 <grub_pcpart_boot+0x100>
+ 218:	adrp	x0, 0 <grub_pcpart_type>
+ 21c:	ldr	x1, [x0]
+ 220:	mov	w0, #0x12                  	// #18
+ 224:	bl	0 <grub_error>
+ 228:	mov	w20, w0
+ 22c:	b	294 <grub_pcpart_boot+0x124>
+ 230:	ldr	x0, [x19]
+ 234:	str	x22, [x0, #40]
+ 238:	adrp	x0, 0 <grub_pcpart_type>
+ 23c:	ldr	x0, [x0]
+ 240:	ldr	w20, [x0]
+ 244:	ldr	x23, [sp, #48]
+ 248:	b	294 <grub_pcpart_boot+0x124>
+ 24c:	sxtw	x0, w23
+ 250:	add	x0, x0, #0x1b
+ 254:	lsl	x0, x0, #4
+ 258:	add	x1, sp, #0x4e
+ 25c:	strb	wzr, [x1, x0]
+ 260:	mov	w1, w23
+ 264:	adrp	x0, 0 <grub_pcpart_type>
+ 268:	ldr	x0, [x0]
+ 26c:	bl	0 <grub_printf>
+ 270:	add	x4, sp, #0x40
+ 274:	mov	x3, #0x200                 	// #512
+ 278:	mov	x2, #0x0                   	// #0
+ 27c:	mov	x1, #0x0                   	// #0
+ 280:	ldr	x0, [x19]
+ 284:	bl	0 <grub_disk_write>
+ 288:	ldr	x0, [x19]
+ 28c:	str	x22, [x0, #40]
+ 290:	ldr	x23, [sp, #48]
+ 294:	mov	w0, w20
+ 298:	ldp	x19, x20, [sp, #16]
+ 29c:	ldp	x21, x22, [sp, #32]
+ 2a0:	ldp	x29, x30, [sp]
+ 2a4:	add	sp, sp, #0x240
+ 2a8:	ret
+ 2ac:	nop
+	...
+
+00000000000002d0 <grub_mod_init>:
+ 2d0:	stp	x29, x30, [sp, #-32]!
+ 2d4:	mov	x29, sp
+ 2d8:	stp	x19, x20, [sp, #16]
+ 2dc:	adrp	x0, 0 <grub_pcpart_type>
+ 2e0:	ldr	x19, [x0]
+ 2e4:	adrp	x0, 0 <grub_pcpart_type>
+ 2e8:	ldr	x20, [x0]
+ 2ec:	mov	x2, x19
+ 2f0:	adrp	x0, 0 <grub_pcpart_type>
+ 2f4:	ldr	x1, [x0]
+ 2f8:	mov	x0, x20
+ 2fc:	bl	0 <grub_parttool_register>
+ 300:	str	w0, [x19, #48]
+ 304:	add	x2, x19, #0x38
+ 308:	adrp	x0, 0 <grub_pcpart_type>
+ 30c:	ldr	x1, [x0]
+ 310:	mov	x0, x20
+ 314:	bl	0 <grub_parttool_register>
+ 318:	str	w0, [x19, #128]
+ 31c:	ldp	x19, x20, [sp, #16]
+ 320:	ldp	x29, x30, [sp], #32
+ 324:	ret
+	...
+
+0000000000000348 <grub_mod_fini>:
+ 348:	stp	x29, x30, [sp, #-32]!
+ 34c:	mov	x29, sp
+ 350:	str	x19, [sp, #16]
+ 354:	adrp	x0, 0 <grub_pcpart_type>
+ 358:	ldr	x19, [x0]
+ 35c:	ldr	w0, [x19, #48]
+ 360:	bl	0 <grub_parttool_unregister>
+ 364:	ldr	w0, [x19, #128]
+ 368:	bl	0 <grub_parttool_unregister>
+ 36c:	ldr	x19, [sp, #16]
+ 370:	ldp	x29, x30, [sp], #32
+ 374:	ret
+	...

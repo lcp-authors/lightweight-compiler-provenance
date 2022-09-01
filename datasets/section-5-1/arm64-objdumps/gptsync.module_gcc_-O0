@@ -1,0 +1,668 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//gptsync.module_gcc_-O0:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_register_command>:
+   0:	stp	x29, x30, [sp, #-48]!
+   4:	mov	x29, sp
+   8:	str	x0, [sp, #40]
+   c:	str	x1, [sp, #32]
+  10:	str	x2, [sp, #24]
+  14:	str	x3, [sp, #16]
+  18:	mov	w4, #0x0                   	// #0
+  1c:	ldr	x3, [sp, #16]
+  20:	ldr	x2, [sp, #24]
+  24:	ldr	x1, [sp, #32]
+  28:	ldr	x0, [sp, #40]
+  2c:	bl	0 <grub_register_command_prio>
+  30:	ldp	x29, x30, [sp], #48
+  34:	ret
+
+0000000000000038 <lba_to_chs>:
+  38:	sub	sp, sp, #0x40
+  3c:	str	w0, [sp, #28]
+  40:	str	x1, [sp, #16]
+  44:	str	x2, [sp, #8]
+  48:	str	x3, [sp]
+  4c:	mov	w0, #0x3f                  	// #63
+  50:	str	w0, [sp, #60]
+  54:	mov	w0, #0xff                  	// #255
+  58:	str	w0, [sp, #56]
+  5c:	mov	w0, #0x400                 	// #1024
+  60:	str	w0, [sp, #52]
+  64:	ldr	w0, [sp, #28]
+  68:	ldr	w1, [sp, #60]
+  6c:	udiv	w2, w0, w1
+  70:	ldr	w1, [sp, #60]
+  74:	mul	w1, w2, w1
+  78:	sub	w0, w0, w1
+  7c:	add	w0, w0, #0x1
+  80:	str	w0, [sp, #48]
+  84:	ldr	w1, [sp, #28]
+  88:	ldr	w0, [sp, #60]
+  8c:	udiv	w0, w1, w0
+  90:	ldr	w1, [sp, #56]
+  94:	udiv	w2, w0, w1
+  98:	ldr	w1, [sp, #56]
+  9c:	mul	w1, w2, w1
+  a0:	sub	w0, w0, w1
+  a4:	str	w0, [sp, #44]
+  a8:	ldr	w1, [sp, #60]
+  ac:	ldr	w0, [sp, #56]
+  b0:	mul	w0, w1, w0
+  b4:	ldr	w1, [sp, #28]
+  b8:	udiv	w0, w1, w0
+  bc:	str	w0, [sp, #40]
+  c0:	ldr	w1, [sp, #40]
+  c4:	ldr	w0, [sp, #52]
+  c8:	cmp	w1, w0
+  cc:	b.cc	100 <lba_to_chs+0xc8>  // b.lo, b.ul, b.last
+  d0:	ldr	x0, [sp]
+  d4:	mov	w1, #0xffffffff            	// #-1
+  d8:	strb	w1, [x0]
+  dc:	ldr	x0, [sp]
+  e0:	ldrb	w1, [x0]
+  e4:	ldr	x0, [sp, #8]
+  e8:	strb	w1, [x0]
+  ec:	ldr	x0, [sp, #8]
+  f0:	ldrb	w1, [x0]
+  f4:	ldr	x0, [sp, #16]
+  f8:	strb	w1, [x0]
+  fc:	b	14c <lba_to_chs+0x114>
+ 100:	ldr	w0, [sp, #40]
+ 104:	lsr	w0, w0, #2
+ 108:	and	w0, w0, #0xff
+ 10c:	and	w0, w0, #0xffffffc0
+ 110:	and	w1, w0, #0xff
+ 114:	ldr	w0, [sp, #48]
+ 118:	and	w0, w0, #0xff
+ 11c:	orr	w0, w1, w0
+ 120:	and	w1, w0, #0xff
+ 124:	ldr	x0, [sp, #16]
+ 128:	strb	w1, [x0]
+ 12c:	ldr	w0, [sp, #40]
+ 130:	and	w1, w0, #0xff
+ 134:	ldr	x0, [sp, #8]
+ 138:	strb	w1, [x0]
+ 13c:	ldr	w0, [sp, #44]
+ 140:	and	w1, w0, #0xff
+ 144:	ldr	x0, [sp]
+ 148:	strb	w1, [x0]
+ 14c:	add	sp, sp, #0x40
+ 150:	ret
+
+0000000000000154 <grub_cmd_gptsync>:
+ 154:	sub	sp, sp, #0x280
+ 158:	stp	x29, x30, [sp]
+ 15c:	mov	x29, sp
+ 160:	str	x19, [sp, #16]
+ 164:	str	x0, [sp, #56]
+ 168:	str	w1, [sp, #52]
+ 16c:	str	x2, [sp, #40]
+ 170:	str	wzr, [sp, #620]
+ 174:	ldr	w0, [sp, #52]
+ 178:	cmp	w0, #0x0
+ 17c:	b.gt	198 <grub_cmd_gptsync+0x44>
+ 180:	adrp	x0, 0 <grub_register_command>
+ 184:	add	x0, x0, #0x0
+ 188:	ldr	x1, [x0]
+ 18c:	mov	w0, #0x12                  	// #18
+ 190:	bl	0 <grub_error>
+ 194:	b	990 <grub_cmd_gptsync+0x83c>
+ 198:	ldr	w0, [sp, #52]
+ 19c:	cmp	w0, #0x4
+ 1a0:	b.le	1bc <grub_cmd_gptsync+0x68>
+ 1a4:	adrp	x0, 0 <grub_register_command>
+ 1a8:	add	x0, x0, #0x0
+ 1ac:	ldr	x1, [x0]
+ 1b0:	mov	w0, #0x12                  	// #18
+ 1b4:	bl	0 <grub_error>
+ 1b8:	b	990 <grub_cmd_gptsync+0x83c>
+ 1bc:	ldr	x0, [sp, #40]
+ 1c0:	ldr	x0, [x0]
+ 1c4:	ldrb	w0, [x0]
+ 1c8:	cmp	w0, #0x28
+ 1cc:	b.ne	250 <grub_cmd_gptsync+0xfc>  // b.any
+ 1d0:	ldr	x0, [sp, #40]
+ 1d4:	ldr	x19, [x0]
+ 1d8:	ldr	x0, [sp, #40]
+ 1dc:	ldr	x0, [x0]
+ 1e0:	bl	0 <grub_strlen>
+ 1e4:	sub	x0, x0, #0x1
+ 1e8:	add	x0, x19, x0
+ 1ec:	ldrb	w0, [x0]
+ 1f0:	cmp	w0, #0x29
+ 1f4:	b.ne	250 <grub_cmd_gptsync+0xfc>  // b.any
+ 1f8:	ldr	x0, [sp, #40]
+ 1fc:	ldr	x19, [x0]
+ 200:	ldr	x0, [sp, #40]
+ 204:	ldr	x0, [x0]
+ 208:	bl	0 <grub_strlen>
+ 20c:	sub	x0, x0, #0x1
+ 210:	add	x0, x19, x0
+ 214:	strb	wzr, [x0]
+ 218:	ldr	x0, [sp, #40]
+ 21c:	ldr	x0, [x0]
+ 220:	add	x0, x0, #0x1
+ 224:	bl	0 <grub_device_open>
+ 228:	str	x0, [sp, #632]
+ 22c:	ldr	x0, [sp, #40]
+ 230:	ldr	x19, [x0]
+ 234:	ldr	x0, [sp, #40]
+ 238:	ldr	x0, [x0]
+ 23c:	bl	0 <grub_strlen>
+ 240:	add	x0, x19, x0
+ 244:	mov	w1, #0x29                  	// #41
+ 248:	strb	w1, [x0]
+ 24c:	b	260 <grub_cmd_gptsync+0x10c>
+ 250:	ldr	x0, [sp, #40]
+ 254:	ldr	x0, [x0]
+ 258:	bl	0 <grub_device_open>
+ 25c:	str	x0, [sp, #632]
+ 260:	ldr	x0, [sp, #632]
+ 264:	cmp	x0, #0x0
+ 268:	b.ne	280 <grub_cmd_gptsync+0x12c>  // b.any
+ 26c:	adrp	x0, 0 <grub_register_command>
+ 270:	add	x0, x0, #0x0
+ 274:	ldr	x0, [x0]
+ 278:	ldr	w0, [x0]
+ 27c:	b	990 <grub_cmd_gptsync+0x83c>
+ 280:	ldr	x0, [sp, #632]
+ 284:	ldr	x0, [x0]
+ 288:	cmp	x0, #0x0
+ 28c:	b.ne	2b0 <grub_cmd_gptsync+0x15c>  // b.any
+ 290:	ldr	x0, [sp, #632]
+ 294:	bl	0 <grub_device_close>
+ 298:	adrp	x0, 0 <grub_register_command>
+ 29c:	add	x0, x0, #0x0
+ 2a0:	ldr	x1, [x0]
+ 2a4:	mov	w0, #0x12                  	// #18
+ 2a8:	bl	0 <grub_error>
+ 2ac:	b	990 <grub_cmd_gptsync+0x83c>
+ 2b0:	ldr	x0, [sp, #632]
+ 2b4:	ldr	x0, [x0]
+ 2b8:	add	x1, sp, #0x48
+ 2bc:	mov	x4, x1
+ 2c0:	mov	x3, #0x200                 	// #512
+ 2c4:	mov	x2, #0x0                   	// #0
+ 2c8:	mov	x1, #0x0                   	// #0
+ 2cc:	bl	0 <grub_disk_read>
+ 2d0:	cmp	w0, #0x0
+ 2d4:	b.eq	2f4 <grub_cmd_gptsync+0x1a0>  // b.none
+ 2d8:	ldr	x0, [sp, #632]
+ 2dc:	bl	0 <grub_device_close>
+ 2e0:	adrp	x0, 0 <grub_register_command>
+ 2e4:	add	x0, x0, #0x0
+ 2e8:	ldr	x0, [x0]
+ 2ec:	ldr	w0, [x0]
+ 2f0:	b	990 <grub_cmd_gptsync+0x83c>
+ 2f4:	ldrh	w1, [sp, #582]
+ 2f8:	mov	w0, #0xaa55                	// #43605
+ 2fc:	cmp	w1, w0
+ 300:	b.eq	324 <grub_cmd_gptsync+0x1d0>  // b.none
+ 304:	ldr	x0, [sp, #632]
+ 308:	bl	0 <grub_device_close>
+ 30c:	adrp	x0, 0 <grub_register_command>
+ 310:	add	x0, x0, #0x0
+ 314:	ldr	x1, [x0]
+ 318:	mov	w0, #0x13                  	// #19
+ 31c:	bl	0 <grub_error>
+ 320:	b	990 <grub_cmd_gptsync+0x83c>
+ 324:	str	wzr, [sp, #616]
+ 328:	b	354 <grub_cmd_gptsync+0x200>
+ 32c:	ldrsw	x0, [sp, #616]
+ 330:	add	x0, x0, #0x1b
+ 334:	lsl	x0, x0, #4
+ 338:	add	x1, sp, #0x5a
+ 33c:	ldrb	w0, [x1, x0]
+ 340:	cmp	w0, #0xee
+ 344:	b.eq	364 <grub_cmd_gptsync+0x210>  // b.none
+ 348:	ldr	w0, [sp, #616]
+ 34c:	add	w0, w0, #0x1
+ 350:	str	w0, [sp, #616]
+ 354:	ldr	w0, [sp, #616]
+ 358:	cmp	w0, #0x3
+ 35c:	b.le	32c <grub_cmd_gptsync+0x1d8>
+ 360:	b	368 <grub_cmd_gptsync+0x214>
+ 364:	nop
+ 368:	ldr	w0, [sp, #616]
+ 36c:	cmp	w0, #0x4
+ 370:	b.ne	394 <grub_cmd_gptsync+0x240>  // b.any
+ 374:	ldr	x0, [sp, #632]
+ 378:	bl	0 <grub_device_close>
+ 37c:	adrp	x0, 0 <grub_register_command>
+ 380:	add	x0, x0, #0x0
+ 384:	ldr	x1, [x0]
+ 388:	mov	w0, #0x13                  	// #19
+ 38c:	bl	0 <grub_error>
+ 390:	b	990 <grub_cmd_gptsync+0x83c>
+ 394:	ldr	x0, [sp, #632]
+ 398:	ldr	x0, [x0]
+ 39c:	ldr	x0, [x0, #16]
+ 3a0:	str	x0, [sp, #624]
+ 3a4:	mov	w0, #0x1                   	// #1
+ 3a8:	str	w0, [sp, #616]
+ 3ac:	b	820 <grub_cmd_gptsync+0x6cc>
+ 3b0:	strb	wzr, [sp, #607]
+ 3b4:	ldrsw	x0, [sp, #616]
+ 3b8:	lsl	x0, x0, #3
+ 3bc:	ldr	x1, [sp, #40]
+ 3c0:	add	x0, x1, x0
+ 3c4:	ldr	x0, [x0]
+ 3c8:	mov	w1, #0x2b                  	// #43
+ 3cc:	bl	0 <grub_strchr>
+ 3d0:	str	x0, [sp, #608]
+ 3d4:	ldr	x0, [sp, #608]
+ 3d8:	cmp	x0, #0x0
+ 3dc:	b.ne	400 <grub_cmd_gptsync+0x2ac>  // b.any
+ 3e0:	ldrsw	x0, [sp, #616]
+ 3e4:	lsl	x0, x0, #3
+ 3e8:	ldr	x1, [sp, #40]
+ 3ec:	add	x0, x1, x0
+ 3f0:	ldr	x0, [x0]
+ 3f4:	mov	w1, #0x2d                  	// #45
+ 3f8:	bl	0 <grub_strchr>
+ 3fc:	str	x0, [sp, #608]
+ 400:	ldr	x0, [sp, #608]
+ 404:	cmp	x0, #0x0
+ 408:	b.eq	420 <grub_cmd_gptsync+0x2cc>  // b.none
+ 40c:	ldr	x0, [sp, #608]
+ 410:	ldrb	w0, [x0]
+ 414:	strb	w0, [sp, #607]
+ 418:	ldr	x0, [sp, #608]
+ 41c:	strb	wzr, [x0]
+ 420:	ldr	x0, [sp, #632]
+ 424:	ldr	x2, [x0]
+ 428:	ldrsw	x0, [sp, #616]
+ 42c:	lsl	x0, x0, #3
+ 430:	ldr	x1, [sp, #40]
+ 434:	add	x0, x1, x0
+ 438:	ldr	x0, [x0]
+ 43c:	mov	x1, x0
+ 440:	mov	x0, x2
+ 444:	bl	0 <grub_partition_probe>
+ 448:	str	x0, [sp, #584]
+ 44c:	ldr	x0, [sp, #608]
+ 450:	cmp	x0, #0x0
+ 454:	b.eq	464 <grub_cmd_gptsync+0x310>  // b.none
+ 458:	ldr	x0, [sp, #608]
+ 45c:	ldrb	w1, [sp, #607]
+ 460:	strb	w1, [x0]
+ 464:	ldr	x0, [sp, #584]
+ 468:	cmp	x0, #0x0
+ 46c:	b.ne	490 <grub_cmd_gptsync+0x33c>  // b.any
+ 470:	ldr	x0, [sp, #632]
+ 474:	bl	0 <grub_device_close>
+ 478:	adrp	x0, 0 <grub_register_command>
+ 47c:	add	x0, x0, #0x0
+ 480:	ldr	x1, [x0]
+ 484:	mov	w0, #0xc                   	// #12
+ 488:	bl	0 <grub_error>
+ 48c:	b	990 <grub_cmd_gptsync+0x83c>
+ 490:	ldr	x0, [sp, #584]
+ 494:	ldr	x1, [x0, #8]
+ 498:	ldr	x0, [sp, #584]
+ 49c:	ldr	x0, [x0, #16]
+ 4a0:	add	x1, x1, x0
+ 4a4:	mov	x0, #0xffffffff            	// #4294967295
+ 4a8:	cmp	x1, x0
+ 4ac:	b.ls	4d0 <grub_cmd_gptsync+0x37c>  // b.plast
+ 4b0:	ldr	x0, [sp, #632]
+ 4b4:	bl	0 <grub_device_close>
+ 4b8:	adrp	x0, 0 <grub_register_command>
+ 4bc:	add	x0, x0, #0x0
+ 4c0:	ldr	x1, [x0]
+ 4c4:	mov	w0, #0xb                   	// #11
+ 4c8:	bl	0 <grub_error>
+ 4cc:	b	990 <grub_cmd_gptsync+0x83c>
+ 4d0:	ldr	x0, [sp, #584]
+ 4d4:	ldr	x0, [x0, #8]
+ 4d8:	ldr	x1, [sp, #624]
+ 4dc:	cmp	x1, x0
+ 4e0:	b.ls	4f0 <grub_cmd_gptsync+0x39c>  // b.plast
+ 4e4:	ldr	x0, [sp, #584]
+ 4e8:	ldr	x0, [x0, #8]
+ 4ec:	str	x0, [sp, #624]
+ 4f0:	ldr	x0, [sp, #608]
+ 4f4:	cmp	x0, #0x0
+ 4f8:	b.eq	52c <grub_cmd_gptsync+0x3d8>  // b.none
+ 4fc:	ldr	x0, [sp, #608]
+ 500:	add	x0, x0, #0x1
+ 504:	ldrb	w0, [x0]
+ 508:	cmp	w0, #0x0
+ 50c:	b.eq	52c <grub_cmd_gptsync+0x3d8>  // b.none
+ 510:	ldr	x0, [sp, #608]
+ 514:	add	x0, x0, #0x1
+ 518:	mov	w2, #0x0                   	// #0
+ 51c:	mov	x1, #0x0                   	// #0
+ 520:	bl	0 <grub_strtoul>
+ 524:	strb	w0, [sp, #606]
+ 528:	b	664 <grub_cmd_gptsync+0x510>
+ 52c:	str	xzr, [sp, #592]
+ 530:	ldr	x0, [sp, #632]
+ 534:	ldr	x0, [x0]
+ 538:	ldr	x1, [sp, #584]
+ 53c:	str	x1, [x0, #40]
+ 540:	ldr	x0, [sp, #632]
+ 544:	bl	0 <grub_fs_probe>
+ 548:	str	x0, [sp, #592]
+ 54c:	adrp	x0, 0 <grub_register_command>
+ 550:	add	x0, x0, #0x0
+ 554:	ldr	x0, [x0]
+ 558:	ldr	w0, [x0]
+ 55c:	cmp	w0, #0x8
+ 560:	b.ne	578 <grub_cmd_gptsync+0x424>  // b.any
+ 564:	str	xzr, [sp, #592]
+ 568:	adrp	x0, 0 <grub_register_command>
+ 56c:	add	x0, x0, #0x0
+ 570:	ldr	x0, [x0]
+ 574:	str	wzr, [x0]
+ 578:	ldr	x0, [sp, #592]
+ 57c:	cmp	x0, #0x0
+ 580:	b.eq	5b4 <grub_cmd_gptsync+0x460>  // b.none
+ 584:	ldr	x0, [sp, #592]
+ 588:	ldr	x2, [x0, #16]
+ 58c:	adrp	x0, 0 <grub_register_command>
+ 590:	add	x0, x0, #0x0
+ 594:	ldr	x1, [x0]
+ 598:	mov	x0, x2
+ 59c:	bl	0 <grub_strcmp>
+ 5a0:	cmp	w0, #0x0
+ 5a4:	b.ne	5b4 <grub_cmd_gptsync+0x460>  // b.any
+ 5a8:	mov	w0, #0x7                   	// #7
+ 5ac:	strb	w0, [sp, #606]
+ 5b0:	b	658 <grub_cmd_gptsync+0x504>
+ 5b4:	ldr	x0, [sp, #592]
+ 5b8:	cmp	x0, #0x0
+ 5bc:	b.eq	5f0 <grub_cmd_gptsync+0x49c>  // b.none
+ 5c0:	ldr	x0, [sp, #592]
+ 5c4:	ldr	x2, [x0, #16]
+ 5c8:	adrp	x0, 0 <grub_register_command>
+ 5cc:	add	x0, x0, #0x0
+ 5d0:	ldr	x1, [x0]
+ 5d4:	mov	x0, x2
+ 5d8:	bl	0 <grub_strcmp>
+ 5dc:	cmp	w0, #0x0
+ 5e0:	b.ne	5f0 <grub_cmd_gptsync+0x49c>  // b.any
+ 5e4:	mov	w0, #0xc                   	// #12
+ 5e8:	strb	w0, [sp, #606]
+ 5ec:	b	658 <grub_cmd_gptsync+0x504>
+ 5f0:	ldr	x0, [sp, #592]
+ 5f4:	cmp	x0, #0x0
+ 5f8:	b.eq	650 <grub_cmd_gptsync+0x4fc>  // b.none
+ 5fc:	ldr	x0, [sp, #592]
+ 600:	ldr	x2, [x0, #16]
+ 604:	adrp	x0, 0 <grub_register_command>
+ 608:	add	x0, x0, #0x0
+ 60c:	ldr	x1, [x0]
+ 610:	mov	x0, x2
+ 614:	bl	0 <grub_strcmp>
+ 618:	cmp	w0, #0x0
+ 61c:	b.eq	644 <grub_cmd_gptsync+0x4f0>  // b.none
+ 620:	ldr	x0, [sp, #592]
+ 624:	ldr	x2, [x0, #16]
+ 628:	adrp	x0, 0 <grub_register_command>
+ 62c:	add	x0, x0, #0x0
+ 630:	ldr	x1, [x0]
+ 634:	mov	x0, x2
+ 638:	bl	0 <grub_strcmp>
+ 63c:	cmp	w0, #0x0
+ 640:	b.ne	650 <grub_cmd_gptsync+0x4fc>  // b.any
+ 644:	mov	w0, #0xffffffaf            	// #-81
+ 648:	strb	w0, [sp, #606]
+ 64c:	b	658 <grub_cmd_gptsync+0x504>
+ 650:	mov	w0, #0xffffff83            	// #-125
+ 654:	strb	w0, [sp, #606]
+ 658:	ldr	x0, [sp, #632]
+ 65c:	ldr	x0, [x0]
+ 660:	str	xzr, [x0, #40]
+ 664:	ldrb	w0, [sp, #607]
+ 668:	cmp	w0, #0x2b
+ 66c:	b.ne	678 <grub_cmd_gptsync+0x524>  // b.any
+ 670:	mov	w2, #0x80                  	// #128
+ 674:	b	67c <grub_cmd_gptsync+0x528>
+ 678:	mov	w2, #0x0                   	// #0
+ 67c:	ldrsw	x0, [sp, #616]
+ 680:	add	x0, x0, #0x1b
+ 684:	lsl	x0, x0, #4
+ 688:	add	x1, sp, #0x56
+ 68c:	strb	w2, [x1, x0]
+ 690:	ldrb	w0, [sp, #607]
+ 694:	cmp	w0, #0x2b
+ 698:	b.ne	6d4 <grub_cmd_gptsync+0x580>  // b.any
+ 69c:	ldr	w0, [sp, #620]
+ 6a0:	add	w0, w0, #0x1
+ 6a4:	str	w0, [sp, #620]
+ 6a8:	ldr	w0, [sp, #620]
+ 6ac:	cmp	w0, #0x2
+ 6b0:	b.ne	6d4 <grub_cmd_gptsync+0x580>  // b.any
+ 6b4:	ldr	x0, [sp, #632]
+ 6b8:	bl	0 <grub_device_close>
+ 6bc:	adrp	x0, 0 <grub_register_command>
+ 6c0:	add	x0, x0, #0x0
+ 6c4:	ldr	x1, [x0]
+ 6c8:	mov	w0, #0x12                  	// #18
+ 6cc:	bl	0 <grub_error>
+ 6d0:	b	990 <grub_cmd_gptsync+0x83c>
+ 6d4:	ldrsw	x0, [sp, #616]
+ 6d8:	add	x0, x0, #0x1b
+ 6dc:	lsl	x0, x0, #4
+ 6e0:	add	x1, sp, #0x5a
+ 6e4:	ldrb	w2, [sp, #606]
+ 6e8:	strb	w2, [x1, x0]
+ 6ec:	ldr	x0, [sp, #584]
+ 6f0:	ldr	x0, [x0, #8]
+ 6f4:	mov	w2, w0
+ 6f8:	ldrsw	x0, [sp, #616]
+ 6fc:	add	x0, x0, #0x1b
+ 700:	lsl	x0, x0, #4
+ 704:	add	x1, sp, #0x48
+ 708:	add	x0, x1, x0
+ 70c:	stur	w2, [x0, #22]
+ 710:	ldr	x0, [sp, #584]
+ 714:	ldr	x0, [x0, #8]
+ 718:	mov	w5, w0
+ 71c:	add	x1, sp, #0x48
+ 720:	ldrsw	x0, [sp, #616]
+ 724:	add	x0, x0, #0x1b
+ 728:	lsl	x0, x0, #4
+ 72c:	add	x0, x1, x0
+ 730:	add	x4, x0, #0x10
+ 734:	add	x1, sp, #0x48
+ 738:	ldrsw	x0, [sp, #616]
+ 73c:	add	x0, x0, #0x1b
+ 740:	lsl	x0, x0, #4
+ 744:	add	x0, x1, x0
+ 748:	add	x2, x0, #0x11
+ 74c:	add	x1, sp, #0x48
+ 750:	ldrsw	x0, [sp, #616]
+ 754:	add	x0, x0, #0x1b
+ 758:	lsl	x0, x0, #4
+ 75c:	add	x0, x1, x0
+ 760:	add	x0, x0, #0xf
+ 764:	mov	x3, x0
+ 768:	mov	x1, x4
+ 76c:	mov	w0, w5
+ 770:	bl	38 <lba_to_chs>
+ 774:	ldr	x0, [sp, #584]
+ 778:	ldr	x0, [x0, #8]
+ 77c:	mov	w1, w0
+ 780:	ldr	x0, [sp, #584]
+ 784:	ldr	x0, [x0, #16]
+ 788:	add	w0, w1, w0
+ 78c:	sub	w4, w0, #0x1
+ 790:	add	x1, sp, #0x48
+ 794:	ldrsw	x0, [sp, #616]
+ 798:	add	x0, x0, #0x1b
+ 79c:	lsl	x0, x0, #4
+ 7a0:	add	x0, x1, x0
+ 7a4:	add	x5, x0, #0x14
+ 7a8:	add	x1, sp, #0x48
+ 7ac:	ldrsw	x0, [sp, #616]
+ 7b0:	add	x0, x0, #0x1b
+ 7b4:	lsl	x0, x0, #4
+ 7b8:	add	x0, x1, x0
+ 7bc:	add	x2, x0, #0x15
+ 7c0:	add	x1, sp, #0x48
+ 7c4:	ldrsw	x0, [sp, #616]
+ 7c8:	add	x0, x0, #0x1b
+ 7cc:	lsl	x0, x0, #4
+ 7d0:	add	x0, x1, x0
+ 7d4:	add	x0, x0, #0x13
+ 7d8:	mov	x3, x0
+ 7dc:	mov	x1, x5
+ 7e0:	mov	w0, w4
+ 7e4:	bl	38 <lba_to_chs>
+ 7e8:	ldr	x0, [sp, #584]
+ 7ec:	ldr	x0, [x0, #16]
+ 7f0:	mov	w2, w0
+ 7f4:	ldrsw	x0, [sp, #616]
+ 7f8:	add	x0, x0, #0x1b
+ 7fc:	lsl	x0, x0, #4
+ 800:	add	x1, sp, #0x48
+ 804:	add	x0, x1, x0
+ 808:	stur	w2, [x0, #26]
+ 80c:	ldr	x0, [sp, #584]
+ 810:	bl	0 <grub_free>
+ 814:	ldr	w0, [sp, #616]
+ 818:	add	w0, w0, #0x1
+ 81c:	str	w0, [sp, #616]
+ 820:	ldr	w1, [sp, #616]
+ 824:	ldr	w0, [sp, #52]
+ 828:	cmp	w1, w0
+ 82c:	b.lt	3b0 <grub_cmd_gptsync+0x25c>  // b.tstop
+ 830:	b	864 <grub_cmd_gptsync+0x710>
+ 834:	add	x1, sp, #0x48
+ 838:	ldrsw	x0, [sp, #616]
+ 83c:	add	x0, x0, #0x1b
+ 840:	lsl	x0, x0, #4
+ 844:	add	x0, x1, x0
+ 848:	add	x0, x0, #0xe
+ 84c:	mov	x2, #0x10                  	// #16
+ 850:	mov	w1, #0x0                   	// #0
+ 854:	bl	0 <grub_memset>
+ 858:	ldr	w0, [sp, #616]
+ 85c:	add	w0, w0, #0x1
+ 860:	str	w0, [sp, #616]
+ 864:	ldr	w0, [sp, #616]
+ 868:	cmp	w0, #0x3
+ 86c:	b.le	834 <grub_cmd_gptsync+0x6e0>
+ 870:	ldr	x1, [sp, #624]
+ 874:	mov	x0, #0xffffffff            	// #4294967295
+ 878:	cmp	x1, x0
+ 87c:	b.ls	88c <grub_cmd_gptsync+0x738>  // b.plast
+ 880:	mov	x0, #0xffffffff            	// #4294967295
+ 884:	str	x0, [sp, #624]
+ 888:	b	898 <grub_cmd_gptsync+0x744>
+ 88c:	ldr	x0, [sp, #624]
+ 890:	sub	x0, x0, #0x1
+ 894:	str	x0, [sp, #624]
+ 898:	strb	wzr, [sp, #518]
+ 89c:	mov	w0, #0xffffffee            	// #-18
+ 8a0:	strb	w0, [sp, #522]
+ 8a4:	mov	w0, #0x1                   	// #1
+ 8a8:	add	x1, sp, #0x200
+ 8ac:	stur	w0, [x1, #14]
+ 8b0:	add	x0, sp, #0x48
+ 8b4:	add	x2, x0, #0x1bf
+ 8b8:	add	x0, sp, #0x48
+ 8bc:	add	x1, x0, #0x1c1
+ 8c0:	add	x0, sp, #0x48
+ 8c4:	add	x0, x0, #0x1c0
+ 8c8:	mov	x3, x2
+ 8cc:	mov	x2, x1
+ 8d0:	mov	x1, x0
+ 8d4:	mov	w0, #0x1                   	// #1
+ 8d8:	bl	38 <lba_to_chs>
+ 8dc:	ldr	x0, [sp, #624]
+ 8e0:	mov	w4, w0
+ 8e4:	add	x0, sp, #0x48
+ 8e8:	add	x2, x0, #0x1c3
+ 8ec:	add	x0, sp, #0x48
+ 8f0:	add	x1, x0, #0x1c5
+ 8f4:	add	x0, sp, #0x48
+ 8f8:	add	x0, x0, #0x1c4
+ 8fc:	mov	x3, x2
+ 900:	mov	x2, x1
+ 904:	mov	x1, x0
+ 908:	mov	w0, w4
+ 90c:	bl	38 <lba_to_chs>
+ 910:	ldr	x0, [sp, #624]
+ 914:	add	x1, sp, #0x200
+ 918:	stur	w0, [x1, #18]
+ 91c:	mov	w0, #0xffffaa55            	// #-21931
+ 920:	strh	w0, [sp, #582]
+ 924:	ldr	x0, [sp, #632]
+ 928:	ldr	x0, [x0]
+ 92c:	add	x1, sp, #0x48
+ 930:	mov	x4, x1
+ 934:	mov	x3, #0x200                 	// #512
+ 938:	mov	x2, #0x0                   	// #0
+ 93c:	mov	x1, #0x0                   	// #0
+ 940:	bl	0 <grub_disk_write>
+ 944:	cmp	w0, #0x0
+ 948:	b.eq	968 <grub_cmd_gptsync+0x814>  // b.none
+ 94c:	ldr	x0, [sp, #632]
+ 950:	bl	0 <grub_device_close>
+ 954:	adrp	x0, 0 <grub_register_command>
+ 958:	add	x0, x0, #0x0
+ 95c:	ldr	x0, [x0]
+ 960:	ldr	w0, [x0]
+ 964:	b	990 <grub_cmd_gptsync+0x83c>
+ 968:	ldr	x0, [sp, #632]
+ 96c:	bl	0 <grub_device_close>
+ 970:	ldr	x0, [sp, #40]
+ 974:	ldr	x0, [x0]
+ 978:	mov	x1, x0
+ 97c:	adrp	x0, 0 <grub_register_command>
+ 980:	add	x0, x0, #0x0
+ 984:	ldr	x0, [x0]
+ 988:	bl	0 <grub_printf_>
+ 98c:	mov	w0, #0x0                   	// #0
+ 990:	ldr	x19, [sp, #16]
+ 994:	ldp	x29, x30, [sp]
+ 998:	add	sp, sp, #0x280
+ 99c:	ret
+	...
+
+0000000000000a10 <grub_mod_init>:
+ a10:	stp	x29, x30, [sp, #-32]!
+ a14:	mov	x29, sp
+ a18:	str	x0, [sp, #24]
+ a1c:	adrp	x0, 0 <grub_register_command>
+ a20:	add	x0, x0, #0x0
+ a24:	ldr	x3, [x0]
+ a28:	adrp	x0, 0 <grub_register_command>
+ a2c:	add	x0, x0, #0x0
+ a30:	ldr	x2, [x0]
+ a34:	adrp	x0, 0 <grub_register_command>
+ a38:	add	x0, x0, #0x0
+ a3c:	ldr	x1, [x0]
+ a40:	adrp	x0, 0 <grub_register_command>
+ a44:	add	x0, x0, #0x0
+ a48:	ldr	x0, [x0]
+ a4c:	bl	0 <grub_register_command>
+ a50:	mov	x1, x0
+ a54:	adrp	x0, 0 <grub_register_command>
+ a58:	add	x0, x0, #0x0
+ a5c:	ldr	x0, [x0]
+ a60:	str	x1, [x0]
+ a64:	nop
+ a68:	ldp	x29, x30, [sp], #32
+ a6c:	ret
+	...
+
+0000000000000a98 <grub_mod_fini>:
+ a98:	stp	x29, x30, [sp, #-16]!
+ a9c:	mov	x29, sp
+ aa0:	adrp	x0, 0 <grub_register_command>
+ aa4:	add	x0, x0, #0x0
+ aa8:	ldr	x0, [x0]
+ aac:	ldr	x0, [x0]
+ ab0:	bl	0 <grub_unregister_command>
+ ab4:	nop
+ ab8:	ldp	x29, x30, [sp], #16
+ abc:	ret
+	...

@@ -1,0 +1,148 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//part_amiga.module_gcc_-Os:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <amiga_partition_map_checksum>:
+   0:	ldr	w1, [x0, #4]
+   4:	mov	x3, x0
+   8:	mov	x2, #0x0                   	// #0
+   c:	and	x0, x1, #0xffffffff
+  10:	rev	w1, w1
+  14:	ands	x0, x0, #0xffffffff80ffffff
+  18:	mov	x0, #0x80                  	// #128
+  1c:	csel	x1, x1, x0, eq  // eq = none
+  20:	mov	w0, #0x0                   	// #0
+  24:	cmp	x2, x1
+  28:	b.ne	30 <amiga_partition_map_checksum+0x30>  // b.any
+  2c:	ret
+  30:	ldr	w4, [x3, x2, lsl #2]
+  34:	add	x2, x2, #0x1
+  38:	rev	w4, w4
+  3c:	add	w0, w0, w4
+  40:	b	24 <amiga_partition_map_checksum+0x24>
+
+0000000000000044 <amiga_partition_map_iterate>:
+  44:	sub	sp, sp, #0x490
+  48:	stp	x29, x30, [sp]
+  4c:	mov	x29, sp
+  50:	stp	x21, x22, [sp, #32]
+  54:	mov	x22, x0
+  58:	adrp	x21, 0 <amiga_partition_map_checksum>
+  5c:	stp	x23, x24, [sp, #48]
+  60:	mov	x23, x1
+  64:	mov	x24, x2
+  68:	stp	x19, x20, [sp, #16]
+  6c:	mov	x19, #0x0                   	// #0
+  70:	str	x25, [sp, #64]
+  74:	add	x4, sp, #0x90
+  78:	mov	x1, x19
+  7c:	mov	x0, x22
+  80:	mov	x3, #0x200                 	// #512
+  84:	mov	x2, #0x0                   	// #0
+  88:	bl	0 <grub_disk_read>
+  8c:	cbz	w0, a0 <amiga_partition_map_iterate+0x5c>
+  90:	adrp	x0, 0 <amiga_partition_map_checksum>
+  94:	ldr	x0, [x0]
+  98:	ldr	w19, [x0]
+  9c:	b	148 <amiga_partition_map_iterate+0x104>
+  a0:	ldr	x1, [x21]
+  a4:	add	x0, sp, #0x90
+  a8:	mov	x2, #0x4                   	// #4
+  ac:	bl	0 <grub_memcmp>
+  b0:	mov	w20, w0
+  b4:	cbnz	w0, 128 <amiga_partition_map_iterate+0xe4>
+  b8:	add	x0, sp, #0x90
+  bc:	bl	0 <amiga_partition_map_checksum>
+  c0:	cbnz	w0, 128 <amiga_partition_map_iterate+0xe4>
+  c4:	ldr	w0, [sp, #172]
+  c8:	rev	w21, w0
+  cc:	cmn	w0, #0x1
+  d0:	b.eq	134 <amiga_partition_map_iterate+0xf0>  // b.none
+  d4:	adrp	x25, 0 <amiga_partition_map_checksum>
+  d8:	sxtw	x21, w21
+  dc:	add	x4, sp, #0x290
+  e0:	mov	x1, x21
+  e4:	mov	x0, x22
+  e8:	mov	x3, #0x200                 	// #512
+  ec:	mov	x2, #0x0                   	// #0
+  f0:	bl	0 <grub_disk_read>
+  f4:	cbnz	w0, 90 <amiga_partition_map_iterate+0x4c>
+  f8:	ldr	x1, [x25]
+  fc:	add	x0, sp, #0x290
+ 100:	mov	x2, #0x4                   	// #4
+ 104:	bl	0 <grub_memcmp>
+ 108:	cbnz	w0, 11c <amiga_partition_map_iterate+0xd8>
+ 10c:	add	x0, sp, #0x290
+ 110:	bl	0 <amiga_partition_map_checksum>
+ 114:	mov	w19, w0
+ 118:	cbz	w0, 168 <amiga_partition_map_iterate+0x124>
+ 11c:	adrp	x0, 0 <amiga_partition_map_checksum>
+ 120:	ldr	x1, [x0]
+ 124:	b	13c <amiga_partition_map_iterate+0xf8>
+ 128:	add	x19, x19, #0x1
+ 12c:	cmp	x19, #0xf
+ 130:	b.ne	74 <amiga_partition_map_iterate+0x30>  // b.any
+ 134:	adrp	x0, 0 <amiga_partition_map_checksum>
+ 138:	ldr	x1, [x0]
+ 13c:	mov	w0, #0x13                  	// #19
+ 140:	bl	0 <grub_error>
+ 144:	mov	w19, w0
+ 148:	mov	w0, w19
+ 14c:	ldp	x29, x30, [sp]
+ 150:	ldp	x19, x20, [sp, #16]
+ 154:	ldp	x21, x22, [sp, #32]
+ 158:	ldp	x23, x24, [sp, #48]
+ 15c:	ldr	x25, [sp, #64]
+ 160:	add	sp, sp, #0x490
+ 164:	ret
+ 168:	ldr	w0, [sp, #820]
+ 16c:	ldr	w3, [sp, #796]
+ 170:	rev	w2, w0
+ 174:	ldr	w1, [sp, #804]
+ 178:	rev	w3, w3
+ 17c:	str	w20, [sp, #80]
+ 180:	rev	w1, w1
+ 184:	str	x21, [sp, #104]
+ 188:	str	wzr, [sp, #112]
+ 18c:	mul	w0, w2, w3
+ 190:	mul	w3, w3, w1
+ 194:	mul	w0, w0, w1
+ 198:	add	x1, sp, #0x50
+ 19c:	str	x0, [sp, #88]
+ 1a0:	ldr	w0, [sp, #824]
+ 1a4:	rev	w0, w0
+ 1a8:	sub	w0, w0, w2
+ 1ac:	mov	x2, x24
+ 1b0:	madd	w3, w0, w3, w3
+ 1b4:	adrp	x0, 0 <amiga_partition_map_checksum>
+ 1b8:	str	x3, [sp, #96]
+ 1bc:	ldr	x0, [x0]
+ 1c0:	str	x0, [sp, #128]
+ 1c4:	mov	x0, x22
+ 1c8:	blr	x23
+ 1cc:	cbnz	w0, 90 <amiga_partition_map_iterate+0x4c>
+ 1d0:	ldr	w0, [sp, #672]
+ 1d4:	add	w20, w20, #0x1
+ 1d8:	rev	w21, w0
+ 1dc:	cmn	w0, #0x1
+ 1e0:	b.ne	d8 <amiga_partition_map_iterate+0x94>  // b.any
+ 1e4:	b	148 <amiga_partition_map_iterate+0x104>
+	...
+
+0000000000000218 <grub_mod_init>:
+ 218:	adrp	x0, 0 <amiga_partition_map_checksum>
+ 21c:	ldr	x1, [x0]
+ 220:	adrp	x0, 0 <amiga_partition_map_checksum>
+ 224:	ldr	x0, [x0]
+ 228:	b	0 <grub_list_push>
+ 22c:	nop
+	...
+
+0000000000000240 <grub_mod_fini>:
+ 240:	adrp	x0, 0 <amiga_partition_map_checksum>
+ 244:	ldr	x0, [x0]
+ 248:	b	0 <grub_list_remove>
+ 24c:	nop
+	...

@@ -1,0 +1,293 @@
+
+../compcert-repos/prog2/1.3:     file format elf32-littlearm
+
+
+Disassembly of section .init:
+
+0001060c <.init>:
+   1060c:	push	{r3, lr}
+   10610:	bl	10874 <_start@@Base+0x3c>
+   10614:	pop	{r3, pc}
+
+Disassembly of section .plt:
+
+00010618 <printf@plt-0x14>:
+   10618:	push	{lr}		; (str lr, [sp, #-4]!)
+   1061c:	ldr	lr, [pc, #4]	; 10628 <printf@plt-0x4>
+   10620:	add	lr, pc, lr
+   10624:	ldr	pc, [lr, #8]!
+   10628:	ldrdeq	r0, [r1], -r8
+
+0001062c <printf@plt>:
+   1062c:	add	ip, pc, #0, 12
+   10630:	add	ip, ip, #16, 20	; 0x10000
+   10634:	ldr	pc, [ip, #2520]!	; 0x9d8
+
+00010638 <fopen@plt>:
+   10638:	add	ip, pc, #0, 12
+   1063c:	add	ip, ip, #16, 20	; 0x10000
+   10640:	ldr	pc, [ip, #2512]!	; 0x9d0
+
+00010644 <strcpy@plt>:
+   10644:	add	ip, pc, #0, 12
+   10648:	add	ip, ip, #16, 20	; 0x10000
+   1064c:	ldr	pc, [ip, #2504]!	; 0x9c8
+
+00010650 <__libc_start_main@plt>:
+   10650:	add	ip, pc, #0, 12
+   10654:	add	ip, ip, #16, 20	; 0x10000
+   10658:	ldr	pc, [ip, #2496]!	; 0x9c0
+
+0001065c <__gmon_start__@plt>:
+   1065c:	add	ip, pc, #0, 12
+   10660:	add	ip, ip, #16, 20	; 0x10000
+   10664:	ldr	pc, [ip, #2488]!	; 0x9b8
+
+00010668 <fclose@plt>:
+   10668:	add	ip, pc, #0, 12
+   1066c:	add	ip, ip, #16, 20	; 0x10000
+   10670:	ldr	pc, [ip, #2480]!	; 0x9b0
+
+00010674 <fseek@plt>:
+   10674:	add	ip, pc, #0, 12
+   10678:	add	ip, ip, #16, 20	; 0x10000
+   1067c:	ldr	pc, [ip, #2472]!	; 0x9a8
+
+00010680 <abort@plt>:
+   10680:	add	ip, pc, #0, 12
+   10684:	add	ip, ip, #16, 20	; 0x10000
+   10688:	ldr	pc, [ip, #2464]!	; 0x9a0
+
+0001068c <getc@plt>:
+   1068c:	add	ip, pc, #0, 12
+   10690:	add	ip, ip, #16, 20	; 0x10000
+   10694:	ldr	pc, [ip, #2456]!	; 0x998
+
+Disassembly of section .text:
+
+00010698 <main@@Base>:
+   10698:	push	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+   1069c:	sub	sp, sp, #2256	; 0x8d0
+   106a0:	sub	sp, sp, #12
+   106a4:	ldr	r1, [pc, #384]	; 1082c <main@@Base+0x194>
+   106a8:	ldr	r0, [pc, #384]	; 10830 <main@@Base+0x198>
+   106ac:	bl	10638 <fopen@plt>
+   106b0:	add	r3, sp, #24
+   106b4:	sub	r3, r3, #12
+   106b8:	add	r9, sp, #212	; 0xd4
+   106bc:	add	r8, sp, #211	; 0xd3
+   106c0:	str	r3, [sp, #4]
+   106c4:	mov	r5, #0
+   106c8:	mov	r6, r0
+   106cc:	b	106d8 <main@@Base+0x40>
+   106d0:	cmp	r0, #60	; 0x3c
+   106d4:	beq	10700 <main@@Base+0x68>
+   106d8:	mov	r0, r6
+   106dc:	bl	1068c <getc@plt>
+   106e0:	cmn	r0, #1
+   106e4:	bne	106d0 <main@@Base+0x38>
+   106e8:	mov	r0, r6
+   106ec:	bl	10668 <fclose@plt>
+   106f0:	mov	r0, #0
+   106f4:	add	sp, sp, #2256	; 0x8d0
+   106f8:	add	sp, sp, #12
+   106fc:	pop	{r4, r5, r6, r7, r8, r9, sl, fp, pc}
+   10700:	mov	r0, r6
+   10704:	bl	1068c <getc@plt>
+   10708:	cmp	r0, #97	; 0x61
+   1070c:	bne	106d8 <main@@Base+0x40>
+   10710:	add	sl, sp, #11
+   10714:	mov	r4, sl
+   10718:	strb	r5, [r4, #1]!
+   1071c:	cmp	r4, r8
+   10720:	bne	10718 <main@@Base+0x80>
+   10724:	mov	r2, #1
+   10728:	mov	r1, #7
+   1072c:	mov	r0, r6
+   10730:	bl	10674 <fseek@plt>
+   10734:	mov	r7, sl
+   10738:	mov	fp, #0
+   1073c:	b	10748 <main@@Base+0xb0>
+   10740:	add	fp, fp, #1
+   10744:	strb	r0, [r7, #1]!
+   10748:	mov	r0, r6
+   1074c:	bl	1068c <getc@plt>
+   10750:	cmp	r0, #34	; 0x22
+   10754:	bne	10740 <main@@Base+0xa8>
+   10758:	add	r3, sp, #2256	; 0x8d0
+   1075c:	add	r3, r3, #8
+   10760:	add	r2, r3, fp
+   10764:	ldr	r1, [sp, #4]
+   10768:	mov	r0, r9
+   1076c:	strb	r5, [r2, #-2252]	; 0xfffff734
+   10770:	bl	10644 <strcpy@plt>
+   10774:	mov	r2, sl
+   10778:	strb	r5, [r2, #1]!
+   1077c:	cmp	r2, r4
+   10780:	bne	10778 <main@@Base+0xe0>
+   10784:	mov	r2, #1
+   10788:	mov	r1, r2
+   1078c:	mov	r0, r6
+   10790:	bl	10674 <fseek@plt>
+   10794:	mov	r4, #0
+   10798:	b	107c4 <main@@Base+0x12c>
+   1079c:	cmp	r0, #225	; 0xe1
+   107a0:	moveq	r1, r2
+   107a4:	addeq	r4, r4, #1
+   107a8:	addeq	r2, r3, r4
+   107ac:	mvneq	r3, #60	; 0x3c
+   107b0:	add	r4, r4, #1
+   107b4:	strbeq	r3, [r1, #-2252]	; 0xfffff734
+   107b8:	mvneq	r3, #94	; 0x5e
+   107bc:	strbeq	r3, [r2, #-2252]	; 0xfffff734
+   107c0:	strbne	r0, [r2, #-2252]	; 0xfffff734
+   107c4:	mov	r0, r6
+   107c8:	bl	1068c <getc@plt>
+   107cc:	add	r3, sp, #2256	; 0x8d0
+   107d0:	add	r3, r3, #8
+   107d4:	add	r2, r3, r4
+   107d8:	cmp	r0, #60	; 0x3c
+   107dc:	bne	1079c <main@@Base+0x104>
+   107e0:	add	r3, sp, #2256	; 0x8d0
+   107e4:	add	r3, r3, #8
+   107e8:	add	r4, r3, r4
+   107ec:	add	r7, r9, #205	; 0xcd
+   107f0:	mov	r0, r7
+   107f4:	ldr	r1, [sp, #4]
+   107f8:	strb	r5, [r4, #-2252]	; 0xfffff734
+   107fc:	bl	10644 <strcpy@plt>
+   10800:	add	r2, sp, #91	; 0x5b
+   10804:	strb	r5, [sl, #1]!
+   10808:	cmp	r2, sl
+   1080c:	bne	10804 <main@@Base+0x16c>
+   10810:	mov	r2, r9
+   10814:	mov	r1, r7
+   10818:	ldr	r0, [pc, #20]	; 10834 <main@@Base+0x19c>
+   1081c:	add	r9, r9, #408	; 0x198
+   10820:	bl	1062c <printf@plt>
+   10824:	add	r9, r9, #2
+   10828:	b	106d8 <main@@Base+0x40>
+   1082c:	strdeq	r0, [r1], -r0	; <UNPREDICTABLE>
+   10830:	strdeq	r0, [r1], -r4
+   10834:	andeq	r0, r1, ip, lsl #20
+
+00010838 <_start@@Base>:
+   10838:	mov	fp, #0
+   1083c:	mov	lr, #0
+   10840:	pop	{r1}		; (ldr r1, [sp], #4)
+   10844:	mov	r2, sp
+   10848:	push	{r2}		; (str r2, [sp, #-4]!)
+   1084c:	push	{r0}		; (str r0, [sp, #-4]!)
+   10850:	ldr	ip, [pc, #16]	; 10868 <_start@@Base+0x30>
+   10854:	push	{ip}		; (str ip, [sp, #-4]!)
+   10858:	ldr	r0, [pc, #12]	; 1086c <_start@@Base+0x34>
+   1085c:	ldr	r3, [pc, #12]	; 10870 <_start@@Base+0x38>
+   10860:	bl	10650 <__libc_start_main@plt>
+   10864:	bl	10680 <abort@plt>
+   10868:	andeq	r0, r1, r0, ror #19
+   1086c:	muleq	r1, r8, r6
+   10870:	andeq	r0, r1, r0, lsl #19
+   10874:	ldr	r3, [pc, #20]	; 10890 <_start@@Base+0x58>
+   10878:	ldr	r2, [pc, #20]	; 10894 <_start@@Base+0x5c>
+   1087c:	add	r3, pc, r3
+   10880:	ldr	r2, [r3, r2]
+   10884:	cmp	r2, #0
+   10888:	bxeq	lr
+   1088c:	b	1065c <__gmon_start__@plt>
+   10890:	andeq	r0, r1, ip, ror r7
+   10894:	andeq	r0, r0, r0, lsr r0
+   10898:	ldr	r3, [pc, #28]	; 108bc <_start@@Base+0x84>
+   1089c:	ldr	r0, [pc, #28]	; 108c0 <_start@@Base+0x88>
+   108a0:	sub	r3, r3, r0
+   108a4:	cmp	r3, #6
+   108a8:	bxls	lr
+   108ac:	ldr	r3, [pc, #16]	; 108c4 <_start@@Base+0x8c>
+   108b0:	cmp	r3, #0
+   108b4:	bxeq	lr
+   108b8:	bx	r3
+   108bc:	andeq	r1, r2, pc, lsr r0
+   108c0:	andeq	r1, r2, ip, lsr r0
+   108c4:	andeq	r0, r0, r0
+   108c8:	ldr	r1, [pc, #36]	; 108f4 <_start@@Base+0xbc>
+   108cc:	ldr	r0, [pc, #36]	; 108f8 <_start@@Base+0xc0>
+   108d0:	sub	r1, r1, r0
+   108d4:	asr	r1, r1, #2
+   108d8:	add	r1, r1, r1, lsr #31
+   108dc:	asrs	r1, r1, #1
+   108e0:	bxeq	lr
+   108e4:	ldr	r3, [pc, #16]	; 108fc <_start@@Base+0xc4>
+   108e8:	cmp	r3, #0
+   108ec:	bxeq	lr
+   108f0:	bx	r3
+   108f4:	andeq	r1, r2, ip, lsr r0
+   108f8:	andeq	r1, r2, ip, lsr r0
+   108fc:	andeq	r0, r0, r0
+   10900:	push	{r4, lr}
+   10904:	ldr	r4, [pc, #24]	; 10924 <_start@@Base+0xec>
+   10908:	ldrb	r3, [r4]
+   1090c:	cmp	r3, #0
+   10910:	popne	{r4, pc}
+   10914:	bl	10898 <_start@@Base+0x60>
+   10918:	mov	r3, #1
+   1091c:	strb	r3, [r4]
+   10920:	pop	{r4, pc}
+   10924:	andeq	r1, r2, ip, lsr r0
+   10928:	ldr	r0, [pc, #40]	; 10958 <_start@@Base+0x120>
+   1092c:	ldr	r3, [r0]
+   10930:	cmp	r3, #0
+   10934:	bne	1093c <_start@@Base+0x104>
+   10938:	b	108c8 <_start@@Base+0x90>
+   1093c:	ldr	r3, [pc, #24]	; 1095c <_start@@Base+0x124>
+   10940:	cmp	r3, #0
+   10944:	beq	10938 <_start@@Base+0x100>
+   10948:	push	{r4, lr}
+   1094c:	blx	r3
+   10950:	pop	{r4, lr}
+   10954:	b	108c8 <_start@@Base+0x90>
+   10958:	andeq	r0, r2, r4, lsl pc
+   1095c:	andeq	r0, r0, r0
+
+00010960 <esvaziastring@@Base>:
+   10960:	cmp	r1, #0
+   10964:	bxle	lr
+   10968:	add	r1, r0, r1
+   1096c:	mov	r3, #0
+   10970:	strb	r3, [r0], #1
+   10974:	cmp	r0, r1
+   10978:	bne	10970 <esvaziastring@@Base+0x10>
+   1097c:	bx	lr
+
+00010980 <__libc_csu_init@@Base>:
+   10980:	push	{r4, r5, r6, r7, r8, r9, sl, lr}
+   10984:	mov	r7, r0
+   10988:	ldr	r6, [pc, #72]	; 109d8 <__libc_csu_init@@Base+0x58>
+   1098c:	ldr	r5, [pc, #72]	; 109dc <__libc_csu_init@@Base+0x5c>
+   10990:	add	r6, pc, r6
+   10994:	add	r5, pc, r5
+   10998:	sub	r6, r6, r5
+   1099c:	mov	r8, r1
+   109a0:	mov	r9, r2
+   109a4:	bl	1060c <printf@plt-0x20>
+   109a8:	asrs	r6, r6, #2
+   109ac:	popeq	{r4, r5, r6, r7, r8, r9, sl, pc}
+   109b0:	mov	r4, #0
+   109b4:	add	r4, r4, #1
+   109b8:	ldr	r3, [r5], #4
+   109bc:	mov	r2, r9
+   109c0:	mov	r1, r8
+   109c4:	mov	r0, r7
+   109c8:	blx	r3
+   109cc:	cmp	r6, r4
+   109d0:	bne	109b4 <__libc_csu_init@@Base+0x34>
+   109d4:	pop	{r4, r5, r6, r7, r8, r9, sl, pc}
+   109d8:	andeq	r0, r1, r8, ror r5
+   109dc:	andeq	r0, r1, r0, ror r5
+
+000109e0 <__libc_csu_fini@@Base>:
+   109e0:	bx	lr
+
+Disassembly of section .fini:
+
+000109e4 <.fini>:
+   109e4:	push	{r3, lr}
+   109e8:	pop	{r3, pc}

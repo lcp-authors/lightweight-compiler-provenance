@@ -1,0 +1,77 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//adler32.module_gcc_-O2:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <adler32_init>:
+   0:	mov	w1, #0x1                   	// #1
+   4:	str	w1, [x0]
+   8:	ret
+   c:	nop
+
+0000000000000010 <adler32_write>:
+  10:	cbz	x2, 74 <adler32_write+0x64>
+  14:	add	x9, x1, x2
+  18:	ldrh	w4, [x0]
+  1c:	ldrh	w2, [x0, #2]
+  20:	mov	w7, #0xfff0                	// #65520
+  24:	nop
+  28:	ldrb	w3, [x1], #1
+  2c:	add	w6, w4, #0xf
+  30:	add	w5, w2, #0xf
+  34:	add	w8, w4, w3
+  38:	add	w6, w3, w6
+  3c:	cmp	w8, w7
+  40:	and	w3, w8, #0xffff
+  44:	and	w4, w6, #0xffff
+  48:	csel	w4, w3, w4, ls  // ls = plast
+  4c:	strh	w4, [x0]
+  50:	add	w2, w2, w4
+  54:	add	w3, w4, w5
+  58:	cmp	w2, w7
+  5c:	and	w3, w3, #0xffff
+  60:	and	w2, w2, #0xffff
+  64:	csel	w2, w2, w3, ls  // ls = plast
+  68:	strh	w2, [x0, #2]
+  6c:	cmp	x1, x9
+  70:	b.ne	28 <adler32_write+0x18>  // b.any
+  74:	ret
+
+0000000000000078 <adler32_final>:
+  78:	ret
+  7c:	nop
+
+0000000000000080 <adler32_read>:
+  80:	mov	x1, x0
+  84:	ldrh	w0, [x0]
+  88:	mov	w2, #0xfff1                	// #65521
+  8c:	cmp	w0, w2
+  90:	b.ls	9c <adler32_read+0x1c>  // b.plast
+  94:	add	w0, w0, #0xf
+  98:	strh	w0, [x1]
+  9c:	ldrh	w0, [x1, #2]
+  a0:	mov	w2, #0xfff1                	// #65521
+  a4:	cmp	w0, w2
+  a8:	b.ls	b4 <adler32_read+0x34>  // b.plast
+  ac:	add	w0, w0, #0xf
+  b0:	strh	w0, [x1, #2]
+  b4:	mov	x0, x1
+  b8:	ldr	w1, [x1]
+  bc:	rev	w1, w1
+  c0:	str	w1, [x0, #4]!
+  c4:	ret
+
+00000000000000c8 <grub_mod_init>:
+  c8:	adrp	x0, 0 <adler32_init>
+  cc:	ldr	x0, [x0]
+  d0:	b	0 <grub_md_register>
+  d4:	nop
+	...
+
+00000000000000e0 <grub_mod_fini>:
+  e0:	adrp	x0, 0 <adler32_init>
+  e4:	ldr	x0, [x0]
+  e8:	b	0 <grub_md_unregister>
+  ec:	nop
+	...

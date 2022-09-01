@@ -1,0 +1,159 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//gcry_rsa.module_gcc_-O1:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <rsa_get_nbits>:
+   0:	stp	x29, x30, [sp, #-16]!
+   4:	mov	x29, sp
+   8:	ldr	x0, [x1]
+   c:	bl	0 <gcry_mpi_get_nbits>
+  10:	ldp	x29, x30, [sp], #16
+  14:	ret
+
+0000000000000018 <public>:
+  18:	stp	x29, x30, [sp, #-48]!
+  1c:	mov	x29, sp
+  20:	stp	x19, x20, [sp, #16]
+  24:	stp	x21, x22, [sp, #32]
+  28:	mov	x20, x0
+  2c:	mov	x19, x1
+  30:	mov	x21, x2
+  34:	cmp	x0, x1
+  38:	b.eq	58 <public+0x40>  // b.none
+  3c:	ldr	x3, [x2]
+  40:	ldr	x2, [x2, #8]
+  44:	bl	0 <gcry_mpi_powm>
+  48:	ldp	x19, x20, [sp, #16]
+  4c:	ldp	x21, x22, [sp, #32]
+  50:	ldp	x29, x30, [sp], #48
+  54:	ret
+  58:	ldr	w0, [x1, #4]
+  5c:	lsl	w0, w0, #1
+  60:	bl	0 <_gcry_mpi_alloc>
+  64:	mov	x22, x0
+  68:	ldr	x3, [x21]
+  6c:	ldr	x2, [x21, #8]
+  70:	mov	x1, x19
+  74:	bl	0 <gcry_mpi_powm>
+  78:	mov	x1, x22
+  7c:	mov	x0, x20
+  80:	bl	0 <gcry_mpi_set>
+  84:	mov	x0, x22
+  88:	bl	0 <_gcry_mpi_free>
+  8c:	b	48 <public+0x30>
+
+0000000000000090 <rsa_verify>:
+  90:	stp	x29, x30, [sp, #-80]!
+  94:	mov	x29, sp
+  98:	stp	x19, x20, [sp, #16]
+  9c:	stp	x21, x22, [sp, #32]
+  a0:	str	x23, [sp, #48]
+  a4:	mov	x23, x1
+  a8:	mov	x21, x2
+  ac:	mov	x20, x4
+  b0:	mov	x22, x5
+  b4:	ldr	x0, [x3]
+  b8:	str	x0, [sp, #64]
+  bc:	ldr	x0, [x3, #8]
+  c0:	str	x0, [sp, #72]
+  c4:	mov	w0, #0xa0                  	// #160
+  c8:	bl	0 <gcry_mpi_new>
+  cc:	mov	x19, x0
+  d0:	add	x2, sp, #0x40
+  d4:	ldr	x1, [x21]
+  d8:	bl	18 <public>
+  dc:	cbz	x20, 110 <rsa_verify+0x80>
+  e0:	mov	x1, x19
+  e4:	mov	x0, x22
+  e8:	blr	x20
+  ec:	mov	w20, w0
+  f0:	mov	x0, x19
+  f4:	bl	0 <gcry_mpi_release>
+  f8:	mov	w0, w20
+  fc:	ldp	x19, x20, [sp, #16]
+ 100:	ldp	x21, x22, [sp, #32]
+ 104:	ldr	x23, [sp, #48]
+ 108:	ldp	x29, x30, [sp], #80
+ 10c:	ret
+ 110:	mov	x1, x23
+ 114:	mov	x0, x19
+ 118:	bl	0 <gcry_mpi_cmp>
+ 11c:	cmp	w0, #0x0
+ 120:	mov	w20, #0x3                   	// #3
+ 124:	csel	w20, w20, wzr, ne  // ne = any
+ 128:	b	f0 <rsa_verify+0x60>
+
+000000000000012c <rsa_encrypt>:
+ 12c:	stp	x29, x30, [sp, #-48]!
+ 130:	mov	x29, sp
+ 134:	stp	x19, x20, [sp, #16]
+ 138:	mov	x20, x1
+ 13c:	mov	x19, x2
+ 140:	ldr	x0, [x3]
+ 144:	str	x0, [sp, #32]
+ 148:	ldr	x1, [x3, #8]
+ 14c:	str	x1, [sp, #40]
+ 150:	ldr	w0, [x0, #4]
+ 154:	bl	0 <_gcry_mpi_alloc>
+ 158:	str	x0, [x20]
+ 15c:	add	x2, sp, #0x20
+ 160:	mov	x1, x19
+ 164:	bl	18 <public>
+ 168:	mov	w0, #0x0                   	// #0
+ 16c:	ldp	x19, x20, [sp, #16]
+ 170:	ldp	x29, x30, [sp], #48
+ 174:	ret
+
+0000000000000178 <rsa_check_secret_key>:
+ 178:	stp	x29, x30, [sp, #-48]!
+ 17c:	mov	x29, sp
+ 180:	stp	x19, x20, [sp, #16]
+ 184:	ldr	x19, [x1, #24]
+ 188:	ldr	x20, [x1, #32]
+ 18c:	ldr	x2, [x1, #40]
+ 190:	cmp	x19, #0x0
+ 194:	ccmp	x20, #0x0, #0x4, ne  // ne = any
+ 198:	mov	w0, #0x14                  	// #20
+ 19c:	ccmp	x2, #0x0, #0x4, ne  // ne = any
+ 1a0:	b.ne	1b0 <rsa_check_secret_key+0x38>  // b.any
+ 1a4:	ldp	x19, x20, [sp, #16]
+ 1a8:	ldp	x29, x30, [sp], #48
+ 1ac:	ret
+ 1b0:	stp	x21, x22, [sp, #32]
+ 1b4:	ldr	x22, [x1]
+ 1b8:	ldr	w0, [x19, #4]
+ 1bc:	lsl	w0, w0, #1
+ 1c0:	bl	0 <_gcry_mpi_alloc>
+ 1c4:	mov	x21, x0
+ 1c8:	mov	x2, x20
+ 1cc:	mov	x1, x19
+ 1d0:	bl	0 <gcry_mpi_mul>
+ 1d4:	mov	x1, x22
+ 1d8:	mov	x0, x21
+ 1dc:	bl	0 <gcry_mpi_cmp>
+ 1e0:	mov	w19, w0
+ 1e4:	mov	x0, x21
+ 1e8:	bl	0 <_gcry_mpi_free>
+ 1ec:	cmp	w19, #0x0
+ 1f0:	cset	w0, ne  // ne = any
+ 1f4:	lsl	w0, w0, #1
+ 1f8:	ldp	x21, x22, [sp, #32]
+ 1fc:	b	1a4 <rsa_check_secret_key+0x2c>
+
+0000000000000200 <grub_mod_init>:
+ 200:	adrp	x0, 0 <rsa_get_nbits>
+ 204:	ldr	x0, [x0]
+ 208:	adrp	x1, 0 <rsa_get_nbits>
+ 20c:	ldr	x1, [x1]
+ 210:	str	x1, [x0]
+ 214:	ret
+	...
+
+0000000000000228 <grub_mod_fini>:
+ 228:	adrp	x0, 0 <rsa_get_nbits>
+ 22c:	ldr	x0, [x0]
+ 230:	str	xzr, [x0]
+ 234:	ret
+	...

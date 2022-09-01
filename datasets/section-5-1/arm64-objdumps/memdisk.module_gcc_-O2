@@ -1,0 +1,169 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//memdisk.module_gcc_-O2:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_memdisk_close>:
+   0:	ret
+   4:	nop
+
+0000000000000008 <grub_memdisk_write>:
+   8:	stp	x29, x30, [sp, #-16]!
+   c:	adrp	x0, 0 <grub_memdisk_close>
+  10:	mov	x4, x1
+  14:	mov	x29, sp
+  18:	ldr	x0, [x0]
+  1c:	mov	x1, x3
+  20:	lsl	x2, x2, #9
+  24:	ldr	x0, [x0]
+  28:	add	x0, x0, x4, lsl #9
+  2c:	bl	0 <grub_memmove>
+  30:	mov	w0, #0x0                   	// #0
+  34:	ldp	x29, x30, [sp], #16
+  38:	ret
+  3c:	nop
+	...
+
+0000000000000048 <grub_memdisk_read>:
+  48:	stp	x29, x30, [sp, #-16]!
+  4c:	adrp	x4, 0 <grub_memdisk_close>
+  50:	mov	x0, x3
+  54:	mov	x29, sp
+  58:	ldr	x4, [x4]
+  5c:	lsl	x2, x2, #9
+  60:	ldr	x3, [x4]
+  64:	add	x1, x3, x1, lsl #9
+  68:	bl	0 <grub_memmove>
+  6c:	mov	w0, #0x0                   	// #0
+  70:	ldp	x29, x30, [sp], #16
+  74:	ret
+	...
+
+0000000000000080 <grub_memdisk_iterate>:
+  80:	mov	x3, x0
+  84:	cbnz	w2, 98 <grub_memdisk_iterate+0x18>
+  88:	adrp	x0, 0 <grub_memdisk_close>
+  8c:	mov	x16, x3
+  90:	ldr	x0, [x0]
+  94:	br	x16
+  98:	mov	w0, #0x0                   	// #0
+  9c:	ret
+	...
+
+00000000000000a8 <grub_memdisk_open>:
+  a8:	stp	x29, x30, [sp, #-32]!
+  ac:	adrp	x2, 0 <grub_memdisk_close>
+  b0:	mov	x29, sp
+  b4:	str	x19, [sp, #16]
+  b8:	mov	x19, x1
+  bc:	ldr	x1, [x2]
+  c0:	bl	0 <grub_strcmp>
+  c4:	cbnz	w0, f4 <grub_memdisk_open+0x4c>
+  c8:	adrp	x1, 0 <grub_memdisk_close>
+  cc:	mov	w2, #0x7fff                	// #32767
+  d0:	str	w2, [x19, #28]
+  d4:	ldr	x1, [x1]
+  d8:	str	xzr, [x19, #32]
+  dc:	ldr	x1, [x1, #8]
+  e0:	lsr	x1, x1, #9
+  e4:	str	x1, [x19, #16]
+  e8:	ldr	x19, [sp, #16]
+  ec:	ldp	x29, x30, [sp], #32
+  f0:	ret
+  f4:	adrp	x1, 0 <grub_memdisk_close>
+  f8:	mov	w0, #0xc                   	// #12
+  fc:	ldr	x19, [sp, #16]
+ 100:	ldp	x29, x30, [sp], #32
+ 104:	ldr	x1, [x1]
+ 108:	b	0 <grub_error>
+ 10c:	nop
+	...
+
+0000000000000128 <grub_mod_init>:
+ 128:	adrp	x0, 0 <grub_memdisk_close>
+ 12c:	ldr	x0, [x0]
+ 130:	ldr	x1, [x0]
+ 134:	cbz	x1, 14c <grub_mod_init+0x24>
+ 138:	ldr	w2, [x1]
+ 13c:	mov	w0, #0x696d                	// #26989
+ 140:	movk	w0, #0x676d, lsl #16
+ 144:	cmp	w2, w0
+ 148:	b.eq	150 <grub_mod_init+0x28>  // b.none
+ 14c:	ret
+ 150:	stp	x29, x30, [sp, #-48]!
+ 154:	mov	x29, sp
+ 158:	stp	x19, x20, [sp, #16]
+ 15c:	ldr	x19, [x1, #8]
+ 160:	adds	x19, x1, x19
+ 164:	b.eq	1a0 <grub_mod_init+0x78>  // b.none
+ 168:	ldr	x0, [x1, #16]
+ 16c:	stp	x21, x22, [sp, #32]
+ 170:	add	x1, x1, x0
+ 174:	b	194 <grub_mod_init+0x6c>
+ 178:	ldr	w0, [x19]
+ 17c:	cmp	w0, #0x1
+ 180:	b.eq	1ac <grub_mod_init+0x84>  // b.none
+ 184:	ldr	w0, [x19, #4]
+ 188:	add	x0, x0, #0x7
+ 18c:	and	x0, x0, #0xfffffffffffffff8
+ 190:	add	x19, x19, x0
+ 194:	cmp	x19, x1
+ 198:	b.cc	178 <grub_mod_init+0x50>  // b.lo, b.ul, b.last
+ 19c:	ldp	x21, x22, [sp, #32]
+ 1a0:	ldp	x19, x20, [sp, #16]
+ 1a4:	ldp	x29, x30, [sp], #48
+ 1a8:	ret
+ 1ac:	adrp	x2, 0 <grub_memdisk_close>
+ 1b0:	adrp	x1, 0 <grub_memdisk_close>
+ 1b4:	adrp	x0, 0 <grub_memdisk_close>
+ 1b8:	add	x20, x19, #0x8
+ 1bc:	ldr	x3, [x2]
+ 1c0:	mov	x4, x20
+ 1c4:	ldr	x22, [x1]
+ 1c8:	mov	w1, #0x61                  	// #97
+ 1cc:	ldr	x21, [x0]
+ 1d0:	mov	x2, x22
+ 1d4:	mov	x0, x21
+ 1d8:	bl	0 <grub_real_dprintf>
+ 1dc:	adrp	x1, 0 <grub_memdisk_close>
+ 1e0:	ldr	w0, [x19, #4]
+ 1e4:	ldr	x19, [x1]
+ 1e8:	sub	x0, x0, #0x8
+ 1ec:	str	x0, [x19, #8]
+ 1f0:	bl	0 <grub_malloc>
+ 1f4:	adrp	x1, 0 <grub_memdisk_close>
+ 1f8:	mov	x4, x0
+ 1fc:	mov	x2, x22
+ 200:	mov	x0, x21
+ 204:	ldr	x3, [x1]
+ 208:	mov	w1, #0x66                  	// #102
+ 20c:	str	x4, [x19]
+ 210:	bl	0 <grub_real_dprintf>
+ 214:	ldp	x0, x2, [x19]
+ 218:	mov	x1, x20
+ 21c:	bl	0 <grub_memmove>
+ 220:	adrp	x0, 0 <grub_memdisk_close>
+ 224:	ldp	x19, x20, [sp, #16]
+ 228:	ldp	x21, x22, [sp, #32]
+ 22c:	ldp	x29, x30, [sp], #48
+ 230:	ldr	x0, [x0]
+ 234:	b	0 <grub_disk_dev_register>
+	...
+
+0000000000000270 <grub_mod_fini>:
+ 270:	adrp	x0, 0 <grub_memdisk_close>
+ 274:	ldr	x0, [x0]
+ 278:	ldr	x1, [x0, #8]
+ 27c:	cbnz	x1, 284 <grub_mod_fini+0x14>
+ 280:	ret
+ 284:	stp	x29, x30, [sp, #-16]!
+ 288:	mov	x29, sp
+ 28c:	ldr	x0, [x0]
+ 290:	bl	0 <grub_free>
+ 294:	ldp	x29, x30, [sp], #16
+ 298:	adrp	x0, 0 <grub_memdisk_close>
+ 29c:	ldr	x0, [x0]
+ 2a0:	b	0 <grub_disk_dev_unregister>
+ 2a4:	nop
+	...

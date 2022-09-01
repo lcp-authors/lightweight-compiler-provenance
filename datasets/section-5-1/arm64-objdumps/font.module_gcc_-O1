@@ -1,0 +1,2057 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//font.module_gcc_-O1:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_font_blit_glyph>:
+       0:	ldrh	w4, [x1, #10]
+       4:	cbz	w4, b4 <grub_font_blit_glyph+0xb4>
+       8:	ldrh	w12, [x0, #8]
+       c:	madd	w10, w12, w3, w2
+      10:	mov	w11, #0x0                   	// #0
+      14:	b	90 <grub_font_blit_glyph+0x90>
+      18:	add	w7, w7, #0x1
+      1c:	mov	w4, #0x0                   	// #0
+      20:	b	68 <grub_font_blit_glyph+0x68>
+      24:	add	w6, w6, #0x1
+      28:	ldrh	w2, [x1, #8]
+      2c:	cmp	w2, w6
+      30:	b.ls	7c <grub_font_blit_glyph+0x7c>  // b.plast
+      34:	add	x3, x0, w9, uxtw
+      38:	add	x2, x1, w7, uxtw
+      3c:	ldrb	w2, [x2, #18]
+      40:	lsl	w2, w2, w4
+      44:	and	w2, w2, #0x80
+      48:	asr	w2, w2, w5
+      4c:	ldrb	w8, [x3, #18]
+      50:	orr	w2, w2, w8
+      54:	strb	w2, [x3, #18]
+      58:	add	w4, w4, #0x1
+      5c:	add	w5, w5, #0x1
+      60:	cmp	w4, #0x8
+      64:	b.eq	18 <grub_font_blit_glyph+0x18>  // b.none
+      68:	cmp	w5, #0x8
+      6c:	b.ne	24 <grub_font_blit_glyph+0x24>  // b.any
+      70:	add	w9, w9, #0x1
+      74:	mov	w5, #0x0                   	// #0
+      78:	b	24 <grub_font_blit_glyph+0x24>
+      7c:	add	w11, w11, #0x1
+      80:	add	w10, w10, w12
+      84:	ldrh	w2, [x1, #10]
+      88:	cmp	w2, w11
+      8c:	b.ls	b4 <grub_font_blit_glyph+0xb4>  // b.plast
+      90:	ldrh	w2, [x1, #8]
+      94:	mul	w7, w2, w11
+      98:	and	w4, w7, #0x7
+      9c:	lsr	w7, w7, #3
+      a0:	and	w5, w10, #0x7
+      a4:	lsr	w9, w10, #3
+      a8:	cbz	w2, 7c <grub_font_blit_glyph+0x7c>
+      ac:	mov	w6, #0x0                   	// #0
+      b0:	b	34 <grub_font_blit_glyph+0x34>
+      b4:	ret
+
+00000000000000b8 <do_blit>:
+      b8:	stp	x29, x30, [sp, #-48]!
+      bc:	mov	x29, sp
+      c0:	stp	x19, x20, [sp, #16]
+      c4:	stp	x21, x22, [sp, #32]
+      c8:	mov	x22, x0
+      cc:	mov	w21, w1
+      d0:	mov	w20, w2
+      d4:	mov	x19, x3
+      d8:	ldr	x0, [x3]
+      dc:	cbz	x0, 100 <do_blit+0x48>
+      e0:	ldrh	w3, [x0, #10]
+      e4:	ldrsh	w1, [x0, #14]
+      e8:	add	w3, w3, w1
+      ec:	ldrsh	w2, [x0, #12]
+      f0:	add	w3, w3, w20
+      f4:	sub	w2, w21, w2
+      f8:	mov	x1, x22
+      fc:	bl	0 <grub_font_blit_glyph>
+     100:	ldr	w0, [x19, #16]
+     104:	cmp	w0, w21
+     108:	b.le	120 <do_blit+0x68>
+     10c:	sub	w0, w0, w21
+     110:	ldr	w1, [x19, #24]
+     114:	add	w0, w1, w0
+     118:	str	w0, [x19, #24]
+     11c:	str	w21, [x19, #16]
+     120:	ldr	w0, [x19, #20]
+     124:	ldrh	w1, [x22, #10]
+     128:	neg	w1, w1
+     12c:	sub	w1, w1, w20
+     130:	cmp	w0, w1
+     134:	b.le	158 <do_blit+0xa0>
+     138:	sub	w1, w0, w1
+     13c:	ldr	w0, [x19, #28]
+     140:	add	w1, w0, w1
+     144:	str	w1, [x19, #28]
+     148:	ldrh	w0, [x22, #10]
+     14c:	neg	w0, w0
+     150:	sub	w0, w0, w20
+     154:	str	w0, [x19, #20]
+     158:	ldrh	w0, [x22, #8]
+     15c:	add	w1, w0, w21
+     160:	ldr	w0, [x19, #16]
+     164:	sub	w1, w1, w0
+     168:	ldr	w0, [x19, #24]
+     16c:	cmp	w1, w0
+     170:	b.lt	17c <do_blit+0xc4>  // b.tstop
+     174:	add	w1, w1, #0x1
+     178:	str	w1, [x19, #24]
+     17c:	neg	w20, w20
+     180:	ldr	w2, [x19, #20]
+     184:	sub	w20, w20, w2
+     188:	ldr	w0, [x19, #28]
+     18c:	cmp	w0, w20
+     190:	b.ge	198 <do_blit+0xe0>  // b.tcont
+     194:	str	w20, [x19, #28]
+     198:	ldp	x19, x20, [sp, #16]
+     19c:	ldp	x21, x22, [sp, #32]
+     1a0:	ldp	x29, x30, [sp], #48
+     1a4:	ret
+
+00000000000001a8 <remove_font>:
+     1a8:	mov	x2, x0
+     1ac:	adrp	x0, 0 <grub_font_blit_glyph>
+     1b0:	ldr	x0, [x0]
+     1b4:	ldr	x0, [x0]
+     1b8:	cbz	x0, 1fc <remove_font+0x54>
+     1bc:	adrp	x1, 0 <grub_font_blit_glyph>
+     1c0:	ldr	x3, [x1]
+     1c4:	ldr	x1, [x0, #8]
+     1c8:	cmp	x1, x2
+     1cc:	b.eq	1e0 <remove_font+0x38>  // b.none
+     1d0:	mov	x3, x0
+     1d4:	ldr	x0, [x0]
+     1d8:	cbnz	x0, 1c4 <remove_font+0x1c>
+     1dc:	ret
+     1e0:	stp	x29, x30, [sp, #-16]!
+     1e4:	mov	x29, sp
+     1e8:	ldr	x1, [x0]
+     1ec:	str	x1, [x3]
+     1f0:	bl	0 <grub_free>
+     1f4:	ldp	x29, x30, [sp], #16
+     1f8:	ret
+     1fc:	ret
+	...
+
+0000000000000208 <ensure_comb_space>:
+     208:	ldrh	w0, [x0, #6]
+     20c:	ubfx	x1, x0, #3, #8
+     210:	adrp	x2, 0 <grub_font_blit_glyph>
+     214:	ldr	x2, [x2]
+     218:	ldr	x2, [x2]
+     21c:	cmp	x1, x2
+     220:	b.ls	29c <ensure_comb_space+0x94>  // b.plast
+     224:	stp	x29, x30, [sp, #-32]!
+     228:	mov	x29, sp
+     22c:	str	x19, [sp, #16]
+     230:	ubfiz	x1, x1, #1, #8
+     234:	cmp	x1, #0x7
+     238:	b.ls	278 <ensure_comb_space+0x70>  // b.plast
+     23c:	adrp	x0, 0 <grub_font_blit_glyph>
+     240:	ldr	x0, [x0]
+     244:	str	x1, [x0]
+     248:	adrp	x0, 0 <grub_font_blit_glyph>
+     24c:	ldr	x19, [x0]
+     250:	ldr	x0, [x19, #8]
+     254:	bl	0 <grub_free>
+     258:	ldr	x0, [x19]
+     25c:	lsl	x0, x0, #3
+     260:	bl	0 <grub_malloc>
+     264:	str	x0, [x19, #8]
+     268:	cbz	x0, 28c <ensure_comb_space+0x84>
+     26c:	ldr	x19, [sp, #16]
+     270:	ldp	x29, x30, [sp], #32
+     274:	ret
+     278:	adrp	x0, 0 <grub_font_blit_glyph>
+     27c:	ldr	x0, [x0]
+     280:	mov	x1, #0x8                   	// #8
+     284:	str	x1, [x0]
+     288:	b	248 <ensure_comb_space+0x40>
+     28c:	adrp	x0, 0 <grub_font_blit_glyph>
+     290:	ldr	x0, [x0]
+     294:	str	wzr, [x0]
+     298:	b	26c <ensure_comb_space+0x64>
+     29c:	ret
+	...
+
+00000000000002b0 <read_section_as_string>:
+     2b0:	stp	x29, x30, [sp, #-32]!
+     2b4:	mov	x29, sp
+     2b8:	stp	x19, x20, [sp, #16]
+     2bc:	mov	x20, x0
+     2c0:	ldr	w0, [x0, #12]
+     2c4:	add	w0, w0, #0x1
+     2c8:	bl	0 <grub_malloc>
+     2cc:	mov	x19, x0
+     2d0:	cbz	x0, 2f8 <read_section_as_string+0x48>
+     2d4:	ldr	w2, [x20, #12]
+     2d8:	mov	x1, x0
+     2dc:	ldr	x0, [x20]
+     2e0:	bl	0 <grub_file_read>
+     2e4:	tbnz	x0, #63, 308 <read_section_as_string+0x58>
+     2e8:	ldr	w1, [x20, #12]
+     2ec:	cmp	x0, w1, uxtw
+     2f0:	b.ne	308 <read_section_as_string+0x58>  // b.any
+     2f4:	strb	wzr, [x19, w1, uxtw]
+     2f8:	mov	x0, x19
+     2fc:	ldp	x19, x20, [sp, #16]
+     300:	ldp	x29, x30, [sp], #32
+     304:	ret
+     308:	mov	x0, x19
+     30c:	bl	0 <grub_free>
+     310:	mov	x19, #0x0                   	// #0
+     314:	b	2f8 <read_section_as_string+0x48>
+
+0000000000000318 <read_section_as_short>:
+     318:	stp	x29, x30, [sp, #-48]!
+     31c:	mov	x29, sp
+     320:	ldr	w6, [x0, #12]
+     324:	cmp	w6, #0x2
+     328:	b.eq	358 <read_section_as_short+0x40>  // b.none
+     32c:	ldrb	w5, [x0, #11]
+     330:	ldrb	w4, [x0, #10]
+     334:	ldrb	w3, [x0, #9]
+     338:	ldrb	w2, [x0, #8]
+     33c:	adrp	x0, 0 <grub_font_blit_glyph>
+     340:	ldr	x1, [x0]
+     344:	mov	w0, #0x17                  	// #23
+     348:	bl	0 <grub_error>
+     34c:	mov	w0, #0x1                   	// #1
+     350:	ldp	x29, x30, [sp], #48
+     354:	ret
+     358:	str	x19, [sp, #16]
+     35c:	mov	x19, x1
+     360:	mov	x2, #0x2                   	// #2
+     364:	add	x1, sp, #0x2e
+     368:	ldr	x0, [x0]
+     36c:	bl	0 <grub_file_read>
+     370:	mov	x1, x0
+     374:	mov	w0, #0x1                   	// #1
+     378:	cmp	x1, #0x2
+     37c:	b.ne	39c <read_section_as_short+0x84>  // b.any
+     380:	ldrh	w0, [sp, #46]
+     384:	lsr	w1, w0, #8
+     388:	orr	w0, w1, w0, lsl #8
+     38c:	strh	w0, [x19]
+     390:	mov	w0, #0x0                   	// #0
+     394:	ldr	x19, [sp, #16]
+     398:	b	350 <read_section_as_short+0x38>
+     39c:	ldr	x19, [sp, #16]
+     3a0:	b	350 <read_section_as_short+0x38>
+     3a4:	nop
+	...
+
+00000000000003b0 <read_be_uint16>:
+     3b0:	stp	x29, x30, [sp, #-32]!
+     3b4:	mov	x29, sp
+     3b8:	str	x19, [sp, #16]
+     3bc:	mov	x19, x1
+     3c0:	mov	x2, #0x2                   	// #2
+     3c4:	bl	0 <grub_file_read>
+     3c8:	cmp	x0, #0x2
+     3cc:	b.ne	3f0 <read_be_uint16+0x40>  // b.any
+     3d0:	ldrh	w0, [x19]
+     3d4:	lsr	w1, w0, #8
+     3d8:	orr	w0, w1, w0, lsl #8
+     3dc:	strh	w0, [x19]
+     3e0:	mov	w0, #0x0                   	// #0
+     3e4:	ldr	x19, [sp, #16]
+     3e8:	ldp	x29, x30, [sp], #32
+     3ec:	ret
+     3f0:	mov	w0, #0x1                   	// #1
+     3f4:	b	3e4 <read_be_uint16+0x34>
+
+00000000000003f8 <open_section>:
+     3f8:	stp	x29, x30, [sp, #-48]!
+     3fc:	mov	x29, sp
+     400:	stp	x19, x20, [sp, #16]
+     404:	mov	x20, x0
+     408:	mov	x19, x1
+     40c:	str	x0, [x1]
+     410:	str	wzr, [x1, #16]
+     414:	mov	x2, #0x4                   	// #4
+     418:	add	x1, x1, #0x8
+     41c:	bl	0 <grub_file_read>
+     420:	cmp	x0, #0x3
+     424:	b.ls	46c <open_section+0x74>  // b.plast
+     428:	mov	x1, x0
+     42c:	mov	w0, #0x1                   	// #1
+     430:	tbnz	x1, #63, 474 <open_section+0x7c>
+     434:	mov	x2, #0x4                   	// #4
+     438:	add	x1, sp, #0x2c
+     43c:	mov	x0, x20
+     440:	bl	0 <grub_file_read>
+     444:	mov	x1, x0
+     448:	cmp	x0, #0x3
+     44c:	b.ls	480 <open_section+0x88>  // b.plast
+     450:	mov	w0, #0x1                   	// #1
+     454:	tbnz	x1, #63, 474 <open_section+0x7c>
+     458:	ldr	w0, [sp, #44]
+     45c:	rev	w0, w0
+     460:	str	w0, [x19, #12]
+     464:	mov	w0, #0x0                   	// #0
+     468:	b	474 <open_section+0x7c>
+     46c:	mov	w0, #0x1                   	// #1
+     470:	str	w0, [x19, #16]
+     474:	ldp	x19, x20, [sp, #16]
+     478:	ldp	x29, x30, [sp], #48
+     47c:	ret
+     480:	mov	w0, #0x1                   	// #1
+     484:	str	w0, [x19, #16]
+     488:	b	474 <open_section+0x7c>
+
+000000000000048c <blit_comb>:
+     48c:	stp	x29, x30, [sp, #-160]!
+     490:	mov	x29, sp
+     494:	stp	x21, x22, [sp, #32]
+     498:	stp	x23, x24, [sp, #48]
+     49c:	stp	x25, x26, [sp, #64]
+     4a0:	stp	x27, x28, [sp, #80]
+     4a4:	mov	x23, x0
+     4a8:	mov	x27, x1
+     4ac:	str	x2, [sp, #112]
+     4b0:	mov	x22, x3
+     4b4:	mov	x21, x4
+     4b8:	mov	x28, x5
+     4bc:	str	x1, [sp, #128]
+     4c0:	str	x5, [sp, #136]
+     4c4:	cbz	x1, 4d0 <blit_comb+0x44>
+     4c8:	ldrh	w0, [x3, #16]
+     4cc:	strh	w0, [x1, #16]
+     4d0:	cbz	x28, 4dc <blit_comb+0x50>
+     4d4:	ldrh	w0, [x22, #16]
+     4d8:	str	w0, [x28]
+     4dc:	ldrsh	w1, [x22, #12]
+     4e0:	str	w1, [sp, #104]
+     4e4:	str	w1, [sp, #144]
+     4e8:	ldrsh	w2, [x22, #14]
+     4ec:	str	w2, [sp, #120]
+     4f0:	str	w2, [sp, #148]
+     4f4:	ldrh	w25, [x22, #8]
+     4f8:	str	w25, [sp, #152]
+     4fc:	ldrh	w0, [x22, #10]
+     500:	str	w0, [sp, #156]
+     504:	add	w25, w25, w1
+     508:	add	w0, w2, w0
+     50c:	str	w0, [sp, #108]
+     510:	str	w25, [sp, #100]
+     514:	ldrh	w0, [x23, #6]
+     518:	tst	w0, #0x7f8
+     51c:	b.eq	568 <blit_comb+0xdc>  // b.none
+     520:	ldrh	w0, [x23, #6]
+     524:	ubfx	x0, x0, #3, #8
+     528:	add	x24, x23, #0x18
+     52c:	cmp	w0, #0x2
+     530:	b.hi	55c <blit_comb+0xd0>  // b.pmore
+     534:	ldrh	w0, [x23, #6]
+     538:	tst	x0, #0x7f8
+     53c:	b.eq	af0 <blit_comb+0x664>  // b.none
+     540:	stp	x19, x20, [sp, #16]
+     544:	mov	w26, #0x0                   	// #0
+     548:	mov	w20, #0x0                   	// #0
+     54c:	ldr	w0, [sp, #108]
+     550:	neg	w0, w0
+     554:	str	w0, [sp, #124]
+     558:	b	8e8 <blit_comb+0x45c>
+     55c:	stp	x19, x20, [sp, #16]
+     560:	ldr	x24, [x23, #24]
+     564:	b	544 <blit_comb+0xb8>
+     568:	mov	x24, #0x0                   	// #0
+     56c:	b	534 <blit_comb+0xa8>
+     570:	cmp	w2, #0x13
+     574:	b.eq	848 <blit_comb+0x3bc>  // b.none
+     578:	b.ls	5cc <blit_comb+0x140>  // b.plast
+     57c:	cmp	w2, #0x14
+     580:	b.ne	61c <blit_comb+0x190>  // b.any
+     584:	ldrh	w2, [x0, #14]
+     588:	ldrh	w3, [x0, #10]
+     58c:	add	w2, w2, w3
+     590:	neg	w2, w2
+     594:	sxth	w2, w2
+     598:	cmp	w2, #0x0
+     59c:	b.gt	9e8 <blit_comb+0x55c>
+     5a0:	ldr	x2, [x22]
+     5a4:	ldrsh	w2, [x2, #32]
+     5a8:	add	w2, w2, w2, lsr #31
+     5ac:	asr	w3, w2, #1
+     5b0:	add	w2, w3, #0x7
+     5b4:	cmp	w3, #0x0
+     5b8:	csel	w2, w2, w3, lt  // lt = tstop
+     5bc:	asr	w2, w2, #3
+     5c0:	add	w2, w2, #0x1
+     5c4:	sxth	w2, w2
+     5c8:	b	9e8 <blit_comb+0x55c>
+     5cc:	cmp	w2, #0x1
+     5d0:	b.ne	60c <blit_comb+0x180>  // b.any
+     5d4:	ldr	w3, [sp, #156]
+     5d8:	ldrh	w2, [x0, #10]
+     5dc:	sub	w2, w3, w2
+     5e0:	lsr	w2, w2, #1
+     5e4:	ldr	w4, [sp, #148]
+     5e8:	add	w4, w3, w4
+     5ec:	add	x3, sp, #0x80
+     5f0:	sub	w2, w2, w4
+     5f4:	bl	b8 <do_blit>
+     5f8:	ldr	x0, [x21, x19, lsl #3]
+     5fc:	ldrh	w0, [x0, #8]
+     600:	cmp	w26, w0
+     604:	csel	w26, w26, w0, ge  // ge = tcont
+     608:	b	8d4 <blit_comb+0x448>
+     60c:	sub	w2, w2, #0xa
+     610:	and	w2, w2, #0xff
+     614:	cmp	w2, #0x8
+     618:	b.ls	584 <blit_comb+0xf8>  // b.plast
+     61c:	ldrh	w2, [x0, #10]
+     620:	ldrsh	w1, [x0, #14]
+     624:	add	w2, w2, w1
+     628:	ldrh	w4, [x22, #16]
+     62c:	ldrsh	w1, [x0, #12]
+     630:	add	x3, sp, #0x80
+     634:	neg	w2, w2
+     638:	add	w1, w4, w1
+     63c:	bl	b8 <do_blit>
+     640:	ldr	x0, [x21, x19, lsl #3]
+     644:	ldrh	w3, [x0, #16]
+     648:	ldr	x0, [sp, #128]
+     64c:	cbz	x0, 65c <blit_comb+0x1d0>
+     650:	ldrh	w2, [x0, #16]
+     654:	add	w2, w3, w2
+     658:	strh	w2, [x0, #16]
+     65c:	ldr	x0, [sp, #136]
+     660:	cbz	x0, 8d4 <blit_comb+0x448>
+     664:	ldr	w1, [x0]
+     668:	add	w1, w1, w3
+     66c:	str	w1, [x0]
+     670:	b	8d4 <blit_comb+0x448>
+     674:	b.ne	690 <blit_comb+0x204>  // b.any
+     678:	ldrh	w1, [x22, #8]
+     67c:	ldrh	w2, [x22, #12]
+     680:	add	w1, w1, w2
+     684:	sub	w1, w1, w5
+     688:	sxth	w1, w1
+     68c:	b	87c <blit_comb+0x3f0>
+     690:	cmp	w2, #0x16
+     694:	b.eq	584 <blit_comb+0xf8>  // b.none
+     698:	ldrh	w3, [x0, #14]
+     69c:	sub	w3, w3, #0x1
+     6a0:	ldr	x2, [x0]
+     6a4:	ldrsh	w2, [x2, #32]
+     6a8:	add	w2, w2, w2, lsr #31
+     6ac:	sub	w3, w3, w2, asr #1
+     6b0:	sxth	w3, w3
+     6b4:	cmp	w3, #0x0
+     6b8:	b.gt	790 <blit_comb+0x304>
+     6bc:	ldr	x2, [x22]
+     6c0:	ldrsh	w2, [x2, #32]
+     6c4:	add	w2, w2, w2, lsr #31
+     6c8:	asr	w2, w2, #1
+     6cc:	add	w3, w2, #0x7
+     6d0:	cmp	w2, #0x0
+     6d4:	csel	w3, w3, w2, lt  // lt = tstop
+     6d8:	asr	w3, w3, #3
+     6dc:	add	w3, w3, #0x1
+     6e0:	sxth	w3, w3
+     6e4:	b	790 <blit_comb+0x304>
+     6e8:	cmp	w2, #0xe4
+     6ec:	b.eq	820 <blit_comb+0x394>  // b.none
+     6f0:	b.ls	740 <blit_comb+0x2b4>  // b.plast
+     6f4:	cmp	w2, #0xe8
+     6f8:	b.eq	7f4 <blit_comb+0x368>  // b.none
+     6fc:	b.ls	7c8 <blit_comb+0x33c>  // b.plast
+     700:	cmp	w2, #0xf0
+     704:	b.eq	584 <blit_comb+0xf8>  // b.none
+     708:	cmp	w2, #0xff
+     70c:	b.ne	61c <blit_comb+0x190>  // b.any
+     710:	ldr	w2, [x3]
+     714:	ubfx	x2, x2, #0, #21
+     718:	cmp	w2, #0x7a9
+     71c:	b.hi	a0c <blit_comb+0x580>  // b.pmore
+     720:	cmp	w2, #0x7a7
+     724:	b.hi	584 <blit_comb+0xf8>  // b.pmore
+     728:	add	w2, w2, #0x1ff, lsl #12
+     72c:	add	w2, w2, #0x85a
+     730:	and	w2, w2, #0x1fffff
+     734:	cmp	w2, #0x1
+     738:	b.hi	61c <blit_comb+0x190>  // b.pmore
+     73c:	b	698 <blit_comb+0x20c>
+     740:	cmp	w2, #0xd8
+     744:	b.eq	7d4 <blit_comb+0x348>  // b.none
+     748:	b.ls	784 <blit_comb+0x2f8>  // b.plast
+     74c:	cmp	w2, #0xdc
+     750:	b.eq	584 <blit_comb+0xf8>  // b.none
+     754:	cmp	w2, #0xde
+     758:	b.ne	61c <blit_comb+0x190>  // b.any
+     75c:	add	x3, sp, #0x80
+     760:	ldr	w2, [sp, #120]
+     764:	ldr	w1, [sp, #100]
+     768:	bl	b8 <do_blit>
+     76c:	ldr	x0, [x21, x19, lsl #3]
+     770:	ldrh	w0, [x0, #8]
+     774:	ldr	w1, [sp, #100]
+     778:	add	w0, w1, w0
+     77c:	str	w0, [sp, #100]
+     780:	b	8d4 <blit_comb+0x448>
+     784:	mov	w3, #0x0                   	// #0
+     788:	cmp	w2, #0xd6
+     78c:	b.ne	61c <blit_comb+0x190>  // b.any
+     790:	ldr	w2, [sp, #156]
+     794:	ldr	w4, [sp, #148]
+     798:	add	w2, w2, w4
+     79c:	ldrh	w4, [x0, #10]
+     7a0:	add	w3, w4, w3
+     7a4:	add	w2, w2, w3
+     7a8:	add	x3, sp, #0x80
+     7ac:	neg	w2, w2
+     7b0:	bl	b8 <do_blit>
+     7b4:	ldr	x0, [x21, x19, lsl #3]
+     7b8:	ldrh	w0, [x0, #8]
+     7bc:	cmp	w26, w0
+     7c0:	csel	w26, w26, w0, ge  // ge = tcont
+     7c4:	b	8d4 <blit_comb+0x448>
+     7c8:	cmp	w2, #0xe6
+     7cc:	b.eq	698 <blit_comb+0x20c>  // b.none
+     7d0:	b	61c <blit_comb+0x190>
+     7d4:	add	x3, sp, #0x80
+     7d8:	ldr	w2, [sp, #124]
+     7dc:	mov	w1, w25
+     7e0:	bl	b8 <do_blit>
+     7e4:	ldr	x0, [x21, x19, lsl #3]
+     7e8:	ldrh	w0, [x0, #8]
+     7ec:	add	w25, w25, w0
+     7f0:	b	8d4 <blit_comb+0x448>
+     7f4:	ldrh	w2, [x0, #10]
+     7f8:	ldr	w1, [sp, #108]
+     7fc:	add	w2, w2, w1
+     800:	add	x3, sp, #0x80
+     804:	neg	w2, w2
+     808:	mov	w1, w25
+     80c:	bl	b8 <do_blit>
+     810:	ldr	x0, [x21, x19, lsl #3]
+     814:	ldrh	w0, [x0, #8]
+     818:	add	w25, w25, w0
+     81c:	b	8d4 <blit_comb+0x448>
+     820:	ldr	w1, [sp, #104]
+     824:	sub	w1, w1, w5
+     828:	str	w1, [sp, #104]
+     82c:	ldrh	w2, [x0, #10]
+     830:	ldr	w3, [sp, #108]
+     834:	add	w2, w2, w3
+     838:	add	x3, sp, #0x80
+     83c:	neg	w2, w2
+     840:	bl	b8 <do_blit>
+     844:	b	8d4 <blit_comb+0x448>
+     848:	ldr	w2, [x23]
+     84c:	and	w2, w2, #0x7fffff
+     850:	cmp	w2, #0x5d5
+     854:	b.eq	87c <blit_comb+0x3f0>  // b.none
+     858:	ldrh	w1, [x22, #12]
+     85c:	sub	w2, w1, w5
+     860:	add	w1, w5, #0x3
+     864:	sub	w1, w2, w1, asr #2
+     868:	sxth	w1, w1
+     86c:	b	87c <blit_comb+0x3f0>
+     870:	ldrh	w1, [x22, #12]
+     874:	add	w1, w1, w5, lsr #2
+     878:	sxth	w1, w1
+     87c:	ldrh	w2, [x0, #14]
+     880:	sub	w3, w2, #0x1
+     884:	ldr	x2, [x0]
+     888:	ldrsh	w2, [x2, #32]
+     88c:	add	w2, w2, w2, lsr #31
+     890:	sub	w2, w3, w2, asr #1
+     894:	sxth	w2, w2
+     898:	cmp	w2, #0x0
+     89c:	b.le	984 <blit_comb+0x4f8>
+     8a0:	ldrh	w3, [x22, #10]
+     8a4:	ldrsh	w4, [x22, #14]
+     8a8:	add	w3, w3, w4
+     8ac:	add	w2, w3, w2
+     8b0:	ldrh	w3, [x0, #10]
+     8b4:	add	w2, w2, w3
+     8b8:	add	x3, sp, #0x80
+     8bc:	neg	w2, w2
+     8c0:	bl	b8 <do_blit>
+     8c4:	ldr	x0, [x21, x19, lsl #3]
+     8c8:	ldrh	w0, [x0, #8]
+     8cc:	cmp	w26, w0
+     8d0:	csel	w26, w26, w0, ge  // ge = tcont
+     8d4:	add	w20, w20, #0x1
+     8d8:	ldrh	w0, [x23, #6]
+     8dc:	ubfx	x0, x0, #3, #8
+     8e0:	cmp	w0, w20
+     8e4:	b.ls	a24 <blit_comb+0x598>  // b.plast
+     8e8:	mov	w19, w20
+     8ec:	ldr	x0, [x21, x19, lsl #3]
+     8f0:	cbz	x0, 8d4 <blit_comb+0x448>
+     8f4:	ldrh	w5, [x0, #8]
+     8f8:	ldr	w1, [sp, #152]
+     8fc:	sub	w1, w1, w5
+     900:	ldr	w2, [sp, #144]
+     904:	add	w1, w2, w1, lsr #1
+     908:	sxth	w1, w1
+     90c:	add	x3, x24, x19, lsl #2
+     910:	ldr	w2, [x24, x19, lsl #2]
+     914:	and	w2, w2, #0x1fffff
+     918:	cmp	w2, #0x34f
+     91c:	b.eq	8d4 <blit_comb+0x448>  // b.none
+     920:	ldrh	w2, [x3, #2]
+     924:	ubfx	x2, x2, #5, #8
+     928:	cmp	w2, #0xca
+     92c:	b.eq	9e4 <blit_comb+0x558>  // b.none
+     930:	cmp	w2, #0xca
+     934:	b.hi	6e8 <blit_comb+0x25c>  // b.pmore
+     938:	cmp	w2, #0x15
+     93c:	b.eq	9b0 <blit_comb+0x524>  // b.none
+     940:	b.ls	570 <blit_comb+0xe4>  // b.plast
+     944:	cmp	w2, #0x24
+     948:	b.hi	61c <blit_comb+0x190>  // b.pmore
+     94c:	cmp	w2, #0x18
+     950:	b.ls	674 <blit_comb+0x1e8>  // b.plast
+     954:	sub	w3, w2, #0x19
+     958:	mov	x4, #0x1                   	// #1
+     95c:	lsl	x3, x4, x3
+     960:	mov	x4, #0xf6c                 	// #3948
+     964:	tst	x3, x4
+     968:	b.ne	698 <blit_comb+0x20c>  // b.any
+     96c:	mov	x4, #0x90                  	// #144
+     970:	tst	x3, x4
+     974:	b.ne	584 <blit_comb+0xf8>  // b.any
+     978:	cmp	w2, #0x19
+     97c:	b.eq	870 <blit_comb+0x3e4>  // b.none
+     980:	b	61c <blit_comb+0x190>
+     984:	ldr	x2, [x22]
+     988:	ldrsh	w2, [x2, #32]
+     98c:	add	w2, w2, w2, lsr #31
+     990:	asr	w3, w2, #1
+     994:	add	w2, w3, #0x7
+     998:	cmp	w3, #0x0
+     99c:	csel	w2, w2, w3, lt  // lt = tstop
+     9a0:	asr	w2, w2, #3
+     9a4:	add	w2, w2, #0x1
+     9a8:	sxth	w2, w2
+     9ac:	b	8a0 <blit_comb+0x414>
+     9b0:	ldr	w2, [sp, #156]
+     9b4:	ldr	w3, [sp, #148]
+     9b8:	add	w3, w3, w2, lsr #1
+     9bc:	ldrh	w2, [x0, #10]
+     9c0:	add	w2, w3, w2, lsr #1
+     9c4:	add	x3, sp, #0x80
+     9c8:	neg	w2, w2
+     9cc:	bl	b8 <do_blit>
+     9d0:	ldr	x0, [x21, x19, lsl #3]
+     9d4:	ldrh	w0, [x0, #8]
+     9d8:	cmp	w26, w0
+     9dc:	csel	w26, w26, w0, ge  // ge = tcont
+     9e0:	b	8d4 <blit_comb+0x448>
+     9e4:	mov	w2, #0x0                   	// #0
+     9e8:	add	x3, sp, #0x80
+     9ec:	ldr	w4, [sp, #148]
+     9f0:	sub	w2, w2, w4
+     9f4:	bl	b8 <do_blit>
+     9f8:	ldr	x0, [x21, x19, lsl #3]
+     9fc:	ldrh	w0, [x0, #8]
+     a00:	cmp	w26, w0
+     a04:	csel	w26, w26, w0, ge  // ge = tcont
+     a08:	b	8d4 <blit_comb+0x448>
+     a0c:	add	w2, w2, #0x1ff, lsl #12
+     a10:	add	w2, w2, #0x856
+     a14:	and	w2, w2, #0x1fffff
+     a18:	cmp	w2, #0x6
+     a1c:	b.ls	698 <blit_comb+0x20c>  // b.plast
+     a20:	b	61c <blit_comb+0x190>
+     a24:	ldp	x19, x20, [sp, #16]
+     a28:	ldr	w0, [sp, #100]
+     a2c:	cmp	w25, w0
+     a30:	csel	w25, w25, w0, ge  // ge = tcont
+     a34:	ldrsh	w0, [x22, #12]
+     a38:	ldrh	w1, [x22, #8]
+     a3c:	add	w0, w0, w1
+     a40:	sub	w25, w25, w0
+     a44:	ldr	x1, [sp, #128]
+     a48:	cbz	x1, af8 <blit_comb+0x66c>
+     a4c:	ldrh	w0, [x1, #16]
+     a50:	add	w0, w25, w0
+     a54:	strh	w0, [x1, #16]
+     a58:	ldr	x0, [sp, #136]
+     a5c:	cbz	x0, b04 <blit_comb+0x678>
+     a60:	ldr	w1, [x0]
+     a64:	add	w25, w1, w25
+     a68:	str	w25, [x0]
+     a6c:	ldrsh	w0, [x22, #12]
+     a70:	ldr	w1, [sp, #104]
+     a74:	sub	w0, w1, w0
+     a78:	ldr	x1, [sp, #128]
+     a7c:	cbz	x1, a8c <blit_comb+0x600>
+     a80:	ldrh	w2, [x1, #16]
+     a84:	add	w2, w0, w2
+     a88:	strh	w2, [x1, #16]
+     a8c:	ldr	x1, [sp, #136]
+     a90:	cbz	x1, aa0 <blit_comb+0x614>
+     a94:	ldr	w2, [x1]
+     a98:	add	w0, w2, w0
+     a9c:	str	w0, [x1]
+     aa0:	cbz	x27, ab4 <blit_comb+0x628>
+     aa4:	ldrh	w0, [x27, #16]
+     aa8:	cmp	w0, w26
+     aac:	b.ge	ab4 <blit_comb+0x628>  // b.tcont
+     ab0:	strh	w26, [x27, #16]
+     ab4:	cbz	x28, ac8 <blit_comb+0x63c>
+     ab8:	ldr	w0, [x28]
+     abc:	cmp	w0, w26
+     ac0:	b.ge	ac8 <blit_comb+0x63c>  // b.tcont
+     ac4:	str	w26, [x28]
+     ac8:	ldr	x2, [sp, #112]
+     acc:	cbz	x2, ad8 <blit_comb+0x64c>
+     ad0:	ldp	x0, x1, [sp, #144]
+     ad4:	stp	x0, x1, [x2]
+     ad8:	ldp	x21, x22, [sp, #32]
+     adc:	ldp	x23, x24, [sp, #48]
+     ae0:	ldp	x25, x26, [sp, #64]
+     ae4:	ldp	x27, x28, [sp, #80]
+     ae8:	ldp	x29, x30, [sp], #160
+     aec:	ret
+     af0:	mov	w26, #0x0                   	// #0
+     af4:	b	a28 <blit_comb+0x59c>
+     af8:	ldr	x0, [sp, #136]
+     afc:	cbnz	x0, a60 <blit_comb+0x5d4>
+     b00:	b	aa0 <blit_comb+0x614>
+     b04:	ldrsh	w0, [x22, #12]
+     b08:	ldr	w2, [sp, #104]
+     b0c:	sub	w0, w2, w0
+     b10:	b	a80 <blit_comb+0x5f4>
+
+0000000000000b14 <grub_font_get_glyph_internal>:
+     b14:	stp	x29, x30, [sp, #-80]!
+     b18:	mov	x29, sp
+     b1c:	stp	x19, x20, [sp, #16]
+     b20:	stp	x21, x22, [sp, #32]
+     b24:	mov	x21, x0
+     b28:	ldr	x19, [x0, #48]
+     b2c:	mov	w0, #0xffff                	// #65535
+     b30:	cmp	w1, w0
+     b34:	b.hi	b80 <grub_font_get_glyph_internal+0x6c>  // b.pmore
+     b38:	ldr	x0, [x21, #56]
+     b3c:	cbz	x0, b80 <grub_font_get_glyph_internal+0x6c>
+     b40:	ldrh	w20, [x0, w1, uxtw #1]
+     b44:	mov	w0, #0xffff                	// #65535
+     b48:	cmp	w20, w0
+     b4c:	b.eq	d0c <grub_font_get_glyph_internal+0x1f8>  // b.none
+     b50:	ubfiz	x0, x20, #1, #16
+     b54:	add	x20, x0, w20, uxth
+     b58:	adds	x20, x19, x20, lsl #3
+     b5c:	mov	x19, x20
+     b60:	b.eq	b6c <grub_font_get_glyph_internal+0x58>  // b.none
+     b64:	ldr	x19, [x20, #16]
+     b68:	cbz	x19, bd4 <grub_font_get_glyph_internal+0xc0>
+     b6c:	mov	x0, x19
+     b70:	ldp	x19, x20, [sp, #16]
+     b74:	ldp	x21, x22, [sp, #32]
+     b78:	ldp	x29, x30, [sp], #80
+     b7c:	ret
+     b80:	ldr	w3, [x21, #40]
+     b84:	sub	w3, w3, #0x1
+     b88:	cbz	x19, b6c <grub_font_get_glyph_internal+0x58>
+     b8c:	mov	x4, #0x0                   	// #0
+     b90:	b	ba4 <grub_font_get_glyph_internal+0x90>
+     b94:	b.ls	b64 <grub_font_get_glyph_internal+0x50>  // b.plast
+     b98:	add	x4, x2, #0x1
+     b9c:	cmp	x4, x3
+     ba0:	b.hi	bcc <grub_font_get_glyph_internal+0xb8>  // b.pmore
+     ba4:	sub	x2, x3, x4
+     ba8:	add	x2, x4, x2, lsr #1
+     bac:	add	x0, x2, x2, lsl #1
+     bb0:	lsl	x0, x0, #3
+     bb4:	add	x20, x19, x0
+     bb8:	ldr	w0, [x19, x0]
+     bbc:	cmp	w1, w0
+     bc0:	b.cs	b94 <grub_font_get_glyph_internal+0x80>  // b.hs, b.nlast
+     bc4:	sub	x3, x2, #0x1
+     bc8:	b	b9c <grub_font_get_glyph_internal+0x88>
+     bcc:	mov	x19, #0x0                   	// #0
+     bd0:	b	b6c <grub_font_get_glyph_internal+0x58>
+     bd4:	ldr	x0, [x21, #8]
+     bd8:	cbz	x0, d04 <grub_font_get_glyph_internal+0x1f0>
+     bdc:	bl	0 <grub_error_push>
+     be0:	ldr	w1, [x20, #8]
+     be4:	ldr	x0, [x21, #8]
+     be8:	bl	0 <grub_file_seek>
+     bec:	add	x1, sp, #0x46
+     bf0:	ldr	x0, [x21, #8]
+     bf4:	bl	3b0 <read_be_uint16>
+     bf8:	cbnz	w0, c0c <grub_font_get_glyph_internal+0xf8>
+     bfc:	add	x1, sp, #0x48
+     c00:	ldr	x0, [x21, #8]
+     c04:	bl	3b0 <read_be_uint16>
+     c08:	cbz	w0, c18 <grub_font_get_glyph_internal+0x104>
+     c0c:	mov	x0, x21
+     c10:	bl	1a8 <remove_font>
+     c14:	b	b6c <grub_font_get_glyph_internal+0x58>
+     c18:	add	x1, sp, #0x4a
+     c1c:	ldr	x0, [x21, #8]
+     c20:	bl	3b0 <read_be_uint16>
+     c24:	cbnz	w0, c0c <grub_font_get_glyph_internal+0xf8>
+     c28:	add	x1, sp, #0x4c
+     c2c:	ldr	x0, [x21, #8]
+     c30:	bl	3b0 <read_be_uint16>
+     c34:	cbnz	w0, c0c <grub_font_get_glyph_internal+0xf8>
+     c38:	add	x1, sp, #0x4e
+     c3c:	ldr	x0, [x21, #8]
+     c40:	bl	3b0 <read_be_uint16>
+     c44:	cbnz	w0, c0c <grub_font_get_glyph_internal+0xf8>
+     c48:	stp	x23, x24, [sp, #48]
+     c4c:	ldrh	w0, [sp, #70]
+     c50:	ldrh	w1, [sp, #72]
+     c54:	mul	w0, w0, w1
+     c58:	add	w1, w0, #0xe
+     c5c:	adds	w0, w0, #0x7
+     c60:	csel	w0, w1, w0, mi  // mi = first
+     c64:	asr	w23, w0, #3
+     c68:	sxtw	x24, w23
+     c6c:	add	x0, x24, #0x18
+     c70:	bl	0 <grub_malloc>
+     c74:	mov	x22, x0
+     c78:	cbz	x0, cd8 <grub_font_get_glyph_internal+0x1c4>
+     c7c:	str	x21, [x0]
+     c80:	ldrh	w0, [sp, #70]
+     c84:	strh	w0, [x22, #8]
+     c88:	ldrh	w0, [sp, #72]
+     c8c:	strh	w0, [x22, #10]
+     c90:	ldrh	w0, [sp, #74]
+     c94:	strh	w0, [x22, #12]
+     c98:	ldrh	w0, [sp, #76]
+     c9c:	strh	w0, [x22, #14]
+     ca0:	ldrh	w0, [sp, #78]
+     ca4:	strh	w0, [x22, #16]
+     ca8:	cbz	w23, cc4 <grub_font_get_glyph_internal+0x1b0>
+     cac:	mov	x2, x24
+     cb0:	add	x1, x22, #0x12
+     cb4:	ldr	x0, [x21, #8]
+     cb8:	bl	0 <grub_file_read>
+     cbc:	cmp	x0, w23, sxtw
+     cc0:	b.ne	cec <grub_font_get_glyph_internal+0x1d8>  // b.any
+     cc4:	bl	0 <grub_error_pop>
+     cc8:	str	x22, [x20, #16]
+     ccc:	mov	x19, x22
+     cd0:	ldp	x23, x24, [sp, #48]
+     cd4:	b	b6c <grub_font_get_glyph_internal+0x58>
+     cd8:	mov	x0, x21
+     cdc:	bl	1a8 <remove_font>
+     ce0:	mov	x19, x22
+     ce4:	ldp	x23, x24, [sp, #48]
+     ce8:	b	b6c <grub_font_get_glyph_internal+0x58>
+     cec:	mov	x0, x21
+     cf0:	bl	1a8 <remove_font>
+     cf4:	mov	x0, x22
+     cf8:	bl	0 <grub_free>
+     cfc:	ldp	x23, x24, [sp, #48]
+     d00:	b	b6c <grub_font_get_glyph_internal+0x58>
+     d04:	mov	x19, x0
+     d08:	b	b6c <grub_font_get_glyph_internal+0x58>
+     d0c:	mov	x19, #0x0                   	// #0
+     d10:	b	b6c <grub_font_get_glyph_internal+0x58>
+
+0000000000000d14 <grub_font_loader_init>:
+     d14:	adrp	x0, 0 <grub_font_blit_glyph>
+     d18:	ldr	x0, [x0]
+     d1c:	ldrb	w0, [x0, #16]
+     d20:	cbz	w0, d28 <grub_font_loader_init+0x14>
+     d24:	ret
+     d28:	stp	x29, x30, [sp, #-16]!
+     d2c:	mov	x29, sp
+     d30:	mov	x0, #0x28                  	// #40
+     d34:	bl	0 <grub_malloc>
+     d38:	adrp	x1, 0 <grub_font_blit_glyph>
+     d3c:	ldr	x1, [x1]
+     d40:	str	x0, [x1, #24]
+     d44:	cbz	x0, df0 <grub_font_loader_init+0xdc>
+     d48:	mov	w1, #0x8                   	// #8
+     d4c:	strh	w1, [x0, #8]
+     d50:	mov	w2, #0x10                  	// #16
+     d54:	strh	w2, [x0, #10]
+     d58:	strh	wzr, [x0, #12]
+     d5c:	mov	w2, #0xfffffffd            	// #-3
+     d60:	strh	w2, [x0, #14]
+     d64:	strh	w1, [x0, #16]
+     d68:	mov	x2, #0x10                  	// #16
+     d6c:	adrp	x1, 0 <grub_font_blit_glyph>
+     d70:	ldr	x1, [x1]
+     d74:	add	x0, x0, #0x12
+     d78:	bl	0 <grub_memmove>
+     d7c:	adrp	x0, 0 <grub_font_blit_glyph>
+     d80:	ldr	x1, [x0]
+     d84:	str	xzr, [x1, #40]
+     d88:	str	xzr, [x1, #48]
+     d8c:	strh	wzr, [x1, #56]
+     d90:	strh	wzr, [x1, #58]
+     d94:	mov	w4, #0x1                   	// #1
+     d98:	strh	w4, [x1, #68]
+     d9c:	strh	wzr, [x1, #60]
+     da0:	strh	wzr, [x1, #62]
+     da4:	strh	wzr, [x1, #64]
+     da8:	strh	wzr, [x1, #66]
+     dac:	str	wzr, [x1, #72]
+     db0:	str	xzr, [x1, #80]
+     db4:	str	xzr, [x1, #88]
+     db8:	adrp	x2, 0 <grub_font_blit_glyph>
+     dbc:	ldr	x2, [x2]
+     dc0:	str	x2, [x1, #32]
+     dc4:	ldr	x2, [x1, #24]
+     dc8:	ldrh	w3, [x2, #10]
+     dcc:	sub	w3, w3, #0x3
+     dd0:	strh	w3, [x1, #64]
+     dd4:	mov	w3, #0x3                   	// #3
+     dd8:	strh	w3, [x1, #66]
+     ddc:	ldrh	w3, [x2, #8]
+     de0:	strh	w3, [x1, #60]
+     de4:	ldrh	w2, [x2, #10]
+     de8:	strh	w2, [x1, #62]
+     dec:	strb	w4, [x1, #16]
+     df0:	ldp	x29, x30, [sp], #16
+     df4:	ret
+	...
+
+0000000000000e10 <grub_font_load>:
+     e10:	stp	x29, x30, [sp, #-128]!
+     e14:	mov	x29, sp
+     e18:	stp	x19, x20, [sp, #16]
+     e1c:	mov	x19, x0
+     e20:	ldrb	w1, [x0]
+     e24:	and	w0, w1, #0xfffffffb
+     e28:	and	w0, w0, #0xff
+     e2c:	cmp	w0, #0x2b
+     e30:	mov	w0, #0x28                  	// #40
+     e34:	ccmp	w1, w0, #0x4, ne  // ne = any
+     e38:	b.ne	f20 <grub_font_load+0x110>  // b.any
+     e3c:	mov	x2, #0x400                 	// #1024
+     e40:	mov	w1, #0x24                  	// #36
+     e44:	mov	x0, x19
+     e48:	bl	0 <grub_buffile_open>
+     e4c:	mov	x20, x0
+     e50:	cbz	x20, fe8 <grub_font_load+0x1d8>
+     e54:	add	x1, sp, #0x68
+     e58:	mov	x0, x20
+     e5c:	bl	3f8 <open_section>
+     e60:	cbnz	w0, 14d0 <grub_font_load+0x6c0>
+     e64:	mov	x2, #0x4                   	// #4
+     e68:	adrp	x0, 0 <grub_font_blit_glyph>
+     e6c:	ldr	x1, [x0]
+     e70:	add	x0, sp, #0x70
+     e74:	bl	0 <grub_memcmp>
+     e78:	cbnz	w0, ff0 <grub_font_load+0x1e0>
+     e7c:	ldr	w2, [sp, #116]
+     e80:	cmp	w2, #0x4
+     e84:	b.ne	1008 <grub_font_load+0x1f8>  // b.any
+     e88:	mov	x2, #0x4                   	// #4
+     e8c:	add	x1, sp, #0x60
+     e90:	mov	x0, x20
+     e94:	bl	0 <grub_file_read>
+     e98:	cmp	x0, #0x4
+     e9c:	b.ne	1520 <grub_font_load+0x710>  // b.any
+     ea0:	mov	x2, #0x4                   	// #4
+     ea4:	adrp	x0, 0 <grub_font_blit_glyph>
+     ea8:	ldr	x1, [x0]
+     eac:	add	x0, sp, #0x60
+     eb0:	bl	0 <grub_memcmp>
+     eb4:	cbnz	w0, 1020 <grub_font_load+0x210>
+     eb8:	mov	x0, #0x40                  	// #64
+     ebc:	bl	0 <grub_zalloc>
+     ec0:	mov	x19, x0
+     ec4:	cbz	x0, 14d4 <grub_font_load+0x6c4>
+     ec8:	stp	x21, x22, [sp, #32]
+     ecc:	stp	x25, x26, [sp, #64]
+     ed0:	stp	x27, x28, [sp, #80]
+     ed4:	str	xzr, [x0]
+     ed8:	str	xzr, [x0, #16]
+     edc:	strh	wzr, [x0, #24]
+     ee0:	strh	wzr, [x0, #26]
+     ee4:	mov	w0, #0x1                   	// #1
+     ee8:	strh	w0, [x19, #36]
+     eec:	strh	wzr, [x19, #28]
+     ef0:	strh	wzr, [x19, #30]
+     ef4:	strh	wzr, [x19, #32]
+     ef8:	strh	wzr, [x19, #34]
+     efc:	str	wzr, [x19, #40]
+     f00:	str	xzr, [x19, #48]
+     f04:	str	xzr, [x19, #56]
+     f08:	str	x20, [x19, #8]
+     f0c:	add	x21, sp, #0x70
+     f10:	mov	w27, #0x8e39                	// #36409
+     f14:	movk	w27, #0x38e3, lsl #16
+     f18:	mov	w26, #0xffff                	// #65535
+     f1c:	b	10fc <grub_font_load+0x2ec>
+     f20:	adrp	x0, 0 <grub_font_blit_glyph>
+     f24:	ldr	x0, [x0]
+     f28:	bl	0 <grub_env_get>
+     f2c:	mov	x20, x0
+     f30:	cbz	x0, fd0 <grub_font_load+0x1c0>
+     f34:	stp	x21, x22, [sp, #32]
+     f38:	bl	0 <grub_strlen>
+     f3c:	mov	x21, x0
+     f40:	mov	x0, x19
+     f44:	bl	0 <grub_strlen>
+     f48:	add	x0, x21, x0
+     f4c:	add	x0, x0, #0xe
+     f50:	bl	0 <grub_malloc>
+     f54:	mov	x21, x0
+     f58:	cbz	x0, 14c8 <grub_font_load+0x6b8>
+     f5c:	mov	x2, x0
+     f60:	mov	x1, x2
+     f64:	ldrb	w3, [x20], #1
+     f68:	strb	w3, [x2], #1
+     f6c:	cbnz	w3, f60 <grub_font_load+0x150>
+     f70:	adrp	x0, 0 <grub_font_blit_glyph>
+     f74:	ldr	x0, [x0]
+     f78:	mov	x2, x1
+     f7c:	ldrb	w3, [x0], #1
+     f80:	strb	w3, [x1], #1
+     f84:	cbnz	w3, f78 <grub_font_load+0x168>
+     f88:	mov	x1, x2
+     f8c:	ldrb	w3, [x19], #1
+     f90:	strb	w3, [x2], #1
+     f94:	cbnz	w3, f88 <grub_font_load+0x178>
+     f98:	adrp	x0, 0 <grub_font_blit_glyph>
+     f9c:	ldr	x0, [x0]
+     fa0:	ldrb	w2, [x0], #1
+     fa4:	strb	w2, [x1], #1
+     fa8:	cbnz	w2, fa0 <grub_font_load+0x190>
+     fac:	mov	x2, #0x400                 	// #1024
+     fb0:	mov	w1, #0x24                  	// #36
+     fb4:	mov	x0, x21
+     fb8:	bl	0 <grub_buffile_open>
+     fbc:	mov	x20, x0
+     fc0:	mov	x0, x21
+     fc4:	bl	0 <grub_free>
+     fc8:	ldp	x21, x22, [sp, #32]
+     fcc:	b	e50 <grub_font_load+0x40>
+     fd0:	adrp	x0, 0 <grub_font_blit_glyph>
+     fd4:	ldr	x2, [x0]
+     fd8:	adrp	x0, 0 <grub_font_blit_glyph>
+     fdc:	ldr	x1, [x0]
+     fe0:	mov	w0, #0x5                   	// #5
+     fe4:	bl	0 <grub_error>
+     fe8:	mov	x19, #0x0                   	// #0
+     fec:	b	1510 <grub_font_load+0x700>
+     ff0:	adrp	x0, 0 <grub_font_blit_glyph>
+     ff4:	ldr	x1, [x0]
+     ff8:	mov	w0, #0x17                  	// #23
+     ffc:	bl	0 <grub_error>
+    1000:	mov	x19, #0x0                   	// #0
+    1004:	b	14d4 <grub_font_load+0x6c4>
+    1008:	adrp	x0, 0 <grub_font_blit_glyph>
+    100c:	ldr	x1, [x0]
+    1010:	mov	w0, #0x17                  	// #23
+    1014:	bl	0 <grub_error>
+    1018:	mov	x19, #0x0                   	// #0
+    101c:	b	14d4 <grub_font_load+0x6c4>
+    1020:	ldrb	w5, [sp, #99]
+    1024:	ldrb	w4, [sp, #98]
+    1028:	ldrb	w3, [sp, #97]
+    102c:	ldrb	w2, [sp, #96]
+    1030:	adrp	x0, 0 <grub_font_blit_glyph>
+    1034:	ldr	x1, [x0]
+    1038:	mov	w0, #0x17                  	// #23
+    103c:	bl	0 <grub_error>
+    1040:	mov	x19, #0x0                   	// #0
+    1044:	b	14d4 <grub_font_load+0x6c4>
+    1048:	ldp	x23, x24, [sp, #48]
+    104c:	b	10fc <grub_font_load+0x2ec>
+    1050:	ldr	w0, [sp, #120]
+    1054:	cbz	w0, 10c4 <grub_font_load+0x2b4>
+    1058:	ldr	x0, [x19]
+    105c:	cbz	x0, 1474 <grub_font_load+0x664>
+    1060:	ldrsh	w0, [x19, #28]
+    1064:	cbz	w0, 14a8 <grub_font_load+0x698>
+    1068:	ldrsh	w0, [x19, #30]
+    106c:	cbz	w0, 14a8 <grub_font_load+0x698>
+    1070:	ldr	w0, [x19, #40]
+    1074:	cbz	w0, 14a8 <grub_font_load+0x698>
+    1078:	ldr	x0, [x19, #48]
+    107c:	cbz	x0, 14a8 <grub_font_load+0x698>
+    1080:	ldrsh	w0, [x19, #32]
+    1084:	cbz	w0, 14a8 <grub_font_load+0x698>
+    1088:	ldrsh	w0, [x19, #34]
+    108c:	cbz	w0, 14a8 <grub_font_load+0x698>
+    1090:	mov	x0, #0x10                  	// #16
+    1094:	bl	0 <grub_malloc>
+    1098:	cbz	x0, 158c <grub_font_load+0x77c>
+    109c:	str	x19, [x0, #8]
+    10a0:	adrp	x1, 0 <grub_font_blit_glyph>
+    10a4:	ldr	x1, [x1]
+    10a8:	ldr	x2, [x1]
+    10ac:	str	x2, [x0]
+    10b0:	str	x0, [x1]
+    10b4:	ldp	x21, x22, [sp, #32]
+    10b8:	ldp	x25, x26, [sp, #64]
+    10bc:	ldp	x27, x28, [sp, #80]
+    10c0:	b	1510 <grub_font_load+0x700>
+    10c4:	ldp	x21, x22, [sp, #32]
+    10c8:	ldp	x25, x26, [sp, #64]
+    10cc:	ldp	x27, x28, [sp, #80]
+    10d0:	b	14d4 <grub_font_load+0x6c4>
+    10d4:	mov	x2, #0x4                   	// #4
+    10d8:	adrp	x0, 0 <grub_font_blit_glyph>
+    10dc:	ldr	x1, [x0]
+    10e0:	mov	x0, x21
+    10e4:	bl	0 <grub_memcmp>
+    10e8:	cbnz	w0, 1154 <grub_font_load+0x344>
+    10ec:	add	x1, x19, #0x18
+    10f0:	add	x0, sp, #0x68
+    10f4:	bl	318 <read_section_as_short>
+    10f8:	cbnz	w0, 1144 <grub_font_load+0x334>
+    10fc:	add	x1, sp, #0x68
+    1100:	mov	x0, x20
+    1104:	bl	3f8 <open_section>
+    1108:	cbnz	w0, 1050 <grub_font_load+0x240>
+    110c:	mov	x2, #0x4                   	// #4
+    1110:	adrp	x0, 0 <grub_font_blit_glyph>
+    1114:	ldr	x1, [x0]
+    1118:	mov	x0, x21
+    111c:	bl	0 <grub_memcmp>
+    1120:	cbnz	w0, 10d4 <grub_font_load+0x2c4>
+    1124:	add	x0, sp, #0x68
+    1128:	bl	2b0 <read_section_as_string>
+    112c:	str	x0, [x19]
+    1130:	cbnz	x0, 10fc <grub_font_load+0x2ec>
+    1134:	ldp	x21, x22, [sp, #32]
+    1138:	ldp	x25, x26, [sp, #64]
+    113c:	ldp	x27, x28, [sp, #80]
+    1140:	b	14d4 <grub_font_load+0x6c4>
+    1144:	ldp	x21, x22, [sp, #32]
+    1148:	ldp	x25, x26, [sp, #64]
+    114c:	ldp	x27, x28, [sp, #80]
+    1150:	b	14d4 <grub_font_load+0x6c4>
+    1154:	mov	x2, #0x4                   	// #4
+    1158:	adrp	x0, 0 <grub_font_blit_glyph>
+    115c:	ldr	x1, [x0]
+    1160:	mov	x0, x21
+    1164:	bl	0 <grub_memcmp>
+    1168:	cbnz	w0, 11c4 <grub_font_load+0x3b4>
+    116c:	add	x0, sp, #0x68
+    1170:	bl	2b0 <read_section_as_string>
+    1174:	mov	x22, x0
+    1178:	cbz	x0, 10fc <grub_font_load+0x2ec>
+    117c:	adrp	x0, 0 <grub_font_blit_glyph>
+    1180:	ldr	x1, [x0]
+    1184:	mov	x0, x22
+    1188:	bl	0 <grub_strcmp>
+    118c:	cbnz	w0, 11a4 <grub_font_load+0x394>
+    1190:	mov	w0, #0x64                  	// #100
+    1194:	strh	w0, [x19, #26]
+    1198:	mov	x0, x22
+    119c:	bl	0 <grub_free>
+    11a0:	b	10fc <grub_font_load+0x2ec>
+    11a4:	adrp	x0, 0 <grub_font_blit_glyph>
+    11a8:	ldr	x1, [x0]
+    11ac:	mov	x0, x22
+    11b0:	bl	0 <grub_strcmp>
+    11b4:	cbnz	w0, 1198 <grub_font_load+0x388>
+    11b8:	mov	w0, #0xc8                  	// #200
+    11bc:	strh	w0, [x19, #26]
+    11c0:	b	1198 <grub_font_load+0x388>
+    11c4:	mov	x2, #0x4                   	// #4
+    11c8:	adrp	x0, 0 <grub_font_blit_glyph>
+    11cc:	ldr	x1, [x0]
+    11d0:	mov	x0, x21
+    11d4:	bl	0 <grub_memcmp>
+    11d8:	cbnz	w0, 11fc <grub_font_load+0x3ec>
+    11dc:	add	x1, x19, #0x1c
+    11e0:	add	x0, sp, #0x68
+    11e4:	bl	318 <read_section_as_short>
+    11e8:	cbz	w0, 10fc <grub_font_load+0x2ec>
+    11ec:	ldp	x21, x22, [sp, #32]
+    11f0:	ldp	x25, x26, [sp, #64]
+    11f4:	ldp	x27, x28, [sp, #80]
+    11f8:	b	14d4 <grub_font_load+0x6c4>
+    11fc:	mov	x2, #0x4                   	// #4
+    1200:	adrp	x0, 0 <grub_font_blit_glyph>
+    1204:	ldr	x1, [x0]
+    1208:	mov	x0, x21
+    120c:	bl	0 <grub_memcmp>
+    1210:	cbnz	w0, 1234 <grub_font_load+0x424>
+    1214:	add	x1, x19, #0x1e
+    1218:	add	x0, sp, #0x68
+    121c:	bl	318 <read_section_as_short>
+    1220:	cbz	w0, 10fc <grub_font_load+0x2ec>
+    1224:	ldp	x21, x22, [sp, #32]
+    1228:	ldp	x25, x26, [sp, #64]
+    122c:	ldp	x27, x28, [sp, #80]
+    1230:	b	14d4 <grub_font_load+0x6c4>
+    1234:	mov	x2, #0x4                   	// #4
+    1238:	adrp	x0, 0 <grub_font_blit_glyph>
+    123c:	ldr	x1, [x0]
+    1240:	mov	x0, x21
+    1244:	bl	0 <grub_memcmp>
+    1248:	cbnz	w0, 126c <grub_font_load+0x45c>
+    124c:	add	x1, x19, #0x20
+    1250:	add	x0, sp, #0x68
+    1254:	bl	318 <read_section_as_short>
+    1258:	cbz	w0, 10fc <grub_font_load+0x2ec>
+    125c:	ldp	x21, x22, [sp, #32]
+    1260:	ldp	x25, x26, [sp, #64]
+    1264:	ldp	x27, x28, [sp, #80]
+    1268:	b	14d4 <grub_font_load+0x6c4>
+    126c:	mov	x2, #0x4                   	// #4
+    1270:	adrp	x0, 0 <grub_font_blit_glyph>
+    1274:	ldr	x1, [x0]
+    1278:	mov	x0, x21
+    127c:	bl	0 <grub_memcmp>
+    1280:	cbnz	w0, 12a4 <grub_font_load+0x494>
+    1284:	add	x1, x19, #0x22
+    1288:	add	x0, sp, #0x68
+    128c:	bl	318 <read_section_as_short>
+    1290:	cbz	w0, 10fc <grub_font_load+0x2ec>
+    1294:	ldp	x21, x22, [sp, #32]
+    1298:	ldp	x25, x26, [sp, #64]
+    129c:	ldp	x27, x28, [sp, #80]
+    12a0:	b	14d4 <grub_font_load+0x6c4>
+    12a4:	mov	x2, #0x4                   	// #4
+    12a8:	adrp	x0, 0 <grub_font_blit_glyph>
+    12ac:	ldr	x1, [x0]
+    12b0:	mov	x0, x21
+    12b4:	bl	0 <grub_memcmp>
+    12b8:	cbnz	w0, 1430 <grub_font_load+0x620>
+    12bc:	stp	x23, x24, [sp, #48]
+    12c0:	ldr	w2, [sp, #116]
+    12c4:	umull	x23, w2, w27
+    12c8:	lsr	x23, x23, #33
+    12cc:	add	w23, w23, w23, lsl #3
+    12d0:	subs	w23, w2, w23
+    12d4:	b.ne	132c <grub_font_load+0x51c>  // b.any
+    12d8:	umull	x0, w2, w27
+    12dc:	lsr	x0, x0, #33
+    12e0:	str	w0, [x19, #40]
+    12e4:	mov	w1, w0
+    12e8:	ubfiz	x0, x0, #1, #29
+    12ec:	add	x0, x0, x1
+    12f0:	lsl	x0, x0, #3
+    12f4:	bl	0 <grub_malloc>
+    12f8:	str	x0, [x19, #48]
+    12fc:	cbz	x0, 1528 <grub_font_load+0x718>
+    1300:	mov	x0, #0x20000               	// #131072
+    1304:	bl	0 <grub_malloc>
+    1308:	str	x0, [x19, #56]
+    130c:	cbz	x0, 153c <grub_font_load+0x72c>
+    1310:	mov	x2, #0x20000               	// #131072
+    1314:	mov	w1, #0xff                  	// #255
+    1318:	bl	0 <grub_memset>
+    131c:	ldr	w0, [x19, #40]
+    1320:	cbz	w0, 1048 <grub_font_load+0x238>
+    1324:	mov	w28, w23
+    1328:	b	13d0 <grub_font_load+0x5c0>
+    132c:	mov	w3, #0x9                   	// #9
+    1330:	adrp	x0, 0 <grub_font_blit_glyph>
+    1334:	ldr	x1, [x0]
+    1338:	mov	w0, #0x17                  	// #23
+    133c:	bl	0 <grub_error>
+    1340:	ldp	x21, x22, [sp, #32]
+    1344:	ldp	x23, x24, [sp, #48]
+    1348:	ldp	x25, x26, [sp, #64]
+    134c:	ldp	x27, x28, [sp, #80]
+    1350:	b	14d4 <grub_font_load+0x6c4>
+    1354:	mov	w3, w28
+    1358:	adrp	x0, 0 <grub_font_blit_glyph>
+    135c:	ldr	x1, [x0]
+    1360:	mov	w0, #0x17                  	// #23
+    1364:	bl	0 <grub_error>
+    1368:	ldp	x21, x22, [sp, #32]
+    136c:	ldp	x23, x24, [sp, #48]
+    1370:	ldp	x25, x26, [sp, #64]
+    1374:	ldp	x27, x28, [sp, #80]
+    1378:	b	14d4 <grub_font_load+0x6c4>
+    137c:	ldr	w28, [x25, x22]
+    1380:	mov	x2, #0x1                   	// #1
+    1384:	add	x1, x24, #0x4
+    1388:	mov	x0, x20
+    138c:	bl	0 <grub_file_read>
+    1390:	cmp	x0, #0x1
+    1394:	b.ne	1564 <grub_font_load+0x754>  // b.any
+    1398:	mov	x2, #0x4                   	// #4
+    139c:	add	x1, x24, #0x8
+    13a0:	mov	x0, x20
+    13a4:	bl	0 <grub_file_read>
+    13a8:	cmp	x0, #0x4
+    13ac:	b.ne	1578 <grub_font_load+0x768>  // b.any
+    13b0:	ldr	w0, [x24, #8]
+    13b4:	rev	w0, w0
+    13b8:	str	w0, [x24, #8]
+    13bc:	str	xzr, [x24, #16]
+    13c0:	add	w23, w23, #0x1
+    13c4:	ldr	w0, [x19, #40]
+    13c8:	cmp	w23, w0
+    13cc:	b.cs	1428 <grub_font_load+0x618>  // b.hs, b.nlast
+    13d0:	ubfiz	x22, x23, #1, #32
+    13d4:	add	x22, x22, w23, uxtw
+    13d8:	lsl	x22, x22, #3
+    13dc:	ldr	x25, [x19, #48]
+    13e0:	add	x24, x25, x22
+    13e4:	mov	x2, #0x4                   	// #4
+    13e8:	mov	x1, x24
+    13ec:	mov	x0, x20
+    13f0:	bl	0 <grub_file_read>
+    13f4:	cmp	x0, #0x4
+    13f8:	b.ne	1550 <grub_font_load+0x740>  // b.any
+    13fc:	ldr	w2, [x25, x22]
+    1400:	rev	w2, w2
+    1404:	str	w2, [x25, x22]
+    1408:	cmp	w23, #0x0
+    140c:	ccmp	w2, w28, #0x2, ne  // ne = any
+    1410:	b.ls	1354 <grub_font_load+0x544>  // b.plast
+    1414:	cmp	w2, w26
+    1418:	b.hi	137c <grub_font_load+0x56c>  // b.pmore
+    141c:	ldr	x0, [x19, #56]
+    1420:	strh	w23, [x0, w2, uxtw #1]
+    1424:	b	137c <grub_font_load+0x56c>
+    1428:	ldp	x23, x24, [sp, #48]
+    142c:	b	10fc <grub_font_load+0x2ec>
+    1430:	mov	x2, #0x4                   	// #4
+    1434:	adrp	x0, 0 <grub_font_blit_glyph>
+    1438:	ldr	x1, [x0]
+    143c:	mov	x0, x21
+    1440:	bl	0 <grub_memcmp>
+    1444:	cbz	w0, 1058 <grub_font_load+0x248>
+    1448:	ldr	w1, [sp, #116]
+    144c:	ldr	x0, [x20, #24]
+    1450:	add	x1, x1, x0
+    1454:	mov	x0, x20
+    1458:	bl	0 <grub_file_seek>
+    145c:	cmn	w0, #0x1
+    1460:	b.ne	10fc <grub_font_load+0x2ec>  // b.any
+    1464:	ldp	x21, x22, [sp, #32]
+    1468:	ldp	x25, x26, [sp, #64]
+    146c:	ldp	x27, x28, [sp, #80]
+    1470:	b	14d4 <grub_font_load+0x6c4>
+    1474:	adrp	x0, 0 <grub_font_blit_glyph>
+    1478:	ldr	x3, [x0]
+    147c:	adrp	x0, 0 <grub_font_blit_glyph>
+    1480:	ldr	x2, [x0]
+    1484:	mov	w1, #0x269                 	// #617
+    1488:	adrp	x0, 0 <grub_font_blit_glyph>
+    148c:	ldr	x0, [x0]
+    1490:	bl	0 <grub_real_dprintf>
+    1494:	adrp	x0, 0 <grub_font_blit_glyph>
+    1498:	ldr	x0, [x0]
+    149c:	bl	0 <grub_strdup>
+    14a0:	str	x0, [x19]
+    14a4:	b	1060 <grub_font_load+0x250>
+    14a8:	adrp	x0, 0 <grub_font_blit_glyph>
+    14ac:	ldr	x1, [x0]
+    14b0:	mov	w0, #0x17                  	// #23
+    14b4:	bl	0 <grub_error>
+    14b8:	ldp	x21, x22, [sp, #32]
+    14bc:	ldp	x25, x26, [sp, #64]
+    14c0:	ldp	x27, x28, [sp, #80]
+    14c4:	b	14d4 <grub_font_load+0x6c4>
+    14c8:	ldp	x21, x22, [sp, #32]
+    14cc:	b	fe8 <grub_font_load+0x1d8>
+    14d0:	mov	x19, #0x0                   	// #0
+    14d4:	mov	x0, x20
+    14d8:	bl	0 <grub_file_close>
+    14dc:	cbz	x19, fe8 <grub_font_load+0x1d8>
+    14e0:	str	xzr, [x19, #8]
+    14e4:	ldr	x0, [x19]
+    14e8:	bl	0 <grub_free>
+    14ec:	ldr	x0, [x19, #16]
+    14f0:	bl	0 <grub_free>
+    14f4:	ldr	x0, [x19, #48]
+    14f8:	bl	0 <grub_free>
+    14fc:	ldr	x0, [x19, #56]
+    1500:	bl	0 <grub_free>
+    1504:	mov	x0, x19
+    1508:	bl	0 <grub_free>
+    150c:	mov	x19, #0x0                   	// #0
+    1510:	mov	x0, x19
+    1514:	ldp	x19, x20, [sp, #16]
+    1518:	ldp	x29, x30, [sp], #128
+    151c:	ret
+    1520:	mov	x19, #0x0                   	// #0
+    1524:	b	14d4 <grub_font_load+0x6c4>
+    1528:	ldp	x21, x22, [sp, #32]
+    152c:	ldp	x23, x24, [sp, #48]
+    1530:	ldp	x25, x26, [sp, #64]
+    1534:	ldp	x27, x28, [sp, #80]
+    1538:	b	14d4 <grub_font_load+0x6c4>
+    153c:	ldp	x21, x22, [sp, #32]
+    1540:	ldp	x23, x24, [sp, #48]
+    1544:	ldp	x25, x26, [sp, #64]
+    1548:	ldp	x27, x28, [sp, #80]
+    154c:	b	14d4 <grub_font_load+0x6c4>
+    1550:	ldp	x21, x22, [sp, #32]
+    1554:	ldp	x23, x24, [sp, #48]
+    1558:	ldp	x25, x26, [sp, #64]
+    155c:	ldp	x27, x28, [sp, #80]
+    1560:	b	14d4 <grub_font_load+0x6c4>
+    1564:	ldp	x21, x22, [sp, #32]
+    1568:	ldp	x23, x24, [sp, #48]
+    156c:	ldp	x25, x26, [sp, #64]
+    1570:	ldp	x27, x28, [sp, #80]
+    1574:	b	14d4 <grub_font_load+0x6c4>
+    1578:	ldp	x21, x22, [sp, #32]
+    157c:	ldp	x23, x24, [sp, #48]
+    1580:	ldp	x25, x26, [sp, #64]
+    1584:	ldp	x27, x28, [sp, #80]
+    1588:	b	14d4 <grub_font_load+0x6c4>
+    158c:	ldp	x21, x22, [sp, #32]
+    1590:	ldp	x25, x26, [sp, #64]
+    1594:	ldp	x27, x28, [sp, #80]
+    1598:	b	14d4 <grub_font_load+0x6c4>
+    159c:	nop
+	...
+
+0000000000001680 <grub_font_get>:
+    1680:	stp	x29, x30, [sp, #-48]!
+    1684:	mov	x29, sp
+    1688:	stp	x19, x20, [sp, #16]
+    168c:	str	x21, [sp, #32]
+    1690:	mov	x21, x0
+    1694:	adrp	x0, 0 <grub_font_blit_glyph>
+    1698:	ldr	x0, [x0]
+    169c:	ldr	x19, [x0]
+    16a0:	cbz	x19, 16ec <grub_font_get+0x6c>
+    16a4:	ldr	x20, [x19, #8]
+    16a8:	mov	x1, x21
+    16ac:	ldr	x0, [x20]
+    16b0:	bl	0 <grub_strcmp>
+    16b4:	cbz	w0, 16d8 <grub_font_get+0x58>
+    16b8:	ldr	x19, [x19]
+    16bc:	cbnz	x19, 16a4 <grub_font_get+0x24>
+    16c0:	adrp	x0, 0 <grub_font_blit_glyph>
+    16c4:	ldr	x0, [x0]
+    16c8:	ldr	x0, [x0]
+    16cc:	cbz	x0, 16fc <grub_font_get+0x7c>
+    16d0:	ldr	x20, [x0, #8]
+    16d4:	cbz	x20, 170c <grub_font_get+0x8c>
+    16d8:	mov	x0, x20
+    16dc:	ldp	x19, x20, [sp, #16]
+    16e0:	ldr	x21, [sp, #32]
+    16e4:	ldp	x29, x30, [sp], #48
+    16e8:	ret
+    16ec:	adrp	x0, 0 <grub_font_blit_glyph>
+    16f0:	ldr	x20, [x0]
+    16f4:	add	x20, x20, #0x20
+    16f8:	b	16d8 <grub_font_get+0x58>
+    16fc:	adrp	x0, 0 <grub_font_blit_glyph>
+    1700:	ldr	x20, [x0]
+    1704:	add	x20, x20, #0x20
+    1708:	b	16d8 <grub_font_get+0x58>
+    170c:	adrp	x0, 0 <grub_font_blit_glyph>
+    1710:	ldr	x20, [x0]
+    1714:	add	x20, x20, #0x20
+    1718:	b	16d8 <grub_font_get+0x58>
+    171c:	nop
+	...
+
+0000000000001730 <grub_font_get_name>:
+    1730:	ldr	x0, [x0]
+    1734:	ret
+
+0000000000001738 <grub_font_get_max_char_width>:
+    1738:	ldrsh	w0, [x0, #28]
+    173c:	ret
+
+0000000000001740 <grub_font_get_descent>:
+    1740:	ldrsh	w0, [x0, #34]
+    1744:	ret
+
+0000000000001748 <grub_font_get_xheight>:
+    1748:	ldrsh	w0, [x0, #32]
+    174c:	add	w0, w0, w0, lsr #31
+    1750:	asr	w0, w0, #1
+    1754:	ret
+
+0000000000001758 <grub_font_get_leading>:
+    1758:	ldrsh	w0, [x0, #36]
+    175c:	ret
+
+0000000000001760 <grub_font_get_height>:
+    1760:	ldrsh	w1, [x0, #32]
+    1764:	ldrsh	w2, [x0, #34]
+    1768:	add	w1, w1, w2
+    176c:	ldrsh	w0, [x0, #36]
+    1770:	add	w0, w1, w0
+    1774:	ret
+
+0000000000001778 <grub_font_get_glyph>:
+    1778:	cbz	x0, 1790 <grub_font_get_glyph+0x18>
+    177c:	stp	x29, x30, [sp, #-16]!
+    1780:	mov	x29, sp
+    1784:	bl	b14 <grub_font_get_glyph_internal>
+    1788:	ldp	x29, x30, [sp], #16
+    178c:	ret
+    1790:	ret
+
+0000000000001794 <grub_font_get_glyph_with_fallback>:
+    1794:	stp	x29, x30, [sp, #-96]!
+    1798:	mov	x29, sp
+    179c:	stp	x21, x22, [sp, #32]
+    17a0:	stp	x23, x24, [sp, #48]
+    17a4:	mov	x21, x0
+    17a8:	mov	w23, w1
+    17ac:	cbz	x0, 17b8 <grub_font_get_glyph_with_fallback+0x24>
+    17b0:	bl	b14 <grub_font_get_glyph_internal>
+    17b4:	cbnz	x0, 18ac <grub_font_get_glyph_with_fallback+0x118>
+    17b8:	stp	x19, x20, [sp, #16]
+    17bc:	adrp	x0, 0 <grub_font_blit_glyph>
+    17c0:	ldr	x0, [x0]
+    17c4:	ldr	x19, [x0]
+    17c8:	cbz	x19, 1894 <grub_font_get_glyph_with_fallback+0x100>
+    17cc:	stp	x25, x26, [sp, #64]
+    17d0:	str	x27, [sp, #80]
+    17d4:	mov	x24, #0x0                   	// #0
+    17d8:	mov	w22, #0x2710                	// #10000
+    17dc:	mov	w25, #0x32                  	// #50
+    17e0:	mov	w27, #0x5                   	// #5
+    17e4:	mov	w26, #0x0                   	// #0
+    17e8:	b	1814 <grub_font_get_glyph_with_fallback+0x80>
+    17ec:	add	w1, w1, #0x32
+    17f0:	ldrsh	w3, [x20, #26]
+    17f4:	ldrsh	w2, [x21, #26]
+    17f8:	cmp	w3, w2
+    17fc:	csel	w2, w27, w26, ne  // ne = any
+    1800:	add	w1, w1, w2
+    1804:	cmp	w1, w22
+    1808:	csel	x24, x24, x0, ge  // ge = tcont
+    180c:	csel	w22, w22, w1, ge  // ge = tcont
+    1810:	cbz	x19, 1880 <grub_font_get_glyph_with_fallback+0xec>
+    1814:	ldr	x20, [x19, #8]
+    1818:	ldr	x19, [x19]
+    181c:	mov	w1, w23
+    1820:	mov	x0, x20
+    1824:	bl	b14 <grub_font_get_glyph_internal>
+    1828:	cmp	x0, #0x0
+    182c:	ccmp	x21, #0x0, #0x0, ne  // ne = any
+    1830:	b.eq	18a0 <grub_font_get_glyph_with_fallback+0x10c>  // b.none
+    1834:	cbz	x0, 1810 <grub_font_get_glyph_with_fallback+0x7c>
+    1838:	ldrsh	w2, [x20, #32]
+    183c:	mov	w1, w25
+    1840:	cbz	w2, 185c <grub_font_get_glyph_with_fallback+0xc8>
+    1844:	ldrsh	w3, [x21, #32]
+    1848:	cbz	w3, 185c <grub_font_get_glyph_with_fallback+0xc8>
+    184c:	sub	w1, w3, w2
+    1850:	subs	w2, w2, w3
+    1854:	csel	w1, w1, w2, mi  // mi = first
+    1858:	lsl	w1, w1, #3
+    185c:	ldrsh	w2, [x20, #30]
+    1860:	cbz	w2, 17ec <grub_font_get_glyph_with_fallback+0x58>
+    1864:	ldrsh	w3, [x21, #30]
+    1868:	cbz	w3, 17ec <grub_font_get_glyph_with_fallback+0x58>
+    186c:	sub	w4, w3, w2
+    1870:	subs	w2, w2, w3
+    1874:	csel	w2, w4, w2, mi  // mi = first
+    1878:	add	w1, w1, w2, lsl #3
+    187c:	b	17f0 <grub_font_get_glyph_with_fallback+0x5c>
+    1880:	mov	x0, x24
+    1884:	ldp	x19, x20, [sp, #16]
+    1888:	ldp	x25, x26, [sp, #64]
+    188c:	ldr	x27, [sp, #80]
+    1890:	b	18ac <grub_font_get_glyph_with_fallback+0x118>
+    1894:	mov	x0, x19
+    1898:	ldp	x19, x20, [sp, #16]
+    189c:	b	18ac <grub_font_get_glyph_with_fallback+0x118>
+    18a0:	ldp	x19, x20, [sp, #16]
+    18a4:	ldp	x25, x26, [sp, #64]
+    18a8:	ldr	x27, [sp, #80]
+    18ac:	ldp	x21, x22, [sp, #32]
+    18b0:	ldp	x23, x24, [sp, #48]
+    18b4:	ldp	x29, x30, [sp], #96
+    18b8:	ret
+    18bc:	nop
+	...
+
+00000000000018c8 <grub_font_construct_dry_run>:
+    18c8:	stp	x29, x30, [sp, #-80]!
+    18cc:	mov	x29, sp
+    18d0:	stp	x19, x20, [sp, #16]
+    18d4:	stp	x21, x22, [sp, #32]
+    18d8:	stp	x23, x24, [sp, #48]
+    18dc:	stp	x25, x26, [sp, #64]
+    18e0:	mov	x25, x0
+    18e4:	mov	x20, x1
+    18e8:	mov	x24, x2
+    18ec:	mov	x21, x3
+    18f0:	mov	x23, x4
+    18f4:	ldr	w19, [x1]
+    18f8:	ubfx	x19, x19, #0, #23
+    18fc:	ldrb	w0, [x1, #4]
+    1900:	tst	x0, #0x4
+    1904:	mov	w1, #0x80000000            	// #-2147483648
+    1908:	csel	w1, w1, wzr, ne  // ne = any
+    190c:	orr	w2, w1, #0x40000000
+    1910:	tst	x0, #0x2
+    1914:	csel	w1, w2, w1, ne  // ne = any
+    1918:	ldrh	w0, [x20, #6]
+    191c:	tst	w0, #0x7f8
+    1920:	b.eq	1a00 <grub_font_construct_dry_run+0x138>  // b.none
+    1924:	ldrh	w0, [x20, #6]
+    1928:	ubfx	x0, x0, #3, #8
+    192c:	add	x22, x20, #0x18
+    1930:	cmp	w0, #0x2
+    1934:	b.hi	19f8 <grub_font_construct_dry_run+0x130>  // b.pmore
+    1938:	sub	w0, w19, #0x69
+    193c:	cmp	w0, #0x1
+    1940:	b.ls	1a08 <grub_font_construct_dry_run+0x140>  // b.plast
+    1944:	orr	w1, w1, w19
+    1948:	mov	x0, x25
+    194c:	bl	1794 <grub_font_get_glyph_with_fallback>
+    1950:	mov	x26, x0
+    1954:	cbz	x0, 1a74 <grub_font_construct_dry_run+0x1ac>
+    1958:	cbz	x23, 1964 <grub_font_construct_dry_run+0x9c>
+    195c:	ldrh	w0, [x26, #16]
+    1960:	str	w0, [x23]
+    1964:	ldr	w0, [x20, #4]
+    1968:	and	w0, w0, #0x7ffffff
+    196c:	and	w0, w0, #0xfff8001f
+    1970:	cbz	w0, 19dc <grub_font_construct_dry_run+0x114>
+    1974:	ldrh	w0, [x20, #6]
+    1978:	tst	w0, #0x7f8
+    197c:	ccmp	x21, #0x0, #0x0, ne  // ne = any
+    1980:	b.eq	1a8c <grub_font_construct_dry_run+0x1c4>  // b.none
+    1984:	ldrh	w0, [x20, #6]
+    1988:	mov	w19, #0x0                   	// #0
+    198c:	tst	x0, #0x7f8
+    1990:	b.eq	19c0 <grub_font_construct_dry_run+0xf8>  // b.none
+    1994:	mov	w25, w19
+    1998:	ldr	w1, [x22, x25, lsl #2]
+    199c:	and	w1, w1, #0x1fffff
+    19a0:	ldr	x0, [x26]
+    19a4:	bl	1794 <grub_font_get_glyph_with_fallback>
+    19a8:	str	x0, [x21, x25, lsl #3]
+    19ac:	add	w19, w19, #0x1
+    19b0:	ldrh	w5, [x20, #6]
+    19b4:	ubfx	x5, x5, #3, #8
+    19b8:	cmp	w5, w19
+    19bc:	b.hi	1994 <grub_font_construct_dry_run+0xcc>  // b.pmore
+    19c0:	mov	x5, x23
+    19c4:	mov	x4, x21
+    19c8:	mov	x3, x26
+    19cc:	mov	x2, x24
+    19d0:	mov	x1, #0x0                   	// #0
+    19d4:	mov	x0, x20
+    19d8:	bl	48c <blit_comb>
+    19dc:	mov	x0, x26
+    19e0:	ldp	x19, x20, [sp, #16]
+    19e4:	ldp	x21, x22, [sp, #32]
+    19e8:	ldp	x23, x24, [sp, #48]
+    19ec:	ldp	x25, x26, [sp, #64]
+    19f0:	ldp	x29, x30, [sp], #80
+    19f4:	ret
+    19f8:	ldr	x22, [x20, #24]
+    19fc:	b	1938 <grub_font_construct_dry_run+0x70>
+    1a00:	mov	x22, #0x0                   	// #0
+    1a04:	b	1938 <grub_font_construct_dry_run+0x70>
+    1a08:	ldrh	w3, [x20, #6]
+    1a0c:	ubfx	x3, x3, #3, #8
+    1a10:	cbz	w3, 1944 <grub_font_construct_dry_run+0x7c>
+    1a14:	mov	x0, x22
+    1a18:	mov	w2, #0x0                   	// #0
+    1a1c:	mov	w4, #0x1cc0                	// #7360
+    1a20:	ldrh	w5, [x0, #2]
+    1a24:	and	w5, w5, #0x1fe0
+    1a28:	cmp	w5, w4
+    1a2c:	b.eq	1a58 <grub_font_construct_dry_run+0x190>  // b.none
+    1a30:	add	w2, w2, #0x1
+    1a34:	add	x0, x0, #0x4
+    1a38:	cmp	w2, w3
+    1a3c:	b.ne	1a20 <grub_font_construct_dry_run+0x158>  // b.any
+    1a40:	mov	w0, #0x0                   	// #0
+    1a44:	cmp	w19, #0x6a
+    1a48:	ccmp	w0, #0x0, #0x4, eq  // eq = none
+    1a4c:	mov	w0, #0x237                 	// #567
+    1a50:	csel	w19, w19, w0, eq  // eq = none
+    1a54:	b	1944 <grub_font_construct_dry_run+0x7c>
+    1a58:	cmp	w3, w2
+    1a5c:	cset	w0, hi  // hi = pmore
+    1a60:	cmp	w19, #0x69
+    1a64:	ccmp	w0, #0x0, #0x4, eq  // eq = none
+    1a68:	b.eq	1a44 <grub_font_construct_dry_run+0x17c>  // b.none
+    1a6c:	mov	w19, #0x131                 	// #305
+    1a70:	b	1944 <grub_font_construct_dry_run+0x7c>
+    1a74:	mov	w1, w19
+    1a78:	mov	x0, x25
+    1a7c:	bl	1794 <grub_font_get_glyph_with_fallback>
+    1a80:	mov	x26, x0
+    1a84:	cbnz	x0, 1958 <grub_font_construct_dry_run+0x90>
+    1a88:	b	19dc <grub_font_construct_dry_run+0x114>
+    1a8c:	adrp	x0, 0 <grub_font_blit_glyph>
+    1a90:	ldr	x0, [x0]
+    1a94:	str	wzr, [x0]
+    1a98:	b	19dc <grub_font_construct_dry_run+0x114>
+    1a9c:	nop
+	...
+
+0000000000001aa8 <grub_font_get_constructed_device_width>:
+    1aa8:	stp	x29, x30, [sp, #-48]!
+    1aac:	mov	x29, sp
+    1ab0:	stp	x19, x20, [sp, #16]
+    1ab4:	mov	x20, x0
+    1ab8:	mov	x19, x1
+    1abc:	mov	x0, x1
+    1ac0:	bl	208 <ensure_comb_space>
+    1ac4:	adrp	x0, 0 <grub_font_blit_glyph>
+    1ac8:	ldr	x0, [x0]
+    1acc:	add	x4, sp, #0x2c
+    1ad0:	ldr	x3, [x0, #8]
+    1ad4:	mov	x2, #0x0                   	// #0
+    1ad8:	mov	x1, x19
+    1adc:	mov	x0, x20
+    1ae0:	bl	18c8 <grub_font_construct_dry_run>
+    1ae4:	cbz	x0, 1af8 <grub_font_get_constructed_device_width+0x50>
+    1ae8:	ldr	w0, [sp, #44]
+    1aec:	ldp	x19, x20, [sp, #16]
+    1af0:	ldp	x29, x30, [sp], #48
+    1af4:	ret
+    1af8:	adrp	x0, 0 <grub_font_blit_glyph>
+    1afc:	ldr	x0, [x0]
+    1b00:	ldr	x0, [x0, #24]
+    1b04:	ldrh	w0, [x0, #16]
+    1b08:	b	1aec <grub_font_get_constructed_device_width+0x44>
+    1b0c:	nop
+	...
+
+0000000000001b18 <grub_font_construct_glyph>:
+    1b18:	stp	x29, x30, [sp, #-64]!
+    1b1c:	mov	x29, sp
+    1b20:	stp	x19, x20, [sp, #16]
+    1b24:	mov	x19, x0
+    1b28:	mov	x20, x1
+    1b2c:	mov	x0, x1
+    1b30:	bl	208 <ensure_comb_space>
+    1b34:	adrp	x0, 0 <grub_font_blit_glyph>
+    1b38:	ldr	x0, [x0]
+    1b3c:	mov	x4, #0x0                   	// #0
+    1b40:	ldr	x3, [x0, #8]
+    1b44:	add	x2, sp, #0x30
+    1b48:	mov	x1, x20
+    1b4c:	mov	x0, x19
+    1b50:	bl	18c8 <grub_font_construct_dry_run>
+    1b54:	cbz	x0, 1c48 <grub_font_construct_glyph+0x130>
+    1b58:	mov	x19, x0
+    1b5c:	adrp	x0, 0 <grub_font_blit_glyph>
+    1b60:	ldr	x0, [x0]
+    1b64:	ldr	x0, [x0, #8]
+    1b68:	cbz	x0, 1c58 <grub_font_construct_glyph+0x140>
+    1b6c:	ldr	w0, [x20, #4]
+    1b70:	and	w0, w0, #0x7ffffff
+    1b74:	and	w0, w0, #0xfff8001f
+    1b78:	cbz	w0, 1dac <grub_font_construct_glyph+0x294>
+    1b7c:	str	x21, [sp, #32]
+    1b80:	ldr	w0, [sp, #56]
+    1b84:	ldr	w1, [sp, #60]
+    1b88:	mul	w0, w0, w1
+    1b8c:	add	w0, w0, #0x7
+    1b90:	lsr	w0, w0, #3
+    1b94:	add	x0, x0, #0x18
+    1b98:	adrp	x1, 0 <grub_font_blit_glyph>
+    1b9c:	ldr	x1, [x1]
+    1ba0:	ldr	x1, [x1, #96]
+    1ba4:	cmp	x0, x1
+    1ba8:	b.hi	1c68 <grub_font_construct_glyph+0x150>  // b.pmore
+    1bac:	adrp	x0, 0 <grub_font_blit_glyph>
+    1bb0:	ldr	x0, [x0]
+    1bb4:	ldr	x0, [x0, #104]
+    1bb8:	cbz	x0, 1ca4 <grub_font_construct_glyph+0x18c>
+    1bbc:	ldr	w2, [sp, #56]
+    1bc0:	ldr	w1, [sp, #60]
+    1bc4:	mul	w2, w2, w1
+    1bc8:	add	w2, w2, #0x7
+    1bcc:	lsr	w2, w2, #3
+    1bd0:	add	x2, x2, #0x18
+    1bd4:	mov	w1, #0x0                   	// #0
+    1bd8:	bl	0 <grub_memset>
+    1bdc:	adrp	x0, 0 <grub_font_blit_glyph>
+    1be0:	ldr	x0, [x0]
+    1be4:	ldr	x21, [x0, #104]
+    1be8:	ldr	x0, [x19]
+    1bec:	str	x0, [x21]
+    1bf0:	ldr	w9, [sp, #56]
+    1bf4:	strh	w9, [x21, #8]
+    1bf8:	ldr	w3, [sp, #60]
+    1bfc:	strh	w3, [x21, #10]
+    1c00:	ldrsh	w0, [sp, #48]
+    1c04:	strh	w0, [x21, #12]
+    1c08:	ldrsh	w4, [sp, #52]
+    1c0c:	strh	w4, [x21, #14]
+    1c10:	ldrb	w1, [x20, #4]
+    1c14:	tbz	w1, #0, 1d58 <grub_font_construct_glyph+0x240>
+    1c18:	ldrsh	w1, [x19, #12]
+    1c1c:	sub	w0, w1, w0
+    1c20:	ldrh	w2, [x19, #10]
+    1c24:	add	w3, w4, w3, uxth
+    1c28:	ldrsh	w1, [x19, #14]
+    1c2c:	add	w1, w1, w2
+    1c30:	sub	w3, w3, w1
+    1c34:	cbz	w2, 1d80 <grub_font_construct_glyph+0x268>
+    1c38:	and	w9, w9, #0xffff
+    1c3c:	madd	w1, w9, w3, w0
+    1c40:	mov	w6, #0x0                   	// #0
+    1c44:	b	1d2c <grub_font_construct_glyph+0x214>
+    1c48:	adrp	x0, 0 <grub_font_blit_glyph>
+    1c4c:	ldr	x0, [x0]
+    1c50:	ldr	x19, [x0, #24]
+    1c54:	b	1dac <grub_font_construct_glyph+0x294>
+    1c58:	ldrh	w0, [x20, #6]
+    1c5c:	tst	w0, #0x7f8
+    1c60:	b.eq	1b6c <grub_font_construct_glyph+0x54>  // b.none
+    1c64:	b	1dac <grub_font_construct_glyph+0x294>
+    1c68:	adrp	x0, 0 <grub_font_blit_glyph>
+    1c6c:	ldr	x21, [x0]
+    1c70:	ldr	x0, [x21, #104]
+    1c74:	bl	0 <grub_free>
+    1c78:	ldr	w0, [sp, #56]
+    1c7c:	ldr	w1, [sp, #60]
+    1c80:	mul	w0, w0, w1
+    1c84:	add	w0, w0, #0x7
+    1c88:	lsr	w0, w0, #3
+    1c8c:	add	x0, x0, #0x18
+    1c90:	lsl	x0, x0, #1
+    1c94:	str	x0, [x21, #96]
+    1c98:	bl	0 <grub_malloc>
+    1c9c:	str	x0, [x21, #104]
+    1ca0:	b	1bac <grub_font_construct_glyph+0x94>
+    1ca4:	adrp	x0, 0 <grub_font_blit_glyph>
+    1ca8:	ldr	x0, [x0]
+    1cac:	str	wzr, [x0]
+    1cb0:	ldr	x21, [sp, #32]
+    1cb4:	b	1dac <grub_font_construct_glyph+0x294>
+    1cb8:	cmp	w4, #0x8
+    1cbc:	b.eq	1d10 <grub_font_construct_glyph+0x1f8>  // b.none
+    1cc0:	add	w7, w7, #0x1
+    1cc4:	ldrh	w0, [x19, #8]
+    1cc8:	cmp	w7, w0
+    1ccc:	b.cs	1d1c <grub_font_construct_glyph+0x204>  // b.hs, b.nlast
+    1cd0:	add	x5, x21, w8, uxtw
+    1cd4:	add	x0, x19, w2, uxtw
+    1cd8:	ldrb	w0, [x0, #18]
+    1cdc:	lsl	w0, w0, w3
+    1ce0:	and	w0, w0, #0x80
+    1ce4:	asr	w0, w0, w4
+    1ce8:	ldrb	w10, [x5, #18]
+    1cec:	orr	w0, w0, w10
+    1cf0:	strb	w0, [x5, #18]
+    1cf4:	sub	w3, w3, #0x1
+    1cf8:	add	w4, w4, #0x1
+    1cfc:	cmn	w3, #0x1
+    1d00:	b.ne	1cb8 <grub_font_construct_glyph+0x1a0>  // b.any
+    1d04:	sub	w2, w2, #0x1
+    1d08:	mov	w3, #0x7                   	// #7
+    1d0c:	b	1cb8 <grub_font_construct_glyph+0x1a0>
+    1d10:	add	w8, w8, #0x1
+    1d14:	mov	w4, #0x0                   	// #0
+    1d18:	b	1cc0 <grub_font_construct_glyph+0x1a8>
+    1d1c:	add	w1, w1, w9
+    1d20:	ldrh	w0, [x19, #10]
+    1d24:	cmp	w6, w0
+    1d28:	b.cs	1d80 <grub_font_construct_glyph+0x268>  // b.hs, b.nlast
+    1d2c:	add	w6, w6, #0x1
+    1d30:	ldrh	w0, [x19, #8]
+    1d34:	mul	w2, w6, w0
+    1d38:	sub	w2, w2, #0x1
+    1d3c:	and	w3, w2, #0x7
+    1d40:	lsr	w2, w2, #3
+    1d44:	and	w4, w1, #0x7
+    1d48:	lsr	w8, w1, #3
+    1d4c:	cbz	w0, 1d1c <grub_font_construct_glyph+0x204>
+    1d50:	mov	w7, #0x0                   	// #0
+    1d54:	b	1cd0 <grub_font_construct_glyph+0x1b8>
+    1d58:	add	w3, w4, w3, uxth
+    1d5c:	ldrh	w1, [x19, #10]
+    1d60:	ldrsh	w2, [x19, #14]
+    1d64:	add	w1, w1, w2
+    1d68:	ldrsh	w2, [x19, #12]
+    1d6c:	sub	w3, w3, w1
+    1d70:	sub	w2, w2, w0
+    1d74:	mov	x1, x19
+    1d78:	mov	x0, x21
+    1d7c:	bl	0 <grub_font_blit_glyph>
+    1d80:	adrp	x0, 0 <grub_font_blit_glyph>
+    1d84:	ldr	x0, [x0]
+    1d88:	mov	x5, #0x0                   	// #0
+    1d8c:	ldr	x4, [x0, #8]
+    1d90:	mov	x3, x19
+    1d94:	mov	x2, #0x0                   	// #0
+    1d98:	mov	x1, x21
+    1d9c:	mov	x0, x20
+    1da0:	bl	48c <blit_comb>
+    1da4:	mov	x19, x21
+    1da8:	ldr	x21, [sp, #32]
+    1dac:	mov	x0, x19
+    1db0:	ldp	x19, x20, [sp, #16]
+    1db4:	ldp	x29, x30, [sp], #64
+    1db8:	ret
+    1dbc:	nop
+	...
+
+0000000000001dd0 <grub_font_draw_glyph>:
+    1dd0:	mov	w5, w1
+    1dd4:	ldrh	w1, [x0, #8]
+    1dd8:	cbz	w1, 1eac <grub_font_draw_glyph+0xdc>
+    1ddc:	stp	x29, x30, [sp, #-144]!
+    1de0:	mov	x29, sp
+    1de4:	stp	x19, x20, [sp, #16]
+    1de8:	stp	x21, x22, [sp, #32]
+    1dec:	mov	x19, x0
+    1df0:	mov	w21, w2
+    1df4:	mov	w20, w3
+    1df8:	ldrh	w2, [x0, #10]
+    1dfc:	mov	w0, #0x0                   	// #0
+    1e00:	cbnz	w2, 1e14 <grub_font_draw_glyph+0x44>
+    1e04:	ldp	x19, x20, [sp, #16]
+    1e08:	ldp	x21, x22, [sp, #32]
+    1e0c:	ldp	x29, x30, [sp], #144
+    1e10:	ret
+    1e14:	str	w1, [sp, #56]
+    1e18:	str	w2, [sp, #60]
+    1e1c:	mov	w0, #0x104                 	// #260
+    1e20:	str	w0, [sp, #64]
+    1e24:	mov	w0, #0xa                   	// #10
+    1e28:	str	w0, [sp, #88]
+    1e2c:	mov	w22, #0x1                   	// #1
+    1e30:	str	w22, [sp, #68]
+    1e34:	str	wzr, [sp, #72]
+    1e38:	str	w1, [sp, #76]
+    1e3c:	mov	w0, #0x2                   	// #2
+    1e40:	str	w0, [sp, #80]
+    1e44:	strb	wzr, [sp, #124]
+    1e48:	strb	wzr, [sp, #125]
+    1e4c:	strb	wzr, [sp, #126]
+    1e50:	strb	wzr, [sp, #127]
+    1e54:	add	x0, sp, #0x38
+    1e58:	add	x4, sp, #0x83
+    1e5c:	add	x3, x0, #0x4a
+    1e60:	add	x2, x0, #0x49
+    1e64:	add	x1, x0, #0x48
+    1e68:	mov	w0, w5
+    1e6c:	bl	0 <grub_video_unmap_color>
+    1e70:	add	x0, x19, #0x12
+    1e74:	str	x0, [sp, #136]
+    1e78:	ldrh	w7, [x19, #10]
+    1e7c:	ldrsh	w3, [x19, #14]
+    1e80:	sub	w3, w20, w3
+    1e84:	ldrsh	w2, [x19, #12]
+    1e88:	ldrh	w6, [x19, #8]
+    1e8c:	mov	w5, #0x0                   	// #0
+    1e90:	mov	w4, #0x0                   	// #0
+    1e94:	sub	w3, w3, w7
+    1e98:	add	w2, w2, w21
+    1e9c:	mov	w1, w22
+    1ea0:	add	x0, sp, #0x38
+    1ea4:	bl	0 <grub_video_blit_bitmap>
+    1ea8:	b	1e04 <grub_font_draw_glyph+0x34>
+    1eac:	mov	w0, #0x0                   	// #0
+    1eb0:	ret
+    1eb4:	nop
+
+0000000000001eb8 <lsfonts_command>:
+    1eb8:	stp	x29, x30, [sp, #-32]!
+    1ebc:	mov	x29, sp
+    1ec0:	stp	x19, x20, [sp, #16]
+    1ec4:	adrp	x0, 0 <grub_font_blit_glyph>
+    1ec8:	ldr	x0, [x0]
+    1ecc:	bl	0 <grub_puts_>
+    1ed0:	adrp	x0, 0 <grub_font_blit_glyph>
+    1ed4:	ldr	x0, [x0]
+    1ed8:	ldr	x19, [x0]
+    1edc:	cbz	x19, 1f00 <lsfonts_command+0x48>
+    1ee0:	adrp	x20, 0 <grub_font_blit_glyph>
+    1ee4:	ldr	x0, [x19, #8]
+    1ee8:	bl	1730 <grub_font_get_name>
+    1eec:	mov	x1, x0
+    1ef0:	ldr	x0, [x20]
+    1ef4:	bl	0 <grub_printf>
+    1ef8:	ldr	x19, [x19]
+    1efc:	cbnz	x19, 1ee4 <lsfonts_command+0x2c>
+    1f00:	mov	w0, #0x0                   	// #0
+    1f04:	ldp	x19, x20, [sp, #16]
+    1f08:	ldp	x29, x30, [sp], #32
+    1f0c:	ret
+	...
+
+0000000000001f28 <loadfont_command>:
+    1f28:	stp	x29, x30, [sp, #-32]!
+    1f2c:	mov	x29, sp
+    1f30:	cbz	w1, 1f6c <loadfont_command+0x44>
+    1f34:	stp	x19, x20, [sp, #16]
+    1f38:	mov	x19, x2
+    1f3c:	sub	w20, w1, #0x1
+    1f40:	add	x20, x20, #0x1
+    1f44:	add	x20, x2, x20, lsl #3
+    1f48:	ldr	x0, [x19], #8
+    1f4c:	bl	e10 <grub_font_load>
+    1f50:	cbz	x0, 1f80 <loadfont_command+0x58>
+    1f54:	cmp	x20, x19
+    1f58:	b.ne	1f48 <loadfont_command+0x20>  // b.any
+    1f5c:	mov	w0, #0x0                   	// #0
+    1f60:	ldp	x19, x20, [sp, #16]
+    1f64:	ldp	x29, x30, [sp], #32
+    1f68:	ret
+    1f6c:	adrp	x0, 0 <grub_font_blit_glyph>
+    1f70:	ldr	x1, [x0]
+    1f74:	mov	w0, #0x12                  	// #18
+    1f78:	bl	0 <grub_error>
+    1f7c:	b	1f64 <loadfont_command+0x3c>
+    1f80:	adrp	x0, 0 <grub_font_blit_glyph>
+    1f84:	ldr	x0, [x0]
+    1f88:	ldr	w0, [x0]
+    1f8c:	cbz	w0, 1f98 <loadfont_command+0x70>
+    1f90:	ldp	x19, x20, [sp, #16]
+    1f94:	b	1f64 <loadfont_command+0x3c>
+    1f98:	adrp	x0, 0 <grub_font_blit_glyph>
+    1f9c:	ldr	x1, [x0]
+    1fa0:	mov	w0, #0x17                  	// #23
+    1fa4:	bl	0 <grub_error>
+    1fa8:	ldp	x19, x20, [sp, #16]
+    1fac:	b	1f64 <loadfont_command+0x3c>
+	...
+
+0000000000001fc8 <grub_mod_init>:
+    1fc8:	stp	x29, x30, [sp, #-32]!
+    1fcc:	mov	x29, sp
+    1fd0:	str	x19, [sp, #16]
+    1fd4:	bl	d14 <grub_font_loader_init>
+    1fd8:	mov	w4, #0x0                   	// #0
+    1fdc:	adrp	x0, 0 <grub_font_blit_glyph>
+    1fe0:	ldr	x3, [x0]
+    1fe4:	adrp	x0, 0 <grub_font_blit_glyph>
+    1fe8:	ldr	x2, [x0]
+    1fec:	adrp	x0, 0 <grub_font_blit_glyph>
+    1ff0:	ldr	x1, [x0]
+    1ff4:	adrp	x0, 0 <grub_font_blit_glyph>
+    1ff8:	ldr	x0, [x0]
+    1ffc:	bl	0 <grub_register_command_prio>
+    2000:	adrp	x1, 0 <grub_font_blit_glyph>
+    2004:	ldr	x19, [x1]
+    2008:	str	x0, [x19]
+    200c:	mov	w4, #0x0                   	// #0
+    2010:	adrp	x0, 0 <grub_font_blit_glyph>
+    2014:	ldr	x3, [x0]
+    2018:	mov	x2, #0x0                   	// #0
+    201c:	adrp	x0, 0 <grub_font_blit_glyph>
+    2020:	ldr	x1, [x0]
+    2024:	adrp	x0, 0 <grub_font_blit_glyph>
+    2028:	ldr	x0, [x0]
+    202c:	bl	0 <grub_register_command_prio>
+    2030:	str	x0, [x19, #8]
+    2034:	ldr	x19, [sp, #16]
+    2038:	ldp	x29, x30, [sp], #32
+    203c:	ret
+	...
+
+0000000000002080 <grub_mod_fini>:
+    2080:	stp	x29, x30, [sp, #-32]!
+    2084:	mov	x29, sp
+    2088:	str	x19, [sp, #16]
+    208c:	adrp	x0, 0 <grub_font_blit_glyph>
+    2090:	ldr	x19, [x0]
+    2094:	ldr	x0, [x19]
+    2098:	bl	0 <grub_unregister_command>
+    209c:	ldr	x0, [x19, #8]
+    20a0:	bl	0 <grub_unregister_command>
+    20a4:	ldr	x19, [sp, #16]
+    20a8:	ldp	x29, x30, [sp], #32
+    20ac:	ret
+	...

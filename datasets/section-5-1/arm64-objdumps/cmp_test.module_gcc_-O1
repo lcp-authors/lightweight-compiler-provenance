@@ -1,0 +1,512 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//cmp_test.module_gcc_-O1:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <is_less32s>:
+   0:	cmp	w1, #0x0
+   4:	ccmp	w0, #0x0, #0x0, ge  // ge = tcont
+   8:	b.lt	24 <is_less32s+0x24>  // b.tstop
+   c:	cmp	w1, #0x0
+  10:	sub	w1, w0, w1
+  14:	lsr	w1, w1, #31
+  18:	ccmp	w0, #0x0, #0x1, lt  // lt = tstop
+  1c:	csel	w0, w1, wzr, lt  // lt = tstop
+  20:	ret
+  24:	mov	w0, #0x1                   	// #1
+  28:	b	20 <is_less32s+0x20>
+
+000000000000002c <test32s>:
+  2c:	stp	x29, x30, [sp, #-96]!
+  30:	mov	x29, sp
+  34:	stp	x19, x20, [sp, #16]
+  38:	stp	x21, x22, [sp, #32]
+  3c:	stp	x23, x24, [sp, #48]
+  40:	stp	x25, x26, [sp, #64]
+  44:	stp	x27, x28, [sp, #80]
+  48:	mov	w20, w0
+  4c:	mov	w19, w1
+  50:	bl	0 <is_less32s>
+  54:	mov	w25, w0
+  58:	cmp	w20, w19
+  5c:	cset	w0, lt  // lt = tstop
+  60:	cmp	w0, w25
+  64:	cset	w28, eq  // eq = none
+  68:	sxtw	x23, w20
+  6c:	sxtw	x24, w19
+  70:	adrp	x0, 0 <is_less32s>
+  74:	ldr	x27, [x0]
+  78:	adrp	x0, 0 <is_less32s>
+  7c:	ldr	x22, [x0]
+  80:	adrp	x0, 0 <is_less32s>
+  84:	ldr	x21, [x0]
+  88:	mov	x7, x24
+  8c:	mov	x6, x23
+  90:	mov	x5, x27
+  94:	adrp	x0, 0 <is_less32s>
+  98:	ldr	x4, [x0]
+  9c:	mov	w3, #0x58                  	// #88
+  a0:	mov	x2, x22
+  a4:	mov	x1, x21
+  a8:	mov	w0, w28
+  ac:	bl	0 <grub_test_assert_helper>
+  b0:	mov	w1, w20
+  b4:	mov	w0, w19
+  b8:	bl	0 <is_less32s>
+  bc:	mov	w26, w0
+  c0:	cmp	w20, w19
+  c4:	cset	w0, gt
+  c8:	cmp	w0, w26
+  cc:	cset	w19, eq  // eq = none
+  d0:	mov	x7, x24
+  d4:	mov	x6, x23
+  d8:	mov	x5, x27
+  dc:	adrp	x0, 0 <is_less32s>
+  e0:	ldr	x4, [x0]
+  e4:	mov	w3, #0x5a                  	// #90
+  e8:	mov	x2, x22
+  ec:	mov	x1, x21
+  f0:	mov	w0, w19
+  f4:	bl	0 <grub_test_assert_helper>
+  f8:	mov	x7, x24
+  fc:	mov	x6, x23
+ 100:	mov	x5, x27
+ 104:	adrp	x0, 0 <is_less32s>
+ 108:	ldr	x4, [x0]
+ 10c:	mov	w3, #0x5c                  	// #92
+ 110:	mov	x2, x22
+ 114:	mov	x1, x21
+ 118:	mov	w0, w19
+ 11c:	bl	0 <grub_test_assert_helper>
+ 120:	mov	x7, x24
+ 124:	mov	x6, x23
+ 128:	mov	x5, x27
+ 12c:	adrp	x0, 0 <is_less32s>
+ 130:	ldr	x4, [x0]
+ 134:	mov	w3, #0x5e                  	// #94
+ 138:	mov	x2, x22
+ 13c:	mov	x1, x21
+ 140:	mov	w0, w28
+ 144:	bl	0 <grub_test_assert_helper>
+ 148:	cmp	w26, #0x0
+ 14c:	ccmp	w25, #0x0, #0x4, ne  // ne = any
+ 150:	mov	x7, x24
+ 154:	mov	x6, x23
+ 158:	adrp	x0, 0 <is_less32s>
+ 15c:	ldr	x5, [x0]
+ 160:	adrp	x0, 0 <is_less32s>
+ 164:	ldr	x4, [x0]
+ 168:	mov	w3, #0x60                  	// #96
+ 16c:	mov	x2, x22
+ 170:	mov	x1, x21
+ 174:	cset	w0, eq  // eq = none
+ 178:	bl	0 <grub_test_assert_helper>
+ 17c:	ldp	x19, x20, [sp, #16]
+ 180:	ldp	x21, x22, [sp, #32]
+ 184:	ldp	x23, x24, [sp, #48]
+ 188:	ldp	x25, x26, [sp, #64]
+ 18c:	ldp	x27, x28, [sp, #80]
+ 190:	ldp	x29, x30, [sp], #96
+ 194:	ret
+	...
+
+00000000000001e0 <is_less32>:
+ 1e0:	mov	w2, w0
+ 1e4:	tbz	w0, #31, 1fc <is_less32+0x1c>
+ 1e8:	mov	w0, #0x0                   	// #0
+ 1ec:	tbz	w1, #31, 1f8 <is_less32+0x18>
+ 1f0:	sub	w2, w2, w1
+ 1f4:	lsr	w0, w2, #31
+ 1f8:	ret
+ 1fc:	mov	w0, #0x1                   	// #1
+ 200:	tbz	w1, #31, 1f0 <is_less32+0x10>
+ 204:	b	1f8 <is_less32+0x18>
+
+0000000000000208 <is_less64s>:
+ 208:	cmp	x1, #0x0
+ 20c:	ccmp	x0, #0x0, #0x0, ge  // ge = tcont
+ 210:	b.lt	22c <is_less64s+0x24>  // b.tstop
+ 214:	cmp	x1, #0x0
+ 218:	sub	x1, x0, x1
+ 21c:	lsr	x1, x1, #63
+ 220:	ccmp	x0, #0x0, #0x1, lt  // lt = tstop
+ 224:	csel	w0, w1, wzr, lt  // lt = tstop
+ 228:	ret
+ 22c:	mov	w0, #0x1                   	// #1
+ 230:	b	228 <is_less64s+0x20>
+
+0000000000000234 <test64s>:
+ 234:	stp	x29, x30, [sp, #-96]!
+ 238:	mov	x29, sp
+ 23c:	stp	x19, x20, [sp, #16]
+ 240:	stp	x21, x22, [sp, #32]
+ 244:	stp	x23, x24, [sp, #48]
+ 248:	stp	x25, x26, [sp, #64]
+ 24c:	str	x27, [sp, #80]
+ 250:	mov	x19, x0
+ 254:	mov	x20, x1
+ 258:	bl	208 <is_less64s>
+ 25c:	mov	w23, w0
+ 260:	cmp	x19, x20
+ 264:	cset	w0, lt  // lt = tstop
+ 268:	cmp	w0, w23
+ 26c:	cset	w26, eq  // eq = none
+ 270:	adrp	x0, 0 <is_less32s>
+ 274:	ldr	x25, [x0]
+ 278:	adrp	x0, 0 <is_less32s>
+ 27c:	ldr	x21, [x0]
+ 280:	add	x21, x21, #0x8
+ 284:	adrp	x0, 0 <is_less32s>
+ 288:	ldr	x22, [x0]
+ 28c:	mov	x7, x20
+ 290:	mov	x6, x19
+ 294:	mov	x5, x25
+ 298:	adrp	x0, 0 <is_less32s>
+ 29c:	ldr	x4, [x0]
+ 2a0:	mov	w3, #0x8c                  	// #140
+ 2a4:	mov	x2, x21
+ 2a8:	mov	x1, x22
+ 2ac:	mov	w0, w26
+ 2b0:	bl	0 <grub_test_assert_helper>
+ 2b4:	mov	x1, x19
+ 2b8:	mov	x0, x20
+ 2bc:	bl	208 <is_less64s>
+ 2c0:	mov	w24, w0
+ 2c4:	cmp	x19, x20
+ 2c8:	cset	w0, gt
+ 2cc:	cmp	w0, w24
+ 2d0:	cset	w27, eq  // eq = none
+ 2d4:	mov	x7, x20
+ 2d8:	mov	x6, x19
+ 2dc:	mov	x5, x25
+ 2e0:	adrp	x0, 0 <is_less32s>
+ 2e4:	ldr	x4, [x0]
+ 2e8:	mov	w3, #0x8e                  	// #142
+ 2ec:	mov	x2, x21
+ 2f0:	mov	x1, x22
+ 2f4:	mov	w0, w27
+ 2f8:	bl	0 <grub_test_assert_helper>
+ 2fc:	mov	x7, x20
+ 300:	mov	x6, x19
+ 304:	mov	x5, x25
+ 308:	adrp	x0, 0 <is_less32s>
+ 30c:	ldr	x4, [x0]
+ 310:	mov	w3, #0x90                  	// #144
+ 314:	mov	x2, x21
+ 318:	mov	x1, x22
+ 31c:	mov	w0, w27
+ 320:	bl	0 <grub_test_assert_helper>
+ 324:	mov	x7, x20
+ 328:	mov	x6, x19
+ 32c:	mov	x5, x25
+ 330:	adrp	x0, 0 <is_less32s>
+ 334:	ldr	x4, [x0]
+ 338:	mov	w3, #0x92                  	// #146
+ 33c:	mov	x2, x21
+ 340:	mov	x1, x22
+ 344:	mov	w0, w26
+ 348:	bl	0 <grub_test_assert_helper>
+ 34c:	cmp	w24, #0x0
+ 350:	ccmp	w23, #0x0, #0x4, ne  // ne = any
+ 354:	mov	x7, x20
+ 358:	mov	x6, x19
+ 35c:	adrp	x0, 0 <is_less32s>
+ 360:	ldr	x5, [x0]
+ 364:	adrp	x0, 0 <is_less32s>
+ 368:	ldr	x4, [x0]
+ 36c:	mov	w3, #0x94                  	// #148
+ 370:	mov	x2, x21
+ 374:	mov	x1, x22
+ 378:	cset	w0, eq  // eq = none
+ 37c:	bl	0 <grub_test_assert_helper>
+ 380:	ldp	x19, x20, [sp, #16]
+ 384:	ldp	x21, x22, [sp, #32]
+ 388:	ldp	x23, x24, [sp, #48]
+ 38c:	ldp	x25, x26, [sp, #64]
+ 390:	ldr	x27, [sp, #80]
+ 394:	ldp	x29, x30, [sp], #96
+ 398:	ret
+ 39c:	nop
+	...
+
+00000000000003e8 <is_less64>:
+ 3e8:	mov	x2, x0
+ 3ec:	tbz	x0, #63, 404 <is_less64+0x1c>
+ 3f0:	mov	w0, #0x0                   	// #0
+ 3f4:	tbz	x1, #63, 400 <is_less64+0x18>
+ 3f8:	sub	x2, x2, x1
+ 3fc:	lsr	x0, x2, #63
+ 400:	ret
+ 404:	mov	w0, #0x1                   	// #1
+ 408:	tbz	x1, #63, 3f8 <is_less64+0x10>
+ 40c:	b	400 <is_less64+0x18>
+
+0000000000000410 <test_all>:
+ 410:	stp	x29, x30, [sp, #-112]!
+ 414:	mov	x29, sp
+ 418:	stp	x19, x20, [sp, #16]
+ 41c:	stp	x21, x22, [sp, #32]
+ 420:	stp	x23, x24, [sp, #48]
+ 424:	stp	x25, x26, [sp, #64]
+ 428:	stp	x27, x28, [sp, #80]
+ 42c:	mov	x19, x0
+ 430:	mov	x20, x1
+ 434:	bl	3e8 <is_less64>
+ 438:	mov	w25, w0
+ 43c:	cmp	x19, x20
+ 440:	cset	w0, cc  // cc = lo, ul, last
+ 444:	cmp	w0, w25
+ 448:	cset	w27, eq  // eq = none
+ 44c:	adrp	x0, 0 <is_less32s>
+ 450:	ldr	x23, [x0]
+ 454:	adrp	x0, 0 <is_less32s>
+ 458:	ldr	x22, [x0]
+ 45c:	add	x24, x22, #0x10
+ 460:	adrp	x0, 0 <is_less32s>
+ 464:	ldr	x21, [x0]
+ 468:	mov	x7, x20
+ 46c:	mov	x6, x19
+ 470:	mov	x5, x23
+ 474:	adrp	x0, 0 <is_less32s>
+ 478:	ldr	x4, [x0]
+ 47c:	mov	w3, #0x72                  	// #114
+ 480:	mov	x2, x24
+ 484:	mov	x1, x21
+ 488:	mov	w0, w27
+ 48c:	bl	0 <grub_test_assert_helper>
+ 490:	mov	x1, x19
+ 494:	mov	x0, x20
+ 498:	bl	3e8 <is_less64>
+ 49c:	mov	w26, w0
+ 4a0:	cmp	x19, x20
+ 4a4:	cset	w0, hi  // hi = pmore
+ 4a8:	cmp	w0, w26
+ 4ac:	cset	w28, eq  // eq = none
+ 4b0:	mov	x7, x20
+ 4b4:	mov	x6, x19
+ 4b8:	mov	x5, x23
+ 4bc:	adrp	x0, 0 <is_less32s>
+ 4c0:	ldr	x4, [x0]
+ 4c4:	mov	w3, #0x74                  	// #116
+ 4c8:	mov	x2, x24
+ 4cc:	mov	x1, x21
+ 4d0:	mov	w0, w28
+ 4d4:	bl	0 <grub_test_assert_helper>
+ 4d8:	mov	x7, x20
+ 4dc:	mov	x6, x19
+ 4e0:	mov	x5, x23
+ 4e4:	adrp	x0, 0 <is_less32s>
+ 4e8:	ldr	x4, [x0]
+ 4ec:	mov	w3, #0x76                  	// #118
+ 4f0:	mov	x2, x24
+ 4f4:	mov	x1, x21
+ 4f8:	mov	w0, w28
+ 4fc:	bl	0 <grub_test_assert_helper>
+ 500:	mov	x7, x20
+ 504:	mov	x6, x19
+ 508:	mov	x5, x23
+ 50c:	adrp	x0, 0 <is_less32s>
+ 510:	ldr	x4, [x0]
+ 514:	mov	w3, #0x78                  	// #120
+ 518:	mov	x2, x24
+ 51c:	mov	x1, x21
+ 520:	mov	w0, w27
+ 524:	bl	0 <grub_test_assert_helper>
+ 528:	adrp	x0, 0 <is_less32s>
+ 52c:	ldr	x0, [x0]
+ 530:	cmp	w26, #0x0
+ 534:	ccmp	w25, #0x0, #0x4, ne  // ne = any
+ 538:	mov	x7, x20
+ 53c:	mov	x6, x19
+ 540:	str	x0, [sp, #104]
+ 544:	mov	x5, x0
+ 548:	adrp	x0, 0 <is_less32s>
+ 54c:	ldr	x4, [x0]
+ 550:	mov	w3, #0x7a                  	// #122
+ 554:	mov	x2, x24
+ 558:	mov	x1, x21
+ 55c:	cset	w0, eq  // eq = none
+ 560:	bl	0 <grub_test_assert_helper>
+ 564:	mov	w1, w20
+ 568:	mov	w0, w19
+ 56c:	bl	1e0 <is_less32>
+ 570:	mov	w1, w0
+ 574:	cmp	w19, w20
+ 578:	cset	w0, cc  // cc = lo, ul, last
+ 57c:	str	w1, [sp, #100]
+ 580:	cmp	w0, w1
+ 584:	cset	w27, eq  // eq = none
+ 588:	and	x24, x19, #0xffffffff
+ 58c:	and	x25, x20, #0xffffffff
+ 590:	add	x22, x22, #0x18
+ 594:	mov	x7, x25
+ 598:	mov	x6, x24
+ 59c:	mov	x5, x23
+ 5a0:	adrp	x0, 0 <is_less32s>
+ 5a4:	ldr	x4, [x0]
+ 5a8:	mov	w3, #0x3e                  	// #62
+ 5ac:	mov	x2, x22
+ 5b0:	mov	x1, x21
+ 5b4:	mov	w0, w27
+ 5b8:	bl	0 <grub_test_assert_helper>
+ 5bc:	mov	w1, w19
+ 5c0:	mov	w0, w20
+ 5c4:	bl	1e0 <is_less32>
+ 5c8:	mov	w26, w0
+ 5cc:	cmp	w19, w20
+ 5d0:	cset	w0, hi  // hi = pmore
+ 5d4:	cmp	w0, w26
+ 5d8:	cset	w28, eq  // eq = none
+ 5dc:	mov	x7, x25
+ 5e0:	mov	x6, x24
+ 5e4:	mov	x5, x23
+ 5e8:	adrp	x0, 0 <is_less32s>
+ 5ec:	ldr	x4, [x0]
+ 5f0:	mov	w3, #0x40                  	// #64
+ 5f4:	mov	x2, x22
+ 5f8:	mov	x1, x21
+ 5fc:	mov	w0, w28
+ 600:	bl	0 <grub_test_assert_helper>
+ 604:	mov	x7, x25
+ 608:	mov	x6, x24
+ 60c:	mov	x5, x23
+ 610:	adrp	x0, 0 <is_less32s>
+ 614:	ldr	x4, [x0]
+ 618:	mov	w3, #0x42                  	// #66
+ 61c:	mov	x2, x22
+ 620:	mov	x1, x21
+ 624:	mov	w0, w28
+ 628:	bl	0 <grub_test_assert_helper>
+ 62c:	mov	x7, x25
+ 630:	mov	x6, x24
+ 634:	mov	x5, x23
+ 638:	adrp	x0, 0 <is_less32s>
+ 63c:	ldr	x4, [x0]
+ 640:	mov	w3, #0x44                  	// #68
+ 644:	mov	x2, x22
+ 648:	mov	x1, x21
+ 64c:	mov	w0, w27
+ 650:	bl	0 <grub_test_assert_helper>
+ 654:	cmp	w26, #0x0
+ 658:	ldr	w1, [sp, #100]
+ 65c:	ccmp	w1, #0x0, #0x4, ne  // ne = any
+ 660:	mov	x7, x25
+ 664:	mov	x6, x24
+ 668:	ldr	x5, [sp, #104]
+ 66c:	adrp	x0, 0 <is_less32s>
+ 670:	ldr	x4, [x0]
+ 674:	mov	w3, #0x46                  	// #70
+ 678:	mov	x2, x22
+ 67c:	mov	x1, x21
+ 680:	cset	w0, eq  // eq = none
+ 684:	bl	0 <grub_test_assert_helper>
+ 688:	mov	x1, x20
+ 68c:	mov	x0, x19
+ 690:	bl	234 <test64s>
+ 694:	mov	w1, w20
+ 698:	mov	w0, w19
+ 69c:	bl	2c <test32s>
+ 6a0:	neg	x23, x20
+ 6a4:	mov	x1, x23
+ 6a8:	mov	x0, x19
+ 6ac:	bl	234 <test64s>
+ 6b0:	neg	w21, w20
+ 6b4:	mov	w1, w21
+ 6b8:	mov	w0, w19
+ 6bc:	bl	2c <test32s>
+ 6c0:	neg	x22, x19
+ 6c4:	mov	x1, x20
+ 6c8:	mov	x0, x22
+ 6cc:	bl	234 <test64s>
+ 6d0:	neg	w19, w19
+ 6d4:	mov	w1, w20
+ 6d8:	mov	w0, w19
+ 6dc:	bl	2c <test32s>
+ 6e0:	mov	x1, x23
+ 6e4:	mov	x0, x22
+ 6e8:	bl	234 <test64s>
+ 6ec:	mov	w1, w21
+ 6f0:	mov	w0, w19
+ 6f4:	bl	2c <test32s>
+ 6f8:	ldp	x19, x20, [sp, #16]
+ 6fc:	ldp	x21, x22, [sp, #32]
+ 700:	ldp	x23, x24, [sp, #48]
+ 704:	ldp	x25, x26, [sp, #64]
+ 708:	ldp	x27, x28, [sp, #80]
+ 70c:	ldp	x29, x30, [sp], #112
+ 710:	ret
+ 714:	nop
+	...
+
+0000000000000788 <cmp_test>:
+ 788:	stp	x29, x30, [sp, #-48]!
+ 78c:	mov	x29, sp
+ 790:	stp	x19, x20, [sp, #16]
+ 794:	stp	x21, x22, [sp, #32]
+ 798:	mov	x1, #0x1                   	// #1
+ 79c:	mov	x0, #0xffffffffffffffff    	// #-1
+ 7a0:	bl	410 <test_all>
+ 7a4:	mov	x1, #0xffffffffffffffff    	// #-1
+ 7a8:	mov	x0, #0x1                   	// #1
+ 7ac:	bl	410 <test_all>
+ 7b0:	mov	x1, #0xffffffffffffffff    	// #-1
+ 7b4:	mov	x0, x1
+ 7b8:	bl	410 <test_all>
+ 7bc:	mov	x1, #0x1                   	// #1
+ 7c0:	mov	x0, x1
+ 7c4:	bl	410 <test_all>
+ 7c8:	mov	x1, #0x1                   	// #1
+ 7cc:	mov	x0, #0x2                   	// #2
+ 7d0:	bl	410 <test_all>
+ 7d4:	mov	x20, #0x9c40                	// #40000
+ 7d8:	mov	x19, #0x7                   	// #7
+ 7dc:	mov	x22, #0x194                 	// #404
+ 7e0:	mov	x21, #0x1                   	// #1
+ 7e4:	add	x22, x22, x22, lsl #4
+ 7e8:	add	x0, x19, x19, lsl #1
+ 7ec:	add	x0, x19, x0, lsl #2
+ 7f0:	add	x0, x0, x22
+ 7f4:	lsl	x1, x19, #3
+ 7f8:	sub	x1, x1, x19
+ 7fc:	add	x19, x19, x1, lsl #2
+ 800:	add	x1, x0, x0, lsl #1
+ 804:	lsl	x1, x1, #3
+ 808:	sub	x1, x1, x0
+ 80c:	adds	x19, x1, x19
+ 810:	csel	x19, x19, x21, ne  // ne = any
+ 814:	cmp	x0, #0x0
+ 818:	csel	x22, x0, x21, ne  // ne = any
+ 81c:	mov	x1, x19
+ 820:	mov	x0, x22
+ 824:	bl	410 <test_all>
+ 828:	subs	x20, x20, #0x1
+ 82c:	b.ne	7e4 <cmp_test+0x5c>  // b.any
+ 830:	ldp	x19, x20, [sp, #16]
+ 834:	ldp	x21, x22, [sp, #32]
+ 838:	ldp	x29, x30, [sp], #48
+ 83c:	ret
+
+0000000000000840 <grub_mod_init>:
+ 840:	stp	x29, x30, [sp, #-16]!
+ 844:	mov	x29, sp
+ 848:	adrp	x0, 0 <is_less32s>
+ 84c:	ldr	x1, [x0]
+ 850:	adrp	x0, 0 <is_less32s>
+ 854:	ldr	x0, [x0]
+ 858:	bl	0 <grub_test_register>
+ 85c:	ldp	x29, x30, [sp], #16
+ 860:	ret
+ 864:	nop
+	...
+
+0000000000000878 <grub_mod_fini>:
+ 878:	stp	x29, x30, [sp, #-16]!
+ 87c:	mov	x29, sp
+ 880:	adrp	x0, 0 <is_less32s>
+ 884:	ldr	x0, [x0]
+ 888:	bl	0 <grub_test_unregister>
+ 88c:	ldp	x29, x30, [sp], #16
+ 890:	ret
+ 894:	nop
+	...

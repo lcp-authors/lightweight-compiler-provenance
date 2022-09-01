@@ -1,0 +1,221 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//testload.module_gcc_-Os:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <read_progress>:
+   0:	stp	x29, x30, [sp, #-48]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	mov	w19, w2
+  10:	mov	w20, w2
+  14:	stp	x21, x22, [sp, #32]
+  18:	adrp	x21, 0 <read_progress>
+  1c:	adrp	x22, 0 <read_progress>
+  20:	cmp	w20, #0x1ff
+  24:	b.hi	60 <read_progress+0x60>  // b.pmore
+  28:	lsr	w2, w19, #9
+  2c:	mov	w0, #0xfffffe00            	// #-512
+  30:	madd	w19, w2, w0, w19
+  34:	cbz	w19, 50 <read_progress+0x50>
+  38:	adrp	x0, 0 <read_progress>
+  3c:	ldr	x0, [x0]
+  40:	ldr	x1, [x0]
+  44:	adrp	x0, 0 <read_progress>
+  48:	ldr	x0, [x0]
+  4c:	blr	x1
+  50:	ldp	x19, x20, [sp, #16]
+  54:	ldp	x21, x22, [sp, #32]
+  58:	ldp	x29, x30, [sp], #48
+  5c:	b	0 <grub_refresh>
+  60:	ldr	x0, [x21]
+  64:	sub	w20, w20, #0x200
+  68:	ldr	x1, [x0]
+  6c:	ldr	x0, [x22]
+  70:	blr	x1
+  74:	b	20 <read_progress+0x20>
+	...
+
+0000000000000088 <grub_cmd_testload>:
+  88:	sub	sp, sp, #0x260
+  8c:	cmp	w1, #0x0
+  90:	stp	x29, x30, [sp]
+  94:	mov	x29, sp
+  98:	stp	x19, x20, [sp, #16]
+  9c:	stp	x21, x22, [sp, #32]
+  a0:	stp	x23, x24, [sp, #48]
+  a4:	stp	x25, x26, [sp, #64]
+  a8:	str	x27, [sp, #80]
+  ac:	b.gt	e0 <grub_cmd_testload+0x58>
+  b0:	adrp	x0, 0 <read_progress>
+  b4:	ldr	x1, [x0]
+  b8:	mov	w0, #0x12                  	// #18
+  bc:	bl	0 <grub_error>
+  c0:	ldp	x29, x30, [sp]
+  c4:	ldp	x19, x20, [sp, #16]
+  c8:	ldp	x21, x22, [sp, #32]
+  cc:	ldp	x23, x24, [sp, #48]
+  d0:	ldp	x25, x26, [sp, #64]
+  d4:	ldr	x27, [sp, #80]
+  d8:	add	sp, sp, #0x260
+  dc:	ret
+  e0:	ldr	x0, [x2]
+  e4:	mov	x22, x2
+  e8:	mov	w1, #0x22                  	// #34
+  ec:	bl	0 <grub_file_open>
+  f0:	mov	x20, x0
+  f4:	cbnz	x0, 108 <grub_cmd_testload+0x80>
+  f8:	adrp	x0, 0 <read_progress>
+  fc:	ldr	x0, [x0]
+ 100:	ldr	w0, [x0]
+ 104:	b	c0 <grub_cmd_testload+0x38>
+ 108:	ldr	x19, [x0, #64]
+ 10c:	ands	x19, x19, #0xfffffffffffffe00
+ 110:	b.ne	120 <grub_cmd_testload+0x98>  // b.any
+ 114:	bl	0 <grub_file_close>
+ 118:	mov	w0, #0x0                   	// #0
+ 11c:	b	c0 <grub_cmd_testload+0x38>
+ 120:	mov	x0, x19
+ 124:	bl	0 <grub_malloc>
+ 128:	mov	x21, x0
+ 12c:	cbz	x0, 1e0 <grub_cmd_testload+0x158>
+ 130:	adrp	x0, 0 <read_progress>
+ 134:	ldr	x1, [x22]
+ 138:	ldr	x0, [x0]
+ 13c:	bl	0 <grub_printf>
+ 140:	adrp	x0, 0 <read_progress>
+ 144:	mov	x2, x19
+ 148:	mov	x1, x21
+ 14c:	ldr	x0, [x0]
+ 150:	str	x0, [x20, #88]
+ 154:	mov	x0, x20
+ 158:	bl	0 <grub_file_read>
+ 15c:	cmp	x0, x19
+ 160:	b.ne	1e0 <grub_cmd_testload+0x158>  // b.any
+ 164:	adrp	x24, 0 <read_progress>
+ 168:	mov	x23, #0x0                   	// #0
+ 16c:	mov	x27, #0x200                 	// #512
+ 170:	ldr	x0, [x24]
+ 174:	bl	0 <grub_printf>
+ 178:	adrp	x0, 0 <read_progress>
+ 17c:	ldr	x1, [x22]
+ 180:	ldr	x0, [x0]
+ 184:	bl	0 <grub_printf>
+ 188:	mov	x0, x20
+ 18c:	mov	x1, #0x0                   	// #0
+ 190:	bl	0 <grub_file_seek>
+ 194:	sub	x26, x19, x23
+ 198:	add	x1, sp, #0x60
+ 19c:	cmp	x26, #0x200
+ 1a0:	mov	x0, x20
+ 1a4:	csel	x26, x26, x27, cc  // cc = lo, ul, last
+ 1a8:	mov	x2, x26
+ 1ac:	bl	0 <grub_file_read>
+ 1b0:	mov	x25, x0
+ 1b4:	cmp	x0, x26
+ 1b8:	b.ne	1e0 <grub_cmd_testload+0x158>  // b.any
+ 1bc:	mov	x2, x0
+ 1c0:	add	x1, x21, x23
+ 1c4:	add	x0, sp, #0x60
+ 1c8:	bl	0 <grub_memcmp>
+ 1cc:	cbz	w0, 218 <grub_cmd_testload+0x190>
+ 1d0:	adrp	x0, 0 <read_progress>
+ 1d4:	mov	x1, x23
+ 1d8:	ldr	x0, [x0]
+ 1dc:	bl	0 <grub_printf>
+ 1e0:	mov	x0, x20
+ 1e4:	bl	0 <grub_file_close>
+ 1e8:	mov	x0, x21
+ 1ec:	bl	0 <grub_free>
+ 1f0:	adrp	x0, 0 <read_progress>
+ 1f4:	ldr	x19, [x0]
+ 1f8:	ldr	w0, [x19]
+ 1fc:	cbnz	w0, 210 <grub_cmd_testload+0x188>
+ 200:	adrp	x0, 0 <read_progress>
+ 204:	ldr	x1, [x0]
+ 208:	mov	w0, #0x1d                  	// #29
+ 20c:	bl	0 <grub_error>
+ 210:	ldr	w0, [x19]
+ 214:	b	c0 <grub_cmd_testload+0x38>
+ 218:	add	x23, x23, x25
+ 21c:	cmp	x19, x23
+ 220:	b.hi	194 <grub_cmd_testload+0x10c>  // b.pmore
+ 224:	ldr	x0, [x24]
+ 228:	bl	0 <grub_printf>
+ 22c:	adrp	x0, 0 <read_progress>
+ 230:	ldr	x1, [x22]
+ 234:	ldr	x0, [x0]
+ 238:	bl	0 <grub_printf>
+ 23c:	cmp	x19, #0x1ff
+ 240:	sub	x0, x19, #0x200
+ 244:	csel	x19, x0, xzr, hi  // hi = pmore
+ 248:	mov	x0, x20
+ 24c:	mov	x1, x19
+ 250:	bl	0 <grub_file_seek>
+ 254:	mov	x2, #0x200                 	// #512
+ 258:	add	x1, sp, #0x60
+ 25c:	mov	x0, x20
+ 260:	bl	0 <grub_file_read>
+ 264:	mov	x2, x0
+ 268:	cmp	x0, #0x200
+ 26c:	b.ne	1e0 <grub_cmd_testload+0x158>  // b.any
+ 270:	add	x22, x21, x19
+ 274:	add	x0, sp, #0x60
+ 278:	mov	x1, x22
+ 27c:	bl	0 <grub_memcmp>
+ 280:	cbz	w0, 2d4 <grub_cmd_testload+0x24c>
+ 284:	adrp	x0, 0 <read_progress>
+ 288:	mov	x1, x19
+ 28c:	adrp	x23, 0 <read_progress>
+ 290:	mov	x19, #0x0                   	// #0
+ 294:	ldr	x0, [x0]
+ 298:	adrp	x24, 0 <read_progress>
+ 29c:	bl	0 <grub_printf>
+ 2a0:	ldrb	w1, [x22, x19]
+ 2a4:	ldr	x0, [x23]
+ 2a8:	bl	0 <grub_printf>
+ 2ac:	and	w0, w19, #0xf
+ 2b0:	cmp	w0, #0xf
+ 2b4:	b.ne	2c0 <grub_cmd_testload+0x238>  // b.any
+ 2b8:	ldr	x0, [x24]
+ 2bc:	bl	0 <grub_printf>
+ 2c0:	add	x19, x19, #0x1
+ 2c4:	cmp	x19, #0x200
+ 2c8:	b.ne	2a0 <grub_cmd_testload+0x218>  // b.any
+ 2cc:	bl	0 <grub_refresh>
+ 2d0:	b	1e0 <grub_cmd_testload+0x158>
+ 2d4:	cbnz	x19, 23c <grub_cmd_testload+0x1b4>
+ 2d8:	ldr	x0, [x24]
+ 2dc:	bl	0 <grub_printf>
+ 2e0:	b	118 <grub_cmd_testload+0x90>
+ 2e4:	nop
+	...
+
+0000000000000340 <grub_mod_init>:
+ 340:	stp	x29, x30, [sp, #-16]!
+ 344:	adrp	x0, 0 <read_progress>
+ 348:	mov	w4, #0x0                   	// #0
+ 34c:	mov	x29, sp
+ 350:	ldr	x3, [x0]
+ 354:	adrp	x0, 0 <read_progress>
+ 358:	ldr	x2, [x0]
+ 35c:	adrp	x0, 0 <read_progress>
+ 360:	ldr	x1, [x0]
+ 364:	adrp	x0, 0 <read_progress>
+ 368:	ldr	x0, [x0]
+ 36c:	bl	0 <grub_register_command_prio>
+ 370:	adrp	x1, 0 <read_progress>
+ 374:	ldr	x1, [x1]
+ 378:	str	x0, [x1]
+ 37c:	ldp	x29, x30, [sp], #16
+ 380:	ret
+ 384:	nop
+	...
+
+00000000000003b0 <grub_mod_fini>:
+ 3b0:	adrp	x0, 0 <read_progress>
+ 3b4:	ldr	x0, [x0]
+ 3b8:	ldr	x0, [x0]
+ 3bc:	b	0 <grub_unregister_command>
+	...

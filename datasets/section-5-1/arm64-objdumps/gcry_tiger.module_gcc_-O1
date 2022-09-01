@@ -1,0 +1,604 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//gcry_tiger.module_gcc_-O1:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <tiger_init>:
+   0:	mov	x1, #0xcdef                	// #52719
+   4:	movk	x1, #0x89ab, lsl #16
+   8:	movk	x1, #0x4567, lsl #32
+   c:	movk	x1, #0x123, lsl #48
+  10:	str	x1, [x0]
+  14:	mov	x1, #0x3210                	// #12816
+  18:	movk	x1, #0x7654, lsl #16
+  1c:	movk	x1, #0xba98, lsl #32
+  20:	movk	x1, #0xfedc, lsl #48
+  24:	str	x1, [x0, #8]
+  28:	mov	x1, #0xe187                	// #57735
+  2c:	movk	x1, #0xc3b2, lsl #16
+  30:	movk	x1, #0xa5b4, lsl #32
+  34:	movk	x1, #0xf096, lsl #48
+  38:	str	x1, [x0, #16]
+  3c:	str	wzr, [x0, #92]
+  40:	str	wzr, [x0, #88]
+  44:	str	wzr, [x0, #96]
+  48:	ret
+
+000000000000004c <tiger_round>:
+  4c:	ldr	x8, [x0]
+  50:	ldr	x12, [x1]
+  54:	ldr	x5, [x2]
+  58:	eor	x3, x5, x3
+  5c:	adrp	x5, 0 <tiger_init>
+  60:	ldr	x9, [x5]
+  64:	ubfx	x5, x3, #8, #8
+  68:	add	x10, x9, #0x800
+  6c:	lsr	w6, w3, #24
+  70:	ldr	x5, [x9, x5, lsl #3]
+  74:	ldr	x6, [x10, x6, lsl #3]
+  78:	eor	x5, x5, x6
+  7c:	adrp	x6, 0 <tiger_init>
+  80:	ldr	x7, [x6]
+  84:	sub	x11, x7, #0x100
+  88:	ubfx	x6, x3, #40, #8
+  8c:	add	x7, x7, #0x700
+  90:	lsr	x13, x3, #56
+  94:	ldr	x6, [x11, x6, lsl #3]
+  98:	ldr	x13, [x7, x13, lsl #3]
+  9c:	eor	x6, x6, x13
+  a0:	eor	x5, x5, x6
+  a4:	add	x5, x5, x12
+  a8:	ubfx	x6, x3, #16, #8
+  ac:	ubfx	x12, x3, #32, #8
+  b0:	ldr	x6, [x11, x6, lsl #3]
+  b4:	ldr	x10, [x10, x12, lsl #3]
+  b8:	eor	x6, x6, x10
+  bc:	ubfx	x11, x3, #48, #8
+  c0:	and	x10, x3, #0xff
+  c4:	ldr	x9, [x9, x11, lsl #3]
+  c8:	ldr	x7, [x7, x10, lsl #3]
+  cc:	eor	x7, x9, x7
+  d0:	eor	x6, x6, x7
+  d4:	sub	x6, x8, x6
+  d8:	str	x6, [x0]
+  dc:	sxtw	x4, w4
+  e0:	mul	x5, x4, x5
+  e4:	str	x5, [x1]
+  e8:	str	x3, [x2]
+  ec:	ret
+	...
+
+0000000000000100 <pass>:
+ 100:	stp	x29, x30, [sp, #-96]!
+ 104:	mov	x29, sp
+ 108:	stp	x19, x20, [sp, #16]
+ 10c:	stp	x21, x22, [sp, #32]
+ 110:	str	x23, [sp, #48]
+ 114:	mov	x23, x0
+ 118:	mov	x22, x1
+ 11c:	mov	x21, x2
+ 120:	mov	x19, x3
+ 124:	mov	w20, w4
+ 128:	ldr	x0, [x0]
+ 12c:	str	x0, [sp, #88]
+ 130:	ldr	x0, [x1]
+ 134:	str	x0, [sp, #80]
+ 138:	ldr	x0, [x2]
+ 13c:	str	x0, [sp, #72]
+ 140:	ldr	x3, [x3]
+ 144:	add	x2, sp, #0x48
+ 148:	add	x1, sp, #0x50
+ 14c:	add	x0, sp, #0x58
+ 150:	bl	4c <tiger_round>
+ 154:	mov	w4, w20
+ 158:	ldr	x3, [x19, #8]
+ 15c:	add	x2, sp, #0x58
+ 160:	add	x1, sp, #0x48
+ 164:	add	x0, sp, #0x50
+ 168:	bl	4c <tiger_round>
+ 16c:	mov	w4, w20
+ 170:	ldr	x3, [x19, #16]
+ 174:	add	x2, sp, #0x50
+ 178:	add	x1, sp, #0x58
+ 17c:	add	x0, sp, #0x48
+ 180:	bl	4c <tiger_round>
+ 184:	mov	w4, w20
+ 188:	ldr	x3, [x19, #24]
+ 18c:	add	x2, sp, #0x48
+ 190:	add	x1, sp, #0x50
+ 194:	add	x0, sp, #0x58
+ 198:	bl	4c <tiger_round>
+ 19c:	mov	w4, w20
+ 1a0:	ldr	x3, [x19, #32]
+ 1a4:	add	x2, sp, #0x58
+ 1a8:	add	x1, sp, #0x48
+ 1ac:	add	x0, sp, #0x50
+ 1b0:	bl	4c <tiger_round>
+ 1b4:	mov	w4, w20
+ 1b8:	ldr	x3, [x19, #40]
+ 1bc:	add	x2, sp, #0x50
+ 1c0:	add	x1, sp, #0x58
+ 1c4:	add	x0, sp, #0x48
+ 1c8:	bl	4c <tiger_round>
+ 1cc:	mov	w4, w20
+ 1d0:	ldr	x3, [x19, #48]
+ 1d4:	add	x2, sp, #0x48
+ 1d8:	add	x1, sp, #0x50
+ 1dc:	add	x0, sp, #0x58
+ 1e0:	bl	4c <tiger_round>
+ 1e4:	mov	w4, w20
+ 1e8:	ldr	x3, [x19, #56]
+ 1ec:	add	x2, sp, #0x58
+ 1f0:	add	x1, sp, #0x48
+ 1f4:	add	x0, sp, #0x50
+ 1f8:	bl	4c <tiger_round>
+ 1fc:	ldr	x0, [sp, #88]
+ 200:	str	x0, [x23]
+ 204:	ldr	x0, [sp, #80]
+ 208:	str	x0, [x22]
+ 20c:	ldr	x0, [sp, #72]
+ 210:	str	x0, [x21]
+ 214:	ldp	x19, x20, [sp, #16]
+ 218:	ldp	x21, x22, [sp, #32]
+ 21c:	ldr	x23, [sp, #48]
+ 220:	ldp	x29, x30, [sp], #96
+ 224:	ret
+
+0000000000000228 <key_schedule>:
+ 228:	ldr	x3, [x0, #56]
+ 22c:	mov	x8, #0xa5a5                	// #42405
+ 230:	movk	x8, #0xa5a5, lsl #16
+ 234:	movk	x8, #0xa5a5, lsl #32
+ 238:	movk	x8, #0xa5a5, lsl #48
+ 23c:	eor	x5, x3, x8
+ 240:	ldr	x8, [x0]
+ 244:	sub	x8, x8, x5
+ 248:	ldr	x5, [x0, #8]
+ 24c:	eor	x5, x8, x5
+ 250:	ldr	x1, [x0, #16]
+ 254:	add	x1, x5, x1
+ 258:	mvn	x7, x5
+ 25c:	eor	x2, x1, x7, lsl #19
+ 260:	ldr	x7, [x0, #24]
+ 264:	sub	x7, x7, x2
+ 268:	ldr	x4, [x0, #32]
+ 26c:	eor	x4, x7, x4
+ 270:	ldr	x6, [x0, #40]
+ 274:	add	x6, x4, x6
+ 278:	mvn	x2, x4
+ 27c:	eor	x9, x6, x2, lsr #23
+ 280:	ldr	x2, [x0, #48]
+ 284:	sub	x2, x2, x9
+ 288:	eor	x3, x3, x2
+ 28c:	add	x8, x8, x3
+ 290:	str	x8, [x0]
+ 294:	mvn	x9, x3
+ 298:	eor	x8, x8, x9, lsl #19
+ 29c:	sub	x5, x5, x8
+ 2a0:	str	x5, [x0, #8]
+ 2a4:	eor	x1, x1, x5
+ 2a8:	str	x1, [x0, #16]
+ 2ac:	add	x5, x7, x1
+ 2b0:	str	x5, [x0, #24]
+ 2b4:	mvn	x1, x1
+ 2b8:	eor	x1, x5, x1, lsr #23
+ 2bc:	sub	x1, x4, x1
+ 2c0:	str	x1, [x0, #32]
+ 2c4:	eor	x1, x6, x1
+ 2c8:	str	x1, [x0, #40]
+ 2cc:	add	x1, x2, x1
+ 2d0:	str	x1, [x0, #48]
+ 2d4:	mov	x2, #0xcdef                	// #52719
+ 2d8:	movk	x2, #0x89ab, lsl #16
+ 2dc:	movk	x2, #0x4567, lsl #32
+ 2e0:	movk	x2, #0x123, lsl #48
+ 2e4:	eor	x1, x1, x2
+ 2e8:	sub	x1, x3, x1
+ 2ec:	str	x1, [x0, #56]
+ 2f0:	ret
+
+00000000000002f4 <tiger_read>:
+ 2f4:	add	x0, x0, #0x18
+ 2f8:	ret
+
+00000000000002fc <transform>:
+ 2fc:	stp	x29, x30, [sp, #-144]!
+ 300:	mov	x29, sp
+ 304:	stp	x19, x20, [sp, #16]
+ 308:	stp	x21, x22, [sp, #32]
+ 30c:	mov	x19, x0
+ 310:	mov	x2, #0x40                  	// #64
+ 314:	add	x0, sp, #0x38
+ 318:	bl	0 <grub_memmove>
+ 31c:	ldr	x21, [x19]
+ 320:	str	x21, [sp, #136]
+ 324:	ldr	x22, [x19, #8]
+ 328:	str	x22, [sp, #128]
+ 32c:	ldr	x20, [x19, #16]
+ 330:	str	x20, [sp, #120]
+ 334:	mov	w4, #0x5                   	// #5
+ 338:	add	x3, sp, #0x38
+ 33c:	add	x2, sp, #0x78
+ 340:	add	x1, sp, #0x80
+ 344:	add	x0, sp, #0x88
+ 348:	bl	100 <pass>
+ 34c:	add	x0, sp, #0x38
+ 350:	bl	228 <key_schedule>
+ 354:	mov	w4, #0x7                   	// #7
+ 358:	add	x3, sp, #0x38
+ 35c:	add	x2, sp, #0x80
+ 360:	add	x1, sp, #0x88
+ 364:	add	x0, sp, #0x78
+ 368:	bl	100 <pass>
+ 36c:	add	x0, sp, #0x38
+ 370:	bl	228 <key_schedule>
+ 374:	mov	w4, #0x9                   	// #9
+ 378:	add	x3, sp, #0x38
+ 37c:	add	x2, sp, #0x88
+ 380:	add	x1, sp, #0x78
+ 384:	add	x0, sp, #0x80
+ 388:	bl	100 <pass>
+ 38c:	ldr	x0, [sp, #128]
+ 390:	sub	x0, x0, x22
+ 394:	ldr	x1, [sp, #120]
+ 398:	add	x20, x20, x1
+ 39c:	ldr	x1, [sp, #136]
+ 3a0:	eor	x1, x1, x21
+ 3a4:	str	x1, [x19]
+ 3a8:	str	x0, [x19, #8]
+ 3ac:	str	x20, [x19, #16]
+ 3b0:	ldp	x19, x20, [sp, #16]
+ 3b4:	ldp	x21, x22, [sp, #32]
+ 3b8:	ldp	x29, x30, [sp], #144
+ 3bc:	ret
+
+00000000000003c0 <tiger_write>:
+ 3c0:	stp	x29, x30, [sp, #-48]!
+ 3c4:	mov	x29, sp
+ 3c8:	stp	x19, x20, [sp, #16]
+ 3cc:	stp	x21, x22, [sp, #32]
+ 3d0:	mov	x19, x0
+ 3d4:	mov	x20, x1
+ 3d8:	mov	x21, x2
+ 3dc:	ldr	w0, [x0, #88]
+ 3e0:	cmp	w0, #0x40
+ 3e4:	b.eq	430 <tiger_write+0x70>  // b.none
+ 3e8:	cbz	x1, 4dc <tiger_write+0x11c>
+ 3ec:	cbz	w0, 458 <tiger_write+0x98>
+ 3f0:	cbz	x2, 41c <tiger_write+0x5c>
+ 3f4:	ldr	w0, [x19, #88]
+ 3f8:	cmp	w0, #0x3f
+ 3fc:	b.gt	4ec <tiger_write+0x12c>
+ 400:	add	w1, w0, #0x1
+ 404:	str	w1, [x19, #88]
+ 408:	ldrb	w1, [x20], #1
+ 40c:	add	x0, x19, w0, sxtw
+ 410:	strb	w1, [x0, #24]
+ 414:	subs	x21, x21, #0x1
+ 418:	b.ne	3f4 <tiger_write+0x34>  // b.any
+ 41c:	mov	x2, #0x0                   	// #0
+ 420:	mov	x1, #0x0                   	// #0
+ 424:	mov	x0, x19
+ 428:	bl	3c0 <tiger_write>
+ 42c:	b	4dc <tiger_write+0x11c>
+ 430:	add	x1, x19, #0x18
+ 434:	mov	x0, x19
+ 438:	bl	2fc <transform>
+ 43c:	mov	w0, #0x100                 	// #256
+ 440:	bl	0 <_gcry_burn_stack>
+ 444:	str	wzr, [x19, #88]
+ 448:	ldr	w0, [x19, #92]
+ 44c:	add	w0, w0, #0x1
+ 450:	str	w0, [x19, #92]
+ 454:	cbz	x20, 4dc <tiger_write+0x11c>
+ 458:	mov	x22, x20
+ 45c:	cmp	x21, #0x3f
+ 460:	b.ls	4a0 <tiger_write+0xe0>  // b.plast
+ 464:	sub	x22, x21, #0x40
+ 468:	and	x22, x22, #0xffffffffffffffc0
+ 46c:	add	x22, x22, #0x40
+ 470:	add	x22, x20, x22
+ 474:	mov	x1, x20
+ 478:	mov	x0, x19
+ 47c:	bl	2fc <transform>
+ 480:	str	wzr, [x19, #88]
+ 484:	ldr	w0, [x19, #92]
+ 488:	add	w0, w0, #0x1
+ 48c:	str	w0, [x19, #92]
+ 490:	add	x20, x20, #0x40
+ 494:	cmp	x20, x22
+ 498:	b.ne	474 <tiger_write+0xb4>  // b.any
+ 49c:	and	x21, x21, #0x3f
+ 4a0:	mov	w0, #0x100                 	// #256
+ 4a4:	bl	0 <_gcry_burn_stack>
+ 4a8:	cbz	x21, 4dc <tiger_write+0x11c>
+ 4ac:	mov	x1, x22
+ 4b0:	ldr	w0, [x19, #88]
+ 4b4:	cmp	w0, #0x3f
+ 4b8:	b.gt	4dc <tiger_write+0x11c>
+ 4bc:	add	w2, w0, #0x1
+ 4c0:	str	w2, [x19, #88]
+ 4c4:	ldrb	w2, [x1], #1
+ 4c8:	add	x0, x19, w0, sxtw
+ 4cc:	strb	w2, [x0, #24]
+ 4d0:	sub	x0, x21, x1
+ 4d4:	cmn	x22, x0
+ 4d8:	b.ne	4b0 <tiger_write+0xf0>  // b.any
+ 4dc:	ldp	x19, x20, [sp, #16]
+ 4e0:	ldp	x21, x22, [sp, #32]
+ 4e4:	ldp	x29, x30, [sp], #48
+ 4e8:	ret
+ 4ec:	mov	x2, #0x0                   	// #0
+ 4f0:	mov	x1, #0x0                   	// #0
+ 4f4:	mov	x0, x19
+ 4f8:	bl	3c0 <tiger_write>
+ 4fc:	cbz	x21, 4dc <tiger_write+0x11c>
+ 500:	cmp	x21, #0x3f
+ 504:	b.hi	464 <tiger_write+0xa4>  // b.pmore
+ 508:	mov	w0, #0x100                 	// #256
+ 50c:	bl	0 <_gcry_burn_stack>
+ 510:	mov	x22, x20
+ 514:	b	4ac <tiger_write+0xec>
+
+0000000000000518 <tiger_final>:
+ 518:	stp	x29, x30, [sp, #-48]!
+ 51c:	mov	x29, sp
+ 520:	stp	x19, x20, [sp, #16]
+ 524:	stp	x21, x22, [sp, #32]
+ 528:	mov	x19, x0
+ 52c:	ldr	w0, [x0, #96]
+ 530:	cmp	w0, #0x2
+ 534:	mov	w22, #0x80                  	// #128
+ 538:	csinc	w22, w22, wzr, eq  // eq = none
+ 53c:	mov	x2, #0x0                   	// #0
+ 540:	mov	x1, #0x0                   	// #0
+ 544:	mov	x0, x19
+ 548:	bl	3c0 <tiger_write>
+ 54c:	ldr	w0, [x19, #92]
+ 550:	lsl	w2, w0, #6
+ 554:	ldr	w1, [x19, #88]
+ 558:	add	w20, w1, w2
+ 55c:	cmp	w2, w20
+ 560:	cset	w2, hi  // hi = pmore
+ 564:	add	w0, w2, w0, lsr #26
+ 568:	lsl	w21, w20, #3
+ 56c:	extr	w20, w0, w20, #29
+ 570:	cmp	w1, #0x37
+ 574:	b.gt	5b4 <tiger_final+0x9c>
+ 578:	add	w0, w1, #0x1
+ 57c:	str	w0, [x19, #88]
+ 580:	add	x1, x19, w1, sxtw
+ 584:	strb	w22, [x1, #24]
+ 588:	cmp	w0, #0x37
+ 58c:	b.gt	60c <tiger_final+0xf4>
+ 590:	sxtw	x0, w0
+ 594:	add	x1, x19, #0x18
+ 598:	strb	wzr, [x1, x0]
+ 59c:	add	x0, x0, #0x1
+ 5a0:	cmp	w0, #0x37
+ 5a4:	b.le	598 <tiger_final+0x80>
+ 5a8:	mov	w0, #0x38                  	// #56
+ 5ac:	str	w0, [x19, #88]
+ 5b0:	b	60c <tiger_final+0xf4>
+ 5b4:	add	w0, w1, #0x1
+ 5b8:	str	w0, [x19, #88]
+ 5bc:	add	x1, x19, w1, sxtw
+ 5c0:	strb	w22, [x1, #24]
+ 5c4:	cmp	w0, #0x3f
+ 5c8:	b.gt	5ec <tiger_final+0xd4>
+ 5cc:	sxtw	x0, w0
+ 5d0:	add	x1, x19, #0x18
+ 5d4:	strb	wzr, [x1, x0]
+ 5d8:	add	x0, x0, #0x1
+ 5dc:	cmp	w0, #0x3f
+ 5e0:	b.le	5d4 <tiger_final+0xbc>
+ 5e4:	mov	w0, #0x40                  	// #64
+ 5e8:	str	w0, [x19, #88]
+ 5ec:	mov	x2, #0x0                   	// #0
+ 5f0:	mov	x1, #0x0                   	// #0
+ 5f4:	mov	x0, x19
+ 5f8:	bl	3c0 <tiger_write>
+ 5fc:	mov	x2, #0x38                  	// #56
+ 600:	mov	w1, #0x0                   	// #0
+ 604:	add	x0, x19, #0x18
+ 608:	bl	0 <grub_memset>
+ 60c:	strb	w21, [x19, #80]
+ 610:	lsr	w0, w21, #8
+ 614:	strb	w0, [x19, #81]
+ 618:	lsr	w0, w21, #16
+ 61c:	strb	w0, [x19, #82]
+ 620:	lsr	w21, w21, #24
+ 624:	strb	w21, [x19, #83]
+ 628:	strb	w20, [x19, #84]
+ 62c:	lsr	w20, w20, #8
+ 630:	strb	w20, [x19, #85]
+ 634:	strb	wzr, [x19, #86]
+ 638:	strb	wzr, [x19, #87]
+ 63c:	add	x1, x19, #0x18
+ 640:	mov	x0, x19
+ 644:	bl	2fc <transform>
+ 648:	mov	w0, #0x100                 	// #256
+ 64c:	bl	0 <_gcry_burn_stack>
+ 650:	ldr	w0, [x19, #96]
+ 654:	cbnz	w0, 728 <tiger_final+0x210>
+ 658:	ldr	x0, [x19]
+ 65c:	lsr	x1, x0, #56
+ 660:	strb	w1, [x19, #24]
+ 664:	lsr	x1, x0, #48
+ 668:	strb	w1, [x19, #25]
+ 66c:	lsr	x1, x0, #40
+ 670:	strb	w1, [x19, #26]
+ 674:	lsr	x1, x0, #32
+ 678:	strb	w1, [x19, #27]
+ 67c:	lsr	x1, x0, #24
+ 680:	strb	w1, [x19, #28]
+ 684:	lsr	x1, x0, #16
+ 688:	strb	w1, [x19, #29]
+ 68c:	lsr	x1, x0, #8
+ 690:	strb	w1, [x19, #30]
+ 694:	strb	w0, [x19, #31]
+ 698:	ldr	x0, [x19, #8]
+ 69c:	lsr	x1, x0, #56
+ 6a0:	strb	w1, [x19, #32]
+ 6a4:	lsr	x1, x0, #48
+ 6a8:	strb	w1, [x19, #33]
+ 6ac:	lsr	x1, x0, #40
+ 6b0:	strb	w1, [x19, #34]
+ 6b4:	lsr	x1, x0, #32
+ 6b8:	strb	w1, [x19, #35]
+ 6bc:	lsr	x1, x0, #24
+ 6c0:	strb	w1, [x19, #36]
+ 6c4:	lsr	x1, x0, #16
+ 6c8:	strb	w1, [x19, #37]
+ 6cc:	lsr	x1, x0, #8
+ 6d0:	strb	w1, [x19, #38]
+ 6d4:	strb	w0, [x19, #39]
+ 6d8:	ldr	x0, [x19, #16]
+ 6dc:	lsr	x1, x0, #56
+ 6e0:	strb	w1, [x19, #40]
+ 6e4:	lsr	x1, x0, #48
+ 6e8:	strb	w1, [x19, #41]
+ 6ec:	lsr	x1, x0, #40
+ 6f0:	strb	w1, [x19, #42]
+ 6f4:	lsr	x1, x0, #32
+ 6f8:	strb	w1, [x19, #43]
+ 6fc:	lsr	x1, x0, #24
+ 700:	strb	w1, [x19, #44]
+ 704:	lsr	x1, x0, #16
+ 708:	strb	w1, [x19, #45]
+ 70c:	lsr	x1, x0, #8
+ 710:	strb	w1, [x19, #46]
+ 714:	strb	w0, [x19, #47]
+ 718:	ldp	x19, x20, [sp, #16]
+ 71c:	ldp	x21, x22, [sp, #32]
+ 720:	ldp	x29, x30, [sp], #48
+ 724:	ret
+ 728:	ldr	x0, [x19]
+ 72c:	strb	w0, [x19, #24]
+ 730:	lsr	x1, x0, #8
+ 734:	strb	w1, [x19, #25]
+ 738:	lsr	x1, x0, #16
+ 73c:	strb	w1, [x19, #26]
+ 740:	lsr	x1, x0, #24
+ 744:	strb	w1, [x19, #27]
+ 748:	lsr	x1, x0, #32
+ 74c:	strb	w1, [x19, #28]
+ 750:	lsr	x1, x0, #40
+ 754:	strb	w1, [x19, #29]
+ 758:	lsr	x1, x0, #48
+ 75c:	strb	w1, [x19, #30]
+ 760:	lsr	x0, x0, #56
+ 764:	strb	w0, [x19, #31]
+ 768:	ldr	x0, [x19, #8]
+ 76c:	strb	w0, [x19, #32]
+ 770:	lsr	x1, x0, #8
+ 774:	strb	w1, [x19, #33]
+ 778:	lsr	x1, x0, #16
+ 77c:	strb	w1, [x19, #34]
+ 780:	lsr	x1, x0, #24
+ 784:	strb	w1, [x19, #35]
+ 788:	lsr	x1, x0, #32
+ 78c:	strb	w1, [x19, #36]
+ 790:	lsr	x1, x0, #40
+ 794:	strb	w1, [x19, #37]
+ 798:	lsr	x1, x0, #48
+ 79c:	strb	w1, [x19, #38]
+ 7a0:	lsr	x0, x0, #56
+ 7a4:	strb	w0, [x19, #39]
+ 7a8:	ldr	x0, [x19, #16]
+ 7ac:	strb	w0, [x19, #40]
+ 7b0:	lsr	x1, x0, #8
+ 7b4:	strb	w1, [x19, #41]
+ 7b8:	lsr	x1, x0, #16
+ 7bc:	strb	w1, [x19, #42]
+ 7c0:	lsr	x1, x0, #24
+ 7c4:	strb	w1, [x19, #43]
+ 7c8:	lsr	x1, x0, #32
+ 7cc:	strb	w1, [x19, #44]
+ 7d0:	lsr	x1, x0, #40
+ 7d4:	strb	w1, [x19, #45]
+ 7d8:	lsr	x1, x0, #48
+ 7dc:	strb	w1, [x19, #46]
+ 7e0:	lsr	x0, x0, #56
+ 7e4:	strb	w0, [x19, #47]
+ 7e8:	b	718 <tiger_final+0x200>
+
+00000000000007ec <tiger2_init>:
+ 7ec:	mov	x1, #0xcdef                	// #52719
+ 7f0:	movk	x1, #0x89ab, lsl #16
+ 7f4:	movk	x1, #0x4567, lsl #32
+ 7f8:	movk	x1, #0x123, lsl #48
+ 7fc:	str	x1, [x0]
+ 800:	mov	x1, #0x3210                	// #12816
+ 804:	movk	x1, #0x7654, lsl #16
+ 808:	movk	x1, #0xba98, lsl #32
+ 80c:	movk	x1, #0xfedc, lsl #48
+ 810:	str	x1, [x0, #8]
+ 814:	mov	x1, #0xe187                	// #57735
+ 818:	movk	x1, #0xc3b2, lsl #16
+ 81c:	movk	x1, #0xa5b4, lsl #32
+ 820:	movk	x1, #0xf096, lsl #48
+ 824:	str	x1, [x0, #16]
+ 828:	str	wzr, [x0, #92]
+ 82c:	str	wzr, [x0, #88]
+ 830:	mov	w1, #0x2                   	// #2
+ 834:	str	w1, [x0, #96]
+ 838:	ret
+
+000000000000083c <tiger1_init>:
+ 83c:	mov	x1, #0xcdef                	// #52719
+ 840:	movk	x1, #0x89ab, lsl #16
+ 844:	movk	x1, #0x4567, lsl #32
+ 848:	movk	x1, #0x123, lsl #48
+ 84c:	str	x1, [x0]
+ 850:	mov	x1, #0x3210                	// #12816
+ 854:	movk	x1, #0x7654, lsl #16
+ 858:	movk	x1, #0xba98, lsl #32
+ 85c:	movk	x1, #0xfedc, lsl #48
+ 860:	str	x1, [x0, #8]
+ 864:	mov	x1, #0xe187                	// #57735
+ 868:	movk	x1, #0xc3b2, lsl #16
+ 86c:	movk	x1, #0xa5b4, lsl #32
+ 870:	movk	x1, #0xf096, lsl #48
+ 874:	str	x1, [x0, #16]
+ 878:	str	wzr, [x0, #92]
+ 87c:	str	wzr, [x0, #88]
+ 880:	mov	w1, #0x1                   	// #1
+ 884:	str	w1, [x0, #96]
+ 888:	ret
+
+000000000000088c <grub_mod_init>:
+ 88c:	stp	x29, x30, [sp, #-32]!
+ 890:	mov	x29, sp
+ 894:	str	x19, [sp, #16]
+ 898:	adrp	x0, 0 <tiger_init>
+ 89c:	ldr	x19, [x0]
+ 8a0:	mov	x0, x19
+ 8a4:	bl	0 <grub_md_register>
+ 8a8:	add	x0, x19, #0x60
+ 8ac:	bl	0 <grub_md_register>
+ 8b0:	add	x0, x19, #0xc0
+ 8b4:	bl	0 <grub_md_register>
+ 8b8:	ldr	x19, [sp, #16]
+ 8bc:	ldp	x29, x30, [sp], #32
+ 8c0:	ret
+ 8c4:	nop
+	...
+
+00000000000008d0 <grub_mod_fini>:
+ 8d0:	stp	x29, x30, [sp, #-32]!
+ 8d4:	mov	x29, sp
+ 8d8:	str	x19, [sp, #16]
+ 8dc:	adrp	x0, 0 <tiger_init>
+ 8e0:	ldr	x19, [x0]
+ 8e4:	mov	x0, x19
+ 8e8:	bl	0 <grub_md_unregister>
+ 8ec:	add	x0, x19, #0x60
+ 8f0:	bl	0 <grub_md_unregister>
+ 8f4:	add	x0, x19, #0xc0
+ 8f8:	bl	0 <grub_md_unregister>
+ 8fc:	ldr	x19, [sp, #16]
+ 900:	ldp	x29, x30, [sp], #32
+ 904:	ret
+	...

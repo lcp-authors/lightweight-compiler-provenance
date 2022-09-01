@@ -1,0 +1,1566 @@
+
+../compcert-repos/stcorp-coda-3a25f25/CMakeFiles/coda_static.dir/libcoda/coda-netcdf.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <swap8>:
+       0:	push	{r4, r5, r6, lr}
+       4:	ldrb	ip, [r0]
+       8:	ldrb	r6, [r0, #7]
+       c:	ldrb	r5, [r0, #6]
+      10:	ldrb	r4, [r0, #5]
+      14:	ldrb	lr, [r0, #4]
+      18:	ldrb	r1, [r0, #1]
+      1c:	ldrb	r2, [r0, #2]
+      20:	ldrb	r3, [r0, #3]
+      24:	eor	ip, ip, r6
+      28:	eor	r1, r1, r5
+      2c:	eor	r2, r2, r4
+      30:	eor	r3, r3, lr
+      34:	eor	r6, r6, ip
+      38:	eor	r5, r5, r1
+      3c:	eor	r4, r4, r2
+      40:	eor	lr, lr, r3
+      44:	eor	ip, ip, r6
+      48:	eor	r1, r1, r5
+      4c:	eor	r2, r2, r4
+      50:	eor	r3, r3, lr
+      54:	strb	ip, [r0]
+      58:	strb	r6, [r0, #7]
+      5c:	strb	r1, [r0, #1]
+      60:	strb	r5, [r0, #6]
+      64:	strb	r2, [r0, #2]
+      68:	strb	r4, [r0, #5]
+      6c:	strb	r3, [r0, #3]
+      70:	strb	lr, [r0, #4]
+      74:	pop	{r4, r5, r6, pc}
+
+00000078 <read_bytes>:
+      78:	push	{r4, r5, r6, r7, r8, r9, lr}
+      7c:	sub	sp, sp, #84	; 0x54
+      80:	ldr	r5, [r0, #48]	; 0x30
+      84:	mov	r6, r2
+      88:	cmp	r5, #0
+      8c:	mov	r7, r3
+      90:	mov	r4, r0
+      94:	ldrd	r2, [sp, #112]	; 0x70
+      98:	beq	144 <read_bytes+0xcc>
+      9c:	ldrd	r8, [r0, #40]	; 0x28
+      a0:	adds	r0, r6, r2
+      a4:	adc	r1, r7, r3
+      a8:	cmp	r1, r9
+      ac:	cmpeq	r0, r8
+      b0:	bls	12c <read_bytes+0xb4>
+      b4:	ldr	r1, [r4, #16]
+      b8:	cmp	r1, #1
+      bc:	bls	114 <read_bytes+0x9c>
+      c0:	mov	r1, r3
+      c4:	mov	r0, r2
+      c8:	add	r2, sp, #8
+      cc:	bl	0 <coda_str64>
+      d0:	add	r5, sp, #56	; 0x38
+      d4:	mov	r0, r6
+      d8:	mov	r1, r7
+      dc:	add	r2, sp, #32
+      e0:	bl	0 <coda_str64>
+      e4:	ldrd	r0, [r4, #40]	; 0x28
+      e8:	mov	r2, r5
+      ec:	bl	0 <coda_str64>
+      f0:	mvn	r0, #300	; 0x12c
+      f4:	str	r5, [sp]
+      f8:	add	r3, sp, #32
+      fc:	add	r2, sp, #8
+     100:	ldr	r1, [pc, #180]	; 1bc <read_bytes+0x144>
+     104:	bl	0 <coda_set_error>
+     108:	mvn	r0, #0
+     10c:	add	sp, sp, #84	; 0x54
+     110:	pop	{r4, r5, r6, r7, r8, r9, pc}
+     114:	ldr	r1, [pc, #164]	; 1c0 <read_bytes+0x148>
+     118:	mvn	r0, #300	; 0x12c
+     11c:	bl	0 <coda_set_error>
+     120:	mvn	r0, #0
+     124:	add	sp, sp, #84	; 0x54
+     128:	pop	{r4, r5, r6, r7, r8, r9, pc}
+     12c:	add	r1, r5, r6
+     130:	ldr	r0, [sp, #120]	; 0x78
+     134:	bl	0 <memcpy>
+     138:	mov	r0, #0
+     13c:	add	sp, sp, #84	; 0x54
+     140:	pop	{r4, r5, r6, r7, r8, r9, pc}
+     144:	ldr	r1, [r0, #16]
+     148:	cmp	r1, #1
+     14c:	bhi	1a8 <read_bytes+0x130>
+     150:	ldrd	r8, [r0, #8]
+     154:	adds	r0, r6, r2
+     158:	adc	r1, r7, r3
+     15c:	cmp	r1, r9
+     160:	cmpeq	r0, r8
+     164:	bhi	114 <read_bytes+0x9c>
+     168:	mov	r3, r6
+     16c:	ldr	r0, [r4, #56]	; 0x38
+     170:	ldr	r1, [sp, #120]	; 0x78
+     174:	bl	0 <pread>
+     178:	cmp	r0, #0
+     17c:	movge	r0, r5
+     180:	bge	10c <read_bytes+0x94>
+     184:	bl	0 <__errno_location>
+     188:	ldr	r0, [r0]
+     18c:	bl	0 <strerror>
+     190:	ldr	r1, [pc, #44]	; 1c4 <read_bytes+0x14c>
+     194:	mov	r2, r0
+     198:	mvn	r0, #21
+     19c:	bl	0 <coda_set_error>
+     1a0:	mvn	r0, #0
+     1a4:	b	10c <read_bytes+0x94>
+     1a8:	ldr	r3, [pc, #24]	; 1c8 <read_bytes+0x150>
+     1ac:	mov	r2, #83	; 0x53
+     1b0:	ldr	r1, [pc, #20]	; 1cc <read_bytes+0x154>
+     1b4:	ldr	r0, [pc, #20]	; 1d0 <read_bytes+0x158>
+     1b8:	bl	0 <__assert_fail>
+     1bc:	.word	0x0000002c
+     1c0:	.word	0x00000000
+     1c4:	.word	0x00000108
+     1c8:	.word	0x00000000
+     1cc:	.word	0x00000068
+     1d0:	.word	0x000000b8
+
+000001d4 <read_length_value.isra.0>:
+     1d4:	cmp	r1, #5
+     1d8:	push	{r4, r5, r6, r7, lr}
+     1dc:	mov	r4, r2
+     1e0:	mov	r5, r3
+     1e4:	sub	sp, sp, #28
+     1e8:	ldrd	r2, [r2]
+     1ec:	beq	270 <read_length_value.isra.0+0x9c>
+     1f0:	mov	r6, #4
+     1f4:	mov	r7, #0
+     1f8:	add	r1, sp, #20
+     1fc:	strd	r6, [sp]
+     200:	str	r1, [sp, #8]
+     204:	bl	78 <read_bytes>
+     208:	cmp	r0, #0
+     20c:	blt	2b0 <read_length_value.isra.0+0xdc>
+     210:	ldrb	r0, [sp, #23]
+     214:	ldrb	r1, [sp, #22]
+     218:	ldrb	r2, [sp, #20]
+     21c:	ldrb	r3, [sp, #21]
+     220:	eor	r2, r2, r0
+     224:	eor	r3, r3, r1
+     228:	eor	r0, r0, r2
+     22c:	eor	r1, r1, r3
+     230:	eor	r2, r2, r0
+     234:	eor	r3, r3, r1
+     238:	strb	r0, [sp, #23]
+     23c:	strb	r3, [sp, #21]
+     240:	strb	r2, [sp, #20]
+     244:	strb	r1, [sp, #22]
+     248:	ldr	r2, [sp, #20]
+     24c:	mov	r0, #0
+     250:	asr	r3, r2, #31
+     254:	strd	r2, [r5]
+     258:	ldrd	r2, [r4]
+     25c:	adds	r2, r2, #4
+     260:	adc	r3, r3, #0
+     264:	strd	r2, [r4]
+     268:	add	sp, sp, #28
+     26c:	pop	{r4, r5, r6, r7, pc}
+     270:	mov	r6, #8
+     274:	mov	r7, #0
+     278:	str	r5, [sp, #8]
+     27c:	strd	r6, [sp]
+     280:	bl	78 <read_bytes>
+     284:	cmp	r0, #0
+     288:	blt	2b0 <read_length_value.isra.0+0xdc>
+     28c:	mov	r0, r5
+     290:	bl	0 <swap8>
+     294:	ldrd	r2, [r4]
+     298:	mov	r0, #0
+     29c:	adds	r2, r2, r6
+     2a0:	adc	r3, r3, r7
+     2a4:	strd	r2, [r4]
+     2a8:	add	sp, sp, #28
+     2ac:	pop	{r4, r5, r6, r7, pc}
+     2b0:	mvn	r0, #0
+     2b4:	b	268 <read_length_value.isra.0+0x94>
+
+000002b8 <read_att_array>:
+     2b8:	push	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+     2bc:	sub	sp, sp, #92	; 0x5c
+     2c0:	ldrd	r6, [r1]
+     2c4:	mov	r8, #0
+     2c8:	mov	r4, r1
+     2cc:	mov	r9, #4
+     2d0:	add	r1, sp, #48	; 0x30
+     2d4:	str	r3, [sp, #40]	; 0x28
+     2d8:	mov	r5, r0
+     2dc:	mov	fp, r2
+     2e0:	ldr	r0, [r0, #52]	; 0x34
+     2e4:	mov	r2, r6
+     2e8:	mov	r3, r7
+     2ec:	str	r1, [sp, #8]
+     2f0:	str	r9, [sp]
+     2f4:	str	r8, [sp, #4]
+     2f8:	bl	78 <read_bytes>
+     2fc:	cmp	r0, r8
+     300:	blt	528 <read_att_array+0x270>
+     304:	ldrb	lr, [sp, #51]	; 0x33
+     308:	ldrd	r2, [r4]
+     30c:	ldrb	r0, [sp, #48]	; 0x30
+     310:	ldrb	ip, [sp, #50]	; 0x32
+     314:	ldrb	r1, [sp, #49]	; 0x31
+     318:	adds	r2, r2, #4
+     31c:	eor	r0, r0, lr
+     320:	adc	r3, r3, #0
+     324:	eor	r1, r1, ip
+     328:	eor	lr, lr, r0
+     32c:	eor	ip, ip, r1
+     330:	eor	r0, r0, lr
+     334:	eor	r6, r1, ip
+     338:	strd	r2, [r4]
+     33c:	strb	r0, [sp, #48]	; 0x30
+     340:	ldr	r1, [r5, #56]	; 0x38
+     344:	add	r3, sp, #56	; 0x38
+     348:	mov	r2, r4
+     34c:	ldr	r0, [r5, #52]	; 0x34
+     350:	strb	lr, [sp, #51]	; 0x33
+     354:	strb	r6, [sp, #49]	; 0x31
+     358:	strb	ip, [sp, #50]	; 0x32
+     35c:	bl	1d4 <read_length_value.isra.0>
+     360:	subs	r1, r0, #0
+     364:	str	r1, [sp, #28]
+     368:	bne	528 <read_att_array+0x270>
+     36c:	ldr	r3, [sp, #48]	; 0x30
+     370:	cmp	r3, #0
+     374:	beq	53c <read_att_array+0x284>
+     378:	cmp	r3, #12
+     37c:	bne	51c <read_att_array+0x264>
+     380:	mov	r0, #6
+     384:	bl	0 <coda_type_record_new>
+     388:	subs	r6, r0, #0
+     38c:	beq	528 <read_att_array+0x270>
+     390:	ldr	r1, [sp, #28]
+     394:	bl	0 <coda_mem_record_new>
+     398:	str	r0, [fp]
+     39c:	mov	r0, r6
+     3a0:	bl	0 <coda_type_release>
+     3a4:	ldr	r3, [fp]
+     3a8:	cmp	r3, #0
+     3ac:	beq	528 <read_att_array+0x270>
+     3b0:	ldrd	r2, [sp, #56]	; 0x38
+     3b4:	cmp	r2, #1
+     3b8:	sbcs	r3, r3, #0
+     3bc:	blt	530 <read_att_array+0x278>
+     3c0:	mov	r2, #1
+     3c4:	mov	r3, #0
+     3c8:	str	r9, [sp, #16]
+     3cc:	str	r8, [sp, #20]
+     3d0:	strd	r2, [sp, #32]
+     3d4:	add	r3, sp, #64	; 0x40
+     3d8:	mov	r2, r4
+     3dc:	ldr	r1, [r5, #56]	; 0x38
+     3e0:	ldr	r0, [r5, #52]	; 0x34
+     3e4:	bl	1d4 <read_length_value.isra.0>
+     3e8:	subs	r8, r0, #0
+     3ec:	bne	528 <read_att_array+0x270>
+     3f0:	ldr	r6, [sp, #64]	; 0x40
+     3f4:	ldr	r7, [sp, #68]	; 0x44
+     3f8:	add	r0, r6, #1
+     3fc:	bl	0 <malloc>
+     400:	subs	sl, r0, #0
+     404:	beq	9e8 <read_att_array+0x730>
+     408:	ldrd	r2, [r4]
+     40c:	strb	r8, [sl, r6]
+     410:	str	sl, [sp, #8]
+     414:	str	r6, [sp]
+     418:	ldr	r0, [r5, #52]	; 0x34
+     41c:	str	r7, [sp, #4]
+     420:	bl	78 <read_bytes>
+     424:	cmp	r0, #0
+     428:	blt	718 <read_att_array+0x460>
+     42c:	ldrd	r2, [sp, #64]	; 0x40
+     430:	ldrd	r0, [r4]
+     434:	mov	r7, #0
+     438:	and	r6, r2, #3
+     43c:	adds	r2, r2, r0
+     440:	adc	r3, r3, r1
+     444:	orrs	r1, r6, r7
+     448:	beq	460 <read_att_array+0x1a8>
+     44c:	ldrd	r0, [sp, #16]
+     450:	subs	r0, r0, r6
+     454:	sbc	r1, r1, r7
+     458:	adds	r2, r2, r0
+     45c:	adc	r3, r3, r1
+     460:	ldrd	r6, [sp, #16]
+     464:	add	r1, sp, #52	; 0x34
+     468:	strd	r2, [r4]
+     46c:	ldr	r0, [r5, #52]	; 0x34
+     470:	str	r1, [sp, #8]
+     474:	strd	r6, [sp]
+     478:	bl	78 <read_bytes>
+     47c:	cmp	r0, #0
+     480:	blt	718 <read_att_array+0x460>
+     484:	ldrb	ip, [sp, #54]	; 0x36
+     488:	ldrd	r2, [r4]
+     48c:	ldrb	r0, [sp, #53]	; 0x35
+     490:	ldrb	r1, [sp, #55]	; 0x37
+     494:	ldrb	lr, [sp, #52]	; 0x34
+     498:	adds	r2, r2, #4
+     49c:	eor	r0, r0, ip
+     4a0:	adc	r3, r3, #0
+     4a4:	eor	ip, ip, r0
+     4a8:	eor	lr, lr, r1
+     4ac:	eor	r1, r1, lr
+     4b0:	eor	r0, r0, ip
+     4b4:	eor	lr, lr, r1
+     4b8:	strd	r2, [r4]
+     4bc:	strb	r1, [sp, #55]	; 0x37
+     4c0:	strb	r0, [sp, #53]	; 0x35
+     4c4:	add	r3, sp, #72	; 0x48
+     4c8:	mov	r2, r4
+     4cc:	ldr	r1, [r5, #56]	; 0x38
+     4d0:	ldr	r0, [r5, #52]	; 0x34
+     4d4:	strb	lr, [sp, #52]	; 0x34
+     4d8:	strb	ip, [sp, #54]	; 0x36
+     4dc:	bl	1d4 <read_length_value.isra.0>
+     4e0:	cmp	r0, #0
+     4e4:	bne	528 <read_att_array+0x270>
+     4e8:	ldrd	r6, [sp, #72]	; 0x48
+     4ec:	ldr	r8, [sp, #52]	; 0x34
+     4f0:	sub	r3, r8, #1
+     4f4:	mov	r9, r6
+     4f8:	cmp	r3, #5
+     4fc:	ldrls	pc, [pc, r3, lsl #2]
+     500:	b	72c <read_att_array+0x474>
+     504:	.word	0x00000568
+     508:	.word	0x00000568
+     50c:	.word	0x000006ec
+     510:	.word	0x00000564
+     514:	.word	0x00000564
+     518:	.word	0x00000660
+     51c:	ldr	r1, [pc, #1492]	; af8 <read_att_array+0x840>
+     520:	ldr	r0, [pc, #1492]	; afc <read_att_array+0x844>
+     524:	bl	0 <coda_set_error>
+     528:	mvn	r3, #0
+     52c:	str	r3, [sp, #28]
+     530:	ldr	r0, [sp, #28]
+     534:	add	sp, sp, #92	; 0x5c
+     538:	pop	{r4, r5, r6, r7, r8, r9, sl, fp, pc}
+     53c:	ldrd	r2, [sp, #56]	; 0x38
+     540:	str	r1, [fp]
+     544:	orrs	r3, r2, r3
+     548:	beq	530 <read_att_array+0x278>
+     54c:	ldr	r1, [pc, #1452]	; b00 <read_att_array+0x848>
+     550:	sub	r0, r0, #300	; 0x12c
+     554:	bl	0 <coda_set_error>
+     558:	mvn	r3, #0
+     55c:	str	r3, [sp, #28]
+     560:	b	530 <read_att_array+0x278>
+     564:	lsl	r9, r6, #2
+     568:	ldr	r3, [sp, #40]	; 0x28
+     56c:	cmp	r3, #0
+     570:	beq	580 <read_att_array+0x2c8>
+     574:	cmp	r7, #0
+     578:	cmpeq	r6, #1
+     57c:	beq	67c <read_att_array+0x3c4>
+     580:	cmp	r8, #2
+     584:	beq	768 <read_att_array+0x4b0>
+     588:	mov	r6, #1
+     58c:	mov	r7, #0
+     590:	mov	r1, #0
+     594:	ldrd	r2, [r4]
+     598:	mov	r0, r8
+     59c:	strd	r6, [sp, #8]
+     5a0:	str	r1, [sp]
+     5a4:	bl	0 <coda_netcdf_basic_type_new>
+     5a8:	mov	r6, r0
+     5ac:	cmp	r6, #0
+     5b0:	beq	718 <read_att_array+0x460>
+     5b4:	ldrd	r2, [r4]
+     5b8:	adds	r2, r2, r9
+     5bc:	adc	r3, r3, r9, asr #31
+     5c0:	ands	r9, r9, #3
+     5c4:	beq	5d4 <read_att_array+0x31c>
+     5c8:	rsb	r9, r9, #4
+     5cc:	adds	r2, r2, r9
+     5d0:	adc	r3, r3, r9, asr #31
+     5d4:	strd	r2, [r4]
+     5d8:	ldr	r3, [sp, #52]	; 0x34
+     5dc:	cmp	r3, #2
+     5e0:	beq	6f4 <read_att_array+0x43c>
+     5e4:	ldrd	r0, [sp, #72]	; 0x48
+     5e8:	cmp	r1, #0
+     5ec:	cmpeq	r0, #1
+     5f0:	beq	6f4 <read_att_array+0x43c>
+     5f4:	add	r1, sp, #88	; 0x58
+     5f8:	mov	r2, r6
+     5fc:	str	r0, [r1, #-8]!
+     600:	mov	r0, #1
+     604:	bl	0 <coda_netcdf_array_new>
+     608:	subs	r7, r0, #0
+     60c:	beq	710 <read_att_array+0x458>
+     610:	mov	r3, #1
+     614:	mov	r2, r7
+     618:	mov	r1, sl
+     61c:	ldr	r0, [fp]
+     620:	bl	0 <coda_mem_record_add_field>
+     624:	cmp	r0, #0
+     628:	bne	af0 <read_att_array+0x838>
+     62c:	mov	r0, sl
+     630:	bl	0 <free>
+     634:	ldrd	r6, [sp, #32]
+     638:	ldrd	r2, [sp, #56]	; 0x38
+     63c:	mov	r0, r6
+     640:	adds	r6, r6, #1
+     644:	mov	r1, r7
+     648:	adc	r7, r7, #0
+     64c:	cmp	r0, r2
+     650:	sbcs	r3, r1, r3
+     654:	strd	r6, [sp, #32]
+     658:	blt	3d4 <read_att_array+0x11c>
+     65c:	b	530 <read_att_array+0x278>
+     660:	lsl	r9, r6, #3
+     664:	ldr	r3, [sp, #40]	; 0x28
+     668:	cmp	r3, #0
+     66c:	beq	588 <read_att_array+0x2d0>
+     670:	cmp	r7, #0
+     674:	cmpeq	r6, #1
+     678:	bne	580 <read_att_array+0x2c8>
+     67c:	ldr	r1, [pc, #1152]	; b04 <read_att_array+0x84c>
+     680:	mov	r0, sl
+     684:	bl	0 <strcmp>
+     688:	cmp	r0, #0
+     68c:	bne	750 <read_att_array+0x498>
+     690:	cmp	r8, #5
+     694:	beq	a14 <read_att_array+0x75c>
+     698:	cmp	r8, #6
+     69c:	beq	aa4 <read_att_array+0x7ec>
+     6a0:	cmp	r8, #2
+     6a4:	beq	76c <read_att_array+0x4b4>
+     6a8:	ldr	r1, [pc, #1112]	; b08 <read_att_array+0x850>
+     6ac:	mov	r0, sl
+     6b0:	bl	0 <strcmp>
+     6b4:	cmp	r0, #0
+     6b8:	beq	78c <read_att_array+0x4d4>
+     6bc:	ldr	r1, [pc, #1096]	; b0c <read_att_array+0x854>
+     6c0:	mov	r0, sl
+     6c4:	bl	0 <strcmp>
+     6c8:	cmp	r0, #0
+     6cc:	bne	588 <read_att_array+0x2d0>
+     6d0:	ldr	r3, [sp, #40]	; 0x28
+     6d4:	vldr	d0, [r3, #24]
+     6d8:	bl	0 <coda_isNaN>
+     6dc:	cmp	r0, #0
+     6e0:	bne	78c <read_att_array+0x4d4>
+     6e4:	ldr	r8, [sp, #52]	; 0x34
+     6e8:	b	580 <read_att_array+0x2c8>
+     6ec:	lsl	r9, r6, #1
+     6f0:	b	664 <read_att_array+0x3ac>
+     6f4:	mov	r3, #1
+     6f8:	mov	r2, r6
+     6fc:	mov	r1, sl
+     700:	ldr	r0, [fp]
+     704:	bl	0 <coda_mem_record_add_field>
+     708:	cmp	r0, #0
+     70c:	beq	62c <read_att_array+0x374>
+     710:	mov	r0, r6
+     714:	bl	0 <coda_dynamic_type_delete>
+     718:	mov	r0, sl
+     71c:	bl	0 <free>
+     720:	ldr	r0, [fp]
+     724:	bl	0 <coda_dynamic_type_delete>
+     728:	b	528 <read_att_array+0x270>
+     72c:	mov	r0, sl
+     730:	bl	0 <free>
+     734:	ldr	r0, [fp]
+     738:	bl	0 <coda_dynamic_type_delete>
+     73c:	ldr	r2, [sp, #52]	; 0x34
+     740:	ldr	r1, [pc, #968]	; b10 <read_att_array+0x858>
+     744:	ldr	r0, [pc, #944]	; afc <read_att_array+0x844>
+     748:	bl	0 <coda_set_error>
+     74c:	b	528 <read_att_array+0x270>
+     750:	ldr	r1, [pc, #956]	; b14 <read_att_array+0x85c>
+     754:	mov	r0, sl
+     758:	bl	0 <strcmp>
+     75c:	cmp	r0, #0
+     760:	bne	6a0 <read_att_array+0x3e8>
+     764:	b	690 <read_att_array+0x3d8>
+     768:	ldrd	r6, [sp, #72]	; 0x48
+     76c:	mov	r1, #0
+     770:	ldrd	r2, [r4]
+     774:	mov	r0, #2
+     778:	strd	r6, [sp, #8]
+     77c:	str	r1, [sp]
+     780:	bl	0 <coda_netcdf_basic_type_new>
+     784:	mov	r6, r0
+     788:	b	5ac <read_att_array+0x2f4>
+     78c:	mov	r6, r9
+     790:	asr	r7, r9, #31
+     794:	add	r1, sp, #80	; 0x50
+     798:	ldrd	r2, [r4]
+     79c:	ldr	r0, [r5, #52]	; 0x34
+     7a0:	str	r1, [sp, #8]
+     7a4:	strd	r6, [sp]
+     7a8:	str	r1, [sp, #44]	; 0x2c
+     7ac:	bl	78 <read_bytes>
+     7b0:	ldr	r1, [sp, #44]	; 0x2c
+     7b4:	cmp	r0, #0
+     7b8:	blt	718 <read_att_array+0x460>
+     7bc:	ldr	r8, [sp, #52]	; 0x34
+     7c0:	sub	r3, r8, #1
+     7c4:	cmp	r3, #10
+     7c8:	ldrls	pc, [pc, r3, lsl #2]
+     7cc:	b	9d4 <read_att_array+0x71c>
+     7d0:	.word	0x00000960
+     7d4:	.word	0x000009d4
+     7d8:	.word	0x0000092c
+     7dc:	.word	0x000008e0
+     7e0:	.word	0x00000894
+     7e4:	.word	0x00000978
+     7e8:	.word	0x0000087c
+     7ec:	.word	0x00000848
+     7f0:	.word	0x000007fc
+     7f4:	.word	0x000009b4
+     7f8:	.word	0x00000994
+     7fc:	ldrb	r0, [sp, #83]	; 0x53
+     800:	ldrb	r1, [sp, #82]	; 0x52
+     804:	ldrb	r2, [sp, #80]	; 0x50
+     808:	ldrb	r3, [sp, #81]	; 0x51
+     80c:	eor	r2, r2, r0
+     810:	eor	r3, r3, r1
+     814:	eor	r0, r0, r2
+     818:	eor	r1, r1, r3
+     81c:	eor	r3, r3, r1
+     820:	eor	r2, r2, r0
+     824:	strb	r3, [sp, #81]	; 0x51
+     828:	strb	r2, [sp, #80]	; 0x50
+     82c:	strb	r0, [sp, #83]	; 0x53
+     830:	strb	r1, [sp, #82]	; 0x52
+     834:	vldr	s15, [sp, #80]	; 0x50
+     838:	ldr	r3, [sp, #40]	; 0x28
+     83c:	vcvt.f64.u32	d7, s15
+     840:	vstr	d7, [r3, #24]
+     844:	b	588 <read_att_array+0x2d0>
+     848:	ldrb	r2, [sp, #81]	; 0x51
+     84c:	ldrb	r3, [sp, #80]	; 0x50
+     850:	eor	r3, r3, r2
+     854:	eor	r2, r2, r3
+     858:	eor	r3, r3, r2
+     85c:	strb	r3, [sp, #80]	; 0x50
+     860:	strb	r2, [sp, #81]	; 0x51
+     864:	ldrh	r3, [sp, #80]	; 0x50
+     868:	vmov	s14, r3
+     86c:	ldr	r3, [sp, #40]	; 0x28
+     870:	vcvt.f64.u32	d7, s14
+     874:	vstr	d7, [r3, #24]
+     878:	b	588 <read_att_array+0x2d0>
+     87c:	ldrb	r3, [sp, #80]	; 0x50
+     880:	vmov	s14, r3
+     884:	ldr	r3, [sp, #40]	; 0x28
+     888:	vcvt.f64.u32	d7, s14
+     88c:	vstr	d7, [r3, #24]
+     890:	b	588 <read_att_array+0x2d0>
+     894:	ldrb	r0, [sp, #83]	; 0x53
+     898:	ldrb	r1, [sp, #82]	; 0x52
+     89c:	ldrb	r2, [sp, #80]	; 0x50
+     8a0:	ldrb	r3, [sp, #81]	; 0x51
+     8a4:	eor	r2, r2, r0
+     8a8:	eor	r3, r3, r1
+     8ac:	eor	r0, r0, r2
+     8b0:	eor	r1, r1, r3
+     8b4:	eor	r3, r3, r1
+     8b8:	eor	r2, r2, r0
+     8bc:	strb	r3, [sp, #81]	; 0x51
+     8c0:	strb	r2, [sp, #80]	; 0x50
+     8c4:	strb	r0, [sp, #83]	; 0x53
+     8c8:	strb	r1, [sp, #82]	; 0x52
+     8cc:	vldr	s14, [sp, #80]	; 0x50
+     8d0:	ldr	r3, [sp, #40]	; 0x28
+     8d4:	vcvt.f64.f32	d7, s14
+     8d8:	vstr	d7, [r3, #24]
+     8dc:	b	588 <read_att_array+0x2d0>
+     8e0:	ldrb	r0, [sp, #83]	; 0x53
+     8e4:	ldrb	r1, [sp, #82]	; 0x52
+     8e8:	ldrb	r2, [sp, #80]	; 0x50
+     8ec:	ldrb	r3, [sp, #81]	; 0x51
+     8f0:	eor	r2, r2, r0
+     8f4:	eor	r3, r3, r1
+     8f8:	eor	r0, r0, r2
+     8fc:	eor	r1, r1, r3
+     900:	eor	r3, r3, r1
+     904:	eor	r2, r2, r0
+     908:	strb	r3, [sp, #81]	; 0x51
+     90c:	strb	r2, [sp, #80]	; 0x50
+     910:	strb	r0, [sp, #83]	; 0x53
+     914:	strb	r1, [sp, #82]	; 0x52
+     918:	vldr	s15, [sp, #80]	; 0x50
+     91c:	ldr	r3, [sp, #40]	; 0x28
+     920:	vcvt.f64.s32	d7, s15
+     924:	vstr	d7, [r3, #24]
+     928:	b	588 <read_att_array+0x2d0>
+     92c:	ldrb	r2, [sp, #81]	; 0x51
+     930:	ldrb	r3, [sp, #80]	; 0x50
+     934:	eor	r3, r3, r2
+     938:	eor	r2, r2, r3
+     93c:	eor	r3, r3, r2
+     940:	strb	r3, [sp, #80]	; 0x50
+     944:	strb	r2, [sp, #81]	; 0x51
+     948:	ldrsh	r3, [sp, #80]	; 0x50
+     94c:	vmov	s14, r3
+     950:	ldr	r3, [sp, #40]	; 0x28
+     954:	vcvt.f64.s32	d7, s14
+     958:	vstr	d7, [r3, #24]
+     95c:	b	588 <read_att_array+0x2d0>
+     960:	ldrsb	r3, [sp, #80]	; 0x50
+     964:	vmov	s14, r3
+     968:	ldr	r3, [sp, #40]	; 0x28
+     96c:	vcvt.f64.s32	d7, s14
+     970:	vstr	d7, [r3, #24]
+     974:	b	588 <read_att_array+0x2d0>
+     978:	mov	r0, r1
+     97c:	bl	0 <swap8>
+     980:	ldrd	r2, [sp, #80]	; 0x50
+     984:	ldr	r1, [sp, #40]	; 0x28
+     988:	ldr	r8, [sp, #52]	; 0x34
+     98c:	strd	r2, [r1, #24]
+     990:	b	580 <read_att_array+0x2c8>
+     994:	mov	r0, r1
+     998:	bl	0 <swap8>
+     99c:	ldrd	r0, [sp, #80]	; 0x50
+     9a0:	bl	0 <__aeabi_ul2d>
+     9a4:	ldr	r3, [sp, #40]	; 0x28
+     9a8:	ldr	r8, [sp, #52]	; 0x34
+     9ac:	strd	r0, [r3, #24]
+     9b0:	b	580 <read_att_array+0x2c8>
+     9b4:	mov	r0, r1
+     9b8:	bl	0 <swap8>
+     9bc:	ldrd	r0, [sp, #80]	; 0x50
+     9c0:	bl	0 <__aeabi_l2d>
+     9c4:	ldr	r3, [sp, #40]	; 0x28
+     9c8:	ldr	r8, [sp, #52]	; 0x34
+     9cc:	strd	r0, [r3, #24]
+     9d0:	b	580 <read_att_array+0x2c8>
+     9d4:	ldr	r3, [pc, #316]	; b18 <read_att_array+0x860>
+     9d8:	ldr	r2, [pc, #316]	; b1c <read_att_array+0x864>
+     9dc:	ldr	r1, [pc, #316]	; b20 <read_att_array+0x868>
+     9e0:	ldr	r0, [pc, #316]	; b24 <read_att_array+0x86c>
+     9e4:	bl	0 <__assert_fail>
+     9e8:	ldr	r0, [fp]
+     9ec:	bl	0 <coda_dynamic_type_delete>
+     9f0:	ldr	r2, [sp, #64]	; 0x40
+     9f4:	mov	r3, #230	; 0xe6
+     9f8:	str	r3, [sp]
+     9fc:	add	r2, r2, #1
+     a00:	ldr	r3, [pc, #280]	; b20 <read_att_array+0x868>
+     a04:	ldr	r1, [pc, #284]	; b28 <read_att_array+0x870>
+     a08:	mvn	r0, #0
+     a0c:	bl	0 <coda_set_error>
+     a10:	b	528 <read_att_array+0x270>
+     a14:	ldrd	r6, [sp, #16]
+     a18:	add	r1, sp, #80	; 0x50
+     a1c:	ldrd	r2, [r4]
+     a20:	ldr	r0, [r5, #52]	; 0x34
+     a24:	strd	r6, [sp]
+     a28:	str	r1, [sp, #8]
+     a2c:	bl	78 <read_bytes>
+     a30:	cmp	r0, #0
+     a34:	blt	718 <read_att_array+0x460>
+     a38:	ldrb	r0, [sp, #83]	; 0x53
+     a3c:	ldrb	r1, [sp, #82]	; 0x52
+     a40:	ldrb	r2, [sp, #80]	; 0x50
+     a44:	ldrb	r3, [sp, #81]	; 0x51
+     a48:	ldrb	ip, [sl]
+     a4c:	eor	r2, r2, r0
+     a50:	eor	r3, r3, r1
+     a54:	eor	r0, r0, r2
+     a58:	eor	r1, r1, r3
+     a5c:	eor	r3, r3, r1
+     a60:	eor	r2, r2, r0
+     a64:	strb	r3, [sp, #81]	; 0x51
+     a68:	strb	r2, [sp, #80]	; 0x50
+     a6c:	strb	r0, [sp, #83]	; 0x53
+     a70:	strb	r1, [sp, #82]	; 0x52
+     a74:	vldr	s14, [sp, #80]	; 0x50
+     a78:	ldr	r3, [sp, #40]	; 0x28
+     a7c:	cmp	ip, #115	; 0x73
+     a80:	vcvt.f64.f32	d7, s14
+     a84:	vstreq	d7, [r3]
+     a88:	vstrne	d7, [r3, #16]
+     a8c:	ldrd	r6, [sp, #72]	; 0x48
+     a90:	ldr	r8, [sp, #52]	; 0x34
+     a94:	cmp	r7, #0
+     a98:	cmpeq	r6, #1
+     a9c:	beq	6a0 <read_att_array+0x3e8>
+     aa0:	b	580 <read_att_array+0x2c8>
+     aa4:	mov	r6, #8
+     aa8:	mov	r7, #0
+     aac:	add	r8, sp, #80	; 0x50
+     ab0:	ldrd	r2, [r4]
+     ab4:	ldr	r0, [r5, #52]	; 0x34
+     ab8:	strd	r6, [sp]
+     abc:	str	r8, [sp, #8]
+     ac0:	bl	78 <read_bytes>
+     ac4:	cmp	r0, #0
+     ac8:	blt	718 <read_att_array+0x460>
+     acc:	mov	r0, r8
+     ad0:	bl	0 <swap8>
+     ad4:	ldrb	r3, [sl]
+     ad8:	ldr	r1, [sp, #40]	; 0x28
+     adc:	cmp	r3, #115	; 0x73
+     ae0:	ldrd	r2, [sp, #80]	; 0x50
+     ae4:	strdeq	r2, [r1]
+     ae8:	strdne	r2, [r1, #16]
+     aec:	b	a8c <read_att_array+0x7d4>
+     af0:	mov	r0, r7
+     af4:	b	714 <read_att_array+0x45c>
+     af8:	.word	0x0000016c
+     afc:	.word	0xfffffed4
+     b00:	.word	0x00000128
+     b04:	.word	0x0000025c
+     b08:	.word	0x00000278
+     b0c:	.word	0x00000288
+     b10:	.word	0x0000022c
+     b14:	.word	0x0000026c
+     b18:	.word	0x0000000c
+     b1c:	.word	0x000001a1
+     b20:	.word	0x000001a8
+     b24:	.word	0x00000294
+     b28:	.word	0x000001f4
+
+00000b2c <coda_netcdf_close>:
+     b2c:	push	{r4, lr}
+     b30:	mov	r4, r0
+     b34:	ldr	r0, [r0]
+     b38:	cmp	r0, #0
+     b3c:	beq	b44 <coda_netcdf_close+0x18>
+     b40:	bl	0 <free>
+     b44:	ldr	r0, [r4, #20]
+     b48:	cmp	r0, #0
+     b4c:	beq	b54 <coda_netcdf_close+0x28>
+     b50:	bl	0 <coda_dynamic_type_delete>
+     b54:	ldr	r0, [r4, #48]	; 0x30
+     b58:	cmp	r0, #0
+     b5c:	beq	b64 <coda_netcdf_close+0x38>
+     b60:	bl	0 <free>
+     b64:	ldr	r0, [r4, #52]	; 0x34
+     b68:	cmp	r0, #0
+     b6c:	beq	b74 <coda_netcdf_close+0x48>
+     b70:	bl	0 <coda_bin_close>
+     b74:	mov	r0, r4
+     b78:	bl	0 <free>
+     b7c:	mov	r0, #0
+     b80:	pop	{r4, pc}
+
+00000b84 <coda_netcdf_reopen>:
+     b84:	push	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+     b88:	vpush	{d8-d9}
+     b8c:	mov	r6, #0
+     b90:	mov	r7, #0
+     b94:	sub	sp, sp, #212	; 0xd4
+     b98:	str	r0, [sp, #36]	; 0x24
+     b9c:	mov	r0, #64	; 0x40
+     ba0:	strd	r6, [sp, #120]	; 0x78
+     ba4:	bl	0 <malloc>
+     ba8:	subs	sl, r0, #0
+     bac:	beq	1738 <coda_netcdf_reopen+0xbb4>
+     bb0:	ldr	r3, [sp, #36]	; 0x24
+     bb4:	mov	r4, #0
+     bb8:	mov	r5, #6
+     bbc:	ldr	r1, [r3]
+     bc0:	str	r4, [sl]
+     bc4:	ldrd	r2, [r1, #8]
+     bc8:	ldr	r0, [r1]
+     bcc:	str	r1, [sl, #52]	; 0x34
+     bd0:	strd	r2, [sl, #8]
+     bd4:	mov	r3, #1
+     bd8:	strd	r6, [sl, #40]	; 0x28
+     bdc:	str	r4, [sl, #20]
+     be0:	str	r4, [sl, #24]
+     be4:	str	r4, [sl, #28]
+     be8:	str	r4, [sl, #32]
+     bec:	str	r4, [sl, #48]	; 0x30
+     bf0:	str	r4, [sl, #60]	; 0x3c
+     bf4:	str	r5, [sl, #16]
+     bf8:	str	r3, [sl, #56]	; 0x38
+     bfc:	bl	0 <strdup>
+     c00:	cmp	r0, r4
+     c04:	str	r0, [sl]
+     c08:	beq	176c <coda_netcdf_reopen+0xbe8>
+     c0c:	mov	r0, r5
+     c10:	bl	0 <coda_type_record_new>
+     c14:	subs	r5, r0, #0
+     c18:	beq	fac <coda_netcdf_reopen+0x428>
+     c1c:	mov	r1, r4
+     c20:	bl	0 <coda_mem_record_new>
+     c24:	mov	r4, r0
+     c28:	str	r0, [sp, #40]	; 0x28
+     c2c:	mov	r0, r5
+     c30:	bl	0 <coda_type_release>
+     c34:	cmp	r4, #0
+     c38:	beq	fac <coda_netcdf_reopen+0x428>
+     c3c:	ldr	ip, [sp, #40]	; 0x28
+     c40:	mov	r4, #4
+     c44:	mov	r5, #0
+     c48:	add	r1, sp, #84	; 0x54
+     c4c:	ldr	r0, [sl, #52]	; 0x34
+     c50:	str	ip, [sl, #20]
+     c54:	ldrd	r2, [sp, #120]	; 0x78
+     c58:	strd	r4, [sp]
+     c5c:	str	r1, [sp, #8]
+     c60:	bl	78 <read_bytes>
+     c64:	cmp	r0, #0
+     c68:	blt	154c <coda_netcdf_reopen+0x9c8>
+     c6c:	ldrb	r3, [sp, #84]	; 0x54
+     c70:	cmp	r3, #67	; 0x43
+     c74:	bne	17f8 <coda_netcdf_reopen+0xc74>
+     c78:	ldrb	r3, [sp, #85]	; 0x55
+     c7c:	cmp	r3, #68	; 0x44
+     c80:	bne	17f8 <coda_netcdf_reopen+0xc74>
+     c84:	ldrb	r3, [sp, #86]	; 0x56
+     c88:	cmp	r3, #70	; 0x46
+     c8c:	bne	17f8 <coda_netcdf_reopen+0xc74>
+     c90:	ldrb	r1, [sp, #87]	; 0x57
+     c94:	sub	r3, r1, #1
+     c98:	cmp	r1, #5
+     c9c:	cmpne	r3, #1
+     ca0:	str	r1, [sl, #56]	; 0x38
+     ca4:	bhi	158c <coda_netcdf_reopen+0xa08>
+     ca8:	ldrd	r4, [sp, #120]	; 0x78
+     cac:	add	r2, sp, #120	; 0x78
+     cb0:	add	r3, sp, #104	; 0x68
+     cb4:	adds	r4, r4, #4
+     cb8:	adc	r5, r5, #0
+     cbc:	ldr	r0, [sl, #52]	; 0x34
+     cc0:	strd	r4, [sp, #120]	; 0x78
+     cc4:	bl	1d4 <read_length_value.isra.0>
+     cc8:	cmp	r0, #0
+     ccc:	bne	154c <coda_netcdf_reopen+0x9c8>
+     cd0:	ldrd	r6, [sp, #104]	; 0x68
+     cd4:	mov	r4, #0
+     cd8:	add	r1, sp, #168	; 0xa8
+     cdc:	mov	r5, #4
+     ce0:	ldr	r0, [sl, #52]	; 0x34
+     ce4:	ldrd	r2, [sp, #120]	; 0x78
+     ce8:	str	r1, [sp, #8]
+     cec:	str	r5, [sp]
+     cf0:	str	r4, [sp, #4]
+     cf4:	strd	r6, [sp, #24]
+     cf8:	bl	78 <read_bytes>
+     cfc:	cmp	r0, r4
+     d00:	blt	fac <coda_netcdf_reopen+0x428>
+     d04:	ldrb	r0, [sp, #171]	; 0xab
+     d08:	ldrb	r1, [sp, #170]	; 0xaa
+     d0c:	ldrb	r3, [sp, #168]	; 0xa8
+     d10:	ldrb	r2, [sp, #169]	; 0xa9
+     d14:	ldrd	r6, [sp, #120]	; 0x78
+     d18:	eor	r3, r3, r0
+     d1c:	eor	r2, r2, r1
+     d20:	adds	r6, r6, #4
+     d24:	eor	r0, r0, r3
+     d28:	eor	r1, r1, r2
+     d2c:	adc	r7, r7, #0
+     d30:	eor	r3, r3, r0
+     d34:	eor	r2, r2, r1
+     d38:	strb	r3, [sp, #168]	; 0xa8
+     d3c:	strb	r0, [sp, #171]	; 0xab
+     d40:	strb	r2, [sp, #169]	; 0xa9
+     d44:	strb	r1, [sp, #170]	; 0xaa
+     d48:	add	r3, sp, #112	; 0x70
+     d4c:	add	r2, sp, #120	; 0x78
+     d50:	ldr	r1, [sl, #56]	; 0x38
+     d54:	ldr	r0, [sl, #52]	; 0x34
+     d58:	strd	r6, [sp, #120]	; 0x78
+     d5c:	bl	1d4 <read_length_value.isra.0>
+     d60:	cmp	r0, r4
+     d64:	bne	fac <coda_netcdf_reopen+0x428>
+     d68:	ldr	r3, [sp, #168]	; 0xa8
+     d6c:	cmp	r3, r4
+     d70:	bne	e9c <coda_netcdf_reopen+0x318>
+     d74:	ldrd	r0, [sp, #112]	; 0x70
+     d78:	orrs	r2, r0, r1
+     d7c:	bne	1794 <coda_netcdf_reopen+0xc10>
+     d80:	add	r2, sp, #80	; 0x50
+     d84:	add	r1, sp, #120	; 0x78
+     d88:	mov	r0, sl
+     d8c:	bl	2b8 <read_att_array>
+     d90:	subs	fp, r0, #0
+     d94:	bne	fac <coda_netcdf_reopen+0x428>
+     d98:	mvn	r3, #0
+     d9c:	mov	r8, r3
+     da0:	ldr	r1, [sp, #80]	; 0x50
+     da4:	cmp	r1, #0
+     da8:	beq	dc0 <coda_netcdf_reopen+0x23c>
+     dac:	mov	r2, #1
+     db0:	ldr	r0, [sp, #40]	; 0x28
+     db4:	bl	0 <coda_mem_type_set_attributes>
+     db8:	cmp	r0, #0
+     dbc:	bne	1028 <coda_netcdf_reopen+0x4a4>
+     dc0:	ldrd	r6, [sp, #112]	; 0x70
+     dc4:	add	r1, sp, #88	; 0x58
+     dc8:	mov	r4, #0
+     dcc:	mov	r5, #4
+     dd0:	ldr	r0, [sl, #52]	; 0x34
+     dd4:	ldrd	r2, [sp, #120]	; 0x78
+     dd8:	str	r1, [sp, #8]
+     ddc:	str	r5, [sp]
+     de0:	str	r4, [sp, #4]
+     de4:	strd	r6, [sp, #16]
+     de8:	bl	78 <read_bytes>
+     dec:	cmp	r0, r4
+     df0:	blt	16c8 <coda_netcdf_reopen+0xb44>
+     df4:	ldrb	r0, [sp, #91]	; 0x5b
+     df8:	ldrb	r1, [sp, #90]	; 0x5a
+     dfc:	ldrb	r3, [sp, #88]	; 0x58
+     e00:	ldrb	r2, [sp, #89]	; 0x59
+     e04:	ldrd	r6, [sp, #120]	; 0x78
+     e08:	eor	r3, r3, r0
+     e0c:	eor	r2, r2, r1
+     e10:	adds	r6, r6, #4
+     e14:	eor	r0, r0, r3
+     e18:	eor	r1, r1, r2
+     e1c:	adc	r7, r7, #0
+     e20:	eor	r3, r3, r0
+     e24:	eor	r2, r2, r1
+     e28:	strb	r3, [sp, #88]	; 0x58
+     e2c:	strb	r0, [sp, #91]	; 0x5b
+     e30:	add	r3, sp, #128	; 0x80
+     e34:	strb	r2, [sp, #89]	; 0x59
+     e38:	strb	r1, [sp, #90]	; 0x5a
+     e3c:	add	r2, sp, #120	; 0x78
+     e40:	ldr	r1, [sl, #56]	; 0x38
+     e44:	ldr	r0, [sl, #52]	; 0x34
+     e48:	strd	r6, [sp, #120]	; 0x78
+     e4c:	bl	1d4 <read_length_value.isra.0>
+     e50:	subs	r3, r0, #0
+     e54:	str	r3, [sp, #44]	; 0x2c
+     e58:	bne	1028 <coda_netcdf_reopen+0x4a4>
+     e5c:	ldr	r3, [sp, #88]	; 0x58
+     e60:	cmp	r3, #0
+     e64:	bne	103c <coda_netcdf_reopen+0x4b8>
+     e68:	ldrd	r2, [sp, #128]	; 0x80
+     e6c:	orrs	r3, r2, r3
+     e70:	bne	17bc <coda_netcdf_reopen+0xc38>
+     e74:	cmp	fp, #0
+     e78:	beq	e84 <coda_netcdf_reopen+0x300>
+     e7c:	mov	r0, fp
+     e80:	bl	0 <free>
+     e84:	ldr	r3, [sp, #36]	; 0x24
+     e88:	str	sl, [r3]
+     e8c:	ldr	r0, [sp, #44]	; 0x2c
+     e90:	add	sp, sp, #212	; 0xd4
+     e94:	vpop	{d8-d9}
+     e98:	pop	{r4, r5, r6, r7, r8, r9, sl, fp, pc}
+     e9c:	cmp	r3, #10
+     ea0:	bne	157c <coda_netcdf_reopen+0x9f8>
+     ea4:	ldrd	r6, [sp, #112]	; 0x70
+     ea8:	lsl	r8, r6, #3
+     eac:	mov	r0, r8
+     eb0:	bl	0 <malloc>
+     eb4:	subs	fp, r0, #0
+     eb8:	beq	180c <coda_netcdf_reopen+0xc88>
+     ebc:	cmp	r6, #1
+     ec0:	sbcs	r3, r7, #0
+     ec4:	mvnlt	r3, #0
+     ec8:	movlt	r8, r3
+     ecc:	blt	1268 <coda_netcdf_reopen+0x6e4>
+     ed0:	mvn	r3, #0
+     ed4:	mov	r6, fp
+     ed8:	str	fp, [sp, #44]	; 0x2c
+     edc:	str	r5, [sp, #16]
+     ee0:	str	r4, [sp, #20]
+     ee4:	mov	r8, #1
+     ee8:	mov	r9, #0
+     eec:	mov	fp, r3
+     ef0:	b	f80 <coda_netcdf_reopen+0x3fc>
+     ef4:	ldrd	r2, [sp, #176]	; 0xb0
+     ef8:	ldrd	r0, [sp, #120]	; 0x78
+     efc:	mov	r5, #0
+     f00:	and	r4, r2, #3
+     f04:	adds	r2, r2, r0
+     f08:	adc	r3, r3, r1
+     f0c:	orrs	r1, r4, r5
+     f10:	beq	f28 <coda_netcdf_reopen+0x3a4>
+     f14:	ldrd	r0, [sp, #16]
+     f18:	subs	r0, r0, r4
+     f1c:	sbc	r1, r1, r5
+     f20:	adds	r2, r2, r0
+     f24:	adc	r3, r3, r1
+     f28:	strd	r2, [sp, #120]	; 0x78
+     f2c:	ldr	r1, [sl, #56]	; 0x38
+     f30:	mov	r3, r6
+     f34:	add	r2, sp, #120	; 0x78
+     f38:	ldr	r0, [sl, #52]	; 0x34
+     f3c:	bl	1d4 <read_length_value.isra.0>
+     f40:	cmp	r0, #0
+     f44:	bne	fa0 <coda_netcdf_reopen+0x41c>
+     f48:	ldrd	r2, [r6]
+     f4c:	orrs	r3, r2, r3
+     f50:	ldrdeq	r2, [sp, #24]
+     f54:	moveq	fp, r7
+     f58:	strdeq	r2, [r6]
+     f5c:	ldrd	r2, [sp, #112]	; 0x70
+     f60:	mov	r0, r8
+     f64:	adds	r8, r8, #1
+     f68:	mov	r1, r9
+     f6c:	adc	r9, r9, #0
+     f70:	cmp	r0, r2
+     f74:	sbcs	r3, r1, r3
+     f78:	add	r6, r6, #8
+     f7c:	bge	1260 <coda_netcdf_reopen+0x6dc>
+     f80:	add	r3, sp, #176	; 0xb0
+     f84:	add	r2, sp, #120	; 0x78
+     f88:	ldr	r1, [sl, #56]	; 0x38
+     f8c:	ldr	r0, [sl, #52]	; 0x34
+     f90:	bl	1d4 <read_length_value.isra.0>
+     f94:	sub	r7, r8, #1
+     f98:	cmp	r0, #0
+     f9c:	beq	ef4 <coda_netcdf_reopen+0x370>
+     fa0:	ldr	fp, [sp, #44]	; 0x2c
+     fa4:	mov	r0, fp
+     fa8:	bl	0 <free>
+     fac:	mov	r0, sl
+     fb0:	bl	b2c <coda_netcdf_close>
+     fb4:	mvn	r3, #0
+     fb8:	str	r3, [sp, #44]	; 0x2c
+     fbc:	ldr	r0, [sp, #44]	; 0x2c
+     fc0:	add	sp, sp, #212	; 0xd4
+     fc4:	vpop	{d8-d9}
+     fc8:	pop	{r4, r5, r6, r7, r8, r9, sl, fp, pc}
+     fcc:	mov	r0, r9
+     fd0:	mov	r2, r4
+     fd4:	add	r1, sp, #176	; 0xb0
+     fd8:	bl	0 <coda_netcdf_array_new>
+     fdc:	subs	r5, r0, #0
+     fe0:	beq	16ac <coda_netcdf_reopen+0xb28>
+     fe4:	ldr	r1, [sp, #92]	; 0x5c
+     fe8:	cmp	r1, #0
+     fec:	beq	ffc <coda_netcdf_reopen+0x478>
+     ff0:	bl	0 <coda_netcdf_array_set_attributes>
+     ff4:	cmp	r0, #0
+     ff8:	bne	1838 <coda_netcdf_reopen+0xcb4>
+     ffc:	mov	r3, #1
+    1000:	mov	r2, r5
+    1004:	ldr	r1, [sp, #72]	; 0x48
+    1008:	ldr	r0, [sp, #40]	; 0x28
+    100c:	bl	0 <coda_mem_record_add_field>
+    1010:	cmp	r0, #0
+    1014:	beq	1498 <coda_netcdf_reopen+0x914>
+    1018:	mov	r0, r5
+    101c:	bl	0 <coda_dynamic_type_delete>
+    1020:	ldr	r0, [sp, #72]	; 0x48
+    1024:	bl	0 <free>
+    1028:	cmp	fp, #0
+    102c:	beq	fac <coda_netcdf_reopen+0x428>
+    1030:	mov	r0, fp
+    1034:	bl	0 <free>
+    1038:	b	fac <coda_netcdf_reopen+0x428>
+    103c:	cmp	r3, #11
+    1040:	bne	169c <coda_netcdf_reopen+0xb18>
+    1044:	ldrd	r2, [sp, #128]	; 0x80
+    1048:	cmp	r2, #1
+    104c:	sbcs	r3, r3, #0
+    1050:	blt	e74 <coda_netcdf_reopen+0x2f0>
+    1054:	mov	r2, #1
+    1058:	mov	r3, #0
+    105c:	vldr	d9, [pc, #548]	; 1288 <coda_netcdf_reopen+0x704>
+    1060:	vldr	d8, [pc, #552]	; 1290 <coda_netcdf_reopen+0x70c>
+    1064:	strd	r2, [sp, #64]	; 0x40
+    1068:	mov	r2, r8
+    106c:	asr	r3, r8, #31
+    1070:	str	r5, [sp, #56]	; 0x38
+    1074:	str	r4, [sp, #60]	; 0x3c
+    1078:	strd	r2, [sp, #24]
+    107c:	mov	ip, #0
+    1080:	add	r3, sp, #144	; 0x90
+    1084:	add	r2, sp, #120	; 0x78
+    1088:	ldr	r1, [sl, #56]	; 0x38
+    108c:	ldr	r0, [sl, #52]	; 0x34
+    1090:	str	ip, [sp, #92]	; 0x5c
+    1094:	bl	1d4 <read_length_value.isra.0>
+    1098:	subs	r7, r0, #0
+    109c:	bne	1028 <coda_netcdf_reopen+0x4a4>
+    10a0:	ldr	r5, [sp, #144]	; 0x90
+    10a4:	ldr	r4, [sp, #148]	; 0x94
+    10a8:	add	r6, r5, #1
+    10ac:	mov	r0, r6
+    10b0:	bl	0 <malloc>
+    10b4:	subs	r3, r0, #0
+    10b8:	str	r3, [sp, #72]	; 0x48
+    10bc:	beq	1718 <coda_netcdf_reopen+0xb94>
+    10c0:	ldr	r1, [sp, #72]	; 0x48
+    10c4:	ldr	r0, [sl, #52]	; 0x34
+    10c8:	ldrd	r2, [sp, #120]	; 0x78
+    10cc:	strb	r7, [r1, r5]
+    10d0:	str	r1, [sp, #8]
+    10d4:	str	r5, [sp]
+    10d8:	str	r4, [sp, #4]
+    10dc:	bl	78 <read_bytes>
+    10e0:	cmp	r0, #0
+    10e4:	blt	16bc <coda_netcdf_reopen+0xb38>
+    10e8:	ldrd	r0, [sp, #144]	; 0x90
+    10ec:	ldrd	r2, [sp, #120]	; 0x78
+    10f0:	mov	r5, #0
+    10f4:	and	r4, r0, #3
+    10f8:	adds	r2, r2, r0
+    10fc:	adc	r3, r3, r1
+    1100:	orrs	r1, r4, r5
+    1104:	beq	111c <coda_netcdf_reopen+0x598>
+    1108:	ldrd	r0, [sp, #56]	; 0x38
+    110c:	subs	r0, r0, r4
+    1110:	sbc	r1, r1, r5
+    1114:	adds	r2, r2, r0
+    1118:	adc	r3, r3, r1
+    111c:	strd	r2, [sp, #120]	; 0x78
+    1120:	ldr	r1, [sl, #56]	; 0x38
+    1124:	add	r3, sp, #152	; 0x98
+    1128:	add	r2, sp, #120	; 0x78
+    112c:	ldr	r0, [sl, #52]	; 0x34
+    1130:	bl	1d4 <read_length_value.isra.0>
+    1134:	cmp	r0, #0
+    1138:	bne	1028 <coda_netcdf_reopen+0x4a4>
+    113c:	ldrd	r2, [sp, #152]	; 0x98
+    1140:	mov	r9, r0
+    1144:	str	r0, [sp, #48]	; 0x30
+    1148:	cmp	r2, #1
+    114c:	sbcs	r3, r3, #0
+    1150:	mov	r3, #0
+    1154:	mov	r8, r0
+    1158:	str	r3, [sp, #52]	; 0x34
+    115c:	blt	12a0 <coda_netcdf_reopen+0x71c>
+    1160:	mov	r4, #0
+    1164:	mov	r5, #0
+    1168:	b	11b4 <coda_netcdf_reopen+0x630>
+    116c:	lsl	r0, r2, #3
+    1170:	lsl	r1, r4, #2
+    1174:	ldr	r0, [fp, r0]
+    1178:	add	ip, sp, #176	; 0xb0
+    117c:	add	r9, r9, #1
+    1180:	str	r0, [ip, r1]
+    1184:	cmp	r4, #0
+    1188:	bne	11a0 <coda_netcdf_reopen+0x61c>
+    118c:	ldrd	r0, [sp, #24]
+    1190:	cmp	r1, r3
+    1194:	cmpeq	r0, r2
+    1198:	moveq	r8, #1
+    119c:	movne	r8, #0
+    11a0:	adds	r4, r4, #1
+    11a4:	adc	r5, r5, #0
+    11a8:	cmp	r4, r6
+    11ac:	sbcs	r3, r5, r7
+    11b0:	bge	12a0 <coda_netcdf_reopen+0x71c>
+    11b4:	add	r3, sp, #168	; 0xa8
+    11b8:	add	r2, sp, #120	; 0x78
+    11bc:	ldr	r1, [sl, #56]	; 0x38
+    11c0:	ldr	r0, [sl, #52]	; 0x34
+    11c4:	bl	1d4 <read_length_value.isra.0>
+    11c8:	cmp	r0, #0
+    11cc:	bne	1028 <coda_netcdf_reopen+0x4a4>
+    11d0:	ldrd	r2, [sp, #168]	; 0xa8
+    11d4:	ldrd	r0, [sp, #16]
+    11d8:	cmp	r2, r0
+    11dc:	sbcs	r1, r3, r1
+    11e0:	movge	r1, #1
+    11e4:	movlt	r1, #0
+    11e8:	orrs	r1, r1, r3, lsr #31
+    11ec:	bne	1240 <coda_netcdf_reopen+0x6bc>
+    11f0:	ldrd	r6, [sp, #152]	; 0x98
+    11f4:	subs	r0, r6, #1
+    11f8:	sbc	r1, r7, #0
+    11fc:	cmp	r5, r1
+    1200:	cmpeq	r4, r0
+    1204:	beq	1228 <coda_netcdf_reopen+0x6a4>
+    1208:	cmp	r4, #7
+    120c:	ble	116c <coda_netcdf_reopen+0x5e8>
+    1210:	lsl	r2, r2, #3
+    1214:	ldr	r1, [sp, #204]	; 0xcc
+    1218:	ldr	r3, [fp, r2]
+    121c:	mul	r3, r3, r1
+    1220:	str	r3, [sp, #204]	; 0xcc
+    1224:	b	11a0 <coda_netcdf_reopen+0x61c>
+    1228:	lsl	r1, r2, #3
+    122c:	mov	r0, #1
+    1230:	ldr	r1, [fp, r1]
+    1234:	str	r0, [sp, #48]	; 0x30
+    1238:	str	r1, [sp, #52]	; 0x34
+    123c:	b	1184 <coda_netcdf_reopen+0x600>
+    1240:	ldr	r4, [sp, #72]	; 0x48
+    1244:	mov	r0, r4
+    1248:	bl	0 <free>
+    124c:	mov	r2, r4
+    1250:	ldr	r1, [pc, #64]	; 1298 <coda_netcdf_reopen+0x714>
+    1254:	ldr	r0, [pc, #64]	; 129c <coda_netcdf_reopen+0x718>
+    1258:	bl	0 <coda_set_error>
+    125c:	b	1028 <coda_netcdf_reopen+0x4a4>
+    1260:	mov	r8, fp
+    1264:	ldr	fp, [sp, #44]	; 0x2c
+    1268:	mov	r3, #0
+    126c:	add	r2, sp, #80	; 0x50
+    1270:	add	r1, sp, #120	; 0x78
+    1274:	mov	r0, sl
+    1278:	bl	2b8 <read_att_array>
+    127c:	cmp	r0, #0
+    1280:	beq	da0 <coda_netcdf_reopen+0x21c>
+    1284:	b	1030 <coda_netcdf_reopen+0x4ac>
+	...
+    1294:	.word	0x3ff00000
+    1298:	.word	0x00000444
+    129c:	.word	0xfffffed4
+    12a0:	bl	0 <coda_NaN>
+    12a4:	vldr	d1, [pc, #812]	; 15d8 <coda_netcdf_reopen+0xa54>
+    12a8:	vldr	d2, [pc, #816]	; 15e0 <coda_netcdf_reopen+0xa5c>
+    12ac:	vmov.f64	d3, d0
+    12b0:	vmov.f64	d0, d1
+    12b4:	bl	0 <coda_conversion_new>
+    12b8:	subs	r3, r0, #0
+    12bc:	str	r3, [sp, #76]	; 0x4c
+    12c0:	beq	16bc <coda_netcdf_reopen+0xb38>
+    12c4:	ldr	r3, [sp, #76]	; 0x4c
+    12c8:	add	r2, sp, #92	; 0x5c
+    12cc:	add	r1, sp, #120	; 0x78
+    12d0:	mov	r0, sl
+    12d4:	bl	2b8 <read_att_array>
+    12d8:	cmp	r0, #0
+    12dc:	bne	17cc <coda_netcdf_reopen+0xc48>
+    12e0:	ldrd	r4, [sp, #56]	; 0x38
+    12e4:	add	r1, sp, #96	; 0x60
+    12e8:	ldr	r0, [sl, #52]	; 0x34
+    12ec:	ldrd	r2, [sp, #120]	; 0x78
+    12f0:	strd	r4, [sp]
+    12f4:	str	r1, [sp, #8]
+    12f8:	bl	78 <read_bytes>
+    12fc:	cmp	r0, #0
+    1300:	blt	16f8 <coda_netcdf_reopen+0xb74>
+    1304:	ldrb	r1, [sp, #98]	; 0x62
+    1308:	ldrb	r3, [sp, #97]	; 0x61
+    130c:	ldrb	r0, [sp, #99]	; 0x63
+    1310:	ldrb	r2, [sp, #96]	; 0x60
+    1314:	eor	r3, r3, r1
+    1318:	eor	r1, r1, r3
+    131c:	eor	r3, r3, r1
+    1320:	eor	r2, r2, r0
+    1324:	strb	r1, [sp, #98]	; 0x62
+    1328:	ldr	r1, [sp, #76]	; 0x4c
+    132c:	eor	r0, r0, r2
+    1330:	eor	r2, r2, r0
+    1334:	strb	r2, [sp, #96]	; 0x60
+    1338:	strb	r3, [sp, #97]	; 0x61
+    133c:	strb	r0, [sp, #99]	; 0x63
+    1340:	vldr	d7, [r1]
+    1344:	ldrd	r2, [sp, #120]	; 0x78
+    1348:	vcmp.f64	d7, d8
+    134c:	adds	r2, r2, #4
+    1350:	adc	r3, r3, #0
+    1354:	vmrs	APSR_nzcv, fpscr
+    1358:	strd	r2, [sp, #120]	; 0x78
+    135c:	beq	14cc <coda_netcdf_reopen+0x948>
+    1360:	add	r3, sp, #160	; 0xa0
+    1364:	add	r2, sp, #120	; 0x78
+    1368:	ldr	r1, [sl, #56]	; 0x38
+    136c:	ldr	r0, [sl, #52]	; 0x34
+    1370:	bl	1d4 <read_length_value.isra.0>
+    1374:	cmp	r0, #0
+    1378:	bne	16f8 <coda_netcdf_reopen+0xb74>
+    137c:	cmp	r8, #0
+    1380:	ldr	r0, [sl, #52]	; 0x34
+    1384:	ldrne	r3, [sl, #60]	; 0x3c
+    1388:	ldrne	r2, [sp, #160]	; 0xa0
+    138c:	addne	r3, r3, r2
+    1390:	strne	r3, [sl, #60]	; 0x3c
+    1394:	ldr	r3, [sl, #56]	; 0x38
+    1398:	cmp	r3, #1
+    139c:	ldrd	r2, [sp, #120]	; 0x78
+    13a0:	beq	1628 <coda_netcdf_reopen+0xaa4>
+    13a4:	mov	r4, #8
+    13a8:	mov	r5, #0
+    13ac:	add	r6, sp, #136	; 0x88
+    13b0:	strd	r4, [sp]
+    13b4:	str	r6, [sp, #8]
+    13b8:	bl	78 <read_bytes>
+    13bc:	cmp	r0, #0
+    13c0:	blt	16f8 <coda_netcdf_reopen+0xb74>
+    13c4:	mov	r0, r6
+    13c8:	bl	0 <swap8>
+    13cc:	ldrd	r2, [sp, #120]	; 0x78
+    13d0:	ldrd	r6, [sp, #136]	; 0x88
+    13d4:	adds	r2, r2, #8
+    13d8:	adc	r3, r3, #0
+    13dc:	strd	r2, [sp, #120]	; 0x78
+    13e0:	ldr	r3, [sp, #48]	; 0x30
+    13e4:	ldr	r0, [sp, #96]	; 0x60
+    13e8:	cmp	r3, #0
+    13ec:	beq	15b0 <coda_netcdf_reopen+0xa2c>
+    13f0:	cmp	r0, #2
+    13f4:	beq	1500 <coda_netcdf_reopen+0x97c>
+    13f8:	mov	r4, #1
+    13fc:	mov	r5, #0
+    1400:	str	r8, [sp]
+    1404:	strd	r4, [sp, #8]
+    1408:	mov	r2, r6
+    140c:	mov	r3, r7
+    1410:	bl	0 <coda_netcdf_basic_type_new>
+    1414:	cmp	r9, #7
+    1418:	mov	r4, r0
+    141c:	ble	1534 <coda_netcdf_reopen+0x9b0>
+    1420:	ldr	r3, [sp, #204]	; 0xcc
+    1424:	ldr	r2, [sp, #52]	; 0x34
+    1428:	mul	r3, r2, r3
+    142c:	str	r3, [sp, #204]	; 0xcc
+    1430:	cmp	r4, #0
+    1434:	beq	16f8 <coda_netcdf_reopen+0xb74>
+    1438:	ldr	r3, [sp, #76]	; 0x4c
+    143c:	cmp	r3, #0
+    1440:	beq	1458 <coda_netcdf_reopen+0x8d4>
+    1444:	mov	r1, r3
+    1448:	mov	r0, r4
+    144c:	bl	0 <coda_netcdf_basic_type_set_conversion>
+    1450:	cmp	r0, #0
+    1454:	bne	16f8 <coda_netcdf_reopen+0xb74>
+    1458:	cmp	r9, #0
+    145c:	bne	fcc <coda_netcdf_reopen+0x448>
+    1460:	ldr	r1, [sp, #92]	; 0x5c
+    1464:	cmp	r1, #0
+    1468:	beq	147c <coda_netcdf_reopen+0x8f8>
+    146c:	mov	r0, r4
+    1470:	bl	0 <coda_netcdf_basic_type_set_attributes>
+    1474:	cmp	r0, #0
+    1478:	bne	16ac <coda_netcdf_reopen+0xb28>
+    147c:	mov	r3, #1
+    1480:	mov	r2, r4
+    1484:	ldr	r1, [sp, #72]	; 0x48
+    1488:	ldr	r0, [sp, #40]	; 0x28
+    148c:	bl	0 <coda_mem_record_add_field>
+    1490:	cmp	r0, #0
+    1494:	bne	17e4 <coda_netcdf_reopen+0xc60>
+    1498:	ldr	r0, [sp, #72]	; 0x48
+    149c:	bl	0 <free>
+    14a0:	ldrd	r4, [sp, #64]	; 0x40
+    14a4:	ldrd	r2, [sp, #128]	; 0x80
+    14a8:	mov	r0, r4
+    14ac:	adds	r4, r4, #1
+    14b0:	mov	r1, r5
+    14b4:	adc	r5, r5, #0
+    14b8:	cmp	r0, r2
+    14bc:	sbcs	r3, r1, r3
+    14c0:	strd	r4, [sp, #64]	; 0x40
+    14c4:	blt	107c <coda_netcdf_reopen+0x4f8>
+    14c8:	b	e74 <coda_netcdf_reopen+0x2f0>
+    14cc:	vldr	d7, [r1, #16]
+    14d0:	vcmp.f64	d7, d9
+    14d4:	vmrs	APSR_nzcv, fpscr
+    14d8:	bne	1360 <coda_netcdf_reopen+0x7dc>
+    14dc:	ldr	r3, [sp, #96]	; 0x60
+    14e0:	sub	r3, r3, #5
+    14e4:	cmp	r3, #1
+    14e8:	bls	17a4 <coda_netcdf_reopen+0xc20>
+    14ec:	ldr	r0, [sp, #76]	; 0x4c
+    14f0:	bl	0 <coda_conversion_delete>
+    14f4:	mov	r3, #0
+    14f8:	str	r3, [sp, #76]	; 0x4c
+    14fc:	b	1360 <coda_netcdf_reopen+0x7dc>
+    1500:	eor	r3, r8, #1
+    1504:	cmp	r9, #0
+    1508:	orrne	r3, r3, #1
+    150c:	cmp	r3, #0
+    1510:	bne	16e8 <coda_netcdf_reopen+0xb64>
+    1514:	mov	r4, #1
+    1518:	mov	r5, #0
+    151c:	str	r8, [sp]
+    1520:	strd	r4, [sp, #8]
+    1524:	mov	r2, r6
+    1528:	mov	r3, r7
+    152c:	bl	0 <coda_netcdf_basic_type_new>
+    1530:	mov	r4, r0
+    1534:	add	r3, sp, #208	; 0xd0
+    1538:	add	r3, r3, r9, lsl #2
+    153c:	ldr	r2, [sp, #52]	; 0x34
+    1540:	add	r9, r9, #1
+    1544:	str	r2, [r3, #-32]	; 0xffffffe0
+    1548:	b	1430 <coda_netcdf_reopen+0x8ac>
+    154c:	bl	0 <__errno_location>
+    1550:	mvn	r3, #0
+    1554:	str	r3, [sp, #44]	; 0x2c
+    1558:	ldr	r0, [r0]
+    155c:	bl	0 <strerror>
+    1560:	ldr	r1, [pc, #140]	; 15f4 <coda_netcdf_reopen+0xa70>
+    1564:	mov	r2, r0
+    1568:	mvn	r0, #21
+    156c:	bl	0 <coda_set_error>
+    1570:	mov	r0, sl
+    1574:	bl	b2c <coda_netcdf_close>
+    1578:	b	e8c <coda_netcdf_reopen+0x308>
+    157c:	ldr	r1, [pc, #100]	; 15e8 <coda_netcdf_reopen+0xa64>
+    1580:	ldr	r0, [pc, #132]	; 160c <coda_netcdf_reopen+0xa88>
+    1584:	bl	0 <coda_set_error>
+    1588:	b	fac <coda_netcdf_reopen+0x428>
+    158c:	mov	r2, r1
+    1590:	mvn	r0, #199	; 0xc7
+    1594:	ldr	r1, [pc, #80]	; 15ec <coda_netcdf_reopen+0xa68>
+    1598:	bl	0 <coda_set_error>
+    159c:	mov	r0, sl
+    15a0:	bl	b2c <coda_netcdf_close>
+    15a4:	mvn	r3, #0
+    15a8:	str	r3, [sp, #44]	; 0x2c
+    15ac:	b	e8c <coda_netcdf_reopen+0x308>
+    15b0:	ldr	r3, [sp, #48]	; 0x30
+    15b4:	mov	r4, #1
+    15b8:	mov	r5, #0
+    15bc:	str	r3, [sp]
+    15c0:	strd	r4, [sp, #8]
+    15c4:	mov	r2, r6
+    15c8:	mov	r3, r7
+    15cc:	bl	0 <coda_netcdf_basic_type_new>
+    15d0:	mov	r4, r0
+    15d4:	b	1430 <coda_netcdf_reopen+0x8ac>
+    15d8:	.word	0x00000000
+    15dc:	.word	0x3ff00000
+	...
+    15e8:	.word	0x0000038c
+    15ec:	.word	0x0000030c
+    15f0:	.word	0x0000040c
+    15f4:	.word	0x00000108
+    15f8:	.word	0x00000222
+    15fc:	.word	0x00000321
+    1600:	.word	0x00000337
+    1604:	.word	0x00000298
+    1608:	.word	0x00000348
+    160c:	.word	0xfffffed4
+    1610:	.word	0x000003c8
+    1614:	.word	0x0000001c
+    1618:	.word	0x00000353
+    161c:	.word	0x000002d4
+    1620:	.word	0x000001a8
+    1624:	.word	0x000001f4
+    1628:	ldrd	r4, [sp, #56]	; 0x38
+    162c:	add	r1, sp, #100	; 0x64
+    1630:	str	r1, [sp, #8]
+    1634:	strd	r4, [sp]
+    1638:	bl	78 <read_bytes>
+    163c:	cmp	r0, #0
+    1640:	blt	16f8 <coda_netcdf_reopen+0xb74>
+    1644:	ldrb	r0, [sp, #103]	; 0x67
+    1648:	ldrb	r1, [sp, #102]	; 0x66
+    164c:	ldrb	r2, [sp, #100]	; 0x64
+    1650:	ldrb	r3, [sp, #101]	; 0x65
+    1654:	eor	r2, r2, r0
+    1658:	eor	r3, r3, r1
+    165c:	eor	r0, r0, r2
+    1660:	eor	r1, r1, r3
+    1664:	eor	r2, r2, r0
+    1668:	eor	r3, r3, r1
+    166c:	strb	r2, [sp, #100]	; 0x64
+    1670:	strb	r3, [sp, #101]	; 0x65
+    1674:	strb	r0, [sp, #103]	; 0x67
+    1678:	ldrd	r2, [sp, #120]	; 0x78
+    167c:	strb	r1, [sp, #102]	; 0x66
+    1680:	ldr	r6, [sp, #100]	; 0x64
+    1684:	adds	r2, r2, #4
+    1688:	adc	r3, r3, #0
+    168c:	asr	r7, r6, #31
+    1690:	strd	r2, [sp, #120]	; 0x78
+    1694:	strd	r6, [sp, #136]	; 0x88
+    1698:	b	13e0 <coda_netcdf_reopen+0x85c>
+    169c:	ldr	r1, [pc, #-180]	; 15f0 <coda_netcdf_reopen+0xa6c>
+    16a0:	ldr	r0, [pc, #-156]	; 160c <coda_netcdf_reopen+0xa88>
+    16a4:	bl	0 <coda_set_error>
+    16a8:	b	1028 <coda_netcdf_reopen+0x4a4>
+    16ac:	mov	r0, r4
+    16b0:	bl	0 <coda_dynamic_type_delete>
+    16b4:	ldr	r0, [sp, #92]	; 0x5c
+    16b8:	bl	0 <coda_dynamic_type_delete>
+    16bc:	ldr	r0, [sp, #72]	; 0x48
+    16c0:	bl	0 <free>
+    16c4:	b	1028 <coda_netcdf_reopen+0x4a4>
+    16c8:	bl	0 <__errno_location>
+    16cc:	ldr	r0, [r0]
+    16d0:	bl	0 <strerror>
+    16d4:	ldr	r1, [pc, #-232]	; 15f4 <coda_netcdf_reopen+0xa70>
+    16d8:	mov	r2, r0
+    16dc:	mvn	r0, #21
+    16e0:	bl	0 <coda_set_error>
+    16e4:	b	1028 <coda_netcdf_reopen+0x4a4>
+    16e8:	ldr	r4, [sp, #52]	; 0x34
+    16ec:	str	r8, [sp]
+    16f0:	asr	r5, r4, #31
+    16f4:	b	15c0 <coda_netcdf_reopen+0xa3c>
+    16f8:	ldr	r9, [sp, #76]	; 0x4c
+    16fc:	ldr	r0, [sp, #92]	; 0x5c
+    1700:	bl	0 <coda_dynamic_type_delete>
+    1704:	mov	r0, r9
+    1708:	bl	0 <coda_conversion_delete>
+    170c:	ldr	r0, [sp, #72]	; 0x48
+    1710:	bl	0 <free>
+    1714:	b	1028 <coda_netcdf_reopen+0x4a4>
+    1718:	ldr	r3, [pc, #-296]	; 15f8 <coda_netcdf_reopen+0xa74>
+    171c:	mov	r2, r6
+    1720:	str	r3, [sp]
+    1724:	ldr	r1, [pc, #-264]	; 1624 <coda_netcdf_reopen+0xaa0>
+    1728:	ldr	r3, [pc, #-272]	; 1620 <coda_netcdf_reopen+0xa9c>
+    172c:	mvn	r0, #0
+    1730:	bl	0 <coda_set_error>
+    1734:	b	1028 <coda_netcdf_reopen+0x4a4>
+    1738:	ldr	r2, [pc, #-324]	; 15fc <coda_netcdf_reopen+0xa78>
+    173c:	ldr	r3, [pc, #-292]	; 1620 <coda_netcdf_reopen+0xa9c>
+    1740:	str	r2, [sp]
+    1744:	ldr	r1, [pc, #-296]	; 1624 <coda_netcdf_reopen+0xaa0>
+    1748:	mov	r2, #64	; 0x40
+    174c:	mvn	r0, #0
+    1750:	bl	0 <coda_set_error>
+    1754:	ldr	r3, [sp, #36]	; 0x24
+    1758:	ldr	r0, [r3]
+    175c:	bl	0 <coda_close>
+    1760:	mvn	r3, #0
+    1764:	str	r3, [sp, #44]	; 0x2c
+    1768:	b	e8c <coda_netcdf_reopen+0x308>
+    176c:	ldr	r3, [pc, #-372]	; 1600 <coda_netcdf_reopen+0xa7c>
+    1770:	ldr	r2, [pc, #-344]	; 1620 <coda_netcdf_reopen+0xa9c>
+    1774:	ldr	r1, [pc, #-376]	; 1604 <coda_netcdf_reopen+0xa80>
+    1778:	mvn	r0, #0
+    177c:	bl	0 <coda_set_error>
+    1780:	mov	r0, sl
+    1784:	bl	b2c <coda_netcdf_close>
+    1788:	mvn	r3, #0
+    178c:	str	r3, [sp, #44]	; 0x2c
+    1790:	b	e8c <coda_netcdf_reopen+0x308>
+    1794:	ldr	r1, [pc, #-404]	; 1608 <coda_netcdf_reopen+0xa84>
+    1798:	ldr	r0, [pc, #-404]	; 160c <coda_netcdf_reopen+0xa88>
+    179c:	bl	0 <coda_set_error>
+    17a0:	b	fac <coda_netcdf_reopen+0x428>
+    17a4:	ldr	r3, [sp, #76]	; 0x4c
+    17a8:	vldr	d0, [r3, #24]
+    17ac:	bl	0 <coda_isNaN>
+    17b0:	cmp	r0, #0
+    17b4:	bne	14ec <coda_netcdf_reopen+0x968>
+    17b8:	b	1360 <coda_netcdf_reopen+0x7dc>
+    17bc:	ldr	r1, [pc, #-436]	; 1610 <coda_netcdf_reopen+0xa8c>
+    17c0:	sub	r0, r0, #300	; 0x12c
+    17c4:	bl	0 <coda_set_error>
+    17c8:	b	1028 <coda_netcdf_reopen+0x4a4>
+    17cc:	ldr	r9, [sp, #76]	; 0x4c
+    17d0:	mov	r0, r9
+    17d4:	bl	0 <coda_conversion_delete>
+    17d8:	ldr	r0, [sp, #72]	; 0x48
+    17dc:	bl	0 <free>
+    17e0:	b	1028 <coda_netcdf_reopen+0x4a4>
+    17e4:	mov	r0, r4
+    17e8:	bl	0 <coda_dynamic_type_delete>
+    17ec:	ldr	r0, [sp, #72]	; 0x48
+    17f0:	bl	0 <free>
+    17f4:	b	1028 <coda_netcdf_reopen+0x4a4>
+    17f8:	ldr	r3, [pc, #-492]	; 1614 <coda_netcdf_reopen+0xa90>
+    17fc:	ldr	r2, [pc, #-492]	; 1618 <coda_netcdf_reopen+0xa94>
+    1800:	ldr	r1, [pc, #-488]	; 1620 <coda_netcdf_reopen+0xa9c>
+    1804:	ldr	r0, [pc, #-496]	; 161c <coda_netcdf_reopen+0xa98>
+    1808:	bl	0 <__assert_fail>
+    180c:	ldr	r0, [pc, #-500]	; 1620 <coda_netcdf_reopen+0xa9c>
+    1810:	lsl	r3, r7, #3
+    1814:	mov	r1, #124	; 0x7c
+    1818:	str	r0, [sp]
+    181c:	str	r1, [sp, #4]
+    1820:	mov	r2, r8
+    1824:	orr	r3, r3, r6, lsr #29
+    1828:	ldr	r1, [pc, #-524]	; 1624 <coda_netcdf_reopen+0xaa0>
+    182c:	mvn	r0, #0
+    1830:	bl	0 <coda_set_error>
+    1834:	b	fac <coda_netcdf_reopen+0x428>
+    1838:	mov	r0, r5
+    183c:	b	16b0 <coda_netcdf_reopen+0xb2c>

@@ -1,0 +1,161 @@
+
+../repos/charybdis/extensions/.libs/force_user_invis.so:     file format elf32-littlearm
+
+
+Disassembly of section .init:
+
+000003b4 <_init>:
+ 3b4:	push	{r3, lr}
+ 3b8:	bl	3f8 <call_weak_fn>
+ 3bc:	pop	{r3, pc}
+
+Disassembly of section .plt:
+
+000003c0 <.plt>:
+ 3c0:	push	{lr}		; (str lr, [sp, #-4]!)
+ 3c4:	ldr	lr, [pc, #4]	; 3d0 <.plt+0x10>
+ 3c8:	add	lr, pc, lr
+ 3cc:	ldr	pc, [lr, #8]!
+ 3d0:	.word	0x00010c30
+
+000003d4 <__cxa_finalize@plt>:
+ 3d4:	add	ip, pc, #0, 12
+ 3d8:	add	ip, ip, #16, 20	; 0x10000
+ 3dc:	ldr	pc, [ip, #3120]!	; 0xc30
+
+000003e0 <__gmon_start__@plt>:
+ 3e0:	add	ip, pc, #0, 12
+ 3e4:	add	ip, ip, #16, 20	; 0x10000
+ 3e8:	ldr	pc, [ip, #3112]!	; 0xc28
+
+000003ec <privilegeset_in_set@plt>:
+ 3ec:	add	ip, pc, #0, 12
+ 3f0:	add	ip, ip, #16, 20	; 0x10000
+ 3f4:	ldr	pc, [ip, #3104]!	; 0xc20
+
+Disassembly of section .text:
+
+000003f8 <call_weak_fn>:
+ 3f8:	ldr	r3, [pc, #20]	; 414 <call_weak_fn+0x1c>
+ 3fc:	ldr	r2, [pc, #20]	; 418 <call_weak_fn+0x20>
+ 400:	add	r3, pc, r3
+ 404:	ldr	r2, [r3, r2]
+ 408:	cmp	r2, #0
+ 40c:	bxeq	lr
+ 410:	b	3e0 <__gmon_start__@plt>
+ 414:	.word	0x00010bf8
+ 418:	.word	0x00000020
+
+0000041c <deregister_tm_clones>:
+ 41c:	ldr	r0, [pc, #44]	; 450 <deregister_tm_clones+0x34>
+ 420:	ldr	r3, [pc, #44]	; 454 <deregister_tm_clones+0x38>
+ 424:	add	r0, pc, r0
+ 428:	add	r3, pc, r3
+ 42c:	cmp	r3, r0
+ 430:	ldr	r3, [pc, #32]	; 458 <deregister_tm_clones+0x3c>
+ 434:	add	r3, pc, r3
+ 438:	bxeq	lr
+ 43c:	ldr	r2, [pc, #24]	; 45c <deregister_tm_clones+0x40>
+ 440:	ldr	r3, [r3, r2]
+ 444:	cmp	r3, #0
+ 448:	bxeq	lr
+ 44c:	bx	r3
+ 450:	.word	0x00010c40
+ 454:	.word	0x00010c3c
+ 458:	.word	0x00010bc4
+ 45c:	.word	0x0000001c
+
+00000460 <register_tm_clones>:
+ 460:	ldr	r0, [pc, #56]	; 4a0 <register_tm_clones+0x40>
+ 464:	ldr	r3, [pc, #56]	; 4a4 <register_tm_clones+0x44>
+ 468:	add	r0, pc, r0
+ 46c:	add	r3, pc, r3
+ 470:	sub	r1, r3, r0
+ 474:	ldr	r3, [pc, #44]	; 4a8 <register_tm_clones+0x48>
+ 478:	asr	r1, r1, #2
+ 47c:	add	r3, pc, r3
+ 480:	add	r1, r1, r1, lsr #31
+ 484:	asrs	r1, r1, #1
+ 488:	bxeq	lr
+ 48c:	ldr	r2, [pc, #24]	; 4ac <register_tm_clones+0x4c>
+ 490:	ldr	r3, [r3, r2]
+ 494:	cmp	r3, #0
+ 498:	bxeq	lr
+ 49c:	bx	r3
+ 4a0:	.word	0x00010bfc
+ 4a4:	.word	0x00010bf8
+ 4a8:	.word	0x00010b7c
+ 4ac:	.word	0x00000024
+
+000004b0 <__do_global_dtors_aux>:
+ 4b0:	ldr	r3, [pc, #76]	; 504 <__do_global_dtors_aux+0x54>
+ 4b4:	ldr	r2, [pc, #76]	; 508 <__do_global_dtors_aux+0x58>
+ 4b8:	add	r3, pc, r3
+ 4bc:	add	r2, pc, r2
+ 4c0:	ldrb	r3, [r3]
+ 4c4:	cmp	r3, #0
+ 4c8:	bxne	lr
+ 4cc:	ldr	r3, [pc, #56]	; 50c <__do_global_dtors_aux+0x5c>
+ 4d0:	push	{r4, lr}
+ 4d4:	ldr	r3, [r2, r3]
+ 4d8:	cmp	r3, #0
+ 4dc:	beq	4ec <__do_global_dtors_aux+0x3c>
+ 4e0:	ldr	r3, [pc, #40]	; 510 <__do_global_dtors_aux+0x60>
+ 4e4:	ldr	r0, [pc, r3]
+ 4e8:	bl	3d4 <__cxa_finalize@plt>
+ 4ec:	bl	41c <deregister_tm_clones>
+ 4f0:	ldr	r3, [pc, #28]	; 514 <__do_global_dtors_aux+0x64>
+ 4f4:	mov	r2, #1
+ 4f8:	add	r3, pc, r3
+ 4fc:	strb	r2, [r3]
+ 500:	pop	{r4, pc}
+ 504:	.word	0x00010bac
+ 508:	.word	0x00010b3c
+ 50c:	.word	0x00000018
+ 510:	.word	0x00010b3c
+ 514:	.word	0x00010b6c
+
+00000518 <frame_dummy>:
+ 518:	b	460 <register_tm_clones>
+
+0000051c <h_noi_umode_changed>:
+ 51c:	push	{r4, sl, fp, lr}
+ 520:	add	fp, sp, #8
+ 524:	ldr	r4, [r0]
+ 528:	ldrb	r0, [r4, #65]	; 0x41
+ 52c:	tst	r0, #32
+ 530:	beq	59c <h_noi_umode_changed+0x80>
+ 534:	ldrh	r0, [r4, #80]	; 0x50
+ 538:	cmp	r0, #64	; 0x40
+ 53c:	bne	59c <h_noi_umode_changed+0x80>
+ 540:	ldr	r0, [r4, #24]
+ 544:	cmp	r0, #0
+ 548:	beq	56c <h_noi_umode_changed+0x50>
+ 54c:	ldr	r0, [r0, #36]	; 0x24
+ 550:	cmp	r0, #0
+ 554:	beq	56c <h_noi_umode_changed+0x50>
+ 558:	ldr	r1, [pc, #64]	; 5a0 <h_noi_umode_changed+0x84>
+ 55c:	add	r1, pc, r1
+ 560:	bl	3ec <privilegeset_in_set@plt>
+ 564:	cmp	r0, #0
+ 568:	popne	{r4, sl, fp, pc}
+ 56c:	ldr	r0, [r4, #56]	; 0x38
+ 570:	tst	r0, #4096	; 0x1000
+ 574:	beq	590 <h_noi_umode_changed+0x74>
+ 578:	ldr	r1, [r4, #24]
+ 57c:	cmp	r1, #0
+ 580:	beq	590 <h_noi_umode_changed+0x74>
+ 584:	ldr	r1, [r1, #36]	; 0x24
+ 588:	cmp	r1, #0
+ 58c:	beq	59c <h_noi_umode_changed+0x80>
+ 590:	tst	r0, #8
+ 594:	orreq	r0, r0, #8
+ 598:	streq	r0, [r4, #56]	; 0x38
+ 59c:	pop	{r4, sl, fp, pc}
+ 5a0:	.word	0x00000056
+
+Disassembly of section .fini:
+
+000005a4 <_fini>:
+ 5a4:	push	{r3, lr}
+ 5a8:	pop	{r3, pc}

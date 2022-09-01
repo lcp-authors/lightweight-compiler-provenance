@@ -1,0 +1,310 @@
+
+../compcert-repos/prog2/CMakeFiles/MT1E1-2.1.dir/Extras/Miniteste1-Exemplo2/1/lista.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <novo_str>:
+   0:	strd	r4, [sp, #-16]!
+   4:	mov	r5, r0
+   8:	mov	r0, #12
+   c:	str	r6, [sp, #8]
+  10:	str	lr, [sp, #12]
+  14:	bl	0 <malloc>
+  18:	subs	r4, r0, #0
+  1c:	beq	5c <novo_str+0x5c>
+  20:	mov	r0, r5
+  24:	bl	0 <strlen>
+  28:	add	r6, r0, #1
+  2c:	mov	r0, r6
+  30:	bl	0 <malloc>
+  34:	cmp	r0, #0
+  38:	mov	r3, r0
+  3c:	str	r0, [r4]
+  40:	beq	70 <novo_str+0x70>
+  44:	mov	r2, r6
+  48:	mov	r1, r5
+  4c:	bl	0 <memcpy>
+  50:	mov	r3, #0
+  54:	str	r3, [r4, #4]
+  58:	str	r3, [r4, #8]
+  5c:	mov	r0, r4
+  60:	ldrd	r4, [sp]
+  64:	ldr	r6, [sp, #8]
+  68:	add	sp, sp, #12
+  6c:	pop	{pc}		; (ldr pc, [sp], #4)
+  70:	mov	r0, r4
+  74:	mov	r4, r3
+  78:	bl	0 <free>
+  7c:	b	5c <novo_str+0x5c>
+
+00000080 <lista_nova>:
+  80:	mov	r0, #12
+  84:	str	r4, [sp, #-8]!
+  88:	str	lr, [sp, #4]
+  8c:	bl	0 <malloc>
+  90:	cmp	r0, #0
+  94:	beq	a8 <lista_nova+0x28>
+  98:	mov	r3, #0
+  9c:	str	r3, [r0]
+  a0:	str	r3, [r0, #4]
+  a4:	str	r3, [r0, #8]
+  a8:	ldr	r4, [sp]
+  ac:	add	sp, sp, #4
+  b0:	pop	{pc}		; (ldr pc, [sp], #4)
+
+000000b4 <lista_apaga>:
+  b4:	strd	r4, [sp, #-16]!
+  b8:	subs	r5, r0, #0
+  bc:	str	r6, [sp, #8]
+  c0:	str	lr, [sp, #12]
+  c4:	bne	e0 <lista_apaga+0x2c>
+  c8:	b	104 <lista_apaga+0x50>
+  cc:	ldm	r4, {r0, r3}
+  d0:	str	r3, [r5]
+  d4:	bl	0 <free>
+  d8:	mov	r0, r4
+  dc:	bl	0 <free>
+  e0:	ldr	r4, [r5]
+  e4:	cmp	r4, #0
+  e8:	bne	cc <lista_apaga+0x18>
+  ec:	mov	r0, r5
+  f0:	ldrd	r4, [sp]
+  f4:	ldr	r6, [sp, #8]
+  f8:	ldr	lr, [sp, #12]
+  fc:	add	sp, sp, #16
+ 100:	b	0 <free>
+ 104:	ldrd	r4, [sp]
+ 108:	ldr	r6, [sp, #8]
+ 10c:	add	sp, sp, #12
+ 110:	pop	{pc}		; (ldr pc, [sp], #4)
+
+00000114 <lista_tamanho>:
+ 114:	cmp	r0, #0
+ 118:	ldrne	r0, [r0, #8]
+ 11c:	mvneq	r0, #0
+ 120:	bx	lr
+
+00000124 <lista_inicio>:
+ 124:	cmp	r0, #0
+ 128:	ldrne	r0, [r0]
+ 12c:	bx	lr
+
+00000130 <lista_fim>:
+ 130:	cmp	r0, #0
+ 134:	ldrne	r0, [r0, #4]
+ 138:	bx	lr
+
+0000013c <lista_insere>:
+ 13c:	cmp	r1, #0
+ 140:	cmpne	r0, #0
+ 144:	beq	1fc <lista_insere+0xc0>
+ 148:	strd	r4, [sp, #-16]!
+ 14c:	mov	r5, r0
+ 150:	mov	r0, r1
+ 154:	mov	r4, r2
+ 158:	str	r6, [sp, #8]
+ 15c:	str	lr, [sp, #12]
+ 160:	bl	0 <novo_str>
+ 164:	cmp	r0, #0
+ 168:	beq	1c0 <lista_insere+0x84>
+ 16c:	cmp	r4, #0
+ 170:	ldr	r2, [r5]
+ 174:	ldr	r3, [r5, #8]
+ 178:	add	r3, r3, #1
+ 17c:	str	r3, [r5, #8]
+ 180:	beq	1d4 <lista_insere+0x98>
+ 184:	cmp	r4, r2
+ 188:	streq	r4, [r0, #4]
+ 18c:	streq	r0, [r4, #8]
+ 190:	streq	r0, [r5]
+ 194:	beq	1b0 <lista_insere+0x74>
+ 198:	ldr	r3, [r4, #8]
+ 19c:	str	r4, [r0, #4]
+ 1a0:	str	r3, [r0, #8]
+ 1a4:	ldr	r3, [r4, #8]
+ 1a8:	str	r0, [r3, #4]
+ 1ac:	str	r0, [r4, #8]
+ 1b0:	ldrd	r4, [sp]
+ 1b4:	ldr	r6, [sp, #8]
+ 1b8:	add	sp, sp, #12
+ 1bc:	pop	{pc}		; (ldr pc, [sp], #4)
+ 1c0:	ldrd	r4, [sp]
+ 1c4:	mov	r0, #0
+ 1c8:	ldr	r6, [sp, #8]
+ 1cc:	add	sp, sp, #12
+ 1d0:	pop	{pc}		; (ldr pc, [sp], #4)
+ 1d4:	cmp	r2, #0
+ 1d8:	ldr	r6, [sp, #8]
+ 1dc:	ldrne	r3, [r5, #4]
+ 1e0:	streq	r0, [r5]
+ 1e4:	strne	r3, [r0, #8]
+ 1e8:	strne	r0, [r3, #4]
+ 1ec:	str	r0, [r5, #4]
+ 1f0:	ldrd	r4, [sp]
+ 1f4:	add	sp, sp, #12
+ 1f8:	pop	{pc}		; (ldr pc, [sp], #4)
+ 1fc:	mov	r0, #0
+ 200:	bx	lr
+
+00000204 <lista_remove>:
+ 204:	cmp	r1, #0
+ 208:	cmpne	r0, #0
+ 20c:	strd	r4, [sp, #-16]!
+ 210:	moveq	r5, #0
+ 214:	str	r6, [sp, #8]
+ 218:	str	lr, [sp, #12]
+ 21c:	beq	264 <lista_remove+0x60>
+ 220:	ldr	r3, [r0, #8]
+ 224:	mov	r4, r1
+ 228:	ldr	r2, [r1, #8]
+ 22c:	ldr	r5, [r1, #4]
+ 230:	sub	r3, r3, #1
+ 234:	cmp	r2, #0
+ 238:	str	r3, [r0, #8]
+ 23c:	strne	r5, [r2, #4]
+ 240:	ldrne	r5, [r1, #4]
+ 244:	streq	r5, [r0]
+ 248:	cmp	r5, #0
+ 24c:	streq	r2, [r0, #4]
+ 250:	strne	r2, [r5, #8]
+ 254:	ldr	r0, [r1]
+ 258:	bl	0 <free>
+ 25c:	mov	r0, r4
+ 260:	bl	0 <free>
+ 264:	mov	r0, r5
+ 268:	ldrd	r4, [sp]
+ 26c:	ldr	r6, [sp, #8]
+ 270:	add	sp, sp, #12
+ 274:	pop	{pc}		; (ldr pc, [sp], #4)
+
+00000278 <lista_pesquisa>:
+ 278:	strd	r4, [sp, #-16]!
+ 27c:	clz	r4, r1
+ 280:	cmp	r0, #0
+ 284:	lsr	r4, r4, #5
+ 288:	moveq	r4, #1
+ 28c:	str	r6, [sp, #8]
+ 290:	str	lr, [sp, #12]
+ 294:	cmp	r4, #0
+ 298:	movne	r4, #0
+ 29c:	bne	2e4 <lista_pesquisa+0x6c>
+ 2a0:	cmp	r2, #1
+ 2a4:	bhi	2e4 <lista_pesquisa+0x6c>
+ 2a8:	cmp	r2, #0
+ 2ac:	mov	r5, r1
+ 2b0:	bne	2f8 <lista_pesquisa+0x80>
+ 2b4:	ldr	r4, [r0]
+ 2b8:	cmp	r4, #0
+ 2bc:	bne	2d0 <lista_pesquisa+0x58>
+ 2c0:	b	2e4 <lista_pesquisa+0x6c>
+ 2c4:	ldr	r4, [r4, #4]
+ 2c8:	cmp	r4, #0
+ 2cc:	beq	2e4 <lista_pesquisa+0x6c>
+ 2d0:	mov	r1, r5
+ 2d4:	ldr	r0, [r4]
+ 2d8:	bl	0 <strcmp>
+ 2dc:	cmp	r0, #0
+ 2e0:	bne	2c4 <lista_pesquisa+0x4c>
+ 2e4:	mov	r0, r4
+ 2e8:	ldrd	r4, [sp]
+ 2ec:	ldr	r6, [sp, #8]
+ 2f0:	add	sp, sp, #12
+ 2f4:	pop	{pc}		; (ldr pc, [sp], #4)
+ 2f8:	ldr	r4, [r0, #4]
+ 2fc:	cmp	r4, #0
+ 300:	bne	314 <lista_pesquisa+0x9c>
+ 304:	b	2e4 <lista_pesquisa+0x6c>
+ 308:	ldr	r4, [r4, #8]
+ 30c:	cmp	r4, #0
+ 310:	beq	2e4 <lista_pesquisa+0x6c>
+ 314:	mov	r1, r5
+ 318:	ldr	r0, [r4]
+ 31c:	bl	0 <strcmp>
+ 320:	cmp	r0, #0
+ 324:	bne	308 <lista_pesquisa+0x90>
+ 328:	b	2e4 <lista_pesquisa+0x6c>
+
+0000032c <lista_ordena>:
+ 32c:	cmp	r0, #0
+ 330:	beq	3bc <lista_ordena+0x90>
+ 334:	strd	r4, [sp, #-24]!	; 0xffffffe8
+ 338:	strd	r6, [sp, #8]
+ 33c:	ldr	r6, [r0]
+ 340:	str	r8, [sp, #16]
+ 344:	str	lr, [sp, #20]
+ 348:	ldr	r7, [r6, #4]
+ 34c:	cmp	r7, #0
+ 350:	beq	3a4 <lista_ordena+0x78>
+ 354:	mov	r5, r6
+ 358:	mov	r4, r7
+ 35c:	ldr	r0, [r4]
+ 360:	ldr	r1, [r5]
+ 364:	bl	0 <strcmp>
+ 368:	cmp	r0, #0
+ 36c:	movlt	r5, r4
+ 370:	ldr	r4, [r4, #4]
+ 374:	cmp	r4, #0
+ 378:	bne	35c <lista_ordena+0x30>
+ 37c:	cmp	r6, r5
+ 380:	beq	394 <lista_ordena+0x68>
+ 384:	ldr	r2, [r5]
+ 388:	ldr	r3, [r6]
+ 38c:	str	r2, [r6]
+ 390:	str	r3, [r5]
+ 394:	mov	r6, r7
+ 398:	ldr	r7, [r6, #4]
+ 39c:	cmp	r7, #0
+ 3a0:	bne	354 <lista_ordena+0x28>
+ 3a4:	mov	r0, r7
+ 3a8:	ldrd	r4, [sp]
+ 3ac:	ldrd	r6, [sp, #8]
+ 3b0:	ldr	r8, [sp, #16]
+ 3b4:	add	sp, sp, #20
+ 3b8:	pop	{pc}		; (ldr pc, [sp], #4)
+ 3bc:	mvn	r0, #0
+ 3c0:	bx	lr
+
+000003c4 <lista_inverte>:
+ 3c4:	strd	r4, [sp, #-12]!
+ 3c8:	subs	r5, r0, #0
+ 3cc:	str	lr, [sp, #8]
+ 3d0:	beq	464 <lista_inverte+0xa0>
+ 3d4:	ldr	r4, [r5, #8]
+ 3d8:	cmp	r4, #1
+ 3dc:	movle	r0, #0
+ 3e0:	ble	450 <lista_inverte+0x8c>
+ 3e4:	ldr	r1, [r5]
+ 3e8:	cmp	r4, #2
+ 3ec:	ldr	r3, [r1, #4]
+ 3f0:	beq	45c <lista_inverte+0x98>
+ 3f4:	sub	r4, r4, #2
+ 3f8:	mov	ip, #0
+ 3fc:	b	404 <lista_inverte+0x40>
+ 400:	mov	r3, r2
+ 404:	ldmib	r3, {r2, lr}
+ 408:	add	ip, ip, #1
+ 40c:	cmp	r4, ip
+ 410:	str	r2, [lr, #4]
+ 414:	str	lr, [r2, #8]
+ 418:	str	r1, [r3, #4]
+ 41c:	str	r3, [r1, #8]
+ 420:	mov	r1, r3
+ 424:	bne	400 <lista_inverte+0x3c>
+ 428:	ldr	r2, [r5, #4]
+ 42c:	mov	r1, #0
+ 430:	mov	r0, r1
+ 434:	ldr	ip, [r2, #8]
+ 438:	str	ip, [r5, #4]
+ 43c:	str	r1, [ip, #4]
+ 440:	str	r3, [r2, #4]
+ 444:	str	r1, [r2, #8]
+ 448:	str	r2, [r3, #8]
+ 44c:	str	r2, [r5]
+ 450:	ldrd	r4, [sp]
+ 454:	add	sp, sp, #8
+ 458:	pop	{pc}		; (ldr pc, [sp], #4)
+ 45c:	mov	r3, r1
+ 460:	b	428 <lista_inverte+0x64>
+ 464:	mvn	r0, #0
+ 468:	b	450 <lista_inverte+0x8c>

@@ -1,0 +1,128 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//part_acorn.module_gcc_-Os:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <acorn_partition_map_iterate>:
+   0:	sub	sp, sp, #0x460
+   4:	mov	x3, #0x200                 	// #512
+   8:	stp	x29, x30, [sp]
+   c:	mov	x29, sp
+  10:	stp	x23, x24, [sp, #48]
+  14:	add	x24, sp, #0x260
+  18:	mov	x23, x2
+  1c:	mov	x4, x24
+  20:	mov	x2, #0x0                   	// #0
+  24:	stp	x19, x20, [sp, #16]
+  28:	stp	x21, x22, [sp, #32]
+  2c:	mov	x21, x0
+  30:	mov	x22, x1
+  34:	mov	x1, #0x6                   	// #6
+  38:	stp	x25, x26, [sp, #64]
+  3c:	stp	x27, x28, [sp, #80]
+  40:	bl	0 <grub_disk_read>
+  44:	mov	w19, w0
+  48:	cbnz	w0, 148 <acorn_partition_map_iterate+0x148>
+  4c:	ldrb	w0, [sp, #1116]
+  50:	and	w0, w0, #0xf
+  54:	cmp	w0, #0x9
+  58:	b.ne	16c <acorn_partition_map_iterate+0x16c>  // b.any
+  5c:	mov	x1, #0x0                   	// #0
+  60:	lsr	w0, w19, #8
+  64:	add	w19, w0, w19, uxtb
+  68:	ldrb	w0, [x24, x1]
+  6c:	add	x1, x1, #0x1
+  70:	add	w19, w0, w19
+  74:	cmp	x1, #0x1ff
+  78:	b.ne	60 <acorn_partition_map_iterate+0x60>  // b.any
+  7c:	ldrb	w0, [sp, #1119]
+  80:	cmp	w0, w19, uxtb
+  84:	b.ne	16c <acorn_partition_map_iterate+0x16c>  // b.any
+  88:	ldrb	w20, [sp, #1064]
+  8c:	add	x1, sp, #0x400
+  90:	ldrb	w0, [sp, #1058]
+  94:	add	x4, sp, #0x68
+  98:	mov	x3, #0x1f8                 	// #504
+  9c:	mov	x2, #0x0                   	// #0
+  a0:	ubfx	x20, x20, #6, #1
+  a4:	ldurh	w1, [x1, #93]
+  a8:	add	w20, w20, w0
+  ac:	ldrb	w0, [sp, #1057]
+  b0:	mul	w0, w0, w1
+  b4:	mul	w20, w20, w0
+  b8:	mov	x0, x21
+  bc:	mov	x1, x20
+  c0:	bl	0 <grub_disk_read>
+  c4:	mov	w19, w0
+  c8:	cbnz	w19, 148 <acorn_partition_map_iterate+0x148>
+  cc:	adrp	x0, 0 <acorn_partition_map_iterate>
+  d0:	mov	w27, #0xa1de                	// #41438
+  d4:	mov	w28, #0xab1e                	// #43806
+  d8:	add	x26, sp, #0x68
+  dc:	ldr	x0, [x0]
+  e0:	mov	w25, #0x0                   	// #0
+  e4:	movk	w27, #0xdeaf, lsl #16
+  e8:	movk	w28, #0xdeaf, lsl #16
+  ec:	mov	x3, #0x6                   	// #6
+  f0:	str	x0, [sp, #656]
+  f4:	ldr	w0, [x26]
+  f8:	cmp	w0, w27
+  fc:	ccmp	w0, w28, #0x4, ne  // ne = any
+ 100:	b.ne	148 <acorn_partition_map_iterate+0x148>  // b.any
+ 104:	ldr	w0, [x26, #4]
+ 108:	mov	x2, x23
+ 10c:	str	w25, [sp, #608]
+ 110:	mov	x1, x24
+ 114:	add	x0, x0, x20
+ 118:	str	x0, [sp, #616]
+ 11c:	ldr	w0, [x26, #8]
+ 120:	str	x0, [sp, #624]
+ 124:	mov	x0, x21
+ 128:	str	x3, [sp, #632]
+ 12c:	str	w25, [sp, #640]
+ 130:	blr	x22
+ 134:	mov	x3, #0x6                   	// #6
+ 138:	cbz	w0, 188 <acorn_partition_map_iterate+0x188>
+ 13c:	adrp	x0, 0 <acorn_partition_map_iterate>
+ 140:	ldr	x0, [x0]
+ 144:	ldr	w19, [x0]
+ 148:	mov	w0, w19
+ 14c:	ldp	x29, x30, [sp]
+ 150:	ldp	x19, x20, [sp, #16]
+ 154:	ldp	x21, x22, [sp, #32]
+ 158:	ldp	x23, x24, [sp, #48]
+ 15c:	ldp	x25, x26, [sp, #64]
+ 160:	ldp	x27, x28, [sp, #80]
+ 164:	add	sp, sp, #0x460
+ 168:	ret
+ 16c:	adrp	x0, 0 <acorn_partition_map_iterate>
+ 170:	mov	x20, #0x0                   	// #0
+ 174:	ldr	x1, [x0]
+ 178:	mov	w0, #0x13                  	// #19
+ 17c:	bl	0 <grub_error>
+ 180:	mov	w19, w0
+ 184:	b	c8 <acorn_partition_map_iterate+0xc8>
+ 188:	add	w25, w25, #0x1
+ 18c:	add	x26, x26, #0xc
+ 190:	cmp	w25, #0x2a
+ 194:	b.ne	f4 <acorn_partition_map_iterate+0xf4>  // b.any
+ 198:	b	148 <acorn_partition_map_iterate+0x148>
+ 19c:	nop
+	...
+
+00000000000001b8 <grub_mod_init>:
+ 1b8:	adrp	x0, 0 <acorn_partition_map_iterate>
+ 1bc:	ldr	x1, [x0]
+ 1c0:	adrp	x0, 0 <acorn_partition_map_iterate>
+ 1c4:	ldr	x0, [x0]
+ 1c8:	b	0 <grub_list_push>
+ 1cc:	nop
+	...
+
+00000000000001e0 <grub_mod_fini>:
+ 1e0:	adrp	x0, 0 <acorn_partition_map_iterate>
+ 1e4:	ldr	x0, [x0]
+ 1e8:	b	0 <grub_list_remove>
+ 1ec:	nop
+	...

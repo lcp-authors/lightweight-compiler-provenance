@@ -1,0 +1,509 @@
+
+../compcert-repos/dvidelabs-flatcc-3b39ef7/src/compiler/CMakeFiles/flatcc.dir/hash_tables/symbol_table.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <ht_clear>:
+   0:	str	r4, [sp, #-8]!
+   4:	mov	r4, r0
+   8:	ldr	r0, [r0]
+   c:	str	lr, [sp, #4]
+  10:	cmp	r0, #0
+  14:	beq	1c <ht_clear+0x1c>
+  18:	bl	0 <free>
+  1c:	mov	r3, #0
+  20:	str	r3, [r4]
+  24:	str	r3, [r4, #4]
+  28:	str	r3, [r4, #8]
+  2c:	str	r3, [r4, #12]
+  30:	ldr	r4, [sp]
+  34:	add	sp, sp, #4
+  38:	pop	{pc}		; (ldr pc, [sp], #4)
+
+0000003c <ht_insert>:
+  3c:	strd	r4, [sp, #-36]!	; 0xffffffdc
+  40:	strd	r6, [sp, #8]
+  44:	strd	r8, [sp, #16]
+  48:	strd	sl, [sp, #24]
+  4c:	subs	fp, r3, #0
+  50:	str	lr, [sp, #32]
+  54:	sub	sp, sp, #28
+  58:	str	r1, [sp, #8]
+  5c:	beq	224 <ht_insert+0x1e8>
+  60:	cmp	fp, #2
+  64:	beq	204 <ht_insert+0x1c8>
+  68:	cmp	fp, #1
+  6c:	beq	244 <ht_insert+0x208>
+  70:	mov	r3, #179	; 0xb3
+  74:	ldr	r1, [r0, #8]
+  78:	mov	r9, r2
+  7c:	mov	sl, r0
+  80:	ldr	r8, [r0, #12]
+  84:	mul	r3, r3, r8
+  88:	cmp	r1, r3, lsr #8
+  8c:	bcs	17c <ht_insert+0x140>
+  90:	add	ip, sp, #16
+  94:	movw	r1, #15186	; 0x3b52
+  98:	movt	r1, #12137	; 0x2f69
+  9c:	mov	r3, #0
+  a0:	ldr	r7, [sl]
+  a4:	mov	r2, r9
+  a8:	sub	r8, r8, #1
+  ac:	stm	sp, {r1, ip}
+  b0:	ldr	r0, [sp, #8]
+  b4:	bl	0 <cmetrohash64_1>
+  b8:	ldr	r6, [sp, #16]
+  bc:	ldr	r3, [sp, #64]	; 0x40
+  c0:	sub	r3, r3, #2
+  c4:	cmp	r3, #1
+  c8:	and	r3, r8, r6
+  cc:	add	r4, r7, r3, lsl #2
+  d0:	bls	1bc <ht_insert+0x180>
+  d4:	ldr	r5, [r7, r3, lsl #2]
+  d8:	cmp	r5, #0
+  dc:	moveq	r3, r4
+  e0:	beq	1a4 <ht_insert+0x168>
+  e4:	mov	r3, #0
+  e8:	add	r6, r6, #1
+  ec:	str	sl, [sp, #12]
+  f0:	mov	sl, r8
+  f4:	mov	r8, r3
+  f8:	b	124 <ht_insert+0xe8>
+  fc:	ldr	r1, [r5, #4]
+ 100:	ldr	r2, [r1, #4]
+ 104:	cmp	r9, r2
+ 108:	beq	138 <ht_insert+0xfc>
+ 10c:	and	r4, sl, r6
+ 110:	add	r6, r6, #1
+ 114:	ldr	r5, [r7, r4, lsl #2]
+ 118:	add	r4, r7, r4, lsl #2
+ 11c:	cmp	r5, #0
+ 120:	beq	194 <ht_insert+0x158>
+ 124:	cmp	r5, #2
+ 128:	bne	fc <ht_insert+0xc0>
+ 12c:	cmp	r8, #0
+ 130:	moveq	r8, r4
+ 134:	b	10c <ht_insert+0xd0>
+ 138:	mov	r2, r9
+ 13c:	ldr	r1, [r1]
+ 140:	ldr	r0, [sp, #8]
+ 144:	bl	0 <memcmp>
+ 148:	cmp	r0, #0
+ 14c:	bne	10c <ht_insert+0xd0>
+ 150:	ldr	r3, [sp, #64]	; 0x40
+ 154:	cmp	r3, #0
+ 158:	streq	fp, [r4]
+ 15c:	mov	r0, r5
+ 160:	add	sp, sp, #28
+ 164:	ldrd	r4, [sp]
+ 168:	ldrd	r6, [sp, #8]
+ 16c:	ldrd	r8, [sp, #16]
+ 170:	ldrd	sl, [sp, #24]
+ 174:	add	sp, sp, #32
+ 178:	pop	{pc}		; (ldr pc, [sp], #4)
+ 17c:	lsl	r1, r1, #1
+ 180:	bl	28c <ht_resize>
+ 184:	cmp	r0, #0
+ 188:	bne	264 <ht_insert+0x228>
+ 18c:	ldr	r8, [sl, #12]
+ 190:	b	90 <ht_insert+0x54>
+ 194:	ldr	sl, [sp, #12]
+ 198:	cmp	r8, #0
+ 19c:	mov	r3, r8
+ 1a0:	moveq	r3, r4
+ 1a4:	ldr	r2, [sl, #8]
+ 1a8:	mov	r5, #0
+ 1ac:	add	r2, r2, #1
+ 1b0:	str	r2, [sl, #8]
+ 1b4:	str	fp, [r3]
+ 1b8:	b	15c <ht_insert+0x120>
+ 1bc:	ldr	r2, [sl, #8]
+ 1c0:	ldr	r1, [r7, r3, lsl #2]
+ 1c4:	add	r3, r2, #1
+ 1c8:	cmp	r1, #2
+ 1cc:	cmpne	r1, #0
+ 1d0:	str	r3, [sl, #8]
+ 1d4:	beq	1f8 <ht_insert+0x1bc>
+ 1d8:	add	r6, r6, #1
+ 1dc:	and	r4, r8, r6
+ 1e0:	add	r6, r6, #1
+ 1e4:	ldr	r3, [r7, r4, lsl #2]
+ 1e8:	add	r4, r7, r4, lsl #2
+ 1ec:	cmp	r3, #0
+ 1f0:	cmpne	r3, #2
+ 1f4:	bne	1dc <ht_insert+0x1a0>
+ 1f8:	mov	r5, #0
+ 1fc:	str	fp, [r4]
+ 200:	b	15c <ht_insert+0x120>
+ 204:	movw	r3, #0
+ 208:	movt	r3, #0
+ 20c:	movw	r1, #0
+ 210:	movt	r1, #0
+ 214:	movw	r0, #0
+ 218:	movt	r0, #0
+ 21c:	mov	r2, #115	; 0x73
+ 220:	bl	0 <__assert_fail>
+ 224:	movw	r3, #0
+ 228:	movt	r3, #0
+ 22c:	movw	r1, #0
+ 230:	movt	r1, #0
+ 234:	movw	r0, #0
+ 238:	movt	r0, #0
+ 23c:	mov	r2, #114	; 0x72
+ 240:	bl	0 <__assert_fail>
+ 244:	movw	r3, #0
+ 248:	movt	r3, #0
+ 24c:	movw	r1, #0
+ 250:	movt	r1, #0
+ 254:	movw	r0, #0
+ 258:	movt	r0, #0
+ 25c:	mov	r2, #116	; 0x74
+ 260:	bl	0 <__assert_fail>
+ 264:	movw	r3, #0
+ 268:	movt	r3, #0
+ 26c:	movw	r2, #0
+ 270:	movt	r2, #0
+ 274:	ldr	r0, [r3]
+ 278:	movw	r1, #0
+ 27c:	movt	r1, #0
+ 280:	bl	0 <fprintf>
+ 284:	mov	r0, #1
+ 288:	bl	0 <exit>
+
+0000028c <ht_resize>:
+ 28c:	ldr	r3, [r0, #8]
+ 290:	strd	r4, [sp, #-24]!	; 0xffffffe8
+ 294:	strd	r6, [sp, #8]
+ 298:	mov	r7, r0
+ 29c:	str	r8, [sp, #16]
+ 2a0:	str	lr, [sp, #20]
+ 2a4:	sub	sp, sp, #24
+ 2a8:	cmp	r1, r3
+ 2ac:	ldr	r6, [r0]
+ 2b0:	movcc	r1, r3
+ 2b4:	cmp	r1, #2
+ 2b8:	bls	398 <ht_resize+0x10c>
+ 2bc:	mov	r3, #4
+ 2c0:	movw	r0, #358	; 0x166
+ 2c4:	mul	r2, r0, r3
+ 2c8:	lsl	r5, r3, #1
+ 2cc:	cmp	r1, r2, lsr #8
+ 2d0:	mov	r3, r5
+ 2d4:	bhi	2c4 <ht_resize+0x38>
+ 2d8:	mov	r1, #4
+ 2dc:	mov	r0, r5
+ 2e0:	bl	0 <calloc>
+ 2e4:	cmp	r0, #0
+ 2e8:	str	r0, [sp, #8]
+ 2ec:	beq	3a0 <ht_resize+0x114>
+ 2f0:	ldr	r2, [r7, #12]
+ 2f4:	mov	r4, #0
+ 2f8:	str	r4, [sp, #12]
+ 2fc:	strd	r4, [sp, #16]
+ 300:	cmp	r2, r4
+ 304:	addeq	r6, sp, #8
+ 308:	beq	358 <ht_resize+0xcc>
+ 30c:	sub	r5, r6, #4
+ 310:	mov	r8, #3
+ 314:	add	r6, sp, #8
+ 318:	b	324 <ht_resize+0x98>
+ 31c:	cmp	r2, r4
+ 320:	bls	358 <ht_resize+0xcc>
+ 324:	ldr	r3, [r5, #4]!
+ 328:	add	r4, r4, #1
+ 32c:	cmp	r3, #0
+ 330:	cmpne	r3, #2
+ 334:	beq	31c <ht_resize+0x90>
+ 338:	ldr	r2, [r3, #4]
+ 33c:	mov	r0, r6
+ 340:	ldm	r2, {r1, r2}
+ 344:	str	r8, [sp]
+ 348:	bl	3c <ht_insert>
+ 34c:	ldr	r2, [r7, #12]
+ 350:	cmp	r2, r4
+ 354:	bhi	324 <ht_resize+0x98>
+ 358:	mov	r0, r7
+ 35c:	bl	0 <ht_clear>
+ 360:	ldr	r3, [sp, #8]
+ 364:	mov	r0, #0
+ 368:	ldmib	r6, {r1, r2}
+ 36c:	str	r3, [r7]
+ 370:	ldr	r3, [r6, #12]
+ 374:	str	r1, [r7, #4]
+ 378:	str	r2, [r7, #8]
+ 37c:	str	r3, [r7, #12]
+ 380:	add	sp, sp, #24
+ 384:	ldrd	r4, [sp]
+ 388:	ldrd	r6, [sp, #8]
+ 38c:	ldr	r8, [sp, #16]
+ 390:	add	sp, sp, #20
+ 394:	pop	{pc}		; (ldr pc, [sp], #4)
+ 398:	mov	r5, #4
+ 39c:	b	2d8 <ht_resize+0x4c>
+ 3a0:	mvn	r0, #0
+ 3a4:	b	380 <ht_resize+0xf4>
+
+000003a8 <ht_remove>:
+ 3a8:	strd	r4, [sp, #-36]!	; 0xffffffdc
+ 3ac:	ldr	r5, [r0]
+ 3b0:	strd	r6, [sp, #8]
+ 3b4:	strd	r8, [sp, #16]
+ 3b8:	strd	sl, [sp, #24]
+ 3bc:	str	lr, [sp, #32]
+ 3c0:	sub	sp, sp, #20
+ 3c4:	cmp	r5, #0
+ 3c8:	beq	498 <ht_remove+0xf0>
+ 3cc:	mov	r9, r1
+ 3d0:	add	ip, sp, #8
+ 3d4:	movw	r1, #15186	; 0x3b52
+ 3d8:	movt	r1, #12137	; 0x2f69
+ 3dc:	mov	r8, r0
+ 3e0:	mov	r3, #0
+ 3e4:	mov	r0, r9
+ 3e8:	ldr	r6, [r8, #12]
+ 3ec:	mov	r7, r2
+ 3f0:	stm	sp, {r1, ip}
+ 3f4:	bl	0 <cmetrohash64_1>
+ 3f8:	ldr	sl, [sp, #8]
+ 3fc:	sub	r6, r6, #1
+ 400:	and	r3, r6, sl
+ 404:	ldr	fp, [r5, r3, lsl #2]
+ 408:	add	r4, r5, r3, lsl #2
+ 40c:	cmp	fp, #0
+ 410:	beq	498 <ht_remove+0xf0>
+ 414:	add	sl, sl, #1
+ 418:	b	434 <ht_remove+0x8c>
+ 41c:	and	r3, r6, sl
+ 420:	add	sl, sl, #1
+ 424:	ldr	fp, [r5, r3, lsl #2]
+ 428:	add	r4, r5, r3, lsl #2
+ 42c:	cmp	fp, #0
+ 430:	beq	498 <ht_remove+0xf0>
+ 434:	cmp	fp, #2
+ 438:	beq	41c <ht_remove+0x74>
+ 43c:	ldr	r3, [fp, #4]
+ 440:	ldr	r2, [r3, #4]
+ 444:	cmp	r7, r2
+ 448:	bne	41c <ht_remove+0x74>
+ 44c:	mov	r2, r7
+ 450:	mov	r0, r9
+ 454:	ldr	r1, [r3]
+ 458:	bl	0 <memcmp>
+ 45c:	cmp	r0, #0
+ 460:	bne	41c <ht_remove+0x74>
+ 464:	ldr	r3, [r8, #8]
+ 468:	mov	r2, #2
+ 46c:	str	r2, [r4]
+ 470:	sub	r3, r3, #1
+ 474:	str	r3, [r8, #8]
+ 478:	mov	r0, fp
+ 47c:	add	sp, sp, #20
+ 480:	ldrd	r4, [sp]
+ 484:	ldrd	r6, [sp, #8]
+ 488:	ldrd	r8, [sp, #16]
+ 48c:	ldrd	sl, [sp, #24]
+ 490:	add	sp, sp, #32
+ 494:	pop	{pc}		; (ldr pc, [sp], #4)
+ 498:	mov	fp, #0
+ 49c:	b	478 <ht_remove+0xd0>
+
+000004a0 <ht_find.isra.3>:
+ 4a0:	strd	r4, [sp, #-28]!	; 0xffffffe4
+ 4a4:	strd	r6, [sp, #8]
+ 4a8:	subs	r7, r0, #0
+ 4ac:	strd	r8, [sp, #16]
+ 4b0:	str	lr, [sp, #24]
+ 4b4:	sub	sp, sp, #20
+ 4b8:	beq	56c <ht_find.isra.3+0xcc>
+ 4bc:	mov	r6, r3
+ 4c0:	movw	r3, #15186	; 0x3b52
+ 4c4:	movt	r3, #12137	; 0x2f69
+ 4c8:	ldr	r8, [r1]
+ 4cc:	add	r1, sp, #8
+ 4d0:	mov	r9, r2
+ 4d4:	mov	r2, r6
+ 4d8:	mov	r0, r9
+ 4dc:	str	r3, [sp]
+ 4e0:	mov	r3, #0
+ 4e4:	str	r1, [sp, #4]
+ 4e8:	bl	0 <cmetrohash64_1>
+ 4ec:	ldr	r5, [sp, #8]
+ 4f0:	sub	r8, r8, #1
+ 4f4:	and	r3, r8, r5
+ 4f8:	ldr	r4, [r7, r3, lsl #2]
+ 4fc:	cmp	r4, #0
+ 500:	beq	56c <ht_find.isra.3+0xcc>
+ 504:	add	r5, r5, #1
+ 508:	b	520 <ht_find.isra.3+0x80>
+ 50c:	and	r1, r8, r5
+ 510:	add	r5, r5, #1
+ 514:	ldr	r4, [r7, r1, lsl #2]
+ 518:	cmp	r4, #0
+ 51c:	beq	56c <ht_find.isra.3+0xcc>
+ 520:	cmp	r4, #2
+ 524:	beq	50c <ht_find.isra.3+0x6c>
+ 528:	ldr	r3, [r4, #4]
+ 52c:	ldr	r2, [r3, #4]
+ 530:	cmp	r6, r2
+ 534:	bne	50c <ht_find.isra.3+0x6c>
+ 538:	mov	r2, r6
+ 53c:	mov	r0, r9
+ 540:	ldr	r1, [r3]
+ 544:	bl	0 <memcmp>
+ 548:	cmp	r0, #0
+ 54c:	bne	50c <ht_find.isra.3+0x6c>
+ 550:	mov	r0, r4
+ 554:	add	sp, sp, #20
+ 558:	ldrd	r4, [sp]
+ 55c:	ldrd	r6, [sp, #8]
+ 560:	ldrd	r8, [sp, #16]
+ 564:	add	sp, sp, #24
+ 568:	pop	{pc}		; (ldr pc, [sp], #4)
+ 56c:	mov	r4, #0
+ 570:	b	550 <ht_find.isra.3+0xb0>
+
+00000574 <fb_symbol_table_clear>:
+ 574:	b	0 <ht_clear>
+
+00000578 <fb_symbol_table_destroy>:
+ 578:	strd	r4, [sp, #-24]!	; 0xffffffe8
+ 57c:	strd	r6, [sp, #8]
+ 580:	mov	r7, r0
+ 584:	str	r8, [sp, #16]
+ 588:	subs	r8, r1, #0
+ 58c:	str	lr, [sp, #20]
+ 590:	beq	5dc <fb_symbol_table_destroy+0x64>
+ 594:	ldr	r5, [r0]
+ 598:	ldr	ip, [r0, #12]
+ 59c:	cmp	ip, #0
+ 5a0:	beq	5dc <fb_symbol_table_destroy+0x64>
+ 5a4:	mov	r6, r2
+ 5a8:	sub	r5, r5, #4
+ 5ac:	mov	r4, #0
+ 5b0:	ldr	r3, [r5, #4]!
+ 5b4:	mov	r0, r6
+ 5b8:	add	r4, r4, #1
+ 5bc:	cmp	r3, #0
+ 5c0:	cmpne	r3, #2
+ 5c4:	mov	r1, r3
+ 5c8:	beq	5d4 <fb_symbol_table_destroy+0x5c>
+ 5cc:	blx	r8
+ 5d0:	ldr	ip, [r7, #12]
+ 5d4:	cmp	r4, ip
+ 5d8:	bcc	5b0 <fb_symbol_table_destroy+0x38>
+ 5dc:	mov	r0, r7
+ 5e0:	ldrd	r4, [sp]
+ 5e4:	ldrd	r6, [sp, #8]
+ 5e8:	ldr	r8, [sp, #16]
+ 5ec:	ldr	lr, [sp, #20]
+ 5f0:	add	sp, sp, #24
+ 5f4:	b	0 <ht_clear>
+
+000005f8 <fb_symbol_table_init>:
+ 5f8:	cmp	r1, #2
+ 5fc:	strd	r4, [sp, #-16]!
+ 600:	mov	r4, r0
+ 604:	str	r6, [sp, #8]
+ 608:	str	lr, [sp, #12]
+ 60c:	bls	668 <fb_symbol_table_init+0x70>
+ 610:	mov	r3, #4
+ 614:	movw	r0, #358	; 0x166
+ 618:	mul	r2, r0, r3
+ 61c:	lsl	r5, r3, #1
+ 620:	cmp	r1, r2, lsr #8
+ 624:	mov	r3, r5
+ 628:	bhi	618 <fb_symbol_table_init+0x20>
+ 62c:	mov	r1, #4
+ 630:	mov	r0, r5
+ 634:	bl	0 <calloc>
+ 638:	cmp	r0, #0
+ 63c:	str	r0, [r4]
+ 640:	beq	670 <fb_symbol_table_init+0x78>
+ 644:	mov	r3, #0
+ 648:	mov	r0, r3
+ 64c:	str	r3, [r4, #4]
+ 650:	str	r3, [r4, #8]
+ 654:	str	r5, [r4, #12]
+ 658:	ldrd	r4, [sp]
+ 65c:	ldr	r6, [sp, #8]
+ 660:	add	sp, sp, #12
+ 664:	pop	{pc}		; (ldr pc, [sp], #4)
+ 668:	mov	r5, #4
+ 66c:	b	62c <fb_symbol_table_init+0x34>
+ 670:	mvn	r0, #0
+ 674:	b	658 <fb_symbol_table_init+0x60>
+
+00000678 <fb_symbol_table_resize>:
+ 678:	b	28c <ht_resize>
+
+0000067c <fb_symbol_table_insert>:
+ 67c:	b	3c <ht_insert>
+
+00000680 <fb_symbol_table_insert_item>:
+ 680:	ldr	ip, [r1, #4]
+ 684:	mov	r3, r1
+ 688:	push	{lr}		; (str lr, [sp, #-4]!)
+ 68c:	sub	sp, sp, #12
+ 690:	ldm	ip, {r1, ip}
+ 694:	str	r2, [sp]
+ 698:	mov	r2, ip
+ 69c:	bl	3c <ht_insert>
+ 6a0:	add	sp, sp, #12
+ 6a4:	pop	{pc}		; (ldr pc, [sp], #4)
+
+000006a8 <fb_symbol_table_find>:
+ 6a8:	mov	ip, r0
+ 6ac:	mov	r3, r2
+ 6b0:	ldr	r0, [ip], #12
+ 6b4:	mov	r2, r1
+ 6b8:	mov	r1, ip
+ 6bc:	b	4a0 <ht_find.isra.3>
+
+000006c0 <fb_symbol_table_find_item>:
+ 6c0:	mov	r3, r0
+ 6c4:	ldr	ip, [r1, #4]
+ 6c8:	ldr	r0, [r3], #12
+ 6cc:	ldr	r2, [ip]
+ 6d0:	mov	r1, r3
+ 6d4:	ldr	r3, [ip, #4]
+ 6d8:	b	4a0 <ht_find.isra.3>
+
+000006dc <fb_symbol_table_remove>:
+ 6dc:	b	3a8 <ht_remove>
+
+000006e0 <fb_symbol_table_remove_item>:
+ 6e0:	ldr	r3, [r1, #4]
+ 6e4:	ldm	r3, {r1, r2}
+ 6e8:	b	3a8 <ht_remove>
+
+000006ec <fb_symbol_table_visit>:
+ 6ec:	ldr	ip, [r0, #12]
+ 6f0:	strd	r4, [sp, #-24]!	; 0xffffffe8
+ 6f4:	ldr	r5, [r0]
+ 6f8:	strd	r6, [sp, #8]
+ 6fc:	str	r8, [sp, #16]
+ 700:	cmp	ip, #0
+ 704:	str	lr, [sp, #20]
+ 708:	beq	74c <fb_symbol_table_visit+0x60>
+ 70c:	mov	r6, r2
+ 710:	mov	r8, r1
+ 714:	mov	r7, r0
+ 718:	sub	r5, r5, #4
+ 71c:	mov	r4, #0
+ 720:	ldr	r3, [r5, #4]!
+ 724:	mov	r0, r6
+ 728:	add	r4, r4, #1
+ 72c:	cmp	r3, #0
+ 730:	cmpne	r3, #2
+ 734:	mov	r1, r3
+ 738:	beq	744 <fb_symbol_table_visit+0x58>
+ 73c:	blx	r8
+ 740:	ldr	ip, [r7, #12]
+ 744:	cmp	r4, ip
+ 748:	bcc	720 <fb_symbol_table_visit+0x34>
+ 74c:	ldrd	r4, [sp]
+ 750:	ldrd	r6, [sp, #8]
+ 754:	ldr	r8, [sp, #16]
+ 758:	add	sp, sp, #20
+ 75c:	pop	{pc}		; (ldr pc, [sp], #4)

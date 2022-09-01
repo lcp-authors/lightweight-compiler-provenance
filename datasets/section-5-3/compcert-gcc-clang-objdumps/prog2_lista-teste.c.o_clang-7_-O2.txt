@@ -1,0 +1,809 @@
+
+../compcert-repos/prog2/CMakeFiles/4.dir/Aula04_Listas_T1/lista-teste.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <_l>:
+   0:	sub	sp, sp, #12
+   4:	push	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+   8:	add	fp, sp, #28
+   c:	sub	sp, sp, #8
+  10:	mov	r9, r0
+  14:	add	r0, fp, #8
+  18:	stm	r0, {r1, r2, r3}
+  1c:	mov	r0, #12
+  20:	bl	0 <malloc>
+  24:	mov	r1, #0
+  28:	mov	r8, r0
+  2c:	cmp	r9, #1
+  30:	str	r1, [r0]
+  34:	stmib	r0, {r1, r9}
+  38:	add	r0, fp, #8
+  3c:	str	r0, [sp, #4]
+  40:	blt	b4 <_l+0xb4>
+  44:	mov	r5, #0
+  48:	ldr	r0, [sp, #4]
+  4c:	cmp	r5, #0
+  50:	mov	sl, r8
+  54:	addne	sl, r6, #4
+  58:	add	r1, r0, #4
+  5c:	str	r1, [sp, #4]
+  60:	ldr	r7, [r0]
+  64:	mov	r0, #12
+  68:	bl	0 <malloc>
+  6c:	cmp	r5, #0
+  70:	mov	r4, r0
+  74:	str	r0, [sl]
+  78:	moveq	r6, r5
+  7c:	str	r6, [r0, #8]
+  80:	mov	r0, r7
+  84:	bl	0 <strlen>
+  88:	add	r0, r0, #1
+  8c:	bl	0 <malloc>
+  90:	mov	r1, r7
+  94:	str	r0, [r4]
+  98:	bl	0 <strcpy>
+  9c:	add	r5, r5, #1
+  a0:	mov	r6, r4
+  a4:	cmp	r9, r5
+  a8:	bne	48 <_l+0x48>
+  ac:	mov	r1, #0
+  b0:	b	b4 <_l+0xb4>
+  b4:	str	r1, [r4, #4]
+  b8:	str	r4, [r8, #4]
+  bc:	mov	r0, r8
+  c0:	sub	sp, fp, #28
+  c4:	pop	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+  c8:	add	sp, sp, #12
+  cc:	bx	lr
+
+000000d0 <_f>:
+  d0:	cmp	r0, #0
+  d4:	moveq	r0, #0
+  d8:	bxeq	lr
+  dc:	ldr	r0, [r0]
+  e0:	mov	r2, #0
+  e4:	cmp	r1, #1
+  e8:	blt	110 <_f+0x40>
+  ec:	cmp	r0, #0
+  f0:	beq	110 <_f+0x40>
+  f4:	mov	r2, #0
+  f8:	ldr	r0, [r0, #4]
+  fc:	add	r2, r2, #1
+ 100:	cmp	r2, r1
+ 104:	bge	110 <_f+0x40>
+ 108:	cmp	r0, #0
+ 10c:	bne	f8 <_f+0x28>
+ 110:	cmp	r2, r1
+ 114:	ldreq	r0, [r0]
+ 118:	movwne	r0, #0
+ 11c:	movtne	r0, #0
+ 120:	bx	lr
+
+00000124 <teste_lista_nova>:
+ 124:	push	{r4, sl, fp, lr}
+ 128:	add	fp, sp, #8
+ 12c:	movw	r0, #0
+ 130:	movt	r0, #0
+ 134:	bl	0 <printf>
+ 138:	bl	0 <lista_nova>
+ 13c:	cmp	r0, #0
+ 140:	beq	16c <teste_lista_nova+0x48>
+ 144:	mov	r4, r0
+ 148:	ldr	r0, [r0, #8]
+ 14c:	cmp	r0, #0
+ 150:	beq	188 <teste_lista_nova+0x64>
+ 154:	movw	r0, #0
+ 158:	movt	r0, #0
+ 15c:	bl	0 <printf>
+ 160:	mov	r0, r4
+ 164:	bl	0 <lista_apaga>
+ 168:	b	178 <teste_lista_nova+0x54>
+ 16c:	movw	r0, #0
+ 170:	movt	r0, #0
+ 174:	bl	0 <printf>
+ 178:	mov	r0, #10
+ 17c:	bl	0 <putchar>
+ 180:	mov	r0, #1
+ 184:	pop	{r4, sl, fp, pc}
+ 188:	mov	r0, r4
+ 18c:	bl	0 <lista_apaga>
+ 190:	movw	r0, #0
+ 194:	movt	r0, #0
+ 198:	bl	0 <puts>
+ 19c:	mov	r0, #0
+ 1a0:	pop	{r4, sl, fp, pc}
+
+000001a4 <teste_lista_insere>:
+ 1a4:	push	{r4, r5, r6, r7, fp, lr}
+ 1a8:	add	fp, sp, #16
+ 1ac:	movw	r1, #0
+ 1b0:	mov	r0, #2
+ 1b4:	movt	r1, #0
+ 1b8:	mov	r2, r1
+ 1bc:	bl	0 <_l>
+ 1c0:	mov	r5, r0
+ 1c4:	movw	r0, #0
+ 1c8:	movt	r0, #0
+ 1cc:	bl	0 <printf>
+ 1d0:	ldr	r0, [r5]
+ 1d4:	movw	r1, #0
+ 1d8:	movt	r1, #0
+ 1dc:	ldr	r2, [r0, #4]
+ 1e0:	mov	r0, r5
+ 1e4:	bl	0 <lista_insere>
+ 1e8:	mov	r4, #0
+ 1ec:	cmp	r0, #0
+ 1f0:	bne	204 <teste_lista_insere+0x60>
+ 1f4:	movw	r0, #0
+ 1f8:	movt	r0, #0
+ 1fc:	bl	0 <printf>
+ 200:	mov	r4, #1
+ 204:	ldr	r0, [r5, #8]
+ 208:	cmp	r0, #3
+ 20c:	beq	22c <teste_lista_insere+0x88>
+ 210:	movw	r0, #0
+ 214:	movt	r0, #0
+ 218:	bl	0 <printf>
+ 21c:	ldr	r0, [r5, #8]
+ 220:	add	r4, r4, #1
+ 224:	cmp	r0, #3
+ 228:	bne	478 <teste_lista_insere+0x2d4>
+ 22c:	ldr	r6, [r5]
+ 230:	movw	r1, #0
+ 234:	movt	r1, #0
+ 238:	ldr	r0, [r6]
+ 23c:	bl	0 <strcmp>
+ 240:	cmp	r0, #0
+ 244:	bne	280 <teste_lista_insere+0xdc>
+ 248:	ldr	r7, [r6, #4]
+ 24c:	movw	r1, #0
+ 250:	movt	r1, #0
+ 254:	ldr	r0, [r7]
+ 258:	bl	0 <strcmp>
+ 25c:	cmp	r0, #0
+ 260:	bne	280 <teste_lista_insere+0xdc>
+ 264:	ldr	r0, [r7, #4]
+ 268:	movw	r1, #0
+ 26c:	movt	r1, #0
+ 270:	ldr	r0, [r0]
+ 274:	bl	0 <strcmp>
+ 278:	cmp	r0, #0
+ 27c:	beq	294 <teste_lista_insere+0xf0>
+ 280:	movw	r0, #0
+ 284:	movt	r0, #0
+ 288:	bl	0 <printf>
+ 28c:	ldr	r6, [r5]
+ 290:	add	r4, r4, #1
+ 294:	movw	r1, #0
+ 298:	mov	r0, r5
+ 29c:	mov	r2, r6
+ 2a0:	movt	r1, #0
+ 2a4:	bl	0 <lista_insere>
+ 2a8:	ldr	r1, [r5]
+ 2ac:	cmp	r0, r1
+ 2b0:	beq	2c4 <teste_lista_insere+0x120>
+ 2b4:	movw	r0, #0
+ 2b8:	movt	r0, #0
+ 2bc:	bl	0 <printf>
+ 2c0:	add	r4, r4, #1
+ 2c4:	ldr	r0, [r5, #8]
+ 2c8:	cmp	r0, #4
+ 2cc:	beq	2ec <teste_lista_insere+0x148>
+ 2d0:	movw	r0, #0
+ 2d4:	movt	r0, #0
+ 2d8:	bl	0 <printf>
+ 2dc:	ldr	r0, [r5, #8]
+ 2e0:	add	r4, r4, #1
+ 2e4:	cmp	r0, #4
+ 2e8:	bne	478 <teste_lista_insere+0x2d4>
+ 2ec:	ldr	r6, [r5]
+ 2f0:	movw	r1, #0
+ 2f4:	movt	r1, #0
+ 2f8:	ldr	r0, [r6]
+ 2fc:	bl	0 <strcmp>
+ 300:	cmp	r0, #0
+ 304:	bne	35c <teste_lista_insere+0x1b8>
+ 308:	ldr	r6, [r6, #4]
+ 30c:	movw	r1, #0
+ 310:	movt	r1, #0
+ 314:	ldr	r0, [r6]
+ 318:	bl	0 <strcmp>
+ 31c:	cmp	r0, #0
+ 320:	bne	35c <teste_lista_insere+0x1b8>
+ 324:	ldr	r6, [r6, #4]
+ 328:	movw	r1, #0
+ 32c:	movt	r1, #0
+ 330:	ldr	r0, [r6]
+ 334:	bl	0 <strcmp>
+ 338:	cmp	r0, #0
+ 33c:	bne	35c <teste_lista_insere+0x1b8>
+ 340:	ldr	r0, [r6, #4]
+ 344:	movw	r1, #0
+ 348:	movt	r1, #0
+ 34c:	ldr	r0, [r0]
+ 350:	bl	0 <strcmp>
+ 354:	cmp	r0, #0
+ 358:	beq	36c <teste_lista_insere+0x1c8>
+ 35c:	movw	r0, #0
+ 360:	movt	r0, #0
+ 364:	bl	0 <printf>
+ 368:	add	r4, r4, #1
+ 36c:	movw	r1, #0
+ 370:	mov	r0, r5
+ 374:	mov	r2, #0
+ 378:	movt	r1, #0
+ 37c:	bl	0 <lista_insere>
+ 380:	ldr	r0, [r5, #8]
+ 384:	cmp	r0, #5
+ 388:	beq	3a8 <teste_lista_insere+0x204>
+ 38c:	movw	r0, #0
+ 390:	movt	r0, #0
+ 394:	bl	0 <printf>
+ 398:	ldr	r0, [r5, #8]
+ 39c:	add	r4, r4, #1
+ 3a0:	cmp	r0, #5
+ 3a4:	bne	478 <teste_lista_insere+0x2d4>
+ 3a8:	ldr	r0, [r5]
+ 3ac:	movw	r1, #0
+ 3b0:	movt	r1, #0
+ 3b4:	ldr	r0, [r0, #4]
+ 3b8:	ldr	r0, [r0, #4]
+ 3bc:	ldr	r0, [r0, #4]
+ 3c0:	ldr	r0, [r0, #4]
+ 3c4:	ldr	r0, [r0]
+ 3c8:	bl	0 <strcmp>
+ 3cc:	cmp	r0, #0
+ 3d0:	beq	3e4 <teste_lista_insere+0x240>
+ 3d4:	movw	r0, #0
+ 3d8:	movt	r0, #0
+ 3dc:	bl	0 <printf>
+ 3e0:	add	r4, r4, #1
+ 3e4:	mov	r0, r5
+ 3e8:	bl	0 <lista_apaga>
+ 3ec:	bl	0 <lista_nova>
+ 3f0:	movw	r1, #0
+ 3f4:	mov	r2, #0
+ 3f8:	mov	r5, r0
+ 3fc:	movt	r1, #0
+ 400:	bl	0 <lista_insere>
+ 404:	ldr	r0, [r5, #8]
+ 408:	cmp	r0, #1
+ 40c:	beq	420 <teste_lista_insere+0x27c>
+ 410:	movw	r0, #0
+ 414:	movt	r0, #0
+ 418:	bl	0 <printf>
+ 41c:	add	r4, r4, #1
+ 420:	mov	r0, r5
+ 424:	bl	0 <lista_tamanho>
+ 428:	cmp	r0, #1
+ 42c:	bne	470 <teste_lista_insere+0x2cc>
+ 430:	ldr	r0, [r5]
+ 434:	movw	r1, #0
+ 438:	movt	r1, #0
+ 43c:	ldr	r0, [r0]
+ 440:	bl	0 <strcmp>
+ 444:	cmp	r0, #0
+ 448:	beq	468 <teste_lista_insere+0x2c4>
+ 44c:	movw	r0, #0
+ 450:	movt	r0, #0
+ 454:	bl	0 <printf>
+ 458:	mov	r0, r5
+ 45c:	bl	0 <lista_apaga>
+ 460:	add	r4, r4, #1
+ 464:	b	478 <teste_lista_insere+0x2d4>
+ 468:	mov	r0, r5
+ 46c:	bl	0 <lista_apaga>
+ 470:	cmp	r4, #0
+ 474:	beq	488 <teste_lista_insere+0x2e4>
+ 478:	mov	r0, #10
+ 47c:	bl	0 <putchar>
+ 480:	mov	r0, r4
+ 484:	pop	{r4, r5, r6, r7, fp, pc}
+ 488:	movw	r0, #0
+ 48c:	movt	r0, #0
+ 490:	bl	0 <puts>
+ 494:	mov	r4, #0
+ 498:	mov	r0, r4
+ 49c:	pop	{r4, r5, r6, r7, fp, pc}
+
+000004a0 <teste_lista_remove>:
+ 4a0:	push	{r4, r5, r6, sl, fp, lr}
+ 4a4:	add	fp, sp, #16
+ 4a8:	sub	sp, sp, #8
+ 4ac:	movw	r1, #0
+ 4b0:	movw	r0, #0
+ 4b4:	movw	r2, #0
+ 4b8:	movw	r3, #0
+ 4bc:	movt	r1, #0
+ 4c0:	movt	r0, #0
+ 4c4:	movt	r2, #0
+ 4c8:	movt	r3, #0
+ 4cc:	str	r1, [sp]
+ 4d0:	movw	r1, #0
+ 4d4:	str	r0, [sp, #4]
+ 4d8:	mov	r0, #5
+ 4dc:	movt	r1, #0
+ 4e0:	bl	0 <_l>
+ 4e4:	mov	r4, r0
+ 4e8:	movw	r0, #0
+ 4ec:	movt	r0, #0
+ 4f0:	bl	0 <printf>
+ 4f4:	ldr	r0, [r4]
+ 4f8:	ldr	r0, [r0, #4]
+ 4fc:	ldr	r0, [r0, #4]
+ 500:	ldr	r1, [r0, #4]
+ 504:	mov	r0, r4
+ 508:	bl	0 <lista_remove>
+ 50c:	ldr	r1, [r4, #4]
+ 510:	cmp	r0, r1
+ 514:	beq	52c <teste_lista_remove+0x8c>
+ 518:	movw	r0, #0
+ 51c:	movt	r0, #0
+ 520:	bl	0 <printf>
+ 524:	mov	r5, #1
+ 528:	b	530 <teste_lista_remove+0x90>
+ 52c:	mov	r5, #0
+ 530:	ldr	r0, [r4, #8]
+ 534:	cmp	r0, #4
+ 538:	beq	54c <teste_lista_remove+0xac>
+ 53c:	movw	r0, #0
+ 540:	movt	r0, #0
+ 544:	bl	0 <printf>
+ 548:	add	r5, r5, #1
+ 54c:	ldr	r6, [r4]
+ 550:	movw	r1, #0
+ 554:	movt	r1, #0
+ 558:	ldr	r0, [r6]
+ 55c:	bl	0 <strcmp>
+ 560:	cmp	r0, #0
+ 564:	bne	5bc <teste_lista_remove+0x11c>
+ 568:	ldr	r6, [r6, #4]
+ 56c:	movw	r1, #0
+ 570:	movt	r1, #0
+ 574:	ldr	r0, [r6]
+ 578:	bl	0 <strcmp>
+ 57c:	cmp	r0, #0
+ 580:	bne	5bc <teste_lista_remove+0x11c>
+ 584:	ldr	r6, [r6, #4]
+ 588:	movw	r1, #0
+ 58c:	movt	r1, #0
+ 590:	ldr	r0, [r6]
+ 594:	bl	0 <strcmp>
+ 598:	cmp	r0, #0
+ 59c:	bne	5bc <teste_lista_remove+0x11c>
+ 5a0:	ldr	r0, [r6, #4]
+ 5a4:	movw	r1, #0
+ 5a8:	movt	r1, #0
+ 5ac:	ldr	r0, [r0]
+ 5b0:	bl	0 <strcmp>
+ 5b4:	cmp	r0, #0
+ 5b8:	beq	5cc <teste_lista_remove+0x12c>
+ 5bc:	movw	r0, #0
+ 5c0:	movt	r0, #0
+ 5c4:	bl	0 <printf>
+ 5c8:	add	r5, r5, #1
+ 5cc:	mov	r0, r4
+ 5d0:	mov	r1, #0
+ 5d4:	bl	0 <lista_remove>
+ 5d8:	cmp	r0, #0
+ 5dc:	beq	5fc <teste_lista_remove+0x15c>
+ 5e0:	movw	r0, #0
+ 5e4:	movt	r0, #0
+ 5e8:	bl	0 <printf>
+ 5ec:	mov	r0, r4
+ 5f0:	bl	0 <lista_apaga>
+ 5f4:	add	r5, r5, #1
+ 5f8:	b	60c <teste_lista_remove+0x16c>
+ 5fc:	mov	r0, r4
+ 600:	bl	0 <lista_apaga>
+ 604:	cmp	r5, #0
+ 608:	beq	620 <teste_lista_remove+0x180>
+ 60c:	mov	r0, #10
+ 610:	bl	0 <putchar>
+ 614:	mov	r0, r5
+ 618:	sub	sp, fp, #16
+ 61c:	pop	{r4, r5, r6, sl, fp, pc}
+ 620:	movw	r0, #0
+ 624:	movt	r0, #0
+ 628:	bl	0 <puts>
+ 62c:	mov	r5, #0
+ 630:	b	614 <teste_lista_remove+0x174>
+
+00000634 <teste_lista_pesquisa>:
+ 634:	push	{r4, r5, r6, sl, fp, lr}
+ 638:	add	fp, sp, #16
+ 63c:	sub	sp, sp, #16
+ 640:	movw	r1, #0
+ 644:	movw	r6, #0
+ 648:	mov	r0, #7
+ 64c:	movt	r1, #0
+ 650:	movt	r6, #0
+ 654:	mov	r2, r1
+ 658:	mov	r3, r1
+ 65c:	stm	sp, {r1, r6}
+ 660:	str	r1, [sp, #8]
+ 664:	str	r1, [sp, #12]
+ 668:	bl	0 <_l>
+ 66c:	mov	r5, r0
+ 670:	movw	r0, #0
+ 674:	movt	r0, #0
+ 678:	bl	0 <printf>
+ 67c:	mov	r0, r5
+ 680:	mov	r1, r6
+ 684:	mov	r2, #0
+ 688:	mov	r4, #0
+ 68c:	bl	0 <lista_pesquisa>
+ 690:	ldr	r1, [r5]
+ 694:	ldr	r1, [r1, #4]
+ 698:	ldr	r1, [r1, #4]
+ 69c:	ldr	r1, [r1, #4]
+ 6a0:	ldr	r1, [r1, #4]
+ 6a4:	cmp	r0, r1
+ 6a8:	beq	6bc <teste_lista_pesquisa+0x88>
+ 6ac:	movw	r0, #0
+ 6b0:	movt	r0, #0
+ 6b4:	bl	0 <printf>
+ 6b8:	mov	r4, #1
+ 6bc:	movw	r1, #0
+ 6c0:	mov	r0, r5
+ 6c4:	mov	r2, #0
+ 6c8:	movt	r1, #0
+ 6cc:	bl	0 <lista_pesquisa>
+ 6d0:	cmp	r0, #0
+ 6d4:	beq	6e8 <teste_lista_pesquisa+0xb4>
+ 6d8:	movw	r0, #0
+ 6dc:	movt	r0, #0
+ 6e0:	bl	0 <printf>
+ 6e4:	add	r4, r4, #1
+ 6e8:	movw	r1, #0
+ 6ec:	mov	r0, r5
+ 6f0:	mov	r2, #1
+ 6f4:	movt	r1, #0
+ 6f8:	bl	0 <lista_pesquisa>
+ 6fc:	ldr	r1, [r5]
+ 700:	ldr	r1, [r1, #4]
+ 704:	ldr	r1, [r1, #4]
+ 708:	ldr	r1, [r1, #4]
+ 70c:	ldr	r1, [r1, #4]
+ 710:	ldr	r1, [r1, #4]
+ 714:	ldr	r1, [r1, #4]
+ 718:	cmp	r0, r1
+ 71c:	beq	730 <teste_lista_pesquisa+0xfc>
+ 720:	movw	r0, #0
+ 724:	movt	r0, #0
+ 728:	bl	0 <printf>
+ 72c:	add	r4, r4, #1
+ 730:	movw	r1, #0
+ 734:	mov	r0, r5
+ 738:	mov	r2, #1
+ 73c:	movt	r1, #0
+ 740:	bl	0 <lista_pesquisa>
+ 744:	cmp	r0, #0
+ 748:	beq	768 <teste_lista_pesquisa+0x134>
+ 74c:	movw	r0, #0
+ 750:	movt	r0, #0
+ 754:	bl	0 <printf>
+ 758:	mov	r0, r5
+ 75c:	bl	0 <lista_apaga>
+ 760:	add	r4, r4, #1
+ 764:	b	778 <teste_lista_pesquisa+0x144>
+ 768:	mov	r0, r5
+ 76c:	bl	0 <lista_apaga>
+ 770:	cmp	r4, #0
+ 774:	beq	78c <teste_lista_pesquisa+0x158>
+ 778:	mov	r0, #10
+ 77c:	bl	0 <putchar>
+ 780:	mov	r0, r4
+ 784:	sub	sp, fp, #16
+ 788:	pop	{r4, r5, r6, sl, fp, pc}
+ 78c:	movw	r0, #0
+ 790:	movt	r0, #0
+ 794:	bl	0 <puts>
+ 798:	mov	r4, #0
+ 79c:	b	780 <teste_lista_pesquisa+0x14c>
+
+000007a0 <teste_lista_ordena>:
+ 7a0:	push	{r4, r5, r6, sl, fp, lr}
+ 7a4:	add	fp, sp, #16
+ 7a8:	sub	sp, sp, #8
+ 7ac:	movw	r1, #0
+ 7b0:	movw	r0, #0
+ 7b4:	movw	r2, #0
+ 7b8:	movw	r3, #0
+ 7bc:	movt	r1, #0
+ 7c0:	movt	r0, #0
+ 7c4:	movt	r2, #0
+ 7c8:	movt	r3, #0
+ 7cc:	str	r1, [sp]
+ 7d0:	movw	r1, #0
+ 7d4:	str	r0, [sp, #4]
+ 7d8:	mov	r0, #5
+ 7dc:	movt	r1, #0
+ 7e0:	bl	0 <_l>
+ 7e4:	mov	r5, r0
+ 7e8:	movw	r0, #0
+ 7ec:	movt	r0, #0
+ 7f0:	bl	0 <printf>
+ 7f4:	mov	r0, #0
+ 7f8:	mov	r4, #0
+ 7fc:	bl	0 <lista_ordena>
+ 800:	cmn	r0, #1
+ 804:	beq	818 <teste_lista_ordena+0x78>
+ 808:	movw	r0, #0
+ 80c:	movt	r0, #0
+ 810:	bl	0 <printf>
+ 814:	mov	r4, #1
+ 818:	mov	r0, r5
+ 81c:	bl	0 <lista_ordena>
+ 820:	ldr	r6, [r5]
+ 824:	movw	r1, #0
+ 828:	movt	r1, #0
+ 82c:	ldr	r0, [r6]
+ 830:	bl	0 <strcmp>
+ 834:	cmp	r0, #0
+ 838:	bne	8ac <teste_lista_ordena+0x10c>
+ 83c:	ldr	r6, [r6, #4]
+ 840:	movw	r1, #0
+ 844:	movt	r1, #0
+ 848:	ldr	r0, [r6]
+ 84c:	bl	0 <strcmp>
+ 850:	cmp	r0, #0
+ 854:	bne	8ac <teste_lista_ordena+0x10c>
+ 858:	ldr	r6, [r6, #4]
+ 85c:	movw	r1, #0
+ 860:	movt	r1, #0
+ 864:	ldr	r0, [r6]
+ 868:	bl	0 <strcmp>
+ 86c:	cmp	r0, #0
+ 870:	bne	8ac <teste_lista_ordena+0x10c>
+ 874:	ldr	r6, [r6, #4]
+ 878:	movw	r1, #0
+ 87c:	movt	r1, #0
+ 880:	ldr	r0, [r6]
+ 884:	bl	0 <strcmp>
+ 888:	cmp	r0, #0
+ 88c:	bne	8ac <teste_lista_ordena+0x10c>
+ 890:	ldr	r0, [r6, #4]
+ 894:	movw	r1, #0
+ 898:	movt	r1, #0
+ 89c:	ldr	r0, [r0]
+ 8a0:	bl	0 <strcmp>
+ 8a4:	cmp	r0, #0
+ 8a8:	beq	8bc <teste_lista_ordena+0x11c>
+ 8ac:	movw	r0, #0
+ 8b0:	movt	r0, #0
+ 8b4:	bl	0 <printf>
+ 8b8:	add	r4, r4, #1
+ 8bc:	ldr	r6, [r5, #4]
+ 8c0:	movw	r1, #0
+ 8c4:	movt	r1, #0
+ 8c8:	ldr	r0, [r6]
+ 8cc:	bl	0 <strcmp>
+ 8d0:	cmp	r0, #0
+ 8d4:	bne	948 <teste_lista_ordena+0x1a8>
+ 8d8:	ldr	r6, [r6, #8]
+ 8dc:	movw	r1, #0
+ 8e0:	movt	r1, #0
+ 8e4:	ldr	r0, [r6]
+ 8e8:	bl	0 <strcmp>
+ 8ec:	cmp	r0, #0
+ 8f0:	bne	948 <teste_lista_ordena+0x1a8>
+ 8f4:	ldr	r6, [r6, #8]
+ 8f8:	movw	r1, #0
+ 8fc:	movt	r1, #0
+ 900:	ldr	r0, [r6]
+ 904:	bl	0 <strcmp>
+ 908:	cmp	r0, #0
+ 90c:	bne	948 <teste_lista_ordena+0x1a8>
+ 910:	ldr	r6, [r6, #8]
+ 914:	movw	r1, #0
+ 918:	movt	r1, #0
+ 91c:	ldr	r0, [r6]
+ 920:	bl	0 <strcmp>
+ 924:	cmp	r0, #0
+ 928:	bne	948 <teste_lista_ordena+0x1a8>
+ 92c:	ldr	r0, [r6, #8]
+ 930:	movw	r1, #0
+ 934:	movt	r1, #0
+ 938:	ldr	r0, [r0]
+ 93c:	bl	0 <strcmp>
+ 940:	cmp	r0, #0
+ 944:	beq	974 <teste_lista_ordena+0x1d4>
+ 948:	movw	r0, #0
+ 94c:	movt	r0, #0
+ 950:	bl	0 <printf>
+ 954:	mov	r0, r5
+ 958:	bl	0 <lista_apaga>
+ 95c:	add	r4, r4, #1
+ 960:	mov	r0, #10
+ 964:	bl	0 <putchar>
+ 968:	mov	r0, r4
+ 96c:	sub	sp, fp, #16
+ 970:	pop	{r4, r5, r6, sl, fp, pc}
+ 974:	mov	r0, r5
+ 978:	bl	0 <lista_apaga>
+ 97c:	cmp	r4, #0
+ 980:	bne	960 <teste_lista_ordena+0x1c0>
+ 984:	movw	r0, #0
+ 988:	movt	r0, #0
+ 98c:	bl	0 <puts>
+ 990:	mov	r4, #0
+ 994:	b	968 <teste_lista_ordena+0x1c8>
+
+00000998 <teste_lista_inverte>:
+ 998:	push	{r4, r5, r6, sl, fp, lr}
+ 99c:	add	fp, sp, #16
+ 9a0:	sub	sp, sp, #8
+ 9a4:	movw	r1, #0
+ 9a8:	movw	r0, #0
+ 9ac:	movw	r2, #0
+ 9b0:	movw	r3, #0
+ 9b4:	movt	r1, #0
+ 9b8:	movt	r0, #0
+ 9bc:	movt	r2, #0
+ 9c0:	movt	r3, #0
+ 9c4:	str	r1, [sp]
+ 9c8:	movw	r1, #0
+ 9cc:	str	r0, [sp, #4]
+ 9d0:	mov	r0, #5
+ 9d4:	movt	r1, #0
+ 9d8:	bl	0 <_l>
+ 9dc:	mov	r5, r0
+ 9e0:	movw	r0, #0
+ 9e4:	movt	r0, #0
+ 9e8:	bl	0 <printf>
+ 9ec:	mov	r0, #0
+ 9f0:	mov	r4, #0
+ 9f4:	bl	0 <lista_inverte>
+ 9f8:	cmn	r0, #1
+ 9fc:	beq	a10 <teste_lista_inverte+0x78>
+ a00:	movw	r0, #0
+ a04:	movt	r0, #0
+ a08:	bl	0 <printf>
+ a0c:	mov	r4, #1
+ a10:	mov	r0, r5
+ a14:	bl	0 <lista_inverte>
+ a18:	ldr	r0, [r5, #8]
+ a1c:	cmp	r0, #5
+ a20:	beq	a34 <teste_lista_inverte+0x9c>
+ a24:	movw	r0, #0
+ a28:	movt	r0, #0
+ a2c:	bl	0 <printf>
+ a30:	add	r4, r4, #1
+ a34:	ldr	r6, [r5]
+ a38:	movw	r1, #0
+ a3c:	movt	r1, #0
+ a40:	ldr	r0, [r6]
+ a44:	bl	0 <strcmp>
+ a48:	cmp	r0, #0
+ a4c:	bne	ac0 <teste_lista_inverte+0x128>
+ a50:	ldr	r6, [r6, #4]
+ a54:	movw	r1, #0
+ a58:	movt	r1, #0
+ a5c:	ldr	r0, [r6]
+ a60:	bl	0 <strcmp>
+ a64:	cmp	r0, #0
+ a68:	bne	ac0 <teste_lista_inverte+0x128>
+ a6c:	ldr	r6, [r6, #4]
+ a70:	movw	r1, #0
+ a74:	movt	r1, #0
+ a78:	ldr	r0, [r6]
+ a7c:	bl	0 <strcmp>
+ a80:	cmp	r0, #0
+ a84:	bne	ac0 <teste_lista_inverte+0x128>
+ a88:	ldr	r6, [r6, #4]
+ a8c:	movw	r1, #0
+ a90:	movt	r1, #0
+ a94:	ldr	r0, [r6]
+ a98:	bl	0 <strcmp>
+ a9c:	cmp	r0, #0
+ aa0:	bne	ac0 <teste_lista_inverte+0x128>
+ aa4:	ldr	r0, [r6, #4]
+ aa8:	movw	r1, #0
+ aac:	movt	r1, #0
+ ab0:	ldr	r0, [r0]
+ ab4:	bl	0 <strcmp>
+ ab8:	cmp	r0, #0
+ abc:	beq	ad0 <teste_lista_inverte+0x138>
+ ac0:	movw	r0, #0
+ ac4:	movt	r0, #0
+ ac8:	bl	0 <printf>
+ acc:	add	r4, r4, #1
+ ad0:	ldr	r6, [r5, #4]
+ ad4:	movw	r1, #0
+ ad8:	movt	r1, #0
+ adc:	ldr	r0, [r6]
+ ae0:	bl	0 <strcmp>
+ ae4:	cmp	r0, #0
+ ae8:	bne	b5c <teste_lista_inverte+0x1c4>
+ aec:	ldr	r6, [r6, #8]
+ af0:	movw	r1, #0
+ af4:	movt	r1, #0
+ af8:	ldr	r0, [r6]
+ afc:	bl	0 <strcmp>
+ b00:	cmp	r0, #0
+ b04:	bne	b5c <teste_lista_inverte+0x1c4>
+ b08:	ldr	r6, [r6, #8]
+ b0c:	movw	r1, #0
+ b10:	movt	r1, #0
+ b14:	ldr	r0, [r6]
+ b18:	bl	0 <strcmp>
+ b1c:	cmp	r0, #0
+ b20:	bne	b5c <teste_lista_inverte+0x1c4>
+ b24:	ldr	r6, [r6, #8]
+ b28:	movw	r1, #0
+ b2c:	movt	r1, #0
+ b30:	ldr	r0, [r6]
+ b34:	bl	0 <strcmp>
+ b38:	cmp	r0, #0
+ b3c:	bne	b5c <teste_lista_inverte+0x1c4>
+ b40:	ldr	r0, [r6, #8]
+ b44:	movw	r1, #0
+ b48:	movt	r1, #0
+ b4c:	ldr	r0, [r0]
+ b50:	bl	0 <strcmp>
+ b54:	cmp	r0, #0
+ b58:	beq	b88 <teste_lista_inverte+0x1f0>
+ b5c:	movw	r0, #0
+ b60:	movt	r0, #0
+ b64:	bl	0 <printf>
+ b68:	mov	r0, r5
+ b6c:	bl	0 <lista_apaga>
+ b70:	add	r4, r4, #1
+ b74:	mov	r0, #10
+ b78:	bl	0 <putchar>
+ b7c:	mov	r0, r4
+ b80:	sub	sp, fp, #16
+ b84:	pop	{r4, r5, r6, sl, fp, pc}
+ b88:	mov	r0, r5
+ b8c:	bl	0 <lista_apaga>
+ b90:	cmp	r4, #0
+ b94:	bne	b74 <teste_lista_inverte+0x1dc>
+ b98:	movw	r0, #0
+ b9c:	movt	r0, #0
+ ba0:	bl	0 <puts>
+ ba4:	mov	r4, #0
+ ba8:	b	b7c <teste_lista_inverte+0x1e4>
+
+00000bac <main>:
+ bac:	push	{r4, sl, fp, lr}
+ bb0:	add	fp, sp, #8
+ bb4:	movw	r0, #0
+ bb8:	mov	r1, #0
+ bbc:	mov	r2, #2
+ bc0:	mov	r3, #0
+ bc4:	movt	r0, #0
+ bc8:	ldr	r0, [r0]
+ bcc:	bl	0 <setvbuf>
+ bd0:	movw	r0, #0
+ bd4:	mov	r1, #0
+ bd8:	mov	r2, #2
+ bdc:	mov	r3, #0
+ be0:	movt	r0, #0
+ be4:	ldr	r0, [r0]
+ be8:	bl	0 <setvbuf>
+ bec:	bl	124 <teste_lista_nova>
+ bf0:	mov	r4, r0
+ bf4:	bl	1a4 <teste_lista_insere>
+ bf8:	add	r4, r0, r4
+ bfc:	bl	4a0 <teste_lista_remove>
+ c00:	add	r4, r4, r0
+ c04:	bl	634 <teste_lista_pesquisa>
+ c08:	add	r4, r4, r0
+ c0c:	bl	7a0 <teste_lista_ordena>
+ c10:	add	r4, r4, r0
+ c14:	bl	998 <teste_lista_inverte>
+ c18:	adds	r1, r4, r0
+ c1c:	beq	c34 <main+0x88>
+ c20:	movw	r0, #0
+ c24:	movt	r0, #0
+ c28:	bl	0 <printf>
+ c2c:	mov	r0, #0
+ c30:	pop	{r4, sl, fp, pc}
+ c34:	movw	r0, #0
+ c38:	movt	r0, #0
+ c3c:	bl	0 <puts>
+ c40:	mov	r0, #0
+ c44:	pop	{r4, sl, fp, pc}

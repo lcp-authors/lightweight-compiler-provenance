@@ -1,0 +1,326 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//cpio.module_gcc_-O3:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_cpio_rewind>:
+   0:	str	xzr, [x0, #16]
+   4:	ret
+
+0000000000000008 <grub_cpio_close>:
+   8:	stp	x29, x30, [sp, #-16]!
+   c:	mov	x29, sp
+  10:	ldr	x0, [x0, #80]
+  14:	bl	0 <grub_free>
+  18:	adrp	x0, 0 <grub_cpio_rewind>
+  1c:	ldp	x29, x30, [sp], #16
+  20:	ldr	x0, [x0]
+  24:	ldr	w0, [x0]
+  28:	ret
+  2c:	nop
+	...
+
+0000000000000038 <grub_cpio_read>:
+  38:	stp	x29, x30, [sp, #-32]!
+  3c:	mov	x3, x2
+  40:	mov	x4, x1
+  44:	mov	x29, sp
+  48:	stp	x19, x20, [sp, #16]
+  4c:	mov	x19, x2
+  50:	mov	x1, #0x0                   	// #0
+  54:	ldp	x20, x7, [x0, #80]
+  58:	ldr	x2, [x0, #24]
+  5c:	ldr	x5, [x0, #96]
+  60:	ldr	x0, [x20]
+  64:	ldr	x6, [x20, #24]
+  68:	stp	x7, x5, [x0, #48]
+  6c:	add	x2, x6, x2
+  70:	bl	0 <grub_disk_read>
+  74:	cmp	w0, #0x0
+  78:	ldr	x1, [x20]
+  7c:	csinv	x0, x19, xzr, eq  // eq = none
+  80:	ldp	x19, x20, [sp, #16]
+  84:	str	xzr, [x1, #48]
+  88:	ldp	x29, x30, [sp], #32
+  8c:	ret
+
+0000000000000090 <grub_cpio_find_file>:
+  90:	stp	x29, x30, [sp, #-96]!
+  94:	mov	x29, sp
+  98:	stp	x19, x20, [sp, #16]
+  9c:	mov	x19, x0
+  a0:	mov	x20, x2
+  a4:	ldr	x0, [x0]
+  a8:	stp	x21, x22, [sp, #32]
+  ac:	add	x4, sp, #0x40
+  b0:	ldr	x2, [x19, #16]
+  b4:	str	x2, [x19, #8]
+  b8:	mov	x21, x1
+  bc:	mov	x22, x3
+  c0:	mov	x1, #0x0                   	// #0
+  c4:	mov	x3, #0x1a                  	// #26
+  c8:	bl	0 <grub_disk_read>
+  cc:	cbz	w0, f0 <grub_cpio_find_file+0x60>
+  d0:	adrp	x0, 0 <grub_cpio_rewind>
+  d4:	ldr	x0, [x0]
+  d8:	ldr	w20, [x0]
+  dc:	mov	w0, w20
+  e0:	ldp	x19, x20, [sp, #16]
+  e4:	ldp	x21, x22, [sp, #32]
+  e8:	ldp	x29, x30, [sp], #96
+  ec:	ret
+  f0:	adrp	x1, 0 <grub_cpio_rewind>
+  f4:	add	x0, sp, #0x40
+  f8:	mov	x2, #0x2                   	// #2
+  fc:	ldr	x1, [x1]
+ 100:	bl	0 <grub_memcmp>
+ 104:	cbz	w0, 130 <grub_cpio_find_file+0xa0>
+ 108:	adrp	x1, 0 <grub_cpio_rewind>
+ 10c:	mov	w0, #0x9                   	// #9
+ 110:	ldr	x1, [x1]
+ 114:	bl	0 <grub_error>
+ 118:	mov	w20, w0
+ 11c:	mov	w0, w20
+ 120:	ldp	x19, x20, [sp, #16]
+ 124:	ldp	x21, x22, [sp, #32]
+ 128:	ldp	x29, x30, [sp], #96
+ 12c:	ret
+ 130:	ldrh	w0, [sp, #86]
+ 134:	ldrh	w1, [sp, #88]
+ 138:	stp	x23, x24, [sp, #48]
+ 13c:	orr	x0, x1, x0, lsl #16
+ 140:	str	x0, [x19, #32]
+ 144:	cbz	x20, 158 <grub_cpio_find_file+0xc8>
+ 148:	ldrh	w0, [sp, #80]
+ 14c:	ldrh	w1, [sp, #82]
+ 150:	orr	x0, x1, x0, lsl #16
+ 154:	str	w0, [x20]
+ 158:	ldrh	w24, [sp, #70]
+ 15c:	ldrh	w23, [sp, #84]
+ 160:	str	w24, [x22]
+ 164:	add	x0, x23, #0x1
+ 168:	bl	0 <grub_malloc>
+ 16c:	str	x0, [x21]
+ 170:	mov	x4, x0
+ 174:	cbz	x0, 1e0 <grub_cpio_find_file+0x150>
+ 178:	ldp	x0, x2, [x19]
+ 17c:	mov	x3, x23
+ 180:	mov	x1, #0x0                   	// #0
+ 184:	add	x2, x2, #0x1a
+ 188:	bl	0 <grub_disk_read>
+ 18c:	mov	w20, w0
+ 190:	ldr	x0, [x21]
+ 194:	cbnz	w20, 1d8 <grub_cpio_find_file+0x148>
+ 198:	strb	wzr, [x0, x23]
+ 19c:	ldr	x1, [x19, #32]
+ 1a0:	cbnz	x1, 1b0 <grub_cpio_find_file+0x120>
+ 1a4:	cmp	w24, #0x0
+ 1a8:	ccmp	x23, #0xb, #0x0, eq  // eq = none
+ 1ac:	b.eq	1f4 <grub_cpio_find_file+0x164>  // b.none
+ 1b0:	ldr	x2, [x19, #8]
+ 1b4:	add	x0, x23, #0x1b
+ 1b8:	and	x0, x0, #0xfffffffffffffffe
+ 1bc:	add	x1, x1, #0x1
+ 1c0:	add	x0, x0, x2
+ 1c4:	and	x1, x1, #0xfffffffffffffffe
+ 1c8:	add	x1, x1, x0
+ 1cc:	ldp	x23, x24, [sp, #48]
+ 1d0:	stp	x1, x0, [x19, #16]
+ 1d4:	b	dc <grub_cpio_find_file+0x4c>
+ 1d8:	bl	0 <grub_free>
+ 1dc:	nop
+ 1e0:	adrp	x0, 0 <grub_cpio_rewind>
+ 1e4:	ldp	x23, x24, [sp, #48]
+ 1e8:	ldr	x0, [x0]
+ 1ec:	ldr	w20, [x0]
+ 1f0:	b	dc <grub_cpio_find_file+0x4c>
+ 1f4:	adrp	x1, 0 <grub_cpio_rewind>
+ 1f8:	mov	x2, #0xb                   	// #11
+ 1fc:	ldr	x0, [x21]
+ 200:	ldr	x1, [x1]
+ 204:	bl	0 <grub_memcmp>
+ 208:	cbz	w0, 214 <grub_cpio_find_file+0x184>
+ 20c:	ldr	x1, [x19, #32]
+ 210:	b	1b0 <grub_cpio_find_file+0x120>
+ 214:	ldr	x0, [x21]
+ 218:	mov	w1, #0xffffffff            	// #-1
+ 21c:	str	w1, [x22]
+ 220:	bl	0 <grub_free>
+ 224:	ldp	x23, x24, [sp, #48]
+ 228:	b	dc <grub_cpio_find_file+0x4c>
+ 22c:	nop
+	...
+
+0000000000000250 <grub_cpio_get_link_target>:
+ 250:	stp	x29, x30, [sp, #-32]!
+ 254:	mov	x29, sp
+ 258:	stp	x19, x20, [sp, #16]
+ 25c:	mov	x19, x0
+ 260:	ldr	x0, [x0, #32]
+ 264:	cbz	x0, 2a8 <grub_cpio_get_link_target+0x58>
+ 268:	add	x0, x0, #0x1
+ 26c:	bl	0 <grub_malloc>
+ 270:	mov	x20, x0
+ 274:	cbz	x0, 298 <grub_cpio_get_link_target+0x48>
+ 278:	ldp	x2, x3, [x19, #24]
+ 27c:	mov	x4, x0
+ 280:	ldr	x0, [x19]
+ 284:	mov	x1, #0x0                   	// #0
+ 288:	bl	0 <grub_disk_read>
+ 28c:	cbnz	w0, 2bc <grub_cpio_get_link_target+0x6c>
+ 290:	ldr	x0, [x19, #32]
+ 294:	strb	wzr, [x20, x0]
+ 298:	mov	x0, x20
+ 29c:	ldp	x19, x20, [sp, #16]
+ 2a0:	ldp	x29, x30, [sp], #32
+ 2a4:	ret
+ 2a8:	adrp	x0, 0 <grub_cpio_rewind>
+ 2ac:	ldp	x19, x20, [sp, #16]
+ 2b0:	ldp	x29, x30, [sp], #32
+ 2b4:	ldr	x0, [x0]
+ 2b8:	b	0 <grub_strdup>
+ 2bc:	mov	x0, x20
+ 2c0:	mov	x20, #0x0                   	// #0
+ 2c4:	bl	0 <grub_free>
+ 2c8:	b	298 <grub_cpio_get_link_target+0x48>
+ 2cc:	nop
+	...
+
+00000000000002d8 <grub_cpio_open>:
+ 2d8:	stp	x29, x30, [sp, #-80]!
+ 2dc:	mov	x3, #0x1a                  	// #26
+ 2e0:	mov	x2, #0x0                   	// #0
+ 2e4:	mov	x29, sp
+ 2e8:	stp	x19, x20, [sp, #16]
+ 2ec:	mov	x19, x0
+ 2f0:	mov	x20, x1
+ 2f4:	ldr	x0, [x0, #8]
+ 2f8:	stp	x21, x22, [sp, #32]
+ 2fc:	add	x4, sp, #0x30
+ 300:	mov	x1, #0x0                   	// #0
+ 304:	ldr	x22, [x0]
+ 308:	mov	x0, x22
+ 30c:	bl	0 <grub_disk_read>
+ 310:	cbnz	w0, 378 <grub_cpio_open+0xa0>
+ 314:	adrp	x1, 0 <grub_cpio_rewind>
+ 318:	add	x0, sp, #0x30
+ 31c:	mov	x2, #0x2                   	// #2
+ 320:	ldr	x1, [x1]
+ 324:	bl	0 <grub_memcmp>
+ 328:	cbnz	w0, 378 <grub_cpio_open+0xa0>
+ 32c:	mov	x0, #0x28                  	// #40
+ 330:	bl	0 <grub_zalloc>
+ 334:	mov	x21, x0
+ 338:	cbz	x0, 378 <grub_cpio_open+0xa0>
+ 33c:	adrp	x1, 0 <grub_cpio_rewind>
+ 340:	str	x22, [x0]
+ 344:	mov	x2, x20
+ 348:	ldr	x1, [x1]
+ 34c:	bl	0 <grub_archelp_open>
+ 350:	mov	w20, w0
+ 354:	cbnz	w0, 3a8 <grub_cpio_open+0xd0>
+ 358:	ldr	x0, [x21, #32]
+ 35c:	str	x0, [x19, #64]
+ 360:	str	x21, [x19, #80]
+ 364:	mov	w0, w20
+ 368:	ldp	x19, x20, [sp, #16]
+ 36c:	ldp	x21, x22, [sp, #32]
+ 370:	ldp	x29, x30, [sp], #80
+ 374:	ret
+ 378:	adrp	x1, 0 <grub_cpio_rewind>
+ 37c:	mov	w0, #0x9                   	// #9
+ 380:	ldr	x1, [x1]
+ 384:	bl	0 <grub_error>
+ 388:	adrp	x0, 0 <grub_cpio_rewind>
+ 38c:	ldp	x21, x22, [sp, #32]
+ 390:	ldr	x0, [x0]
+ 394:	ldr	w20, [x0]
+ 398:	mov	w0, w20
+ 39c:	ldp	x19, x20, [sp, #16]
+ 3a0:	ldp	x29, x30, [sp], #80
+ 3a4:	ret
+ 3a8:	mov	x0, x21
+ 3ac:	bl	0 <grub_free>
+ 3b0:	mov	w0, w20
+ 3b4:	ldp	x19, x20, [sp, #16]
+ 3b8:	ldp	x21, x22, [sp, #32]
+ 3bc:	ldp	x29, x30, [sp], #80
+ 3c0:	ret
+ 3c4:	nop
+	...
+
+00000000000003e8 <grub_cpio_dir>:
+ 3e8:	stp	x29, x30, [sp, #-96]!
+ 3ec:	mov	x29, sp
+ 3f0:	stp	x21, x22, [sp, #32]
+ 3f4:	add	x4, sp, #0x40
+ 3f8:	mov	x21, x2
+ 3fc:	ldr	x22, [x0]
+ 400:	mov	x2, #0x0                   	// #0
+ 404:	stp	x19, x20, [sp, #16]
+ 408:	mov	x19, x3
+ 40c:	mov	x0, x22
+ 410:	mov	x3, #0x1a                  	// #26
+ 414:	str	x23, [sp, #48]
+ 418:	mov	x23, x1
+ 41c:	mov	x1, #0x0                   	// #0
+ 420:	bl	0 <grub_disk_read>
+ 424:	cbnz	w0, 490 <grub_cpio_dir+0xa8>
+ 428:	adrp	x1, 0 <grub_cpio_rewind>
+ 42c:	add	x0, sp, #0x40
+ 430:	mov	x2, #0x2                   	// #2
+ 434:	ldr	x1, [x1]
+ 438:	bl	0 <grub_memcmp>
+ 43c:	cbnz	w0, 490 <grub_cpio_dir+0xa8>
+ 440:	mov	x0, #0x28                  	// #40
+ 444:	bl	0 <grub_zalloc>
+ 448:	mov	x20, x0
+ 44c:	cbz	x0, 490 <grub_cpio_dir+0xa8>
+ 450:	adrp	x1, 0 <grub_cpio_rewind>
+ 454:	mov	x4, x19
+ 458:	mov	x3, x21
+ 45c:	mov	x2, x23
+ 460:	ldr	x1, [x1]
+ 464:	str	x22, [x0]
+ 468:	bl	0 <grub_archelp_dir>
+ 46c:	mov	w19, w0
+ 470:	mov	x0, x20
+ 474:	bl	0 <grub_free>
+ 478:	mov	w0, w19
+ 47c:	ldp	x19, x20, [sp, #16]
+ 480:	ldp	x21, x22, [sp, #32]
+ 484:	ldr	x23, [sp, #48]
+ 488:	ldp	x29, x30, [sp], #96
+ 48c:	ret
+ 490:	adrp	x1, 0 <grub_cpio_rewind>
+ 494:	mov	w0, #0x9                   	// #9
+ 498:	ldr	x1, [x1]
+ 49c:	bl	0 <grub_error>
+ 4a0:	adrp	x0, 0 <grub_cpio_rewind>
+ 4a4:	ldp	x21, x22, [sp, #32]
+ 4a8:	ldr	x0, [x0]
+ 4ac:	ldr	x23, [sp, #48]
+ 4b0:	ldr	w19, [x0]
+ 4b4:	mov	w0, w19
+ 4b8:	ldp	x19, x20, [sp, #16]
+ 4bc:	ldp	x29, x30, [sp], #96
+ 4c0:	ret
+ 4c4:	nop
+	...
+
+00000000000004e8 <grub_mod_init>:
+ 4e8:	adrp	x0, 0 <grub_cpio_rewind>
+ 4ec:	adrp	x1, 0 <grub_cpio_rewind>
+ 4f0:	ldr	x0, [x0]
+ 4f4:	ldr	x1, [x1]
+ 4f8:	add	x1, x1, #0x18
+ 4fc:	b	0 <grub_list_push>
+	...
+
+0000000000000510 <grub_mod_fini>:
+ 510:	adrp	x0, 0 <grub_cpio_rewind>
+ 514:	ldr	x0, [x0]
+ 518:	add	x0, x0, #0x18
+ 51c:	b	0 <grub_list_remove>
+	...

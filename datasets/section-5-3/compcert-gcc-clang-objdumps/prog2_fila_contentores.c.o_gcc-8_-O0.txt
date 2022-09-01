@@ -1,0 +1,273 @@
+
+../compcert-repos/prog2/CMakeFiles/5.1.dir/Aula05_Filas_e_Pilhas/1/fila_contentores.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <fila_novo_elemento>:
+   0:	str	fp, [sp, #-8]!
+   4:	str	lr, [sp, #4]
+   8:	add	fp, sp, #4
+   c:	sub	sp, sp, #16
+  10:	str	r0, [fp, #-16]
+  14:	mov	r0, #8
+  18:	bl	0 <malloc>
+  1c:	mov	r3, r0
+  20:	str	r3, [fp, #-8]
+  24:	ldr	r3, [fp, #-8]
+  28:	cmp	r3, #0
+  2c:	bne	38 <fila_novo_elemento+0x38>
+  30:	mov	r3, #0
+  34:	b	74 <fila_novo_elemento+0x74>
+  38:	ldr	r3, [fp, #-8]
+  3c:	ldr	r2, [fp, #-16]
+  40:	str	r2, [r3]
+  44:	ldr	r3, [fp, #-8]
+  48:	ldr	r3, [r3]
+  4c:	cmp	r3, #0
+  50:	bne	64 <fila_novo_elemento+0x64>
+  54:	ldr	r0, [fp, #-8]
+  58:	bl	0 <free>
+  5c:	mov	r3, #0
+  60:	b	74 <fila_novo_elemento+0x74>
+  64:	ldr	r3, [fp, #-8]
+  68:	mov	r2, #0
+  6c:	str	r2, [r3, #4]
+  70:	ldr	r3, [fp, #-8]
+  74:	mov	r0, r3
+  78:	sub	sp, fp, #4
+  7c:	ldr	fp, [sp]
+  80:	add	sp, sp, #4
+  84:	pop	{pc}		; (ldr pc, [sp], #4)
+
+00000088 <fila_nova>:
+  88:	str	fp, [sp, #-8]!
+  8c:	str	lr, [sp, #4]
+  90:	add	fp, sp, #4
+  94:	sub	sp, sp, #8
+  98:	mov	r0, #8
+  9c:	bl	0 <malloc>
+  a0:	mov	r3, r0
+  a4:	str	r3, [fp, #-8]
+  a8:	ldr	r3, [fp, #-8]
+  ac:	cmp	r3, #0
+  b0:	bne	bc <fila_nova+0x34>
+  b4:	mov	r3, #0
+  b8:	b	d8 <fila_nova+0x50>
+  bc:	ldr	r3, [fp, #-8]
+  c0:	mov	r2, #0
+  c4:	str	r2, [r3]
+  c8:	ldr	r3, [fp, #-8]
+  cc:	mov	r2, #0
+  d0:	str	r2, [r3, #4]
+  d4:	ldr	r3, [fp, #-8]
+  d8:	mov	r0, r3
+  dc:	sub	sp, fp, #4
+  e0:	ldr	fp, [sp]
+  e4:	add	sp, sp, #4
+  e8:	pop	{pc}		; (ldr pc, [sp], #4)
+
+000000ec <fila_apaga>:
+  ec:	str	fp, [sp, #-8]!
+  f0:	str	lr, [sp, #4]
+  f4:	add	fp, sp, #4
+  f8:	sub	sp, sp, #16
+  fc:	str	r0, [fp, #-16]
+ 100:	ldr	r3, [fp, #-16]
+ 104:	cmp	r3, #0
+ 108:	beq	168 <fila_apaga+0x7c>
+ 10c:	b	148 <fila_apaga+0x5c>
+ 110:	ldr	r3, [fp, #-16]
+ 114:	ldr	r3, [r3]
+ 118:	str	r3, [fp, #-8]
+ 11c:	ldr	r3, [fp, #-16]
+ 120:	ldr	r3, [r3]
+ 124:	ldr	r2, [r3, #4]
+ 128:	ldr	r3, [fp, #-16]
+ 12c:	str	r2, [r3]
+ 130:	ldr	r3, [fp, #-8]
+ 134:	ldr	r3, [r3]
+ 138:	mov	r0, r3
+ 13c:	bl	0 <pilha_apaga>
+ 140:	ldr	r0, [fp, #-8]
+ 144:	bl	0 <free>
+ 148:	ldr	r3, [fp, #-16]
+ 14c:	ldr	r3, [r3]
+ 150:	cmp	r3, #0
+ 154:	bne	110 <fila_apaga+0x24>
+ 158:	ldr	r0, [fp, #-16]
+ 15c:	bl	0 <free>
+ 160:	nop	{0}
+ 164:	b	16c <fila_apaga+0x80>
+ 168:	nop	{0}
+ 16c:	sub	sp, fp, #4
+ 170:	ldr	fp, [sp]
+ 174:	add	sp, sp, #4
+ 178:	pop	{pc}		; (ldr pc, [sp], #4)
+
+0000017c <fila_tamanho>:
+ 17c:	push	{fp}		; (str fp, [sp, #-4]!)
+ 180:	add	fp, sp, #0
+ 184:	sub	sp, sp, #12
+ 188:	str	r0, [fp, #-8]
+ 18c:	ldr	r3, [fp, #-8]
+ 190:	cmp	r3, #0
+ 194:	bne	1a0 <fila_tamanho+0x24>
+ 198:	mvn	r3, #0
+ 19c:	b	1a8 <fila_tamanho+0x2c>
+ 1a0:	ldr	r3, [fp, #-8]
+ 1a4:	ldr	r3, [r3, #4]
+ 1a8:	mov	r0, r3
+ 1ac:	add	sp, fp, #0
+ 1b0:	pop	{fp}		; (ldr fp, [sp], #4)
+ 1b4:	bx	lr
+
+000001b8 <fila_front>:
+ 1b8:	push	{fp}		; (str fp, [sp, #-4]!)
+ 1bc:	add	fp, sp, #0
+ 1c0:	sub	sp, sp, #20
+ 1c4:	str	r0, [fp, #-16]
+ 1c8:	ldr	r3, [fp, #-16]
+ 1cc:	cmp	r3, #0
+ 1d0:	beq	1e4 <fila_front+0x2c>
+ 1d4:	ldr	r3, [fp, #-16]
+ 1d8:	ldr	r3, [r3, #4]
+ 1dc:	cmp	r3, #0
+ 1e0:	bne	1ec <fila_front+0x34>
+ 1e4:	mov	r3, #0
+ 1e8:	b	200 <fila_front+0x48>
+ 1ec:	ldr	r3, [fp, #-16]
+ 1f0:	ldr	r3, [r3]
+ 1f4:	str	r3, [fp, #-8]
+ 1f8:	ldr	r3, [fp, #-8]
+ 1fc:	ldr	r3, [r3]
+ 200:	mov	r0, r3
+ 204:	add	sp, fp, #0
+ 208:	pop	{fp}		; (ldr fp, [sp], #4)
+ 20c:	bx	lr
+
+00000210 <fila_back>:
+ 210:	push	{fp}		; (str fp, [sp, #-4]!)
+ 214:	add	fp, sp, #0
+ 218:	sub	sp, sp, #20
+ 21c:	str	r0, [fp, #-16]
+ 220:	ldr	r3, [fp, #-16]
+ 224:	cmp	r3, #0
+ 228:	beq	23c <fila_back+0x2c>
+ 22c:	ldr	r3, [fp, #-16]
+ 230:	ldr	r3, [r3, #4]
+ 234:	cmp	r3, #0
+ 238:	bne	244 <fila_back+0x34>
+ 23c:	mov	r3, #0
+ 240:	b	278 <fila_back+0x68>
+ 244:	ldr	r3, [fp, #-16]
+ 248:	ldr	r3, [r3]
+ 24c:	str	r3, [fp, #-8]
+ 250:	b	260 <fila_back+0x50>
+ 254:	ldr	r3, [fp, #-8]
+ 258:	ldr	r3, [r3, #4]
+ 25c:	str	r3, [fp, #-8]
+ 260:	ldr	r3, [fp, #-8]
+ 264:	ldr	r3, [r3, #4]
+ 268:	cmp	r3, #0
+ 26c:	bne	254 <fila_back+0x44>
+ 270:	ldr	r3, [fp, #-8]
+ 274:	ldr	r3, [r3]
+ 278:	mov	r0, r3
+ 27c:	add	sp, fp, #0
+ 280:	pop	{fp}		; (ldr fp, [sp], #4)
+ 284:	bx	lr
+
+00000288 <fila_push>:
+ 288:	str	fp, [sp, #-8]!
+ 28c:	str	lr, [sp, #4]
+ 290:	add	fp, sp, #4
+ 294:	sub	sp, sp, #24
+ 298:	str	r0, [fp, #-24]	; 0xffffffe8
+ 29c:	str	r1, [fp, #-28]	; 0xffffffe4
+ 2a0:	mov	r3, #0
+ 2a4:	str	r3, [fp, #-12]
+ 2a8:	mov	r3, #0
+ 2ac:	str	r3, [fp, #-16]
+ 2b0:	ldr	r3, [fp, #-24]	; 0xffffffe8
+ 2b4:	cmp	r3, #0
+ 2b8:	beq	33c <fila_push+0xb4>
+ 2bc:	ldr	r3, [fp, #-24]	; 0xffffffe8
+ 2c0:	ldr	r3, [r3]
+ 2c4:	str	r3, [fp, #-8]
+ 2c8:	ldr	r0, [fp, #-28]	; 0xffffffe4
+ 2cc:	bl	0 <fila_novo_elemento>
+ 2d0:	str	r0, [fp, #-16]
+ 2d4:	ldr	r3, [fp, #-16]
+ 2d8:	cmp	r3, #0
+ 2dc:	beq	344 <fila_push+0xbc>
+ 2e0:	ldr	r3, [fp, #-24]	; 0xffffffe8
+ 2e4:	ldr	r3, [r3, #4]
+ 2e8:	add	r2, r3, #1
+ 2ec:	ldr	r3, [fp, #-24]	; 0xffffffe8
+ 2f0:	str	r2, [r3, #4]
+ 2f4:	ldr	r3, [fp, #-8]
+ 2f8:	cmp	r3, #0
+ 2fc:	bne	31c <fila_push+0x94>
+ 300:	ldr	r3, [fp, #-24]	; 0xffffffe8
+ 304:	ldr	r2, [fp, #-16]
+ 308:	str	r2, [r3]
+ 30c:	b	348 <fila_push+0xc0>
+ 310:	ldr	r3, [fp, #-8]
+ 314:	ldr	r3, [r3, #4]
+ 318:	str	r3, [fp, #-8]
+ 31c:	ldr	r3, [fp, #-8]
+ 320:	ldr	r3, [r3, #4]
+ 324:	cmp	r3, #0
+ 328:	bne	310 <fila_push+0x88>
+ 32c:	ldr	r3, [fp, #-8]
+ 330:	ldr	r2, [fp, #-16]
+ 334:	str	r2, [r3, #4]
+ 338:	b	348 <fila_push+0xc0>
+ 33c:	nop	{0}
+ 340:	b	348 <fila_push+0xc0>
+ 344:	nop	{0}
+ 348:	sub	sp, fp, #4
+ 34c:	ldr	fp, [sp]
+ 350:	add	sp, sp, #4
+ 354:	pop	{pc}		; (ldr pc, [sp], #4)
+
+00000358 <fila_pop>:
+ 358:	str	fp, [sp, #-8]!
+ 35c:	str	lr, [sp, #4]
+ 360:	add	fp, sp, #4
+ 364:	sub	sp, sp, #16
+ 368:	str	r0, [fp, #-16]
+ 36c:	mov	r3, #0
+ 370:	str	r3, [fp, #-8]
+ 374:	ldr	r3, [fp, #-16]
+ 378:	cmp	r3, #0
+ 37c:	beq	3dc <fila_pop+0x84>
+ 380:	ldr	r3, [fp, #-16]
+ 384:	ldr	r3, [r3, #4]
+ 388:	cmp	r3, #0
+ 38c:	beq	3dc <fila_pop+0x84>
+ 390:	ldr	r3, [fp, #-16]
+ 394:	ldr	r3, [r3]
+ 398:	str	r3, [fp, #-12]
+ 39c:	ldr	r3, [fp, #-16]
+ 3a0:	ldr	r3, [r3, #4]
+ 3a4:	sub	r2, r3, #1
+ 3a8:	ldr	r3, [fp, #-16]
+ 3ac:	str	r2, [r3, #4]
+ 3b0:	ldr	r3, [fp, #-12]
+ 3b4:	ldr	r2, [r3, #4]
+ 3b8:	ldr	r3, [fp, #-16]
+ 3bc:	str	r2, [r3]
+ 3c0:	ldr	r3, [fp, #-12]
+ 3c4:	ldr	r3, [r3]
+ 3c8:	mov	r0, r3
+ 3cc:	bl	0 <pilha_apaga>
+ 3d0:	ldr	r0, [fp, #-12]
+ 3d4:	bl	0 <free>
+ 3d8:	b	3e0 <fila_pop+0x88>
+ 3dc:	nop	{0}
+ 3e0:	sub	sp, fp, #4
+ 3e4:	ldr	fp, [sp]
+ 3e8:	add	sp, sp, #4
+ 3ec:	pop	{pc}		; (ldr pc, [sp], #4)

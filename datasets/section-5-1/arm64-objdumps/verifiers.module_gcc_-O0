@@ -1,0 +1,516 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//verifiers.module_gcc_-O0:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_file_filter_register>:
+   0:	sub	sp, sp, #0x10
+   4:	str	w0, [sp, #12]
+   8:	str	x1, [sp]
+   c:	adrp	x0, 0 <grub_file_filter_register>
+  10:	add	x0, x0, #0x0
+  14:	ldr	x0, [x0]
+  18:	ldr	w1, [sp, #12]
+  1c:	ldr	x2, [sp]
+  20:	str	x2, [x0, x1, lsl #3]
+  24:	nop
+  28:	add	sp, sp, #0x10
+  2c:	ret
+	...
+
+0000000000000038 <grub_file_filter_unregister>:
+  38:	sub	sp, sp, #0x10
+  3c:	str	w0, [sp, #12]
+  40:	adrp	x0, 0 <grub_file_filter_register>
+  44:	add	x0, x0, #0x0
+  48:	ldr	x0, [x0]
+  4c:	ldr	w1, [sp, #12]
+  50:	str	xzr, [x0, x1, lsl #3]
+  54:	nop
+  58:	add	sp, sp, #0x10
+  5c:	ret
+	...
+
+0000000000000068 <grub_memcpy>:
+  68:	stp	x29, x30, [sp, #-48]!
+  6c:	mov	x29, sp
+  70:	str	x0, [sp, #40]
+  74:	str	x1, [sp, #32]
+  78:	str	x2, [sp, #24]
+  7c:	ldr	x2, [sp, #24]
+  80:	ldr	x1, [sp, #32]
+  84:	ldr	x0, [sp, #40]
+  88:	bl	0 <grub_memmove>
+  8c:	ldp	x29, x30, [sp], #48
+  90:	ret
+
+0000000000000094 <verified_free>:
+  94:	stp	x29, x30, [sp, #-32]!
+  98:	mov	x29, sp
+  9c:	str	x0, [sp, #24]
+  a0:	ldr	x0, [sp, #24]
+  a4:	cmp	x0, #0x0
+  a8:	b.eq	c0 <verified_free+0x2c>  // b.none
+  ac:	ldr	x0, [sp, #24]
+  b0:	ldr	x0, [x0, #8]
+  b4:	bl	0 <grub_free>
+  b8:	ldr	x0, [sp, #24]
+  bc:	bl	0 <grub_free>
+  c0:	nop
+  c4:	ldp	x29, x30, [sp], #32
+  c8:	ret
+
+00000000000000cc <verified_read>:
+  cc:	stp	x29, x30, [sp, #-64]!
+  d0:	mov	x29, sp
+  d4:	str	x0, [sp, #40]
+  d8:	str	x1, [sp, #32]
+  dc:	str	x2, [sp, #24]
+  e0:	ldr	x0, [sp, #40]
+  e4:	ldr	x0, [x0, #80]
+  e8:	str	x0, [sp, #56]
+  ec:	ldr	x0, [sp, #56]
+  f0:	ldr	x1, [x0, #8]
+  f4:	ldr	x0, [sp, #40]
+  f8:	ldr	x0, [x0, #24]
+  fc:	add	x0, x1, x0
+ 100:	ldr	x2, [sp, #24]
+ 104:	mov	x1, x0
+ 108:	ldr	x0, [sp, #32]
+ 10c:	bl	68 <grub_memcpy>
+ 110:	ldr	x0, [sp, #24]
+ 114:	ldp	x29, x30, [sp], #64
+ 118:	ret
+
+000000000000011c <verified_close>:
+ 11c:	stp	x29, x30, [sp, #-48]!
+ 120:	mov	x29, sp
+ 124:	str	x0, [sp, #24]
+ 128:	ldr	x0, [sp, #24]
+ 12c:	ldr	x0, [x0, #80]
+ 130:	str	x0, [sp, #40]
+ 134:	ldr	x0, [sp, #40]
+ 138:	ldr	x0, [x0]
+ 13c:	bl	0 <grub_file_close>
+ 140:	ldr	x0, [sp, #40]
+ 144:	bl	94 <verified_free>
+ 148:	ldr	x0, [sp, #24]
+ 14c:	str	xzr, [x0, #80]
+ 150:	ldr	x0, [sp, #24]
+ 154:	str	xzr, [x0, #8]
+ 158:	ldr	x0, [sp, #24]
+ 15c:	str	xzr, [x0]
+ 160:	adrp	x0, 0 <grub_file_filter_register>
+ 164:	add	x0, x0, #0x0
+ 168:	ldr	x0, [x0]
+ 16c:	ldr	w0, [x0]
+ 170:	ldp	x29, x30, [sp], #48
+ 174:	ret
+	...
+
+0000000000000180 <grub_verifiers_open>:
+ 180:	stp	x29, x30, [sp, #-80]!
+ 184:	mov	x29, sp
+ 188:	str	x0, [sp, #24]
+ 18c:	str	w1, [sp, #20]
+ 190:	str	xzr, [sp, #72]
+ 194:	str	xzr, [sp, #56]
+ 198:	str	wzr, [sp, #52]
+ 19c:	ldr	x0, [sp, #24]
+ 1a0:	ldr	x0, [x0]
+ 1a4:	ldr	w5, [sp, #20]
+ 1a8:	mov	x4, x0
+ 1ac:	adrp	x0, 0 <grub_file_filter_register>
+ 1b0:	add	x0, x0, #0x0
+ 1b4:	ldr	x3, [x0]
+ 1b8:	adrp	x0, 0 <grub_file_filter_register>
+ 1bc:	add	x0, x0, #0x0
+ 1c0:	ldr	x2, [x0]
+ 1c4:	mov	w1, #0x58                  	// #88
+ 1c8:	adrp	x0, 0 <grub_file_filter_register>
+ 1cc:	add	x0, x0, #0x0
+ 1d0:	ldr	x0, [x0]
+ 1d4:	bl	0 <grub_real_dprintf>
+ 1d8:	ldr	w0, [sp, #20]
+ 1dc:	and	w0, w0, #0xffff
+ 1e0:	cmp	w0, #0x1e
+ 1e4:	b.eq	208 <grub_verifiers_open+0x88>  // b.none
+ 1e8:	ldr	w0, [sp, #20]
+ 1ec:	and	w0, w0, #0xffff
+ 1f0:	cmp	w0, #0x3b
+ 1f4:	b.eq	208 <grub_verifiers_open+0x88>  // b.none
+ 1f8:	ldr	w0, [sp, #20]
+ 1fc:	and	w0, w0, #0x10000
+ 200:	cmp	w0, #0x0
+ 204:	b.eq	210 <grub_verifiers_open+0x90>  // b.none
+ 208:	ldr	x0, [sp, #24]
+ 20c:	b	6c4 <grub_verifiers_open+0x544>
+ 210:	ldr	x0, [sp, #24]
+ 214:	ldr	x0, [x0, #8]
+ 218:	ldr	x0, [x0]
+ 21c:	cmp	x0, #0x0
+ 220:	b.eq	264 <grub_verifiers_open+0xe4>  // b.none
+ 224:	ldr	x0, [sp, #24]
+ 228:	ldr	x0, [x0, #8]
+ 22c:	ldr	x0, [x0]
+ 230:	ldr	x0, [x0, #8]
+ 234:	ldr	w0, [x0, #8]
+ 238:	cmp	w0, #0x7
+ 23c:	b.eq	25c <grub_verifiers_open+0xdc>  // b.none
+ 240:	ldr	x0, [sp, #24]
+ 244:	ldr	x0, [x0, #8]
+ 248:	ldr	x0, [x0]
+ 24c:	ldr	x0, [x0, #8]
+ 250:	ldr	w0, [x0, #8]
+ 254:	cmp	w0, #0xd
+ 258:	b.ne	264 <grub_verifiers_open+0xe4>  // b.any
+ 25c:	ldr	x0, [sp, #24]
+ 260:	b	6c4 <grub_verifiers_open+0x544>
+ 264:	adrp	x0, 0 <grub_file_filter_register>
+ 268:	add	x0, x0, #0x0
+ 26c:	ldr	x0, [x0]
+ 270:	ldr	x0, [x0]
+ 274:	str	x0, [sp, #64]
+ 278:	b	2ec <grub_verifiers_open+0x16c>
+ 27c:	str	wzr, [sp, #36]
+ 280:	ldr	x0, [sp, #64]
+ 284:	ldr	x4, [x0, #24]
+ 288:	add	x1, sp, #0x24
+ 28c:	add	x0, sp, #0x28
+ 290:	mov	x3, x1
+ 294:	mov	x2, x0
+ 298:	ldr	w1, [sp, #20]
+ 29c:	ldr	x0, [sp, #24]
+ 2a0:	blr	x4
+ 2a4:	str	w0, [sp, #48]
+ 2a8:	ldr	w0, [sp, #48]
+ 2ac:	cmp	w0, #0x0
+ 2b0:	b.ne	6a4 <grub_verifiers_open+0x524>  // b.any
+ 2b4:	ldr	w0, [sp, #36]
+ 2b8:	and	w0, w0, #0x4
+ 2bc:	cmp	w0, #0x0
+ 2c0:	b.eq	2d0 <grub_verifiers_open+0x150>  // b.none
+ 2c4:	mov	w0, #0x1                   	// #1
+ 2c8:	str	w0, [sp, #52]
+ 2cc:	b	2e0 <grub_verifiers_open+0x160>
+ 2d0:	ldr	w0, [sp, #36]
+ 2d4:	and	w0, w0, #0x1
+ 2d8:	cmp	w0, #0x0
+ 2dc:	b.eq	2fc <grub_verifiers_open+0x17c>  // b.none
+ 2e0:	ldr	x0, [sp, #64]
+ 2e4:	ldr	x0, [x0]
+ 2e8:	str	x0, [sp, #64]
+ 2ec:	ldr	x0, [sp, #64]
+ 2f0:	cmp	x0, #0x0
+ 2f4:	b.ne	27c <grub_verifiers_open+0xfc>  // b.any
+ 2f8:	b	300 <grub_verifiers_open+0x180>
+ 2fc:	nop
+ 300:	ldr	x0, [sp, #64]
+ 304:	cmp	x0, #0x0
+ 308:	b.ne	344 <grub_verifiers_open+0x1c4>  // b.any
+ 30c:	ldr	w0, [sp, #52]
+ 310:	cmp	w0, #0x0
+ 314:	b.eq	33c <grub_verifiers_open+0x1bc>  // b.none
+ 318:	ldr	x0, [sp, #24]
+ 31c:	ldr	x0, [x0]
+ 320:	mov	x2, x0
+ 324:	adrp	x0, 0 <grub_file_filter_register>
+ 328:	add	x0, x0, #0x0
+ 32c:	ldr	x1, [x0]
+ 330:	mov	w0, #0x1e                  	// #30
+ 334:	bl	0 <grub_error>
+ 338:	b	6b0 <grub_verifiers_open+0x530>
+ 33c:	ldr	x0, [sp, #24]
+ 340:	b	6c4 <grub_verifiers_open+0x544>
+ 344:	mov	x0, #0x68                  	// #104
+ 348:	bl	0 <grub_malloc>
+ 34c:	str	x0, [sp, #56]
+ 350:	ldr	x0, [sp, #56]
+ 354:	cmp	x0, #0x0
+ 358:	b.eq	654 <grub_verifiers_open+0x4d4>  // b.none
+ 35c:	ldr	x0, [sp, #56]
+ 360:	ldr	x1, [sp, #24]
+ 364:	ldp	x2, x3, [x1]
+ 368:	stp	x2, x3, [x0]
+ 36c:	ldp	x2, x3, [x1, #16]
+ 370:	stp	x2, x3, [x0, #16]
+ 374:	ldp	x2, x3, [x1, #32]
+ 378:	stp	x2, x3, [x0, #32]
+ 37c:	ldp	x2, x3, [x1, #48]
+ 380:	stp	x2, x3, [x0, #48]
+ 384:	ldp	x2, x3, [x1, #64]
+ 388:	stp	x2, x3, [x0, #64]
+ 38c:	ldp	x2, x3, [x1, #80]
+ 390:	stp	x2, x3, [x0, #80]
+ 394:	ldr	x1, [x1, #96]
+ 398:	str	x1, [x0, #96]
+ 39c:	ldr	x0, [sp, #56]
+ 3a0:	adrp	x1, 0 <grub_file_filter_register>
+ 3a4:	add	x1, x1, #0x0
+ 3a8:	ldr	x1, [x1]
+ 3ac:	str	x1, [x0, #16]
+ 3b0:	ldr	x0, [sp, #56]
+ 3b4:	str	wzr, [x0, #72]
+ 3b8:	ldr	x0, [sp, #56]
+ 3bc:	ldr	x0, [x0, #64]
+ 3c0:	cmp	x0, #0x0
+ 3c4:	b.ge	3e0 <grub_verifiers_open+0x260>  // b.tcont
+ 3c8:	adrp	x0, 0 <grub_file_filter_register>
+ 3cc:	add	x0, x0, #0x0
+ 3d0:	ldr	x1, [x0]
+ 3d4:	mov	w0, #0x18                  	// #24
+ 3d8:	bl	0 <grub_error>
+ 3dc:	b	690 <grub_verifiers_open+0x510>
+ 3e0:	mov	x0, #0x10                  	// #16
+ 3e4:	bl	0 <grub_malloc>
+ 3e8:	str	x0, [sp, #72]
+ 3ec:	ldr	x0, [sp, #72]
+ 3f0:	cmp	x0, #0x0
+ 3f4:	b.eq	65c <grub_verifiers_open+0x4dc>  // b.none
+ 3f8:	ldr	x0, [sp, #56]
+ 3fc:	ldr	x0, [x0, #64]
+ 400:	bl	0 <grub_malloc>
+ 404:	mov	x1, x0
+ 408:	ldr	x0, [sp, #72]
+ 40c:	str	x1, [x0, #8]
+ 410:	ldr	x0, [sp, #72]
+ 414:	ldr	x0, [x0, #8]
+ 418:	cmp	x0, #0x0
+ 41c:	b.eq	664 <grub_verifiers_open+0x4e4>  // b.none
+ 420:	ldr	x0, [sp, #72]
+ 424:	ldr	x1, [x0, #8]
+ 428:	ldr	x0, [sp, #56]
+ 42c:	ldr	x0, [x0, #64]
+ 430:	mov	x2, x0
+ 434:	ldr	x0, [sp, #24]
+ 438:	bl	0 <grub_file_read>
+ 43c:	mov	x1, x0
+ 440:	ldr	x0, [sp, #56]
+ 444:	ldr	x0, [x0, #64]
+ 448:	cmp	x1, x0
+ 44c:	b.eq	48c <grub_verifiers_open+0x30c>  // b.none
+ 450:	adrp	x0, 0 <grub_file_filter_register>
+ 454:	add	x0, x0, #0x0
+ 458:	ldr	x0, [x0]
+ 45c:	ldr	w0, [x0]
+ 460:	cmp	w0, #0x0
+ 464:	b.ne	66c <grub_verifiers_open+0x4ec>  // b.any
+ 468:	ldr	x0, [sp, #24]
+ 46c:	ldr	x0, [x0]
+ 470:	mov	x2, x0
+ 474:	adrp	x0, 0 <grub_file_filter_register>
+ 478:	add	x0, x0, #0x0
+ 47c:	ldr	x1, [x0]
+ 480:	mov	w0, #0x6                   	// #6
+ 484:	bl	0 <grub_error>
+ 488:	b	66c <grub_verifiers_open+0x4ec>
+ 48c:	ldr	x0, [sp, #64]
+ 490:	ldr	x3, [x0, #32]
+ 494:	ldr	x4, [sp, #40]
+ 498:	ldr	x0, [sp, #72]
+ 49c:	ldr	x1, [x0, #8]
+ 4a0:	ldr	x0, [sp, #56]
+ 4a4:	ldr	x0, [x0, #64]
+ 4a8:	mov	x2, x0
+ 4ac:	mov	x0, x4
+ 4b0:	blr	x3
+ 4b4:	str	w0, [sp, #48]
+ 4b8:	ldr	w0, [sp, #48]
+ 4bc:	cmp	w0, #0x0
+ 4c0:	b.ne	674 <grub_verifiers_open+0x4f4>  // b.any
+ 4c4:	ldr	x0, [sp, #64]
+ 4c8:	ldr	x0, [x0, #40]
+ 4cc:	cmp	x0, #0x0
+ 4d0:	b.eq	4e8 <grub_verifiers_open+0x368>  // b.none
+ 4d4:	ldr	x0, [sp, #64]
+ 4d8:	ldr	x1, [x0, #40]
+ 4dc:	ldr	x0, [sp, #40]
+ 4e0:	blr	x1
+ 4e4:	b	4ec <grub_verifiers_open+0x36c>
+ 4e8:	mov	w0, #0x0                   	// #0
+ 4ec:	str	w0, [sp, #48]
+ 4f0:	ldr	w0, [sp, #48]
+ 4f4:	cmp	w0, #0x0
+ 4f8:	b.ne	67c <grub_verifiers_open+0x4fc>  // b.any
+ 4fc:	ldr	x0, [sp, #64]
+ 500:	ldr	x0, [x0, #48]
+ 504:	cmp	x0, #0x0
+ 508:	b.eq	51c <grub_verifiers_open+0x39c>  // b.none
+ 50c:	ldr	x0, [sp, #64]
+ 510:	ldr	x1, [x0, #48]
+ 514:	ldr	x0, [sp, #40]
+ 518:	blr	x1
+ 51c:	ldr	x0, [sp, #64]
+ 520:	ldr	x0, [x0]
+ 524:	str	x0, [sp, #64]
+ 528:	b	628 <grub_verifiers_open+0x4a8>
+ 52c:	str	wzr, [sp, #32]
+ 530:	ldr	x0, [sp, #64]
+ 534:	ldr	x4, [x0, #24]
+ 538:	add	x1, sp, #0x20
+ 53c:	add	x0, sp, #0x28
+ 540:	mov	x3, x1
+ 544:	mov	x2, x0
+ 548:	ldr	w1, [sp, #20]
+ 54c:	ldr	x0, [sp, #24]
+ 550:	blr	x4
+ 554:	str	w0, [sp, #48]
+ 558:	ldr	w0, [sp, #48]
+ 55c:	cmp	w0, #0x0
+ 560:	b.ne	6ac <grub_verifiers_open+0x52c>  // b.any
+ 564:	ldr	w0, [sp, #32]
+ 568:	and	w0, w0, #0x1
+ 56c:	cmp	w0, #0x0
+ 570:	b.ne	618 <grub_verifiers_open+0x498>  // b.any
+ 574:	ldr	w0, [sp, #32]
+ 578:	and	w0, w0, #0x4
+ 57c:	cmp	w0, #0x0
+ 580:	b.ne	618 <grub_verifiers_open+0x498>  // b.any
+ 584:	ldr	x0, [sp, #64]
+ 588:	ldr	x3, [x0, #32]
+ 58c:	ldr	x4, [sp, #40]
+ 590:	ldr	x0, [sp, #72]
+ 594:	ldr	x1, [x0, #8]
+ 598:	ldr	x0, [sp, #56]
+ 59c:	ldr	x0, [x0, #64]
+ 5a0:	mov	x2, x0
+ 5a4:	mov	x0, x4
+ 5a8:	blr	x3
+ 5ac:	str	w0, [sp, #48]
+ 5b0:	ldr	w0, [sp, #48]
+ 5b4:	cmp	w0, #0x0
+ 5b8:	b.ne	684 <grub_verifiers_open+0x504>  // b.any
+ 5bc:	ldr	x0, [sp, #64]
+ 5c0:	ldr	x0, [x0, #40]
+ 5c4:	cmp	x0, #0x0
+ 5c8:	b.eq	5e0 <grub_verifiers_open+0x460>  // b.none
+ 5cc:	ldr	x0, [sp, #64]
+ 5d0:	ldr	x1, [x0, #40]
+ 5d4:	ldr	x0, [sp, #40]
+ 5d8:	blr	x1
+ 5dc:	b	5e4 <grub_verifiers_open+0x464>
+ 5e0:	mov	w0, #0x0                   	// #0
+ 5e4:	str	w0, [sp, #48]
+ 5e8:	ldr	w0, [sp, #48]
+ 5ec:	cmp	w0, #0x0
+ 5f0:	b.ne	68c <grub_verifiers_open+0x50c>  // b.any
+ 5f4:	ldr	x0, [sp, #64]
+ 5f8:	ldr	x0, [x0, #48]
+ 5fc:	cmp	x0, #0x0
+ 600:	b.eq	61c <grub_verifiers_open+0x49c>  // b.none
+ 604:	ldr	x0, [sp, #64]
+ 608:	ldr	x1, [x0, #48]
+ 60c:	ldr	x0, [sp, #40]
+ 610:	blr	x1
+ 614:	b	61c <grub_verifiers_open+0x49c>
+ 618:	nop
+ 61c:	ldr	x0, [sp, #64]
+ 620:	ldr	x0, [x0]
+ 624:	str	x0, [sp, #64]
+ 628:	ldr	x0, [sp, #64]
+ 62c:	cmp	x0, #0x0
+ 630:	b.ne	52c <grub_verifiers_open+0x3ac>  // b.any
+ 634:	ldr	x0, [sp, #72]
+ 638:	ldr	x1, [sp, #24]
+ 63c:	str	x1, [x0]
+ 640:	ldr	x0, [sp, #56]
+ 644:	ldr	x1, [sp, #72]
+ 648:	str	x1, [x0, #80]
+ 64c:	ldr	x0, [sp, #56]
+ 650:	b	6c4 <grub_verifiers_open+0x544>
+ 654:	nop
+ 658:	b	690 <grub_verifiers_open+0x510>
+ 65c:	nop
+ 660:	b	690 <grub_verifiers_open+0x510>
+ 664:	nop
+ 668:	b	690 <grub_verifiers_open+0x510>
+ 66c:	nop
+ 670:	b	690 <grub_verifiers_open+0x510>
+ 674:	nop
+ 678:	b	690 <grub_verifiers_open+0x510>
+ 67c:	nop
+ 680:	b	690 <grub_verifiers_open+0x510>
+ 684:	nop
+ 688:	b	690 <grub_verifiers_open+0x510>
+ 68c:	nop
+ 690:	ldr	x0, [sp, #64]
+ 694:	ldr	x1, [x0, #48]
+ 698:	ldr	x0, [sp, #40]
+ 69c:	blr	x1
+ 6a0:	b	6b0 <grub_verifiers_open+0x530>
+ 6a4:	nop
+ 6a8:	b	6b0 <grub_verifiers_open+0x530>
+ 6ac:	nop
+ 6b0:	ldr	x0, [sp, #72]
+ 6b4:	bl	94 <verified_free>
+ 6b8:	ldr	x0, [sp, #56]
+ 6bc:	bl	0 <grub_free>
+ 6c0:	mov	x0, #0x0                   	// #0
+ 6c4:	ldp	x29, x30, [sp], #80
+ 6c8:	ret
+ 6cc:	nop
+	...
+
+0000000000000718 <grub_verify_string>:
+ 718:	stp	x29, x30, [sp, #-48]!
+ 71c:	mov	x29, sp
+ 720:	str	x0, [sp, #24]
+ 724:	str	w1, [sp, #20]
+ 728:	adrp	x0, 0 <grub_file_filter_register>
+ 72c:	add	x0, x0, #0x0
+ 730:	ldr	x0, [x0]
+ 734:	ldr	x0, [x0]
+ 738:	str	x0, [sp, #40]
+ 73c:	b	790 <grub_verify_string+0x78>
+ 740:	ldr	x0, [sp, #40]
+ 744:	ldr	x0, [x0, #56]
+ 748:	cmp	x0, #0x0
+ 74c:	b.eq	768 <grub_verify_string+0x50>  // b.none
+ 750:	ldr	x0, [sp, #40]
+ 754:	ldr	x2, [x0, #56]
+ 758:	ldr	w1, [sp, #20]
+ 75c:	ldr	x0, [sp, #24]
+ 760:	blr	x2
+ 764:	b	76c <grub_verify_string+0x54>
+ 768:	mov	w0, #0x0                   	// #0
+ 76c:	str	w0, [sp, #36]
+ 770:	ldr	w0, [sp, #36]
+ 774:	cmp	w0, #0x0
+ 778:	b.eq	784 <grub_verify_string+0x6c>  // b.none
+ 77c:	ldr	w0, [sp, #36]
+ 780:	b	7a0 <grub_verify_string+0x88>
+ 784:	ldr	x0, [sp, #40]
+ 788:	ldr	x0, [x0]
+ 78c:	str	x0, [sp, #40]
+ 790:	ldr	x0, [sp, #40]
+ 794:	cmp	x0, #0x0
+ 798:	b.ne	740 <grub_verify_string+0x28>  // b.any
+ 79c:	mov	w0, #0x0                   	// #0
+ 7a0:	ldp	x29, x30, [sp], #48
+ 7a4:	ret
+	...
+
+00000000000007b0 <grub_mod_init>:
+ 7b0:	stp	x29, x30, [sp, #-32]!
+ 7b4:	mov	x29, sp
+ 7b8:	str	x0, [sp, #24]
+ 7bc:	adrp	x0, 0 <grub_file_filter_register>
+ 7c0:	add	x0, x0, #0x0
+ 7c4:	ldr	x1, [x0]
+ 7c8:	mov	w0, #0x0                   	// #0
+ 7cc:	bl	0 <grub_file_filter_register>
+ 7d0:	nop
+ 7d4:	ldp	x29, x30, [sp], #32
+ 7d8:	ret
+ 7dc:	nop
+	...
+
+00000000000007e8 <grub_mod_fini>:
+ 7e8:	stp	x29, x30, [sp, #-16]!
+ 7ec:	mov	x29, sp
+ 7f0:	mov	w0, #0x0                   	// #0
+ 7f4:	bl	38 <grub_file_filter_unregister>
+ 7f8:	nop
+ 7fc:	ldp	x29, x30, [sp], #16
+ 800:	ret

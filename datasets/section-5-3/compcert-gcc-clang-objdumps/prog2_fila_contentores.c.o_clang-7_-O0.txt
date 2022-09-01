@@ -1,0 +1,263 @@
+
+../compcert-repos/prog2/CMakeFiles/5.1.dir/Aula05_Filas_e_Pilhas/1/fila_contentores.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <fila_novo_elemento>:
+   0:	push	{fp, lr}
+   4:	mov	fp, sp
+   8:	sub	sp, sp, #16
+   c:	str	r0, [sp, #8]
+  10:	movw	r0, #8
+  14:	bl	0 <malloc>
+  18:	str	r0, [sp, #4]
+  1c:	ldr	r0, [sp, #4]
+  20:	movw	lr, #0
+  24:	cmp	r0, lr
+  28:	bne	38 <fila_novo_elemento+0x38>
+  2c:	movw	r0, #0
+  30:	str	r0, [fp, #-4]
+  34:	b	80 <fila_novo_elemento+0x80>
+  38:	ldr	r0, [sp, #8]
+  3c:	ldr	r1, [sp, #4]
+  40:	str	r0, [r1]
+  44:	ldr	r0, [sp, #4]
+  48:	ldr	r0, [r0]
+  4c:	movw	r1, #0
+  50:	cmp	r0, r1
+  54:	bne	6c <fila_novo_elemento+0x6c>
+  58:	ldr	r0, [sp, #4]
+  5c:	bl	0 <free>
+  60:	movw	r0, #0
+  64:	str	r0, [fp, #-4]
+  68:	b	80 <fila_novo_elemento+0x80>
+  6c:	ldr	r0, [sp, #4]
+  70:	movw	r1, #0
+  74:	str	r1, [r0, #4]
+  78:	ldr	r0, [sp, #4]
+  7c:	str	r0, [fp, #-4]
+  80:	ldr	r0, [fp, #-4]
+  84:	mov	sp, fp
+  88:	pop	{fp, pc}
+
+0000008c <fila_nova>:
+  8c:	push	{fp, lr}
+  90:	mov	fp, sp
+  94:	sub	sp, sp, #8
+  98:	movw	r0, #8
+  9c:	bl	0 <malloc>
+  a0:	str	r0, [sp]
+  a4:	ldr	r0, [sp]
+  a8:	movw	lr, #0
+  ac:	cmp	r0, lr
+  b0:	bne	c0 <fila_nova+0x34>
+  b4:	movw	r0, #0
+  b8:	str	r0, [sp, #4]
+  bc:	b	dc <fila_nova+0x50>
+  c0:	ldr	r0, [sp]
+  c4:	movw	r1, #0
+  c8:	str	r1, [r0]
+  cc:	ldr	r0, [sp]
+  d0:	str	r1, [r0, #4]
+  d4:	ldr	r0, [sp]
+  d8:	str	r0, [sp, #4]
+  dc:	ldr	r0, [sp, #4]
+  e0:	mov	sp, fp
+  e4:	pop	{fp, pc}
+
+000000e8 <fila_apaga>:
+  e8:	push	{fp, lr}
+  ec:	mov	fp, sp
+  f0:	sub	sp, sp, #8
+  f4:	str	r0, [sp, #4]
+  f8:	ldr	r0, [sp, #4]
+  fc:	movw	r1, #0
+ 100:	cmp	r0, r1
+ 104:	bne	10c <fila_apaga+0x24>
+ 108:	b	164 <fila_apaga+0x7c>
+ 10c:	b	110 <fila_apaga+0x28>
+ 110:	ldr	r0, [sp, #4]
+ 114:	ldr	r0, [r0]
+ 118:	movw	r1, #0
+ 11c:	cmp	r0, r1
+ 120:	beq	15c <fila_apaga+0x74>
+ 124:	ldr	r0, [sp, #4]
+ 128:	ldr	r0, [r0]
+ 12c:	str	r0, [sp]
+ 130:	ldr	r0, [sp, #4]
+ 134:	ldr	r0, [r0]
+ 138:	ldr	r0, [r0, #4]
+ 13c:	ldr	r1, [sp, #4]
+ 140:	str	r0, [r1]
+ 144:	ldr	r0, [sp]
+ 148:	ldr	r0, [r0]
+ 14c:	bl	0 <pilha_apaga>
+ 150:	ldr	r0, [sp]
+ 154:	bl	0 <free>
+ 158:	b	110 <fila_apaga+0x28>
+ 15c:	ldr	r0, [sp, #4]
+ 160:	bl	0 <free>
+ 164:	mov	sp, fp
+ 168:	pop	{fp, pc}
+
+0000016c <fila_tamanho>:
+ 16c:	sub	sp, sp, #8
+ 170:	str	r0, [sp]
+ 174:	ldr	r0, [sp]
+ 178:	movw	r1, #0
+ 17c:	cmp	r0, r1
+ 180:	bne	190 <fila_tamanho+0x24>
+ 184:	mvn	r0, #0
+ 188:	str	r0, [sp, #4]
+ 18c:	b	19c <fila_tamanho+0x30>
+ 190:	ldr	r0, [sp]
+ 194:	ldr	r0, [r0, #4]
+ 198:	str	r0, [sp, #4]
+ 19c:	ldr	r0, [sp, #4]
+ 1a0:	add	sp, sp, #8
+ 1a4:	bx	lr
+
+000001a8 <fila_front>:
+ 1a8:	sub	sp, sp, #12
+ 1ac:	str	r0, [sp, #4]
+ 1b0:	ldr	r0, [sp, #4]
+ 1b4:	movw	r1, #0
+ 1b8:	cmp	r0, r1
+ 1bc:	beq	1d0 <fila_front+0x28>
+ 1c0:	ldr	r0, [sp, #4]
+ 1c4:	ldr	r0, [r0, #4]
+ 1c8:	cmp	r0, #0
+ 1cc:	bne	1dc <fila_front+0x34>
+ 1d0:	movw	r0, #0
+ 1d4:	str	r0, [sp, #8]
+ 1d8:	b	1f4 <fila_front+0x4c>
+ 1dc:	ldr	r0, [sp, #4]
+ 1e0:	ldr	r0, [r0]
+ 1e4:	str	r0, [sp]
+ 1e8:	ldr	r0, [sp]
+ 1ec:	ldr	r0, [r0]
+ 1f0:	str	r0, [sp, #8]
+ 1f4:	ldr	r0, [sp, #8]
+ 1f8:	add	sp, sp, #12
+ 1fc:	bx	lr
+
+00000200 <fila_back>:
+ 200:	sub	sp, sp, #12
+ 204:	str	r0, [sp, #4]
+ 208:	ldr	r0, [sp, #4]
+ 20c:	movw	r1, #0
+ 210:	cmp	r0, r1
+ 214:	beq	228 <fila_back+0x28>
+ 218:	ldr	r0, [sp, #4]
+ 21c:	ldr	r0, [r0, #4]
+ 220:	cmp	r0, #0
+ 224:	bne	234 <fila_back+0x34>
+ 228:	movw	r0, #0
+ 22c:	str	r0, [sp, #8]
+ 230:	b	270 <fila_back+0x70>
+ 234:	ldr	r0, [sp, #4]
+ 238:	ldr	r0, [r0]
+ 23c:	str	r0, [sp]
+ 240:	ldr	r0, [sp]
+ 244:	ldr	r0, [r0, #4]
+ 248:	movw	r1, #0
+ 24c:	cmp	r0, r1
+ 250:	beq	264 <fila_back+0x64>
+ 254:	ldr	r0, [sp]
+ 258:	ldr	r0, [r0, #4]
+ 25c:	str	r0, [sp]
+ 260:	b	240 <fila_back+0x40>
+ 264:	ldr	r0, [sp]
+ 268:	ldr	r0, [r0]
+ 26c:	str	r0, [sp, #8]
+ 270:	ldr	r0, [sp, #8]
+ 274:	add	sp, sp, #12
+ 278:	bx	lr
+
+0000027c <fila_push>:
+ 27c:	push	{fp, lr}
+ 280:	mov	fp, sp
+ 284:	sub	sp, sp, #24
+ 288:	str	r0, [fp, #-4]
+ 28c:	str	r1, [fp, #-8]
+ 290:	movw	r0, #0
+ 294:	str	r0, [sp, #12]
+ 298:	str	r0, [sp, #8]
+ 29c:	ldr	r1, [fp, #-4]
+ 2a0:	cmp	r1, r0
+ 2a4:	bne	2ac <fila_push+0x30>
+ 2a8:	b	33c <fila_push+0xc0>
+ 2ac:	ldr	r0, [fp, #-4]
+ 2b0:	ldr	r0, [r0]
+ 2b4:	str	r0, [sp, #4]
+ 2b8:	ldr	r0, [fp, #-8]
+ 2bc:	bl	0 <fila_novo_elemento>
+ 2c0:	str	r0, [sp, #8]
+ 2c4:	ldr	r0, [sp, #8]
+ 2c8:	movw	lr, #0
+ 2cc:	cmp	r0, lr
+ 2d0:	bne	2d8 <fila_push+0x5c>
+ 2d4:	b	33c <fila_push+0xc0>
+ 2d8:	ldr	r0, [fp, #-4]
+ 2dc:	ldr	r1, [r0, #4]
+ 2e0:	add	r1, r1, #1
+ 2e4:	str	r1, [r0, #4]
+ 2e8:	ldr	r0, [sp, #4]
+ 2ec:	movw	r1, #0
+ 2f0:	cmp	r0, r1
+ 2f4:	bne	308 <fila_push+0x8c>
+ 2f8:	ldr	r0, [sp, #8]
+ 2fc:	ldr	r1, [fp, #-4]
+ 300:	str	r0, [r1]
+ 304:	b	33c <fila_push+0xc0>
+ 308:	b	30c <fila_push+0x90>
+ 30c:	ldr	r0, [sp, #4]
+ 310:	ldr	r0, [r0, #4]
+ 314:	movw	r1, #0
+ 318:	cmp	r0, r1
+ 31c:	beq	330 <fila_push+0xb4>
+ 320:	ldr	r0, [sp, #4]
+ 324:	ldr	r0, [r0, #4]
+ 328:	str	r0, [sp, #4]
+ 32c:	b	30c <fila_push+0x90>
+ 330:	ldr	r0, [sp, #8]
+ 334:	ldr	r1, [sp, #4]
+ 338:	str	r0, [r1, #4]
+ 33c:	mov	sp, fp
+ 340:	pop	{fp, pc}
+
+00000344 <fila_pop>:
+ 344:	push	{fp, lr}
+ 348:	mov	fp, sp
+ 34c:	sub	sp, sp, #16
+ 350:	str	r0, [fp, #-4]
+ 354:	movw	r0, #0
+ 358:	str	r0, [sp, #8]
+ 35c:	ldr	r1, [fp, #-4]
+ 360:	cmp	r1, r0
+ 364:	beq	378 <fila_pop+0x34>
+ 368:	ldr	r0, [fp, #-4]
+ 36c:	ldr	r0, [r0, #4]
+ 370:	cmp	r0, #0
+ 374:	bne	37c <fila_pop+0x38>
+ 378:	b	3c0 <fila_pop+0x7c>
+ 37c:	ldr	r0, [fp, #-4]
+ 380:	ldr	r0, [r0]
+ 384:	str	r0, [sp, #4]
+ 388:	ldr	r0, [fp, #-4]
+ 38c:	ldr	r1, [r0, #4]
+ 390:	mvn	r2, #0
+ 394:	add	r1, r1, r2
+ 398:	str	r1, [r0, #4]
+ 39c:	ldr	r0, [sp, #4]
+ 3a0:	ldr	r0, [r0, #4]
+ 3a4:	ldr	r1, [fp, #-4]
+ 3a8:	str	r0, [r1]
+ 3ac:	ldr	r0, [sp, #4]
+ 3b0:	ldr	r0, [r0]
+ 3b4:	bl	0 <pilha_apaga>
+ 3b8:	ldr	r0, [sp, #4]
+ 3bc:	bl	0 <free>
+ 3c0:	mov	sp, fp
+ 3c4:	pop	{fp, pc}

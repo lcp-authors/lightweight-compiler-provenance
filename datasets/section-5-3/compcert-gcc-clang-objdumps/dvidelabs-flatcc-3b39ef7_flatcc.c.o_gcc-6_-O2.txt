@@ -1,0 +1,606 @@
+
+../compcert-repos/dvidelabs-flatcc-3b39ef7/src/compiler/CMakeFiles/flatcc.dir/flatcc.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <visit_dep>:
+   0:	add	r0, r0, #172	; 0xac
+   4:	mov	r2, #1
+   8:	b	0 <ptr_set_insert_item>
+
+0000000c <checkmem.part.0>:
+   c:	ldr	r3, [pc, #28]	; 30 <checkmem.part.0+0x24>
+  10:	push	{r4, lr}
+  14:	mov	r2, #34	; 0x22
+  18:	mov	r1, #1
+  1c:	ldr	r3, [r3]
+  20:	ldr	r0, [pc, #12]	; 34 <checkmem.part.0+0x28>
+  24:	bl	0 <fwrite>
+  28:	mov	r0, #1
+  2c:	bl	0 <exit>
+	...
+
+00000038 <flatcc_init_options>:
+  38:	push	{r4, r6, r7, lr}
+  3c:	mov	r2, #224	; 0xe0
+  40:	mov	r4, r0
+  44:	mov	r1, #0
+  48:	ldr	r6, [pc, #144]	; e0 <flatcc_init_options+0xa8>
+  4c:	bl	0 <memset>
+  50:	mov	r7, #0
+  54:	mov	r2, #65536	; 0x10000
+  58:	mov	r3, #2
+  5c:	ldr	lr, [pc, #128]	; e4 <flatcc_init_options+0xac>
+  60:	ldr	ip, [pc, #128]	; e8 <flatcc_init_options+0xb0>
+  64:	ldr	r0, [pc, #128]	; ec <flatcc_init_options+0xb4>
+  68:	mov	r1, #100	; 0x64
+  6c:	str	r2, [r4]
+  70:	str	r3, [r4, #68]	; 0x44
+  74:	mov	r2, #4
+  78:	mov	r3, #1
+  7c:	strd	r6, [r4, #88]	; 0x58
+  80:	str	lr, [r4, #96]	; 0x60
+  84:	str	ip, [r4, #100]	; 0x64
+  88:	str	r0, [r4, #104]	; 0x68
+  8c:	str	r1, [r4, #4]
+  90:	str	r1, [r4, #8]
+  94:	str	r3, [r4, #16]
+  98:	str	r3, [r4, #20]
+  9c:	str	r3, [r4, #24]
+  a0:	str	r3, [r4, #28]
+  a4:	str	r3, [r4, #32]
+  a8:	str	r3, [r4, #36]	; 0x24
+  ac:	str	r3, [r4, #40]	; 0x28
+  b0:	str	r3, [r4, #44]	; 0x2c
+  b4:	str	r3, [r4, #48]	; 0x30
+  b8:	str	r3, [r4, #52]	; 0x34
+  bc:	str	r3, [r4, #72]	; 0x48
+  c0:	str	r3, [r4, #76]	; 0x4c
+  c4:	str	r3, [r4, #84]	; 0x54
+  c8:	str	r3, [r4, #136]	; 0x88
+  cc:	str	r3, [r4, #140]	; 0x8c
+  d0:	str	r3, [r4, #184]	; 0xb8
+  d4:	str	r2, [r4, #64]	; 0x40
+  d8:	str	r2, [r4, #176]	; 0xb0
+  dc:	pop	{r4, r6, r7, pc}
+  e0:	.word	0x0000fffe
+  e4:	.word	0x00000024
+  e8:	.word	0x0000002c
+  ec:	.word	0x00000034
+
+000000f0 <flatcc_create_context>:
+  f0:	push	{r4, r5, r6, r7, r8, r9, lr}
+  f4:	mov	r5, r0
+  f8:	sub	sp, sp, #12
+  fc:	mov	r0, #560	; 0x230
+ 100:	mov	r6, r1
+ 104:	mov	r7, r2
+ 108:	mov	r8, r3
+ 10c:	bl	0 <malloc>
+ 110:	subs	r4, r0, #0
+ 114:	beq	148 <flatcc_create_context+0x58>
+ 118:	mov	r9, #0
+ 11c:	str	r8, [sp]
+ 120:	mov	r3, r7
+ 124:	mov	r2, r6
+ 128:	mov	r1, r5
+ 12c:	str	r9, [sp, #4]
+ 130:	bl	0 <__flatcc_fb_init_parser>
+ 134:	cmp	r0, r9
+ 138:	mov	r0, r4
+ 13c:	bne	150 <flatcc_create_context+0x60>
+ 140:	add	sp, sp, #12
+ 144:	pop	{r4, r5, r6, r7, r8, r9, pc}
+ 148:	mov	r0, r4
+ 14c:	b	140 <flatcc_create_context+0x50>
+ 150:	bl	0 <free>
+ 154:	mov	r0, r9
+ 158:	b	140 <flatcc_create_context+0x50>
+
+0000015c <flatcc_parse_buffer>:
+ 15c:	ldr	r3, [r0, #128]	; 0x80
+ 160:	push	{r4, r5, r6, r7, r8, lr}
+ 164:	mov	r6, r2
+ 168:	cmp	r3, #0
+ 16c:	cmpne	r3, r6
+ 170:	mov	r2, #1
+ 174:	movcc	r4, #1
+ 178:	movcs	r4, #0
+ 17c:	str	r2, [r0, #140]	; 0x8c
+ 180:	bcc	1d0 <flatcc_parse_buffer+0x74>
+ 184:	mov	r5, r0
+ 188:	mov	r7, r1
+ 18c:	add	r1, r0, #352	; 0x160
+ 190:	add	r0, r0, #524	; 0x20c
+ 194:	bl	0 <ptr_set_insert_item>
+ 198:	mov	r3, r4
+ 19c:	mov	r2, r6
+ 1a0:	mov	r1, r7
+ 1a4:	mov	r0, r5
+ 1a8:	bl	0 <__flatcc_fb_parse>
+ 1ac:	cmp	r0, #0
+ 1b0:	bne	1c8 <flatcc_parse_buffer+0x6c>
+ 1b4:	mov	r0, r5
+ 1b8:	bl	0 <__flatcc_fb_build_schema>
+ 1bc:	adds	r0, r0, #0
+ 1c0:	mvnne	r0, #0
+ 1c4:	pop	{r4, r5, r6, r7, r8, pc}
+ 1c8:	mvn	r0, #0
+ 1cc:	pop	{r4, r5, r6, r7, r8, pc}
+ 1d0:	ldr	r1, [pc, #8]	; 1e0 <flatcc_parse_buffer+0x84>
+ 1d4:	bl	0 <__flatcc_fb_print_error>
+ 1d8:	mvn	r0, #0
+ 1dc:	pop	{r4, r5, r6, r7, r8, pc}
+ 1e0:	.word	0x0000003c
+
+000001e4 <flatcc_generate_binary_schema_to_buffer>:
+ 1e4:	push	{lr}		; (str lr, [sp, #-4]!)
+ 1e8:	sub	sp, sp, #12
+ 1ec:	add	r3, sp, #8
+ 1f0:	mov	ip, r0
+ 1f4:	str	r2, [r3, #-4]!
+ 1f8:	add	r0, r0, #128	; 0x80
+ 1fc:	mov	r2, r1
+ 200:	add	r1, ip, #352	; 0x160
+ 204:	bl	0 <__flatcc_fb_codegen_bfbs_to_buffer>
+ 208:	cmp	r0, #0
+ 20c:	mvneq	r0, #0
+ 210:	ldrne	r0, [sp, #4]
+ 214:	add	sp, sp, #12
+ 218:	pop	{pc}		; (ldr pc, [sp], #4)
+
+0000021c <flatcc_generate_binary_schema>:
+ 21c:	mov	r3, r0
+ 220:	mov	r2, r1
+ 224:	add	r0, r0, #128	; 0x80
+ 228:	add	r1, r3, #352	; 0x160
+ 22c:	b	0 <__flatcc_fb_codegen_bfbs_alloc_buffer>
+
+00000230 <flatcc_generate_files>:
+ 230:	push	{r4, r5, r6, lr}
+ 234:	subs	r5, r0, #0
+ 238:	sub	sp, sp, #232	; 0xe8
+ 23c:	beq	2ec <flatcc_generate_files+0xbc>
+ 240:	ldr	r2, [r5, #108]	; 0x6c
+ 244:	cmp	r2, #0
+ 248:	bne	2ec <flatcc_generate_files+0xbc>
+ 24c:	mov	r4, r5
+ 250:	b	258 <flatcc_generate_files+0x28>
+ 254:	mov	r4, r3
+ 258:	ldr	r3, [r4]
+ 25c:	str	r2, [r4, #4]
+ 260:	cmp	r3, #0
+ 264:	mov	r2, r4
+ 268:	bne	254 <flatcc_generate_files+0x24>
+ 26c:	ldr	r3, [r5, #308]	; 0x134
+ 270:	add	r6, r5, #128	; 0x80
+ 274:	cmp	r3, #0
+ 278:	bne	2d8 <flatcc_generate_files+0xa8>
+ 27c:	mov	r1, r6
+ 280:	mov	r0, sp
+ 284:	bl	0 <__flatcc_fb_init_output_c>
+ 288:	cmp	r0, #0
+ 28c:	bne	2ec <flatcc_generate_files+0xbc>
+ 290:	ldr	r3, [r5, #256]	; 0x100
+ 294:	cmp	r3, #0
+ 298:	beq	330 <flatcc_generate_files+0x100>
+ 29c:	ldr	r6, [r5, #120]	; 0x78
+ 2a0:	cmp	r6, #0
+ 2a4:	beq	2c4 <flatcc_generate_files+0x94>
+ 2a8:	ldr	r3, [r5, #300]	; 0x12c
+ 2ac:	cmp	r3, #0
+ 2b0:	beq	344 <flatcc_generate_files+0x114>
+ 2b4:	ldr	r3, [r4, #108]	; 0x6c
+ 2b8:	cmp	r3, #0
+ 2bc:	beq	2fc <flatcc_generate_files+0xcc>
+ 2c0:	mov	r6, #1
+ 2c4:	mov	r0, sp
+ 2c8:	bl	0 <__flatcc_fb_end_output_c>
+ 2cc:	mov	r0, r6
+ 2d0:	add	sp, sp, #232	; 0xe8
+ 2d4:	pop	{r4, r5, r6, pc}
+ 2d8:	mov	r0, r6
+ 2dc:	add	r1, r5, #352	; 0x160
+ 2e0:	bl	0 <__flatcc_fb_codegen_bfbs_to_file>
+ 2e4:	cmp	r0, #0
+ 2e8:	beq	27c <flatcc_generate_files+0x4c>
+ 2ec:	mvn	r6, #0
+ 2f0:	mov	r0, r6
+ 2f4:	add	sp, sp, #232	; 0xe8
+ 2f8:	pop	{r4, r5, r6, pc}
+ 2fc:	add	r1, r4, #352	; 0x160
+ 300:	mov	r0, sp
+ 304:	bl	0 <__flatcc_fb_codegen_c>
+ 308:	ldr	r4, [r4, #4]
+ 30c:	cmp	r4, #0
+ 310:	clz	r3, r0
+ 314:	lsr	r3, r3, #5
+ 318:	moveq	r3, #0
+ 31c:	cmp	r3, #0
+ 320:	bne	2b4 <flatcc_generate_files+0x84>
+ 324:	adds	r6, r0, #0
+ 328:	movne	r6, #1
+ 32c:	b	2c4 <flatcc_generate_files+0x94>
+ 330:	mov	r0, sp
+ 334:	bl	0 <__flatcc_fb_codegen_common_c>
+ 338:	subs	r6, r0, #0
+ 33c:	bne	2c4 <flatcc_generate_files+0x94>
+ 340:	b	29c <flatcc_generate_files+0x6c>
+ 344:	add	r1, r5, #352	; 0x160
+ 348:	mov	r0, sp
+ 34c:	bl	0 <__flatcc_fb_codegen_c>
+ 350:	mov	r6, r0
+ 354:	b	2c4 <flatcc_generate_files+0x94>
+
+00000358 <flatcc_destroy_context>:
+ 358:	push	{r4, r5, r6, lr}
+ 35c:	subs	r4, r0, #0
+ 360:	popeq	{r4, r5, r6, pc}
+ 364:	mov	r0, r4
+ 368:	ldr	r5, [r4]
+ 36c:	bl	0 <__flatcc_fb_clear_parser>
+ 370:	mov	r0, r4
+ 374:	bl	0 <free>
+ 378:	subs	r4, r5, #0
+ 37c:	bne	364 <flatcc_destroy_context+0xc>
+ 380:	pop	{r4, r5, r6, pc}
+
+00000384 <flatcc_parse_file>:
+ 384:	push	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+ 388:	mov	r4, r0
+ 38c:	sub	sp, sp, #28
+ 390:	mov	r0, r1
+ 394:	mov	r7, r1
+ 398:	bl	0 <strlen>
+ 39c:	add	r9, r4, #352	; 0x160
+ 3a0:	mov	r1, r9
+ 3a4:	mov	r2, #1
+ 3a8:	mov	r8, r0
+ 3ac:	ldr	r0, [r4, #412]	; 0x19c
+ 3b0:	add	r0, r0, #32
+ 3b4:	bl	0 <fb_schema_table_insert_item>
+ 3b8:	cmp	r0, #0
+ 3bc:	beq	3d0 <flatcc_parse_file+0x4c>
+ 3c0:	mov	sl, #0
+ 3c4:	mov	r0, sl
+ 3c8:	add	sp, sp, #28
+ 3cc:	pop	{r4, r5, r6, r7, r8, r9, sl, fp, pc}
+ 3d0:	ldr	r3, [r4, #552]	; 0x228
+ 3d4:	cmp	r3, #0
+ 3d8:	str	r3, [sp, #12]
+ 3dc:	str	r3, [sp, #8]
+ 3e0:	beq	80c <flatcc_parse_file+0x488>
+ 3e4:	ldr	r3, [r4, #336]	; 0x150
+ 3e8:	cmp	r3, #0
+ 3ec:	ldrle	sl, [pc, #1252]	; 8d8 <flatcc_parse_file+0x554>
+ 3f0:	ble	5dc <flatcc_parse_file+0x258>
+ 3f4:	ldr	sl, [pc, #1244]	; 8d8 <flatcc_parse_file+0x554>
+ 3f8:	mov	r5, #0
+ 3fc:	mov	fp, #1
+ 400:	ldr	r3, [r4, #328]	; 0x148
+ 404:	ldr	r6, [r3, r5, lsl #2]
+ 408:	mov	r0, r6
+ 40c:	bl	0 <strlen>
+ 410:	stm	sp, {sl, fp}
+ 414:	mov	r3, r8
+ 418:	mov	r2, r7
+ 41c:	mov	r1, r0
+ 420:	mov	r0, r6
+ 424:	bl	0 <__flatcc_fb_create_join_path_n>
+ 428:	subs	r6, r0, #0
+ 42c:	beq	83c <flatcc_parse_file+0x4b8>
+ 430:	add	r2, sp, #20
+ 434:	ldr	r1, [r4, #128]	; 0x80
+ 438:	bl	0 <__flatcc_fb_read_file>
+ 43c:	cmp	r0, #0
+ 440:	beq	59c <flatcc_parse_file+0x218>
+ 444:	mov	r1, r0
+ 448:	ldr	r0, [r4, #412]	; 0x19c
+ 44c:	ldr	ip, [sp, #20]
+ 450:	ldr	r3, [r0, #56]	; 0x38
+ 454:	mov	r2, ip
+ 458:	add	r3, r3, ip
+ 45c:	str	r3, [r0, #56]	; 0x38
+ 460:	mov	r3, #1
+ 464:	str	r6, [r4, #548]	; 0x224
+ 468:	mov	r0, r4
+ 46c:	bl	0 <__flatcc_fb_parse>
+ 470:	subs	sl, r0, #0
+ 474:	bne	3c0 <flatcc_parse_file+0x3c>
+ 478:	ldr	r6, [r4, #352]	; 0x160
+ 47c:	cmp	r6, #0
+ 480:	beq	68c <flatcc_parse_file+0x308>
+ 484:	add	r3, r4, #128	; 0x80
+ 488:	str	sl, [sp, #8]
+ 48c:	mov	fp, #560	; 0x230
+ 490:	mov	sl, r3
+ 494:	b	4c4 <flatcc_parse_file+0x140>
+ 498:	add	r0, r0, #172	; 0xac
+ 49c:	mov	r2, r9
+ 4a0:	ldr	r1, [pc, #1076]	; 8dc <flatcc_parse_file+0x558>
+ 4a4:	bl	0 <ptr_set_visit>
+ 4a8:	mov	r0, r7
+ 4ac:	bl	358 <flatcc_destroy_context>
+ 4b0:	mov	r0, r8
+ 4b4:	bl	0 <free>
+ 4b8:	ldr	r6, [r6]
+ 4bc:	cmp	r6, #0
+ 4c0:	beq	68c <flatcc_parse_file+0x308>
+ 4c4:	ldr	r1, [r6, #12]
+ 4c8:	ldr	r0, [r6, #8]
+ 4cc:	bl	0 <__flatcc_fb_copy_path_n>
+ 4d0:	subs	r8, r0, #0
+ 4d4:	beq	83c <flatcc_parse_file+0x4b8>
+ 4d8:	ldr	r5, [r4, #412]	; 0x19c
+ 4dc:	ldr	r3, [r4, #132]	; 0x84
+ 4e0:	ldr	r2, [r5, #52]	; 0x34
+ 4e4:	cmp	r2, r3
+ 4e8:	cmpge	r3, #0
+ 4ec:	bgt	7f8 <flatcc_parse_file+0x474>
+ 4f0:	ldr	r3, [r4, #136]	; 0x88
+ 4f4:	ldr	r2, [r5, #48]	; 0x30
+ 4f8:	cmp	r2, r3
+ 4fc:	cmpge	r3, #0
+ 500:	bgt	7e4 <flatcc_parse_file+0x460>
+ 504:	mov	r0, fp
+ 508:	bl	0 <malloc>
+ 50c:	subs	r7, r0, #0
+ 510:	beq	664 <flatcc_parse_file+0x2e0>
+ 514:	ldr	r2, [r4, #12]
+ 518:	ldr	r3, [r4, #8]
+ 51c:	mov	r1, sl
+ 520:	stm	sp, {r2, r5}
+ 524:	mov	r2, r8
+ 528:	bl	0 <__flatcc_fb_init_parser>
+ 52c:	cmp	r0, #0
+ 530:	bne	67c <flatcc_parse_file+0x2f8>
+ 534:	add	r1, r7, #352	; 0x160
+ 538:	add	r0, r5, #32
+ 53c:	bl	0 <fb_schema_table_find_item>
+ 540:	cmp	r0, #0
+ 544:	bne	498 <flatcc_parse_file+0x114>
+ 548:	ldr	r1, [r4]
+ 54c:	ldr	r2, [r5, #52]	; 0x34
+ 550:	ldr	r3, [r5, #48]	; 0x30
+ 554:	str	r1, [r7]
+ 558:	ldr	r1, [r4, #548]	; 0x224
+ 55c:	add	r2, r2, #1
+ 560:	add	r3, r3, #1
+ 564:	str	r1, [r7, #552]	; 0x228
+ 568:	str	r7, [r4]
+ 56c:	mov	r1, r8
+ 570:	str	r2, [r5, #52]	; 0x34
+ 574:	str	r3, [r5, #48]	; 0x30
+ 578:	mov	r0, r7
+ 57c:	bl	384 <flatcc_parse_file>
+ 580:	cmp	r0, #0
+ 584:	bne	664 <flatcc_parse_file+0x2e0>
+ 588:	add	r0, r7, #524	; 0x20c
+ 58c:	mov	r2, r9
+ 590:	ldr	r1, [pc, #836]	; 8dc <flatcc_parse_file+0x558>
+ 594:	bl	0 <ptr_set_visit>
+ 598:	b	4b0 <flatcc_parse_file+0x12c>
+ 59c:	mov	r0, r6
+ 5a0:	bl	0 <free>
+ 5a4:	ldr	r3, [r4, #128]	; 0x80
+ 5a8:	ldr	r2, [sp, #20]
+ 5ac:	cmp	r3, #0
+ 5b0:	cmpne	r3, r2
+ 5b4:	bcc	870 <flatcc_parse_file+0x4ec>
+ 5b8:	ldr	r3, [r4, #336]	; 0x150
+ 5bc:	add	r5, r5, #1
+ 5c0:	cmp	r3, r5
+ 5c4:	bgt	400 <flatcc_parse_file+0x7c>
+ 5c8:	ldr	r3, [sp, #8]
+ 5cc:	cmp	r3, #0
+ 5d0:	beq	64c <flatcc_parse_file+0x2c8>
+ 5d4:	ldr	r3, [r4, #552]	; 0x228
+ 5d8:	str	r3, [sp, #8]
+ 5dc:	ldr	r5, [sp, #8]
+ 5e0:	mov	r0, r5
+ 5e4:	bl	0 <strlen>
+ 5e8:	mov	r1, r0
+ 5ec:	mov	r0, r5
+ 5f0:	bl	0 <__flatcc_fb_find_basename>
+ 5f4:	mov	r2, #1
+ 5f8:	str	r2, [sp, #4]
+ 5fc:	str	sl, [sp]
+ 600:	mov	r3, r8
+ 604:	mov	r2, r7
+ 608:	mov	r1, r0
+ 60c:	mov	r0, r5
+ 610:	bl	0 <__flatcc_fb_create_join_path_n>
+ 614:	subs	r6, r0, #0
+ 618:	beq	83c <flatcc_parse_file+0x4b8>
+ 61c:	ldr	r1, [r4, #128]	; 0x80
+ 620:	add	r2, sp, #20
+ 624:	bl	0 <__flatcc_fb_read_file>
+ 628:	subs	r1, r0, #0
+ 62c:	bne	448 <flatcc_parse_file+0xc4>
+ 630:	mov	r0, r6
+ 634:	bl	0 <free>
+ 638:	ldr	r3, [r4, #128]	; 0x80
+ 63c:	ldr	r2, [sp, #20]
+ 640:	cmp	r3, #0
+ 644:	cmpne	r3, r2
+ 648:	bcc	870 <flatcc_parse_file+0x4ec>
+ 64c:	mov	r2, r7
+ 650:	mov	r0, r4
+ 654:	ldr	r1, [pc, #644]	; 8e0 <flatcc_parse_file+0x55c>
+ 658:	bl	0 <__flatcc_fb_print_error>
+ 65c:	mvn	sl, #0
+ 660:	b	3c4 <flatcc_parse_file+0x40>
+ 664:	ldr	sl, [sp, #8]
+ 668:	mov	r0, r8
+ 66c:	bl	0 <free>
+ 670:	mov	r0, sl
+ 674:	add	sp, sp, #28
+ 678:	pop	{r4, r5, r6, r7, r8, r9, sl, fp, pc}
+ 67c:	mov	r0, r7
+ 680:	ldr	sl, [sp, #8]
+ 684:	bl	0 <free>
+ 688:	b	668 <flatcc_parse_file+0x2e4>
+ 68c:	mov	r1, r9
+ 690:	mov	r2, #1
+ 694:	add	r0, r4, #524	; 0x20c
+ 698:	bl	0 <ptr_set_insert_item>
+ 69c:	mov	r0, r4
+ 6a0:	bl	0 <__flatcc_fb_build_schema>
+ 6a4:	subs	sl, r0, #0
+ 6a8:	bne	3c0 <flatcc_parse_file+0x3c>
+ 6ac:	ldr	r3, [r4, #240]	; 0xf0
+ 6b0:	ldr	r2, [sp, #12]
+ 6b4:	adds	r3, r3, #0
+ 6b8:	movne	r3, #1
+ 6bc:	cmp	r2, #0
+ 6c0:	movne	r3, #0
+ 6c4:	cmp	r3, #0
+ 6c8:	beq	3c0 <flatcc_parse_file+0x3c>
+ 6cc:	ldr	r3, [r4, #552]	; 0x228
+ 6d0:	cmp	r3, #0
+ 6d4:	bne	884 <flatcc_parse_file+0x500>
+ 6d8:	ldr	r5, [r4, #344]	; 0x158
+ 6dc:	ldr	r2, [pc, #500]	; 8d8 <flatcc_parse_file+0x554>
+ 6e0:	ldr	r1, [r4, #244]	; 0xf4
+ 6e4:	cmp	r5, #0
+ 6e8:	moveq	r5, r2
+ 6ec:	ldr	r3, [r4, #512]	; 0x200
+ 6f0:	cmp	r1, #0
+ 6f4:	ldr	r8, [r4, #248]	; 0xf8
+ 6f8:	moveq	r0, r5
+ 6fc:	moveq	r1, r3
+ 700:	ldreq	r2, [pc, #476]	; 8e4 <flatcc_parse_file+0x560>
+ 704:	movne	r0, r2
+ 708:	cmp	r8, #0
+ 70c:	beq	8bc <flatcc_parse_file+0x538>
+ 710:	ldr	r5, [pc, #448]	; 8d8 <flatcc_parse_file+0x554>
+ 714:	mov	r6, r5
+ 718:	mov	r3, #1
+ 71c:	bl	0 <__flatcc_fb_create_join_path>
+ 720:	subs	r7, r0, #0
+ 724:	beq	83c <flatcc_parse_file+0x4b8>
+ 728:	mov	r0, r5
+ 72c:	mov	r2, r6
+ 730:	mov	r1, r8
+ 734:	mov	r3, #1
+ 738:	bl	0 <__flatcc_fb_create_join_path>
+ 73c:	subs	r5, r0, #0
+ 740:	beq	83c <flatcc_parse_file+0x4b8>
+ 744:	bl	0 <__flatcc_fb_create_make_path>
+ 748:	subs	r8, r0, #0
+ 74c:	beq	83c <flatcc_parse_file+0x4b8>
+ 750:	mov	r0, r5
+ 754:	bl	0 <free>
+ 758:	ldr	r1, [pc, #392]	; 8e8 <flatcc_parse_file+0x564>
+ 75c:	mov	r0, r7
+ 760:	bl	0 <fopen>
+ 764:	subs	r6, r0, #0
+ 768:	beq	898 <flatcc_parse_file+0x514>
+ 76c:	mov	r2, r8
+ 770:	ldr	r1, [pc, #372]	; 8ec <flatcc_parse_file+0x568>
+ 774:	bl	0 <fprintf>
+ 778:	ldr	r4, [r4]
+ 77c:	cmp	r4, #0
+ 780:	ldrne	r9, [pc, #360]	; 8f0 <flatcc_parse_file+0x56c>
+ 784:	beq	7bc <flatcc_parse_file+0x438>
+ 788:	ldr	r0, [r4, #548]	; 0x224
+ 78c:	bl	0 <__flatcc_fb_create_make_path>
+ 790:	subs	r5, r0, #0
+ 794:	beq	83c <flatcc_parse_file+0x4b8>
+ 798:	mov	r2, r5
+ 79c:	mov	r1, r9
+ 7a0:	mov	r0, r6
+ 7a4:	bl	0 <fprintf>
+ 7a8:	ldr	r4, [r4]
+ 7ac:	mov	r0, r5
+ 7b0:	bl	0 <free>
+ 7b4:	cmp	r4, #0
+ 7b8:	bne	788 <flatcc_parse_file+0x404>
+ 7bc:	mov	r1, r6
+ 7c0:	mov	r0, #10
+ 7c4:	bl	0 <fputc>
+ 7c8:	mov	r0, r7
+ 7cc:	bl	0 <free>
+ 7d0:	mov	r0, r8
+ 7d4:	bl	0 <free>
+ 7d8:	mov	r0, r6
+ 7dc:	bl	0 <fclose>
+ 7e0:	b	3c4 <flatcc_parse_file+0x40>
+ 7e4:	mov	r0, r4
+ 7e8:	ldr	r1, [pc, #260]	; 8f4 <flatcc_parse_file+0x570>
+ 7ec:	ldr	sl, [sp, #8]
+ 7f0:	bl	0 <__flatcc_fb_print_error>
+ 7f4:	b	668 <flatcc_parse_file+0x2e4>
+ 7f8:	mov	r0, r4
+ 7fc:	ldr	r1, [pc, #244]	; 8f8 <flatcc_parse_file+0x574>
+ 800:	ldr	sl, [sp, #8]
+ 804:	bl	0 <__flatcc_fb_print_error>
+ 808:	b	668 <flatcc_parse_file+0x2e4>
+ 80c:	ldr	r1, [r4, #128]	; 0x80
+ 810:	add	r2, sp, #20
+ 814:	mov	r0, r7
+ 818:	bl	0 <__flatcc_fb_read_file>
+ 81c:	subs	r1, r0, #0
+ 820:	beq	840 <flatcc_parse_file+0x4bc>
+ 824:	mov	r0, r7
+ 828:	str	r1, [sp, #8]
+ 82c:	bl	0 <__flatcc_fb_copy_path>
+ 830:	ldr	r1, [sp, #8]
+ 834:	subs	r6, r0, #0
+ 838:	bne	448 <flatcc_parse_file+0xc4>
+ 83c:	bl	c <checkmem.part.0>
+ 840:	ldr	r3, [r4, #412]	; 0x19c
+ 844:	ldr	r1, [sp, #20]
+ 848:	ldr	r2, [r4, #128]	; 0x80
+ 84c:	ldr	r3, [r3, #56]	; 0x38
+ 850:	add	r3, r3, r1
+ 854:	cmp	r2, #0
+ 858:	cmpne	r3, r2
+ 85c:	bhi	870 <flatcc_parse_file+0x4ec>
+ 860:	ldr	r3, [r4, #336]	; 0x150
+ 864:	cmp	r3, #0
+ 868:	ble	64c <flatcc_parse_file+0x2c8>
+ 86c:	b	3f4 <flatcc_parse_file+0x70>
+ 870:	mov	r0, r4
+ 874:	ldr	r1, [pc, #128]	; 8fc <flatcc_parse_file+0x578>
+ 878:	bl	0 <__flatcc_fb_print_error>
+ 87c:	mvn	sl, #0
+ 880:	b	3c4 <flatcc_parse_file+0x40>
+ 884:	ldr	r3, [pc, #116]	; 900 <flatcc_parse_file+0x57c>
+ 888:	mov	r2, #220	; 0xdc
+ 88c:	ldr	r1, [pc, #112]	; 904 <flatcc_parse_file+0x580>
+ 890:	ldr	r0, [pc, #112]	; 908 <flatcc_parse_file+0x584>
+ 894:	bl	0 <__assert_fail>
+ 898:	mov	r2, r7
+ 89c:	ldr	r1, [pc, #104]	; 90c <flatcc_parse_file+0x588>
+ 8a0:	mov	r0, r4
+ 8a4:	bl	0 <__flatcc_fb_print_error>
+ 8a8:	mov	r0, r7
+ 8ac:	bl	0 <free>
+ 8b0:	mov	r0, r8
+ 8b4:	bl	0 <free>
+ 8b8:	b	3c4 <flatcc_parse_file+0x40>
+ 8bc:	ldr	lr, [r4, #308]	; 0x134
+ 8c0:	ldr	ip, [pc, #72]	; 910 <flatcc_parse_file+0x58c>
+ 8c4:	cmp	lr, #0
+ 8c8:	ldr	r6, [pc, #68]	; 914 <flatcc_parse_file+0x590>
+ 8cc:	mov	r8, r3
+ 8d0:	movne	r6, ip
+ 8d4:	b	718 <flatcc_parse_file+0x394>
+ 8d8:	.word	0x00000060
+ 8dc:	.word	0x00000000
+ 8e0:	.word	0x00000078
+ 8e4:	.word	0x00000064
+ 8e8:	.word	0x00000148
+ 8ec:	.word	0x0000017c
+ 8f0:	.word	0x00000180
+ 8f4:	.word	0x000000c0
+ 8f8:	.word	0x000000a0
+ 8fc:	.word	0x0000003c
+ 900:	.word	0x00000000
+ 904:	.word	0x000000e0
+ 908:	.word	0x00000130
+ 90c:	.word	0x0000014c
+ 910:	.word	0x0000002c
+ 914:	.word	0x0000006c

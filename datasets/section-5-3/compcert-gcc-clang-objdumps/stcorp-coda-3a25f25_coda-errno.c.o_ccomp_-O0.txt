@@ -1,0 +1,352 @@
+
+../repos/stcorp-coda-3a25f25/CMakeFiles/coda.dir/libcoda/coda-errno.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <coda_get_errno>:
+   0:	mov	ip, sp
+   4:	sub	sp, sp, #8
+   8:	str	ip, [sp]
+   c:	str	lr, [sp, #4]
+  10:	ldr	r0, [pc, #8]	; 20 <coda_get_errno+0x20>
+  14:	ldr	lr, [sp, #4]
+  18:	add	sp, sp, #8
+  1c:	bx	lr
+  20:	.word	0x00000000
+
+00000024 <coda_add_error_message_vargs>:
+  24:	mov	ip, sp
+  28:	sub	sp, sp, #32
+  2c:	sub	sp, sp, #4096	; 0x1000
+  30:	str	ip, [sp]
+  34:	str	lr, [sp, #4]
+  38:	str	r4, [sp, #8]
+  3c:	str	r5, [sp, #12]
+  40:	str	r6, [sp, #16]
+  44:	mov	r5, r1
+  48:	mov	r6, r0
+  4c:	cmp	r6, #0
+  50:	beq	c4 <coda_add_error_message_vargs+0xa0>
+  54:	ldr	r0, [pc, #128]	; dc <coda_add_error_message_vargs+0xb8>
+  58:	bl	0 <strlen>
+  5c:	mov	r4, r0
+  60:	cmp	r4, #4096	; 0x1000
+  64:	bge	c4 <coda_add_error_message_vargs+0xa0>
+  68:	cmp	r4, #0
+  6c:	bne	94 <coda_add_error_message_vargs+0x70>
+  70:	ldr	r1, [pc, #104]	; e0 <coda_add_error_message_vargs+0xbc>
+  74:	ldr	r0, [r1]
+  78:	bl	288 <coda_errno_to_string>
+  7c:	mov	r1, r0
+  80:	add	r0, sp, #24
+  84:	bl	0 <strcpy>
+  88:	add	r0, sp, #24
+  8c:	bl	0 <strlen>
+  90:	mov	r4, r0
+  94:	add	r0, sp, #24
+  98:	rsb	r1, r4, #4096	; 0x1000
+  9c:	mov	r3, r5
+  a0:	mov	r2, r6
+  a4:	bl	0 <vsnprintf>
+  a8:	add	r2, sp, #24
+  ac:	rsb	r0, r4, #4096	; 0x1000
+  b0:	mov	r3, #0
+  b4:	strb	r3, [r2, r0]
+  b8:	ldr	r0, [pc, #28]	; dc <coda_add_error_message_vargs+0xb8>
+  bc:	add	r1, sp, #24
+  c0:	bl	0 <strcat>
+  c4:	ldr	r4, [sp, #8]
+  c8:	ldr	r5, [sp, #12]
+  cc:	ldr	r6, [sp, #16]
+  d0:	ldr	lr, [sp, #4]
+  d4:	ldr	sp, [sp]
+  d8:	bx	lr
+	...
+
+000000e4 <coda_add_error_message>:
+  e4:	mov	ip, sp
+  e8:	push	{r0, r1, r2, r3}
+  ec:	sub	sp, sp, #16
+  f0:	str	ip, [sp]
+  f4:	str	lr, [sp, #4]
+  f8:	add	r1, sp, #8
+  fc:	add	lr, sp, #20
+ 100:	str	lr, [r1]
+ 104:	ldr	r1, [sp, #8]
+ 108:	bl	24 <coda_add_error_message_vargs>
+ 10c:	ldr	lr, [sp, #4]
+ 110:	add	sp, sp, #32
+ 114:	bx	lr
+
+00000118 <coda_set_error_message_vargs>:
+ 118:	mov	ip, sp
+ 11c:	sub	sp, sp, #16
+ 120:	sub	sp, sp, #4096	; 0x1000
+ 124:	str	ip, [sp]
+ 128:	str	lr, [sp, #4]
+ 12c:	cmp	r0, #0
+ 130:	beq	170 <coda_set_error_message_vargs+0x58>
+ 134:	add	r3, sp, #8
+ 138:	mov	r2, #4096	; 0x1000
+ 13c:	mov	ip, r1
+ 140:	mov	r1, r2
+ 144:	mov	r2, r0
+ 148:	mov	r0, r3
+ 14c:	mov	r3, ip
+ 150:	bl	0 <vsnprintf>
+ 154:	mov	r0, #0
+ 158:	add	lr, sp, #4096	; 0x1000
+ 15c:	strb	r0, [lr, #8]
+ 160:	ldr	r0, [pc, #32]	; 188 <coda_set_error_message_vargs+0x70>
+ 164:	add	r1, sp, #8
+ 168:	bl	0 <strcpy>
+ 16c:	b	17c <coda_set_error_message_vargs+0x64>
+ 170:	ldr	ip, [pc, #16]	; 188 <coda_set_error_message_vargs+0x70>
+ 174:	mov	r0, #0
+ 178:	strb	r0, [ip]
+ 17c:	ldr	lr, [sp, #4]
+ 180:	ldr	sp, [sp]
+ 184:	bx	lr
+ 188:	.word	0x00000000
+
+0000018c <coda_set_error_message>:
+ 18c:	mov	ip, sp
+ 190:	push	{r0, r1, r2, r3}
+ 194:	sub	sp, sp, #16
+ 198:	str	ip, [sp]
+ 19c:	str	lr, [sp, #4]
+ 1a0:	add	r1, sp, #8
+ 1a4:	add	lr, sp, #20
+ 1a8:	str	lr, [r1]
+ 1ac:	ldr	r1, [sp, #8]
+ 1b0:	bl	118 <coda_set_error_message_vargs>
+ 1b4:	ldr	lr, [sp, #4]
+ 1b8:	add	sp, sp, #32
+ 1bc:	bx	lr
+
+000001c0 <add_error_message>:
+ 1c0:	mov	ip, sp
+ 1c4:	push	{r0, r1, r2, r3}
+ 1c8:	sub	sp, sp, #16
+ 1cc:	str	ip, [sp]
+ 1d0:	str	lr, [sp, #4]
+ 1d4:	add	r1, sp, #8
+ 1d8:	add	lr, sp, #20
+ 1dc:	str	lr, [r1]
+ 1e0:	ldr	r1, [sp, #8]
+ 1e4:	bl	24 <coda_add_error_message_vargs>
+ 1e8:	mov	r0, #0
+ 1ec:	ldr	lr, [sp, #4]
+ 1f0:	add	sp, sp, #32
+ 1f4:	bx	lr
+
+000001f8 <coda_cursor_add_to_error_message>:
+ 1f8:	mov	ip, sp
+ 1fc:	sub	sp, sp, #16
+ 200:	str	ip, [sp]
+ 204:	str	lr, [sp, #4]
+ 208:	str	r4, [sp, #8]
+ 20c:	mov	r4, r0
+ 210:	ldr	r0, [pc, #32]	; 238 <coda_cursor_add_to_error_message+0x40>
+ 214:	bl	e4 <coda_add_error_message>
+ 218:	ldr	r1, [pc, #20]	; 234 <coda_cursor_add_to_error_message+0x3c>
+ 21c:	mov	r0, r4
+ 220:	bl	0 <coda_cursor_print_path>
+ 224:	ldr	r4, [sp, #8]
+ 228:	ldr	lr, [sp, #4]
+ 22c:	add	sp, sp, #16
+ 230:	bx	lr
+ 234:	.word	0x00000000
+ 238:	.word	0x00000106
+
+0000023c <coda_set_error>:
+ 23c:	mov	ip, sp
+ 240:	push	{r0, r1, r2, r3}
+ 244:	sub	sp, sp, #16
+ 248:	str	ip, [sp]
+ 24c:	str	lr, [sp, #4]
+ 250:	mov	ip, r1
+ 254:	mov	r1, r0
+ 258:	mov	r0, ip
+ 25c:	ldr	r3, [pc, #32]	; 284 <coda_set_error+0x48>
+ 260:	str	r1, [r3]
+ 264:	add	r2, sp, #8
+ 268:	add	lr, sp, #24
+ 26c:	str	lr, [r2]
+ 270:	ldr	r1, [sp, #8]
+ 274:	bl	118 <coda_set_error_message_vargs>
+ 278:	ldr	lr, [sp, #4]
+ 27c:	add	sp, sp, #32
+ 280:	bx	lr
+ 284:	.word	0x00000000
+
+00000288 <coda_errno_to_string>:
+ 288:	mov	ip, sp
+ 28c:	sub	sp, sp, #8
+ 290:	str	ip, [sp]
+ 294:	str	lr, [sp, #4]
+ 298:	ldr	r2, [pc, #616]	; 508 <coda_errno_to_string+0x280>
+ 29c:	ldr	r1, [r2]
+ 2a0:	cmp	r0, r1
+ 2a4:	bne	2c0 <coda_errno_to_string+0x38>
+ 2a8:	ldr	r1, [pc, #584]	; 4f8 <coda_errno_to_string+0x270>
+ 2ac:	ldrb	r1, [r1]
+ 2b0:	cmp	r1, #0
+ 2b4:	movne	r1, #1
+ 2b8:	moveq	r1, #0
+ 2bc:	b	2c4 <coda_errno_to_string+0x3c>
+ 2c0:	mov	r1, #0
+ 2c4:	cmp	r1, #0
+ 2c8:	bne	4a8 <coda_errno_to_string+0x220>
+ 2cc:	cmn	r0, #102	; 0x66
+ 2d0:	bcs	3a8 <coda_errno_to_string+0x120>
+ 2d4:	cmn	r0, #108	; 0x6c
+ 2d8:	bcs	350 <coda_errno_to_string+0xc8>
+ 2dc:	mvn	lr, #300	; 0x12c
+ 2e0:	cmp	r0, lr
+ 2e4:	bcs	31c <coda_errno_to_string+0x94>
+ 2e8:	cmp	r0, #0
+ 2ec:	beq	314 <coda_errno_to_string+0x8c>
+ 2f0:	mvn	lr, #400	; 0x190
+ 2f4:	cmp	r0, lr
+ 2f8:	beq	30c <coda_errno_to_string+0x84>
+ 2fc:	cmn	r0, #400	; 0x190
+ 300:	bne	480 <coda_errno_to_string+0x1f8>
+ 304:	ldr	r0, [pc, #480]	; 4ec <coda_errno_to_string+0x264>
+ 308:	b	4ac <coda_errno_to_string+0x224>
+ 30c:	ldr	r0, [pc, #448]	; 4d4 <coda_errno_to_string+0x24c>
+ 310:	b	4ac <coda_errno_to_string+0x224>
+ 314:	ldr	r0, [pc, #480]	; 4fc <coda_errno_to_string+0x274>
+ 318:	b	4ac <coda_errno_to_string+0x224>
+ 31c:	mvn	lr, #300	; 0x12c
+ 320:	cmp	r0, lr
+ 324:	beq	348 <coda_errno_to_string+0xc0>
+ 328:	cmn	r0, #300	; 0x12c
+ 32c:	beq	340 <coda_errno_to_string+0xb8>
+ 330:	cmn	r0, #200	; 0xc8
+ 334:	bne	480 <coda_errno_to_string+0x1f8>
+ 338:	ldr	r0, [pc, #408]	; 4d8 <coda_errno_to_string+0x250>
+ 33c:	b	4ac <coda_errno_to_string+0x224>
+ 340:	ldr	r0, [pc, #452]	; 50c <coda_errno_to_string+0x284>
+ 344:	b	4ac <coda_errno_to_string+0x224>
+ 348:	ldr	r0, [pc, #364]	; 4bc <coda_errno_to_string+0x234>
+ 34c:	b	4ac <coda_errno_to_string+0x224>
+ 350:	cmn	r0, #105	; 0x69
+ 354:	bcs	380 <coda_errno_to_string+0xf8>
+ 358:	cmn	r0, #108	; 0x6c
+ 35c:	beq	378 <coda_errno_to_string+0xf0>
+ 360:	cmn	r0, #107	; 0x6b
+ 364:	beq	370 <coda_errno_to_string+0xe8>
+ 368:	ldr	r0, [pc, #432]	; 520 <coda_errno_to_string+0x298>
+ 36c:	b	4ac <coda_errno_to_string+0x224>
+ 370:	ldr	r0, [pc, #344]	; 4d0 <coda_errno_to_string+0x248>
+ 374:	b	4ac <coda_errno_to_string+0x224>
+ 378:	ldr	r0, [pc, #372]	; 4f4 <coda_errno_to_string+0x26c>
+ 37c:	b	4ac <coda_errno_to_string+0x224>
+ 380:	cmn	r0, #105	; 0x69
+ 384:	beq	3a0 <coda_errno_to_string+0x118>
+ 388:	cmn	r0, #104	; 0x68
+ 38c:	beq	398 <coda_errno_to_string+0x110>
+ 390:	ldr	r0, [pc, #380]	; 514 <coda_errno_to_string+0x28c>
+ 394:	b	4ac <coda_errno_to_string+0x224>
+ 398:	ldr	r0, [pc, #292]	; 4c4 <coda_errno_to_string+0x23c>
+ 39c:	b	4ac <coda_errno_to_string+0x224>
+ 3a0:	ldr	r0, [pc, #360]	; 510 <coda_errno_to_string+0x288>
+ 3a4:	b	4ac <coda_errno_to_string+0x224>
+ 3a8:	cmn	r0, #20
+ 3ac:	bcs	410 <coda_errno_to_string+0x188>
+ 3b0:	cmn	r0, #23
+ 3b4:	bcs	3e8 <coda_errno_to_string+0x160>
+ 3b8:	cmn	r0, #102	; 0x66
+ 3bc:	beq	3e0 <coda_errno_to_string+0x158>
+ 3c0:	cmn	r0, #101	; 0x65
+ 3c4:	beq	3d8 <coda_errno_to_string+0x150>
+ 3c8:	cmn	r0, #100	; 0x64
+ 3cc:	bne	480 <coda_errno_to_string+0x1f8>
+ 3d0:	ldr	r0, [pc, #300]	; 504 <coda_errno_to_string+0x27c>
+ 3d4:	b	4ac <coda_errno_to_string+0x224>
+ 3d8:	ldr	r0, [pc, #324]	; 524 <coda_errno_to_string+0x29c>
+ 3dc:	b	4ac <coda_errno_to_string+0x224>
+ 3e0:	ldr	r0, [pc, #264]	; 4f0 <coda_errno_to_string+0x268>
+ 3e4:	b	4ac <coda_errno_to_string+0x224>
+ 3e8:	cmn	r0, #23
+ 3ec:	beq	408 <coda_errno_to_string+0x180>
+ 3f0:	cmn	r0, #22
+ 3f4:	beq	400 <coda_errno_to_string+0x178>
+ 3f8:	ldr	r0, [pc, #280]	; 518 <coda_errno_to_string+0x290>
+ 3fc:	b	4ac <coda_errno_to_string+0x224>
+ 400:	ldr	r0, [pc, #212]	; 4dc <coda_errno_to_string+0x254>
+ 404:	b	4ac <coda_errno_to_string+0x224>
+ 408:	ldr	r0, [pc, #188]	; 4cc <coda_errno_to_string+0x244>
+ 40c:	b	4ac <coda_errno_to_string+0x224>
+ 410:	cmn	r0, #12
+ 414:	bcs	448 <coda_errno_to_string+0x1c0>
+ 418:	cmn	r0, #20
+ 41c:	beq	440 <coda_errno_to_string+0x1b8>
+ 420:	cmn	r0, #14
+ 424:	beq	438 <coda_errno_to_string+0x1b0>
+ 428:	cmn	r0, #13
+ 42c:	bne	480 <coda_errno_to_string+0x1f8>
+ 430:	ldr	r0, [pc, #200]	; 500 <coda_errno_to_string+0x278>
+ 434:	b	4ac <coda_errno_to_string+0x224>
+ 438:	ldr	r0, [pc, #220]	; 51c <coda_errno_to_string+0x294>
+ 43c:	b	4ac <coda_errno_to_string+0x224>
+ 440:	ldr	r0, [pc, #112]	; 4b8 <coda_errno_to_string+0x230>
+ 444:	b	4ac <coda_errno_to_string+0x224>
+ 448:	cmn	r0, #10
+ 44c:	bcs	468 <coda_errno_to_string+0x1e0>
+ 450:	cmn	r0, #12
+ 454:	beq	460 <coda_errno_to_string+0x1d8>
+ 458:	ldr	r0, [pc, #128]	; 4e0 <coda_errno_to_string+0x258>
+ 45c:	b	4ac <coda_errno_to_string+0x224>
+ 460:	ldr	r0, [pc, #88]	; 4c0 <coda_errno_to_string+0x238>
+ 464:	b	4ac <coda_errno_to_string+0x224>
+ 468:	cmn	r0, #10
+ 46c:	beq	4a0 <coda_errno_to_string+0x218>
+ 470:	cmn	r0, #1
+ 474:	bne	480 <coda_errno_to_string+0x1f8>
+ 478:	ldr	r0, [pc, #100]	; 4e4 <coda_errno_to_string+0x25c>
+ 47c:	b	4ac <coda_errno_to_string+0x224>
+ 480:	ldr	r3, [pc, #128]	; 508 <coda_errno_to_string+0x280>
+ 484:	ldr	ip, [r3]
+ 488:	cmp	r0, ip
+ 48c:	beq	498 <coda_errno_to_string+0x210>
+ 490:	ldr	r0, [pc, #48]	; 4c8 <coda_errno_to_string+0x240>
+ 494:	b	4ac <coda_errno_to_string+0x224>
+ 498:	ldr	r0, [pc, #88]	; 4f8 <coda_errno_to_string+0x270>
+ 49c:	b	4ac <coda_errno_to_string+0x224>
+ 4a0:	ldr	r0, [pc, #64]	; 4e8 <coda_errno_to_string+0x260>
+ 4a4:	b	4ac <coda_errno_to_string+0x224>
+ 4a8:	ldr	r0, [pc, #72]	; 4f8 <coda_errno_to_string+0x270>
+ 4ac:	ldr	lr, [sp, #4]
+ 4b0:	add	sp, sp, #8
+ 4b4:	bx	lr
+ 4b8:	.word	0x000001b7
+ 4bc:	.word	0x000002a6
+ 4c0:	.word	0x0000007a
+ 4c4:	.word	0x000001c6
+ 4c8:	.word	0x000002d2
+ 4cc:	.word	0x000000e9
+ 4d0:	.word	0x000000b8
+ 4d4:	.word	0x00000250
+ 4d8:	.word	0x00000126
+ 4dc:	.word	0x0000013f
+ 4e0:	.word	0x000001e1
+ 4e4:	.word	0x00000242
+ 4e8:	.word	0x00000098
+ 4ec:	.word	0x00000283
+ 4f0:	.word	0x00000064
+ 4f4:	.word	0x000000a3
+ 4f8:	.word	0x00000000
+ 4fc:	.word	0x00000085
+ 500:	.word	0x0000015d
+ 504:	.word	0x000002d3
+ 508:	.word	0x00000000
+ 50c:	.word	0x00000025
+ 510:	.word	0x000001aa
+ 514:	.word	0x0000010b
+ 518:	.word	0x0000022e
+ 51c:	.word	0x00000000
+ 520:	.word	0x0000003c
+ 524:	.word	0x000000d2

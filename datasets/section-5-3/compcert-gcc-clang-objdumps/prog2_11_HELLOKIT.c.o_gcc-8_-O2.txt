@@ -1,0 +1,143 @@
+
+../compcert-repos/prog2/CMakeFiles/0.11.2.dir/Aula00_Conceitos_base/11_HELLOKIT.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <R_ShiftString>:
+   0:	strd	r4, [sp, #-24]!	; 0xffffffe8
+   4:	mov	r5, r1
+   8:	strd	r6, [sp, #8]
+   c:	mov	r6, r0
+  10:	str	r8, [sp, #16]
+  14:	sub	r4, r6, #1
+  18:	rsb	r7, r6, #2
+  1c:	str	lr, [sp, #20]
+  20:	bl	0 <strlen>
+  24:	add	r0, r6, r0
+  28:	ldrb	r3, [r0, #-1]
+  2c:	strb	r3, [r5], #1
+  30:	b	3c <R_ShiftString+0x3c>
+  34:	ldrb	r3, [r4, #1]!
+  38:	strb	r3, [r5], #1
+  3c:	mov	r0, r6
+  40:	bl	0 <strlen>
+  44:	add	r3, r7, r4
+  48:	cmp	r0, r3
+  4c:	bhi	34 <R_ShiftString+0x34>
+  50:	mov	r3, #0
+  54:	strb	r3, [r5]
+  58:	ldrd	r4, [sp]
+  5c:	ldrd	r6, [sp, #8]
+  60:	ldr	r8, [sp, #16]
+  64:	add	sp, sp, #20
+  68:	pop	{pc}		; (ldr pc, [sp], #4)
+
+0000006c <L_ShiftString>:
+  6c:	strd	r4, [sp, #-24]!	; 0xffffffe8
+  70:	mov	r4, #1
+  74:	strd	r6, [sp, #8]
+  78:	mov	r7, r0
+  7c:	str	r8, [sp, #16]
+  80:	mov	r8, r1
+  84:	mov	r6, r7
+  88:	str	lr, [sp, #20]
+  8c:	sub	r5, r8, #1
+  90:	bl	0 <strlen>
+  94:	ldrb	r3, [r7]
+  98:	add	r0, r8, r0
+  9c:	strb	r3, [r0, #-1]
+  a0:	b	b0 <L_ShiftString+0x44>
+  a4:	ldrb	r3, [r6, #1]!
+  a8:	add	r4, r4, #1
+  ac:	strb	r3, [r5, #1]!
+  b0:	mov	r0, r7
+  b4:	bl	0 <strlen>
+  b8:	cmp	r0, r4
+  bc:	bhi	a4 <L_ShiftString+0x38>
+  c0:	mov	r3, #0
+  c4:	strb	r3, [r8, r4]
+  c8:	ldrd	r4, [sp]
+  cc:	ldrd	r6, [sp, #8]
+  d0:	ldr	r8, [sp, #16]
+  d4:	add	sp, sp, #20
+  d8:	pop	{pc}		; (ldr pc, [sp], #4)
+
+000000dc <StringSet>:
+  dc:	strd	r4, [sp, #-16]!
+  e0:	mov	r4, #0
+  e4:	subs	r5, r2, #0
+  e8:	str	r6, [sp, #8]
+  ec:	str	lr, [sp, #12]
+  f0:	strb	r4, [r1]
+  f4:	ble	11c <StringSet+0x40>
+  f8:	mov	r6, r0
+  fc:	mov	r3, r1
+ 100:	mov	r0, r3
+ 104:	add	r4, r4, #1
+ 108:	mov	r1, r6
+ 10c:	bl	0 <strcat>
+ 110:	cmp	r5, r4
+ 114:	mov	r3, r0
+ 118:	bne	100 <StringSet+0x24>
+ 11c:	ldrd	r4, [sp]
+ 120:	ldr	r6, [sp, #8]
+ 124:	add	sp, sp, #12
+ 128:	pop	{pc}		; (ldr pc, [sp], #4)
+
+Disassembly of section .text.startup:
+
+00000000 <main>:
+   0:	mov	r3, #0
+   4:	strd	r4, [sp, #-16]!
+   8:	movw	r5, #0
+   c:	movt	r5, #0
+  10:	str	r6, [sp, #8]
+  14:	movw	r6, #0
+  18:	movt	r6, #0
+  1c:	str	lr, [sp, #12]
+  20:	sub	sp, sp, #104	; 0x68
+  24:	str	r3, [sp, #20]
+  28:	str	r3, [sp, #24]
+  2c:	str	r3, [sp, #28]
+  30:	str	r3, [sp, #32]
+  34:	str	r3, [sp, #36]	; 0x24
+  38:	str	r3, [sp, #40]	; 0x28
+  3c:	strh	r3, [sp, #44]	; 0x2c
+  40:	add	r1, sp, #8
+  44:	mov	r0, r5
+  48:	bl	0 <__isoc99_scanf>
+  4c:	ldrb	r3, [sp, #8]
+  50:	cmp	r3, #46	; 0x2e
+  54:	beq	bc <main+0xbc>
+  58:	add	r1, sp, #4
+  5c:	mov	r0, r6
+  60:	bl	0 <__isoc99_scanf>
+  64:	add	r1, sp, #20
+  68:	add	r0, sp, #8
+  6c:	ldr	r2, [sp, #4]
+  70:	bl	dc <StringSet>
+  74:	add	r0, sp, #20
+  78:	add	r1, sp, #48	; 0x30
+  7c:	bl	0 <main>
+  80:	add	r1, sp, #48	; 0x30
+  84:	add	r0, sp, #20
+  88:	bl	0 <strcmp>
+  8c:	mov	r4, r0
+  90:	add	r0, sp, #20
+  94:	bl	0 <puts>
+  98:	add	r1, sp, #20
+  9c:	add	r0, sp, #76	; 0x4c
+  a0:	bl	0 <strcpy>
+  a4:	add	r1, sp, #20
+  a8:	add	r0, sp, #76	; 0x4c
+  ac:	bl	6c <main+0x6c>
+  b0:	cmp	r4, #0
+  b4:	bne	80 <main+0x80>
+  b8:	b	40 <main+0x40>
+  bc:	mov	r0, #0
+  c0:	add	sp, sp, #104	; 0x68
+  c4:	ldrd	r4, [sp]
+  c8:	ldr	r6, [sp, #8]
+  cc:	add	sp, sp, #12
+  d0:	pop	{pc}		; (ldr pc, [sp], #4)

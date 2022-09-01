@@ -1,0 +1,1273 @@
+
+../compcert-repos/stcorp-coda-3a25f25/CMakeFiles/codadump.dir/tools/codadump/codadump-debug.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <indent>:
+       0:	push	{fp, lr}
+       4:	add	fp, sp, #4
+       8:	sub	sp, sp, #8
+       c:	ldr	r3, [pc, #104]	; 7c <indent+0x7c>
+      10:	ldr	r3, [r3]
+      14:	cmp	r3, #0
+      18:	bge	30 <indent+0x30>
+      1c:	ldr	r3, [pc, #92]	; 80 <indent+0x80>
+      20:	mov	r2, #44	; 0x2c
+      24:	ldr	r1, [pc, #88]	; 84 <indent+0x84>
+      28:	ldr	r0, [pc, #88]	; 88 <indent+0x88>
+      2c:	bl	0 <__assert_fail>
+      30:	ldr	r3, [pc, #68]	; 7c <indent+0x7c>
+      34:	ldr	r3, [r3]
+      38:	str	r3, [fp, #-8]
+      3c:	b	64 <indent+0x64>
+      40:	ldr	r3, [pc, #68]	; 8c <indent+0x8c>
+      44:	ldr	r3, [r3]
+      48:	mov	r2, #2
+      4c:	mov	r1, #1
+      50:	ldr	r0, [pc, #56]	; 90 <indent+0x90>
+      54:	bl	0 <fwrite>
+      58:	ldr	r3, [fp, #-8]
+      5c:	sub	r3, r3, #1
+      60:	str	r3, [fp, #-8]
+      64:	ldr	r3, [fp, #-8]
+      68:	cmp	r3, #0
+      6c:	bgt	40 <indent+0x40>
+      70:	nop			; (mov r0, r0)
+      74:	sub	sp, fp, #4
+      78:	pop	{fp, pc}
+      7c:	.word	0x00000000
+      80:	.word	0x000001c0
+      84:	.word	0x00000000
+      88:	.word	0x00000054
+      8c:	.word	0x00000000
+      90:	.word	0x00000060
+
+00000094 <ff_printf>:
+      94:	push	{r0, r1, r2, r3}
+      98:	push	{fp, lr}
+      9c:	add	fp, sp, #4
+      a0:	sub	sp, sp, #8
+      a4:	add	r3, fp, #8
+      a8:	str	r3, [fp, #-12]
+      ac:	ldr	r3, [pc, #44]	; e0 <ff_printf+0x4c>
+      b0:	ldr	r3, [r3]
+      b4:	ldr	r2, [fp, #-12]
+      b8:	ldr	r1, [fp, #4]
+      bc:	mov	r0, r3
+      c0:	bl	0 <vfprintf>
+      c4:	str	r0, [fp, #-8]
+      c8:	ldr	r3, [fp, #-8]
+      cc:	mov	r0, r3
+      d0:	sub	sp, fp, #4
+      d4:	pop	{fp, lr}
+      d8:	add	sp, sp, #16
+      dc:	bx	lr
+      e0:	.word	0x00000000
+
+000000e4 <fi_printf>:
+      e4:	push	{r0, r1, r2, r3}
+      e8:	push	{fp, lr}
+      ec:	add	fp, sp, #4
+      f0:	sub	sp, sp, #8
+      f4:	bl	0 <indent>
+      f8:	add	r3, fp, #8
+      fc:	str	r3, [fp, #-12]
+     100:	ldr	r3, [pc, #44]	; 134 <fi_printf+0x50>
+     104:	ldr	r3, [r3]
+     108:	ldr	r2, [fp, #-12]
+     10c:	ldr	r1, [fp, #4]
+     110:	mov	r0, r3
+     114:	bl	0 <vfprintf>
+     118:	str	r0, [fp, #-8]
+     11c:	ldr	r3, [fp, #-8]
+     120:	mov	r0, r3
+     124:	sub	sp, fp, #4
+     128:	pop	{fp, lr}
+     12c:	add	sp, sp, #16
+     130:	bx	lr
+     134:	.word	0x00000000
+
+00000138 <print_escaped>:
+     138:	push	{fp, lr}
+     13c:	add	fp, sp, #4
+     140:	sub	sp, sp, #16
+     144:	str	r0, [fp, #-16]
+     148:	str	r1, [fp, #-20]	; 0xffffffec
+     14c:	mov	r3, #0
+     150:	str	r3, [fp, #-8]
+     154:	b	268 <print_escaped+0x130>
+     158:	ldr	r3, [fp, #-8]
+     15c:	ldr	r2, [fp, #-16]
+     160:	add	r3, r2, r3
+     164:	ldrb	r3, [r3]
+     168:	strb	r3, [fp, #-9]
+     16c:	ldrb	r3, [fp, #-9]
+     170:	cmp	r3, #10
+     174:	beq	1e4 <print_escaped+0xac>
+     178:	cmp	r3, #10
+     17c:	bgt	19c <print_escaped+0x64>
+     180:	cmp	r3, #8
+     184:	beq	1cc <print_escaped+0x94>
+     188:	cmp	r3, #8
+     18c:	bgt	1d8 <print_escaped+0xa0>
+     190:	cmp	r3, #7
+     194:	beq	1c0 <print_escaped+0x88>
+     198:	b	220 <print_escaped+0xe8>
+     19c:	cmp	r3, #12
+     1a0:	beq	1fc <print_escaped+0xc4>
+     1a4:	cmp	r3, #12
+     1a8:	blt	1f0 <print_escaped+0xb8>
+     1ac:	cmp	r3, #13
+     1b0:	beq	208 <print_escaped+0xd0>
+     1b4:	cmp	r3, #92	; 0x5c
+     1b8:	beq	214 <print_escaped+0xdc>
+     1bc:	b	220 <print_escaped+0xe8>
+     1c0:	ldr	r0, [pc, #188]	; 284 <print_escaped+0x14c>
+     1c4:	bl	94 <ff_printf>
+     1c8:	b	25c <print_escaped+0x124>
+     1cc:	ldr	r0, [pc, #180]	; 288 <print_escaped+0x150>
+     1d0:	bl	94 <ff_printf>
+     1d4:	b	25c <print_escaped+0x124>
+     1d8:	ldr	r0, [pc, #172]	; 28c <print_escaped+0x154>
+     1dc:	bl	94 <ff_printf>
+     1e0:	b	25c <print_escaped+0x124>
+     1e4:	ldr	r0, [pc, #164]	; 290 <print_escaped+0x158>
+     1e8:	bl	94 <ff_printf>
+     1ec:	b	25c <print_escaped+0x124>
+     1f0:	ldr	r0, [pc, #156]	; 294 <print_escaped+0x15c>
+     1f4:	bl	94 <ff_printf>
+     1f8:	b	25c <print_escaped+0x124>
+     1fc:	ldr	r0, [pc, #148]	; 298 <print_escaped+0x160>
+     200:	bl	94 <ff_printf>
+     204:	b	25c <print_escaped+0x124>
+     208:	ldr	r0, [pc, #140]	; 29c <print_escaped+0x164>
+     20c:	bl	94 <ff_printf>
+     210:	b	25c <print_escaped+0x124>
+     214:	ldr	r0, [pc, #132]	; 2a0 <print_escaped+0x168>
+     218:	bl	94 <ff_printf>
+     21c:	b	25c <print_escaped+0x124>
+     220:	ldrb	r3, [fp, #-9]
+     224:	cmp	r3, #31
+     228:	bls	24c <print_escaped+0x114>
+     22c:	ldrb	r3, [fp, #-9]
+     230:	cmp	r3, #126	; 0x7e
+     234:	bhi	24c <print_escaped+0x114>
+     238:	ldrb	r3, [fp, #-9]
+     23c:	mov	r1, r3
+     240:	ldr	r0, [pc, #92]	; 2a4 <print_escaped+0x16c>
+     244:	bl	94 <ff_printf>
+     248:	b	25c <print_escaped+0x124>
+     24c:	ldrb	r3, [fp, #-9]
+     250:	mov	r1, r3
+     254:	ldr	r0, [pc, #76]	; 2a8 <print_escaped+0x170>
+     258:	bl	94 <ff_printf>
+     25c:	ldr	r3, [fp, #-8]
+     260:	add	r3, r3, #1
+     264:	str	r3, [fp, #-8]
+     268:	ldr	r2, [fp, #-8]
+     26c:	ldr	r3, [fp, #-20]	; 0xffffffec
+     270:	cmp	r2, r3
+     274:	blt	158 <print_escaped+0x20>
+     278:	nop			; (mov r0, r0)
+     27c:	sub	sp, fp, #4
+     280:	pop	{fp, pc}
+     284:	.word	0x00000064
+     288:	.word	0x00000068
+     28c:	.word	0x0000006c
+     290:	.word	0x00000070
+     294:	.word	0x00000074
+     298:	.word	0x00000078
+     29c:	.word	0x0000007c
+     2a0:	.word	0x00000080
+     2a4:	.word	0x00000084
+     2a8:	.word	0x00000088
+
+000002ac <print_data>:
+     2ac:	push	{r4, r5, r6, r7, r8, r9, fp, lr}
+     2b0:	add	fp, sp, #28
+     2b4:	sub	sp, sp, #952	; 0x3b8
+     2b8:	str	r0, [fp, #-952]	; 0xfffffc48
+     2bc:	str	r1, [fp, #-956]	; 0xfffffc44
+     2c0:	sub	r3, fp, #64	; 0x40
+     2c4:	mov	r1, r3
+     2c8:	ldr	r0, [fp, #-952]	; 0xfffffc48
+     2cc:	bl	0 <coda_cursor_has_attributes>
+     2d0:	mov	r3, r0
+     2d4:	cmp	r3, #0
+     2d8:	beq	2e0 <print_data+0x34>
+     2dc:	bl	0 <handle_coda_error>
+     2e0:	ldr	r3, [fp, #-64]	; 0xffffffc0
+     2e4:	cmp	r3, #0
+     2e8:	beq	348 <print_data+0x9c>
+     2ec:	ldr	r0, [fp, #-952]	; 0xfffffc48
+     2f0:	bl	0 <coda_cursor_goto_attributes>
+     2f4:	mov	r3, r0
+     2f8:	cmp	r3, #0
+     2fc:	beq	304 <print_data+0x58>
+     300:	bl	0 <handle_coda_error>
+     304:	ldr	r0, [pc, #3616]	; 112c <print_data+0xe80>
+     308:	bl	e4 <fi_printf>
+     30c:	ldr	r3, [pc, #3612]	; 1130 <print_data+0xe84>
+     310:	ldr	r3, [r3]
+     314:	add	r3, r3, #1
+     318:	ldr	r2, [pc, #3600]	; 1130 <print_data+0xe84>
+     31c:	str	r3, [r2]
+     320:	ldr	r1, [fp, #-956]	; 0xfffffc44
+     324:	ldr	r0, [fp, #-952]	; 0xfffffc48
+     328:	bl	2ac <print_data>
+     32c:	ldr	r3, [pc, #3580]	; 1130 <print_data+0xe84>
+     330:	ldr	r3, [r3]
+     334:	sub	r3, r3, #1
+     338:	ldr	r2, [pc, #3568]	; 1130 <print_data+0xe84>
+     33c:	str	r3, [r2]
+     340:	ldr	r0, [fp, #-952]	; 0xfffffc48
+     344:	bl	0 <coda_cursor_goto_parent>
+     348:	sub	r3, fp, #60	; 0x3c
+     34c:	mov	r1, r3
+     350:	ldr	r0, [fp, #-952]	; 0xfffffc48
+     354:	bl	0 <coda_cursor_get_type_class>
+     358:	mov	r3, r0
+     35c:	cmp	r3, #0
+     360:	beq	368 <print_data+0xbc>
+     364:	bl	0 <handle_coda_error>
+     368:	ldr	r3, [fp, #-60]	; 0xffffffc4
+     36c:	cmp	r3, #6
+     370:	ldrls	pc, [pc, r3, lsl #2]
+     374:	b	1120 <print_data+0xe74>
+     378:	.word	0x00000394
+     37c:	.word	0x00000794
+     380:	.word	0x00000ae0
+     384:	.word	0x00000ae0
+     388:	.word	0x00000ae0
+     38c:	.word	0x00000ae0
+     390:	.word	0x00000f20
+     394:	sub	r3, fp, #68	; 0x44
+     398:	mov	r1, r3
+     39c:	ldr	r0, [fp, #-952]	; 0xfffffc48
+     3a0:	bl	0 <coda_cursor_get_num_elements>
+     3a4:	mov	r3, r0
+     3a8:	cmp	r3, #0
+     3ac:	beq	3b4 <print_data+0x108>
+     3b0:	bl	0 <handle_coda_error>
+     3b4:	ldr	r3, [fp, #-68]	; 0xffffffbc
+     3b8:	cmp	r3, #0
+     3bc:	ble	1104 <print_data+0xe58>
+     3c0:	sub	r3, fp, #72	; 0x48
+     3c4:	mov	r1, r3
+     3c8:	ldr	r0, [fp, #-952]	; 0xfffffc48
+     3cc:	bl	0 <coda_cursor_get_type>
+     3d0:	mov	r3, r0
+     3d4:	cmp	r3, #0
+     3d8:	beq	3e0 <print_data+0x134>
+     3dc:	bl	0 <handle_coda_error>
+     3e0:	ldr	r3, [fp, #-72]	; 0xffffffb8
+     3e4:	sub	r2, fp, #76	; 0x4c
+     3e8:	mov	r1, r2
+     3ec:	mov	r0, r3
+     3f0:	bl	0 <coda_type_get_record_union_status>
+     3f4:	mov	r3, r0
+     3f8:	cmp	r3, #0
+     3fc:	beq	404 <print_data+0x158>
+     400:	bl	0 <handle_coda_error>
+     404:	ldr	r3, [fp, #-76]	; 0xffffffb4
+     408:	cmp	r3, #0
+     40c:	beq	5bc <print_data+0x310>
+     410:	sub	r3, fp, #80	; 0x50
+     414:	mov	r1, r3
+     418:	ldr	r0, [fp, #-952]	; 0xfffffc48
+     41c:	bl	0 <coda_cursor_get_available_union_field_index>
+     420:	mov	r3, r0
+     424:	cmp	r3, #0
+     428:	beq	430 <print_data+0x184>
+     42c:	bl	0 <handle_coda_error>
+     430:	ldr	r3, [fp, #-72]	; 0xffffffb8
+     434:	ldr	r1, [fp, #-80]	; 0xffffffb0
+     438:	sub	r2, fp, #84	; 0x54
+     43c:	mov	r0, r3
+     440:	bl	0 <coda_type_get_record_field_name>
+     444:	mov	r3, r0
+     448:	cmp	r3, #0
+     44c:	beq	454 <print_data+0x1a8>
+     450:	bl	0 <handle_coda_error>
+     454:	ldr	r3, [fp, #-80]	; 0xffffffb0
+     458:	mov	r1, r3
+     45c:	ldr	r0, [fp, #-952]	; 0xfffffc48
+     460:	bl	0 <coda_cursor_goto_record_field_by_index>
+     464:	mov	r3, r0
+     468:	cmp	r3, #0
+     46c:	beq	474 <print_data+0x1c8>
+     470:	bl	0 <handle_coda_error>
+     474:	ldr	r3, [fp, #-84]	; 0xffffffac
+     478:	mov	r1, r3
+     47c:	ldr	r0, [pc, #3248]	; 1134 <print_data+0xe88>
+     480:	bl	e4 <fi_printf>
+     484:	ldr	r3, [pc, #3244]	; 1138 <print_data+0xe8c>
+     488:	ldr	r3, [r3]
+     48c:	cmp	r3, #0
+     490:	beq	53c <print_data+0x290>
+     494:	sub	r3, fp, #92	; 0x5c
+     498:	mov	r1, r3
+     49c:	ldr	r0, [fp, #-952]	; 0xfffffc48
+     4a0:	bl	0 <coda_cursor_get_file_bit_offset>
+     4a4:	mov	r3, r0
+     4a8:	cmp	r3, #0
+     4ac:	beq	4b4 <print_data+0x208>
+     4b0:	bl	0 <handle_coda_error>
+     4b4:	ldrd	r2, [fp, #-92]	; 0xffffffa4
+     4b8:	cmp	r2, #0
+     4bc:	sbcs	r3, r3, #0
+     4c0:	blt	53c <print_data+0x290>
+     4c4:	ldrd	r2, [fp, #-92]	; 0xffffffa4
+     4c8:	lsr	r1, r2, #3
+     4cc:	str	r1, [fp, #-964]	; 0xfffffc3c
+     4d0:	ldr	r1, [fp, #-964]	; 0xfffffc3c
+     4d4:	orr	r1, r1, r3, lsl #29
+     4d8:	str	r1, [fp, #-964]	; 0xfffffc3c
+     4dc:	asr	r3, r3, #3
+     4e0:	str	r3, [fp, #-960]	; 0xfffffc40
+     4e4:	sub	r3, fp, #116	; 0x74
+     4e8:	mov	r2, r3
+     4ec:	sub	r3, fp, #964	; 0x3c4
+     4f0:	ldrd	r0, [r3]
+     4f4:	bl	0 <coda_str64>
+     4f8:	sub	r3, fp, #116	; 0x74
+     4fc:	mov	r1, r3
+     500:	ldr	r0, [pc, #3124]	; 113c <print_data+0xe90>
+     504:	bl	94 <ff_printf>
+     508:	ldrd	r2, [fp, #-92]	; 0xffffffa4
+     50c:	mov	r0, #7
+     510:	mov	r1, #0
+     514:	and	r2, r2, r0
+     518:	and	r3, r3, r1
+     51c:	orrs	r3, r2, r3
+     520:	beq	53c <print_data+0x290>
+     524:	ldrd	r2, [fp, #-92]	; 0xffffffa4
+     528:	mov	r3, r2
+     52c:	and	r3, r3, #7
+     530:	mov	r1, r3
+     534:	ldr	r0, [pc, #3076]	; 1140 <print_data+0xe94>
+     538:	bl	94 <ff_printf>
+     53c:	ldr	r0, [pc, #3072]	; 1144 <print_data+0xe98>
+     540:	bl	94 <ff_printf>
+     544:	ldr	r3, [pc, #3044]	; 1130 <print_data+0xe84>
+     548:	ldr	r3, [r3]
+     54c:	add	r3, r3, #1
+     550:	ldr	r2, [pc, #3032]	; 1130 <print_data+0xe84>
+     554:	str	r3, [r2]
+     558:	ldr	r3, [pc, #3048]	; 1148 <print_data+0xe9c>
+     55c:	ldr	r3, [r3]
+     560:	cmp	r3, #0
+     564:	blt	57c <print_data+0x2d0>
+     568:	ldr	r3, [pc, #3032]	; 1148 <print_data+0xe9c>
+     56c:	ldr	r3, [r3]
+     570:	ldr	r2, [fp, #-956]	; 0xfffffc44
+     574:	cmp	r2, r3
+     578:	bge	594 <print_data+0x2e8>
+     57c:	ldr	r3, [fp, #-956]	; 0xfffffc44
+     580:	add	r3, r3, #1
+     584:	mov	r1, r3
+     588:	ldr	r0, [fp, #-952]	; 0xfffffc48
+     58c:	bl	2ac <print_data>
+     590:	b	59c <print_data+0x2f0>
+     594:	ldr	r0, [pc, #2992]	; 114c <print_data+0xea0>
+     598:	bl	e4 <fi_printf>
+     59c:	ldr	r3, [pc, #2956]	; 1130 <print_data+0xe84>
+     5a0:	ldr	r3, [r3]
+     5a4:	sub	r3, r3, #1
+     5a8:	ldr	r2, [pc, #2944]	; 1130 <print_data+0xe84>
+     5ac:	str	r3, [r2]
+     5b0:	ldr	r0, [fp, #-952]	; 0xfffffc48
+     5b4:	bl	0 <coda_cursor_goto_parent>
+     5b8:	b	1104 <print_data+0xe58>
+     5bc:	ldr	r0, [fp, #-952]	; 0xfffffc48
+     5c0:	bl	0 <coda_cursor_goto_first_record_field>
+     5c4:	mov	r3, r0
+     5c8:	cmp	r3, #0
+     5cc:	beq	5d4 <print_data+0x328>
+     5d0:	bl	0 <handle_coda_error>
+     5d4:	mov	r3, #0
+     5d8:	str	r3, [fp, #-80]	; 0xffffffb0
+     5dc:	b	778 <print_data+0x4cc>
+     5e0:	ldr	r3, [fp, #-72]	; 0xffffffb8
+     5e4:	ldr	r1, [fp, #-80]	; 0xffffffb0
+     5e8:	sub	r2, fp, #120	; 0x78
+     5ec:	mov	r0, r3
+     5f0:	bl	0 <coda_type_get_record_field_name>
+     5f4:	mov	r3, r0
+     5f8:	cmp	r3, #0
+     5fc:	beq	604 <print_data+0x358>
+     600:	bl	0 <handle_coda_error>
+     604:	ldr	r3, [fp, #-120]	; 0xffffff88
+     608:	mov	r1, r3
+     60c:	ldr	r0, [pc, #2848]	; 1134 <print_data+0xe88>
+     610:	bl	e4 <fi_printf>
+     614:	ldr	r3, [pc, #2844]	; 1138 <print_data+0xe8c>
+     618:	ldr	r3, [r3]
+     61c:	cmp	r3, #0
+     620:	beq	6cc <print_data+0x420>
+     624:	sub	r3, fp, #132	; 0x84
+     628:	mov	r1, r3
+     62c:	ldr	r0, [fp, #-952]	; 0xfffffc48
+     630:	bl	0 <coda_cursor_get_file_bit_offset>
+     634:	mov	r3, r0
+     638:	cmp	r3, #0
+     63c:	beq	644 <print_data+0x398>
+     640:	bl	0 <handle_coda_error>
+     644:	ldrd	r2, [fp, #-132]	; 0xffffff7c
+     648:	cmp	r2, #0
+     64c:	sbcs	r3, r3, #0
+     650:	blt	6cc <print_data+0x420>
+     654:	ldrd	r2, [fp, #-132]	; 0xffffff7c
+     658:	lsr	r1, r2, #3
+     65c:	str	r1, [fp, #-972]	; 0xfffffc34
+     660:	ldr	r1, [fp, #-972]	; 0xfffffc34
+     664:	orr	r1, r1, r3, lsl #29
+     668:	str	r1, [fp, #-972]	; 0xfffffc34
+     66c:	asr	r3, r3, #3
+     670:	str	r3, [fp, #-968]	; 0xfffffc38
+     674:	sub	r3, fp, #156	; 0x9c
+     678:	mov	r2, r3
+     67c:	sub	r3, fp, #972	; 0x3cc
+     680:	ldrd	r0, [r3]
+     684:	bl	0 <coda_str64>
+     688:	sub	r3, fp, #156	; 0x9c
+     68c:	mov	r1, r3
+     690:	ldr	r0, [pc, #2724]	; 113c <print_data+0xe90>
+     694:	bl	94 <ff_printf>
+     698:	ldrd	r2, [fp, #-132]	; 0xffffff7c
+     69c:	mov	r0, #7
+     6a0:	mov	r1, #0
+     6a4:	and	r2, r2, r0
+     6a8:	and	r3, r3, r1
+     6ac:	orrs	r3, r2, r3
+     6b0:	beq	6cc <print_data+0x420>
+     6b4:	ldrd	r2, [fp, #-132]	; 0xffffff7c
+     6b8:	mov	r3, r2
+     6bc:	and	r3, r3, #7
+     6c0:	mov	r1, r3
+     6c4:	ldr	r0, [pc, #2676]	; 1140 <print_data+0xe94>
+     6c8:	bl	94 <ff_printf>
+     6cc:	ldr	r0, [pc, #2672]	; 1144 <print_data+0xe98>
+     6d0:	bl	94 <ff_printf>
+     6d4:	ldr	r3, [pc, #2644]	; 1130 <print_data+0xe84>
+     6d8:	ldr	r3, [r3]
+     6dc:	add	r3, r3, #1
+     6e0:	ldr	r2, [pc, #2632]	; 1130 <print_data+0xe84>
+     6e4:	str	r3, [r2]
+     6e8:	ldr	r3, [pc, #2648]	; 1148 <print_data+0xe9c>
+     6ec:	ldr	r3, [r3]
+     6f0:	cmp	r3, #0
+     6f4:	blt	70c <print_data+0x460>
+     6f8:	ldr	r3, [pc, #2632]	; 1148 <print_data+0xe9c>
+     6fc:	ldr	r3, [r3]
+     700:	ldr	r2, [fp, #-956]	; 0xfffffc44
+     704:	cmp	r2, r3
+     708:	bge	724 <print_data+0x478>
+     70c:	ldr	r3, [fp, #-956]	; 0xfffffc44
+     710:	add	r3, r3, #1
+     714:	mov	r1, r3
+     718:	ldr	r0, [fp, #-952]	; 0xfffffc48
+     71c:	bl	2ac <print_data>
+     720:	b	72c <print_data+0x480>
+     724:	ldr	r0, [pc, #2592]	; 114c <print_data+0xea0>
+     728:	bl	e4 <fi_printf>
+     72c:	ldr	r3, [pc, #2556]	; 1130 <print_data+0xe84>
+     730:	ldr	r3, [r3]
+     734:	sub	r3, r3, #1
+     738:	ldr	r2, [pc, #2544]	; 1130 <print_data+0xe84>
+     73c:	str	r3, [r2]
+     740:	ldr	r3, [fp, #-68]	; 0xffffffbc
+     744:	sub	r2, r3, #1
+     748:	ldr	r3, [fp, #-80]	; 0xffffffb0
+     74c:	cmp	r2, r3
+     750:	ble	76c <print_data+0x4c0>
+     754:	ldr	r0, [fp, #-952]	; 0xfffffc48
+     758:	bl	0 <coda_cursor_goto_next_record_field>
+     75c:	mov	r3, r0
+     760:	cmp	r3, #0
+     764:	beq	76c <print_data+0x4c0>
+     768:	bl	0 <handle_coda_error>
+     76c:	ldr	r3, [fp, #-80]	; 0xffffffb0
+     770:	add	r3, r3, #1
+     774:	str	r3, [fp, #-80]	; 0xffffffb0
+     778:	ldr	r2, [fp, #-80]	; 0xffffffb0
+     77c:	ldr	r3, [fp, #-68]	; 0xffffffbc
+     780:	cmp	r2, r3
+     784:	blt	5e0 <print_data+0x334>
+     788:	ldr	r0, [fp, #-952]	; 0xfffffc48
+     78c:	bl	0 <coda_cursor_goto_parent>
+     790:	b	1104 <print_data+0xe58>
+     794:	sub	r2, fp, #948	; 0x3b4
+     798:	sub	r3, fp, #160	; 0xa0
+     79c:	mov	r1, r3
+     7a0:	ldr	r0, [fp, #-952]	; 0xfffffc48
+     7a4:	bl	0 <coda_cursor_get_array_dim>
+     7a8:	mov	r3, r0
+     7ac:	cmp	r3, #0
+     7b0:	beq	7b8 <print_data+0x50c>
+     7b4:	bl	0 <handle_coda_error>
+     7b8:	ldr	r3, [fp, #-160]	; 0xffffff60
+     7bc:	cmp	r3, #0
+     7c0:	blt	110c <print_data+0xe60>
+     7c4:	mov	r3, #1
+     7c8:	str	r3, [fp, #-32]	; 0xffffffe0
+     7cc:	mov	r3, #0
+     7d0:	str	r3, [fp, #-36]	; 0xffffffdc
+     7d4:	b	81c <print_data+0x570>
+     7d8:	ldr	r3, [fp, #-36]	; 0xffffffdc
+     7dc:	lsl	r3, r3, #2
+     7e0:	sub	r2, fp, #28
+     7e4:	add	r3, r2, r3
+     7e8:	ldr	r2, [r3, #-920]	; 0xfffffc68
+     7ec:	ldr	r3, [fp, #-32]	; 0xffffffe0
+     7f0:	mul	r3, r2, r3
+     7f4:	str	r3, [fp, #-32]	; 0xffffffe0
+     7f8:	ldr	r3, [fp, #-36]	; 0xffffffdc
+     7fc:	lsl	r3, r3, #2
+     800:	sub	r2, fp, #28
+     804:	add	r3, r2, r3
+     808:	mov	r2, #0
+     80c:	str	r2, [r3, #-888]	; 0xfffffc88
+     810:	ldr	r3, [fp, #-36]	; 0xffffffdc
+     814:	add	r3, r3, #1
+     818:	str	r3, [fp, #-36]	; 0xffffffdc
+     81c:	ldr	r3, [fp, #-160]	; 0xffffff60
+     820:	ldr	r2, [fp, #-36]	; 0xffffffdc
+     824:	cmp	r2, r3
+     828:	blt	7d8 <print_data+0x52c>
+     82c:	ldr	r3, [fp, #-32]	; 0xffffffe0
+     830:	cmp	r3, #0
+     834:	ble	110c <print_data+0xe60>
+     838:	ldr	r0, [fp, #-952]	; 0xfffffc48
+     83c:	bl	0 <coda_cursor_goto_first_array_element>
+     840:	mov	r3, r0
+     844:	cmp	r3, #0
+     848:	beq	850 <print_data+0x5a4>
+     84c:	bl	0 <handle_coda_error>
+     850:	mov	r3, #0
+     854:	str	r3, [fp, #-36]	; 0xffffffdc
+     858:	b	ac4 <print_data+0x818>
+     85c:	ldr	r0, [pc, #2284]	; 1150 <print_data+0xea4>
+     860:	bl	e4 <fi_printf>
+     864:	mov	r3, #0
+     868:	str	r3, [fp, #-40]	; 0xffffffd8
+     86c:	b	8b8 <print_data+0x60c>
+     870:	ldr	r3, [fp, #-40]	; 0xffffffd8
+     874:	lsl	r3, r3, #2
+     878:	sub	r2, fp, #28
+     87c:	add	r3, r2, r3
+     880:	ldr	r3, [r3, #-888]	; 0xfffffc88
+     884:	mov	r1, r3
+     888:	ldr	r0, [pc, #2244]	; 1154 <print_data+0xea8>
+     88c:	bl	94 <ff_printf>
+     890:	ldr	r3, [fp, #-160]	; 0xffffff60
+     894:	sub	r2, r3, #1
+     898:	ldr	r3, [fp, #-40]	; 0xffffffd8
+     89c:	cmp	r2, r3
+     8a0:	ble	8ac <print_data+0x600>
+     8a4:	ldr	r0, [pc, #2220]	; 1158 <print_data+0xeac>
+     8a8:	bl	94 <ff_printf>
+     8ac:	ldr	r3, [fp, #-40]	; 0xffffffd8
+     8b0:	add	r3, r3, #1
+     8b4:	str	r3, [fp, #-40]	; 0xffffffd8
+     8b8:	ldr	r3, [fp, #-160]	; 0xffffff60
+     8bc:	ldr	r2, [fp, #-40]	; 0xffffffd8
+     8c0:	cmp	r2, r3
+     8c4:	blt	870 <print_data+0x5c4>
+     8c8:	ldr	r0, [pc, #2188]	; 115c <print_data+0xeb0>
+     8cc:	bl	94 <ff_printf>
+     8d0:	ldr	r3, [pc, #2144]	; 1138 <print_data+0xe8c>
+     8d4:	ldr	r3, [r3]
+     8d8:	cmp	r3, #0
+     8dc:	beq	978 <print_data+0x6cc>
+     8e0:	sub	r3, fp, #172	; 0xac
+     8e4:	mov	r1, r3
+     8e8:	ldr	r0, [fp, #-952]	; 0xfffffc48
+     8ec:	bl	0 <coda_cursor_get_file_bit_offset>
+     8f0:	mov	r3, r0
+     8f4:	cmp	r3, #0
+     8f8:	beq	900 <print_data+0x654>
+     8fc:	bl	0 <handle_coda_error>
+     900:	ldrd	r2, [fp, #-172]	; 0xffffff54
+     904:	cmp	r2, #0
+     908:	sbcs	r3, r3, #0
+     90c:	blt	978 <print_data+0x6cc>
+     910:	ldrd	r2, [fp, #-172]	; 0xffffff54
+     914:	lsr	r8, r2, #3
+     918:	orr	r8, r8, r3, lsl #29
+     91c:	asr	r9, r3, #3
+     920:	sub	r3, fp, #196	; 0xc4
+     924:	mov	r2, r3
+     928:	mov	r0, r8
+     92c:	mov	r1, r9
+     930:	bl	0 <coda_str64>
+     934:	sub	r3, fp, #196	; 0xc4
+     938:	mov	r1, r3
+     93c:	ldr	r0, [pc, #2040]	; 113c <print_data+0xe90>
+     940:	bl	94 <ff_printf>
+     944:	ldrd	r2, [fp, #-172]	; 0xffffff54
+     948:	mov	r0, #7
+     94c:	mov	r1, #0
+     950:	and	r2, r2, r0
+     954:	and	r3, r3, r1
+     958:	orrs	r3, r2, r3
+     95c:	beq	978 <print_data+0x6cc>
+     960:	ldrd	r2, [fp, #-172]	; 0xffffff54
+     964:	mov	r3, r2
+     968:	and	r3, r3, #7
+     96c:	mov	r1, r3
+     970:	ldr	r0, [pc, #1992]	; 1140 <print_data+0xe94>
+     974:	bl	94 <ff_printf>
+     978:	ldr	r0, [pc, #1988]	; 1144 <print_data+0xe98>
+     97c:	bl	94 <ff_printf>
+     980:	ldr	r3, [pc, #1960]	; 1130 <print_data+0xe84>
+     984:	ldr	r3, [r3]
+     988:	add	r3, r3, #1
+     98c:	ldr	r2, [pc, #1948]	; 1130 <print_data+0xe84>
+     990:	str	r3, [r2]
+     994:	ldr	r3, [pc, #1964]	; 1148 <print_data+0xe9c>
+     998:	ldr	r3, [r3]
+     99c:	cmp	r3, #0
+     9a0:	blt	9b8 <print_data+0x70c>
+     9a4:	ldr	r3, [pc, #1948]	; 1148 <print_data+0xe9c>
+     9a8:	ldr	r3, [r3]
+     9ac:	ldr	r2, [fp, #-956]	; 0xfffffc44
+     9b0:	cmp	r2, r3
+     9b4:	bge	9d0 <print_data+0x724>
+     9b8:	ldr	r3, [fp, #-956]	; 0xfffffc44
+     9bc:	add	r3, r3, #1
+     9c0:	mov	r1, r3
+     9c4:	ldr	r0, [fp, #-952]	; 0xfffffc48
+     9c8:	bl	2ac <print_data>
+     9cc:	b	9d8 <print_data+0x72c>
+     9d0:	ldr	r0, [pc, #1908]	; 114c <print_data+0xea0>
+     9d4:	bl	e4 <fi_printf>
+     9d8:	ldr	r3, [pc, #1872]	; 1130 <print_data+0xe84>
+     9dc:	ldr	r3, [r3]
+     9e0:	sub	r3, r3, #1
+     9e4:	ldr	r2, [pc, #1860]	; 1130 <print_data+0xe84>
+     9e8:	str	r3, [r2]
+     9ec:	ldr	r3, [fp, #-160]	; 0xffffff60
+     9f0:	sub	r3, r3, #1
+     9f4:	str	r3, [fp, #-40]	; 0xffffffd8
+     9f8:	b	a78 <print_data+0x7cc>
+     9fc:	ldr	r3, [fp, #-40]	; 0xffffffd8
+     a00:	lsl	r3, r3, #2
+     a04:	sub	r2, fp, #28
+     a08:	add	r3, r2, r3
+     a0c:	ldr	r3, [r3, #-888]	; 0xfffffc88
+     a10:	add	r2, r3, #1
+     a14:	ldr	r3, [fp, #-40]	; 0xffffffd8
+     a18:	lsl	r3, r3, #2
+     a1c:	sub	r1, fp, #28
+     a20:	add	r3, r1, r3
+     a24:	str	r2, [r3, #-888]	; 0xfffffc88
+     a28:	ldr	r3, [fp, #-40]	; 0xffffffd8
+     a2c:	lsl	r3, r3, #2
+     a30:	sub	r2, fp, #28
+     a34:	add	r3, r2, r3
+     a38:	ldr	r2, [r3, #-888]	; 0xfffffc88
+     a3c:	ldr	r3, [fp, #-40]	; 0xffffffd8
+     a40:	lsl	r3, r3, #2
+     a44:	sub	r1, fp, #28
+     a48:	add	r3, r1, r3
+     a4c:	ldr	r3, [r3, #-920]	; 0xfffffc68
+     a50:	cmp	r2, r3
+     a54:	bne	a88 <print_data+0x7dc>
+     a58:	ldr	r3, [fp, #-40]	; 0xffffffd8
+     a5c:	sub	r2, r3, #1
+     a60:	str	r2, [fp, #-40]	; 0xffffffd8
+     a64:	lsl	r3, r3, #2
+     a68:	sub	r2, fp, #28
+     a6c:	add	r3, r2, r3
+     a70:	mov	r2, #0
+     a74:	str	r2, [r3, #-888]	; 0xfffffc88
+     a78:	ldr	r3, [fp, #-40]	; 0xffffffd8
+     a7c:	cmp	r3, #0
+     a80:	bge	9fc <print_data+0x750>
+     a84:	b	a8c <print_data+0x7e0>
+     a88:	nop			; (mov r0, r0)
+     a8c:	ldr	r3, [fp, #-32]	; 0xffffffe0
+     a90:	sub	r2, r3, #1
+     a94:	ldr	r3, [fp, #-36]	; 0xffffffdc
+     a98:	cmp	r2, r3
+     a9c:	ble	ab8 <print_data+0x80c>
+     aa0:	ldr	r0, [fp, #-952]	; 0xfffffc48
+     aa4:	bl	0 <coda_cursor_goto_next_array_element>
+     aa8:	mov	r3, r0
+     aac:	cmp	r3, #0
+     ab0:	beq	ab8 <print_data+0x80c>
+     ab4:	bl	0 <handle_coda_error>
+     ab8:	ldr	r3, [fp, #-36]	; 0xffffffdc
+     abc:	add	r3, r3, #1
+     ac0:	str	r3, [fp, #-36]	; 0xffffffdc
+     ac4:	ldr	r2, [fp, #-36]	; 0xffffffdc
+     ac8:	ldr	r3, [fp, #-32]	; 0xffffffe0
+     acc:	cmp	r2, r3
+     ad0:	blt	85c <print_data+0x5b0>
+     ad4:	ldr	r0, [fp, #-952]	; 0xfffffc48
+     ad8:	bl	0 <coda_cursor_goto_parent>
+     adc:	b	110c <print_data+0xe60>
+     ae0:	sub	r3, fp, #204	; 0xcc
+     ae4:	mov	r1, r3
+     ae8:	ldr	r0, [fp, #-952]	; 0xfffffc48
+     aec:	bl	0 <coda_cursor_has_ascii_content>
+     af0:	mov	r3, r0
+     af4:	cmp	r3, #0
+     af8:	beq	b00 <print_data+0x854>
+     afc:	bl	0 <handle_coda_error>
+     b00:	ldr	r3, [fp, #-204]	; 0xffffff34
+     b04:	cmp	r3, #0
+     b08:	beq	bcc <print_data+0x920>
+     b0c:	sub	r3, fp, #208	; 0xd0
+     b10:	mov	r1, r3
+     b14:	ldr	r0, [fp, #-952]	; 0xfffffc48
+     b18:	bl	0 <coda_cursor_get_string_length>
+     b1c:	mov	r3, r0
+     b20:	cmp	r3, #0
+     b24:	beq	b2c <print_data+0x880>
+     b28:	bl	0 <handle_coda_error>
+     b2c:	ldr	r3, [fp, #-208]	; 0xffffff30
+     b30:	add	r3, r3, #1
+     b34:	mov	r0, r3
+     b38:	bl	0 <malloc>
+     b3c:	mov	r3, r0
+     b40:	str	r3, [fp, #-44]	; 0xffffffd4
+     b44:	ldr	r3, [fp, #-44]	; 0xffffffd4
+     b48:	cmp	r3, #0
+     b4c:	bne	b74 <print_data+0x8c8>
+     b50:	ldr	r3, [fp, #-208]	; 0xffffff30
+     b54:	add	r2, r3, #1
+     b58:	ldr	r3, [pc, #1536]	; 1160 <print_data+0xeb4>
+     b5c:	str	r3, [sp]
+     b60:	ldr	r3, [pc, #1532]	; 1164 <print_data+0xeb8>
+     b64:	ldr	r1, [pc, #1532]	; 1168 <print_data+0xebc>
+     b68:	mvn	r0, #0
+     b6c:	bl	0 <coda_set_error>
+     b70:	bl	0 <handle_coda_error>
+     b74:	ldr	r3, [fp, #-208]	; 0xffffff30
+     b78:	add	r3, r3, #1
+     b7c:	mov	r2, r3
+     b80:	ldr	r1, [fp, #-44]	; 0xffffffd4
+     b84:	ldr	r0, [fp, #-952]	; 0xfffffc48
+     b88:	bl	0 <coda_cursor_read_string>
+     b8c:	mov	r3, r0
+     b90:	cmp	r3, #0
+     b94:	beq	b9c <print_data+0x8f0>
+     b98:	bl	0 <handle_coda_error>
+     b9c:	ldr	r0, [pc, #1480]	; 116c <print_data+0xec0>
+     ba0:	bl	e4 <fi_printf>
+     ba4:	ldr	r3, [fp, #-208]	; 0xffffff30
+     ba8:	mov	r1, r3
+     bac:	ldr	r0, [fp, #-44]	; 0xffffffd4
+     bb0:	bl	138 <print_escaped>
+     bb4:	ldr	r3, [fp, #-208]	; 0xffffff30
+     bb8:	mov	r1, r3
+     bbc:	ldr	r0, [pc, #1452]	; 1170 <print_data+0xec4>
+     bc0:	bl	94 <ff_printf>
+     bc4:	ldr	r0, [fp, #-44]	; 0xffffffd4
+     bc8:	bl	0 <free>
+     bcc:	sub	r3, fp, #200	; 0xc8
+     bd0:	mov	r1, r3
+     bd4:	ldr	r0, [fp, #-952]	; 0xfffffc48
+     bd8:	bl	0 <coda_cursor_get_read_type>
+     bdc:	mov	r3, r0
+     be0:	cmp	r3, #0
+     be4:	beq	bec <print_data+0x940>
+     be8:	bl	0 <handle_coda_error>
+     bec:	ldr	r3, [fp, #-200]	; 0xffffff38
+     bf0:	add	r3, r3, #1
+     bf4:	cmp	r3, #13
+     bf8:	ldrls	pc, [pc, r3, lsl #2]
+     bfc:	b	1114 <print_data+0xe68>
+     c00:	.word	0x00000ef8
+     c04:	.word	0x00000dac
+     c08:	.word	0x00000de0
+     c0c:	.word	0x00000dac
+     c10:	.word	0x00000de0
+     c14:	.word	0x00000dac
+     c18:	.word	0x00000de0
+     c1c:	.word	0x00000e14
+     c20:	.word	0x00000e5c
+     c24:	.word	0x00000ea4
+     c28:	.word	0x00000ea4
+     c2c:	.word	0x00000ef8
+     c30:	.word	0x00000ef8
+     c34:	.word	0x00000c38
+     c38:	sub	r3, fp, #220	; 0xdc
+     c3c:	mov	r1, r3
+     c40:	ldr	r0, [fp, #-952]	; 0xfffffc48
+     c44:	bl	0 <coda_cursor_get_bit_size>
+     c48:	mov	r3, r0
+     c4c:	cmp	r3, #0
+     c50:	beq	c58 <print_data+0x9ac>
+     c54:	bl	0 <handle_coda_error>
+     c58:	ldrd	r2, [fp, #-220]	; 0xffffff24
+     c5c:	lsr	r4, r2, #3
+     c60:	orr	r4, r4, r3, lsl #29
+     c64:	asr	r5, r3, #3
+     c68:	ldrd	r2, [fp, #-220]	; 0xffffff24
+     c6c:	mov	r0, #7
+     c70:	mov	r1, #0
+     c74:	and	r2, r2, r0
+     c78:	and	r3, r3, r1
+     c7c:	orrs	r3, r2, r3
+     c80:	beq	c90 <print_data+0x9e4>
+     c84:	mov	r2, #1
+     c88:	mov	r3, #0
+     c8c:	b	c98 <print_data+0x9ec>
+     c90:	mov	r2, #0
+     c94:	mov	r3, #0
+     c98:	adds	r2, r2, r4
+     c9c:	adc	r3, r3, r5
+     ca0:	strd	r2, [fp, #-52]	; 0xffffffcc
+     ca4:	ldr	r3, [fp, #-52]	; 0xffffffcc
+     ca8:	mov	r0, r3
+     cac:	bl	0 <malloc>
+     cb0:	mov	r3, r0
+     cb4:	str	r3, [fp, #-56]	; 0xffffffc8
+     cb8:	ldr	r3, [fp, #-56]	; 0xffffffc8
+     cbc:	cmp	r3, #0
+     cc0:	bne	ce4 <print_data+0xa38>
+     cc4:	ldr	r2, [fp, #-52]	; 0xffffffcc
+     cc8:	ldr	r3, [pc, #1188]	; 1174 <print_data+0xec8>
+     ccc:	str	r3, [sp]
+     cd0:	ldr	r3, [pc, #1164]	; 1164 <print_data+0xeb8>
+     cd4:	ldr	r1, [pc, #1164]	; 1168 <print_data+0xebc>
+     cd8:	mvn	r0, #0
+     cdc:	bl	0 <coda_set_error>
+     ce0:	bl	0 <handle_coda_error>
+     ce4:	ldrd	r2, [fp, #-220]	; 0xffffff24
+     ce8:	strd	r2, [sp]
+     cec:	mov	r2, #0
+     cf0:	mov	r3, #0
+     cf4:	ldr	r1, [fp, #-56]	; 0xffffffc8
+     cf8:	ldr	r0, [fp, #-952]	; 0xfffffc48
+     cfc:	bl	0 <coda_cursor_read_bits>
+     d00:	mov	r3, r0
+     d04:	cmp	r3, #0
+     d08:	beq	d10 <print_data+0xa64>
+     d0c:	bl	0 <handle_coda_error>
+     d10:	ldr	r0, [pc, #1108]	; 116c <print_data+0xec0>
+     d14:	bl	e4 <fi_printf>
+     d18:	ldr	r3, [fp, #-52]	; 0xffffffcc
+     d1c:	mov	r1, r3
+     d20:	ldr	r0, [fp, #-56]	; 0xffffffc8
+     d24:	bl	138 <print_escaped>
+     d28:	ldr	r0, [pc, #1096]	; 1178 <print_data+0xecc>
+     d2c:	bl	94 <ff_printf>
+     d30:	ldrd	r2, [fp, #-220]	; 0xffffff24
+     d34:	lsr	r6, r2, #3
+     d38:	orr	r6, r6, r3, lsl #29
+     d3c:	asr	r7, r3, #3
+     d40:	sub	r3, fp, #244	; 0xf4
+     d44:	mov	r2, r3
+     d48:	mov	r0, r6
+     d4c:	mov	r1, r7
+     d50:	bl	0 <coda_str64>
+     d54:	sub	r3, fp, #244	; 0xf4
+     d58:	mov	r1, r3
+     d5c:	ldr	r0, [pc, #1048]	; 117c <print_data+0xed0>
+     d60:	bl	94 <ff_printf>
+     d64:	ldrd	r2, [fp, #-220]	; 0xffffff24
+     d68:	mov	r0, #7
+     d6c:	mov	r1, #0
+     d70:	and	r2, r2, r0
+     d74:	and	r3, r3, r1
+     d78:	orrs	r3, r2, r3
+     d7c:	beq	d98 <print_data+0xaec>
+     d80:	ldrd	r2, [fp, #-220]	; 0xffffff24
+     d84:	mov	r3, r2
+     d88:	and	r3, r3, #7
+     d8c:	mov	r1, r3
+     d90:	ldr	r0, [pc, #936]	; 1140 <print_data+0xe94>
+     d94:	bl	94 <ff_printf>
+     d98:	ldr	r0, [pc, #992]	; 1180 <print_data+0xed4>
+     d9c:	bl	94 <ff_printf>
+     da0:	ldr	r0, [fp, #-56]	; 0xffffffc8
+     da4:	bl	0 <free>
+     da8:	b	f1c <print_data+0xc70>
+     dac:	sub	r3, fp, #248	; 0xf8
+     db0:	mov	r1, r3
+     db4:	ldr	r0, [fp, #-952]	; 0xfffffc48
+     db8:	bl	0 <coda_cursor_read_int32>
+     dbc:	mov	r3, r0
+     dc0:	cmp	r3, #0
+     dc4:	beq	dcc <print_data+0xb20>
+     dc8:	bl	0 <handle_coda_error>
+     dcc:	ldr	r3, [fp, #-248]	; 0xffffff08
+     dd0:	mov	r1, r3
+     dd4:	ldr	r0, [pc, #936]	; 1184 <print_data+0xed8>
+     dd8:	bl	e4 <fi_printf>
+     ddc:	b	f1c <print_data+0xc70>
+     de0:	sub	r3, fp, #252	; 0xfc
+     de4:	mov	r1, r3
+     de8:	ldr	r0, [fp, #-952]	; 0xfffffc48
+     dec:	bl	0 <coda_cursor_read_uint32>
+     df0:	mov	r3, r0
+     df4:	cmp	r3, #0
+     df8:	beq	e00 <print_data+0xb54>
+     dfc:	bl	0 <handle_coda_error>
+     e00:	ldr	r3, [fp, #-252]	; 0xffffff04
+     e04:	mov	r1, r3
+     e08:	ldr	r0, [pc, #888]	; 1188 <print_data+0xedc>
+     e0c:	bl	e4 <fi_printf>
+     e10:	b	f1c <print_data+0xc70>
+     e14:	sub	r3, fp, #260	; 0x104
+     e18:	mov	r1, r3
+     e1c:	ldr	r0, [fp, #-952]	; 0xfffffc48
+     e20:	bl	0 <coda_cursor_read_int64>
+     e24:	mov	r3, r0
+     e28:	cmp	r3, #0
+     e2c:	beq	e34 <print_data+0xb88>
+     e30:	bl	0 <handle_coda_error>
+     e34:	sub	r3, fp, #260	; 0x104
+     e38:	ldrd	r0, [r3]
+     e3c:	sub	r3, fp, #284	; 0x11c
+     e40:	mov	r2, r3
+     e44:	bl	0 <coda_str64>
+     e48:	sub	r3, fp, #284	; 0x11c
+     e4c:	mov	r1, r3
+     e50:	ldr	r0, [pc, #820]	; 118c <print_data+0xee0>
+     e54:	bl	e4 <fi_printf>
+     e58:	b	f1c <print_data+0xc70>
+     e5c:	sub	r3, fp, #292	; 0x124
+     e60:	mov	r1, r3
+     e64:	ldr	r0, [fp, #-952]	; 0xfffffc48
+     e68:	bl	0 <coda_cursor_read_uint64>
+     e6c:	mov	r3, r0
+     e70:	cmp	r3, #0
+     e74:	beq	e7c <print_data+0xbd0>
+     e78:	bl	0 <handle_coda_error>
+     e7c:	sub	r3, fp, #284	; 0x11c
+     e80:	ldrd	r0, [r3, #-8]
+     e84:	sub	r3, fp, #316	; 0x13c
+     e88:	mov	r2, r3
+     e8c:	bl	0 <coda_str64u>
+     e90:	sub	r3, fp, #316	; 0x13c
+     e94:	mov	r1, r3
+     e98:	ldr	r0, [pc, #748]	; 118c <print_data+0xee0>
+     e9c:	bl	e4 <fi_printf>
+     ea0:	b	f1c <print_data+0xc70>
+     ea4:	sub	r3, fp, #324	; 0x144
+     ea8:	mov	r1, r3
+     eac:	ldr	r0, [fp, #-952]	; 0xfffffc48
+     eb0:	bl	0 <coda_cursor_read_double>
+     eb4:	mov	r3, r0
+     eb8:	cmp	r3, #0
+     ebc:	beq	ec4 <print_data+0xc18>
+     ec0:	bl	0 <handle_coda_error>
+     ec4:	ldr	r3, [fp, #-200]	; 0xffffff38
+     ec8:	cmp	r3, #8
+     ecc:	bne	ee4 <print_data+0xc38>
+     ed0:	sub	r3, fp, #324	; 0x144
+     ed4:	ldrd	r2, [r3]
+     ed8:	ldr	r0, [pc, #688]	; 1190 <print_data+0xee4>
+     edc:	bl	e4 <fi_printf>
+     ee0:	b	f1c <print_data+0xc70>
+     ee4:	sub	r3, fp, #324	; 0x144
+     ee8:	ldrd	r2, [r3]
+     eec:	ldr	r0, [pc, #672]	; 1194 <print_data+0xee8>
+     ef0:	bl	e4 <fi_printf>
+     ef4:	b	f1c <print_data+0xc70>
+     ef8:	ldr	r3, [fp, #-204]	; 0xffffff34
+     efc:	cmp	r3, #0
+     f00:	bne	f18 <print_data+0xc6c>
+     f04:	ldr	r3, [pc, #652]	; 1198 <print_data+0xeec>
+     f08:	mov	r2, #548	; 0x224
+     f0c:	ldr	r1, [pc, #592]	; 1164 <print_data+0xeb8>
+     f10:	ldr	r0, [pc, #644]	; 119c <print_data+0xef0>
+     f14:	bl	0 <__assert_fail>
+     f18:	nop			; (mov r0, r0)
+     f1c:	b	1114 <print_data+0xe68>
+     f20:	sub	r3, fp, #328	; 0x148
+     f24:	mov	r1, r3
+     f28:	ldr	r0, [fp, #-952]	; 0xfffffc48
+     f2c:	bl	0 <coda_cursor_get_special_type>
+     f30:	mov	r3, r0
+     f34:	cmp	r3, #0
+     f38:	beq	f40 <print_data+0xc94>
+     f3c:	bl	0 <handle_coda_error>
+     f40:	ldr	r3, [fp, #-328]	; 0xfffffeb8
+     f44:	cmp	r3, #0
+     f48:	beq	f90 <print_data+0xce4>
+     f4c:	ldr	r2, [fp, #-952]	; 0xfffffc48
+     f50:	sub	r3, fp, #916	; 0x394
+     f54:	mov	r1, r2
+     f58:	mov	r2, #520	; 0x208
+     f5c:	mov	r0, r3
+     f60:	bl	0 <memcpy>
+     f64:	sub	r3, fp, #916	; 0x394
+     f68:	mov	r0, r3
+     f6c:	bl	0 <coda_cursor_use_base_type_of_special_type>
+     f70:	mov	r3, r0
+     f74:	cmp	r3, #0
+     f78:	beq	f80 <print_data+0xcd4>
+     f7c:	bl	0 <handle_coda_error>
+     f80:	sub	r3, fp, #916	; 0x394
+     f84:	ldr	r1, [fp, #-956]	; 0xfffffc44
+     f88:	mov	r0, r3
+     f8c:	bl	2ac <print_data>
+     f90:	ldr	r3, [fp, #-328]	; 0xfffffeb8
+     f94:	mov	r0, r3
+     f98:	bl	0 <coda_type_get_special_type_name>
+     f9c:	mov	r3, r0
+     fa0:	mov	r1, r3
+     fa4:	ldr	r0, [pc, #500]	; 11a0 <print_data+0xef4>
+     fa8:	bl	e4 <fi_printf>
+     fac:	ldr	r3, [fp, #-328]	; 0xfffffeb8
+     fb0:	cmp	r3, #3
+     fb4:	ldrls	pc, [pc, r3, lsl #2]
+     fb8:	b	111c <print_data+0xe70>
+     fbc:	.word	0x00000fcc
+     fc0:	.word	0x00000fd8
+     fc4:	.word	0x0000100c
+     fc8:	.word	0x000010b4
+     fcc:	ldr	r0, [pc, #368]	; 1144 <print_data+0xe98>
+     fd0:	bl	94 <ff_printf>
+     fd4:	b	1100 <print_data+0xe54>
+     fd8:	sub	r3, fp, #340	; 0x154
+     fdc:	mov	r1, r3
+     fe0:	ldr	r0, [fp, #-952]	; 0xfffffc48
+     fe4:	bl	0 <coda_cursor_read_double>
+     fe8:	mov	r3, r0
+     fec:	cmp	r3, #0
+     ff0:	beq	ff8 <print_data+0xd4c>
+     ff4:	bl	0 <handle_coda_error>
+     ff8:	sub	r3, fp, #340	; 0x154
+     ffc:	ldrd	r2, [r3]
+    1000:	ldr	r0, [pc, #396]	; 1194 <print_data+0xee8>
+    1004:	bl	94 <ff_printf>
+    1008:	b	1100 <print_data+0xe54>
+    100c:	sub	r3, fp, #348	; 0x15c
+    1010:	mov	r1, r3
+    1014:	ldr	r0, [fp, #-952]	; 0xfffffc48
+    1018:	bl	0 <coda_cursor_read_double>
+    101c:	mov	r3, r0
+    1020:	cmp	r3, #0
+    1024:	beq	102c <print_data+0xd80>
+    1028:	bl	0 <handle_coda_error>
+    102c:	vldr	d7, [fp, #-348]	; 0xfffffea4
+    1030:	vmov.f64	d0, d7
+    1034:	bl	0 <coda_isNaN>
+    1038:	mov	r3, r0
+    103c:	cmp	r3, #0
+    1040:	bne	105c <print_data+0xdb0>
+    1044:	vldr	d7, [fp, #-348]	; 0xfffffea4
+    1048:	vmov.f64	d0, d7
+    104c:	bl	0 <coda_isInf>
+    1050:	mov	r3, r0
+    1054:	cmp	r3, #0
+    1058:	beq	1070 <print_data+0xdc4>
+    105c:	sub	r3, fp, #348	; 0x15c
+    1060:	ldrd	r2, [r3]
+    1064:	ldr	r0, [pc, #312]	; 11a4 <print_data+0xef8>
+    1068:	bl	94 <ff_printf>
+    106c:	b	1100 <print_data+0xe54>
+    1070:	vldr	d7, [fp, #-348]	; 0xfffffea4
+    1074:	sub	r3, fp, #376	; 0x178
+    1078:	mov	r1, r3
+    107c:	ldr	r0, [pc, #292]	; 11a8 <print_data+0xefc>
+    1080:	vmov.f64	d0, d7
+    1084:	bl	0 <coda_time_double_to_string>
+    1088:	mov	r3, r0
+    108c:	cmp	r3, #0
+    1090:	beq	10a0 <print_data+0xdf4>
+    1094:	ldr	r0, [pc, #272]	; 11ac <print_data+0xf00>
+    1098:	bl	94 <ff_printf>
+    109c:	b	1100 <print_data+0xe54>
+    10a0:	sub	r3, fp, #376	; 0x178
+    10a4:	mov	r1, r3
+    10a8:	ldr	r0, [pc, #256]	; 11b0 <print_data+0xf04>
+    10ac:	bl	94 <ff_printf>
+    10b0:	b	1100 <print_data+0xe54>
+    10b4:	sub	r2, fp, #396	; 0x18c
+    10b8:	sub	r3, fp, #388	; 0x184
+    10bc:	mov	r1, r3
+    10c0:	ldr	r0, [fp, #-952]	; 0xfffffc48
+    10c4:	bl	0 <coda_cursor_read_complex_double_split>
+    10c8:	mov	r3, r0
+    10cc:	cmp	r3, #0
+    10d0:	beq	10d8 <print_data+0xe2c>
+    10d4:	bl	0 <handle_coda_error>
+    10d8:	sub	r1, fp, #388	; 0x184
+    10dc:	ldrd	r0, [r1]
+    10e0:	sub	r3, fp, #396	; 0x18c
+    10e4:	ldrd	r2, [r3]
+    10e8:	strd	r2, [sp]
+    10ec:	mov	r2, r0
+    10f0:	mov	r3, r1
+    10f4:	ldr	r0, [pc, #184]	; 11b4 <print_data+0xf08>
+    10f8:	bl	94 <ff_printf>
+    10fc:	nop			; (mov r0, r0)
+    1100:	b	111c <print_data+0xe70>
+    1104:	nop			; (mov r0, r0)
+    1108:	b	1120 <print_data+0xe74>
+    110c:	nop			; (mov r0, r0)
+    1110:	b	1120 <print_data+0xe74>
+    1114:	nop			; (mov r0, r0)
+    1118:	b	1120 <print_data+0xe74>
+    111c:	nop			; (mov r0, r0)
+    1120:	nop			; (mov r0, r0)
+    1124:	sub	sp, fp, #28
+    1128:	pop	{r4, r5, r6, r7, r8, r9, fp, pc}
+    112c:	.word	0x00000090
+    1130:	.word	0x00000000
+    1134:	.word	0x000000a0
+    1138:	.word	0x00000000
+    113c:	.word	0x000000a8
+    1140:	.word	0x000000ac
+    1144:	.word	0x000000b0
+    1148:	.word	0x00000000
+    114c:	.word	0x000000b4
+    1150:	.word	0x000000bc
+    1154:	.word	0x000000c0
+    1158:	.word	0x000000c4
+    115c:	.word	0x000000c8
+    1160:	.word	0x0000019a
+    1164:	.word	0x00000000
+    1168:	.word	0x000000cc
+    116c:	.word	0x00000104
+    1170:	.word	0x00000108
+    1174:	.word	0x000001bf
+    1178:	.word	0x00000118
+    117c:	.word	0x00000124
+    1180:	.word	0x00000128
+    1184:	.word	0x0000012c
+    1188:	.word	0x00000134
+    118c:	.word	0x0000013c
+    1190:	.word	0x00000140
+    1194:	.word	0x00000148
+    1198:	.word	0x000001c8
+    119c:	.word	0x00000150
+    11a0:	.word	0x00000164
+    11a4:	.word	0x0000016c
+    11a8:	.word	0x00000174
+    11ac:	.word	0x00000190
+    11b0:	.word	0x000001ac
+    11b4:	.word	0x000001b4
+
+000011b8 <print_debug_data>:
+    11b8:	push	{fp, lr}
+    11bc:	add	fp, sp, #4
+    11c0:	sub	sp, sp, #560	; 0x230
+    11c4:	str	r0, [fp, #-544]	; 0xfffffde0
+    11c8:	str	r1, [fp, #-548]	; 0xfffffddc
+    11cc:	str	r2, [fp, #-552]	; 0xfffffdd8
+    11d0:	ldr	r3, [fp, #-544]	; 0xfffffde0
+    11d4:	cmp	r3, #0
+    11d8:	bne	11fc <print_debug_data+0x44>
+    11dc:	ldr	r3, [pc, #440]	; 139c <print_debug_data+0x1e4>
+    11e0:	ldr	r3, [r3]
+    11e4:	sub	r2, fp, #12
+    11e8:	mov	r1, r2
+    11ec:	mov	r0, r3
+    11f0:	bl	0 <coda_open>
+    11f4:	str	r0, [fp, #-8]
+    11f8:	b	1220 <print_debug_data+0x68>
+    11fc:	ldr	r3, [pc, #408]	; 139c <print_debug_data+0x1e4>
+    1200:	ldr	r0, [r3]
+    1204:	sub	r3, fp, #12
+    1208:	str	r3, [sp]
+    120c:	ldr	r3, [fp, #-552]	; 0xfffffdd8
+    1210:	ldr	r2, [fp, #-548]	; 0xfffffddc
+    1214:	ldr	r1, [fp, #-544]	; 0xfffffde0
+    1218:	bl	0 <coda_open_as>
+    121c:	str	r0, [fp, #-8]
+    1220:	ldr	r3, [fp, #-8]
+    1224:	cmp	r3, #0
+    1228:	beq	12a0 <print_debug_data+0xe8>
+    122c:	bl	0 <coda_get_errno>
+    1230:	mov	r3, r0
+    1234:	ldr	r3, [r3]
+    1238:	cmn	r3, #21
+    123c:	bne	12a0 <print_debug_data+0xe8>
+    1240:	mov	r0, #0
+    1244:	bl	0 <coda_set_option_use_mmap>
+    1248:	ldr	r3, [fp, #-544]	; 0xfffffde0
+    124c:	cmp	r3, #0
+    1250:	bne	1274 <print_debug_data+0xbc>
+    1254:	ldr	r3, [pc, #320]	; 139c <print_debug_data+0x1e4>
+    1258:	ldr	r3, [r3]
+    125c:	sub	r2, fp, #12
+    1260:	mov	r1, r2
+    1264:	mov	r0, r3
+    1268:	bl	0 <coda_open>
+    126c:	str	r0, [fp, #-8]
+    1270:	b	1298 <print_debug_data+0xe0>
+    1274:	ldr	r3, [pc, #288]	; 139c <print_debug_data+0x1e4>
+    1278:	ldr	r0, [r3]
+    127c:	sub	r3, fp, #12
+    1280:	str	r3, [sp]
+    1284:	ldr	r3, [fp, #-552]	; 0xfffffdd8
+    1288:	ldr	r2, [fp, #-548]	; 0xfffffddc
+    128c:	ldr	r1, [fp, #-544]	; 0xfffffde0
+    1290:	bl	0 <coda_open_as>
+    1294:	str	r0, [fp, #-8]
+    1298:	mov	r0, #1
+    129c:	bl	0 <coda_set_option_use_mmap>
+    12a0:	ldr	r3, [fp, #-8]
+    12a4:	cmp	r3, #0
+    12a8:	beq	12b0 <print_debug_data+0xf8>
+    12ac:	bl	0 <handle_coda_error>
+    12b0:	ldr	r3, [fp, #-12]
+    12b4:	sub	r2, fp, #536	; 0x218
+    12b8:	mov	r1, r2
+    12bc:	mov	r0, r3
+    12c0:	bl	0 <coda_get_product_format>
+    12c4:	mov	r3, r0
+    12c8:	cmp	r3, #0
+    12cc:	beq	12d4 <print_debug_data+0x11c>
+    12d0:	bl	0 <handle_coda_error>
+    12d4:	ldr	r3, [fp, #-536]	; 0xfffffde8
+    12d8:	cmp	r3, #0
+    12dc:	beq	12f8 <print_debug_data+0x140>
+    12e0:	ldr	r3, [fp, #-536]	; 0xfffffde8
+    12e4:	cmp	r3, #1
+    12e8:	beq	12f8 <print_debug_data+0x140>
+    12ec:	ldr	r3, [fp, #-536]	; 0xfffffde8
+    12f0:	cmp	r3, #2
+    12f4:	bne	1300 <print_debug_data+0x148>
+    12f8:	mov	r3, #1
+    12fc:	b	1304 <print_debug_data+0x14c>
+    1300:	mov	r3, #0
+    1304:	ldr	r2, [pc, #148]	; 13a0 <print_debug_data+0x1e8>
+    1308:	str	r3, [r2]
+    130c:	ldr	r2, [fp, #-12]
+    1310:	sub	r3, fp, #532	; 0x214
+    1314:	mov	r1, r2
+    1318:	mov	r0, r3
+    131c:	bl	0 <coda_cursor_set_product>
+    1320:	mov	r3, r0
+    1324:	cmp	r3, #0
+    1328:	beq	1330 <print_debug_data+0x178>
+    132c:	bl	0 <handle_coda_error>
+    1330:	ldr	r3, [pc, #108]	; 13a4 <print_debug_data+0x1ec>
+    1334:	ldr	r3, [r3]
+    1338:	cmp	r3, #0
+    133c:	beq	136c <print_debug_data+0x1b4>
+    1340:	ldr	r3, [pc, #92]	; 13a4 <print_debug_data+0x1ec>
+    1344:	ldr	r2, [r3]
+    1348:	sub	r3, fp, #532	; 0x214
+    134c:	mov	r1, r2
+    1350:	mov	r0, r3
+    1354:	bl	0 <coda_cursor_goto>
+    1358:	str	r0, [fp, #-8]
+    135c:	ldr	r3, [fp, #-8]
+    1360:	cmp	r3, #0
+    1364:	beq	136c <print_debug_data+0x1b4>
+    1368:	bl	0 <handle_coda_error>
+    136c:	mov	r0, #0
+    1370:	bl	0 <coda_set_option_perform_boundary_checks>
+    1374:	sub	r3, fp, #532	; 0x214
+    1378:	mov	r1, #0
+    137c:	mov	r0, r3
+    1380:	bl	2ac <print_data>
+    1384:	ldr	r3, [fp, #-12]
+    1388:	mov	r0, r3
+    138c:	bl	0 <coda_close>
+    1390:	nop			; (mov r0, r0)
+    1394:	sub	sp, fp, #4
+    1398:	pop	{fp, pc}
+	...

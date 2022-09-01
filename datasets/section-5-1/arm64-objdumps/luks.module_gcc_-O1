@@ -1,0 +1,1030 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//luks.module_gcc_-O1:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <luks_recover_key>:
+       0:	sub	sp, sp, #0x4e0
+       4:	stp	x29, x30, [sp]
+       8:	mov	x29, sp
+       c:	stp	x19, x20, [sp, #16]
+      10:	stp	x21, x22, [sp, #32]
+      14:	mov	x20, x0
+      18:	mov	x21, x1
+      1c:	stp	xzr, xzr, [sp, #400]
+      20:	mov	x2, #0xf0                  	// #240
+      24:	mov	w1, #0x0                   	// #0
+      28:	add	x0, sp, #0x1a0
+      2c:	bl	0 <memset>
+      30:	add	x4, sp, #0x290
+      34:	mov	x3, #0x250                 	// #592
+      38:	mov	x2, #0x0                   	// #0
+      3c:	mov	x1, #0x0                   	// #0
+      40:	mov	x0, x20
+      44:	bl	0 <grub_disk_read>
+      48:	mov	w19, w0
+      4c:	cbz	w0, 68 <luks_recover_key+0x68>
+      50:	mov	w0, w19
+      54:	ldp	x19, x20, [sp, #16]
+      58:	ldp	x21, x22, [sp, #32]
+      5c:	ldp	x29, x30, [sp]
+      60:	add	sp, sp, #0x4e0
+      64:	ret
+      68:	adrp	x0, 0 <luks_recover_key>
+      6c:	ldr	x0, [x0]
+      70:	bl	0 <grub_puts_>
+      74:	ldr	w22, [sp, #764]
+      78:	rev	w22, w22
+      7c:	cmp	x22, #0x80
+      80:	b.hi	a0 <luks_recover_key+0xa0>  // b.pmore
+      84:	stp	x23, x24, [sp, #48]
+      88:	add	x1, sp, #0x360
+      8c:	add	x4, sp, #0x4e0
+      90:	mov	x0, #0x1                   	// #1
+      94:	mov	w3, #0x71f3                	// #29171
+      98:	movk	w3, #0xac, lsl #16
+      9c:	b	c4 <luks_recover_key+0xc4>
+      a0:	adrp	x0, 0 <luks_recover_key>
+      a4:	ldr	x1, [x0]
+      a8:	mov	w0, #0x9                   	// #9
+      ac:	bl	0 <grub_error>
+      b0:	mov	w19, w0
+      b4:	b	50 <luks_recover_key+0x50>
+      b8:	add	x1, x1, #0x30
+      bc:	cmp	x1, x4
+      c0:	b.eq	e8 <luks_recover_key+0xe8>  // b.none
+      c4:	ldr	w2, [x1]
+      c8:	rev	w2, w2
+      cc:	cmp	w2, w3
+      d0:	b.ne	b8 <luks_recover_key+0xb8>  // b.any
+      d4:	ldr	w2, [x1, #44]
+      d8:	rev	w2, w2
+      dc:	cmp	x0, x2
+      e0:	csel	x0, x0, x2, cs  // cs = hs, nlast
+      e4:	b	b8 <luks_recover_key+0xb8>
+      e8:	mul	x0, x0, x22
+      ec:	bl	0 <grub_malloc>
+      f0:	mov	x24, x0
+      f4:	cbz	x0, 16c <luks_recover_key+0x16c>
+      f8:	ldr	x23, [x20, #40]
+      fc:	cbz	x23, 4cc <luks_recover_key+0x4cc>
+     100:	mov	x0, x23
+     104:	bl	0 <grub_partition_get_name>
+     108:	mov	x23, x0
+     10c:	ldr	x1, [x20]
+     110:	ldr	x0, [x20, #40]
+     114:	cbz	x0, 180 <luks_recover_key+0x180>
+     118:	adrp	x0, 0 <luks_recover_key>
+     11c:	ldr	x2, [x0]
+     120:	mov	x3, x23
+     124:	cbz	x23, 18c <luks_recover_key+0x18c>
+     128:	add	x4, x21, #0x8c
+     12c:	adrp	x0, 0 <luks_recover_key>
+     130:	ldr	x0, [x0]
+     134:	bl	0 <grub_printf_>
+     138:	mov	x0, x23
+     13c:	bl	0 <grub_free>
+     140:	mov	w1, #0x100                 	// #256
+     144:	add	x0, sp, #0x190
+     148:	bl	0 <grub_password_get>
+     14c:	cbz	w0, 198 <luks_recover_key+0x198>
+     150:	stp	x25, x26, [sp, #64]
+     154:	stp	x27, x28, [sp, #80]
+     158:	add	x23, sp, #0x368
+     15c:	mov	w27, #0x71f3                	// #29171
+     160:	movk	w27, #0xac, lsl #16
+     164:	add	x28, sp, #0x314
+     168:	b	2bc <luks_recover_key+0x2bc>
+     16c:	adrp	x0, 0 <luks_recover_key>
+     170:	ldr	x0, [x0]
+     174:	ldr	w19, [x0]
+     178:	ldp	x23, x24, [sp, #48]
+     17c:	b	50 <luks_recover_key+0x50>
+     180:	adrp	x0, 0 <luks_recover_key>
+     184:	ldr	x2, [x0]
+     188:	b	120 <luks_recover_key+0x120>
+     18c:	adrp	x0, 0 <luks_recover_key>
+     190:	ldr	x3, [x0]
+     194:	b	128 <luks_recover_key+0x128>
+     198:	mov	x0, x24
+     19c:	bl	0 <grub_free>
+     1a0:	adrp	x0, 0 <luks_recover_key>
+     1a4:	ldr	x1, [x0]
+     1a8:	mov	w0, #0x12                  	// #18
+     1ac:	bl	0 <grub_error>
+     1b0:	mov	w19, w0
+     1b4:	ldp	x23, x24, [sp, #48]
+     1b8:	b	50 <luks_recover_key+0x50>
+     1bc:	mov	x0, x24
+     1c0:	bl	0 <grub_free>
+     1c4:	mov	w0, w25
+     1c8:	bl	0 <grub_crypto_gcry_error>
+     1cc:	mov	w19, w0
+     1d0:	ldp	x23, x24, [sp, #48]
+     1d4:	ldp	x25, x26, [sp, #64]
+     1d8:	ldp	x27, x28, [sp, #80]
+     1dc:	b	50 <luks_recover_key+0x50>
+     1e0:	mov	x0, x24
+     1e4:	bl	0 <grub_free>
+     1e8:	mov	w0, w25
+     1ec:	bl	0 <grub_crypto_gcry_error>
+     1f0:	mov	w19, w0
+     1f4:	ldp	x23, x24, [sp, #48]
+     1f8:	ldp	x25, x26, [sp, #64]
+     1fc:	ldp	x27, x28, [sp, #80]
+     200:	b	50 <luks_recover_key+0x50>
+     204:	mov	x0, x24
+     208:	bl	0 <grub_free>
+     20c:	ldr	w19, [sp, #108]
+     210:	ldp	x23, x24, [sp, #48]
+     214:	ldp	x25, x26, [sp, #64]
+     218:	ldp	x27, x28, [sp, #80]
+     21c:	b	50 <luks_recover_key+0x50>
+     220:	mov	x0, x24
+     224:	bl	0 <grub_free>
+     228:	mov	w0, w25
+     22c:	bl	0 <grub_crypto_gcry_error>
+     230:	mov	w19, w0
+     234:	ldp	x23, x24, [sp, #48]
+     238:	ldp	x25, x26, [sp, #64]
+     23c:	ldp	x27, x28, [sp, #80]
+     240:	b	50 <luks_recover_key+0x50>
+     244:	mov	x0, x24
+     248:	bl	0 <grub_free>
+     24c:	mov	w0, w25
+     250:	bl	0 <grub_crypto_gcry_error>
+     254:	mov	w19, w0
+     258:	ldp	x23, x24, [sp, #48]
+     25c:	ldp	x25, x26, [sp, #64]
+     260:	ldp	x27, x28, [sp, #80]
+     264:	b	50 <luks_recover_key+0x50>
+     268:	mov	x0, x24
+     26c:	bl	0 <grub_free>
+     270:	mov	w0, w25
+     274:	bl	0 <grub_crypto_gcry_error>
+     278:	mov	w19, w0
+     27c:	ldp	x23, x24, [sp, #48]
+     280:	ldp	x25, x26, [sp, #64]
+     284:	ldp	x27, x28, [sp, #80]
+     288:	b	50 <luks_recover_key+0x50>
+     28c:	adrp	x0, 0 <luks_recover_key>
+     290:	ldr	x3, [x0]
+     294:	adrp	x0, 0 <luks_recover_key>
+     298:	ldr	x2, [x0]
+     29c:	mov	w1, #0x1bd                 	// #445
+     2a0:	adrp	x0, 0 <luks_recover_key>
+     2a4:	ldr	x0, [x0]
+     2a8:	bl	0 <grub_real_dprintf>
+     2ac:	add	w19, w19, #0x1
+     2b0:	add	x23, x23, #0x30
+     2b4:	cmp	w19, #0x8
+     2b8:	b.eq	4a0 <luks_recover_key+0x4a0>  // b.none
+     2bc:	ldur	w0, [x23, #-8]
+     2c0:	rev	w0, w0
+     2c4:	cmp	w0, w27
+     2c8:	b.ne	2ac <luks_recover_key+0x2ac>  // b.any
+     2cc:	mov	w4, w19
+     2d0:	adrp	x0, 0 <luks_recover_key>
+     2d4:	ldr	x3, [x0]
+     2d8:	adrp	x0, 0 <luks_recover_key>
+     2dc:	ldr	x2, [x0]
+     2e0:	mov	w1, #0x170                 	// #368
+     2e4:	adrp	x0, 0 <luks_recover_key>
+     2e8:	ldr	x0, [x0]
+     2ec:	bl	0 <grub_real_dprintf>
+     2f0:	ldr	x25, [x21, #88]
+     2f4:	add	x0, sp, #0x190
+     2f8:	bl	0 <grub_strlen>
+     2fc:	ldur	w5, [x23, #-4]
+     300:	mov	x7, x22
+     304:	add	x6, sp, #0xf8
+     308:	rev	w5, w5
+     30c:	mov	x4, #0x20                  	// #32
+     310:	mov	x3, x23
+     314:	mov	x2, x0
+     318:	add	x1, sp, #0x190
+     31c:	mov	x0, x25
+     320:	bl	0 <grub_crypto_pbkdf2>
+     324:	mov	w25, w0
+     328:	cbnz	w0, 1bc <luks_recover_key+0x1bc>
+     32c:	adrp	x0, 0 <luks_recover_key>
+     330:	ldr	x3, [x0]
+     334:	adrp	x0, 0 <luks_recover_key>
+     338:	ldr	x2, [x0]
+     33c:	mov	w1, #0x181                 	// #385
+     340:	adrp	x0, 0 <luks_recover_key>
+     344:	ldr	x0, [x0]
+     348:	bl	0 <grub_real_dprintf>
+     34c:	mov	x2, x22
+     350:	add	x1, sp, #0xf8
+     354:	mov	x0, x21
+     358:	bl	0 <grub_cryptodisk_setkey>
+     35c:	mov	w25, w0
+     360:	cbnz	w0, 1e0 <luks_recover_key+0x1e0>
+     364:	ldr	w25, [x23, #36]
+     368:	rev	w25, w25
+     36c:	mul	x25, x25, x22
+     370:	ldr	w1, [x23, #32]
+     374:	mov	x4, x24
+     378:	mov	x3, x25
+     37c:	mov	x2, #0x0                   	// #0
+     380:	rev	w1, w1
+     384:	mov	x0, x20
+     388:	bl	0 <grub_disk_read>
+     38c:	str	w0, [sp, #108]
+     390:	cbnz	w0, 204 <luks_recover_key+0x204>
+     394:	mov	x3, #0x0                   	// #0
+     398:	mov	x2, x25
+     39c:	mov	x1, x24
+     3a0:	mov	x0, x21
+     3a4:	bl	0 <grub_cryptodisk_decrypt>
+     3a8:	mov	w25, w0
+     3ac:	cbnz	w0, 220 <luks_recover_key+0x220>
+     3b0:	ldr	w4, [x23, #36]
+     3b4:	rev	w4, w4
+     3b8:	mov	x3, x22
+     3bc:	add	x2, sp, #0x78
+     3c0:	mov	x1, x24
+     3c4:	ldr	x0, [x21, #88]
+     3c8:	bl	e28 <AF_merge>
+     3cc:	mov	w25, w0
+     3d0:	cbnz	w0, 244 <luks_recover_key+0x244>
+     3d4:	adrp	x0, 0 <luks_recover_key>
+     3d8:	ldr	x3, [x0]
+     3dc:	adrp	x0, 0 <luks_recover_key>
+     3e0:	ldr	x2, [x0]
+     3e4:	mov	w1, #0x1a7                 	// #423
+     3e8:	adrp	x0, 0 <luks_recover_key>
+     3ec:	ldr	x0, [x0]
+     3f0:	bl	0 <grub_real_dprintf>
+     3f4:	mov	x7, #0x14                  	// #20
+     3f8:	add	x6, sp, #0x178
+     3fc:	ldr	w5, [sp, #820]
+     400:	rev	w5, w5
+     404:	mov	x4, #0x20                  	// #32
+     408:	mov	x3, x28
+     40c:	ldr	w2, [sp, #764]
+     410:	rev	w2, w2
+     414:	add	x1, sp, #0x78
+     418:	ldr	x0, [x21, #88]
+     41c:	bl	0 <grub_crypto_pbkdf2>
+     420:	mov	w25, w0
+     424:	cbnz	w0, 268 <luks_recover_key+0x268>
+     428:	mov	x2, #0x14                  	// #20
+     42c:	add	x1, sp, #0x300
+     430:	add	x0, sp, #0x178
+     434:	bl	0 <grub_memcmp>
+     438:	cbnz	w0, 28c <luks_recover_key+0x28c>
+     43c:	mov	w1, w19
+     440:	adrp	x0, 0 <luks_recover_key>
+     444:	ldr	x0, [x0]
+     448:	bl	0 <grub_printf_>
+     44c:	mov	x2, x22
+     450:	add	x1, sp, #0x78
+     454:	mov	x0, x21
+     458:	bl	0 <grub_cryptodisk_setkey>
+     45c:	mov	w19, w0
+     460:	cbnz	w0, 47c <luks_recover_key+0x47c>
+     464:	mov	x0, x24
+     468:	bl	0 <grub_free>
+     46c:	ldp	x23, x24, [sp, #48]
+     470:	ldp	x25, x26, [sp, #64]
+     474:	ldp	x27, x28, [sp, #80]
+     478:	b	50 <luks_recover_key+0x50>
+     47c:	mov	x0, x24
+     480:	bl	0 <grub_free>
+     484:	mov	w0, w19
+     488:	bl	0 <grub_crypto_gcry_error>
+     48c:	mov	w19, w0
+     490:	ldp	x23, x24, [sp, #48]
+     494:	ldp	x25, x26, [sp, #64]
+     498:	ldp	x27, x28, [sp, #80]
+     49c:	b	50 <luks_recover_key+0x50>
+     4a0:	mov	x0, x24
+     4a4:	bl	0 <grub_free>
+     4a8:	adrp	x0, 0 <luks_recover_key>
+     4ac:	ldr	x1, [x0]
+     4b0:	mov	w0, #0x1e                  	// #30
+     4b4:	bl	0 <grub_error>
+     4b8:	mov	w19, w0
+     4bc:	ldp	x23, x24, [sp, #48]
+     4c0:	ldp	x25, x26, [sp, #64]
+     4c4:	ldp	x27, x28, [sp, #80]
+     4c8:	b	50 <luks_recover_key+0x50>
+     4cc:	ldr	x1, [x20]
+     4d0:	adrp	x0, 0 <luks_recover_key>
+     4d4:	ldr	x2, [x0]
+     4d8:	mov	x3, x2
+     4dc:	b	128 <luks_recover_key+0x128>
+	...
+
+0000000000000558 <configure_ciphers>:
+     558:	sub	sp, sp, #0x360
+     55c:	stp	x29, x30, [sp]
+     560:	mov	x29, sp
+     564:	stp	x23, x24, [sp, #48]
+     568:	mov	x23, #0x0                   	// #0
+     56c:	cbnz	w2, 8d4 <configure_ciphers+0x37c>
+     570:	stp	x19, x20, [sp, #16]
+     574:	stp	x21, x22, [sp, #32]
+     578:	mov	x19, x0
+     57c:	mov	x20, x1
+     580:	add	x4, sp, #0x110
+     584:	mov	x3, #0x250                 	// #592
+     588:	mov	x2, #0x0                   	// #0
+     58c:	mov	x1, #0x0                   	// #0
+     590:	bl	0 <grub_disk_read>
+     594:	mov	w21, w0
+     598:	cbnz	w0, 5e4 <configure_ciphers+0x8c>
+     59c:	mov	x2, #0x6                   	// #6
+     5a0:	adrp	x0, 0 <luks_recover_key>
+     5a4:	ldr	x1, [x0]
+     5a8:	add	x0, sp, #0x110
+     5ac:	bl	0 <grub_memcmp>
+     5b0:	mov	w22, w0
+     5b4:	cbnz	w0, cc0 <configure_ciphers+0x768>
+     5b8:	ldrh	w0, [sp, #278]
+     5bc:	lsl	w1, w0, #8
+     5c0:	orr	w0, w1, w0, lsr #8
+     5c4:	sxth	w0, w0
+     5c8:	mov	x23, #0x0                   	// #0
+     5cc:	cmp	w0, #0x1
+     5d0:	b.ne	d00 <configure_ciphers+0x7a8>  // b.any
+     5d4:	add	x3, sp, #0xe0
+     5d8:	add	x2, sp, #0x1b8
+     5dc:	add	x5, sp, #0x1e0
+     5e0:	b	624 <configure_ciphers+0xcc>
+     5e4:	mov	x23, #0x0                   	// #0
+     5e8:	cmp	w0, #0xb
+     5ec:	b.eq	5fc <configure_ciphers+0xa4>  // b.none
+     5f0:	ldp	x19, x20, [sp, #16]
+     5f4:	ldp	x21, x22, [sp, #32]
+     5f8:	b	8d4 <configure_ciphers+0x37c>
+     5fc:	adrp	x0, 0 <luks_recover_key>
+     600:	ldr	x0, [x0]
+     604:	str	wzr, [x0]
+     608:	ldp	x19, x20, [sp, #16]
+     60c:	ldp	x21, x22, [sp, #32]
+     610:	b	8d4 <configure_ciphers+0x37c>
+     614:	strb	w4, [x3], #1
+     618:	add	x2, x2, #0x1
+     61c:	cmp	x2, x5
+     620:	b.eq	634 <configure_ciphers+0xdc>  // b.none
+     624:	ldrb	w4, [x2]
+     628:	cmp	w4, #0x2d
+     62c:	b.ne	614 <configure_ciphers+0xbc>  // b.any
+     630:	b	618 <configure_ciphers+0xc0>
+     634:	strb	wzr, [x3]
+     638:	cbz	x20, 6ac <configure_ciphers+0x154>
+     63c:	ldrb	w2, [x20]
+     640:	mov	x4, x20
+     644:	add	x3, sp, #0xe0
+     648:	cbz	w2, 68c <configure_ciphers+0x134>
+     64c:	ldrb	w0, [x3]
+     650:	cbz	w0, ce8 <configure_ciphers+0x790>
+     654:	mov	w7, w2
+     658:	sub	w5, w2, #0x41
+     65c:	add	w1, w2, #0x20
+     660:	cmp	w5, #0x1a
+     664:	csel	w2, w1, w2, cc  // cc = lo, ul, last
+     668:	sub	w6, w0, #0x41
+     66c:	add	w1, w0, #0x20
+     670:	cmp	w6, #0x1a
+     674:	csel	w0, w1, w0, cc  // cc = lo, ul, last
+     678:	cmp	w0, w2
+     67c:	b.ne	748 <configure_ciphers+0x1f0>  // b.any
+     680:	add	x3, x3, #0x1
+     684:	ldrb	w2, [x4, #1]!
+     688:	cbnz	w2, 64c <configure_ciphers+0xf4>
+     68c:	mov	w7, w22
+     690:	ldrb	w0, [x3]
+     694:	sub	w2, w0, #0x41
+     698:	add	w1, w0, #0x20
+     69c:	cmp	w2, #0x1a
+     6a0:	csel	w0, w1, w0, cc  // cc = lo, ul, last
+     6a4:	cmp	w0, w7
+     6a8:	b.ne	754 <configure_ciphers+0x1fc>  // b.any
+     6ac:	mov	x2, #0x20                  	// #32
+     6b0:	add	x1, sp, #0x118
+     6b4:	add	x0, sp, #0xb8
+     6b8:	bl	0 <grub_memmove>
+     6bc:	strb	wzr, [sp, #216]
+     6c0:	mov	x2, #0x20                  	// #32
+     6c4:	add	x1, sp, #0x138
+     6c8:	add	x0, sp, #0x90
+     6cc:	bl	0 <grub_memmove>
+     6d0:	strb	wzr, [sp, #176]
+     6d4:	mov	x2, #0x20                  	// #32
+     6d8:	add	x1, sp, #0x158
+     6dc:	add	x0, sp, #0x68
+     6e0:	bl	0 <grub_memmove>
+     6e4:	strb	wzr, [sp, #136]
+     6e8:	add	x0, sp, #0xb8
+     6ec:	bl	0 <grub_crypto_lookup_cipher_by_name>
+     6f0:	mov	x23, x0
+     6f4:	cbz	x0, 78c <configure_ciphers+0x234>
+     6f8:	bl	0 <grub_crypto_cipher_open>
+     6fc:	mov	x20, x0
+     700:	cbz	x0, cd0 <configure_ciphers+0x778>
+     704:	ldr	w2, [sp, #380]
+     708:	rev	w2, w2
+     70c:	cmp	w2, #0x400
+     710:	b.hi	7ac <configure_ciphers+0x254>  // b.pmore
+     714:	stp	x25, x26, [sp, #64]
+     718:	stp	x27, x28, [sp, #80]
+     71c:	adrp	x0, 0 <luks_recover_key>
+     720:	ldr	x1, [x0]
+     724:	add	x0, sp, #0x90
+     728:	bl	0 <grub_strcmp>
+     72c:	cbnz	w0, 7d4 <configure_ciphers+0x27c>
+     730:	mov	w28, w21
+     734:	mov	x27, #0x0                   	// #0
+     738:	mov	w21, #0x1                   	// #1
+     73c:	mov	x26, #0x0                   	// #0
+     740:	mov	x25, #0x0                   	// #0
+     744:	b	83c <configure_ciphers+0x2e4>
+     748:	cmp	w5, #0x19
+     74c:	b.ls	cf8 <configure_ciphers+0x7a0>  // b.plast
+     750:	b	690 <configure_ciphers+0x138>
+     754:	mov	x5, x20
+     758:	add	x4, sp, #0xe0
+     75c:	adrp	x0, 0 <luks_recover_key>
+     760:	ldr	x3, [x0]
+     764:	adrp	x0, 0 <luks_recover_key>
+     768:	ldr	x2, [x0]
+     76c:	mov	w1, #0x75                  	// #117
+     770:	adrp	x0, 0 <luks_recover_key>
+     774:	ldr	x0, [x0]
+     778:	bl	0 <grub_real_dprintf>
+     77c:	mov	x23, #0x0                   	// #0
+     780:	ldp	x19, x20, [sp, #16]
+     784:	ldp	x21, x22, [sp, #32]
+     788:	b	8d4 <configure_ciphers+0x37c>
+     78c:	add	x2, sp, #0xb8
+     790:	adrp	x0, 0 <luks_recover_key>
+     794:	ldr	x1, [x0]
+     798:	mov	w0, #0x5                   	// #5
+     79c:	bl	0 <grub_error>
+     7a0:	ldp	x19, x20, [sp, #16]
+     7a4:	ldp	x21, x22, [sp, #32]
+     7a8:	b	8d4 <configure_ciphers+0x37c>
+     7ac:	adrp	x0, 0 <luks_recover_key>
+     7b0:	ldr	x1, [x0]
+     7b4:	mov	w0, #0x12                  	// #18
+     7b8:	bl	0 <grub_error>
+     7bc:	mov	x0, x20
+     7c0:	bl	0 <grub_free>
+     7c4:	mov	x23, #0x0                   	// #0
+     7c8:	ldp	x19, x20, [sp, #16]
+     7cc:	ldp	x21, x22, [sp, #32]
+     7d0:	b	8d4 <configure_ciphers+0x37c>
+     7d4:	adrp	x0, 0 <luks_recover_key>
+     7d8:	ldr	x1, [x0]
+     7dc:	add	x0, sp, #0x90
+     7e0:	bl	0 <grub_strcmp>
+     7e4:	cbnz	w0, 7f0 <configure_ciphers+0x298>
+     7e8:	mov	w21, #0x1                   	// #1
+     7ec:	b	730 <configure_ciphers+0x1d8>
+     7f0:	mov	x2, #0x4                   	// #4
+     7f4:	adrp	x0, 0 <luks_recover_key>
+     7f8:	ldr	x1, [x0]
+     7fc:	add	x0, sp, #0x90
+     800:	bl	0 <grub_memcmp>
+     804:	cbnz	w0, 8e8 <configure_ciphers+0x390>
+     808:	mov	w28, #0x1                   	// #1
+     80c:	mov	x27, #0x0                   	// #0
+     810:	add	x24, sp, #0x94
+     814:	mov	x2, #0x5                   	// #5
+     818:	adrp	x0, 0 <luks_recover_key>
+     81c:	ldr	x1, [x0]
+     820:	mov	x0, x24
+     824:	bl	0 <grub_memcmp>
+     828:	mov	w22, w0
+     82c:	cbnz	w0, a98 <configure_ciphers+0x540>
+     830:	mov	w21, #0x1                   	// #1
+     834:	mov	x26, #0x0                   	// #0
+     838:	mov	x25, #0x0                   	// #0
+     83c:	add	x0, sp, #0x68
+     840:	bl	0 <grub_crypto_lookup_md_by_name>
+     844:	mov	x24, x0
+     848:	cbz	x0, c50 <configure_ciphers+0x6f8>
+     84c:	mov	x0, #0x238                 	// #568
+     850:	bl	0 <grub_zalloc>
+     854:	mov	x23, x0
+     858:	cbz	x0, c94 <configure_ciphers+0x73c>
+     85c:	str	x20, [x0, #56]
+     860:	ldr	w0, [sp, #376]
+     864:	rev	w0, w0
+     868:	str	x0, [x23, #24]
+     86c:	str	xzr, [x23, #40]
+     870:	str	w22, [x23, #112]
+     874:	str	w28, [x23, #104]
+     878:	str	w21, [x23, #108]
+     87c:	str	x27, [x23, #64]
+     880:	str	x25, [x23, #72]
+     884:	str	x26, [x23, #80]
+     888:	str	x24, [x23, #88]
+     88c:	mov	w0, #0x9                   	// #9
+     890:	str	w0, [x23, #456]
+     894:	mov	x0, x19
+     898:	bl	0 <grub_disk_get_size>
+     89c:	ldr	x1, [x23, #24]
+     8a0:	sub	x0, x0, x1
+     8a4:	str	x0, [x23, #32]
+     8a8:	mov	x2, #0x48                  	// #72
+     8ac:	add	x1, sp, #0xe0
+     8b0:	add	x0, x23, #0x8c
+     8b4:	bl	0 <grub_memmove>
+     8b8:	adrp	x0, 0 <luks_recover_key>
+     8bc:	ldr	x0, [x0]
+     8c0:	str	x0, [x23, #448]
+     8c4:	ldp	x19, x20, [sp, #16]
+     8c8:	ldp	x21, x22, [sp, #32]
+     8cc:	ldp	x25, x26, [sp, #64]
+     8d0:	ldp	x27, x28, [sp, #80]
+     8d4:	mov	x0, x23
+     8d8:	ldp	x23, x24, [sp, #48]
+     8dc:	ldp	x29, x30, [sp]
+     8e0:	add	sp, sp, #0x360
+     8e4:	ret
+     8e8:	mov	x2, #0x5                   	// #5
+     8ec:	adrp	x0, 0 <luks_recover_key>
+     8f0:	ldr	x1, [x0]
+     8f4:	add	x0, sp, #0x90
+     8f8:	bl	0 <grub_memcmp>
+     8fc:	cbnz	w0, 910 <configure_ciphers+0x3b8>
+     900:	mov	w28, #0x2                   	// #2
+     904:	mov	x27, #0x0                   	// #0
+     908:	add	x24, sp, #0x95
+     90c:	b	814 <configure_ciphers+0x2bc>
+     910:	mov	x2, #0x4                   	// #4
+     914:	adrp	x0, 0 <luks_recover_key>
+     918:	ldr	x1, [x0]
+     91c:	add	x0, sp, #0x90
+     920:	bl	0 <grub_memcmp>
+     924:	cbnz	w0, 9fc <configure_ciphers+0x4a4>
+     928:	mov	x0, x23
+     92c:	bl	0 <grub_crypto_cipher_open>
+     930:	mov	x27, x0
+     934:	cbz	x0, 964 <configure_ciphers+0x40c>
+     938:	ldr	x0, [x20]
+     93c:	ldr	x2, [x0, #24]
+     940:	cmp	x2, #0x10
+     944:	b.ne	984 <configure_ciphers+0x42c>  // b.any
+     948:	ldr	x0, [x27]
+     94c:	ldr	x0, [x0, #24]
+     950:	cmp	x0, #0x10
+     954:	b.ne	9bc <configure_ciphers+0x464>  // b.any
+     958:	mov	w28, #0x3                   	// #3
+     95c:	add	x24, sp, #0x94
+     960:	b	814 <configure_ciphers+0x2bc>
+     964:	mov	x0, x20
+     968:	bl	0 <grub_free>
+     96c:	mov	x23, x27
+     970:	ldp	x19, x20, [sp, #16]
+     974:	ldp	x21, x22, [sp, #32]
+     978:	ldp	x25, x26, [sp, #64]
+     97c:	ldp	x27, x28, [sp, #80]
+     980:	b	8d4 <configure_ciphers+0x37c>
+     984:	adrp	x0, 0 <luks_recover_key>
+     988:	ldr	x1, [x0]
+     98c:	mov	w0, #0x12                  	// #18
+     990:	bl	0 <grub_error>
+     994:	mov	x0, x20
+     998:	bl	0 <grub_free>
+     99c:	mov	x0, x27
+     9a0:	bl	0 <grub_free>
+     9a4:	mov	x23, #0x0                   	// #0
+     9a8:	ldp	x19, x20, [sp, #16]
+     9ac:	ldp	x21, x22, [sp, #32]
+     9b0:	ldp	x25, x26, [sp, #64]
+     9b4:	ldp	x27, x28, [sp, #80]
+     9b8:	b	8d4 <configure_ciphers+0x37c>
+     9bc:	mov	x0, x20
+     9c0:	bl	0 <grub_free>
+     9c4:	ldr	x0, [x27]
+     9c8:	ldr	x2, [x0, #24]
+     9cc:	adrp	x0, 0 <luks_recover_key>
+     9d0:	ldr	x1, [x0]
+     9d4:	mov	w0, #0x12                  	// #18
+     9d8:	bl	0 <grub_error>
+     9dc:	mov	x0, x27
+     9e0:	bl	0 <grub_free>
+     9e4:	mov	x23, #0x0                   	// #0
+     9e8:	ldp	x19, x20, [sp, #16]
+     9ec:	ldp	x21, x22, [sp, #32]
+     9f0:	ldp	x25, x26, [sp, #64]
+     9f4:	ldp	x27, x28, [sp, #80]
+     9f8:	b	8d4 <configure_ciphers+0x37c>
+     9fc:	mov	x2, #0x4                   	// #4
+     a00:	adrp	x0, 0 <luks_recover_key>
+     a04:	ldr	x1, [x0]
+     a08:	add	x0, sp, #0x90
+     a0c:	bl	0 <grub_memcmp>
+     a10:	cbnz	w0, a64 <configure_ciphers+0x50c>
+     a14:	ldr	x0, [x20]
+     a18:	ldr	x2, [x0, #24]
+     a1c:	cmp	x2, #0x10
+     a20:	b.ne	a34 <configure_ciphers+0x4dc>  // b.any
+     a24:	mov	w28, #0x4                   	// #4
+     a28:	mov	x27, #0x0                   	// #0
+     a2c:	add	x24, sp, #0x94
+     a30:	b	814 <configure_ciphers+0x2bc>
+     a34:	adrp	x0, 0 <luks_recover_key>
+     a38:	ldr	x1, [x0]
+     a3c:	mov	w0, #0x12                  	// #18
+     a40:	bl	0 <grub_error>
+     a44:	mov	x0, x20
+     a48:	bl	0 <grub_free>
+     a4c:	mov	x23, #0x0                   	// #0
+     a50:	ldp	x19, x20, [sp, #16]
+     a54:	ldp	x21, x22, [sp, #32]
+     a58:	ldp	x25, x26, [sp, #64]
+     a5c:	ldp	x27, x28, [sp, #80]
+     a60:	b	8d4 <configure_ciphers+0x37c>
+     a64:	mov	x0, x20
+     a68:	bl	0 <grub_free>
+     a6c:	add	x2, sp, #0x90
+     a70:	adrp	x0, 0 <luks_recover_key>
+     a74:	ldr	x1, [x0]
+     a78:	mov	w0, #0x12                  	// #18
+     a7c:	bl	0 <grub_error>
+     a80:	mov	x23, #0x0                   	// #0
+     a84:	ldp	x19, x20, [sp, #16]
+     a88:	ldp	x21, x22, [sp, #32]
+     a8c:	ldp	x25, x26, [sp, #64]
+     a90:	ldp	x27, x28, [sp, #80]
+     a94:	b	8d4 <configure_ciphers+0x37c>
+     a98:	mov	x2, #0x7                   	// #7
+     a9c:	adrp	x0, 0 <luks_recover_key>
+     aa0:	ldr	x1, [x0]
+     aa4:	mov	x0, x24
+     aa8:	bl	0 <grub_memcmp>
+     aac:	mov	w22, w0
+     ab0:	cbnz	w0, ac4 <configure_ciphers+0x56c>
+     ab4:	mov	w21, #0x2                   	// #2
+     ab8:	mov	x26, #0x0                   	// #0
+     abc:	mov	x25, #0x0                   	// #0
+     ac0:	b	83c <configure_ciphers+0x2e4>
+     ac4:	mov	x2, #0x5                   	// #5
+     ac8:	adrp	x0, 0 <luks_recover_key>
+     acc:	ldr	x1, [x0]
+     ad0:	mov	x0, x24
+     ad4:	bl	0 <grub_memcmp>
+     ad8:	mov	w22, w0
+     adc:	cbnz	w0, b38 <configure_ciphers+0x5e0>
+     ae0:	ldr	x0, [x20]
+     ae4:	ldr	x2, [x0, #24]
+     ae8:	sub	x0, x2, #0x1
+     aec:	tst	x0, x2
+     af0:	ccmp	x2, #0x0, #0x4, eq  // eq = none
+     af4:	b.ne	b08 <configure_ciphers+0x5b0>  // b.any
+     af8:	adrp	x0, 0 <luks_recover_key>
+     afc:	ldr	x1, [x0]
+     b00:	mov	w0, #0x12                  	// #18
+     b04:	bl	0 <grub_error>
+     b08:	ldr	x0, [x20]
+     b0c:	ldr	x1, [x0, #24]
+     b10:	cmp	x1, #0x1ff
+     b14:	b.hi	c40 <configure_ciphers+0x6e8>  // b.pmore
+     b18:	add	w22, w22, #0x1
+     b1c:	lsl	x0, x1, x22
+     b20:	cmp	x0, #0x1ff
+     b24:	b.ls	b18 <configure_ciphers+0x5c0>  // b.plast
+     b28:	mov	w21, #0x4                   	// #4
+     b2c:	mov	x26, #0x0                   	// #0
+     b30:	mov	x25, #0x0                   	// #0
+     b34:	b	83c <configure_ciphers+0x2e4>
+     b38:	mov	x2, #0x4                   	// #4
+     b3c:	adrp	x0, 0 <luks_recover_key>
+     b40:	ldr	x1, [x0]
+     b44:	mov	x0, x24
+     b48:	bl	0 <grub_memcmp>
+     b4c:	mov	w22, w0
+     b50:	mov	x26, #0x0                   	// #0
+     b54:	mov	x25, #0x0                   	// #0
+     b58:	cbz	w0, 83c <configure_ciphers+0x2e4>
+     b5c:	mov	x2, #0x6                   	// #6
+     b60:	adrp	x0, 0 <luks_recover_key>
+     b64:	ldr	x1, [x0]
+     b68:	mov	x0, x24
+     b6c:	bl	0 <grub_memcmp>
+     b70:	mov	w22, w0
+     b74:	cbnz	w0, c04 <configure_ciphers+0x6ac>
+     b78:	add	x24, x24, #0x6
+     b7c:	mov	x0, x24
+     b80:	bl	0 <grub_crypto_lookup_md_by_name>
+     b84:	mov	x26, x0
+     b88:	cbz	x0, bc8 <configure_ciphers+0x670>
+     b8c:	mov	x0, x23
+     b90:	bl	0 <grub_crypto_cipher_open>
+     b94:	mov	x25, x0
+     b98:	mov	w21, #0x3                   	// #3
+     b9c:	cbnz	x0, 83c <configure_ciphers+0x2e4>
+     ba0:	mov	x0, x20
+     ba4:	bl	0 <grub_free>
+     ba8:	mov	x0, x27
+     bac:	bl	0 <grub_free>
+     bb0:	mov	x23, x25
+     bb4:	ldp	x19, x20, [sp, #16]
+     bb8:	ldp	x21, x22, [sp, #32]
+     bbc:	ldp	x25, x26, [sp, #64]
+     bc0:	ldp	x27, x28, [sp, #80]
+     bc4:	b	8d4 <configure_ciphers+0x37c>
+     bc8:	mov	x0, x20
+     bcc:	bl	0 <grub_free>
+     bd0:	mov	x0, x27
+     bd4:	bl	0 <grub_free>
+     bd8:	mov	x2, x24
+     bdc:	adrp	x0, 0 <luks_recover_key>
+     be0:	ldr	x1, [x0]
+     be4:	mov	w0, #0x5                   	// #5
+     be8:	bl	0 <grub_error>
+     bec:	mov	x23, x26
+     bf0:	ldp	x19, x20, [sp, #16]
+     bf4:	ldp	x21, x22, [sp, #32]
+     bf8:	ldp	x25, x26, [sp, #64]
+     bfc:	ldp	x27, x28, [sp, #80]
+     c00:	b	8d4 <configure_ciphers+0x37c>
+     c04:	mov	x0, x20
+     c08:	bl	0 <grub_free>
+     c0c:	mov	x0, x27
+     c10:	bl	0 <grub_free>
+     c14:	mov	x2, x24
+     c18:	adrp	x0, 0 <luks_recover_key>
+     c1c:	ldr	x1, [x0]
+     c20:	mov	w0, #0x12                  	// #18
+     c24:	bl	0 <grub_error>
+     c28:	mov	x23, #0x0                   	// #0
+     c2c:	ldp	x19, x20, [sp, #16]
+     c30:	ldp	x21, x22, [sp, #32]
+     c34:	ldp	x25, x26, [sp, #64]
+     c38:	ldp	x27, x28, [sp, #80]
+     c3c:	b	8d4 <configure_ciphers+0x37c>
+     c40:	mov	w21, #0x4                   	// #4
+     c44:	mov	x26, #0x0                   	// #0
+     c48:	mov	x25, #0x0                   	// #0
+     c4c:	b	83c <configure_ciphers+0x2e4>
+     c50:	mov	x0, x20
+     c54:	bl	0 <grub_free>
+     c58:	mov	x0, x25
+     c5c:	bl	0 <grub_free>
+     c60:	mov	x0, x27
+     c64:	bl	0 <grub_free>
+     c68:	add	x2, sp, #0x68
+     c6c:	adrp	x0, 0 <luks_recover_key>
+     c70:	ldr	x1, [x0]
+     c74:	mov	w0, #0x5                   	// #5
+     c78:	bl	0 <grub_error>
+     c7c:	mov	x23, x24
+     c80:	ldp	x19, x20, [sp, #16]
+     c84:	ldp	x21, x22, [sp, #32]
+     c88:	ldp	x25, x26, [sp, #64]
+     c8c:	ldp	x27, x28, [sp, #80]
+     c90:	b	8d4 <configure_ciphers+0x37c>
+     c94:	mov	x0, x20
+     c98:	bl	0 <grub_free>
+     c9c:	mov	x0, x25
+     ca0:	bl	0 <grub_free>
+     ca4:	mov	x0, x27
+     ca8:	bl	0 <grub_free>
+     cac:	ldp	x19, x20, [sp, #16]
+     cb0:	ldp	x21, x22, [sp, #32]
+     cb4:	ldp	x25, x26, [sp, #64]
+     cb8:	ldp	x27, x28, [sp, #80]
+     cbc:	b	8d4 <configure_ciphers+0x37c>
+     cc0:	mov	x23, #0x0                   	// #0
+     cc4:	ldp	x19, x20, [sp, #16]
+     cc8:	ldp	x21, x22, [sp, #32]
+     ccc:	b	8d4 <configure_ciphers+0x37c>
+     cd0:	mov	x23, x0
+     cd4:	ldp	x19, x20, [sp, #16]
+     cd8:	ldp	x21, x22, [sp, #32]
+     cdc:	b	8d4 <configure_ciphers+0x37c>
+     ce0:	ldrb	w0, [x3]
+     ce4:	b	6a4 <configure_ciphers+0x14c>
+     ce8:	mov	w7, w2
+     cec:	sub	w2, w2, #0x41
+     cf0:	cmp	w2, #0x19
+     cf4:	b.hi	ce0 <configure_ciphers+0x788>  // b.pmore
+     cf8:	add	w7, w7, #0x20
+     cfc:	b	690 <configure_ciphers+0x138>
+     d00:	ldp	x19, x20, [sp, #16]
+     d04:	ldp	x21, x22, [sp, #32]
+     d08:	b	8d4 <configure_ciphers+0x37c>
+     d0c:	nop
+	...
+
+0000000000000dc8 <grub_mod_init>:
+     dc8:	stp	x29, x30, [sp, #-16]!
+     dcc:	mov	x29, sp
+     dd0:	adrp	x0, 0 <luks_recover_key>
+     dd4:	ldr	x1, [x0]
+     dd8:	adrp	x0, 0 <luks_recover_key>
+     ddc:	ldr	x0, [x0]
+     de0:	bl	0 <grub_list_push>
+     de4:	ldp	x29, x30, [sp], #16
+     de8:	ret
+     dec:	nop
+	...
+
+0000000000000e00 <grub_mod_fini>:
+     e00:	stp	x29, x30, [sp, #-16]!
+     e04:	mov	x29, sp
+     e08:	adrp	x0, 0 <luks_recover_key>
+     e0c:	ldr	x0, [x0]
+     e10:	bl	0 <grub_list_remove>
+     e14:	ldp	x29, x30, [sp], #16
+     e18:	ret
+     e1c:	nop
+	...
+
+0000000000000e28 <AF_merge>:
+     e28:	stp	x29, x30, [sp, #-272]!
+     e2c:	mov	x29, sp
+     e30:	stp	x21, x22, [sp, #32]
+     e34:	mov	x21, x0
+     e38:	str	x1, [sp, #120]
+     e3c:	ldr	x0, [x0, #32]
+     e40:	sub	x0, x0, #0x1
+     e44:	cmp	x0, #0x3f
+     e48:	b.hi	10f8 <AF_merge+0x2d0>  // b.pmore
+     e4c:	stp	x19, x20, [sp, #16]
+     e50:	stp	x25, x26, [sp, #64]
+     e54:	stp	x27, x28, [sp, #80]
+     e58:	mov	x28, x1
+     e5c:	mov	x22, x2
+     e60:	mov	x19, x3
+     e64:	mov	x20, x4
+     e68:	mov	x0, x3
+     e6c:	bl	0 <grub_zalloc>
+     e70:	mov	x25, x0
+     e74:	cbz	x0, 1100 <AF_merge+0x2d8>
+     e78:	mov	x2, x19
+     e7c:	mov	w1, #0x0                   	// #0
+     e80:	bl	0 <grub_memset>
+     e84:	subs	x0, x20, #0x1
+     e88:	str	x0, [sp, #112]
+     e8c:	b.eq	1030 <AF_merge+0x208>  // b.none
+     e90:	stp	x23, x24, [sp, #48]
+     e94:	mov	x27, #0x0                   	// #0
+     e98:	add	x0, sp, #0xcc
+     e9c:	str	x0, [sp, #104]
+     ea0:	b	f90 <AF_merge+0x168>
+     ea4:	mov	x6, x1
+     ea8:	cmp	x2, #0x7
+     eac:	b.ls	eec <AF_merge+0xc4>  // b.plast
+     eb0:	sub	x5, x2, #0x8
+     eb4:	and	x5, x5, #0xfffffffffffffff8
+     eb8:	add	x5, x5, #0x8
+     ebc:	mov	x4, x0
+     ec0:	ldr	x6, [x1, x4]
+     ec4:	ldr	x7, [x3, x4]
+     ec8:	eor	x6, x6, x7
+     ecc:	str	x6, [x1, x4]
+     ed0:	add	x4, x4, #0x8
+     ed4:	cmp	x5, x4
+     ed8:	b.ne	ec0 <AF_merge+0x98>  // b.any
+     edc:	add	x3, x3, x5
+     ee0:	add	x1, x1, x5
+     ee4:	mov	x6, x1
+     ee8:	and	x2, x2, #0x7
+     eec:	cbz	x2, f0c <AF_merge+0xe4>
+     ef0:	ldrb	w4, [x3, x0]
+     ef4:	ldrb	w5, [x6, x0]
+     ef8:	eor	w4, w4, w5
+     efc:	strb	w4, [x1, x0]
+     f00:	add	x0, x0, #0x1
+     f04:	cmp	x0, x2
+     f08:	b.ne	ef0 <AF_merge+0xc8>  // b.any
+     f0c:	ldr	x24, [x21, #32]
+     f10:	udiv	x23, x19, x24
+     f14:	msub	x26, x23, x24, x19
+     f18:	cmp	x19, x24
+     f1c:	b.cc	fc8 <AF_merge+0x1a0>  // b.lo, b.ul, b.last
+     f20:	mov	x20, #0x0                   	// #0
+     f24:	rev	w0, w20
+     f28:	str	w0, [sp, #132]
+     f2c:	mov	x2, #0x4                   	// #4
+     f30:	add	x1, sp, #0x84
+     f34:	add	x0, sp, #0xc8
+     f38:	bl	0 <grub_memmove>
+     f3c:	ldr	x2, [x21, #32]
+     f40:	madd	x1, x2, x20, x25
+     f44:	ldr	x0, [sp, #104]
+     f48:	bl	0 <grub_memmove>
+     f4c:	ldr	x1, [x21, #32]
+     f50:	add	x3, x1, #0x4
+     f54:	add	x2, sp, #0xc8
+     f58:	madd	x1, x1, x20, x25
+     f5c:	mov	x0, x21
+     f60:	bl	0 <grub_crypto_hash>
+     f64:	add	x20, x20, #0x1
+     f68:	cmp	x23, x20
+     f6c:	b.hi	f24 <AF_merge+0xfc>  // b.pmore
+     f70:	cmp	x19, x24
+     f74:	csinc	x23, x23, xzr, cs  // cs = hs, nlast
+     f78:	cbnz	w26, fd0 <AF_merge+0x1a8>
+     f7c:	add	x27, x27, #0x1
+     f80:	add	x28, x28, x19
+     f84:	ldr	x0, [sp, #112]
+     f88:	cmp	x27, x0
+     f8c:	b.eq	102c <AF_merge+0x204>  // b.none
+     f90:	mov	x3, x28
+     f94:	mov	x2, x19
+     f98:	mov	x1, x25
+     f9c:	cbz	x19, f0c <AF_merge+0xe4>
+     fa0:	orr	x0, x3, x1
+     fa4:	ands	x0, x0, #0x7
+     fa8:	b.eq	ea4 <AF_merge+0x7c>  // b.none
+     fac:	ldrb	w0, [x3], #1
+     fb0:	ldrb	w4, [x1]
+     fb4:	eor	w0, w0, w4
+     fb8:	strb	w0, [x1], #1
+     fbc:	subs	x2, x2, #0x1
+     fc0:	b.ne	fa0 <AF_merge+0x178>  // b.any
+     fc4:	b	f0c <AF_merge+0xe4>
+     fc8:	mov	x23, #0x0                   	// #0
+     fcc:	b	f78 <AF_merge+0x150>
+     fd0:	rev	w0, w23
+     fd4:	str	w0, [sp, #132]
+     fd8:	mov	x2, #0x4                   	// #4
+     fdc:	add	x1, sp, #0x84
+     fe0:	add	x0, sp, #0xc8
+     fe4:	bl	0 <grub_memmove>
+     fe8:	sxtw	x26, w26
+     fec:	ldr	x1, [x21, #32]
+     ff0:	mov	x2, x26
+     ff4:	madd	x1, x23, x1, x25
+     ff8:	ldr	x0, [sp, #104]
+     ffc:	bl	0 <grub_memmove>
+    1000:	add	x3, x26, #0x4
+    1004:	add	x2, sp, #0xc8
+    1008:	add	x1, sp, #0x88
+    100c:	mov	x0, x21
+    1010:	bl	0 <grub_crypto_hash>
+    1014:	ldr	x0, [x21, #32]
+    1018:	mov	x2, x26
+    101c:	add	x1, sp, #0x88
+    1020:	madd	x0, x23, x0, x25
+    1024:	bl	0 <grub_memmove>
+    1028:	b	f7c <AF_merge+0x154>
+    102c:	ldp	x23, x24, [sp, #48]
+    1030:	ldr	x0, [sp, #112]
+    1034:	ldr	x1, [sp, #120]
+    1038:	madd	x1, x19, x0, x1
+    103c:	mov	x3, x25
+    1040:	cbz	x19, 10d4 <AF_merge+0x2ac>
+    1044:	orr	x0, x3, x1
+    1048:	orr	x0, x22, x0
+    104c:	ands	x0, x0, #0x7
+    1050:	b.eq	1070 <AF_merge+0x248>  // b.none
+    1054:	ldrb	w0, [x1], #1
+    1058:	ldrb	w2, [x3], #1
+    105c:	eor	w0, w0, w2
+    1060:	strb	w0, [x22], #1
+    1064:	subs	x19, x19, #0x1
+    1068:	b.ne	1044 <AF_merge+0x21c>  // b.any
+    106c:	b	10d4 <AF_merge+0x2ac>
+    1070:	cmp	x19, #0x7
+    1074:	b.ls	10b4 <AF_merge+0x28c>  // b.plast
+    1078:	sub	x6, x19, #0x8
+    107c:	and	x6, x6, #0xfffffffffffffff8
+    1080:	add	x6, x6, #0x8
+    1084:	mov	x2, x0
+    1088:	ldr	x4, [x1, x2]
+    108c:	ldr	x5, [x3, x2]
+    1090:	eor	x4, x4, x5
+    1094:	str	x4, [x22, x2]
+    1098:	add	x2, x2, #0x8
+    109c:	cmp	x2, x6
+    10a0:	b.ne	1088 <AF_merge+0x260>  // b.any
+    10a4:	add	x1, x1, x6
+    10a8:	add	x3, x3, x6
+    10ac:	add	x22, x22, x6
+    10b0:	and	x19, x19, #0x7
+    10b4:	cbz	x19, 10d4 <AF_merge+0x2ac>
+    10b8:	ldrb	w2, [x1, x0]
+    10bc:	ldrb	w4, [x3, x0]
+    10c0:	eor	w2, w2, w4
+    10c4:	strb	w2, [x22, x0]
+    10c8:	add	x0, x0, #0x1
+    10cc:	cmp	x0, x19
+    10d0:	b.ne	10b8 <AF_merge+0x290>  // b.any
+    10d4:	mov	x0, x25
+    10d8:	bl	0 <grub_free>
+    10dc:	mov	w0, #0x0                   	// #0
+    10e0:	ldp	x19, x20, [sp, #16]
+    10e4:	ldp	x25, x26, [sp, #64]
+    10e8:	ldp	x27, x28, [sp, #80]
+    10ec:	ldp	x21, x22, [sp, #32]
+    10f0:	ldp	x29, x30, [sp], #272
+    10f4:	ret
+    10f8:	mov	w0, #0xa                   	// #10
+    10fc:	b	10ec <AF_merge+0x2c4>
+    1100:	mov	w0, #0x22                  	// #34
+    1104:	ldp	x19, x20, [sp, #16]
+    1108:	ldp	x25, x26, [sp, #64]
+    110c:	ldp	x27, x28, [sp, #80]
+    1110:	b	10ec <AF_merge+0x2c4>

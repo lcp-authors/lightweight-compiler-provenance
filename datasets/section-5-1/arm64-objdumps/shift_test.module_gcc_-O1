@@ -1,0 +1,312 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//shift_test.module_gcc_-O1:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <get_bit64>:
+   0:	sub	sp, sp, #0x10
+   4:	str	x0, [sp, #8]
+   8:	mov	w0, #0x0                   	// #0
+   c:	cmp	w1, #0x3f
+  10:	b.gt	54 <get_bit64+0x54>
+  14:	add	w2, w1, #0x7
+  18:	cmp	w1, #0x0
+  1c:	csel	w2, w2, w1, lt  // lt = tstop
+  20:	asr	w2, w2, #3
+  24:	adrp	x0, 0 <get_bit64>
+  28:	ldr	x3, [x0]
+  2c:	negs	w0, w1
+  30:	and	w1, w1, #0x7
+  34:	and	w0, w0, #0x7
+  38:	csneg	w1, w1, w0, mi  // mi = first
+  3c:	add	x0, sp, #0x8
+  40:	ldrb	w0, [x0, w2, sxtw]
+  44:	ldrb	w1, [x3, w1, sxtw]
+  48:	and	w0, w0, w1
+  4c:	tst	w0, #0xff
+  50:	cset	w0, ne  // ne = any
+  54:	add	sp, sp, #0x10
+  58:	ret
+  5c:	nop
+	...
+
+0000000000000068 <set_bit64>:
+  68:	sub	sp, sp, #0x10
+  6c:	str	x0, [sp, #8]
+  70:	cmp	w1, #0x3f
+  74:	b.gt	b8 <set_bit64+0x50>
+  78:	add	x3, sp, #0x8
+  7c:	add	w0, w1, #0x7
+  80:	cmp	w1, #0x0
+  84:	csel	w0, w0, w1, lt  // lt = tstop
+  88:	asr	w0, w0, #3
+  8c:	adrp	x2, 0 <get_bit64>
+  90:	ldr	x4, [x2]
+  94:	negs	w2, w1
+  98:	and	w1, w1, #0x7
+  9c:	and	w2, w2, #0x7
+  a0:	csneg	w1, w1, w2, mi  // mi = first
+  a4:	ldrb	w1, [x4, w1, sxtw]
+  a8:	ldrb	w2, [x3, w0, sxtw]
+  ac:	orr	w1, w1, w2
+  b0:	strb	w1, [x3, w0, sxtw]
+  b4:	ldr	x0, [sp, #8]
+  b8:	add	sp, sp, #0x10
+  bc:	ret
+	...
+
+00000000000000c8 <test64>:
+  c8:	sub	sp, sp, #0x80
+  cc:	stp	x29, x30, [sp, #16]
+  d0:	add	x29, sp, #0x10
+  d4:	stp	x19, x20, [sp, #32]
+  d8:	stp	x21, x22, [sp, #48]
+  dc:	stp	x23, x24, [sp, #64]
+  e0:	stp	x25, x26, [sp, #80]
+  e4:	stp	x27, x28, [sp, #96]
+  e8:	mov	x24, x0
+  ec:	mov	w23, #0x40                  	// #64
+  f0:	mov	w20, #0x0                   	// #0
+  f4:	mov	x22, x0
+  f8:	adrp	x26, 0 <get_bit64>
+  fc:	adrp	x25, 0 <get_bit64>
+ 100:	b	21c <test64+0x154>
+ 104:	add	w21, w21, #0x1
+ 108:	cmp	w23, w21
+ 10c:	b.eq	284 <test64+0x1bc>  // b.none
+ 110:	add	w28, w21, w20
+ 114:	mov	w1, w21
+ 118:	mov	x0, x22
+ 11c:	bl	0 <get_bit64>
+ 120:	cbz	w0, 104 <test64+0x3c>
+ 124:	mov	w1, w28
+ 128:	mov	x0, x19
+ 12c:	bl	68 <set_bit64>
+ 130:	mov	x19, x0
+ 134:	b	104 <test64+0x3c>
+ 138:	add	w27, w27, #0x1
+ 13c:	cmp	w23, w27
+ 140:	b.eq	238 <test64+0x170>  // b.none
+ 144:	ldr	w0, [sp, #116]
+ 148:	add	w1, w0, w27
+ 14c:	mov	x0, x22
+ 150:	bl	0 <get_bit64>
+ 154:	cbz	w0, 138 <test64+0x70>
+ 158:	mov	w1, w27
+ 15c:	mov	x0, x19
+ 160:	bl	68 <set_bit64>
+ 164:	mov	x19, x0
+ 168:	b	138 <test64+0x70>
+ 16c:	add	w27, w27, #0x1
+ 170:	cmp	w23, w27
+ 174:	b.eq	1a0 <test64+0xd8>  // b.none
+ 178:	ldr	w0, [sp, #116]
+ 17c:	add	w1, w0, w27
+ 180:	mov	x0, x22
+ 184:	bl	0 <get_bit64>
+ 188:	cbz	w0, 16c <test64+0xa4>
+ 18c:	mov	w1, w27
+ 190:	mov	x0, x19
+ 194:	bl	68 <set_bit64>
+ 198:	mov	x19, x0
+ 19c:	b	16c <test64+0xa4>
+ 1a0:	mov	w1, #0x3f                  	// #63
+ 1a4:	mov	x0, x22
+ 1a8:	bl	0 <get_bit64>
+ 1ac:	cbz	w0, 1d4 <test64+0x10c>
+ 1b0:	cmp	w21, #0x3f
+ 1b4:	b.gt	1d4 <test64+0x10c>
+ 1b8:	mov	w1, w21
+ 1bc:	mov	x0, x19
+ 1c0:	bl	68 <set_bit64>
+ 1c4:	mov	x19, x0
+ 1c8:	add	w21, w21, #0x1
+ 1cc:	cmp	w21, #0x3f
+ 1d0:	b.le	1b8 <test64+0xf0>
+ 1d4:	ldr	x2, [x26]
+ 1d8:	cmp	x19, x28
+ 1dc:	str	x19, [sp, #8]
+ 1e0:	str	x28, [sp]
+ 1e4:	mov	w7, w20
+ 1e8:	ldr	x6, [sp, #120]
+ 1ec:	adrp	x0, 0 <get_bit64>
+ 1f0:	ldr	x5, [x0]
+ 1f4:	adrp	x0, 0 <get_bit64>
+ 1f8:	ldr	x4, [x0]
+ 1fc:	mov	w3, #0x78                  	// #120
+ 200:	add	x2, x2, #0x8
+ 204:	ldr	x1, [x25]
+ 208:	cset	w0, eq  // eq = none
+ 20c:	bl	0 <grub_test_assert_helper>
+ 210:	add	w20, w20, #0x1
+ 214:	subs	w23, w23, #0x1
+ 218:	b.eq	37c <test64+0x2b4>  // b.none
+ 21c:	lsl	x27, x24, x20
+ 220:	cmp	w20, #0x3f
+ 224:	b.gt	2d4 <test64+0x20c>
+ 228:	mov	x19, #0x0                   	// #0
+ 22c:	mov	w21, #0x0                   	// #0
+ 230:	str	w20, [sp, #116]
+ 234:	b	110 <test64+0x48>
+ 238:	ldr	x2, [x26]
+ 23c:	cmp	x19, x28
+ 240:	str	x19, [sp, #8]
+ 244:	str	x28, [sp]
+ 248:	mov	w7, w20
+ 24c:	mov	x6, x22
+ 250:	adrp	x0, 0 <get_bit64>
+ 254:	ldr	x5, [x0]
+ 258:	adrp	x0, 0 <get_bit64>
+ 25c:	ldr	x4, [x0]
+ 260:	mov	w3, #0x74                  	// #116
+ 264:	add	x2, x2, #0x8
+ 268:	ldr	x1, [x25]
+ 26c:	cset	w0, eq  // eq = none
+ 270:	bl	0 <grub_test_assert_helper>
+ 274:	asr	x28, x24, x20
+ 278:	mov	w27, #0x0                   	// #0
+ 27c:	mov	x19, #0x0                   	// #0
+ 280:	b	178 <test64+0xb0>
+ 284:	str	x22, [sp, #120]
+ 288:	ldr	x2, [x26]
+ 28c:	cmp	x27, x19
+ 290:	str	x19, [sp, #8]
+ 294:	str	x27, [sp]
+ 298:	mov	w7, w20
+ 29c:	mov	x6, x22
+ 2a0:	adrp	x0, 0 <get_bit64>
+ 2a4:	ldr	x5, [x0]
+ 2a8:	adrp	x0, 0 <get_bit64>
+ 2ac:	ldr	x4, [x0]
+ 2b0:	mov	w3, #0x70                  	// #112
+ 2b4:	add	x2, x2, #0x8
+ 2b8:	ldr	x1, [x25]
+ 2bc:	cset	w0, eq  // eq = none
+ 2c0:	bl	0 <grub_test_assert_helper>
+ 2c4:	lsr	x28, x24, x20
+ 2c8:	mov	w27, #0x0                   	// #0
+ 2cc:	mov	x19, #0x0                   	// #0
+ 2d0:	b	144 <test64+0x7c>
+ 2d4:	str	x22, [sp, #120]
+ 2d8:	ldr	x19, [x26]
+ 2dc:	add	x19, x19, #0x8
+ 2e0:	ldr	x21, [x25]
+ 2e4:	cmp	x27, #0x0
+ 2e8:	str	xzr, [sp, #8]
+ 2ec:	str	x27, [sp]
+ 2f0:	mov	w7, w20
+ 2f4:	mov	x6, x22
+ 2f8:	adrp	x0, 0 <get_bit64>
+ 2fc:	ldr	x5, [x0]
+ 300:	adrp	x0, 0 <get_bit64>
+ 304:	ldr	x4, [x0]
+ 308:	mov	w3, #0x70                  	// #112
+ 30c:	mov	x2, x19
+ 310:	mov	x1, x21
+ 314:	cset	w0, eq  // eq = none
+ 318:	bl	0 <grub_test_assert_helper>
+ 31c:	lsr	x0, x24, x20
+ 320:	cmp	x0, #0x0
+ 324:	str	xzr, [sp, #8]
+ 328:	str	x0, [sp]
+ 32c:	mov	w7, w20
+ 330:	mov	x6, x22
+ 334:	adrp	x0, 0 <get_bit64>
+ 338:	ldr	x5, [x0]
+ 33c:	adrp	x0, 0 <get_bit64>
+ 340:	ldr	x4, [x0]
+ 344:	mov	w3, #0x74                  	// #116
+ 348:	mov	x2, x19
+ 34c:	mov	x1, x21
+ 350:	cset	w0, eq  // eq = none
+ 354:	bl	0 <grub_test_assert_helper>
+ 358:	asr	x28, x24, x20
+ 35c:	mov	w1, #0x3f                  	// #63
+ 360:	mov	x0, x22
+ 364:	bl	0 <get_bit64>
+ 368:	mov	x19, #0x0                   	// #0
+ 36c:	cbz	w0, 1d4 <test64+0x10c>
+ 370:	mov	w21, #0x0                   	// #0
+ 374:	mov	x19, #0x0                   	// #0
+ 378:	b	1b8 <test64+0xf0>
+ 37c:	ldp	x19, x20, [sp, #32]
+ 380:	ldp	x21, x22, [sp, #48]
+ 384:	ldp	x23, x24, [sp, #64]
+ 388:	ldp	x25, x26, [sp, #80]
+ 38c:	ldp	x27, x28, [sp, #96]
+ 390:	ldp	x29, x30, [sp, #16]
+ 394:	add	sp, sp, #0x80
+ 398:	ret
+ 39c:	nop
+	...
+
+00000000000003e0 <shift_test>:
+ 3e0:	stp	x29, x30, [sp, #-48]!
+ 3e4:	mov	x29, sp
+ 3e8:	stp	x19, x20, [sp, #16]
+ 3ec:	stp	x21, x22, [sp, #32]
+ 3f0:	mov	x0, #0xffffffffffffffff    	// #-1
+ 3f4:	bl	c8 <test64>
+ 3f8:	mov	x0, #0x1                   	// #1
+ 3fc:	bl	c8 <test64>
+ 400:	mov	x0, #0x2                   	// #2
+ 404:	bl	c8 <test64>
+ 408:	mov	x0, #0x0                   	// #0
+ 40c:	bl	c8 <test64>
+ 410:	mov	x0, #0x708                 	// #1800
+ 414:	movk	x0, #0x506, lsl #16
+ 418:	movk	x0, #0x304, lsl #32
+ 41c:	movk	x0, #0x102, lsl #48
+ 420:	bl	c8 <test64>
+ 424:	mov	x20, #0xfa0                 	// #4000
+ 428:	mov	x19, #0x7                   	// #7
+ 42c:	mov	x22, #0x194                 	// #404
+ 430:	mov	x21, #0x1                   	// #1
+ 434:	add	x22, x22, x22, lsl #4
+ 438:	add	x0, x19, x19, lsl #1
+ 43c:	add	x0, x19, x0, lsl #2
+ 440:	add	x0, x0, x22
+ 444:	lsl	x1, x19, #3
+ 448:	sub	x1, x1, x19
+ 44c:	add	x19, x19, x1, lsl #2
+ 450:	add	x1, x0, x0, lsl #1
+ 454:	lsl	x1, x1, #3
+ 458:	sub	x1, x1, x0
+ 45c:	adds	x19, x1, x19
+ 460:	csel	x19, x19, x21, ne  // ne = any
+ 464:	cmp	x0, #0x0
+ 468:	csel	x22, x0, x21, ne  // ne = any
+ 46c:	mov	x0, x22
+ 470:	bl	c8 <test64>
+ 474:	mov	x0, x19
+ 478:	bl	c8 <test64>
+ 47c:	subs	x20, x20, #0x1
+ 480:	b.ne	434 <shift_test+0x54>  // b.any
+ 484:	ldp	x19, x20, [sp, #16]
+ 488:	ldp	x21, x22, [sp, #32]
+ 48c:	ldp	x29, x30, [sp], #48
+ 490:	ret
+
+0000000000000494 <grub_mod_init>:
+ 494:	stp	x29, x30, [sp, #-16]!
+ 498:	mov	x29, sp
+ 49c:	adrp	x0, 0 <get_bit64>
+ 4a0:	ldr	x1, [x0]
+ 4a4:	adrp	x0, 0 <get_bit64>
+ 4a8:	ldr	x0, [x0]
+ 4ac:	bl	0 <grub_test_register>
+ 4b0:	ldp	x29, x30, [sp], #16
+ 4b4:	ret
+	...
+
+00000000000004c8 <grub_mod_fini>:
+ 4c8:	stp	x29, x30, [sp, #-16]!
+ 4cc:	mov	x29, sp
+ 4d0:	adrp	x0, 0 <get_bit64>
+ 4d4:	ldr	x0, [x0]
+ 4d8:	bl	0 <grub_test_unregister>
+ 4dc:	ldp	x29, x30, [sp], #16
+ 4e0:	ret
+ 4e4:	nop
+	...

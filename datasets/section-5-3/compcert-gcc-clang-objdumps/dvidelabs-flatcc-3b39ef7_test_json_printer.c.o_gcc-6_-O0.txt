@@ -1,0 +1,2380 @@
+
+../compcert-repos/dvidelabs-flatcc-3b39ef7/test/json_test/CMakeFiles/test_json_printer.dir/test_json_printer.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <flatcc_json_printer_get_error>:
+       0:	push	{fp}		; (str fp, [sp, #-4]!)
+       4:	add	fp, sp, #0
+       8:	sub	sp, sp, #12
+       c:	str	r0, [fp, #-8]
+      10:	ldr	r3, [fp, #-8]
+      14:	ldr	r3, [r3, #36]	; 0x24
+      18:	mov	r0, r3
+      1c:	add	sp, fp, #0
+      20:	pop	{fp}		; (ldr fp, [sp], #4)
+      24:	bx	lr
+
+00000028 <flatcc_json_printer_set_unquoted>:
+      28:	push	{fp}		; (str fp, [sp, #-4]!)
+      2c:	add	fp, sp, #0
+      30:	sub	sp, sp, #12
+      34:	str	r0, [fp, #-8]
+      38:	str	r1, [fp, #-12]
+      3c:	ldr	r3, [fp, #-12]
+      40:	cmp	r3, #0
+      44:	movne	r3, #1
+      48:	moveq	r3, #0
+      4c:	uxtb	r3, r3
+      50:	mov	r2, r3
+      54:	ldr	r3, [fp, #-8]
+      58:	strb	r2, [r3, #26]
+      5c:	nop			; (mov r0, r0)
+      60:	add	sp, fp, #0
+      64:	pop	{fp}		; (ldr fp, [sp], #4)
+      68:	bx	lr
+
+0000006c <flatcc_json_printer_set_noenum>:
+      6c:	push	{fp}		; (str fp, [sp, #-4]!)
+      70:	add	fp, sp, #0
+      74:	sub	sp, sp, #12
+      78:	str	r0, [fp, #-8]
+      7c:	str	r1, [fp, #-12]
+      80:	ldr	r3, [fp, #-12]
+      84:	cmp	r3, #0
+      88:	movne	r3, #1
+      8c:	moveq	r3, #0
+      90:	uxtb	r3, r3
+      94:	mov	r2, r3
+      98:	ldr	r3, [fp, #-8]
+      9c:	strb	r2, [r3, #27]
+      a0:	nop			; (mov r0, r0)
+      a4:	add	sp, fp, #0
+      a8:	pop	{fp}		; (ldr fp, [sp], #4)
+      ac:	bx	lr
+
+000000b0 <flatcc_json_printer_set_indent>:
+      b0:	push	{fp}		; (str fp, [sp, #-4]!)
+      b4:	add	fp, sp, #0
+      b8:	sub	sp, sp, #12
+      bc:	str	r0, [fp, #-8]
+      c0:	mov	r3, r1
+      c4:	strb	r3, [fp, #-9]
+      c8:	ldr	r3, [fp, #-8]
+      cc:	ldrb	r2, [fp, #-9]
+      d0:	strb	r2, [r3, #25]
+      d4:	nop			; (mov r0, r0)
+      d8:	add	sp, fp, #0
+      dc:	pop	{fp}		; (ldr fp, [sp], #4)
+      e0:	bx	lr
+
+000000e4 <flatcc_json_printer_set_nonstrict>:
+      e4:	push	{fp, lr}
+      e8:	add	fp, sp, #4
+      ec:	sub	sp, sp, #8
+      f0:	str	r0, [fp, #-8]
+      f4:	mov	r1, #2
+      f8:	ldr	r0, [fp, #-8]
+      fc:	bl	b0 <flatcc_json_printer_set_indent>
+     100:	mov	r1, #1
+     104:	ldr	r0, [fp, #-8]
+     108:	bl	28 <flatcc_json_printer_set_unquoted>
+     10c:	mov	r1, #0
+     110:	ldr	r0, [fp, #-8]
+     114:	bl	6c <flatcc_json_printer_set_noenum>
+     118:	nop			; (mov r0, r0)
+     11c:	sub	sp, fp, #4
+     120:	pop	{fp, pc}
+
+00000124 <flatcc_json_printer_total>:
+     124:	push	{fp}		; (str fp, [sp, #-4]!)
+     128:	add	fp, sp, #0
+     12c:	sub	sp, sp, #12
+     130:	str	r0, [fp, #-8]
+     134:	ldr	r3, [fp, #-8]
+     138:	ldr	r3, [r3, #12]
+     13c:	ldr	r2, [fp, #-8]
+     140:	ldr	r2, [r2, #20]
+     144:	mov	r1, r2
+     148:	ldr	r2, [fp, #-8]
+     14c:	ldr	r2, [r2]
+     150:	sub	r2, r1, r2
+     154:	add	r3, r3, r2
+     158:	mov	r0, r3
+     15c:	add	sp, fp, #0
+     160:	pop	{fp}		; (ldr fp, [sp], #4)
+     164:	bx	lr
+
+00000168 <flatcc_json_printer_flush>:
+     168:	push	{fp, lr}
+     16c:	add	fp, sp, #4
+     170:	sub	sp, sp, #8
+     174:	str	r0, [fp, #-8]
+     178:	ldr	r3, [fp, #-8]
+     17c:	ldr	r3, [r3, #44]	; 0x2c
+     180:	mov	r1, #1
+     184:	ldr	r0, [fp, #-8]
+     188:	blx	r3
+     18c:	ldr	r0, [fp, #-8]
+     190:	bl	124 <flatcc_json_printer_total>
+     194:	mov	r3, r0
+     198:	mov	r0, r3
+     19c:	sub	sp, fp, #4
+     1a0:	pop	{fp, pc}
+
+000001a4 <MyGame_OtherNameSpace_FromInclude_print_json_enum>:
+     1a4:	push	{fp, lr}
+     1a8:	add	fp, sp, #4
+     1ac:	sub	sp, sp, #16
+     1b0:	str	r0, [fp, #-8]
+     1b4:	strd	r2, [fp, #-20]	; 0xffffffec
+     1b8:	ldrd	r2, [fp, #-20]	; 0xffffffec
+     1bc:	orrs	r1, r2, r3
+     1c0:	beq	1d4 <MyGame_OtherNameSpace_FromInclude_print_json_enum+0x30>
+     1c4:	cmp	r3, #0
+     1c8:	cmpeq	r2, #17
+     1cc:	beq	1e8 <MyGame_OtherNameSpace_FromInclude_print_json_enum+0x44>
+     1d0:	b	1fc <MyGame_OtherNameSpace_FromInclude_print_json_enum+0x58>
+     1d4:	mov	r2, #10
+     1d8:	ldr	r1, [pc, #56]	; 218 <MyGame_OtherNameSpace_FromInclude_print_json_enum+0x74>
+     1dc:	ldr	r0, [fp, #-8]
+     1e0:	bl	0 <flatcc_json_printer_enum>
+     1e4:	b	20c <MyGame_OtherNameSpace_FromInclude_print_json_enum+0x68>
+     1e8:	mov	r2, #3
+     1ec:	ldr	r1, [pc, #40]	; 21c <MyGame_OtherNameSpace_FromInclude_print_json_enum+0x78>
+     1f0:	ldr	r0, [fp, #-8]
+     1f4:	bl	0 <flatcc_json_printer_enum>
+     1f8:	b	20c <MyGame_OtherNameSpace_FromInclude_print_json_enum+0x68>
+     1fc:	ldrd	r2, [fp, #-20]	; 0xffffffec
+     200:	ldr	r0, [fp, #-8]
+     204:	bl	0 <flatcc_json_printer_int64>
+     208:	nop			; (mov r0, r0)
+     20c:	nop			; (mov r0, r0)
+     210:	sub	sp, fp, #4
+     214:	pop	{fp, pc}
+     218:	.word	0x00000004
+     21c:	.word	0x00000010
+
+00000220 <MyGame_OtherNameSpace_Unused_print_json_struct>:
+     220:	push	{fp}		; (str fp, [sp, #-4]!)
+     224:	add	fp, sp, #0
+     228:	sub	sp, sp, #12
+     22c:	str	r0, [fp, #-8]
+     230:	str	r1, [fp, #-12]
+     234:	nop			; (mov r0, r0)
+     238:	add	sp, fp, #0
+     23c:	pop	{fp}		; (ldr fp, [sp], #4)
+     240:	bx	lr
+
+00000244 <MyGame_Example_neg_enum_print_json_enum>:
+     244:	push	{fp, lr}
+     248:	add	fp, sp, #4
+     24c:	sub	sp, sp, #8
+     250:	str	r0, [fp, #-8]
+     254:	str	r1, [fp, #-12]
+     258:	ldr	r3, [fp, #-12]
+     25c:	cmn	r3, #11
+     260:	beq	288 <MyGame_Example_neg_enum_print_json_enum+0x44>
+     264:	cmn	r3, #10
+     268:	beq	29c <MyGame_Example_neg_enum_print_json_enum+0x58>
+     26c:	cmn	r3, #12
+     270:	bne	2b0 <MyGame_Example_neg_enum_print_json_enum+0x6c>
+     274:	mov	r2, #4
+     278:	ldr	r1, [pc, #76]	; 2cc <MyGame_Example_neg_enum_print_json_enum+0x88>
+     27c:	ldr	r0, [fp, #-8]
+     280:	bl	0 <flatcc_json_printer_enum>
+     284:	b	2c0 <MyGame_Example_neg_enum_print_json_enum+0x7c>
+     288:	mov	r2, #4
+     28c:	ldr	r1, [pc, #60]	; 2d0 <MyGame_Example_neg_enum_print_json_enum+0x8c>
+     290:	ldr	r0, [fp, #-8]
+     294:	bl	0 <flatcc_json_printer_enum>
+     298:	b	2c0 <MyGame_Example_neg_enum_print_json_enum+0x7c>
+     29c:	mov	r2, #4
+     2a0:	ldr	r1, [pc, #44]	; 2d4 <MyGame_Example_neg_enum_print_json_enum+0x90>
+     2a4:	ldr	r0, [fp, #-8]
+     2a8:	bl	0 <flatcc_json_printer_enum>
+     2ac:	b	2c0 <MyGame_Example_neg_enum_print_json_enum+0x7c>
+     2b0:	ldr	r1, [fp, #-12]
+     2b4:	ldr	r0, [fp, #-8]
+     2b8:	bl	0 <flatcc_json_printer_int32>
+     2bc:	nop			; (mov r0, r0)
+     2c0:	nop			; (mov r0, r0)
+     2c4:	sub	sp, fp, #4
+     2c8:	pop	{fp, pc}
+     2cc:	.word	0x00000014
+     2d0:	.word	0x0000001c
+     2d4:	.word	0x00000024
+
+000002d8 <MyGame_Example_int_enum_print_json_enum>:
+     2d8:	push	{fp, lr}
+     2dc:	add	fp, sp, #4
+     2e0:	sub	sp, sp, #8
+     2e4:	str	r0, [fp, #-8]
+     2e8:	str	r1, [fp, #-12]
+     2ec:	ldr	r3, [fp, #-12]
+     2f0:	cmn	r3, #1
+     2f4:	beq	334 <MyGame_Example_int_enum_print_json_enum+0x5c>
+     2f8:	cmn	r3, #1
+     2fc:	bgt	30c <MyGame_Example_int_enum_print_json_enum+0x34>
+     300:	cmn	r3, #2
+     304:	beq	320 <MyGame_Example_int_enum_print_json_enum+0x48>
+     308:	b	370 <MyGame_Example_int_enum_print_json_enum+0x98>
+     30c:	cmp	r3, #2
+     310:	beq	348 <MyGame_Example_int_enum_print_json_enum+0x70>
+     314:	cmp	r3, #42	; 0x2a
+     318:	beq	35c <MyGame_Example_int_enum_print_json_enum+0x84>
+     31c:	b	370 <MyGame_Example_int_enum_print_json_enum+0x98>
+     320:	mov	r2, #6
+     324:	ldr	r1, [pc, #96]	; 38c <MyGame_Example_int_enum_print_json_enum+0xb4>
+     328:	ldr	r0, [fp, #-8]
+     32c:	bl	0 <flatcc_json_printer_enum>
+     330:	b	380 <MyGame_Example_int_enum_print_json_enum+0xa8>
+     334:	mov	r2, #7
+     338:	ldr	r1, [pc, #80]	; 390 <MyGame_Example_int_enum_print_json_enum+0xb8>
+     33c:	ldr	r0, [fp, #-8]
+     340:	bl	0 <flatcc_json_printer_enum>
+     344:	b	380 <MyGame_Example_int_enum_print_json_enum+0xa8>
+     348:	mov	r2, #4
+     34c:	ldr	r1, [pc, #64]	; 394 <MyGame_Example_int_enum_print_json_enum+0xbc>
+     350:	ldr	r0, [fp, #-8]
+     354:	bl	0 <flatcc_json_printer_enum>
+     358:	b	380 <MyGame_Example_int_enum_print_json_enum+0xa8>
+     35c:	mov	r2, #4
+     360:	ldr	r1, [pc, #48]	; 398 <MyGame_Example_int_enum_print_json_enum+0xc0>
+     364:	ldr	r0, [fp, #-8]
+     368:	bl	0 <flatcc_json_printer_enum>
+     36c:	b	380 <MyGame_Example_int_enum_print_json_enum+0xa8>
+     370:	ldr	r1, [fp, #-12]
+     374:	ldr	r0, [fp, #-8]
+     378:	bl	0 <flatcc_json_printer_int32>
+     37c:	nop			; (mov r0, r0)
+     380:	nop			; (mov r0, r0)
+     384:	sub	sp, fp, #4
+     388:	pop	{fp, pc}
+     38c:	.word	0x0000002c
+     390:	.word	0x00000034
+     394:	.word	0x0000003c
+     398:	.word	0x00000044
+
+0000039c <MyGame_Example_hex_enum_print_json_enum>:
+     39c:	push	{fp, lr}
+     3a0:	add	fp, sp, #4
+     3a4:	sub	sp, sp, #8
+     3a8:	str	r0, [fp, #-8]
+     3ac:	str	r1, [fp, #-12]
+     3b0:	ldr	r3, [fp, #-12]
+     3b4:	cmp	r3, #3
+     3b8:	beq	3e4 <MyGame_Example_hex_enum_print_json_enum+0x48>
+     3bc:	ldr	r2, [pc, #100]	; 428 <MyGame_Example_hex_enum_print_json_enum+0x8c>
+     3c0:	cmp	r3, r2
+     3c4:	beq	3f8 <MyGame_Example_hex_enum_print_json_enum+0x5c>
+     3c8:	cmn	r3, #2
+     3cc:	bne	40c <MyGame_Example_hex_enum_print_json_enum+0x70>
+     3d0:	mov	r2, #6
+     3d4:	ldr	r1, [pc, #80]	; 42c <MyGame_Example_hex_enum_print_json_enum+0x90>
+     3d8:	ldr	r0, [fp, #-8]
+     3dc:	bl	0 <flatcc_json_printer_enum>
+     3e0:	b	41c <MyGame_Example_hex_enum_print_json_enum+0x80>
+     3e4:	mov	r2, #4
+     3e8:	ldr	r1, [pc, #64]	; 430 <MyGame_Example_hex_enum_print_json_enum+0x94>
+     3ec:	ldr	r0, [fp, #-8]
+     3f0:	bl	0 <flatcc_json_printer_enum>
+     3f4:	b	41c <MyGame_Example_hex_enum_print_json_enum+0x80>
+     3f8:	mov	r2, #4
+     3fc:	ldr	r1, [pc, #48]	; 434 <MyGame_Example_hex_enum_print_json_enum+0x98>
+     400:	ldr	r0, [fp, #-8]
+     404:	bl	0 <flatcc_json_printer_enum>
+     408:	b	41c <MyGame_Example_hex_enum_print_json_enum+0x80>
+     40c:	ldr	r1, [fp, #-12]
+     410:	ldr	r0, [fp, #-8]
+     414:	bl	0 <flatcc_json_printer_int32>
+     418:	nop			; (mov r0, r0)
+     41c:	nop			; (mov r0, r0)
+     420:	sub	sp, fp, #4
+     424:	pop	{fp, pc}
+     428:	.word	0x7eafbeaf
+     42c:	.word	0x0000004c
+     430:	.word	0x00000054
+     434:	.word	0x0000005c
+
+00000438 <MyGame_Example_Color_print_json_enum>:
+     438:	push	{fp, lr}
+     43c:	add	fp, sp, #4
+     440:	sub	sp, sp, #24
+     444:	str	r0, [fp, #-24]	; 0xffffffe8
+     448:	mov	r3, r1
+     44c:	strb	r3, [fp, #-25]	; 0xffffffe7
+     450:	ldrb	r3, [fp, #-25]	; 0xffffffe7
+     454:	strb	r3, [fp, #-9]
+     458:	ldrb	r2, [fp, #-9]
+     45c:	ldrb	r3, [fp, #-9]
+     460:	sub	r3, r3, #1
+     464:	and	r3, r3, r2
+     468:	cmp	r3, #0
+     46c:	movne	r3, #1
+     470:	moveq	r3, #0
+     474:	uxtb	r3, r3
+     478:	str	r3, [fp, #-16]
+     47c:	mov	r3, #0
+     480:	str	r3, [fp, #-8]
+     484:	ldrb	r3, [fp, #-9]
+     488:	and	r3, r3, #244	; 0xf4
+     48c:	cmp	r3, #0
+     490:	bne	4a0 <MyGame_Example_Color_print_json_enum+0x68>
+     494:	ldrb	r3, [fp, #-9]
+     498:	cmp	r3, #0
+     49c:	bne	4b4 <MyGame_Example_Color_print_json_enum+0x7c>
+     4a0:	ldrsb	r3, [fp, #-25]	; 0xffffffe7
+     4a4:	mov	r1, r3
+     4a8:	ldr	r0, [fp, #-24]	; 0xffffffe8
+     4ac:	bl	0 <flatcc_json_printer_int8>
+     4b0:	b	550 <MyGame_Example_Color_print_json_enum+0x118>
+     4b4:	ldr	r1, [fp, #-16]
+     4b8:	ldr	r0, [fp, #-24]	; 0xffffffe8
+     4bc:	bl	0 <flatcc_json_printer_delimit_enum_flags>
+     4c0:	ldrb	r3, [fp, #-9]
+     4c4:	and	r3, r3, #1
+     4c8:	cmp	r3, #0
+     4cc:	beq	4ec <MyGame_Example_Color_print_json_enum+0xb4>
+     4d0:	ldr	r1, [fp, #-8]
+     4d4:	add	r3, r1, #1
+     4d8:	str	r3, [fp, #-8]
+     4dc:	mov	r3, #3
+     4e0:	ldr	r2, [pc, #112]	; 558 <MyGame_Example_Color_print_json_enum+0x120>
+     4e4:	ldr	r0, [fp, #-24]	; 0xffffffe8
+     4e8:	bl	0 <flatcc_json_printer_enum_flag>
+     4ec:	ldrb	r3, [fp, #-9]
+     4f0:	and	r3, r3, #2
+     4f4:	cmp	r3, #0
+     4f8:	beq	518 <MyGame_Example_Color_print_json_enum+0xe0>
+     4fc:	ldr	r1, [fp, #-8]
+     500:	add	r3, r1, #1
+     504:	str	r3, [fp, #-8]
+     508:	mov	r3, #5
+     50c:	ldr	r2, [pc, #72]	; 55c <MyGame_Example_Color_print_json_enum+0x124>
+     510:	ldr	r0, [fp, #-24]	; 0xffffffe8
+     514:	bl	0 <flatcc_json_printer_enum_flag>
+     518:	ldrb	r3, [fp, #-9]
+     51c:	and	r3, r3, #8
+     520:	cmp	r3, #0
+     524:	beq	544 <MyGame_Example_Color_print_json_enum+0x10c>
+     528:	ldr	r1, [fp, #-8]
+     52c:	add	r3, r1, #1
+     530:	str	r3, [fp, #-8]
+     534:	mov	r3, #4
+     538:	ldr	r2, [pc, #32]	; 560 <MyGame_Example_Color_print_json_enum+0x128>
+     53c:	ldr	r0, [fp, #-24]	; 0xffffffe8
+     540:	bl	0 <flatcc_json_printer_enum_flag>
+     544:	ldr	r1, [fp, #-16]
+     548:	ldr	r0, [fp, #-24]	; 0xffffffe8
+     54c:	bl	0 <flatcc_json_printer_delimit_enum_flags>
+     550:	sub	sp, fp, #4
+     554:	pop	{fp, pc}
+     558:	.word	0x00000064
+     55c:	.word	0x00000068
+     560:	.word	0x00000070
+
+00000564 <MyGame_Example_notemptyenum_print_json_enum>:
+     564:	push	{fp, lr}
+     568:	add	fp, sp, #4
+     56c:	sub	sp, sp, #8
+     570:	str	r0, [fp, #-8]
+     574:	str	r1, [fp, #-12]
+     578:	ldr	r3, [fp, #-12]
+     57c:	cmp	r3, #0
+     580:	bne	598 <MyGame_Example_notemptyenum_print_json_enum+0x34>
+     584:	mov	r2, #1
+     588:	ldr	r1, [pc, #36]	; 5b4 <MyGame_Example_notemptyenum_print_json_enum+0x50>
+     58c:	ldr	r0, [fp, #-8]
+     590:	bl	0 <flatcc_json_printer_enum>
+     594:	b	5a8 <MyGame_Example_notemptyenum_print_json_enum+0x44>
+     598:	ldr	r1, [fp, #-12]
+     59c:	ldr	r0, [fp, #-8]
+     5a0:	bl	0 <flatcc_json_printer_int32>
+     5a4:	nop			; (mov r0, r0)
+     5a8:	nop			; (mov r0, r0)
+     5ac:	sub	sp, fp, #4
+     5b0:	pop	{fp, pc}
+     5b4:	.word	0x00000078
+
+000005b8 <MyGame_Example_Foo_print_json_union_type>:
+     5b8:	push	{fp, lr}
+     5bc:	add	fp, sp, #4
+     5c0:	sub	sp, sp, #8
+     5c4:	str	r0, [fp, #-8]
+     5c8:	mov	r3, r1
+     5cc:	strb	r3, [fp, #-9]
+     5d0:	ldrb	r3, [fp, #-9]
+     5d4:	cmp	r3, #1
+     5d8:	bne	5f0 <MyGame_Example_Foo_print_json_union_type+0x38>
+     5dc:	mov	r2, #17
+     5e0:	ldr	r1, [pc, #40]	; 610 <MyGame_Example_Foo_print_json_union_type+0x58>
+     5e4:	ldr	r0, [fp, #-8]
+     5e8:	bl	0 <flatcc_json_printer_enum>
+     5ec:	b	604 <MyGame_Example_Foo_print_json_union_type+0x4c>
+     5f0:	mov	r2, #4
+     5f4:	ldr	r1, [pc, #24]	; 614 <MyGame_Example_Foo_print_json_union_type+0x5c>
+     5f8:	ldr	r0, [fp, #-8]
+     5fc:	bl	0 <flatcc_json_printer_enum>
+     600:	nop			; (mov r0, r0)
+     604:	nop			; (mov r0, r0)
+     608:	sub	sp, fp, #4
+     60c:	pop	{fp, pc}
+     610:	.word	0x0000007c
+     614:	.word	0x00000090
+
+00000618 <MyGame_Example_Foo_print_json_union>:
+     618:	push	{fp, lr}
+     61c:	add	fp, sp, #4
+     620:	sub	sp, sp, #8
+     624:	str	r0, [fp, #-8]
+     628:	str	r1, [fp, #-12]
+     62c:	ldr	r3, [fp, #-12]
+     630:	ldrb	r3, [r3, #8]
+     634:	cmp	r3, #1
+     638:	beq	640 <MyGame_Example_Foo_print_json_union+0x28>
+     63c:	b	654 <MyGame_Example_Foo_print_json_union+0x3c>
+     640:	ldr	r2, [pc, #24]	; 660 <MyGame_Example_Foo_print_json_union+0x48>
+     644:	ldr	r1, [fp, #-12]
+     648:	ldr	r0, [fp, #-8]
+     64c:	bl	0 <flatcc_json_printer_union_table>
+     650:	nop			; (mov r0, r0)
+     654:	nop			; (mov r0, r0)
+     658:	sub	sp, fp, #4
+     65c:	pop	{fp, pc}
+     660:	.word	0x00000000
+
+00000664 <MyGame_Example_Any_print_json_union_type>:
+     664:	push	{fp, lr}
+     668:	add	fp, sp, #4
+     66c:	sub	sp, sp, #8
+     670:	str	r0, [fp, #-8]
+     674:	mov	r3, r1
+     678:	strb	r3, [fp, #-9]
+     67c:	ldrb	r3, [fp, #-9]
+     680:	sub	r3, r3, #1
+     684:	cmp	r3, #3
+     688:	ldrls	pc, [pc, r3, lsl #2]
+     68c:	b	6f0 <MyGame_Example_Any_print_json_union_type+0x8c>
+     690:	.word	0x000006a0
+     694:	.word	0x000006b4
+     698:	.word	0x000006c8
+     69c:	.word	0x000006dc
+     6a0:	mov	r2, #7
+     6a4:	ldr	r1, [pc, #100]	; 710 <MyGame_Example_Any_print_json_union_type+0xac>
+     6a8:	ldr	r0, [fp, #-8]
+     6ac:	bl	0 <flatcc_json_printer_enum>
+     6b0:	b	704 <MyGame_Example_Any_print_json_union_type+0xa0>
+     6b4:	mov	r2, #23
+     6b8:	ldr	r1, [pc, #84]	; 714 <MyGame_Example_Any_print_json_union_type+0xb0>
+     6bc:	ldr	r0, [fp, #-8]
+     6c0:	bl	0 <flatcc_json_printer_enum>
+     6c4:	b	704 <MyGame_Example_Any_print_json_union_type+0xa0>
+     6c8:	mov	r2, #8
+     6cc:	ldr	r1, [pc, #68]	; 718 <MyGame_Example_Any_print_json_union_type+0xb4>
+     6d0:	ldr	r0, [fp, #-8]
+     6d4:	bl	0 <flatcc_json_printer_enum>
+     6d8:	b	704 <MyGame_Example_Any_print_json_union_type+0xa0>
+     6dc:	mov	r2, #3
+     6e0:	ldr	r1, [pc, #52]	; 71c <MyGame_Example_Any_print_json_union_type+0xb8>
+     6e4:	ldr	r0, [fp, #-8]
+     6e8:	bl	0 <flatcc_json_printer_enum>
+     6ec:	b	704 <MyGame_Example_Any_print_json_union_type+0xa0>
+     6f0:	mov	r2, #4
+     6f4:	ldr	r1, [pc, #36]	; 720 <MyGame_Example_Any_print_json_union_type+0xbc>
+     6f8:	ldr	r0, [fp, #-8]
+     6fc:	bl	0 <flatcc_json_printer_enum>
+     700:	nop			; (mov r0, r0)
+     704:	nop			; (mov r0, r0)
+     708:	sub	sp, fp, #4
+     70c:	pop	{fp, pc}
+     710:	.word	0x00000098
+     714:	.word	0x000000a0
+     718:	.word	0x000000b8
+     71c:	.word	0x000000c4
+     720:	.word	0x00000090
+
+00000724 <MyGame_Example_Any_print_json_union>:
+     724:	push	{fp, lr}
+     728:	add	fp, sp, #4
+     72c:	sub	sp, sp, #8
+     730:	str	r0, [fp, #-8]
+     734:	str	r1, [fp, #-12]
+     738:	ldr	r3, [fp, #-12]
+     73c:	ldrb	r3, [r3, #8]
+     740:	sub	r3, r3, #1
+     744:	cmp	r3, #3
+     748:	ldrls	pc, [pc, r3, lsl #2]
+     74c:	b	7b0 <MyGame_Example_Any_print_json_union+0x8c>
+     750:	.word	0x00000760
+     754:	.word	0x00000774
+     758:	.word	0x00000788
+     75c:	.word	0x0000079c
+     760:	ldr	r2, [pc, #88]	; 7c0 <MyGame_Example_Any_print_json_union+0x9c>
+     764:	ldr	r1, [fp, #-12]
+     768:	ldr	r0, [fp, #-8]
+     76c:	bl	0 <flatcc_json_printer_union_table>
+     770:	b	7b4 <MyGame_Example_Any_print_json_union+0x90>
+     774:	ldr	r2, [pc, #72]	; 7c4 <MyGame_Example_Any_print_json_union+0xa0>
+     778:	ldr	r1, [fp, #-12]
+     77c:	ldr	r0, [fp, #-8]
+     780:	bl	0 <flatcc_json_printer_union_table>
+     784:	b	7b4 <MyGame_Example_Any_print_json_union+0x90>
+     788:	ldr	r2, [pc, #56]	; 7c8 <MyGame_Example_Any_print_json_union+0xa4>
+     78c:	ldr	r1, [fp, #-12]
+     790:	ldr	r0, [fp, #-8]
+     794:	bl	0 <flatcc_json_printer_union_table>
+     798:	b	7b4 <MyGame_Example_Any_print_json_union+0x90>
+     79c:	ldr	r2, [pc, #40]	; 7cc <MyGame_Example_Any_print_json_union+0xa8>
+     7a0:	ldr	r1, [fp, #-12]
+     7a4:	ldr	r0, [fp, #-8]
+     7a8:	bl	0 <flatcc_json_printer_union_table>
+     7ac:	b	7b4 <MyGame_Example_Any_print_json_union+0x90>
+     7b0:	nop			; (mov r0, r0)
+     7b4:	nop			; (mov r0, r0)
+     7b8:	sub	sp, fp, #4
+     7bc:	pop	{fp, pc}
+	...
+
+000007d0 <Fantasy_Character_print_json_union_type>:
+     7d0:	push	{fp, lr}
+     7d4:	add	fp, sp, #4
+     7d8:	sub	sp, sp, #8
+     7dc:	str	r0, [fp, #-8]
+     7e0:	mov	r3, r1
+     7e4:	strb	r3, [fp, #-9]
+     7e8:	ldrb	r3, [fp, #-9]
+     7ec:	cmp	r3, #9
+     7f0:	beq	854 <Fantasy_Character_print_json_union_type+0x84>
+     7f4:	cmp	r3, #9
+     7f8:	bgt	810 <Fantasy_Character_print_json_union_type+0x40>
+     7fc:	cmp	r3, #2
+     800:	beq	82c <Fantasy_Character_print_json_union_type+0x5c>
+     804:	cmp	r3, #8
+     808:	beq	840 <Fantasy_Character_print_json_union_type+0x70>
+     80c:	b	8a4 <Fantasy_Character_print_json_union_type+0xd4>
+     810:	cmp	r3, #11
+     814:	beq	87c <Fantasy_Character_print_json_union_type+0xac>
+     818:	cmp	r3, #11
+     81c:	blt	868 <Fantasy_Character_print_json_union_type+0x98>
+     820:	cmp	r3, #255	; 0xff
+     824:	beq	890 <Fantasy_Character_print_json_union_type+0xc0>
+     828:	b	8a4 <Fantasy_Character_print_json_union_type+0xd4>
+     82c:	mov	r2, #5
+     830:	ldr	r1, [pc, #140]	; 8c4 <Fantasy_Character_print_json_union_type+0xf4>
+     834:	ldr	r0, [fp, #-8]
+     838:	bl	0 <flatcc_json_printer_enum>
+     83c:	b	8b8 <Fantasy_Character_print_json_union_type+0xe8>
+     840:	mov	r2, #8
+     844:	ldr	r1, [pc, #124]	; 8c8 <Fantasy_Character_print_json_union_type+0xf8>
+     848:	ldr	r0, [fp, #-8]
+     84c:	bl	0 <flatcc_json_printer_enum>
+     850:	b	8b8 <Fantasy_Character_print_json_union_type+0xe8>
+     854:	mov	r2, #5
+     858:	ldr	r1, [pc, #108]	; 8cc <Fantasy_Character_print_json_union_type+0xfc>
+     85c:	ldr	r0, [fp, #-8]
+     860:	bl	0 <flatcc_json_printer_enum>
+     864:	b	8b8 <Fantasy_Character_print_json_union_type+0xe8>
+     868:	mov	r2, #7
+     86c:	ldr	r1, [pc, #92]	; 8d0 <Fantasy_Character_print_json_union_type+0x100>
+     870:	ldr	r0, [fp, #-8]
+     874:	bl	0 <flatcc_json_printer_enum>
+     878:	b	8b8 <Fantasy_Character_print_json_union_type+0xe8>
+     87c:	mov	r2, #5
+     880:	ldr	r1, [pc, #76]	; 8d4 <Fantasy_Character_print_json_union_type+0x104>
+     884:	ldr	r0, [fp, #-8]
+     888:	bl	0 <flatcc_json_printer_enum>
+     88c:	b	8b8 <Fantasy_Character_print_json_union_type+0xe8>
+     890:	mov	r2, #6
+     894:	ldr	r1, [pc, #60]	; 8d8 <Fantasy_Character_print_json_union_type+0x108>
+     898:	ldr	r0, [fp, #-8]
+     89c:	bl	0 <flatcc_json_printer_enum>
+     8a0:	b	8b8 <Fantasy_Character_print_json_union_type+0xe8>
+     8a4:	mov	r2, #4
+     8a8:	ldr	r1, [pc, #44]	; 8dc <Fantasy_Character_print_json_union_type+0x10c>
+     8ac:	ldr	r0, [fp, #-8]
+     8b0:	bl	0 <flatcc_json_printer_enum>
+     8b4:	nop			; (mov r0, r0)
+     8b8:	nop			; (mov r0, r0)
+     8bc:	sub	sp, fp, #4
+     8c0:	pop	{fp, pc}
+     8c4:	.word	0x000000c8
+     8c8:	.word	0x000000d0
+     8cc:	.word	0x000000dc
+     8d0:	.word	0x000000e4
+     8d4:	.word	0x000000ec
+     8d8:	.word	0x000000f4
+     8dc:	.word	0x00000090
+
+000008e0 <Fantasy_Character_print_json_union>:
+     8e0:	push	{fp, lr}
+     8e4:	add	fp, sp, #4
+     8e8:	sub	sp, sp, #8
+     8ec:	str	r0, [fp, #-8]
+     8f0:	str	r1, [fp, #-12]
+     8f4:	ldr	r3, [fp, #-12]
+     8f8:	ldrb	r3, [r3, #8]
+     8fc:	cmp	r3, #9
+     900:	beq	964 <Fantasy_Character_print_json_union+0x84>
+     904:	cmp	r3, #9
+     908:	bgt	920 <Fantasy_Character_print_json_union+0x40>
+     90c:	cmp	r3, #2
+     910:	beq	93c <Fantasy_Character_print_json_union+0x5c>
+     914:	cmp	r3, #8
+     918:	beq	950 <Fantasy_Character_print_json_union+0x70>
+     91c:	b	9ac <Fantasy_Character_print_json_union+0xcc>
+     920:	cmp	r3, #11
+     924:	beq	98c <Fantasy_Character_print_json_union+0xac>
+     928:	cmp	r3, #11
+     92c:	blt	978 <Fantasy_Character_print_json_union+0x98>
+     930:	cmp	r3, #255	; 0xff
+     934:	beq	99c <Fantasy_Character_print_json_union+0xbc>
+     938:	b	9ac <Fantasy_Character_print_json_union+0xcc>
+     93c:	ldr	r2, [pc, #116]	; 9b8 <Fantasy_Character_print_json_union+0xd8>
+     940:	ldr	r1, [fp, #-12]
+     944:	ldr	r0, [fp, #-8]
+     948:	bl	0 <flatcc_json_printer_union_table>
+     94c:	b	9ac <Fantasy_Character_print_json_union+0xcc>
+     950:	ldr	r2, [pc, #100]	; 9bc <Fantasy_Character_print_json_union+0xdc>
+     954:	ldr	r1, [fp, #-12]
+     958:	ldr	r0, [fp, #-8]
+     95c:	bl	0 <flatcc_json_printer_union_struct>
+     960:	b	9ac <Fantasy_Character_print_json_union+0xcc>
+     964:	ldr	r2, [pc, #84]	; 9c0 <Fantasy_Character_print_json_union+0xe0>
+     968:	ldr	r1, [fp, #-12]
+     96c:	ldr	r0, [fp, #-8]
+     970:	bl	0 <flatcc_json_printer_union_struct>
+     974:	b	9ac <Fantasy_Character_print_json_union+0xcc>
+     978:	ldr	r2, [pc, #64]	; 9c0 <Fantasy_Character_print_json_union+0xe0>
+     97c:	ldr	r1, [fp, #-12]
+     980:	ldr	r0, [fp, #-8]
+     984:	bl	0 <flatcc_json_printer_union_struct>
+     988:	b	9ac <Fantasy_Character_print_json_union+0xcc>
+     98c:	ldr	r1, [fp, #-12]
+     990:	ldr	r0, [fp, #-8]
+     994:	bl	0 <flatcc_json_printer_union_string>
+     998:	b	9ac <Fantasy_Character_print_json_union+0xcc>
+     99c:	ldr	r1, [fp, #-12]
+     9a0:	ldr	r0, [fp, #-8]
+     9a4:	bl	0 <flatcc_json_printer_union_string>
+     9a8:	nop			; (mov r0, r0)
+     9ac:	nop			; (mov r0, r0)
+     9b0:	sub	sp, fp, #4
+     9b4:	pop	{fp, pc}
+	...
+
+000009c4 <InGlobalNamespace_print_json_struct>:
+     9c4:	push	{fp}		; (str fp, [sp, #-4]!)
+     9c8:	add	fp, sp, #0
+     9cc:	sub	sp, sp, #12
+     9d0:	str	r0, [fp, #-8]
+     9d4:	str	r1, [fp, #-12]
+     9d8:	nop			; (mov r0, r0)
+     9dc:	add	sp, fp, #0
+     9e0:	pop	{fp}		; (ldr fp, [sp], #4)
+     9e4:	bx	lr
+
+000009e8 <MyGame_Example_Test_print_json_struct>:
+     9e8:	push	{fp, lr}
+     9ec:	add	fp, sp, #4
+     9f0:	sub	sp, sp, #16
+     9f4:	str	r0, [fp, #-8]
+     9f8:	str	r1, [fp, #-12]
+     9fc:	mov	r3, #1
+     a00:	str	r3, [sp, #4]
+     a04:	ldr	r3, [pc, #68]	; a50 <MyGame_Example_Test_print_json_struct+0x68>
+     a08:	str	r3, [sp]
+     a0c:	mov	r3, #0
+     a10:	ldr	r2, [fp, #-12]
+     a14:	mov	r1, #0
+     a18:	ldr	r0, [fp, #-8]
+     a1c:	bl	0 <flatcc_json_printer_int16_struct_field>
+     a20:	mov	r3, #1
+     a24:	str	r3, [sp, #4]
+     a28:	ldr	r3, [pc, #36]	; a54 <MyGame_Example_Test_print_json_struct+0x6c>
+     a2c:	str	r3, [sp]
+     a30:	mov	r3, #2
+     a34:	ldr	r2, [fp, #-12]
+     a38:	mov	r1, #1
+     a3c:	ldr	r0, [fp, #-8]
+     a40:	bl	0 <flatcc_json_printer_int8_struct_field>
+     a44:	nop			; (mov r0, r0)
+     a48:	sub	sp, fp, #4
+     a4c:	pop	{fp, pc}
+     a50:	.word	0x000000fc
+     a54:	.word	0x00000100
+
+00000a58 <MyGame_Example_emptystruct_print_json_struct>:
+     a58:	push	{fp}		; (str fp, [sp, #-4]!)
+     a5c:	add	fp, sp, #0
+     a60:	sub	sp, sp, #12
+     a64:	str	r0, [fp, #-8]
+     a68:	str	r1, [fp, #-12]
+     a6c:	nop			; (mov r0, r0)
+     a70:	add	sp, fp, #0
+     a74:	pop	{fp}		; (ldr fp, [sp], #4)
+     a78:	bx	lr
+
+00000a7c <MyGame_Example_Vec3_print_json_struct>:
+     a7c:	push	{fp, lr}
+     a80:	add	fp, sp, #4
+     a84:	sub	sp, sp, #24
+     a88:	str	r0, [fp, #-8]
+     a8c:	str	r1, [fp, #-12]
+     a90:	mov	r3, #1
+     a94:	str	r3, [sp, #4]
+     a98:	ldr	r3, [pc, #228]	; b84 <MyGame_Example_Vec3_print_json_struct+0x108>
+     a9c:	str	r3, [sp]
+     aa0:	mov	r3, #0
+     aa4:	ldr	r2, [fp, #-12]
+     aa8:	mov	r1, #0
+     aac:	ldr	r0, [fp, #-8]
+     ab0:	bl	0 <flatcc_json_printer_float_struct_field>
+     ab4:	mov	r3, #1
+     ab8:	str	r3, [sp, #4]
+     abc:	ldr	r3, [pc, #196]	; b88 <MyGame_Example_Vec3_print_json_struct+0x10c>
+     ac0:	str	r3, [sp]
+     ac4:	mov	r3, #4
+     ac8:	ldr	r2, [fp, #-12]
+     acc:	mov	r1, #1
+     ad0:	ldr	r0, [fp, #-8]
+     ad4:	bl	0 <flatcc_json_printer_float_struct_field>
+     ad8:	mov	r3, #1
+     adc:	str	r3, [sp, #4]
+     ae0:	ldr	r3, [pc, #164]	; b8c <MyGame_Example_Vec3_print_json_struct+0x110>
+     ae4:	str	r3, [sp]
+     ae8:	mov	r3, #8
+     aec:	ldr	r2, [fp, #-12]
+     af0:	mov	r1, #2
+     af4:	ldr	r0, [fp, #-8]
+     af8:	bl	0 <flatcc_json_printer_float_struct_field>
+     afc:	mov	r3, #5
+     b00:	str	r3, [sp, #4]
+     b04:	ldr	r3, [pc, #132]	; b90 <MyGame_Example_Vec3_print_json_struct+0x114>
+     b08:	str	r3, [sp]
+     b0c:	mov	r3, #16
+     b10:	ldr	r2, [fp, #-12]
+     b14:	mov	r1, #3
+     b18:	ldr	r0, [fp, #-8]
+     b1c:	bl	0 <flatcc_json_printer_double_struct_field>
+     b20:	ldr	r3, [pc, #108]	; b94 <MyGame_Example_Vec3_print_json_struct+0x118>
+     b24:	str	r3, [sp, #8]
+     b28:	mov	r3, #5
+     b2c:	str	r3, [sp, #4]
+     b30:	ldr	r3, [pc, #96]	; b98 <MyGame_Example_Vec3_print_json_struct+0x11c>
+     b34:	str	r3, [sp]
+     b38:	mov	r3, #24
+     b3c:	ldr	r2, [fp, #-12]
+     b40:	mov	r1, #4
+     b44:	ldr	r0, [fp, #-8]
+     b48:	bl	0 <flatcc_json_printer_int8_enum_struct_field>
+     b4c:	ldr	r3, [pc, #72]	; b9c <MyGame_Example_Vec3_print_json_struct+0x120>
+     b50:	str	r3, [sp, #8]
+     b54:	mov	r3, #5
+     b58:	str	r3, [sp, #4]
+     b5c:	ldr	r3, [pc, #60]	; ba0 <MyGame_Example_Vec3_print_json_struct+0x124>
+     b60:	str	r3, [sp]
+     b64:	mov	r3, #26
+     b68:	ldr	r2, [fp, #-12]
+     b6c:	mov	r1, #5
+     b70:	ldr	r0, [fp, #-8]
+     b74:	bl	0 <flatcc_json_printer_embedded_struct_field>
+     b78:	nop			; (mov r0, r0)
+     b7c:	sub	sp, fp, #4
+     b80:	pop	{fp, pc}
+     b84:	.word	0x00000078
+     b88:	.word	0x00000104
+     b8c:	.word	0x00000108
+     b90:	.word	0x0000010c
+     b94:	.word	0x00000000
+     b98:	.word	0x00000114
+     b9c:	.word	0x00000000
+     ba0:	.word	0x0000011c
+
+00000ba4 <MyGame_Example_Ability_print_json_struct>:
+     ba4:	push	{fp, lr}
+     ba8:	add	fp, sp, #4
+     bac:	sub	sp, sp, #16
+     bb0:	str	r0, [fp, #-8]
+     bb4:	str	r1, [fp, #-12]
+     bb8:	mov	r3, #2
+     bbc:	str	r3, [sp, #4]
+     bc0:	ldr	r3, [pc, #68]	; c0c <MyGame_Example_Ability_print_json_struct+0x68>
+     bc4:	str	r3, [sp]
+     bc8:	mov	r3, #0
+     bcc:	ldr	r2, [fp, #-12]
+     bd0:	mov	r1, #0
+     bd4:	ldr	r0, [fp, #-8]
+     bd8:	bl	0 <flatcc_json_printer_uint32_struct_field>
+     bdc:	mov	r3, #8
+     be0:	str	r3, [sp, #4]
+     be4:	ldr	r3, [pc, #36]	; c10 <MyGame_Example_Ability_print_json_struct+0x6c>
+     be8:	str	r3, [sp]
+     bec:	mov	r3, #4
+     bf0:	ldr	r2, [fp, #-12]
+     bf4:	mov	r1, #1
+     bf8:	ldr	r0, [fp, #-8]
+     bfc:	bl	0 <flatcc_json_printer_uint32_struct_field>
+     c00:	nop			; (mov r0, r0)
+     c04:	sub	sp, fp, #4
+     c08:	pop	{fp, pc}
+     c0c:	.word	0x00000124
+     c10:	.word	0x00000128
+
+00000c14 <Fantasy_Rapunzel_print_json_struct>:
+     c14:	push	{fp, lr}
+     c18:	add	fp, sp, #4
+     c1c:	sub	sp, sp, #16
+     c20:	str	r0, [fp, #-8]
+     c24:	str	r1, [fp, #-12]
+     c28:	mov	r3, #11
+     c2c:	str	r3, [sp, #4]
+     c30:	ldr	r3, [pc, #32]	; c58 <Fantasy_Rapunzel_print_json_struct+0x44>
+     c34:	str	r3, [sp]
+     c38:	mov	r3, #0
+     c3c:	ldr	r2, [fp, #-12]
+     c40:	mov	r1, #0
+     c44:	ldr	r0, [fp, #-8]
+     c48:	bl	0 <flatcc_json_printer_uint16_struct_field>
+     c4c:	nop			; (mov r0, r0)
+     c50:	sub	sp, fp, #4
+     c54:	pop	{fp, pc}
+     c58:	.word	0x00000134
+
+00000c5c <Fantasy_BookReader_print_json_struct>:
+     c5c:	push	{fp, lr}
+     c60:	add	fp, sp, #4
+     c64:	sub	sp, sp, #16
+     c68:	str	r0, [fp, #-8]
+     c6c:	str	r1, [fp, #-12]
+     c70:	mov	r3, #10
+     c74:	str	r3, [sp, #4]
+     c78:	ldr	r3, [pc, #32]	; ca0 <Fantasy_BookReader_print_json_struct+0x44>
+     c7c:	str	r3, [sp]
+     c80:	mov	r3, #0
+     c84:	ldr	r2, [fp, #-12]
+     c88:	mov	r1, #0
+     c8c:	ldr	r0, [fp, #-8]
+     c90:	bl	0 <flatcc_json_printer_int32_struct_field>
+     c94:	nop			; (mov r0, r0)
+     c98:	sub	sp, fp, #4
+     c9c:	pop	{fp, pc}
+     ca0:	.word	0x00000140
+
+00000ca4 <MyGame_InParentNamespace_print_json_table>:
+     ca4:	push	{fp}		; (str fp, [sp, #-4]!)
+     ca8:	add	fp, sp, #0
+     cac:	sub	sp, sp, #12
+     cb0:	str	r0, [fp, #-8]
+     cb4:	str	r1, [fp, #-12]
+     cb8:	nop			; (mov r0, r0)
+     cbc:	add	sp, fp, #0
+     cc0:	pop	{fp}		; (ldr fp, [sp], #4)
+     cc4:	bx	lr
+
+00000cc8 <MyGame_Example2_Monster_print_json_table>:
+     cc8:	push	{fp}		; (str fp, [sp, #-4]!)
+     ccc:	add	fp, sp, #0
+     cd0:	sub	sp, sp, #12
+     cd4:	str	r0, [fp, #-8]
+     cd8:	str	r1, [fp, #-12]
+     cdc:	nop			; (mov r0, r0)
+     ce0:	add	sp, fp, #0
+     ce4:	pop	{fp}		; (ldr fp, [sp], #4)
+     ce8:	bx	lr
+
+00000cec <MyGame_Example_emptytable_print_json_table>:
+     cec:	push	{fp}		; (str fp, [sp, #-4]!)
+     cf0:	add	fp, sp, #0
+     cf4:	sub	sp, sp, #12
+     cf8:	str	r0, [fp, #-8]
+     cfc:	str	r1, [fp, #-12]
+     d00:	nop			; (mov r0, r0)
+     d04:	add	sp, fp, #0
+     d08:	pop	{fp}		; (ldr fp, [sp], #4)
+     d0c:	bx	lr
+
+00000d10 <MyGame_Example_with_emptystruct_print_json_table>:
+     d10:	push	{fp, lr}
+     d14:	add	fp, sp, #4
+     d18:	sub	sp, sp, #16
+     d1c:	str	r0, [fp, #-8]
+     d20:	str	r1, [fp, #-12]
+     d24:	ldr	r3, [pc, #40]	; d54 <MyGame_Example_with_emptystruct_print_json_table+0x44>
+     d28:	str	r3, [sp, #4]
+     d2c:	mov	r3, #5
+     d30:	str	r3, [sp]
+     d34:	ldr	r3, [pc, #28]	; d58 <MyGame_Example_with_emptystruct_print_json_table+0x48>
+     d38:	mov	r2, #0
+     d3c:	ldr	r1, [fp, #-12]
+     d40:	ldr	r0, [fp, #-8]
+     d44:	bl	0 <flatcc_json_printer_struct_field>
+     d48:	nop			; (mov r0, r0)
+     d4c:	sub	sp, fp, #4
+     d50:	pop	{fp, pc}
+     d54:	.word	0x00000000
+     d58:	.word	0x0000014c
+
+00000d5c <MyGame_Example_TestSimpleTableWithEnum_print_json_table>:
+     d5c:	push	{fp, lr}
+     d60:	add	fp, sp, #4
+     d64:	sub	sp, sp, #24
+     d68:	str	r0, [fp, #-8]
+     d6c:	str	r1, [fp, #-12]
+     d70:	ldr	r3, [pc, #164]	; e1c <MyGame_Example_TestSimpleTableWithEnum_print_json_table+0xc0>
+     d74:	str	r3, [sp, #8]
+     d78:	mov	r3, #2
+     d7c:	str	r3, [sp, #4]
+     d80:	mov	r3, #5
+     d84:	str	r3, [sp]
+     d88:	ldr	r3, [pc, #144]	; e20 <MyGame_Example_TestSimpleTableWithEnum_print_json_table+0xc4>
+     d8c:	mov	r2, #0
+     d90:	ldr	r1, [fp, #-12]
+     d94:	ldr	r0, [fp, #-8]
+     d98:	bl	0 <flatcc_json_printer_int8_enum_field>
+     d9c:	ldr	r3, [pc, #120]	; e1c <MyGame_Example_TestSimpleTableWithEnum_print_json_table+0xc0>
+     da0:	str	r3, [sp, #8]
+     da4:	mov	r3, #2
+     da8:	str	r3, [sp, #4]
+     dac:	mov	r3, #6
+     db0:	str	r3, [sp]
+     db4:	ldr	r3, [pc, #104]	; e24 <MyGame_Example_TestSimpleTableWithEnum_print_json_table+0xc8>
+     db8:	mov	r2, #1
+     dbc:	ldr	r1, [fp, #-12]
+     dc0:	ldr	r0, [fp, #-8]
+     dc4:	bl	0 <flatcc_json_printer_int8_enum_field>
+     dc8:	mov	r3, #2
+     dcc:	str	r3, [sp, #4]
+     dd0:	mov	r3, #2
+     dd4:	str	r3, [sp]
+     dd8:	ldr	r3, [pc, #72]	; e28 <MyGame_Example_TestSimpleTableWithEnum_print_json_table+0xcc>
+     ddc:	mov	r2, #2
+     de0:	ldr	r1, [fp, #-12]
+     de4:	ldr	r0, [fp, #-8]
+     de8:	bl	0 <flatcc_json_printer_uint8_field>
+     dec:	mov	r3, #2
+     df0:	str	r3, [sp, #4]
+     df4:	mov	r3, #3
+     df8:	str	r3, [sp]
+     dfc:	ldr	r3, [pc, #40]	; e2c <MyGame_Example_TestSimpleTableWithEnum_print_json_table+0xd0>
+     e00:	mov	r2, #3
+     e04:	ldr	r1, [fp, #-12]
+     e08:	ldr	r0, [fp, #-8]
+     e0c:	bl	0 <flatcc_json_printer_uint8_field>
+     e10:	nop			; (mov r0, r0)
+     e14:	sub	sp, fp, #4
+     e18:	pop	{fp, pc}
+     e1c:	.word	0x00000000
+     e20:	.word	0x00000154
+     e24:	.word	0x0000015c
+     e28:	.word	0x00000164
+     e2c:	.word	0x00000168
+
+00000e30 <MyGame_Example_TestInclude_print_json_table>:
+     e30:	push	{fp, lr}
+     e34:	add	fp, sp, #4
+     e38:	sub	sp, sp, #32
+     e3c:	str	r0, [fp, #-8]
+     e40:	str	r1, [fp, #-12]
+     e44:	ldr	r3, [pc, #260]	; f50 <MyGame_Example_TestInclude_print_json_table+0x120>
+     e48:	str	r3, [sp, #4]
+     e4c:	mov	r3, #6
+     e50:	str	r3, [sp]
+     e54:	ldr	r3, [pc, #248]	; f54 <MyGame_Example_TestInclude_print_json_table+0x124>
+     e58:	mov	r2, #0
+     e5c:	ldr	r1, [fp, #-12]
+     e60:	ldr	r0, [fp, #-8]
+     e64:	bl	0 <flatcc_json_printer_struct_field>
+     e68:	ldr	r3, [pc, #232]	; f58 <MyGame_Example_TestInclude_print_json_table+0x128>
+     e6c:	str	r3, [sp, #16]
+     e70:	mov	r2, #0
+     e74:	mov	r3, #0
+     e78:	strd	r2, [sp, #8]
+     e7c:	mov	r3, #6
+     e80:	str	r3, [sp]
+     e84:	ldr	r3, [pc, #208]	; f5c <MyGame_Example_TestInclude_print_json_table+0x12c>
+     e88:	mov	r2, #1
+     e8c:	ldr	r1, [fp, #-12]
+     e90:	ldr	r0, [fp, #-8]
+     e94:	bl	0 <flatcc_json_printer_int64_enum_field>
+     e98:	ldr	r3, [pc, #184]	; f58 <MyGame_Example_TestInclude_print_json_table+0x128>
+     e9c:	str	r3, [sp, #16]
+     ea0:	mov	r2, #0
+     ea4:	mov	r3, #0
+     ea8:	strd	r2, [sp, #8]
+     eac:	mov	r3, #7
+     eb0:	str	r3, [sp]
+     eb4:	ldr	r3, [pc, #164]	; f60 <MyGame_Example_TestInclude_print_json_table+0x130>
+     eb8:	mov	r2, #2
+     ebc:	ldr	r1, [fp, #-12]
+     ec0:	ldr	r0, [fp, #-8]
+     ec4:	bl	0 <flatcc_json_printer_int64_enum_field>
+     ec8:	mov	r3, #0
+     ecc:	str	r3, [sp, #4]
+     ed0:	mov	r3, #7
+     ed4:	str	r3, [sp]
+     ed8:	ldr	r3, [pc, #132]	; f64 <MyGame_Example_TestInclude_print_json_table+0x134>
+     edc:	mov	r2, #3
+     ee0:	ldr	r1, [fp, #-12]
+     ee4:	ldr	r0, [fp, #-8]
+     ee8:	bl	0 <flatcc_json_printer_int32_field>
+     eec:	ldr	r3, [pc, #100]	; f58 <MyGame_Example_TestInclude_print_json_table+0x128>
+     ef0:	str	r3, [sp, #16]
+     ef4:	mov	r2, #0
+     ef8:	mov	r3, #0
+     efc:	strd	r2, [sp, #8]
+     f00:	mov	r3, #7
+     f04:	str	r3, [sp]
+     f08:	ldr	r3, [pc, #88]	; f68 <MyGame_Example_TestInclude_print_json_table+0x138>
+     f0c:	mov	r2, #4
+     f10:	ldr	r1, [fp, #-12]
+     f14:	ldr	r0, [fp, #-8]
+     f18:	bl	0 <flatcc_json_printer_int64_enum_field>
+     f1c:	mov	r2, #0
+     f20:	mov	r3, #0
+     f24:	strd	r2, [sp, #8]
+     f28:	mov	r3, #7
+     f2c:	str	r3, [sp]
+     f30:	ldr	r3, [pc, #52]	; f6c <MyGame_Example_TestInclude_print_json_table+0x13c>
+     f34:	mov	r2, #5
+     f38:	ldr	r1, [fp, #-12]
+     f3c:	ldr	r0, [fp, #-8]
+     f40:	bl	0 <flatcc_json_printer_int64_field>
+     f44:	nop			; (mov r0, r0)
+     f48:	sub	sp, fp, #4
+     f4c:	pop	{fp, pc}
+     f50:	.word	0x00000000
+     f54:	.word	0x0000016c
+     f58:	.word	0x00000000
+     f5c:	.word	0x00000174
+     f60:	.word	0x0000017c
+     f64:	.word	0x00000184
+     f68:	.word	0x0000018c
+     f6c:	.word	0x00000194
+
+00000f70 <MyGame_Example_Stat_print_json_table>:
+     f70:	push	{fp, lr}
+     f74:	add	fp, sp, #4
+     f78:	sub	sp, sp, #24
+     f7c:	str	r0, [fp, #-8]
+     f80:	str	r1, [fp, #-12]
+     f84:	mov	r3, #2
+     f88:	str	r3, [sp]
+     f8c:	ldr	r3, [pc, #100]	; ff8 <MyGame_Example_Stat_print_json_table+0x88>
+     f90:	mov	r2, #0
+     f94:	ldr	r1, [fp, #-12]
+     f98:	ldr	r0, [fp, #-8]
+     f9c:	bl	0 <flatcc_json_printer_string_field>
+     fa0:	mov	r2, #0
+     fa4:	mov	r3, #0
+     fa8:	strd	r2, [sp, #8]
+     fac:	mov	r3, #3
+     fb0:	str	r3, [sp]
+     fb4:	ldr	r3, [pc, #64]	; ffc <MyGame_Example_Stat_print_json_table+0x8c>
+     fb8:	mov	r2, #1
+     fbc:	ldr	r1, [fp, #-12]
+     fc0:	ldr	r0, [fp, #-8]
+     fc4:	bl	0 <flatcc_json_printer_int64_field>
+     fc8:	mov	r3, #0
+     fcc:	str	r3, [sp, #4]
+     fd0:	mov	r3, #5
+     fd4:	str	r3, [sp]
+     fd8:	ldr	r3, [pc, #32]	; 1000 <MyGame_Example_Stat_print_json_table+0x90>
+     fdc:	mov	r2, #2
+     fe0:	ldr	r1, [fp, #-12]
+     fe4:	ldr	r0, [fp, #-8]
+     fe8:	bl	0 <flatcc_json_printer_uint16_field>
+     fec:	nop			; (mov r0, r0)
+     ff0:	sub	sp, fp, #4
+     ff4:	pop	{fp, pc}
+     ff8:	.word	0x00000124
+     ffc:	.word	0x0000019c
+    1000:	.word	0x000001a0
+
+00001004 <MyGame_Example_Alt_print_json_table>:
+    1004:	push	{fp, lr}
+    1008:	add	fp, sp, #4
+    100c:	sub	sp, sp, #24
+    1010:	str	r0, [fp, #-8]
+    1014:	str	r1, [fp, #-12]
+    1018:	ldr	r3, [pc, #120]	; 1098 <MyGame_Example_Alt_print_json_table+0x94>
+    101c:	str	r3, [sp, #4]
+    1020:	mov	r3, #6
+    1024:	str	r3, [sp]
+    1028:	ldr	r3, [pc, #108]	; 109c <MyGame_Example_Alt_print_json_table+0x98>
+    102c:	mov	r2, #0
+    1030:	ldr	r1, [fp, #-12]
+    1034:	ldr	r0, [fp, #-8]
+    1038:	bl	0 <flatcc_json_printer_table_field>
+    103c:	ldr	r3, [pc, #92]	; 10a0 <MyGame_Example_Alt_print_json_table+0x9c>
+    1040:	str	r3, [sp, #4]
+    1044:	mov	r3, #5
+    1048:	str	r3, [sp]
+    104c:	ldr	r3, [pc, #80]	; 10a4 <MyGame_Example_Alt_print_json_table+0xa0>
+    1050:	mov	r2, #1
+    1054:	ldr	r1, [fp, #-12]
+    1058:	ldr	r0, [fp, #-8]
+    105c:	bl	0 <flatcc_json_printer_table_field>
+    1060:	ldr	r3, [pc, #64]	; 10a8 <MyGame_Example_Alt_print_json_table+0xa4>
+    1064:	str	r3, [sp, #8]
+    1068:	ldr	r3, [pc, #60]	; 10ac <MyGame_Example_Alt_print_json_table+0xa8>
+    106c:	str	r3, [sp, #4]
+    1070:	mov	r3, #7
+    1074:	str	r3, [sp]
+    1078:	ldr	r3, [pc, #48]	; 10b0 <MyGame_Example_Alt_print_json_table+0xac>
+    107c:	mov	r2, #3
+    1080:	ldr	r1, [fp, #-12]
+    1084:	ldr	r0, [fp, #-8]
+    1088:	bl	0 <flatcc_json_printer_union_vector_field>
+    108c:	nop			; (mov r0, r0)
+    1090:	sub	sp, fp, #4
+    1094:	pop	{fp, pc}
+    1098:	.word	0x00000000
+    109c:	.word	0x000001a8
+    10a0:	.word	0x00000000
+    10a4:	.word	0x000001b0
+	...
+    10b0:	.word	0x000001b8
+
+000010b4 <MyGame_Example_TestJSONPrefix_print_json_table>:
+    10b4:	push	{fp, lr}
+    10b8:	add	fp, sp, #4
+    10bc:	sub	sp, sp, #16
+    10c0:	str	r0, [fp, #-8]
+    10c4:	str	r1, [fp, #-12]
+    10c8:	ldr	r3, [pc, #112]	; 1140 <MyGame_Example_TestJSONPrefix_print_json_table+0x8c>
+    10cc:	str	r3, [sp, #4]
+    10d0:	mov	r3, #21
+    10d4:	str	r3, [sp]
+    10d8:	ldr	r3, [pc, #100]	; 1144 <MyGame_Example_TestJSONPrefix_print_json_table+0x90>
+    10dc:	mov	r2, #0
+    10e0:	ldr	r1, [fp, #-12]
+    10e4:	ldr	r0, [fp, #-8]
+    10e8:	bl	0 <flatcc_json_printer_table_field>
+    10ec:	ldr	r3, [pc, #84]	; 1148 <MyGame_Example_TestJSONPrefix_print_json_table+0x94>
+    10f0:	str	r3, [sp, #4]
+    10f4:	mov	r3, #22
+    10f8:	str	r3, [sp]
+    10fc:	ldr	r3, [pc, #72]	; 114c <MyGame_Example_TestJSONPrefix_print_json_table+0x98>
+    1100:	mov	r2, #1
+    1104:	ldr	r1, [fp, #-12]
+    1108:	ldr	r0, [fp, #-8]
+    110c:	bl	0 <flatcc_json_printer_table_field>
+    1110:	ldr	r3, [pc, #56]	; 1150 <MyGame_Example_TestJSONPrefix_print_json_table+0x9c>
+    1114:	str	r3, [sp, #4]
+    1118:	mov	r3, #22
+    111c:	str	r3, [sp]
+    1120:	ldr	r3, [pc, #44]	; 1154 <MyGame_Example_TestJSONPrefix_print_json_table+0xa0>
+    1124:	mov	r2, #2
+    1128:	ldr	r1, [fp, #-12]
+    112c:	ldr	r0, [fp, #-8]
+    1130:	bl	0 <flatcc_json_printer_table_field>
+    1134:	nop			; (mov r0, r0)
+    1138:	sub	sp, fp, #4
+    113c:	pop	{fp, pc}
+    1140:	.word	0x00000000
+    1144:	.word	0x000001c0
+    1148:	.word	0x00000000
+    114c:	.word	0x000001d8
+    1150:	.word	0x00000000
+    1154:	.word	0x000001f0
+
+00001158 <MyGame_Example_TestJSONPrefixParsing_print_json_table>:
+    1158:	push	{fp, lr}
+    115c:	add	fp, sp, #4
+    1160:	sub	sp, sp, #24
+    1164:	str	r0, [fp, #-8]
+    1168:	str	r1, [fp, #-12]
+    116c:	mov	r3, #4
+    1170:	str	r3, [sp]
+    1174:	ldr	r3, [pc, #308]	; 12b0 <MyGame_Example_TestJSONPrefixParsing_print_json_table+0x158>
+    1178:	mov	r2, #0
+    117c:	ldr	r1, [fp, #-12]
+    1180:	ldr	r0, [fp, #-8]
+    1184:	bl	0 <flatcc_json_printer_string_field>
+    1188:	mov	r3, #0
+    118c:	str	r3, [sp, #4]
+    1190:	mov	r3, #9
+    1194:	str	r3, [sp]
+    1198:	ldr	r3, [pc, #276]	; 12b4 <MyGame_Example_TestJSONPrefixParsing_print_json_table+0x15c>
+    119c:	mov	r2, #1
+    11a0:	ldr	r1, [fp, #-12]
+    11a4:	ldr	r0, [fp, #-8]
+    11a8:	bl	0 <flatcc_json_printer_uint32_field>
+    11ac:	mov	r3, #4
+    11b0:	str	r3, [sp]
+    11b4:	ldr	r3, [pc, #252]	; 12b8 <MyGame_Example_TestJSONPrefixParsing_print_json_table+0x160>
+    11b8:	mov	r2, #2
+    11bc:	ldr	r1, [fp, #-12]
+    11c0:	ldr	r0, [fp, #-8]
+    11c4:	bl	0 <flatcc_json_printer_string_field>
+    11c8:	mov	r2, #0
+    11cc:	mov	r3, #0
+    11d0:	strd	r2, [sp, #8]
+    11d4:	mov	r3, #8
+    11d8:	str	r3, [sp]
+    11dc:	ldr	r3, [pc, #216]	; 12bc <MyGame_Example_TestJSONPrefixParsing_print_json_table+0x164>
+    11e0:	mov	r2, #3
+    11e4:	ldr	r1, [fp, #-12]
+    11e8:	ldr	r0, [fp, #-8]
+    11ec:	bl	0 <flatcc_json_printer_int64_field>
+    11f0:	mov	r3, #4
+    11f4:	str	r3, [sp]
+    11f8:	ldr	r3, [pc, #192]	; 12c0 <MyGame_Example_TestJSONPrefixParsing_print_json_table+0x168>
+    11fc:	mov	r2, #4
+    1200:	ldr	r1, [fp, #-12]
+    1204:	ldr	r0, [fp, #-8]
+    1208:	bl	0 <flatcc_json_printer_string_field>
+    120c:	mov	r2, #0
+    1210:	mov	r3, #0
+    1214:	strd	r2, [sp, #8]
+    1218:	mov	r3, #8
+    121c:	str	r3, [sp]
+    1220:	ldr	r3, [pc, #156]	; 12c4 <MyGame_Example_TestJSONPrefixParsing_print_json_table+0x16c>
+    1224:	mov	r2, #5
+    1228:	ldr	r1, [fp, #-12]
+    122c:	ldr	r0, [fp, #-8]
+    1230:	bl	0 <flatcc_json_printer_int64_field>
+    1234:	mov	r3, #0
+    1238:	str	r3, [sp, #4]
+    123c:	mov	r3, #9
+    1240:	str	r3, [sp]
+    1244:	ldr	r3, [pc, #124]	; 12c8 <MyGame_Example_TestJSONPrefixParsing_print_json_table+0x170>
+    1248:	mov	r2, #6
+    124c:	ldr	r1, [fp, #-12]
+    1250:	ldr	r0, [fp, #-8]
+    1254:	bl	0 <flatcc_json_printer_uint32_field>
+    1258:	mov	r2, #0
+    125c:	mov	r3, #0
+    1260:	strd	r2, [sp, #8]
+    1264:	mov	r3, #8
+    1268:	str	r3, [sp]
+    126c:	ldr	r3, [pc, #88]	; 12cc <MyGame_Example_TestJSONPrefixParsing_print_json_table+0x174>
+    1270:	mov	r2, #7
+    1274:	ldr	r1, [fp, #-12]
+    1278:	ldr	r0, [fp, #-8]
+    127c:	bl	0 <flatcc_json_printer_int64_field>
+    1280:	mov	r3, #0
+    1284:	str	r3, [sp, #4]
+    1288:	mov	r3, #9
+    128c:	str	r3, [sp]
+    1290:	ldr	r3, [pc, #56]	; 12d0 <MyGame_Example_TestJSONPrefixParsing_print_json_table+0x178>
+    1294:	mov	r2, #8
+    1298:	ldr	r1, [fp, #-12]
+    129c:	ldr	r0, [fp, #-8]
+    12a0:	bl	0 <flatcc_json_printer_uint32_field>
+    12a4:	nop			; (mov r0, r0)
+    12a8:	sub	sp, fp, #4
+    12ac:	pop	{fp, pc}
+    12b0:	.word	0x00000208
+    12b4:	.word	0x00000210
+    12b8:	.word	0x0000021c
+    12bc:	.word	0x00000224
+    12c0:	.word	0x00000230
+    12c4:	.word	0x00000238
+    12c8:	.word	0x00000244
+    12cc:	.word	0x00000250
+    12d0:	.word	0x0000025c
+
+000012d4 <MyGame_Example_TestJSONPrefixParsing2_print_json_table>:
+    12d4:	push	{fp, lr}
+    12d8:	add	fp, sp, #4
+    12dc:	sub	sp, sp, #24
+    12e0:	str	r0, [fp, #-8]
+    12e4:	str	r1, [fp, #-12]
+    12e8:	mov	r2, #0
+    12ec:	mov	r3, #0
+    12f0:	strd	r2, [sp, #8]
+    12f4:	mov	r3, #15
+    12f8:	str	r3, [sp]
+    12fc:	ldr	r3, [pc, #60]	; 1340 <MyGame_Example_TestJSONPrefixParsing2_print_json_table+0x6c>
+    1300:	mov	r2, #0
+    1304:	ldr	r1, [fp, #-12]
+    1308:	ldr	r0, [fp, #-8]
+    130c:	bl	0 <flatcc_json_printer_int64_field>
+    1310:	mov	r3, #0
+    1314:	str	r3, [sp, #4]
+    1318:	mov	r3, #16
+    131c:	str	r3, [sp]
+    1320:	ldr	r3, [pc, #28]	; 1344 <MyGame_Example_TestJSONPrefixParsing2_print_json_table+0x70>
+    1324:	mov	r2, #1
+    1328:	ldr	r1, [fp, #-12]
+    132c:	ldr	r0, [fp, #-8]
+    1330:	bl	0 <flatcc_json_printer_uint32_field>
+    1334:	nop			; (mov r0, r0)
+    1338:	sub	sp, fp, #4
+    133c:	pop	{fp, pc}
+    1340:	.word	0x00000268
+    1344:	.word	0x00000278
+
+00001348 <MyGame_Example_TestJSONPrefixParsing3_print_json_table>:
+    1348:	push	{fp, lr}
+    134c:	add	fp, sp, #4
+    1350:	sub	sp, sp, #24
+    1354:	str	r0, [fp, #-8]
+    1358:	str	r1, [fp, #-12]
+    135c:	mov	r2, #0
+    1360:	mov	r3, #0
+    1364:	strd	r2, [sp, #8]
+    1368:	mov	r3, #15
+    136c:	str	r3, [sp]
+    1370:	ldr	r3, [pc, #60]	; 13b4 <MyGame_Example_TestJSONPrefixParsing3_print_json_table+0x6c>
+    1374:	mov	r2, #0
+    1378:	ldr	r1, [fp, #-12]
+    137c:	ldr	r0, [fp, #-8]
+    1380:	bl	0 <flatcc_json_printer_int64_field>
+    1384:	mov	r3, #0
+    1388:	str	r3, [sp, #4]
+    138c:	mov	r3, #21
+    1390:	str	r3, [sp]
+    1394:	ldr	r3, [pc, #28]	; 13b8 <MyGame_Example_TestJSONPrefixParsing3_print_json_table+0x70>
+    1398:	mov	r2, #1
+    139c:	ldr	r1, [fp, #-12]
+    13a0:	ldr	r0, [fp, #-8]
+    13a4:	bl	0 <flatcc_json_printer_uint32_field>
+    13a8:	nop			; (mov r0, r0)
+    13ac:	sub	sp, fp, #4
+    13b0:	pop	{fp, pc}
+    13b4:	.word	0x00000268
+    13b8:	.word	0x0000028c
+
+000013bc <MyGame_Example_TestBase64_print_json_table>:
+    13bc:	push	{fp, lr}
+    13c0:	add	fp, sp, #4
+    13c4:	sub	sp, sp, #16
+    13c8:	str	r0, [fp, #-8]
+    13cc:	str	r1, [fp, #-12]
+    13d0:	mov	r3, #0
+    13d4:	str	r3, [sp, #4]
+    13d8:	mov	r3, #4
+    13dc:	str	r3, [sp]
+    13e0:	ldr	r3, [pc, #96]	; 1448 <MyGame_Example_TestBase64_print_json_table+0x8c>
+    13e4:	mov	r2, #0
+    13e8:	ldr	r1, [fp, #-12]
+    13ec:	ldr	r0, [fp, #-8]
+    13f0:	bl	0 <flatcc_json_printer_uint8_vector_base64_field>
+    13f4:	mov	r3, #1
+    13f8:	str	r3, [sp, #4]
+    13fc:	mov	r3, #7
+    1400:	str	r3, [sp]
+    1404:	ldr	r3, [pc, #64]	; 144c <MyGame_Example_TestBase64_print_json_table+0x90>
+    1408:	mov	r2, #1
+    140c:	ldr	r1, [fp, #-12]
+    1410:	ldr	r0, [fp, #-8]
+    1414:	bl	0 <flatcc_json_printer_uint8_vector_base64_field>
+    1418:	mov	r3, #0
+    141c:	str	r3, [sp, #4]
+    1420:	mov	r3, #6
+    1424:	str	r3, [sp]
+    1428:	ldr	r3, [pc, #32]	; 1450 <MyGame_Example_TestBase64_print_json_table+0x94>
+    142c:	mov	r2, #2
+    1430:	ldr	r1, [fp, #-12]
+    1434:	ldr	r0, [fp, #-8]
+    1438:	bl	0 <flatcc_json_printer_uint8_vector_base64_field>
+    143c:	nop			; (mov r0, r0)
+    1440:	sub	sp, fp, #4
+    1444:	pop	{fp, pc}
+    1448:	.word	0x000002a4
+    144c:	.word	0x000002ac
+    1450:	.word	0x000002b4
+
+00001454 <MyGame_Example_Monster_print_json_table>:
+    1454:	push	{fp, lr}
+    1458:	add	fp, sp, #4
+    145c:	sub	sp, sp, #24
+    1460:	str	r0, [fp, #-8]
+    1464:	str	r1, [fp, #-12]
+    1468:	ldr	r3, [pc, #1228]	; 193c <MyGame_Example_Monster_print_json_table+0x4e8>
+    146c:	str	r3, [sp, #4]
+    1470:	mov	r3, #3
+    1474:	str	r3, [sp]
+    1478:	ldr	r3, [pc, #1216]	; 1940 <MyGame_Example_Monster_print_json_table+0x4ec>
+    147c:	mov	r2, #0
+    1480:	ldr	r1, [fp, #-12]
+    1484:	ldr	r0, [fp, #-8]
+    1488:	bl	0 <flatcc_json_printer_struct_field>
+    148c:	mov	r3, #150	; 0x96
+    1490:	str	r3, [sp, #4]
+    1494:	mov	r3, #4
+    1498:	str	r3, [sp]
+    149c:	ldr	r3, [pc, #1184]	; 1944 <MyGame_Example_Monster_print_json_table+0x4f0>
+    14a0:	mov	r2, #1
+    14a4:	ldr	r1, [fp, #-12]
+    14a8:	ldr	r0, [fp, #-8]
+    14ac:	bl	0 <flatcc_json_printer_int16_field>
+    14b0:	mov	r3, #100	; 0x64
+    14b4:	str	r3, [sp, #4]
+    14b8:	mov	r3, #2
+    14bc:	str	r3, [sp]
+    14c0:	ldr	r3, [pc, #1152]	; 1948 <MyGame_Example_Monster_print_json_table+0x4f4>
+    14c4:	mov	r2, #2
+    14c8:	ldr	r1, [fp, #-12]
+    14cc:	ldr	r0, [fp, #-8]
+    14d0:	bl	0 <flatcc_json_printer_int16_field>
+    14d4:	mov	r3, #4
+    14d8:	str	r3, [sp]
+    14dc:	ldr	r3, [pc, #1128]	; 194c <MyGame_Example_Monster_print_json_table+0x4f8>
+    14e0:	mov	r2, #3
+    14e4:	ldr	r1, [fp, #-12]
+    14e8:	ldr	r0, [fp, #-8]
+    14ec:	bl	0 <flatcc_json_printer_string_field>
+    14f0:	mov	r3, #9
+    14f4:	str	r3, [sp]
+    14f8:	ldr	r3, [pc, #1104]	; 1950 <MyGame_Example_Monster_print_json_table+0x4fc>
+    14fc:	mov	r2, #5
+    1500:	ldr	r1, [fp, #-12]
+    1504:	ldr	r0, [fp, #-8]
+    1508:	bl	0 <flatcc_json_printer_uint8_vector_field>
+    150c:	ldr	r3, [pc, #1088]	; 1954 <MyGame_Example_Monster_print_json_table+0x500>
+    1510:	str	r3, [sp, #8]
+    1514:	mov	r3, #8
+    1518:	str	r3, [sp, #4]
+    151c:	mov	r3, #5
+    1520:	str	r3, [sp]
+    1524:	ldr	r3, [pc, #1068]	; 1958 <MyGame_Example_Monster_print_json_table+0x504>
+    1528:	mov	r2, #6
+    152c:	ldr	r1, [fp, #-12]
+    1530:	ldr	r0, [fp, #-8]
+    1534:	bl	0 <flatcc_json_printer_int8_enum_field>
+    1538:	ldr	r3, [pc, #1052]	; 195c <MyGame_Example_Monster_print_json_table+0x508>
+    153c:	str	r3, [sp, #8]
+    1540:	ldr	r3, [pc, #1048]	; 1960 <MyGame_Example_Monster_print_json_table+0x50c>
+    1544:	str	r3, [sp, #4]
+    1548:	mov	r3, #4
+    154c:	str	r3, [sp]
+    1550:	ldr	r3, [pc, #1036]	; 1964 <MyGame_Example_Monster_print_json_table+0x510>
+    1554:	mov	r2, #8
+    1558:	ldr	r1, [fp, #-12]
+    155c:	ldr	r0, [fp, #-8]
+    1560:	bl	0 <flatcc_json_printer_union_field>
+    1564:	ldr	r3, [pc, #1020]	; 1968 <MyGame_Example_Monster_print_json_table+0x514>
+    1568:	str	r3, [sp, #8]
+    156c:	mov	r3, #4
+    1570:	str	r3, [sp, #4]
+    1574:	mov	r3, #5
+    1578:	str	r3, [sp]
+    157c:	ldr	r3, [pc, #1000]	; 196c <MyGame_Example_Monster_print_json_table+0x518>
+    1580:	mov	r2, #9
+    1584:	ldr	r1, [fp, #-12]
+    1588:	ldr	r0, [fp, #-8]
+    158c:	bl	0 <flatcc_json_printer_struct_vector_field>
+    1590:	mov	r3, #17
+    1594:	str	r3, [sp]
+    1598:	ldr	r3, [pc, #976]	; 1970 <MyGame_Example_Monster_print_json_table+0x51c>
+    159c:	mov	r2, #10
+    15a0:	ldr	r1, [fp, #-12]
+    15a4:	ldr	r0, [fp, #-8]
+    15a8:	bl	0 <flatcc_json_printer_string_vector_field>
+    15ac:	ldr	r3, [pc, #960]	; 1974 <MyGame_Example_Monster_print_json_table+0x520>
+    15b0:	str	r3, [sp, #4]
+    15b4:	mov	r3, #17
+    15b8:	str	r3, [sp]
+    15bc:	ldr	r3, [pc, #948]	; 1978 <MyGame_Example_Monster_print_json_table+0x524>
+    15c0:	mov	r2, #11
+    15c4:	ldr	r1, [fp, #-12]
+    15c8:	ldr	r0, [fp, #-8]
+    15cc:	bl	0 <flatcc_json_printer_table_vector_field>
+    15d0:	ldr	r3, [pc, #924]	; 1974 <MyGame_Example_Monster_print_json_table+0x520>
+    15d4:	str	r3, [sp, #4]
+    15d8:	mov	r3, #5
+    15dc:	str	r3, [sp]
+    15e0:	ldr	r3, [pc, #916]	; 197c <MyGame_Example_Monster_print_json_table+0x528>
+    15e4:	mov	r2, #12
+    15e8:	ldr	r1, [fp, #-12]
+    15ec:	ldr	r0, [fp, #-8]
+    15f0:	bl	0 <flatcc_json_printer_table_field>
+    15f4:	ldr	r3, [pc, #888]	; 1974 <MyGame_Example_Monster_print_json_table+0x520>
+    15f8:	str	r3, [sp, #8]
+    15fc:	mov	r3, #0
+    1600:	str	r3, [sp, #4]
+    1604:	mov	r3, #20
+    1608:	str	r3, [sp]
+    160c:	ldr	r3, [pc, #876]	; 1980 <MyGame_Example_Monster_print_json_table+0x52c>
+    1610:	mov	r2, #13
+    1614:	ldr	r1, [fp, #-12]
+    1618:	ldr	r0, [fp, #-8]
+    161c:	bl	0 <flatcc_json_printer_table_as_nested_root>
+    1620:	ldr	r3, [pc, #860]	; 1984 <MyGame_Example_Monster_print_json_table+0x530>
+    1624:	str	r3, [sp, #4]
+    1628:	mov	r3, #9
+    162c:	str	r3, [sp]
+    1630:	ldr	r3, [pc, #848]	; 1988 <MyGame_Example_Monster_print_json_table+0x534>
+    1634:	mov	r2, #14
+    1638:	ldr	r1, [fp, #-12]
+    163c:	ldr	r0, [fp, #-8]
+    1640:	bl	0 <flatcc_json_printer_table_field>
+    1644:	mov	r3, #1
+    1648:	str	r3, [sp, #4]
+    164c:	mov	r3, #8
+    1650:	str	r3, [sp]
+    1654:	ldr	r3, [pc, #816]	; 198c <MyGame_Example_Monster_print_json_table+0x538>
+    1658:	mov	r2, #15
+    165c:	ldr	r1, [fp, #-12]
+    1660:	ldr	r0, [fp, #-8]
+    1664:	bl	0 <flatcc_json_printer_bool_field>
+    1668:	mov	r3, #0
+    166c:	str	r3, [sp, #4]
+    1670:	mov	r3, #16
+    1674:	str	r3, [sp]
+    1678:	ldr	r3, [pc, #784]	; 1990 <MyGame_Example_Monster_print_json_table+0x53c>
+    167c:	mov	r2, #16
+    1680:	ldr	r1, [fp, #-12]
+    1684:	ldr	r0, [fp, #-8]
+    1688:	bl	0 <flatcc_json_printer_int32_field>
+    168c:	mov	r3, #0
+    1690:	str	r3, [sp, #4]
+    1694:	mov	r3, #16
+    1698:	str	r3, [sp]
+    169c:	ldr	r3, [pc, #752]	; 1994 <MyGame_Example_Monster_print_json_table+0x540>
+    16a0:	mov	r2, #17
+    16a4:	ldr	r1, [fp, #-12]
+    16a8:	ldr	r0, [fp, #-8]
+    16ac:	bl	0 <flatcc_json_printer_uint32_field>
+    16b0:	mov	r2, #0
+    16b4:	mov	r3, #0
+    16b8:	strd	r2, [sp, #8]
+    16bc:	mov	r3, #16
+    16c0:	str	r3, [sp]
+    16c4:	ldr	r3, [pc, #716]	; 1998 <MyGame_Example_Monster_print_json_table+0x544>
+    16c8:	mov	r2, #18
+    16cc:	ldr	r1, [fp, #-12]
+    16d0:	ldr	r0, [fp, #-8]
+    16d4:	bl	0 <flatcc_json_printer_int64_field>
+    16d8:	mov	r2, #0
+    16dc:	mov	r3, #0
+    16e0:	strd	r2, [sp, #8]
+    16e4:	mov	r3, #16
+    16e8:	str	r3, [sp]
+    16ec:	ldr	r3, [pc, #680]	; 199c <MyGame_Example_Monster_print_json_table+0x548>
+    16f0:	mov	r2, #19
+    16f4:	ldr	r1, [fp, #-12]
+    16f8:	ldr	r0, [fp, #-8]
+    16fc:	bl	0 <flatcc_json_printer_uint64_field>
+    1700:	mov	r3, #0
+    1704:	str	r3, [sp, #4]
+    1708:	mov	r3, #17
+    170c:	str	r3, [sp]
+    1710:	ldr	r3, [pc, #648]	; 19a0 <MyGame_Example_Monster_print_json_table+0x54c>
+    1714:	mov	r2, #20
+    1718:	ldr	r1, [fp, #-12]
+    171c:	ldr	r0, [fp, #-8]
+    1720:	bl	0 <flatcc_json_printer_int32_field>
+    1724:	mov	r3, #0
+    1728:	str	r3, [sp, #4]
+    172c:	mov	r3, #17
+    1730:	str	r3, [sp]
+    1734:	ldr	r3, [pc, #616]	; 19a4 <MyGame_Example_Monster_print_json_table+0x550>
+    1738:	mov	r2, #21
+    173c:	ldr	r1, [fp, #-12]
+    1740:	ldr	r0, [fp, #-8]
+    1744:	bl	0 <flatcc_json_printer_uint32_field>
+    1748:	mov	r2, #0
+    174c:	mov	r3, #0
+    1750:	strd	r2, [sp, #8]
+    1754:	mov	r3, #17
+    1758:	str	r3, [sp]
+    175c:	ldr	r3, [pc, #580]	; 19a8 <MyGame_Example_Monster_print_json_table+0x554>
+    1760:	mov	r2, #22
+    1764:	ldr	r1, [fp, #-12]
+    1768:	ldr	r0, [fp, #-8]
+    176c:	bl	0 <flatcc_json_printer_int64_field>
+    1770:	mov	r2, #0
+    1774:	mov	r3, #0
+    1778:	strd	r2, [sp, #8]
+    177c:	mov	r3, #17
+    1780:	str	r3, [sp]
+    1784:	ldr	r3, [pc, #544]	; 19ac <MyGame_Example_Monster_print_json_table+0x558>
+    1788:	mov	r2, #23
+    178c:	ldr	r1, [fp, #-12]
+    1790:	ldr	r0, [fp, #-8]
+    1794:	bl	0 <flatcc_json_printer_uint64_field>
+    1798:	mov	r3, #16
+    179c:	str	r3, [sp]
+    17a0:	ldr	r3, [pc, #520]	; 19b0 <MyGame_Example_Monster_print_json_table+0x55c>
+    17a4:	mov	r2, #24
+    17a8:	ldr	r1, [fp, #-12]
+    17ac:	ldr	r0, [fp, #-8]
+    17b0:	bl	0 <flatcc_json_printer_bool_vector_field>
+    17b4:	mov	r3, #5
+    17b8:	str	r3, [sp]
+    17bc:	vldr	s0, [pc, #364]	; 1930 <MyGame_Example_Monster_print_json_table+0x4dc>
+    17c0:	ldr	r3, [pc, #492]	; 19b4 <MyGame_Example_Monster_print_json_table+0x560>
+    17c4:	mov	r2, #25
+    17c8:	ldr	r1, [fp, #-12]
+    17cc:	ldr	r0, [fp, #-8]
+    17d0:	bl	0 <flatcc_json_printer_float_field>
+    17d4:	mov	r3, #6
+    17d8:	str	r3, [sp]
+    17dc:	vldr	s0, [pc, #336]	; 1934 <MyGame_Example_Monster_print_json_table+0x4e0>
+    17e0:	ldr	r3, [pc, #464]	; 19b8 <MyGame_Example_Monster_print_json_table+0x564>
+    17e4:	mov	r2, #26
+    17e8:	ldr	r1, [fp, #-12]
+    17ec:	ldr	r0, [fp, #-8]
+    17f0:	bl	0 <flatcc_json_printer_float_field>
+    17f4:	mov	r3, #6
+    17f8:	str	r3, [sp]
+    17fc:	vldr	s0, [pc, #308]	; 1938 <MyGame_Example_Monster_print_json_table+0x4e4>
+    1800:	ldr	r3, [pc, #436]	; 19bc <MyGame_Example_Monster_print_json_table+0x568>
+    1804:	mov	r2, #27
+    1808:	ldr	r1, [fp, #-12]
+    180c:	ldr	r0, [fp, #-8]
+    1810:	bl	0 <flatcc_json_printer_float_field>
+    1814:	mov	r3, #18
+    1818:	str	r3, [sp]
+    181c:	ldr	r3, [pc, #412]	; 19c0 <MyGame_Example_Monster_print_json_table+0x56c>
+    1820:	mov	r2, #28
+    1824:	ldr	r1, [fp, #-12]
+    1828:	ldr	r0, [fp, #-8]
+    182c:	bl	0 <flatcc_json_printer_string_vector_field>
+    1830:	ldr	r3, [pc, #396]	; 19c4 <MyGame_Example_Monster_print_json_table+0x570>
+    1834:	str	r3, [sp, #8]
+    1838:	mov	r3, #8
+    183c:	str	r3, [sp, #4]
+    1840:	mov	r3, #23
+    1844:	str	r3, [sp]
+    1848:	ldr	r3, [pc, #376]	; 19c8 <MyGame_Example_Monster_print_json_table+0x574>
+    184c:	mov	r2, #29
+    1850:	ldr	r1, [fp, #-12]
+    1854:	ldr	r0, [fp, #-8]
+    1858:	bl	0 <flatcc_json_printer_struct_vector_field>
+    185c:	mov	r3, #4
+    1860:	str	r3, [sp]
+    1864:	ldr	r3, [pc, #352]	; 19cc <MyGame_Example_Monster_print_json_table+0x578>
+    1868:	mov	r2, #30
+    186c:	ldr	r1, [fp, #-12]
+    1870:	ldr	r0, [fp, #-8]
+    1874:	bl	0 <flatcc_json_printer_uint8_vector_field>
+    1878:	ldr	r3, [pc, #232]	; 1968 <MyGame_Example_Monster_print_json_table+0x514>
+    187c:	str	r3, [sp, #8]
+    1880:	mov	r3, #4
+    1884:	str	r3, [sp, #4]
+    1888:	mov	r3, #5
+    188c:	str	r3, [sp]
+    1890:	ldr	r3, [pc, #312]	; 19d0 <MyGame_Example_Monster_print_json_table+0x57c>
+    1894:	mov	r2, #31
+    1898:	ldr	r1, [fp, #-12]
+    189c:	ldr	r0, [fp, #-8]
+    18a0:	bl	0 <flatcc_json_printer_struct_vector_field>
+    18a4:	mov	r3, #15
+    18a8:	str	r3, [sp]
+    18ac:	ldr	r3, [pc, #288]	; 19d4 <MyGame_Example_Monster_print_json_table+0x580>
+    18b0:	mov	r2, #32
+    18b4:	ldr	r1, [fp, #-12]
+    18b8:	ldr	r0, [fp, #-8]
+    18bc:	bl	0 <flatcc_json_printer_int64_vector_field>
+    18c0:	mov	r3, #17
+    18c4:	str	r3, [sp]
+    18c8:	ldr	r3, [pc, #264]	; 19d8 <MyGame_Example_Monster_print_json_table+0x584>
+    18cc:	mov	r2, #33	; 0x21
+    18d0:	ldr	r1, [fp, #-12]
+    18d4:	ldr	r0, [fp, #-8]
+    18d8:	bl	0 <flatcc_json_printer_double_vector_field>
+    18dc:	ldr	r3, [pc, #248]	; 19dc <MyGame_Example_Monster_print_json_table+0x588>
+    18e0:	str	r3, [sp, #4]
+    18e4:	mov	r3, #21
+    18e8:	str	r3, [sp]
+    18ec:	ldr	r3, [pc, #236]	; 19e0 <MyGame_Example_Monster_print_json_table+0x58c>
+    18f0:	mov	r2, #34	; 0x22
+    18f4:	ldr	r1, [fp, #-12]
+    18f8:	ldr	r0, [fp, #-8]
+    18fc:	bl	0 <flatcc_json_printer_table_field>
+    1900:	ldr	r3, [pc, #220]	; 19e4 <MyGame_Example_Monster_print_json_table+0x590>
+    1904:	str	r3, [sp, #4]
+    1908:	mov	r3, #10
+    190c:	str	r3, [sp]
+    1910:	ldr	r3, [pc, #208]	; 19e8 <MyGame_Example_Monster_print_json_table+0x594>
+    1914:	mov	r2, #35	; 0x23
+    1918:	ldr	r1, [fp, #-12]
+    191c:	ldr	r0, [fp, #-8]
+    1920:	bl	0 <flatcc_json_printer_table_field>
+    1924:	nop			; (mov r0, r0)
+    1928:	sub	sp, fp, #4
+    192c:	pop	{fp, pc}
+    1930:	.word	0x489965e0
+    1934:	.word	0x40400000
+	...
+    1940:	.word	0x000002bc
+    1944:	.word	0x000002c0
+    1948:	.word	0x000002c8
+    194c:	.word	0x000002cc
+    1950:	.word	0x000002d4
+    1954:	.word	0x00000000
+    1958:	.word	0x00000154
+	...
+    1964:	.word	0x000002e0
+    1968:	.word	0x00000000
+    196c:	.word	0x000002e8
+    1970:	.word	0x000002f0
+    1974:	.word	0x00000000
+    1978:	.word	0x00000304
+    197c:	.word	0x00000318
+    1980:	.word	0x00000320
+    1984:	.word	0x00000000
+    1988:	.word	0x00000338
+    198c:	.word	0x00000344
+    1990:	.word	0x00000350
+    1994:	.word	0x00000364
+    1998:	.word	0x00000378
+    199c:	.word	0x0000038c
+    19a0:	.word	0x000003a0
+    19a4:	.word	0x000003b4
+    19a8:	.word	0x000003c8
+    19ac:	.word	0x000003dc
+    19b0:	.word	0x000003f0
+    19b4:	.word	0x00000404
+    19b8:	.word	0x0000040c
+    19bc:	.word	0x00000414
+    19c0:	.word	0x0000041c
+    19c4:	.word	0x00000000
+    19c8:	.word	0x00000430
+    19cc:	.word	0x00000448
+    19d0:	.word	0x00000450
+    19d4:	.word	0x00000458
+    19d8:	.word	0x00000468
+    19dc:	.word	0x00000000
+    19e0:	.word	0x0000047c
+    19e4:	.word	0x00000000
+    19e8:	.word	0x00000494
+
+000019ec <MyGame_Example_Monster_print_json_as_root>:
+    19ec:	push	{fp, lr}
+    19f0:	add	fp, sp, #4
+    19f4:	sub	sp, sp, #24
+    19f8:	str	r0, [fp, #-8]
+    19fc:	str	r1, [fp, #-12]
+    1a00:	str	r2, [fp, #-16]
+    1a04:	str	r3, [fp, #-20]	; 0xffffffec
+    1a08:	ldr	r3, [pc, #36]	; 1a34 <MyGame_Example_Monster_print_json_as_root+0x48>
+    1a0c:	str	r3, [sp]
+    1a10:	ldr	r3, [fp, #-20]	; 0xffffffec
+    1a14:	ldr	r2, [fp, #-16]
+    1a18:	ldr	r1, [fp, #-12]
+    1a1c:	ldr	r0, [fp, #-8]
+    1a20:	bl	0 <flatcc_json_printer_table_as_root>
+    1a24:	mov	r3, r0
+    1a28:	mov	r0, r3
+    1a2c:	sub	sp, fp, #4
+    1a30:	pop	{fp, pc}
+    1a34:	.word	0x00000000
+
+00001a38 <MyGame_Example_TypeAliases_print_json_table>:
+    1a38:	push	{fp, lr}
+    1a3c:	add	fp, sp, #4
+    1a40:	sub	sp, sp, #24
+    1a44:	str	r0, [fp, #-8]
+    1a48:	str	r1, [fp, #-12]
+    1a4c:	mov	r3, #0
+    1a50:	str	r3, [sp, #4]
+    1a54:	mov	r3, #2
+    1a58:	str	r3, [sp]
+    1a5c:	ldr	r3, [pc, #416]	; 1c04 <MyGame_Example_TypeAliases_print_json_table+0x1cc>
+    1a60:	mov	r2, #0
+    1a64:	ldr	r1, [fp, #-12]
+    1a68:	ldr	r0, [fp, #-8]
+    1a6c:	bl	0 <flatcc_json_printer_int8_field>
+    1a70:	mov	r3, #0
+    1a74:	str	r3, [sp, #4]
+    1a78:	mov	r3, #2
+    1a7c:	str	r3, [sp]
+    1a80:	ldr	r3, [pc, #384]	; 1c08 <MyGame_Example_TypeAliases_print_json_table+0x1d0>
+    1a84:	mov	r2, #1
+    1a88:	ldr	r1, [fp, #-12]
+    1a8c:	ldr	r0, [fp, #-8]
+    1a90:	bl	0 <flatcc_json_printer_uint8_field>
+    1a94:	mov	r3, #0
+    1a98:	str	r3, [sp, #4]
+    1a9c:	mov	r3, #3
+    1aa0:	str	r3, [sp]
+    1aa4:	ldr	r3, [pc, #352]	; 1c0c <MyGame_Example_TypeAliases_print_json_table+0x1d4>
+    1aa8:	mov	r2, #2
+    1aac:	ldr	r1, [fp, #-12]
+    1ab0:	ldr	r0, [fp, #-8]
+    1ab4:	bl	0 <flatcc_json_printer_int16_field>
+    1ab8:	mov	r3, #0
+    1abc:	str	r3, [sp, #4]
+    1ac0:	mov	r3, #3
+    1ac4:	str	r3, [sp]
+    1ac8:	ldr	r3, [pc, #320]	; 1c10 <MyGame_Example_TypeAliases_print_json_table+0x1d8>
+    1acc:	mov	r2, #3
+    1ad0:	ldr	r1, [fp, #-12]
+    1ad4:	ldr	r0, [fp, #-8]
+    1ad8:	bl	0 <flatcc_json_printer_uint16_field>
+    1adc:	mov	r3, #0
+    1ae0:	str	r3, [sp, #4]
+    1ae4:	mov	r3, #3
+    1ae8:	str	r3, [sp]
+    1aec:	ldr	r3, [pc, #288]	; 1c14 <MyGame_Example_TypeAliases_print_json_table+0x1dc>
+    1af0:	mov	r2, #4
+    1af4:	ldr	r1, [fp, #-12]
+    1af8:	ldr	r0, [fp, #-8]
+    1afc:	bl	0 <flatcc_json_printer_int32_field>
+    1b00:	mov	r3, #0
+    1b04:	str	r3, [sp, #4]
+    1b08:	mov	r3, #3
+    1b0c:	str	r3, [sp]
+    1b10:	ldr	r3, [pc, #256]	; 1c18 <MyGame_Example_TypeAliases_print_json_table+0x1e0>
+    1b14:	mov	r2, #5
+    1b18:	ldr	r1, [fp, #-12]
+    1b1c:	ldr	r0, [fp, #-8]
+    1b20:	bl	0 <flatcc_json_printer_uint32_field>
+    1b24:	mov	r2, #0
+    1b28:	mov	r3, #0
+    1b2c:	strd	r2, [sp, #8]
+    1b30:	mov	r3, #3
+    1b34:	str	r3, [sp]
+    1b38:	ldr	r3, [pc, #220]	; 1c1c <MyGame_Example_TypeAliases_print_json_table+0x1e4>
+    1b3c:	mov	r2, #6
+    1b40:	ldr	r1, [fp, #-12]
+    1b44:	ldr	r0, [fp, #-8]
+    1b48:	bl	0 <flatcc_json_printer_int64_field>
+    1b4c:	mov	r2, #0
+    1b50:	mov	r3, #0
+    1b54:	strd	r2, [sp, #8]
+    1b58:	mov	r3, #3
+    1b5c:	str	r3, [sp]
+    1b60:	ldr	r3, [pc, #184]	; 1c20 <MyGame_Example_TypeAliases_print_json_table+0x1e8>
+    1b64:	mov	r2, #7
+    1b68:	ldr	r1, [fp, #-12]
+    1b6c:	ldr	r0, [fp, #-8]
+    1b70:	bl	0 <flatcc_json_printer_uint64_field>
+    1b74:	mov	r3, #3
+    1b78:	str	r3, [sp]
+    1b7c:	vldr	s0, [pc, #124]	; 1c00 <MyGame_Example_TypeAliases_print_json_table+0x1c8>
+    1b80:	ldr	r3, [pc, #156]	; 1c24 <MyGame_Example_TypeAliases_print_json_table+0x1ec>
+    1b84:	mov	r2, #8
+    1b88:	ldr	r1, [fp, #-12]
+    1b8c:	ldr	r0, [fp, #-8]
+    1b90:	bl	0 <flatcc_json_printer_float_field>
+    1b94:	mov	r3, #3
+    1b98:	str	r3, [sp]
+    1b9c:	vldr	d0, [pc, #84]	; 1bf8 <MyGame_Example_TypeAliases_print_json_table+0x1c0>
+    1ba0:	ldr	r3, [pc, #128]	; 1c28 <MyGame_Example_TypeAliases_print_json_table+0x1f0>
+    1ba4:	mov	r2, #9
+    1ba8:	ldr	r1, [fp, #-12]
+    1bac:	ldr	r0, [fp, #-8]
+    1bb0:	bl	0 <flatcc_json_printer_double_field>
+    1bb4:	mov	r3, #2
+    1bb8:	str	r3, [sp]
+    1bbc:	ldr	r3, [pc, #104]	; 1c2c <MyGame_Example_TypeAliases_print_json_table+0x1f4>
+    1bc0:	mov	r2, #10
+    1bc4:	ldr	r1, [fp, #-12]
+    1bc8:	ldr	r0, [fp, #-8]
+    1bcc:	bl	0 <flatcc_json_printer_int8_vector_field>
+    1bd0:	mov	r3, #4
+    1bd4:	str	r3, [sp]
+    1bd8:	ldr	r3, [pc, #80]	; 1c30 <MyGame_Example_TypeAliases_print_json_table+0x1f8>
+    1bdc:	mov	r2, #11
+    1be0:	ldr	r1, [fp, #-12]
+    1be4:	ldr	r0, [fp, #-8]
+    1be8:	bl	0 <flatcc_json_printer_double_vector_field>
+    1bec:	nop			; (mov r0, r0)
+    1bf0:	sub	sp, fp, #4
+    1bf4:	pop	{fp, pc}
+	...
+    1c04:	.word	0x000004a0
+    1c08:	.word	0x000004a4
+    1c0c:	.word	0x000004a8
+    1c10:	.word	0x000004ac
+    1c14:	.word	0x000004b0
+    1c18:	.word	0x000004b4
+    1c1c:	.word	0x000004b8
+    1c20:	.word	0x000004bc
+    1c24:	.word	0x000004c0
+    1c28:	.word	0x000004c4
+    1c2c:	.word	0x000004c8
+    1c30:	.word	0x000004cc
+
+00001c34 <Fantasy_Attacker_print_json_table>:
+    1c34:	push	{fp, lr}
+    1c38:	add	fp, sp, #4
+    1c3c:	sub	sp, sp, #16
+    1c40:	str	r0, [fp, #-8]
+    1c44:	str	r1, [fp, #-12]
+    1c48:	mov	r3, #0
+    1c4c:	str	r3, [sp, #4]
+    1c50:	mov	r3, #19
+    1c54:	str	r3, [sp]
+    1c58:	ldr	r3, [pc, #24]	; 1c78 <Fantasy_Attacker_print_json_table+0x44>
+    1c5c:	mov	r2, #0
+    1c60:	ldr	r1, [fp, #-12]
+    1c64:	ldr	r0, [fp, #-8]
+    1c68:	bl	0 <flatcc_json_printer_int32_field>
+    1c6c:	nop			; (mov r0, r0)
+    1c70:	sub	sp, fp, #4
+    1c74:	pop	{fp, pc}
+    1c78:	.word	0x000004d4
+
+00001c7c <Fantasy_Movie_print_json_table>:
+    1c7c:	push	{fp, lr}
+    1c80:	add	fp, sp, #4
+    1c84:	sub	sp, sp, #24
+    1c88:	str	r0, [fp, #-8]
+    1c8c:	str	r1, [fp, #-12]
+    1c90:	ldr	r3, [pc, #224]	; 1d78 <Fantasy_Movie_print_json_table+0xfc>
+    1c94:	str	r3, [sp, #8]
+    1c98:	ldr	r3, [pc, #220]	; 1d7c <Fantasy_Movie_print_json_table+0x100>
+    1c9c:	str	r3, [sp, #4]
+    1ca0:	mov	r3, #14
+    1ca4:	str	r3, [sp]
+    1ca8:	ldr	r3, [pc, #208]	; 1d80 <Fantasy_Movie_print_json_table+0x104>
+    1cac:	mov	r2, #1
+    1cb0:	ldr	r1, [fp, #-12]
+    1cb4:	ldr	r0, [fp, #-8]
+    1cb8:	bl	0 <flatcc_json_printer_union_field>
+    1cbc:	ldr	r3, [pc, #180]	; 1d78 <Fantasy_Movie_print_json_table+0xfc>
+    1cc0:	str	r3, [sp, #8]
+    1cc4:	ldr	r3, [pc, #176]	; 1d7c <Fantasy_Movie_print_json_table+0x100>
+    1cc8:	str	r3, [sp, #4]
+    1ccc:	mov	r3, #10
+    1cd0:	str	r3, [sp]
+    1cd4:	ldr	r3, [pc, #168]	; 1d84 <Fantasy_Movie_print_json_table+0x108>
+    1cd8:	mov	r2, #3
+    1cdc:	ldr	r1, [fp, #-12]
+    1ce0:	ldr	r0, [fp, #-8]
+    1ce4:	bl	0 <flatcc_json_printer_union_field>
+    1ce8:	ldr	r3, [pc, #136]	; 1d78 <Fantasy_Movie_print_json_table+0xfc>
+    1cec:	str	r3, [sp, #8]
+    1cf0:	ldr	r3, [pc, #132]	; 1d7c <Fantasy_Movie_print_json_table+0x100>
+    1cf4:	str	r3, [sp, #4]
+    1cf8:	mov	r3, #9
+    1cfc:	str	r3, [sp]
+    1d00:	ldr	r3, [pc, #128]	; 1d88 <Fantasy_Movie_print_json_table+0x10c>
+    1d04:	mov	r2, #5
+    1d08:	ldr	r1, [fp, #-12]
+    1d0c:	ldr	r0, [fp, #-8]
+    1d10:	bl	0 <flatcc_json_printer_union_field>
+    1d14:	ldr	r3, [pc, #92]	; 1d78 <Fantasy_Movie_print_json_table+0xfc>
+    1d18:	str	r3, [sp, #8]
+    1d1c:	ldr	r3, [pc, #88]	; 1d7c <Fantasy_Movie_print_json_table+0x100>
+    1d20:	str	r3, [sp, #4]
+    1d24:	mov	r3, #5
+    1d28:	str	r3, [sp]
+    1d2c:	ldr	r3, [pc, #88]	; 1d8c <Fantasy_Movie_print_json_table+0x110>
+    1d30:	mov	r2, #7
+    1d34:	ldr	r1, [fp, #-12]
+    1d38:	ldr	r0, [fp, #-8]
+    1d3c:	bl	0 <flatcc_json_printer_union_field>
+    1d40:	ldr	r3, [pc, #48]	; 1d78 <Fantasy_Movie_print_json_table+0xfc>
+    1d44:	str	r3, [sp, #8]
+    1d48:	ldr	r3, [pc, #44]	; 1d7c <Fantasy_Movie_print_json_table+0x100>
+    1d4c:	str	r3, [sp, #4]
+    1d50:	mov	r3, #10
+    1d54:	str	r3, [sp]
+    1d58:	ldr	r3, [pc, #48]	; 1d90 <Fantasy_Movie_print_json_table+0x114>
+    1d5c:	mov	r2, #9
+    1d60:	ldr	r1, [fp, #-12]
+    1d64:	ldr	r0, [fp, #-8]
+    1d68:	bl	0 <flatcc_json_printer_union_vector_field>
+    1d6c:	nop			; (mov r0, r0)
+    1d70:	sub	sp, fp, #4
+    1d74:	pop	{fp, pc}
+	...
+    1d80:	.word	0x000004e8
+    1d84:	.word	0x000004f8
+    1d88:	.word	0x00000504
+    1d8c:	.word	0x00000510
+    1d90:	.word	0x00000518
+
+00001d94 <monster_test_print_json>:
+    1d94:	push	{fp, lr}
+    1d98:	add	fp, sp, #4
+    1d9c:	sub	sp, sp, #64	; 0x40
+    1da0:	str	r0, [fp, #-56]	; 0xffffffc8
+    1da4:	str	r1, [fp, #-60]	; 0xffffffc4
+    1da8:	str	r2, [fp, #-64]	; 0xffffffc0
+    1dac:	ldr	r3, [fp, #-56]	; 0xffffffc8
+    1db0:	cmp	r3, #0
+    1db4:	bne	1dcc <monster_test_print_json+0x38>
+    1db8:	sub	r3, fp, #52	; 0x34
+    1dbc:	str	r3, [fp, #-56]	; 0xffffffc8
+    1dc0:	mov	r1, #0
+    1dc4:	ldr	r0, [fp, #-56]	; 0xffffffc8
+    1dc8:	bl	0 <flatcc_json_printer_init>
+    1dcc:	ldr	r3, [pc, #28]	; 1df0 <monster_test_print_json+0x5c>
+    1dd0:	ldr	r2, [fp, #-64]	; 0xffffffc0
+    1dd4:	ldr	r1, [fp, #-60]	; 0xffffffc4
+    1dd8:	ldr	r0, [fp, #-56]	; 0xffffffc8
+    1ddc:	bl	19ec <MyGame_Example_Monster_print_json_as_root>
+    1de0:	mov	r3, r0
+    1de4:	mov	r0, r3
+    1de8:	sub	sp, fp, #4
+    1dec:	pop	{fp, pc}
+    1df0:	.word	0x00000524
+
+00001df4 <readfile>:
+    1df4:	push	{fp, lr}
+    1df8:	add	fp, sp, #4
+    1dfc:	sub	sp, sp, #40	; 0x28
+    1e00:	str	r0, [fp, #-32]	; 0xffffffe0
+    1e04:	str	r1, [fp, #-36]	; 0xffffffdc
+    1e08:	str	r2, [fp, #-40]	; 0xffffffd8
+    1e0c:	ldr	r3, [fp, #-40]	; 0xffffffd8
+    1e10:	cmp	r3, #0
+    1e14:	bne	1e20 <readfile+0x2c>
+    1e18:	sub	r3, fp, #28
+    1e1c:	b	1e24 <readfile+0x30>
+    1e20:	ldr	r3, [fp, #-40]	; 0xffffffd8
+    1e24:	str	r3, [fp, #-40]	; 0xffffffd8
+    1e28:	ldr	r1, [pc, #388]	; 1fb4 <readfile+0x1c0>
+    1e2c:	ldr	r0, [fp, #-32]	; 0xffffffe0
+    1e30:	bl	0 <fopen>
+    1e34:	str	r0, [fp, #-20]	; 0xffffffec
+    1e38:	mov	r3, #0
+    1e3c:	str	r3, [fp, #-8]
+    1e40:	mov	r3, #0
+    1e44:	str	r3, [fp, #-16]
+    1e48:	ldr	r3, [fp, #-20]	; 0xffffffec
+    1e4c:	cmp	r3, #0
+    1e50:	beq	1f54 <readfile+0x160>
+    1e54:	mov	r2, #2
+    1e58:	mov	r1, #0
+    1e5c:	ldr	r0, [fp, #-20]	; 0xffffffec
+    1e60:	bl	0 <fseek>
+    1e64:	ldr	r0, [fp, #-20]	; 0xffffffec
+    1e68:	bl	0 <ftell>
+    1e6c:	mov	r3, r0
+    1e70:	str	r3, [fp, #-8]
+    1e74:	ldr	r3, [fp, #-40]	; 0xffffffd8
+    1e78:	ldr	r2, [fp, #-8]
+    1e7c:	str	r2, [r3]
+    1e80:	ldr	r3, [fp, #-36]	; 0xffffffdc
+    1e84:	cmp	r3, #0
+    1e88:	beq	1e9c <readfile+0xa8>
+    1e8c:	ldr	r2, [fp, #-8]
+    1e90:	ldr	r3, [fp, #-36]	; 0xffffffdc
+    1e94:	cmp	r2, r3
+    1e98:	bhi	1f5c <readfile+0x168>
+    1e9c:	ldr	r0, [fp, #-20]	; 0xffffffec
+    1ea0:	bl	0 <rewind>
+    1ea4:	ldr	r3, [fp, #-8]
+    1ea8:	cmp	r3, #0
+    1eac:	beq	1eb8 <readfile+0xc4>
+    1eb0:	ldr	r3, [fp, #-8]
+    1eb4:	b	1ebc <readfile+0xc8>
+    1eb8:	mov	r3, #1
+    1ebc:	mov	r0, r3
+    1ec0:	bl	0 <malloc>
+    1ec4:	mov	r3, r0
+    1ec8:	str	r3, [fp, #-16]
+    1ecc:	ldr	r3, [fp, #-16]
+    1ed0:	cmp	r3, #0
+    1ed4:	beq	1f64 <readfile+0x170>
+    1ed8:	mov	r3, #0
+    1edc:	str	r3, [fp, #-12]
+    1ee0:	b	1ef4 <readfile+0x100>
+    1ee4:	ldr	r2, [fp, #-12]
+    1ee8:	ldr	r3, [fp, #-24]	; 0xffffffe8
+    1eec:	add	r3, r2, r3
+    1ef0:	str	r3, [fp, #-12]
+    1ef4:	ldr	r2, [fp, #-16]
+    1ef8:	ldr	r3, [fp, #-12]
+    1efc:	add	r0, r2, r3
+    1f00:	ldr	r2, [fp, #-8]
+    1f04:	ldr	r3, [fp, #-12]
+    1f08:	sub	r2, r2, r3
+    1f0c:	ldr	r3, [fp, #-20]	; 0xffffffec
+    1f10:	mov	r1, #1
+    1f14:	bl	0 <fread>
+    1f18:	str	r0, [fp, #-24]	; 0xffffffe8
+    1f1c:	ldr	r3, [fp, #-24]	; 0xffffffe8
+    1f20:	cmp	r3, #0
+    1f24:	bne	1ee4 <readfile+0xf0>
+    1f28:	ldr	r2, [fp, #-12]
+    1f2c:	ldr	r3, [fp, #-8]
+    1f30:	cmp	r2, r3
+    1f34:	bne	1f6c <readfile+0x178>
+    1f38:	ldr	r0, [fp, #-20]	; 0xffffffec
+    1f3c:	bl	0 <fclose>
+    1f40:	ldr	r3, [fp, #-40]	; 0xffffffd8
+    1f44:	ldr	r2, [fp, #-8]
+    1f48:	str	r2, [r3]
+    1f4c:	ldr	r3, [fp, #-16]
+    1f50:	b	1fa8 <readfile+0x1b4>
+    1f54:	nop			; (mov r0, r0)
+    1f58:	b	1f70 <readfile+0x17c>
+    1f5c:	nop			; (mov r0, r0)
+    1f60:	b	1f70 <readfile+0x17c>
+    1f64:	nop			; (mov r0, r0)
+    1f68:	b	1f70 <readfile+0x17c>
+    1f6c:	nop			; (mov r0, r0)
+    1f70:	ldr	r3, [fp, #-20]	; 0xffffffec
+    1f74:	cmp	r3, #0
+    1f78:	beq	1f84 <readfile+0x190>
+    1f7c:	ldr	r0, [fp, #-20]	; 0xffffffec
+    1f80:	bl	0 <fclose>
+    1f84:	ldr	r3, [fp, #-16]
+    1f88:	cmp	r3, #0
+    1f8c:	beq	1f98 <readfile+0x1a4>
+    1f90:	ldr	r0, [fp, #-16]
+    1f94:	bl	0 <free>
+    1f98:	ldr	r3, [fp, #-40]	; 0xffffffd8
+    1f9c:	ldr	r2, [fp, #-8]
+    1fa0:	str	r2, [r3]
+    1fa4:	mov	r3, #0
+    1fa8:	mov	r0, r3
+    1fac:	sub	sp, fp, #4
+    1fb0:	pop	{fp, pc}
+    1fb4:	.word	0x0000052c
+
+00001fb8 <test_print>:
+    1fb8:	push	{fp, lr}
+    1fbc:	add	fp, sp, #4
+    1fc0:	sub	sp, sp, #88	; 0x58
+    1fc4:	mov	r3, #0
+    1fc8:	str	r3, [fp, #-8]
+    1fcc:	mov	r3, #0
+    1fd0:	str	r3, [fp, #-12]
+    1fd4:	mov	r3, #0
+    1fd8:	str	r3, [fp, #-16]
+    1fdc:	mov	r3, #0
+    1fe0:	str	r3, [fp, #-20]	; 0xffffffec
+    1fe4:	mov	r3, #0
+    1fe8:	str	r3, [fp, #-32]	; 0xffffffe0
+    1fec:	mov	r3, #0
+    1ff0:	str	r3, [fp, #-36]	; 0xffffffdc
+    1ff4:	mov	r3, #0
+    1ff8:	str	r3, [fp, #-40]	; 0xffffffd8
+    1ffc:	mov	r3, #0
+    2000:	str	r3, [fp, #-24]	; 0xffffffe8
+    2004:	sub	r3, fp, #88	; 0x58
+    2008:	str	r3, [fp, #-28]	; 0xffffffe4
+    200c:	ldr	r3, [pc, #684]	; 22c0 <test_print+0x308>
+    2010:	ldr	r3, [r3]
+    2014:	ldr	r1, [pc, #680]	; 22c4 <test_print+0x30c>
+    2018:	mov	r0, r3
+    201c:	bl	0 <fopen>
+    2020:	str	r0, [fp, #-24]	; 0xffffffe8
+    2024:	ldr	r3, [fp, #-24]	; 0xffffffe8
+    2028:	cmp	r3, #0
+    202c:	bne	2054 <test_print+0x9c>
+    2030:	ldr	r3, [pc, #656]	; 22c8 <test_print+0x310>
+    2034:	ldr	r0, [r3]
+    2038:	ldr	r3, [pc, #640]	; 22c0 <test_print+0x308>
+    203c:	ldr	r3, [r3]
+    2040:	mov	r2, r3
+    2044:	ldr	r1, [pc, #640]	; 22cc <test_print+0x314>
+    2048:	bl	0 <fprintf>
+    204c:	mvn	r3, #0
+    2050:	b	22b4 <test_print+0x2fc>
+    2054:	ldr	r1, [fp, #-24]	; 0xffffffe8
+    2058:	ldr	r0, [fp, #-28]	; 0xffffffe4
+    205c:	bl	0 <flatcc_json_printer_init>
+    2060:	ldr	r0, [fp, #-28]	; 0xffffffe4
+    2064:	bl	e4 <flatcc_json_printer_set_nonstrict>
+    2068:	ldr	r3, [pc, #608]	; 22d0 <test_print+0x318>
+    206c:	ldr	r3, [r3]
+    2070:	cmp	r3, #0
+    2074:	beq	20b8 <test_print+0x100>
+    2078:	ldr	r3, [pc, #592]	; 22d0 <test_print+0x318>
+    207c:	ldr	r3, [r3]
+    2080:	ldr	r1, [pc, #588]	; 22d4 <test_print+0x31c>
+    2084:	mov	r0, r3
+    2088:	bl	0 <strcmp>
+    208c:	mov	r3, r0
+    2090:	cmp	r3, #0
+    2094:	beq	20b8 <test_print+0x100>
+    2098:	ldr	r3, [pc, #560]	; 22d0 <test_print+0x318>
+    209c:	ldr	r3, [r3]
+    20a0:	sub	r2, fp, #32
+    20a4:	mov	r1, #10240	; 0x2800
+    20a8:	mov	r0, r3
+    20ac:	bl	1df4 <readfile>
+    20b0:	str	r0, [fp, #-12]
+    20b4:	b	20c8 <test_print+0x110>
+    20b8:	ldr	r3, [pc, #536]	; 22d8 <test_print+0x320>
+    20bc:	str	r3, [fp, #-12]
+    20c0:	mov	r3, #288	; 0x120
+    20c4:	str	r3, [fp, #-32]	; 0xffffffe0
+    20c8:	ldr	r3, [fp, #-12]
+    20cc:	cmp	r3, #0
+    20d0:	bne	20f4 <test_print+0x13c>
+    20d4:	ldr	r3, [pc, #492]	; 22c8 <test_print+0x310>
+    20d8:	ldr	r0, [r3]
+    20dc:	ldr	r3, [pc, #492]	; 22d0 <test_print+0x318>
+    20e0:	ldr	r3, [r3]
+    20e4:	mov	r2, r3
+    20e8:	ldr	r1, [pc, #492]	; 22dc <test_print+0x324>
+    20ec:	bl	0 <fprintf>
+    20f0:	b	22a8 <test_print+0x2f0>
+    20f4:	ldr	r3, [pc, #484]	; 22e0 <test_print+0x328>
+    20f8:	ldr	r3, [r3]
+    20fc:	sub	r2, fp, #36	; 0x24
+    2100:	mov	r1, #10240	; 0x2800
+    2104:	mov	r0, r3
+    2108:	bl	1df4 <readfile>
+    210c:	str	r0, [fp, #-16]
+    2110:	ldr	r3, [fp, #-16]
+    2114:	cmp	r3, #0
+    2118:	bne	213c <test_print+0x184>
+    211c:	ldr	r3, [pc, #420]	; 22c8 <test_print+0x310>
+    2120:	ldr	r0, [r3]
+    2124:	ldr	r3, [pc, #436]	; 22e0 <test_print+0x328>
+    2128:	ldr	r3, [r3]
+    212c:	mov	r2, r3
+    2130:	ldr	r1, [pc, #428]	; 22e4 <test_print+0x32c>
+    2134:	bl	0 <fprintf>
+    2138:	b	22a8 <test_print+0x2f0>
+    213c:	ldr	r2, [fp, #-32]	; 0xffffffe0
+    2140:	ldr	r3, [pc, #416]	; 22e8 <test_print+0x330>
+    2144:	ldr	r1, [fp, #-12]
+    2148:	ldr	r0, [fp, #-28]	; 0xffffffe4
+    214c:	bl	19ec <MyGame_Example_Monster_print_json_as_root>
+    2150:	ldr	r0, [fp, #-28]	; 0xffffffe4
+    2154:	bl	168 <flatcc_json_printer_flush>
+    2158:	ldr	r0, [fp, #-28]	; 0xffffffe4
+    215c:	bl	0 <flatcc_json_printer_get_error>
+    2160:	mov	r3, r0
+    2164:	cmp	r3, #0
+    2168:	beq	2174 <test_print+0x1bc>
+    216c:	ldr	r0, [pc, #376]	; 22ec <test_print+0x334>
+    2170:	bl	0 <puts>
+    2174:	ldr	r0, [fp, #-24]	; 0xffffffe8
+    2178:	bl	0 <fclose>
+    217c:	mov	r3, #0
+    2180:	str	r3, [fp, #-24]	; 0xffffffe8
+    2184:	ldr	r3, [pc, #308]	; 22c0 <test_print+0x308>
+    2188:	ldr	r3, [r3]
+    218c:	sub	r2, fp, #40	; 0x28
+    2190:	mov	r1, #10240	; 0x2800
+    2194:	mov	r0, r3
+    2198:	bl	1df4 <readfile>
+    219c:	str	r0, [fp, #-20]	; 0xffffffec
+    21a0:	ldr	r3, [fp, #-20]	; 0xffffffec
+    21a4:	cmp	r3, #0
+    21a8:	bne	21cc <test_print+0x214>
+    21ac:	ldr	r3, [pc, #276]	; 22c8 <test_print+0x310>
+    21b0:	ldr	r0, [r3]
+    21b4:	ldr	r3, [pc, #260]	; 22c0 <test_print+0x308>
+    21b8:	ldr	r3, [r3]
+    21bc:	mov	r2, r3
+    21c0:	ldr	r1, [pc, #296]	; 22f0 <test_print+0x338>
+    21c4:	bl	0 <fprintf>
+    21c8:	b	22a8 <test_print+0x2f0>
+    21cc:	ldr	r2, [fp, #-40]	; 0xffffffd8
+    21d0:	ldr	r3, [fp, #-36]	; 0xffffffdc
+    21d4:	cmp	r2, r3
+    21d8:	bne	21fc <test_print+0x244>
+    21dc:	ldr	r3, [fp, #-40]	; 0xffffffd8
+    21e0:	mov	r2, r3
+    21e4:	ldr	r1, [fp, #-16]
+    21e8:	ldr	r0, [fp, #-20]	; 0xffffffec
+    21ec:	bl	0 <memcmp>
+    21f0:	mov	r3, r0
+    21f4:	cmp	r3, #0
+    21f8:	beq	2218 <test_print+0x260>
+    21fc:	ldr	r3, [pc, #196]	; 22c8 <test_print+0x310>
+    2200:	ldr	r3, [r3]
+    2204:	mov	r2, #54	; 0x36
+    2208:	mov	r1, #1
+    220c:	ldr	r0, [pc, #224]	; 22f4 <test_print+0x33c>
+    2210:	bl	0 <fwrite>
+    2214:	b	22a8 <test_print+0x2f0>
+    2218:	ldr	r3, [pc, #168]	; 22c8 <test_print+0x310>
+    221c:	ldr	r3, [r3]
+    2220:	mov	r2, #26
+    2224:	mov	r1, #1
+    2228:	ldr	r0, [pc, #200]	; 22f8 <test_print+0x340>
+    222c:	bl	0 <fwrite>
+    2230:	ldr	r0, [fp, #-28]	; 0xffffffe4
+    2234:	bl	0 <flatcc_json_printer_clear>
+    2238:	ldr	r3, [pc, #144]	; 22d0 <test_print+0x318>
+    223c:	ldr	r3, [r3]
+    2240:	cmp	r3, #0
+    2244:	bne	2250 <test_print+0x298>
+    2248:	mov	r3, #0
+    224c:	str	r3, [fp, #-12]
+    2250:	ldr	r3, [fp, #-12]
+    2254:	cmp	r3, #0
+    2258:	beq	2264 <test_print+0x2ac>
+    225c:	ldr	r0, [fp, #-12]
+    2260:	bl	0 <free>
+    2264:	ldr	r3, [fp, #-16]
+    2268:	cmp	r3, #0
+    226c:	beq	2278 <test_print+0x2c0>
+    2270:	ldr	r0, [fp, #-16]
+    2274:	bl	0 <free>
+    2278:	ldr	r3, [fp, #-20]	; 0xffffffec
+    227c:	cmp	r3, #0
+    2280:	beq	228c <test_print+0x2d4>
+    2284:	ldr	r0, [fp, #-20]	; 0xffffffec
+    2288:	bl	0 <free>
+    228c:	ldr	r3, [fp, #-24]	; 0xffffffe8
+    2290:	cmp	r3, #0
+    2294:	beq	22a0 <test_print+0x2e8>
+    2298:	ldr	r0, [fp, #-24]	; 0xffffffe8
+    229c:	bl	0 <fclose>
+    22a0:	ldr	r3, [fp, #-8]
+    22a4:	b	22b4 <test_print+0x2fc>
+    22a8:	mvn	r3, #0
+    22ac:	str	r3, [fp, #-8]
+    22b0:	b	2230 <test_print+0x278>
+    22b4:	mov	r0, r3
+    22b8:	sub	sp, fp, #4
+    22bc:	pop	{fp, pc}
+    22c0:	.word	0x00000000
+    22c4:	.word	0x000007a4
+    22c8:	.word	0x00000000
+    22cc:	.word	0x000007a8
+    22d0:	.word	0x00000000
+    22d4:	.word	0x000007c8
+    22d8:	.word	0x00000530
+    22dc:	.word	0x000007cc
+    22e0:	.word	0x00000000
+    22e4:	.word	0x000007f8
+    22e8:	.word	0x00000524
+    22ec:	.word	0x00000824
+    22f0:	.word	0x00000844
+    22f4:	.word	0x0000086c
+    22f8:	.word	0x000008a4
+
+000022fc <main>:
+    22fc:	push	{fp, lr}
+    2300:	add	fp, sp, #4
+    2304:	sub	sp, sp, #8
+    2308:	str	r0, [fp, #-8]
+    230c:	str	r1, [fp, #-12]
+    2310:	ldr	r3, [pc, #152]	; 23b0 <main+0xb4>
+    2314:	ldr	r3, [r3]
+    2318:	mov	r2, #24
+    231c:	mov	r1, #1
+    2320:	ldr	r0, [pc, #140]	; 23b4 <main+0xb8>
+    2324:	bl	0 <fwrite>
+    2328:	ldr	r3, [fp, #-8]
+    232c:	cmp	r3, #1
+    2330:	beq	2360 <main+0x64>
+    2334:	ldr	r3, [fp, #-8]
+    2338:	cmp	r3, #4
+    233c:	beq	2360 <main+0x64>
+    2340:	ldr	r3, [pc, #104]	; 23b0 <main+0xb4>
+    2344:	ldr	r3, [r3]
+    2348:	mov	r2, #191	; 0xbf
+    234c:	mov	r1, #1
+    2350:	ldr	r0, [pc, #96]	; 23b8 <main+0xbc>
+    2354:	bl	0 <fwrite>
+    2358:	mov	r0, #1
+    235c:	bl	0 <exit>
+    2360:	ldr	r3, [fp, #-8]
+    2364:	cmp	r3, #4
+    2368:	bne	239c <main+0xa0>
+    236c:	ldr	r3, [fp, #-12]
+    2370:	ldr	r3, [r3, #4]
+    2374:	ldr	r2, [pc, #64]	; 23bc <main+0xc0>
+    2378:	str	r3, [r2]
+    237c:	ldr	r3, [fp, #-12]
+    2380:	ldr	r3, [r3, #8]
+    2384:	ldr	r2, [pc, #52]	; 23c0 <main+0xc4>
+    2388:	str	r3, [r2]
+    238c:	ldr	r3, [fp, #-12]
+    2390:	ldr	r3, [r3, #12]
+    2394:	ldr	r2, [pc, #40]	; 23c4 <main+0xc8>
+    2398:	str	r3, [r2]
+    239c:	bl	1fb8 <test_print>
+    23a0:	mov	r3, r0
+    23a4:	mov	r0, r3
+    23a8:	sub	sp, fp, #4
+    23ac:	pop	{fp, pc}
+    23b0:	.word	0x00000000
+    23b4:	.word	0x000008c0
+    23b8:	.word	0x000008dc
+	...

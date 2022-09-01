@@ -1,0 +1,4773 @@
+
+../compcert-repos/dvidelabs-flatcc-3b39ef7/src/compiler/CMakeFiles/flatcc.dir/codegen_c_json_parser.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <println>:
+       0:	push	{r1, r2, r3}
+       4:	ldr	r3, [pc, #216]	; e4 <println+0xe4>
+       8:	push	{r4, r5, r6, r7, r8, r9, sl, lr}
+       c:	sub	sp, sp, #12
+      10:	ldrb	r1, [r3]
+      14:	ldr	r2, [r0, #212]	; 0xd4
+      18:	mov	r5, r0
+      1c:	cmp	r1, #0
+      20:	ldr	sl, [sp, #44]	; 0x2c
+      24:	ldr	r4, [r0, #220]	; 0xdc
+      28:	ldr	r6, [r2, #176]	; 0xb0
+      2c:	beq	d0 <println+0xd0>
+      30:	ldrb	r3, [sl]
+      34:	cmp	r3, #0
+      38:	beq	b4 <println+0xb4>
+      3c:	mul	r6, r6, r4
+      40:	cmp	r6, #64	; 0x40
+      44:	ble	88 <println+0x88>
+      48:	ldr	r9, [pc, #148]	; e4 <println+0xe4>
+      4c:	ldr	r8, [pc, #148]	; e8 <println+0xe8>
+      50:	mov	r4, r6
+      54:	mov	r7, #64	; 0x40
+      58:	sub	r4, r4, #64	; 0x40
+      5c:	mov	r3, r9
+      60:	mov	r2, r7
+      64:	mov	r1, r8
+      68:	ldr	r0, [r5, #204]	; 0xcc
+      6c:	bl	0 <fprintf>
+      70:	cmp	r4, #64	; 0x40
+      74:	bgt	58 <println+0x58>
+      78:	sub	r3, r6, #65	; 0x41
+      7c:	bic	r3, r3, #63	; 0x3f
+      80:	sub	r6, r6, #64	; 0x40
+      84:	sub	r6, r6, r3
+      88:	mov	r2, r6
+      8c:	ldr	r3, [pc, #80]	; e4 <println+0xe4>
+      90:	ldr	r1, [pc, #80]	; e8 <println+0xe8>
+      94:	ldr	r0, [r5, #204]	; 0xcc
+      98:	bl	0 <fprintf>
+      9c:	add	r3, sp, #48	; 0x30
+      a0:	mov	r1, sl
+      a4:	mov	r2, r3
+      a8:	ldr	r0, [r5, #204]	; 0xcc
+      ac:	str	r3, [sp, #4]
+      b0:	bl	0 <vfprintf>
+      b4:	ldr	r1, [r5, #204]	; 0xcc
+      b8:	mov	r0, #10
+      bc:	bl	0 <fputc>
+      c0:	add	sp, sp, #12
+      c4:	pop	{r4, r5, r6, r7, r8, r9, sl, lr}
+      c8:	add	sp, sp, #12
+      cc:	bx	lr
+      d0:	mov	r0, r3
+      d4:	mov	r2, #64	; 0x40
+      d8:	mov	r1, #32
+      dc:	bl	0 <memset>
+      e0:	b	30 <println+0x30>
+	...
+
+000000ec <gen_scope_unmatched>:
+      ec:	ldr	r1, [pc]	; f4 <gen_scope_unmatched+0x8>
+      f0:	b	0 <println>
+      f4:	.word	0x00000008
+
+000000f8 <gen_enum_unmatched>:
+      f8:	b	ec <gen_scope_unmatched>
+
+000000fc <gen_field_unmatched>:
+      fc:	ldr	r1, [pc]	; 104 <gen_field_unmatched+0x8>
+     100:	b	0 <println>
+     104:	.word	0x0000001c
+
+00000108 <gen_prefix_trie>:
+     108:	push	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+     10c:	sub	r7, r3, r2
+     110:	add	r7, r7, #1
+     114:	sub	sp, sp, #44	; 0x2c
+     118:	add	r7, r7, r7, lsr #31
+     11c:	str	r2, [sp, #24]
+     120:	add	r7, r2, r7, asr #1
+     124:	ldr	r2, [sp, #80]	; 0x50
+     128:	str	r3, [sp, #28]
+     12c:	ldr	r3, [r1]
+     130:	str	r1, [sp, #20]
+     134:	str	r2, [sp, #32]
+     138:	mov	r1, r2
+     13c:	lsl	r2, r7, #4
+     140:	str	r2, [sp, #36]	; 0x24
+     144:	add	r2, r3, r2
+     148:	mov	r6, r0
+     14c:	ldr	r8, [r2, #4]
+     150:	ldr	r2, [sp, #84]	; 0x54
+     154:	cmp	r1, r8
+     158:	str	r2, [sp, #16]
+     15c:	bgt	2b0 <gen_prefix_trie+0x1a8>
+     160:	sub	r8, r8, r1
+     164:	cmp	r8, #8
+     168:	movge	r8, #8
+     16c:	ldr	r9, [r3, r7, lsl #4]
+     170:	cmp	r8, #0
+     174:	add	r9, r9, r1
+     178:	beq	454 <gen_prefix_trie+0x34c>
+     17c:	rsb	ip, r8, #8
+     180:	add	r2, r9, r8
+     184:	lsl	ip, ip, #3
+     188:	mov	r3, ip
+     18c:	mov	sl, #0
+     190:	mov	fp, #0
+     194:	ldrb	r0, [r2, #-1]!
+     198:	sub	r1, r3, #32
+     19c:	lsl	r5, r0, r1
+     1a0:	rsb	r1, r3, #32
+     1a4:	lsl	r4, r0, r3
+     1a8:	orr	r5, r5, r0, lsr r1
+     1ac:	add	r3, r3, #8
+     1b0:	cmp	r3, #64	; 0x40
+     1b4:	orr	sl, sl, r4
+     1b8:	orr	fp, fp, r5
+     1bc:	bne	194 <gen_prefix_trie+0x8c>
+     1c0:	cmp	r8, #8
+     1c4:	bne	430 <gen_prefix_trie+0x328>
+     1c8:	mov	r3, fp
+     1cc:	stm	sp, {r8, r9}
+     1d0:	mov	r2, sl
+     1d4:	ldr	r1, [pc, #792]	; 4f4 <gen_prefix_trie+0x3ec>
+     1d8:	mov	r0, r6
+     1dc:	bl	0 <println>
+     1e0:	ldr	r3, [r6, #220]	; 0xdc
+     1e4:	add	r3, r3, #1
+     1e8:	str	r3, [r6, #220]	; 0xdc
+     1ec:	ldr	r3, [sp, #24]
+     1f0:	cmp	r3, r7
+     1f4:	bne	2f8 <gen_prefix_trie+0x1f0>
+     1f8:	ldr	r0, [sp, #20]
+     1fc:	ldr	r3, [sp, #36]	; 0x24
+     200:	ldr	r2, [r0]
+     204:	ldr	r1, [r0, #12]
+     208:	add	r2, r2, r3
+     20c:	ldr	r3, [r2, #12]
+     210:	ldr	r2, [r2, #8]
+     214:	str	r8, [sp]
+     218:	ldr	r4, [r0, #4]
+     21c:	mov	r0, r6
+     220:	blx	r4
+     224:	ldr	r3, [sp, #16]
+     228:	cmp	r3, #0
+     22c:	ble	47c <gen_prefix_trie+0x374>
+     230:	mov	r2, r3
+     234:	ldr	r1, [pc, #700]	; 4f8 <gen_prefix_trie+0x3f0>
+     238:	mov	r0, r6
+     23c:	bl	0 <println>
+     240:	ldr	r3, [r6, #220]	; 0xdc
+     244:	cmp	r3, #0
+     248:	beq	4b8 <gen_prefix_trie+0x3b0>
+     24c:	sub	r3, r3, #1
+     250:	str	r3, [r6, #220]	; 0xdc
+     254:	ldr	r1, [pc, #672]	; 4fc <gen_prefix_trie+0x3f4>
+     258:	mov	r0, r6
+     25c:	bl	0 <println>
+     260:	ldr	r3, [r6, #220]	; 0xdc
+     264:	cmp	r3, #0
+     268:	beq	4e0 <gen_prefix_trie+0x3d8>
+     26c:	sub	r3, r3, #1
+     270:	str	r3, [r6, #220]	; 0xdc
+     274:	mov	r2, r8
+     278:	mov	r3, r9
+     27c:	ldr	r1, [pc, #636]	; 500 <gen_prefix_trie+0x3f8>
+     280:	mov	r0, r6
+     284:	bl	0 <println>
+     288:	ldr	r3, [r6, #220]	; 0xdc
+     28c:	ldr	r2, [sp, #16]
+     290:	add	r3, r3, #1
+     294:	cmp	r2, #0
+     298:	str	r3, [r6, #220]	; 0xdc
+     29c:	ble	468 <gen_prefix_trie+0x360>
+     2a0:	ldr	r1, [pc, #592]	; 4f8 <gen_prefix_trie+0x3f0>
+     2a4:	mov	r0, r6
+     2a8:	bl	0 <println>
+     2ac:	b	380 <gen_prefix_trie+0x278>
+     2b0:	mov	r2, #0
+     2b4:	mov	r3, #0
+     2b8:	mov	r8, #0
+     2bc:	mov	sl, r2
+     2c0:	mov	fp, r3
+     2c4:	mov	r9, r8
+     2c8:	str	r9, [sp, #12]
+     2cc:	str	r8, [sp, #8]
+     2d0:	strd	sl, [sp]
+     2d4:	ldr	r1, [pc, #552]	; 504 <gen_prefix_trie+0x3fc>
+     2d8:	mov	r0, r6
+     2dc:	bl	0 <println>
+     2e0:	ldr	r3, [r6, #220]	; 0xdc
+     2e4:	add	r3, r3, #1
+     2e8:	str	r3, [r6, #220]	; 0xdc
+     2ec:	ldr	r3, [sp, #24]
+     2f0:	cmp	r3, r7
+     2f4:	beq	1f8 <gen_prefix_trie+0xf0>
+     2f8:	ldr	r3, [sp, #28]
+     2fc:	cmp	r3, r7
+     300:	beq	3b0 <gen_prefix_trie+0x2a8>
+     304:	ldr	r3, [sp, #16]
+     308:	mov	r2, r7
+     30c:	str	r3, [sp, #4]
+     310:	ldr	r3, [sp, #32]
+     314:	ldr	r1, [sp, #20]
+     318:	str	r3, [sp]
+     31c:	mov	r0, r6
+     320:	ldr	r3, [sp, #28]
+     324:	bl	108 <gen_prefix_trie>
+     328:	ldr	r3, [r6, #220]	; 0xdc
+     32c:	cmp	r3, #0
+     330:	beq	490 <gen_prefix_trie+0x388>
+     334:	sub	r3, r3, #1
+     338:	str	r3, [r6, #220]	; 0xdc
+     33c:	mov	r2, r8
+     340:	mov	r3, r9
+     344:	ldr	r1, [pc, #436]	; 500 <gen_prefix_trie+0x3f8>
+     348:	mov	r0, r6
+     34c:	bl	0 <println>
+     350:	ldr	r3, [sp, #16]
+     354:	ldr	r0, [r6, #220]	; 0xdc
+     358:	str	r3, [sp, #4]
+     35c:	ldr	r3, [sp, #32]
+     360:	add	r0, r0, #1
+     364:	str	r3, [sp]
+     368:	ldr	r2, [sp, #24]
+     36c:	str	r0, [r6, #220]	; 0xdc
+     370:	sub	r3, r7, #1
+     374:	ldr	r1, [sp, #20]
+     378:	mov	r0, r6
+     37c:	bl	108 <gen_prefix_trie>
+     380:	ldr	r3, [r6, #220]	; 0xdc
+     384:	cmp	r3, #0
+     388:	beq	4a4 <gen_prefix_trie+0x39c>
+     38c:	sub	r3, r3, #1
+     390:	str	r3, [r6, #220]	; 0xdc
+     394:	mov	r2, r8
+     398:	mov	r3, r9
+     39c:	mov	r0, r6
+     3a0:	ldr	r1, [pc, #352]	; 508 <gen_prefix_trie+0x400>
+     3a4:	add	sp, sp, #44	; 0x2c
+     3a8:	pop	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+     3ac:	b	0 <println>
+     3b0:	ldr	r0, [sp, #20]
+     3b4:	ldr	r3, [sp, #36]	; 0x24
+     3b8:	ldr	r2, [r0]
+     3bc:	ldr	r1, [r0, #12]
+     3c0:	add	r2, r2, r3
+     3c4:	ldr	r3, [r2, #12]
+     3c8:	ldr	r2, [r2, #8]
+     3cc:	str	r8, [sp]
+     3d0:	ldr	r4, [r0, #4]
+     3d4:	mov	r0, r6
+     3d8:	blx	r4
+     3dc:	ldr	r3, [sp, #16]
+     3e0:	cmp	r3, #0
+     3e4:	ble	41c <gen_prefix_trie+0x314>
+     3e8:	mov	r2, r3
+     3ec:	ldr	r1, [pc, #260]	; 4f8 <gen_prefix_trie+0x3f0>
+     3f0:	mov	r0, r6
+     3f4:	bl	0 <println>
+     3f8:	ldr	r3, [r6, #220]	; 0xdc
+     3fc:	cmp	r3, #0
+     400:	beq	4cc <gen_prefix_trie+0x3c4>
+     404:	sub	r3, r3, #1
+     408:	str	r3, [r6, #220]	; 0xdc
+     40c:	ldr	r1, [pc, #232]	; 4fc <gen_prefix_trie+0x3f4>
+     410:	mov	r0, r6
+     414:	bl	0 <println>
+     418:	b	328 <gen_prefix_trie+0x220>
+     41c:	ldr	r3, [sp, #20]
+     420:	mov	r0, r6
+     424:	ldr	r3, [r3, #8]
+     428:	blx	r3
+     42c:	b	3f8 <gen_prefix_trie+0x2f0>
+     430:	mov	r3, #1
+     434:	sub	r2, ip, #32
+     438:	lsl	r0, r3, ip
+     43c:	lsl	r1, r3, r2
+     440:	rsb	r2, ip, #32
+     444:	orr	r1, r1, r3, lsr r2
+     448:	rsbs	r2, r0, #0
+     44c:	rsc	r3, r1, #0
+     450:	b	2c8 <gen_prefix_trie+0x1c0>
+     454:	mov	r2, #0
+     458:	mov	r3, #0
+     45c:	mov	sl, r2
+     460:	mov	fp, r3
+     464:	b	2c8 <gen_prefix_trie+0x1c0>
+     468:	ldr	r3, [sp, #20]
+     46c:	mov	r0, r6
+     470:	ldr	r3, [r3, #8]
+     474:	blx	r3
+     478:	b	380 <gen_prefix_trie+0x278>
+     47c:	ldr	r3, [sp, #20]
+     480:	mov	r0, r6
+     484:	ldr	r3, [r3, #8]
+     488:	blx	r3
+     48c:	b	240 <gen_prefix_trie+0x138>
+     490:	ldr	r3, [pc, #116]	; 50c <gen_prefix_trie+0x404>
+     494:	ldr	r2, [pc, #116]	; 510 <gen_prefix_trie+0x408>
+     498:	ldr	r1, [pc, #116]	; 514 <gen_prefix_trie+0x40c>
+     49c:	ldr	r0, [pc, #116]	; 518 <gen_prefix_trie+0x410>
+     4a0:	bl	0 <__assert_fail>
+     4a4:	ldr	r3, [pc, #96]	; 50c <gen_prefix_trie+0x404>
+     4a8:	ldr	r2, [pc, #108]	; 51c <gen_prefix_trie+0x414>
+     4ac:	ldr	r1, [pc, #96]	; 514 <gen_prefix_trie+0x40c>
+     4b0:	ldr	r0, [pc, #96]	; 518 <gen_prefix_trie+0x410>
+     4b4:	bl	0 <__assert_fail>
+     4b8:	ldr	r3, [pc, #76]	; 50c <gen_prefix_trie+0x404>
+     4bc:	mov	r2, #888	; 0x378
+     4c0:	ldr	r1, [pc, #76]	; 514 <gen_prefix_trie+0x40c>
+     4c4:	ldr	r0, [pc, #76]	; 518 <gen_prefix_trie+0x410>
+     4c8:	bl	0 <__assert_fail>
+     4cc:	ldr	r3, [pc, #56]	; 50c <gen_prefix_trie+0x404>
+     4d0:	ldr	r2, [pc, #72]	; 520 <gen_prefix_trie+0x418>
+     4d4:	ldr	r1, [pc, #56]	; 514 <gen_prefix_trie+0x40c>
+     4d8:	ldr	r0, [pc, #56]	; 518 <gen_prefix_trie+0x410>
+     4dc:	bl	0 <__assert_fail>
+     4e0:	ldr	r3, [pc, #36]	; 50c <gen_prefix_trie+0x404>
+     4e4:	ldr	r2, [pc, #56]	; 524 <gen_prefix_trie+0x41c>
+     4e8:	ldr	r1, [pc, #36]	; 514 <gen_prefix_trie+0x40c>
+     4ec:	ldr	r0, [pc, #36]	; 518 <gen_prefix_trie+0x410>
+     4f0:	bl	0 <__assert_fail>
+     4f4:	.word	0x00000058
+     4f8:	.word	0x000000a4
+     4fc:	.word	0x00000120
+     500:	.word	0x00000124
+     504:	.word	0x00000078
+     508:	.word	0x0000013c
+     50c:	.word	0x00000000
+     510:	.word	0x0000038b
+     514:	.word	0x000000b4
+     518:	.word	0x00000114
+     51c:	.word	0x0000038e
+     520:	.word	0x00000387
+     524:	.word	0x00000379
+
+00000528 <gen_trie>:
+     528:	push	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+     52c:	sub	sp, sp, #132	; 0x84
+     530:	str	r1, [sp, #76]	; 0x4c
+     534:	ldr	r1, [r1]
+     538:	str	r2, [sp, #52]	; 0x34
+     53c:	add	r2, r1, r2, lsl #4
+     540:	ldr	fp, [sp, #168]	; 0xa8
+     544:	str	r2, [sp, #92]	; 0x5c
+     548:	ldr	r2, [r2, #4]
+     54c:	str	r1, [sp, #80]	; 0x50
+     550:	add	r1, fp, #7
+     554:	cmp	r1, r2
+     558:	str	r1, [sp, #88]	; 0x58
+     55c:	str	r2, [sp, #84]	; 0x54
+     560:	str	r0, [sp, #72]	; 0x48
+     564:	str	r3, [sp, #68]	; 0x44
+     568:	bge	a30 <gen_trie+0x508>
+     56c:	sub	r3, r2, fp
+     570:	cmp	r3, #8
+     574:	beq	a30 <gen_trie+0x508>
+     578:	ldr	r2, [sp, #52]	; 0x34
+     57c:	ldr	r3, [sp, #68]	; 0x44
+     580:	sub	r3, r3, r2
+     584:	add	r3, r3, r3, lsr #31
+     588:	add	r3, r2, r3, asr #1
+     58c:	cmp	r2, r3
+     590:	str	r3, [sp, #64]	; 0x40
+     594:	bge	75c <gen_trie+0x234>
+     598:	mov	r1, #0
+     59c:	mov	r0, #0
+     5a0:	ldr	r2, [sp, #80]	; 0x50
+     5a4:	strd	r0, [sp, #24]
+     5a8:	strd	r0, [sp, #32]
+     5ac:	mov	lr, fp
+     5b0:	strd	r8, [sp, #96]	; 0x60
+     5b4:	add	r1, r2, r3, lsl #4
+     5b8:	mov	sl, #0
+     5bc:	mov	fp, #0
+     5c0:	mov	r9, r3
+     5c4:	strd	r4, [sp, #16]
+     5c8:	ldr	r3, [r1, #-12]
+     5cc:	cmp	lr, r3
+     5d0:	bgt	6a0 <gen_trie+0x178>
+     5d4:	sub	r3, r3, lr
+     5d8:	cmp	r3, #8
+     5dc:	movge	r3, #8
+     5e0:	cmp	r3, #0
+     5e4:	beq	be4 <gen_trie+0x6bc>
+     5e8:	rsb	r2, r3, #8
+     5ec:	ldr	ip, [r1, #-16]
+     5f0:	add	r3, r3, lr
+     5f4:	str	r2, [sp, #24]
+     5f8:	add	ip, ip, r3
+     5fc:	lsl	r0, r2, #3
+     600:	mov	r3, #0
+     604:	mov	r2, #0
+     608:	strd	r6, [sp, #56]	; 0x38
+     60c:	mov	r8, r2
+     610:	mov	r7, lr
+     614:	mov	lr, r9
+     618:	mov	r9, r3
+     61c:	ldrb	r2, [ip, #-1]!
+     620:	sub	r3, r0, #32
+     624:	lsl	r5, r2, r3
+     628:	rsb	r3, r0, #32
+     62c:	lsl	r4, r2, r0
+     630:	orr	r5, r5, r2, lsr r3
+     634:	add	r0, r0, #8
+     638:	cmp	r0, #64	; 0x40
+     63c:	orr	r8, r8, r4
+     640:	orr	r9, r9, r5
+     644:	bne	61c <gen_trie+0xf4>
+     648:	strd	r8, [sp, #32]
+     64c:	mov	r9, lr
+     650:	mov	lr, r7
+     654:	ldrd	r6, [sp, #56]	; 0x38
+     658:	strd	r4, [sp, #16]
+     65c:	ldr	r3, [sp, #24]
+     660:	mov	r0, #1
+     664:	mov	ip, #1
+     668:	lsl	r3, r3, #3
+     66c:	sub	r2, r3, #32
+     670:	lsl	r2, r0, r2
+     674:	str	r2, [sp, #12]
+     678:	ldr	r0, [sp, #12]
+     67c:	rsb	r2, r3, #32
+     680:	lsl	r3, ip, r3
+     684:	orr	r2, r0, ip, lsr r2
+     688:	str	r3, [sp, #8]
+     68c:	str	r2, [sp, #12]
+     690:	ldrd	r2, [sp, #8]
+     694:	rsbs	r2, r2, #0
+     698:	rsc	r3, r3, #0
+     69c:	strd	r2, [sp, #24]
+     6a0:	ldr	r3, [r1, #4]
+     6a4:	ldr	ip, [r1]
+     6a8:	cmp	lr, r3
+     6ac:	str	r3, [sp, #56]	; 0x38
+     6b0:	mov	r8, ip
+     6b4:	bgt	718 <gen_trie+0x1f0>
+     6b8:	sub	r3, r3, lr
+     6bc:	cmp	r3, #8
+     6c0:	movge	r3, #8
+     6c4:	cmp	r3, #0
+     6c8:	beq	bd8 <gen_trie+0x6b0>
+     6cc:	rsb	r2, r3, #8
+     6d0:	ldrd	r4, [sp, #16]
+     6d4:	add	r3, r3, lr
+     6d8:	lsl	r0, r2, #3
+     6dc:	add	ip, ip, r3
+     6e0:	mov	sl, #0
+     6e4:	mov	fp, #0
+     6e8:	ldrb	r2, [ip, #-1]!
+     6ec:	sub	r3, r0, #32
+     6f0:	lsl	r7, r2, r3
+     6f4:	rsb	r3, r0, #32
+     6f8:	lsl	r6, r2, r0
+     6fc:	orr	r7, r7, r2, lsr r3
+     700:	add	r0, r0, #8
+     704:	cmp	r0, #64	; 0x40
+     708:	orr	sl, sl, r6
+     70c:	orr	fp, fp, r7
+     710:	bne	6e8 <gen_trie+0x1c0>
+     714:	strd	r4, [sp, #16]
+     718:	ldrd	r2, [sp, #32]
+     71c:	ldrd	r4, [sp, #24]
+     720:	eor	r2, r2, sl
+     724:	eor	r3, r3, fp
+     728:	and	r4, r4, r2
+     72c:	and	r5, r5, r3
+     730:	mov	r2, r4
+     734:	mov	r3, r5
+     738:	orrs	r3, r2, r3
+     73c:	bne	af8 <gen_trie+0x5d0>
+     740:	ldr	r3, [sp, #52]	; 0x34
+     744:	sub	r9, r9, #1
+     748:	cmp	r3, r9
+     74c:	sub	r1, r1, #16
+     750:	bne	5c8 <gen_trie+0xa0>
+     754:	ldrd	r8, [sp, #96]	; 0x60
+     758:	mov	fp, lr
+     75c:	ldr	r3, [sp, #68]	; 0x44
+     760:	ldr	r2, [sp, #64]	; 0x40
+     764:	cmp	r3, r2
+     768:	ble	8f4 <gen_trie+0x3cc>
+     76c:	ldr	r2, [sp, #64]	; 0x40
+     770:	ldr	r3, [sp, #80]	; 0x50
+     774:	mov	r0, #0
+     778:	mov	r1, #0
+     77c:	mov	r4, r0
+     780:	mov	r5, r1
+     784:	add	ip, r3, r2, lsl #4
+     788:	strd	r0, [sp, #16]
+     78c:	str	fp, [sp, #8]
+     790:	ldr	lr, [ip, #4]
+     794:	ldr	r6, [sp, #8]
+     798:	cmp	r6, lr
+     79c:	bgt	844 <gen_trie+0x31c>
+     7a0:	sub	lr, lr, r6
+     7a4:	cmp	lr, #8
+     7a8:	movge	lr, #8
+     7ac:	cmp	lr, #0
+     7b0:	mov	r5, r6
+     7b4:	beq	d58 <gen_trie+0x830>
+     7b8:	rsb	r6, lr, #8
+     7bc:	ldr	r4, [ip]
+     7c0:	add	lr, lr, r5
+     7c4:	add	fp, r4, lr
+     7c8:	mov	sl, r6
+     7cc:	lsl	lr, r6, #3
+     7d0:	mov	r4, #0
+     7d4:	mov	r5, #0
+     7d8:	ldrb	r6, [fp, #-1]!
+     7dc:	sub	r7, lr, #32
+     7e0:	lsl	r9, r6, r7
+     7e4:	rsb	r7, lr, #32
+     7e8:	lsl	r8, r6, lr
+     7ec:	orr	r9, r9, r6, lsr r7
+     7f0:	add	lr, lr, #8
+     7f4:	cmp	lr, #64	; 0x40
+     7f8:	orr	r4, r4, r8
+     7fc:	orr	r5, r5, r9
+     800:	bne	7d8 <gen_trie+0x2b0>
+     804:	lsl	lr, sl, #3
+     808:	sub	r6, lr, #32
+     80c:	mov	r7, #1
+     810:	mov	sl, #1
+     814:	lsl	r6, r7, r6
+     818:	str	r6, [sp, #44]	; 0x2c
+     81c:	ldr	r7, [sp, #44]	; 0x2c
+     820:	rsb	r6, lr, #32
+     824:	lsl	lr, sl, lr
+     828:	orr	r6, r7, sl, lsr r6
+     82c:	str	lr, [sp, #40]	; 0x28
+     830:	str	r6, [sp, #44]	; 0x2c
+     834:	ldrd	r6, [sp, #40]	; 0x28
+     838:	rsbs	r6, r6, #0
+     83c:	rsc	r7, r7, #0
+     840:	strd	r6, [sp, #16]
+     844:	ldr	lr, [ip, #20]
+     848:	ldr	r6, [sp, #8]
+     84c:	cmp	r6, lr
+     850:	bgt	8b0 <gen_trie+0x388>
+     854:	sub	r1, lr, r6
+     858:	cmp	r1, #8
+     85c:	movge	r1, #8
+     860:	cmp	r1, #0
+     864:	beq	d4c <gen_trie+0x824>
+     868:	ldr	r0, [ip, #16]
+     86c:	rsb	lr, r1, #8
+     870:	add	r1, r1, r6
+     874:	add	fp, r0, r1
+     878:	lsl	lr, lr, #3
+     87c:	mov	r0, #0
+     880:	mov	r1, #0
+     884:	ldrb	r6, [fp, #-1]!
+     888:	sub	r7, lr, #32
+     88c:	lsl	r3, r6, r7
+     890:	rsb	r7, lr, #32
+     894:	lsl	r2, r6, lr
+     898:	orr	r3, r3, r6, lsr r7
+     89c:	add	lr, lr, #8
+     8a0:	cmp	lr, #64	; 0x40
+     8a4:	orr	r0, r0, r2
+     8a8:	orr	r1, r1, r3
+     8ac:	bne	884 <gen_trie+0x35c>
+     8b0:	ldrd	sl, [sp, #16]
+     8b4:	eor	r6, r4, r0
+     8b8:	eor	r7, r5, r1
+     8bc:	and	sl, sl, r6
+     8c0:	and	fp, fp, r7
+     8c4:	mov	r6, sl
+     8c8:	mov	r7, fp
+     8cc:	orrs	lr, r6, r7
+     8d0:	bne	8f0 <gen_trie+0x3c8>
+     8d4:	ldr	lr, [sp, #64]	; 0x40
+     8d8:	ldr	r6, [sp, #68]	; 0x44
+     8dc:	add	lr, lr, #1
+     8e0:	cmp	r6, lr
+     8e4:	str	lr, [sp, #64]	; 0x40
+     8e8:	add	ip, ip, #16
+     8ec:	bne	790 <gen_trie+0x268>
+     8f0:	ldr	fp, [sp, #8]
+     8f4:	ldr	r3, [sp, #64]	; 0x40
+     8f8:	ldr	r4, [sp, #52]	; 0x34
+     8fc:	add	r5, r3, #1
+     900:	cmp	r4, r5
+     904:	bge	edc <gen_trie+0x9b4>
+     908:	ldr	r3, [sp, #92]	; 0x5c
+     90c:	ldr	r1, [sp, #88]	; 0x58
+     910:	ldr	r2, [sp, #84]	; 0x54
+     914:	b	91c <gen_trie+0x3f4>
+     918:	ldr	r2, [r3, #4]
+     91c:	cmp	r1, r2
+     920:	bge	930 <gen_trie+0x408>
+     924:	sub	r0, r2, fp
+     928:	cmp	r0, #8
+     92c:	bgt	c5c <gen_trie+0x734>
+     930:	add	r4, r4, #1
+     934:	cmp	r4, r5
+     938:	add	r3, r3, #16
+     93c:	bne	918 <gen_trie+0x3f0>
+     940:	ldr	sl, [pc, #1640]	; fb0 <gen_trie+0xa88>
+     944:	mov	r8, r4
+     948:	mov	r6, #0
+     94c:	ldr	r3, [sp, #52]	; 0x34
+     950:	ldr	r2, [sp, #68]	; 0x44
+     954:	cmp	r2, r5
+     958:	cmpge	r4, r3
+     95c:	movgt	r9, #1
+     960:	movle	r9, #0
+     964:	ble	a98 <gen_trie+0x570>
+     968:	ldr	r3, [sp, #76]	; 0x4c
+     96c:	ldr	r7, [r3, #24]
+     970:	add	r7, r7, #1
+     974:	str	r7, [r3, #24]
+     978:	str	r7, [sp, #4]
+     97c:	str	fp, [sp]
+     980:	sub	r3, r4, #1
+     984:	ldr	r2, [sp, #52]	; 0x34
+     988:	ldr	r1, [sp, #76]	; 0x4c
+     98c:	ldr	r0, [sp, #72]	; 0x48
+     990:	bl	108 <gen_prefix_trie>
+     994:	cmp	r9, #0
+     998:	beq	aa4 <gen_trie+0x57c>
+     99c:	ldr	r9, [sp, #72]	; 0x48
+     9a0:	mov	r2, r7
+     9a4:	ldr	r1, [pc, #1544]	; fb4 <gen_trie+0xa8c>
+     9a8:	mov	r0, r9
+     9ac:	bl	0 <println>
+     9b0:	ldr	r3, [r9, #220]	; 0xdc
+     9b4:	mov	r4, #0
+     9b8:	str	r3, [r9, #228]	; 0xe4
+     9bc:	mov	r2, r7
+     9c0:	ldr	r1, [pc, #1520]	; fb8 <gen_trie+0xa90>
+     9c4:	mov	r0, r9
+     9c8:	str	r4, [r9, #220]	; 0xdc
+     9cc:	bl	0 <println>
+     9d0:	ldr	r2, [r9, #228]	; 0xe4
+     9d4:	ldr	r3, [sp, #68]	; 0x44
+     9d8:	str	fp, [sp]
+     9dc:	ldr	r1, [sp, #76]	; 0x4c
+     9e0:	mov	r0, r9
+     9e4:	str	r2, [r9, #220]	; 0xdc
+     9e8:	mov	r2, r5
+     9ec:	bl	528 <gen_trie>
+     9f0:	ldr	r3, [r9, #220]	; 0xdc
+     9f4:	mov	r2, r7
+     9f8:	mov	r0, r9
+     9fc:	str	r3, [r9, #228]	; 0xe4
+     a00:	ldr	r1, [pc, #1460]	; fbc <gen_trie+0xa94>
+     a04:	str	r4, [r9, #220]	; 0xdc
+     a08:	bl	0 <println>
+     a0c:	ldr	r3, [r9, #228]	; 0xe4
+     a10:	mov	r0, r9
+     a14:	ldr	r1, [pc, #1444]	; fc0 <gen_trie+0xa98>
+     a18:	str	r3, [r9, #220]	; 0xdc
+     a1c:	bl	0 <println>
+     a20:	cmp	r5, r8
+     a24:	bgt	ac4 <gen_trie+0x59c>
+     a28:	add	sp, sp, #132	; 0x84
+     a2c:	pop	{r4, r5, r6, r7, r8, r9, sl, fp, pc}
+     a30:	ldr	r3, [sp, #52]	; 0x34
+     a34:	ldr	r2, [sp, #68]	; 0x44
+     a38:	cmp	r3, r2
+     a3c:	beq	a70 <gen_trie+0x548>
+     a40:	add	r3, r3, #1
+     a44:	cmp	r2, r3
+     a48:	bne	578 <gen_trie+0x50>
+     a4c:	ldr	r3, [sp, #80]	; 0x50
+     a50:	add	r3, r3, r2, lsl #4
+     a54:	ldr	r2, [sp, #88]	; 0x58
+     a58:	ldr	r3, [r3, #4]
+     a5c:	cmp	r2, r3
+     a60:	bge	a70 <gen_trie+0x548>
+     a64:	sub	r3, r3, fp
+     a68:	cmp	r3, #8
+     a6c:	bne	578 <gen_trie+0x50>
+     a70:	mov	ip, #0
+     a74:	str	fp, [sp]
+     a78:	ldr	r3, [sp, #68]	; 0x44
+     a7c:	ldr	r2, [sp, #52]	; 0x34
+     a80:	ldr	r1, [sp, #76]	; 0x4c
+     a84:	ldr	r0, [sp, #72]	; 0x48
+     a88:	str	ip, [sp, #4]
+     a8c:	bl	108 <gen_prefix_trie>
+     a90:	add	sp, sp, #132	; 0x84
+     a94:	pop	{r4, r5, r6, r7, r8, r9, sl, fp, pc}
+     a98:	ldr	r3, [sp, #52]	; 0x34
+     a9c:	cmp	r4, r3
+     aa0:	bgt	f6c <gen_trie+0xa44>
+     aa4:	ldr	r3, [sp, #68]	; 0x44
+     aa8:	cmp	r3, r5
+     aac:	bge	f3c <gen_trie+0xa14>
+     ab0:	ldr	r3, [sp, #52]	; 0x34
+     ab4:	cmp	r4, r3
+     ab8:	ble	ef4 <gen_trie+0x9cc>
+     abc:	cmp	r5, r8
+     ac0:	ble	a28 <gen_trie+0x500>
+     ac4:	ldr	r3, [sp, #72]	; 0x48
+     ac8:	ldr	r3, [r3, #220]	; 0xdc
+     acc:	cmp	r3, #0
+     ad0:	beq	f58 <gen_trie+0xa30>
+     ad4:	ldr	r0, [sp, #72]	; 0x48
+     ad8:	sub	r3, r3, #1
+     adc:	mov	r2, r6
+     ae0:	str	r3, [r0, #220]	; 0xdc
+     ae4:	ldr	r1, [pc, #1240]	; fc4 <gen_trie+0xa9c>
+     ae8:	mov	r3, sl
+     aec:	add	sp, sp, #132	; 0x84
+     af0:	pop	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+     af4:	b	0 <println>
+     af8:	ldr	r0, [sp, #56]	; 0x38
+     afc:	mov	ip, r8
+     b00:	cmp	lr, r0
+     b04:	mov	r8, r9
+     b08:	mov	fp, lr
+     b0c:	ble	bfc <gen_trie+0x6d4>
+     b10:	mov	r5, #0
+     b14:	mov	r4, r5
+     b18:	mov	r2, #0
+     b1c:	mov	r3, #0
+     b20:	ldr	r6, [sp, #72]	; 0x48
+     b24:	ldr	r1, [pc, #1180]	; fc8 <gen_trie+0xaa0>
+     b28:	mov	r0, r6
+     b2c:	stm	sp, {r4, r5}
+     b30:	bl	0 <println>
+     b34:	ldr	r3, [r6, #220]	; 0xdc
+     b38:	ldr	r2, [sp, #52]	; 0x34
+     b3c:	add	r3, r3, #1
+     b40:	str	fp, [sp]
+     b44:	ldr	r1, [sp, #76]	; 0x4c
+     b48:	str	r3, [r6, #220]	; 0xdc
+     b4c:	mov	r0, r6
+     b50:	sub	r3, r8, #1
+     b54:	bl	528 <gen_trie>
+     b58:	ldr	r3, [r6, #220]	; 0xdc
+     b5c:	cmp	r3, #0
+     b60:	beq	f9c <gen_trie+0xa74>
+     b64:	ldr	r6, [sp, #72]	; 0x48
+     b68:	sub	r3, r3, #1
+     b6c:	mov	r2, r4
+     b70:	str	r3, [r6, #220]	; 0xdc
+     b74:	ldr	r1, [pc, #1104]	; fcc <gen_trie+0xaa4>
+     b78:	mov	r3, r5
+     b7c:	mov	r0, r6
+     b80:	bl	0 <println>
+     b84:	ldr	r0, [r6, #220]	; 0xdc
+     b88:	ldr	r3, [sp, #68]	; 0x44
+     b8c:	add	r0, r0, #1
+     b90:	str	fp, [sp]
+     b94:	mov	r2, r8
+     b98:	str	r0, [r6, #220]	; 0xdc
+     b9c:	ldr	r1, [sp, #76]	; 0x4c
+     ba0:	mov	r0, r6
+     ba4:	bl	528 <gen_trie>
+     ba8:	ldr	r3, [r6, #220]	; 0xdc
+     bac:	cmp	r3, #0
+     bb0:	beq	f88 <gen_trie+0xa60>
+     bb4:	ldr	r0, [sp, #72]	; 0x48
+     bb8:	sub	r3, r3, #1
+     bbc:	mov	r2, r4
+     bc0:	str	r3, [r0, #220]	; 0xdc
+     bc4:	ldr	r1, [pc, #1028]	; fd0 <gen_trie+0xaa8>
+     bc8:	mov	r3, r5
+     bcc:	add	sp, sp, #132	; 0x84
+     bd0:	pop	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+     bd4:	b	0 <println>
+     bd8:	mov	sl, #0
+     bdc:	mov	fp, #0
+     be0:	b	718 <gen_trie+0x1f0>
+     be4:	mov	r3, #0
+     be8:	mov	r2, #0
+     bec:	strd	r2, [sp, #32]
+     bf0:	mov	r3, #8
+     bf4:	str	r3, [sp, #24]
+     bf8:	b	65c <gen_trie+0x134>
+     bfc:	sub	r0, r0, fp
+     c00:	cmp	r0, #8
+     c04:	movlt	r4, r0
+     c08:	movge	r4, #8
+     c0c:	cmp	r4, #0
+     c10:	add	r5, ip, fp
+     c14:	beq	b18 <gen_trie+0x5f0>
+     c18:	rsb	ip, r4, #8
+     c1c:	add	lr, r5, r4
+     c20:	lsl	ip, ip, #3
+     c24:	mov	r2, #0
+     c28:	mov	r3, #0
+     c2c:	ldrb	r6, [lr, #-1]!
+     c30:	sub	r7, ip, #32
+     c34:	lsl	r1, r6, r7
+     c38:	rsb	r7, ip, #32
+     c3c:	lsl	r0, r6, ip
+     c40:	orr	r1, r1, r6, lsr r7
+     c44:	add	ip, ip, #8
+     c48:	cmp	ip, #64	; 0x40
+     c4c:	orr	r2, r2, r0
+     c50:	orr	r3, r3, r1
+     c54:	bne	c2c <gen_trie+0x704>
+     c58:	b	b20 <gen_trie+0x5f8>
+     c5c:	ldr	r3, [sp, #52]	; 0x34
+     c60:	lsl	r7, r4, #4
+     c64:	cmp	r3, r4
+     c68:	ldr	r3, [sp, #80]	; 0x50
+     c6c:	str	r2, [sp, #84]	; 0x54
+     c70:	add	r3, r3, r7
+     c74:	blt	d68 <gen_trie+0x840>
+     c78:	add	r8, fp, #8
+     c7c:	ldr	r3, [sp, #84]	; 0x54
+     c80:	cmp	fp, r3
+     c84:	ldr	r3, [sp, #80]	; 0x50
+     c88:	movle	r9, #0
+     c8c:	ldr	sl, [r3, r7]
+     c90:	ble	d9c <gen_trie+0x874>
+     c94:	ldr	r7, [sp, #72]	; 0x48
+     c98:	mov	r6, #0
+     c9c:	mov	r3, #0
+     ca0:	str	r6, [sp, #4]
+     ca4:	str	r6, [sp]
+     ca8:	mov	r2, #0
+     cac:	ldr	r1, [pc, #800]	; fd4 <gen_trie+0xaac>
+     cb0:	mov	r0, r7
+     cb4:	bl	0 <println>
+     cb8:	ldr	r3, [r7, #220]	; 0xdc
+     cbc:	mov	sl, r6
+     cc0:	add	r3, r3, #1
+     cc4:	str	r3, [r7, #220]	; 0xdc
+     cc8:	ldr	r7, [sp, #72]	; 0x48
+     ccc:	ldr	r1, [pc, #772]	; fd8 <gen_trie+0xab0>
+     cd0:	mov	r0, r7
+     cd4:	bl	0 <println>
+     cd8:	mov	r0, r7
+     cdc:	ldr	r1, [pc, #760]	; fdc <gen_trie+0xab4>
+     ce0:	bl	0 <println>
+     ce4:	mov	r0, r7
+     ce8:	str	r8, [sp]
+     cec:	ldr	r3, [sp, #64]	; 0x40
+     cf0:	mov	r2, r4
+     cf4:	ldr	r1, [sp, #76]	; 0x4c
+     cf8:	bl	528 <gen_trie>
+     cfc:	mov	r7, r4
+     d00:	ldr	r3, [sp, #72]	; 0x48
+     d04:	ldr	r3, [r3, #220]	; 0xdc
+     d08:	cmp	r3, #0
+     d0c:	beq	f74 <gen_trie+0xa4c>
+     d10:	ldr	r8, [sp, #72]	; 0x48
+     d14:	sub	r3, r3, #1
+     d18:	mov	r2, r6
+     d1c:	str	r3, [r8, #220]	; 0xdc
+     d20:	mov	r0, r8
+     d24:	mov	r3, sl
+     d28:	ldr	r1, [pc, #688]	; fe0 <gen_trie+0xab8>
+     d2c:	bl	0 <println>
+     d30:	ldr	r3, [r8, #220]	; 0xdc
+     d34:	mov	r2, r8
+     d38:	add	r3, r3, #1
+     d3c:	mov	r8, r4
+     d40:	str	r3, [r2, #220]	; 0xdc
+     d44:	mov	r4, r7
+     d48:	b	94c <gen_trie+0x424>
+     d4c:	mov	r0, #0
+     d50:	mov	r1, #0
+     d54:	b	8b0 <gen_trie+0x388>
+     d58:	mov	r4, #0
+     d5c:	mov	r5, #0
+     d60:	mov	sl, #8
+     d64:	b	804 <gen_trie+0x2dc>
+     d68:	ldr	r3, [r3, #-12]
+     d6c:	add	r8, fp, #8
+     d70:	cmp	r3, r8
+     d74:	bgt	c7c <gen_trie+0x754>
+     d78:	sub	r3, r3, fp
+     d7c:	sub	r9, r3, #8
+     d80:	ldr	r3, [sp, #84]	; 0x54
+     d84:	clz	r9, r9
+     d88:	cmp	fp, r3
+     d8c:	ldr	r3, [sp, #80]	; 0x50
+     d90:	lsr	r9, r9, #5
+     d94:	ldr	sl, [r3, r7]
+     d98:	bgt	f08 <gen_trie+0x9e0>
+     d9c:	add	sl, sl, fp
+     da0:	str	r8, [sp, #8]
+     da4:	add	lr, sl, #8
+     da8:	mov	r8, r5
+     dac:	mov	ip, #0
+     db0:	mov	r2, #0
+     db4:	mov	r3, #0
+     db8:	mov	r5, r7
+     dbc:	ldrb	r6, [lr, #-1]!
+     dc0:	sub	r7, ip, #32
+     dc4:	lsl	r1, r6, r7
+     dc8:	rsb	r7, ip, #32
+     dcc:	lsl	r0, r6, ip
+     dd0:	orr	r1, r1, r6, lsr r7
+     dd4:	add	ip, ip, #8
+     dd8:	cmp	ip, #64	; 0x40
+     ddc:	orr	r2, r2, r0
+     de0:	orr	r3, r3, r1
+     de4:	bne	dbc <gen_trie+0x894>
+     de8:	mov	r7, r5
+     dec:	mov	r5, r8
+     df0:	ldr	r8, [sp, #8]
+     df4:	mov	r6, #8
+     df8:	stm	sp, {r6, sl}
+     dfc:	ldr	r1, [pc, #464]	; fd4 <gen_trie+0xaac>
+     e00:	ldr	r0, [sp, #72]	; 0x48
+     e04:	bl	0 <println>
+     e08:	ldr	r2, [sp, #72]	; 0x48
+     e0c:	cmp	r9, #0
+     e10:	mov	r9, r2
+     e14:	ldr	r3, [r2, #220]	; 0xdc
+     e18:	add	r3, r3, #1
+     e1c:	str	r3, [r2, #220]	; 0xdc
+     e20:	beq	cc8 <gen_trie+0x7a0>
+     e24:	mov	r3, sl
+     e28:	mov	r2, r6
+     e2c:	ldr	r1, [pc, #432]	; fe4 <gen_trie+0xabc>
+     e30:	mov	r0, r9
+     e34:	bl	0 <println>
+     e38:	ldr	ip, [sp, #76]	; 0x4c
+     e3c:	sub	r7, r7, #16
+     e40:	mov	r0, #8
+     e44:	ldr	r2, [ip]
+     e48:	ldr	r1, [ip, #12]
+     e4c:	add	r2, r2, r7
+     e50:	ldr	r3, [r2, #12]
+     e54:	ldr	r2, [r2, #8]
+     e58:	str	r0, [sp]
+     e5c:	mov	r0, r9
+     e60:	ldr	r7, [ip, #4]
+     e64:	blx	r7
+     e68:	mov	r3, sl
+     e6c:	mov	r2, r6
+     e70:	ldr	r1, [pc, #368]	; fe8 <gen_trie+0xac0>
+     e74:	mov	r0, r9
+     e78:	bl	0 <println>
+     e7c:	ldr	r1, [pc, #340]	; fd8 <gen_trie+0xab0>
+     e80:	mov	r0, r9
+     e84:	bl	0 <println>
+     e88:	ldr	r1, [pc, #332]	; fdc <gen_trie+0xab4>
+     e8c:	mov	r0, r9
+     e90:	bl	0 <println>
+     e94:	ldr	r3, [sp, #64]	; 0x40
+     e98:	str	r8, [sp]
+     e9c:	mov	r2, r4
+     ea0:	ldr	r1, [sp, #76]	; 0x4c
+     ea4:	mov	r0, r9
+     ea8:	bl	528 <gen_trie>
+     eac:	ldr	r3, [r9, #220]	; 0xdc
+     eb0:	cmp	r3, #0
+     eb4:	beq	f1c <gen_trie+0x9f4>
+     eb8:	ldr	r0, [sp, #72]	; 0x48
+     ebc:	sub	r3, r3, #1
+     ec0:	mov	r2, r6
+     ec4:	str	r3, [r0, #220]	; 0xdc
+     ec8:	ldr	r1, [pc, #284]	; fec <gen_trie+0xac4>
+     ecc:	mov	r3, sl
+     ed0:	bl	0 <println>
+     ed4:	sub	r7, r4, #1
+     ed8:	b	d00 <gen_trie+0x7d8>
+     edc:	ldr	r3, [sp, #68]	; 0x44
+     ee0:	cmp	r3, r5
+     ee4:	bge	f30 <gen_trie+0xa08>
+     ee8:	ldr	r8, [sp, #52]	; 0x34
+     eec:	ldr	sl, [pc, #188]	; fb0 <gen_trie+0xa88>
+     ef0:	mov	r6, #0
+     ef4:	ldr	r3, [sp, #76]	; 0x4c
+     ef8:	ldr	r0, [sp, #72]	; 0x48
+     efc:	ldr	r3, [r3, #8]
+     f00:	blx	r3
+     f04:	b	abc <gen_trie+0x594>
+     f08:	mov	sl, #0
+     f0c:	mov	r6, sl
+     f10:	mov	r2, #0
+     f14:	mov	r3, #0
+     f18:	b	df8 <gen_trie+0x8d0>
+     f1c:	ldr	r3, [pc, #204]	; ff0 <gen_trie+0xac8>
+     f20:	mov	r2, #1040	; 0x410
+     f24:	ldr	r1, [pc, #200]	; ff4 <gen_trie+0xacc>
+     f28:	ldr	r0, [pc, #200]	; ff8 <gen_trie+0xad0>
+     f2c:	bl	0 <__assert_fail>
+     f30:	ldr	sl, [pc, #120]	; fb0 <gen_trie+0xa88>
+     f34:	ldr	r8, [sp, #52]	; 0x34
+     f38:	mov	r6, #0
+     f3c:	str	fp, [sp]
+     f40:	ldr	r3, [sp, #68]	; 0x44
+     f44:	ldr	r1, [sp, #76]	; 0x4c
+     f48:	mov	r2, r5
+     f4c:	ldr	r0, [sp, #72]	; 0x48
+     f50:	bl	528 <gen_trie>
+     f54:	b	abc <gen_trie+0x594>
+     f58:	ldr	r3, [pc, #144]	; ff0 <gen_trie+0xac8>
+     f5c:	mov	r2, #1072	; 0x430
+     f60:	ldr	r1, [pc, #140]	; ff4 <gen_trie+0xacc>
+     f64:	ldr	r0, [pc, #140]	; ff8 <gen_trie+0xad0>
+     f68:	bl	0 <__assert_fail>
+     f6c:	mov	r7, r9
+     f70:	b	978 <gen_trie+0x450>
+     f74:	ldr	r3, [pc, #116]	; ff0 <gen_trie+0xac8>
+     f78:	ldr	r2, [pc, #124]	; ffc <gen_trie+0xad4>
+     f7c:	ldr	r1, [pc, #112]	; ff4 <gen_trie+0xacc>
+     f80:	ldr	r0, [pc, #112]	; ff8 <gen_trie+0xad0>
+     f84:	bl	0 <__assert_fail>
+     f88:	ldr	r3, [pc, #96]	; ff0 <gen_trie+0xac8>
+     f8c:	ldr	r2, [pc, #108]	; 1000 <gen_trie+0xad8>
+     f90:	ldr	r1, [pc, #92]	; ff4 <gen_trie+0xacc>
+     f94:	ldr	r0, [pc, #92]	; ff8 <gen_trie+0xad0>
+     f98:	bl	0 <__assert_fail>
+     f9c:	ldr	r3, [pc, #76]	; ff0 <gen_trie+0xac8>
+     fa0:	ldr	r2, [pc, #92]	; 1004 <gen_trie+0xadc>
+     fa4:	ldr	r1, [pc, #72]	; ff4 <gen_trie+0xacc>
+     fa8:	ldr	r0, [pc, #72]	; ff8 <gen_trie+0xad0>
+     fac:	bl	0 <__assert_fail>
+     fb0:	.word	0x0000014c
+     fb4:	.word	0x00000290
+     fb8:	.word	0x000002a4
+     fbc:	.word	0x000002b0
+     fc0:	.word	0x000002c0
+     fc4:	.word	0x000002cc
+     fc8:	.word	0x00000150
+     fcc:	.word	0x00000178
+     fd0:	.word	0x00000198
+     fd4:	.word	0x000001b0
+     fd8:	.word	0x00000214
+     fdc:	.word	0x00000220
+     fe0:	.word	0x00000270
+     fe4:	.word	0x000001d8
+     fe8:	.word	0x000001f8
+     fec:	.word	0x00000250
+     ff0:	.word	0x00000010
+     ff4:	.word	0x000000b4
+     ff8:	.word	0x00000114
+     ffc:	.word	0x00000414
+    1000:	.word	0x000003cf
+    1004:	.word	0x000003cd
+
+00001008 <gen_local_scope_prototype>:
+    1008:	push	{r4, lr}
+    100c:	mov	r4, r0
+    1010:	sub	sp, sp, #208	; 0xd0
+    1014:	mov	r0, r1
+    1018:	add	r1, sp, #4
+    101c:	bl	0 <__flatcc_fb_copy_scope>
+    1020:	ldr	r2, [r4, #208]	; 0xd0
+    1024:	add	r3, sp, #4
+    1028:	mov	r0, r4
+    102c:	ldr	r2, [r2, #160]	; 0xa0
+    1030:	ldr	r1, [pc, #20]	; 104c <gen_local_scope_prototype+0x44>
+    1034:	bl	0 <println>
+    1038:	mov	r0, r4
+    103c:	ldr	r1, [pc, #12]	; 1050 <gen_local_scope_prototype+0x48>
+    1040:	bl	0 <println>
+    1044:	add	sp, sp, #208	; 0xd0
+    1048:	pop	{r4, pc}
+    104c:	.word	0x000002e4
+    1050:	.word	0x00000350
+
+00001054 <gen_union_parser>:
+    1054:	push	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+    1058:	sub	sp, sp, #460	; 0x1cc
+    105c:	mov	r4, r0
+    1060:	mov	r5, r1
+    1064:	mov	r2, #220	; 0xdc
+    1068:	mov	r1, #0
+    106c:	add	r0, sp, #16
+    1070:	bl	0 <memset>
+    1074:	mov	r2, #220	; 0xdc
+    1078:	mov	r1, #0
+    107c:	add	r0, sp, #236	; 0xec
+    1080:	bl	0 <memset>
+    1084:	add	r2, sp, #16
+    1088:	mov	r1, r5
+    108c:	ldr	r0, [r5, #12]
+    1090:	bl	0 <__flatcc_fb_scoped_symbol_name>
+    1094:	add	r2, sp, #16
+    1098:	mov	r0, r4
+    109c:	ldr	r1, [pc, #1008]	; 1494 <gen_union_parser+0x440>
+    10a0:	bl	0 <println>
+    10a4:	mov	r0, r4
+    10a8:	ldr	r1, [pc, #1000]	; 1498 <gen_union_parser+0x444>
+    10ac:	bl	0 <println>
+    10b0:	ldr	r3, [r4, #220]	; 0xdc
+    10b4:	mov	r0, r4
+    10b8:	add	r3, r3, #1
+    10bc:	str	r3, [r4, #220]	; 0xdc
+    10c0:	ldr	r1, [pc, #980]	; 149c <gen_union_parser+0x448>
+    10c4:	bl	0 <println>
+    10c8:	mov	r0, r4
+    10cc:	ldr	r1, [pc, #972]	; 14a0 <gen_union_parser+0x44c>
+    10d0:	bl	0 <println>
+    10d4:	mov	r0, r4
+    10d8:	ldr	r1, [pc, #964]	; 14a4 <gen_union_parser+0x450>
+    10dc:	bl	0 <println>
+    10e0:	mov	r0, r4
+    10e4:	ldr	r1, [pc, #956]	; 14a8 <gen_union_parser+0x454>
+    10e8:	bl	0 <println>
+    10ec:	ldr	r3, [r4, #220]	; 0xdc
+    10f0:	mov	r0, r4
+    10f4:	add	r3, r3, #1
+    10f8:	str	r3, [r4, #220]	; 0xdc
+    10fc:	ldr	r1, [pc, #936]	; 14ac <gen_union_parser+0x458>
+    1100:	bl	0 <println>
+    1104:	ldr	r3, [r4, #220]	; 0xdc
+    1108:	cmp	r3, #0
+    110c:	beq	1408 <gen_union_parser+0x3b4>
+    1110:	ldr	r5, [r5, #20]
+    1114:	sub	r3, r3, #1
+    1118:	cmp	r5, #0
+    111c:	str	r3, [r4, #220]	; 0xdc
+    1120:	beq	11ec <gen_union_parser+0x198>
+    1124:	ldr	r7, [pc, #900]	; 14b0 <gen_union_parser+0x45c>
+    1128:	ldr	r9, [pc, #900]	; 14b4 <gen_union_parser+0x460>
+    112c:	ldr	r8, [pc, #900]	; 14b8 <gen_union_parser+0x464>
+    1130:	ldr	fp, [pc, #900]	; 14bc <gen_union_parser+0x468>
+    1134:	ldr	sl, [pc, #900]	; 14c0 <gen_union_parser+0x46c>
+    1138:	ldrh	r2, [r5, #24]
+    113c:	ldr	r3, [r5, #4]
+    1140:	cmp	r2, #10
+    1144:	ldr	r6, [r3]
+    1148:	ldr	r3, [r3, #4]
+    114c:	beq	1194 <gen_union_parser+0x140>
+    1150:	cmp	r2, #14
+    1154:	beq	1334 <gen_union_parser+0x2e0>
+    1158:	cmp	r2, #0
+    115c:	beq	11e0 <gen_union_parser+0x18c>
+    1160:	ldr	r1, [pc, #860]	; 14c4 <gen_union_parser+0x470>
+    1164:	ldr	r2, [pc, #860]	; 14c8 <gen_union_parser+0x474>
+    1168:	ldr	r3, [pc, #860]	; 14cc <gen_union_parser+0x478>
+    116c:	ldr	r0, [r1]
+    1170:	str	r2, [sp]
+    1174:	ldr	r1, [pc, #852]	; 14d0 <gen_union_parser+0x47c>
+    1178:	ldr	r2, [pc, #852]	; 14d4 <gen_union_parser+0x480>
+    117c:	bl	0 <fprintf>
+    1180:	ldr	r3, [pc, #848]	; 14d8 <gen_union_parser+0x484>
+    1184:	ldr	r2, [pc, #832]	; 14cc <gen_union_parser+0x478>
+    1188:	ldr	r1, [pc, #836]	; 14d4 <gen_union_parser+0x480>
+    118c:	ldr	r0, [pc, #840]	; 14dc <gen_union_parser+0x488>
+    1190:	bl	0 <__assert_fail>
+    1194:	ldr	r2, [r5, #48]	; 0x30
+    1198:	mov	r1, r7
+    119c:	mov	r0, r4
+    11a0:	str	r6, [sp]
+    11a4:	bl	0 <println>
+    11a8:	ldr	r3, [r4, #220]	; 0xdc
+    11ac:	mov	r1, r9
+    11b0:	add	r3, r3, #1
+    11b4:	str	r3, [r4, #220]	; 0xdc
+    11b8:	mov	r0, r4
+    11bc:	bl	0 <println>
+    11c0:	mov	r1, r8
+    11c4:	mov	r0, r4
+    11c8:	bl	0 <println>
+    11cc:	ldr	r3, [r4, #220]	; 0xdc
+    11d0:	cmp	r3, #0
+    11d4:	beq	1480 <gen_union_parser+0x42c>
+    11d8:	sub	r3, r3, #1
+    11dc:	str	r3, [r4, #220]	; 0xdc
+    11e0:	ldr	r5, [r5]
+    11e4:	cmp	r5, #0
+    11e8:	bne	1138 <gen_union_parser+0xe4>
+    11ec:	ldr	r1, [pc, #748]	; 14e0 <gen_union_parser+0x48c>
+    11f0:	mov	r0, r4
+    11f4:	bl	0 <println>
+    11f8:	ldr	r3, [r4, #220]	; 0xdc
+    11fc:	ldr	r1, [pc, #736]	; 14e4 <gen_union_parser+0x490>
+    1200:	add	r3, r3, #1
+    1204:	str	r3, [r4, #220]	; 0xdc
+    1208:	mov	r0, r4
+    120c:	bl	0 <println>
+    1210:	ldr	r3, [r4, #220]	; 0xdc
+    1214:	ldr	r1, [pc, #716]	; 14e8 <gen_union_parser+0x494>
+    1218:	add	r3, r3, #1
+    121c:	str	r3, [r4, #220]	; 0xdc
+    1220:	mov	r0, r4
+    1224:	bl	0 <println>
+    1228:	ldr	r3, [r4, #220]	; 0xdc
+    122c:	cmp	r3, #0
+    1230:	beq	146c <gen_union_parser+0x418>
+    1234:	sub	r3, r3, #1
+    1238:	str	r3, [r4, #220]	; 0xdc
+    123c:	ldr	r1, [pc, #680]	; 14ec <gen_union_parser+0x498>
+    1240:	mov	r0, r4
+    1244:	bl	0 <println>
+    1248:	ldr	r3, [r4, #220]	; 0xdc
+    124c:	ldr	r1, [pc, #668]	; 14f0 <gen_union_parser+0x49c>
+    1250:	add	r3, r3, #1
+    1254:	str	r3, [r4, #220]	; 0xdc
+    1258:	mov	r0, r4
+    125c:	bl	0 <println>
+    1260:	ldr	r3, [r4, #220]	; 0xdc
+    1264:	cmp	r3, #0
+    1268:	beq	1458 <gen_union_parser+0x404>
+    126c:	sub	r3, r3, #1
+    1270:	str	r3, [r4, #220]	; 0xdc
+    1274:	ldr	r1, [pc, #632]	; 14f4 <gen_union_parser+0x4a0>
+    1278:	mov	r0, r4
+    127c:	bl	0 <println>
+    1280:	ldr	r3, [r4, #220]	; 0xdc
+    1284:	cmp	r3, #0
+    1288:	beq	1444 <gen_union_parser+0x3f0>
+    128c:	sub	r3, r3, #1
+    1290:	str	r3, [r4, #220]	; 0xdc
+    1294:	ldr	r1, [pc, #600]	; 14f4 <gen_union_parser+0x4a0>
+    1298:	mov	r0, r4
+    129c:	bl	0 <println>
+    12a0:	ldr	r1, [pc, #592]	; 14f8 <gen_union_parser+0x4a4>
+    12a4:	mov	r0, r4
+    12a8:	bl	0 <println>
+    12ac:	ldr	r1, [pc, #584]	; 14fc <gen_union_parser+0x4a8>
+    12b0:	mov	r0, r4
+    12b4:	bl	0 <println>
+    12b8:	ldr	r3, [r4, #220]	; 0xdc
+    12bc:	ldr	r1, [pc, #572]	; 1500 <gen_union_parser+0x4ac>
+    12c0:	add	r3, r3, #1
+    12c4:	str	r3, [r4, #220]	; 0xdc
+    12c8:	mov	r0, r4
+    12cc:	bl	0 <println>
+    12d0:	ldr	r3, [r4, #220]	; 0xdc
+    12d4:	cmp	r3, #0
+    12d8:	beq	1430 <gen_union_parser+0x3dc>
+    12dc:	sub	r3, r3, #1
+    12e0:	str	r3, [r4, #220]	; 0xdc
+    12e4:	ldr	r1, [pc, #520]	; 14f4 <gen_union_parser+0x4a0>
+    12e8:	mov	r0, r4
+    12ec:	bl	0 <println>
+    12f0:	ldr	r1, [pc, #524]	; 1504 <gen_union_parser+0x4b0>
+    12f4:	mov	r0, r4
+    12f8:	bl	0 <println>
+    12fc:	ldr	r3, [r4, #220]	; 0xdc
+    1300:	cmp	r3, #0
+    1304:	beq	141c <gen_union_parser+0x3c8>
+    1308:	sub	r3, r3, #1
+    130c:	str	r3, [r4, #220]	; 0xdc
+    1310:	mov	r0, r4
+    1314:	ldr	r1, [pc, #472]	; 14f4 <gen_union_parser+0x4a0>
+    1318:	bl	0 <println>
+    131c:	mov	r0, r4
+    1320:	ldr	r1, [pc, #372]	; 149c <gen_union_parser+0x448>
+    1324:	bl	0 <println>
+    1328:	mov	r0, #0
+    132c:	add	sp, sp, #460	; 0x1cc
+    1330:	pop	{r4, r5, r6, r7, r8, r9, sl, fp, pc}
+    1334:	ldr	r1, [r5, #16]
+    1338:	add	r2, sp, #236	; 0xec
+    133c:	str	r3, [sp, #12]
+    1340:	ldr	r0, [r1, #12]
+    1344:	bl	0 <__flatcc_fb_scoped_symbol_name>
+    1348:	ldr	r2, [r5, #48]	; 0x30
+    134c:	ldr	r3, [sp, #12]
+    1350:	str	r6, [sp]
+    1354:	mov	r1, r7
+    1358:	mov	r0, r4
+    135c:	bl	0 <println>
+    1360:	ldr	r3, [r4, #220]	; 0xdc
+    1364:	add	r3, r3, #1
+    1368:	str	r3, [r4, #220]	; 0xdc
+    136c:	ldr	r3, [r5, #16]
+    1370:	ldrh	r3, [r3, #8]
+    1374:	cmp	r3, #0
+    1378:	beq	13c0 <gen_union_parser+0x36c>
+    137c:	cmp	r3, #1
+    1380:	bne	13d4 <gen_union_parser+0x380>
+    1384:	add	r2, sp, #236	; 0xec
+    1388:	mov	r1, sl
+    138c:	mov	r0, r4
+    1390:	bl	0 <println>
+    1394:	mov	r1, r8
+    1398:	mov	r0, r4
+    139c:	bl	0 <println>
+    13a0:	ldr	r3, [r4, #220]	; 0xdc
+    13a4:	cmp	r3, #0
+    13a8:	bne	11d8 <gen_union_parser+0x184>
+    13ac:	ldr	r3, [pc, #292]	; 14d8 <gen_union_parser+0x484>
+    13b0:	ldr	r2, [pc, #336]	; 1508 <gen_union_parser+0x4b4>
+    13b4:	ldr	r1, [pc, #280]	; 14d4 <gen_union_parser+0x480>
+    13b8:	ldr	r0, [pc, #332]	; 150c <gen_union_parser+0x4b8>
+    13bc:	bl	0 <__assert_fail>
+    13c0:	add	r2, sp, #236	; 0xec
+    13c4:	mov	r1, fp
+    13c8:	mov	r0, r4
+    13cc:	bl	0 <println>
+    13d0:	b	1394 <gen_union_parser+0x340>
+    13d4:	ldr	r1, [pc, #232]	; 14c4 <gen_union_parser+0x470>
+    13d8:	ldr	r2, [pc, #304]	; 1510 <gen_union_parser+0x4bc>
+    13dc:	ldr	r3, [pc, #304]	; 1514 <gen_union_parser+0x4c0>
+    13e0:	ldr	r0, [r1]
+    13e4:	str	r2, [sp]
+    13e8:	ldr	r1, [pc, #224]	; 14d0 <gen_union_parser+0x47c>
+    13ec:	ldr	r2, [pc, #224]	; 14d4 <gen_union_parser+0x480>
+    13f0:	bl	0 <fprintf>
+    13f4:	ldr	r3, [pc, #220]	; 14d8 <gen_union_parser+0x484>
+    13f8:	ldr	r2, [pc, #276]	; 1514 <gen_union_parser+0x4c0>
+    13fc:	ldr	r1, [pc, #208]	; 14d4 <gen_union_parser+0x480>
+    1400:	ldr	r0, [pc, #212]	; 14dc <gen_union_parser+0x488>
+    1404:	bl	0 <__assert_fail>
+    1408:	ldr	r3, [pc, #200]	; 14d8 <gen_union_parser+0x484>
+    140c:	ldr	r2, [pc, #260]	; 1518 <gen_union_parser+0x4c4>
+    1410:	ldr	r1, [pc, #188]	; 14d4 <gen_union_parser+0x480>
+    1414:	ldr	r0, [pc, #240]	; 150c <gen_union_parser+0x4b8>
+    1418:	bl	0 <__assert_fail>
+    141c:	ldr	r3, [pc, #180]	; 14d8 <gen_union_parser+0x484>
+    1420:	mov	r2, #1552	; 0x610
+    1424:	ldr	r1, [pc, #168]	; 14d4 <gen_union_parser+0x480>
+    1428:	ldr	r0, [pc, #220]	; 150c <gen_union_parser+0x4b8>
+    142c:	bl	0 <__assert_fail>
+    1430:	ldr	r3, [pc, #160]	; 14d8 <gen_union_parser+0x484>
+    1434:	ldr	r2, [pc, #224]	; 151c <gen_union_parser+0x4c8>
+    1438:	ldr	r1, [pc, #148]	; 14d4 <gen_union_parser+0x480>
+    143c:	ldr	r0, [pc, #200]	; 150c <gen_union_parser+0x4b8>
+    1440:	bl	0 <__assert_fail>
+    1444:	ldr	r3, [pc, #140]	; 14d8 <gen_union_parser+0x484>
+    1448:	ldr	r2, [pc, #208]	; 1520 <gen_union_parser+0x4cc>
+    144c:	ldr	r1, [pc, #128]	; 14d4 <gen_union_parser+0x480>
+    1450:	ldr	r0, [pc, #180]	; 150c <gen_union_parser+0x4b8>
+    1454:	bl	0 <__assert_fail>
+    1458:	ldr	r3, [pc, #120]	; 14d8 <gen_union_parser+0x484>
+    145c:	ldr	r2, [pc, #192]	; 1524 <gen_union_parser+0x4d0>
+    1460:	ldr	r1, [pc, #108]	; 14d4 <gen_union_parser+0x480>
+    1464:	ldr	r0, [pc, #160]	; 150c <gen_union_parser+0x4b8>
+    1468:	bl	0 <__assert_fail>
+    146c:	ldr	r3, [pc, #100]	; 14d8 <gen_union_parser+0x484>
+    1470:	ldr	r2, [pc, #176]	; 1528 <gen_union_parser+0x4d4>
+    1474:	ldr	r1, [pc, #88]	; 14d4 <gen_union_parser+0x480>
+    1478:	ldr	r0, [pc, #140]	; 150c <gen_union_parser+0x4b8>
+    147c:	bl	0 <__assert_fail>
+    1480:	ldr	r3, [pc, #80]	; 14d8 <gen_union_parser+0x484>
+    1484:	ldr	r2, [pc, #160]	; 152c <gen_union_parser+0x4d8>
+    1488:	ldr	r1, [pc, #68]	; 14d4 <gen_union_parser+0x480>
+    148c:	ldr	r0, [pc, #120]	; 150c <gen_union_parser+0x4b8>
+    1490:	bl	0 <__assert_fail>
+    1494:	.word	0x00000384
+    1498:	.word	0x00000414
+    149c:	.word	0x0000014c
+    14a0:	.word	0x00000418
+    14a4:	.word	0x00000428
+    14a8:	.word	0x00000438
+    14ac:	.word	0x0000044c
+    14b0:	.word	0x00000520
+    14b4:	.word	0x000005ec
+    14b8:	.word	0x000005e4
+    14bc:	.word	0x00000534
+    14c0:	.word	0x00000568
+    14c4:	.word	0x00000000
+    14c8:	.word	0x0000062c
+    14cc:	.word	0x000005ff
+    14d0:	.word	0x0000059c
+    14d4:	.word	0x000000b4
+    14d8:	.word	0x0000001c
+    14dc:	.word	0x000005e0
+    14e0:	.word	0x0000047c
+    14e4:	.word	0x00000488
+    14e8:	.word	0x000004c4
+    14ec:	.word	0x0000065c
+    14f0:	.word	0x00000668
+    14f4:	.word	0x00000120
+    14f8:	.word	0x000006a0
+    14fc:	.word	0x000006bc
+    1500:	.word	0x000006cc
+    1504:	.word	0x00000724
+    1508:	.word	0x000005f6
+    150c:	.word	0x00000114
+    1510:	.word	0x000005a8
+    1514:	.word	0x000005f2
+    1518:	.word	0x000005df
+    151c:	.word	0x0000060e
+    1520:	.word	0x0000060a
+    1524:	.word	0x00000609
+    1528:	.word	0x00000607
+    152c:	.word	0x000005fc
+
+00001530 <gen_union_accept_type>:
+    1530:	push	{r4, r5, r6, r7, lr}
+    1534:	sub	sp, sp, #452	; 0x1c4
+    1538:	mov	r5, r0
+    153c:	mov	r4, r1
+    1540:	mov	r2, #220	; 0xdc
+    1544:	mov	r1, #0
+    1548:	add	r0, sp, #8
+    154c:	bl	0 <memset>
+    1550:	mov	r2, #220	; 0xdc
+    1554:	mov	r1, #0
+    1558:	add	r0, sp, #228	; 0xe4
+    155c:	bl	0 <memset>
+    1560:	mov	r1, r4
+    1564:	ldr	r0, [r4, #12]
+    1568:	add	r2, sp, #8
+    156c:	bl	0 <__flatcc_fb_scoped_symbol_name>
+    1570:	add	r2, sp, #8
+    1574:	mov	r0, r5
+    1578:	ldr	r1, [pc, #280]	; 1698 <gen_union_accept_type+0x168>
+    157c:	bl	0 <println>
+    1580:	mov	r0, r5
+    1584:	ldr	r1, [pc, #272]	; 169c <gen_union_accept_type+0x16c>
+    1588:	bl	0 <println>
+    158c:	ldr	r3, [r5, #220]	; 0xdc
+    1590:	mov	r0, r5
+    1594:	add	r3, r3, #1
+    1598:	str	r3, [r5, #220]	; 0xdc
+    159c:	ldr	r1, [pc, #252]	; 16a0 <gen_union_accept_type+0x170>
+    15a0:	bl	0 <println>
+    15a4:	ldr	r4, [r4, #20]
+    15a8:	cmp	r4, #0
+    15ac:	beq	1608 <gen_union_accept_type+0xd8>
+    15b0:	ldr	r7, [pc, #236]	; 16a4 <gen_union_accept_type+0x174>
+    15b4:	ldr	r6, [pc, #236]	; 16a8 <gen_union_accept_type+0x178>
+    15b8:	b	15d4 <gen_union_accept_type+0xa4>
+    15bc:	mov	r1, r6
+    15c0:	mov	r0, r5
+    15c4:	bl	0 <println>
+    15c8:	ldr	r4, [r4]
+    15cc:	cmp	r4, #0
+    15d0:	beq	1608 <gen_union_accept_type+0xd8>
+    15d4:	ldrh	r3, [r4, #24]
+    15d8:	cmp	r3, #0
+    15dc:	beq	15bc <gen_union_accept_type+0x8c>
+    15e0:	ldr	r0, [r4, #4]
+    15e4:	ldr	r2, [r4, #48]	; 0x30
+    15e8:	mov	r1, r7
+    15ec:	ldm	r0, {r0, r3}
+    15f0:	str	r0, [sp]
+    15f4:	mov	r0, r5
+    15f8:	bl	0 <println>
+    15fc:	ldr	r4, [r4]
+    1600:	cmp	r4, #0
+    1604:	bne	15d4 <gen_union_accept_type+0xa4>
+    1608:	ldr	r1, [pc, #156]	; 16ac <gen_union_accept_type+0x17c>
+    160c:	mov	r0, r5
+    1610:	bl	0 <println>
+    1614:	ldr	r3, [r5, #220]	; 0xdc
+    1618:	add	r2, r3, #1
+    161c:	cmp	r2, #0
+    1620:	str	r2, [r5, #220]	; 0xdc
+    1624:	beq	1670 <gen_union_accept_type+0x140>
+    1628:	str	r3, [r5, #220]	; 0xdc
+    162c:	ldr	r1, [pc, #124]	; 16b0 <gen_union_accept_type+0x180>
+    1630:	mov	r0, r5
+    1634:	bl	0 <println>
+    1638:	ldr	r3, [r5, #220]	; 0xdc
+    163c:	cmp	r3, #0
+    1640:	beq	1684 <gen_union_accept_type+0x154>
+    1644:	sub	r3, r3, #1
+    1648:	str	r3, [r5, #220]	; 0xdc
+    164c:	mov	r0, r5
+    1650:	ldr	r1, [pc, #88]	; 16b0 <gen_union_accept_type+0x180>
+    1654:	bl	0 <println>
+    1658:	mov	r0, r5
+    165c:	ldr	r1, [pc, #80]	; 16b4 <gen_union_accept_type+0x184>
+    1660:	bl	0 <println>
+    1664:	mov	r0, #0
+    1668:	add	sp, sp, #452	; 0x1c4
+    166c:	pop	{r4, r5, r6, r7, pc}
+    1670:	ldr	r3, [pc, #64]	; 16b8 <gen_union_accept_type+0x188>
+    1674:	ldr	r2, [pc, #64]	; 16bc <gen_union_accept_type+0x18c>
+    1678:	ldr	r1, [pc, #64]	; 16c0 <gen_union_accept_type+0x190>
+    167c:	ldr	r0, [pc, #64]	; 16c4 <gen_union_accept_type+0x194>
+    1680:	bl	0 <__assert_fail>
+    1684:	ldr	r3, [pc, #44]	; 16b8 <gen_union_accept_type+0x188>
+    1688:	ldr	r2, [pc, #56]	; 16c8 <gen_union_accept_type+0x198>
+    168c:	ldr	r1, [pc, #44]	; 16c0 <gen_union_accept_type+0x190>
+    1690:	ldr	r0, [pc, #44]	; 16c4 <gen_union_accept_type+0x194>
+    1694:	bl	0 <__assert_fail>
+    1698:	.word	0x00000730
+    169c:	.word	0x00000414
+    16a0:	.word	0x00000428
+    16a4:	.word	0x00000798
+    16a8:	.word	0x00000778
+    16ac:	.word	0x00000764
+    16b0:	.word	0x00000120
+    16b4:	.word	0x0000014c
+    16b8:	.word	0x00000030
+    16bc:	.word	0x0000062e
+    16c0:	.word	0x000000b4
+    16c4:	.word	0x00000114
+    16c8:	.word	0x0000062f
+
+000016cc <install_symbols>:
+    16cc:	add	r3, r1, #4
+    16d0:	mov	r2, r0
+    16d4:	ldr	r1, [pc, #4]	; 16e0 <install_symbols+0x14>
+    16d8:	mov	r0, r3
+    16dc:	b	0 <fb_symbol_table_visit>
+    16e0:	.word	0x00000000
+
+000016e4 <count_symbols>:
+    16e4:	add	r3, r1, #4
+    16e8:	mov	r2, r0
+    16ec:	ldr	r1, [pc, #4]	; 16f8 <count_symbols+0x14>
+    16f0:	mov	r0, r3
+    16f4:	b	0 <fb_symbol_table_visit>
+    16f8:	.word	0x00000000
+
+000016fc <sort_entries>:
+    16fc:	push	{r4, r5, r6, lr}
+    1700:	mov	r2, #8
+    1704:	mov	r4, r1
+    1708:	ldr	r3, [pc, #40]	; 1738 <sort_entries+0x3c>
+    170c:	mov	r5, r0
+    1710:	bl	0 <qsort>
+    1714:	cmp	r4, #0
+    1718:	pople	{r4, r5, r6, pc}
+    171c:	mov	r3, #0
+    1720:	ldr	r2, [r5, r3, lsl #3]
+    1724:	str	r3, [r2, #124]	; 0x7c
+    1728:	add	r3, r3, #1
+    172c:	cmp	r4, r3
+    1730:	bne	1720 <sort_entries+0x24>
+    1734:	pop	{r4, r5, r6, pc}
+    1738:	.word	0x00000000
+
+0000173c <dict_cmp>:
+    173c:	push	{r4, r5, r6, lr}
+    1740:	ldr	r5, [r0, #4]
+    1744:	ldr	r4, [r1, #4]
+    1748:	ldr	r0, [r0]
+    174c:	cmp	r5, r4
+    1750:	movlt	r2, r5
+    1754:	movge	r2, r4
+    1758:	ldr	r1, [r1]
+    175c:	bl	0 <memcmp>
+    1760:	cmp	r0, #0
+    1764:	subeq	r0, r5, r4
+    1768:	pop	{r4, r5, r6, pc}
+
+0000176c <install_visible_enum_symbol>:
+    176c:	ldrh	r3, [r1, #8]
+    1770:	sub	r3, r3, #3
+    1774:	cmp	r3, #1
+    1778:	bxhi	lr
+    177c:	push	{r4, r5, r6, lr}
+    1780:	mov	r5, r0
+    1784:	ldr	r0, [r0, #4]
+    1788:	mov	r4, r1
+    178c:	add	r0, r0, #172	; 0xac
+    1790:	ldr	r1, [r1, #16]
+    1794:	bl	0 <ptr_set_find_item>
+    1798:	cmp	r0, #0
+    179c:	popeq	{r4, r5, r6, pc}
+    17a0:	ldr	r2, [r4, #4]
+    17a4:	ldr	r3, [r5, #8]
+    17a8:	ldm	r2, {r0, r1}
+    17ac:	add	r2, r3, #16
+    17b0:	stm	r3, {r0, r1, r4}
+    17b4:	str	r2, [r5, #8]
+    17b8:	pop	{r4, r5, r6, pc}
+
+000017bc <count_visible_enum_symbol>:
+    17bc:	ldrh	r3, [r1, #8]
+    17c0:	sub	r3, r3, #3
+    17c4:	cmp	r3, #1
+    17c8:	bxhi	lr
+    17cc:	push	{r4, lr}
+    17d0:	mov	r4, r0
+    17d4:	ldr	r0, [r0, #4]
+    17d8:	ldr	r1, [r1, #16]
+    17dc:	add	r0, r0, #172	; 0xac
+    17e0:	bl	0 <ptr_set_find_item>
+    17e4:	cmp	r0, #0
+    17e8:	ldrne	r3, [r4]
+    17ec:	addne	r3, r3, #1
+    17f0:	strne	r3, [r4]
+    17f4:	pop	{r4, pc}
+
+000017f8 <count_symbol>:
+    17f8:	ldrh	r3, [r1, #8]
+    17fc:	cmp	r3, #4
+    1800:	bxhi	lr
+    1804:	push	{r4, r5, r6, lr}
+    1808:	mov	r4, r0
+    180c:	ldr	r0, [r0, #40]	; 0x28
+    1810:	mov	r5, r1
+    1814:	add	r0, r0, #172	; 0xac
+    1818:	ldr	r1, [r1, #16]
+    181c:	bl	0 <ptr_set_find_item>
+    1820:	cmp	r0, #0
+    1824:	beq	18c8 <count_symbol+0xd0>
+    1828:	ldr	ip, [r4]
+    182c:	cmp	ip, #0
+    1830:	beq	1864 <count_symbol+0x6c>
+    1834:	ldr	r3, [r5, #12]
+    1838:	ldr	r3, [r3]
+    183c:	cmp	r3, #0
+    1840:	beq	18cc <count_symbol+0xd4>
+    1844:	mov	ip, #0
+    1848:	ldr	r2, [r3, #4]
+    184c:	ldr	r3, [r3]
+    1850:	ldr	r2, [r2, #4]
+    1854:	cmp	r3, #0
+    1858:	add	r2, r2, #1
+    185c:	add	ip, ip, r2
+    1860:	bne	1848 <count_symbol+0x50>
+    1864:	ldr	r3, [r5, #4]
+    1868:	ldr	r1, [r4, #12]
+    186c:	ldrh	r2, [r5, #8]
+    1870:	ldr	r3, [r3, #4]
+    1874:	add	r3, r3, r1
+    1878:	add	r3, r3, #1
+    187c:	add	ip, r3, ip
+    1880:	str	ip, [r4, #12]
+    1884:	cmp	r2, #4
+    1888:	ldrls	pc, [pc, r2, lsl #2]
+    188c:	b	18c4 <count_symbol+0xcc>
+    1890:	.word	0x000018b4
+    1894:	.word	0x000018b4
+    1898:	.word	0x000018c4
+    189c:	.word	0x000018a4
+    18a0:	.word	0x000018a4
+    18a4:	ldr	r3, [r4, #8]
+    18a8:	add	r3, r3, #1
+    18ac:	str	r3, [r4, #8]
+    18b0:	pop	{r4, r5, r6, pc}
+    18b4:	ldr	r3, [r4, #4]
+    18b8:	add	r3, r3, #1
+    18bc:	str	r3, [r4, #4]
+    18c0:	pop	{r4, r5, r6, pc}
+    18c4:	pop	{r4, r5, r6, pc}
+    18c8:	pop	{r4, r5, r6, pc}
+    18cc:	mov	ip, r3
+    18d0:	b	1864 <count_symbol+0x6c>
+
+000018d4 <gen_local_scope_parser>:
+    18d4:	push	{r4, r5, r6, r7, lr}
+    18d8:	mov	r4, r0
+    18dc:	sub	sp, sp, #260	; 0x104
+    18e0:	mov	r5, #0
+    18e4:	mov	r0, r1
+    18e8:	add	r1, sp, #52	; 0x34
+    18ec:	add	r7, r0, #4
+    18f0:	str	r5, [sp, #28]
+    18f4:	str	r5, [sp, #24]
+    18f8:	str	r5, [sp, #32]
+    18fc:	str	r5, [sp, #36]	; 0x24
+    1900:	str	r5, [sp, #40]	; 0x28
+    1904:	str	r5, [sp, #44]	; 0x2c
+    1908:	str	r5, [sp, #48]	; 0x30
+    190c:	bl	0 <__flatcc_fb_copy_scope>
+    1910:	ldr	r3, [r4, #208]	; 0xd0
+    1914:	mov	r0, r7
+    1918:	add	r2, sp, #12
+    191c:	ldr	r1, [pc, #560]	; 1b54 <gen_local_scope_parser+0x280>
+    1920:	str	r5, [sp, #12]
+    1924:	str	r5, [sp, #20]
+    1928:	str	r3, [sp, #16]
+    192c:	bl	0 <fb_symbol_table_visit>
+    1930:	ldr	r5, [sp, #12]
+    1934:	cmp	r5, #0
+    1938:	beq	1ae4 <gen_local_scope_parser+0x210>
+    193c:	lsl	r0, r5, #4
+    1940:	bl	0 <malloc>
+    1944:	subs	r6, r0, #0
+    1948:	beq	1aec <gen_local_scope_parser+0x218>
+    194c:	add	r2, sp, #12
+    1950:	mov	r0, r7
+    1954:	ldr	r1, [pc, #508]	; 1b58 <gen_local_scope_parser+0x284>
+    1958:	str	r6, [sp, #20]
+    195c:	bl	0 <fb_symbol_table_visit>
+    1960:	ldr	r3, [pc, #500]	; 1b5c <gen_local_scope_parser+0x288>
+    1964:	mov	r2, #16
+    1968:	ldr	r1, [sp, #12]
+    196c:	mov	r0, r6
+    1970:	bl	0 <qsort>
+    1974:	str	r6, [sp, #24]
+    1978:	ldr	r2, [r4, #208]	; 0xd0
+    197c:	ldr	r1, [pc, #476]	; 1b60 <gen_local_scope_parser+0x28c>
+    1980:	ldr	r0, [pc, #476]	; 1b64 <gen_local_scope_parser+0x290>
+    1984:	mov	ip, #3
+    1988:	add	r3, sp, #52	; 0x34
+    198c:	ldr	r2, [r2, #160]	; 0xa0
+    1990:	mov	r6, #0
+    1994:	str	r1, [sp, #28]
+    1998:	str	r0, [sp, #32]
+    199c:	ldr	r1, [pc, #452]	; 1b68 <gen_local_scope_parser+0x294>
+    19a0:	mov	r0, r4
+    19a4:	str	ip, [sp, #40]	; 0x28
+    19a8:	str	r6, [sp, #36]	; 0x24
+    19ac:	bl	0 <println>
+    19b0:	ldr	r3, [r4, #220]	; 0xdc
+    19b4:	ldr	r1, [pc, #432]	; 1b6c <gen_local_scope_parser+0x298>
+    19b8:	add	r3, r3, #2
+    19bc:	str	r3, [r4, #220]	; 0xdc
+    19c0:	mov	r0, r4
+    19c4:	bl	0 <println>
+    19c8:	ldr	r3, [r4, #220]	; 0xdc
+    19cc:	cmp	r3, r6
+    19d0:	beq	1b2c <gen_local_scope_parser+0x258>
+    19d4:	cmp	r3, #1
+    19d8:	streq	r6, [r4, #220]	; 0xdc
+    19dc:	beq	1b2c <gen_local_scope_parser+0x258>
+    19e0:	sub	r3, r3, #2
+    19e4:	str	r3, [r4, #220]	; 0xdc
+    19e8:	ldr	r1, [pc, #384]	; 1b70 <gen_local_scope_parser+0x29c>
+    19ec:	mov	r0, r4
+    19f0:	bl	0 <println>
+    19f4:	ldr	r3, [r4, #220]	; 0xdc
+    19f8:	cmp	r5, #0
+    19fc:	add	r3, r3, #1
+    1a00:	str	r3, [r4, #220]	; 0xdc
+    1a04:	beq	1aac <gen_local_scope_parser+0x1d8>
+    1a08:	ldr	r1, [pc, #356]	; 1b74 <gen_local_scope_parser+0x2a0>
+    1a0c:	mov	r0, r4
+    1a10:	bl	0 <println>
+    1a14:	ldr	r1, [pc, #348]	; 1b78 <gen_local_scope_parser+0x2a4>
+    1a18:	mov	r0, r4
+    1a1c:	bl	0 <println>
+    1a20:	ldr	r1, [pc, #340]	; 1b7c <gen_local_scope_parser+0x2a8>
+    1a24:	mov	r0, r4
+    1a28:	bl	0 <println>
+    1a2c:	ldr	r1, [pc, #332]	; 1b80 <gen_local_scope_parser+0x2ac>
+    1a30:	mov	r0, r4
+    1a34:	bl	0 <println>
+    1a38:	ldr	r1, [pc, #324]	; 1b84 <gen_local_scope_parser+0x2b0>
+    1a3c:	mov	r0, r4
+    1a40:	bl	0 <println>
+    1a44:	sub	r3, r5, #1
+    1a48:	mov	r2, r6
+    1a4c:	add	r1, sp, #24
+    1a50:	mov	r0, r4
+    1a54:	str	r6, [sp]
+    1a58:	bl	528 <gen_trie>
+    1a5c:	ldr	r1, [pc, #292]	; 1b88 <gen_local_scope_parser+0x2b4>
+    1a60:	mov	r0, r4
+    1a64:	bl	0 <println>
+    1a68:	ldr	r3, [r4, #220]	; 0xdc
+    1a6c:	cmp	r3, #0
+    1a70:	beq	1b40 <gen_local_scope_parser+0x26c>
+    1a74:	sub	r3, r3, #1
+    1a78:	str	r3, [r4, #220]	; 0xdc
+    1a7c:	ldr	r1, [pc, #264]	; 1b8c <gen_local_scope_parser+0x2b8>
+    1a80:	mov	r0, r4
+    1a84:	bl	0 <println>
+    1a88:	mov	r0, r4
+    1a8c:	ldr	r1, [pc, #236]	; 1b80 <gen_local_scope_parser+0x2ac>
+    1a90:	bl	0 <println>
+    1a94:	ldr	r0, [sp, #24]
+    1a98:	cmp	r0, #0
+    1a9c:	beq	1aa4 <gen_local_scope_parser+0x1d0>
+    1aa0:	bl	0 <free>
+    1aa4:	add	sp, sp, #260	; 0x104
+    1aa8:	pop	{r4, r5, r6, r7, pc}
+    1aac:	ldr	r1, [pc, #220]	; 1b90 <gen_local_scope_parser+0x2bc>
+    1ab0:	mov	r0, r4
+    1ab4:	bl	0 <println>
+    1ab8:	ldr	r1, [pc, #212]	; 1b94 <gen_local_scope_parser+0x2c0>
+    1abc:	mov	r0, r4
+    1ac0:	bl	0 <println>
+    1ac4:	ldr	r3, [r4, #220]	; 0xdc
+    1ac8:	cmp	r3, #0
+    1acc:	bne	1a74 <gen_local_scope_parser+0x1a0>
+    1ad0:	ldr	r3, [pc, #192]	; 1b98 <gen_local_scope_parser+0x2c4>
+    1ad4:	ldr	r2, [pc, #192]	; 1b9c <gen_local_scope_parser+0x2c8>
+    1ad8:	ldr	r1, [pc, #192]	; 1ba0 <gen_local_scope_parser+0x2cc>
+    1adc:	ldr	r0, [pc, #192]	; 1ba4 <gen_local_scope_parser+0x2d0>
+    1ae0:	bl	0 <__assert_fail>
+    1ae4:	str	r5, [sp, #24]
+    1ae8:	b	1978 <gen_local_scope_parser+0xa4>
+    1aec:	cmp	r5, #0
+    1af0:	str	r6, [sp, #24]
+    1af4:	ble	1978 <gen_local_scope_parser+0xa4>
+    1af8:	ldr	r1, [pc, #168]	; 1ba8 <gen_local_scope_parser+0x2d4>
+    1afc:	ldr	r2, [pc, #168]	; 1bac <gen_local_scope_parser+0x2d8>
+    1b00:	ldr	r3, [pc, #168]	; 1bb0 <gen_local_scope_parser+0x2dc>
+    1b04:	ldr	r0, [r1]
+    1b08:	str	r2, [sp]
+    1b0c:	ldr	r1, [pc, #160]	; 1bb4 <gen_local_scope_parser+0x2e0>
+    1b10:	ldr	r2, [pc, #136]	; 1ba0 <gen_local_scope_parser+0x2cc>
+    1b14:	bl	0 <fprintf>
+    1b18:	ldr	r3, [pc, #120]	; 1b98 <gen_local_scope_parser+0x2c4>
+    1b1c:	ldr	r2, [pc, #140]	; 1bb0 <gen_local_scope_parser+0x2dc>
+    1b20:	ldr	r1, [pc, #120]	; 1ba0 <gen_local_scope_parser+0x2cc>
+    1b24:	ldr	r0, [pc, #140]	; 1bb8 <gen_local_scope_parser+0x2e4>
+    1b28:	bl	0 <__assert_fail>
+    1b2c:	ldr	r3, [pc, #100]	; 1b98 <gen_local_scope_parser+0x2c4>
+    1b30:	mov	r2, #1152	; 0x480
+    1b34:	ldr	r1, [pc, #100]	; 1ba0 <gen_local_scope_parser+0x2cc>
+    1b38:	ldr	r0, [pc, #100]	; 1ba4 <gen_local_scope_parser+0x2d0>
+    1b3c:	bl	0 <__assert_fail>
+    1b40:	ldr	r3, [pc, #80]	; 1b98 <gen_local_scope_parser+0x2c4>
+    1b44:	ldr	r2, [pc, #112]	; 1bbc <gen_local_scope_parser+0x2e8>
+    1b48:	ldr	r1, [pc, #80]	; 1ba0 <gen_local_scope_parser+0x2cc>
+    1b4c:	ldr	r0, [pc, #80]	; 1ba4 <gen_local_scope_parser+0x2d0>
+    1b50:	bl	0 <__assert_fail>
+	...
+    1b68:	.word	0x000002e4
+    1b6c:	.word	0x000007f4
+    1b70:	.word	0x00000414
+    1b74:	.word	0x0000087c
+    1b78:	.word	0x0000089c
+    1b7c:	.word	0x000008b0
+    1b80:	.word	0x0000014c
+    1b84:	.word	0x00000220
+    1b88:	.word	0x00000724
+    1b8c:	.word	0x00000120
+    1b90:	.word	0x00000828
+    1b94:	.word	0x0000085c
+    1b98:	.word	0x00000048
+    1b9c:	.word	0x00000485
+    1ba0:	.word	0x000000b4
+    1ba4:	.word	0x00000114
+    1ba8:	.word	0x00000000
+    1bac:	.word	0x000007b8
+    1bb0:	.word	0x00000474
+    1bb4:	.word	0x0000059c
+    1bb8:	.word	0x000005e0
+    1bbc:	.word	0x0000048e
+
+00001bc0 <clear_catalog>:
+    1bc0:	push	{r4, lr}
+    1bc4:	mov	r4, r0
+    1bc8:	ldr	r0, [r0, #16]
+    1bcc:	cmp	r0, #0
+    1bd0:	beq	1bd8 <clear_catalog+0x18>
+    1bd4:	bl	0 <free>
+    1bd8:	ldr	r0, [r4, #20]
+    1bdc:	cmp	r0, #0
+    1be0:	beq	1be8 <clear_catalog+0x28>
+    1be4:	bl	0 <free>
+    1be8:	ldr	r0, [r4, #24]
+    1bec:	cmp	r0, #0
+    1bf0:	beq	1bf8 <clear_catalog+0x38>
+    1bf4:	bl	0 <free>
+    1bf8:	mov	r0, r4
+    1bfc:	mov	r2, #44	; 0x2c
+    1c00:	mov	r1, #0
+    1c04:	pop	{r4, lr}
+    1c08:	b	0 <memset>
+
+00001c0c <install_symbol>:
+    1c0c:	ldrh	r3, [r1, #8]
+    1c10:	cmp	r3, #4
+    1c14:	bxhi	lr
+    1c18:	push	{r4, r5, r6, r7, r8, r9, sl, lr}
+    1c1c:	mov	r6, r0
+    1c20:	ldr	r0, [r0, #40]	; 0x28
+    1c24:	mov	r7, r1
+    1c28:	add	r0, r0, #172	; 0xac
+    1c2c:	ldr	r1, [r1, #16]
+    1c30:	bl	0 <ptr_set_find_item>
+    1c34:	cmp	r0, #0
+    1c38:	beq	1d0c <install_symbol+0x100>
+    1c3c:	ldr	r3, [r6]
+    1c40:	ldr	r9, [r6, #36]	; 0x24
+    1c44:	cmp	r3, #0
+    1c48:	moveq	r3, r9
+    1c4c:	beq	1c94 <install_symbol+0x88>
+    1c50:	ldr	r3, [r7, #12]
+    1c54:	ldr	r5, [r3]
+    1c58:	mov	r3, r9
+    1c5c:	cmp	r5, #0
+    1c60:	beq	1c94 <install_symbol+0x88>
+    1c64:	mov	r8, #46	; 0x2e
+    1c68:	ldr	r2, [r5, #4]
+    1c6c:	mov	r0, r3
+    1c70:	ldm	r2, {r1, r4}
+    1c74:	mov	r2, r4
+    1c78:	bl	0 <memcpy>
+    1c7c:	add	r4, r0, r4
+    1c80:	add	r3, r4, #1
+    1c84:	strb	r8, [r4]
+    1c88:	ldr	r5, [r5]
+    1c8c:	cmp	r5, #0
+    1c90:	bne	1c68 <install_symbol+0x5c>
+    1c94:	ldr	r2, [r7, #4]
+    1c98:	mov	r0, r3
+    1c9c:	ldm	r2, {r1, r4}
+    1ca0:	mov	r2, r4
+    1ca4:	bl	0 <memcpy>
+    1ca8:	mov	r2, #0
+    1cac:	strb	r2, [r0, r4]
+    1cb0:	ldrh	r2, [r7, #8]
+    1cb4:	add	r3, r0, r4
+    1cb8:	add	r3, r3, #1
+    1cbc:	str	r3, [r6, #36]	; 0x24
+    1cc0:	cmp	r2, #4
+    1cc4:	ldrls	pc, [pc, r2, lsl #2]
+    1cc8:	b	1d08 <install_symbol+0xfc>
+    1ccc:	.word	0x00001cf4
+    1cd0:	.word	0x00001cf4
+    1cd4:	.word	0x00001d08
+    1cd8:	.word	0x00001ce0
+    1cdc:	.word	0x00001ce0
+    1ce0:	ldr	r3, [r6, #32]
+    1ce4:	add	r2, r3, #8
+    1ce8:	stm	r3, {r7, r9}
+    1cec:	str	r2, [r6, #32]
+    1cf0:	pop	{r4, r5, r6, r7, r8, r9, sl, pc}
+    1cf4:	ldr	r3, [r6, #28]
+    1cf8:	add	r2, r3, #8
+    1cfc:	stm	r3, {r7, r9}
+    1d00:	str	r2, [r6, #28]
+    1d04:	pop	{r4, r5, r6, r7, r8, r9, sl, pc}
+    1d08:	pop	{r4, r5, r6, r7, r8, r9, sl, pc}
+    1d0c:	pop	{r4, r5, r6, r7, r8, r9, sl, pc}
+
+00001d10 <compare_entries>:
+    1d10:	ldr	r1, [r1, #4]
+    1d14:	ldr	r0, [r0, #4]
+    1d18:	b	0 <strcmp>
+
+00001d1c <gen_enum_match>:
+    1d1c:	push	{r4, r5, r6, lr}
+    1d20:	sub	sp, sp, #8
+    1d24:	mov	r4, r0
+    1d28:	mov	r5, r1
+    1d2c:	mov	r6, r2
+    1d30:	ldr	r1, [pc, #256]	; 1e38 <gen_enum_match+0x11c>
+    1d34:	ldr	r2, [sp, #24]
+    1d38:	bl	0 <println>
+    1d3c:	mov	r0, r4
+    1d40:	ldr	r1, [pc, #244]	; 1e3c <gen_enum_match+0x120>
+    1d44:	bl	0 <println>
+    1d48:	ldr	r3, [r4, #220]	; 0xdc
+    1d4c:	add	r3, r3, #1
+    1d50:	str	r3, [r4, #220]	; 0xdc
+    1d54:	ldr	r3, [r5, #40]	; 0x28
+    1d58:	sub	r3, r3, #1
+    1d5c:	cmp	r3, #8
+    1d60:	ldrls	pc, [pc, r3, lsl #2]
+    1d64:	b	1df0 <gen_enum_match+0xd4>
+    1d68:	.word	0x00001ddc
+    1d6c:	.word	0x00001ddc
+    1d70:	.word	0x00001ddc
+    1d74:	.word	0x00001ddc
+    1d78:	.word	0x00001ddc
+    1d7c:	.word	0x00001d8c
+    1d80:	.word	0x00001d8c
+    1d84:	.word	0x00001d8c
+    1d88:	.word	0x00001d8c
+    1d8c:	ldrd	r2, [r6, #48]	; 0x30
+    1d90:	mov	r0, r4
+    1d94:	cmp	r2, #0
+    1d98:	sbcs	r1, r3, #0
+    1d9c:	ldrlt	r1, [pc, #156]	; 1e40 <gen_enum_match+0x124>
+    1da0:	ldrge	r1, [pc, #156]	; 1e44 <gen_enum_match+0x128>
+    1da4:	bl	0 <println>
+    1da8:	ldr	r3, [r4, #220]	; 0xdc
+    1dac:	cmp	r3, #0
+    1db0:	beq	1e24 <gen_enum_match+0x108>
+    1db4:	sub	r3, r3, #1
+    1db8:	str	r3, [r4, #220]	; 0xdc
+    1dbc:	ldr	r1, [pc, #132]	; 1e48 <gen_enum_match+0x12c>
+    1dc0:	mov	r0, r4
+    1dc4:	bl	0 <println>
+    1dc8:	ldr	r3, [r4, #220]	; 0xdc
+    1dcc:	add	r3, r3, #1
+    1dd0:	str	r3, [r4, #220]	; 0xdc
+    1dd4:	add	sp, sp, #8
+    1dd8:	pop	{r4, r5, r6, pc}
+    1ddc:	ldrd	r2, [r6, #48]	; 0x30
+    1de0:	ldr	r1, [pc, #92]	; 1e44 <gen_enum_match+0x128>
+    1de4:	mov	r0, r4
+    1de8:	bl	0 <println>
+    1dec:	b	1da8 <gen_enum_match+0x8c>
+    1df0:	ldr	r1, [pc, #84]	; 1e4c <gen_enum_match+0x130>
+    1df4:	ldr	r2, [pc, #84]	; 1e50 <gen_enum_match+0x134>
+    1df8:	ldr	r3, [pc, #84]	; 1e54 <gen_enum_match+0x138>
+    1dfc:	ldr	r0, [r1]
+    1e00:	str	r2, [sp]
+    1e04:	ldr	r1, [pc, #76]	; 1e58 <gen_enum_match+0x13c>
+    1e08:	ldr	r2, [pc, #76]	; 1e5c <gen_enum_match+0x140>
+    1e0c:	bl	0 <fprintf>
+    1e10:	ldr	r3, [pc, #72]	; 1e60 <gen_enum_match+0x144>
+    1e14:	ldr	r2, [pc, #56]	; 1e54 <gen_enum_match+0x138>
+    1e18:	ldr	r1, [pc, #60]	; 1e5c <gen_enum_match+0x140>
+    1e1c:	ldr	r0, [pc, #64]	; 1e64 <gen_enum_match+0x148>
+    1e20:	bl	0 <__assert_fail>
+    1e24:	ldr	r3, [pc, #60]	; 1e68 <gen_enum_match+0x14c>
+    1e28:	ldr	r2, [pc, #60]	; 1e6c <gen_enum_match+0x150>
+    1e2c:	ldr	r1, [pc, #40]	; 1e5c <gen_enum_match+0x140>
+    1e30:	ldr	r0, [pc, #56]	; 1e70 <gen_enum_match+0x154>
+    1e34:	bl	0 <__assert_fail>
+    1e38:	.word	0x000008bc
+    1e3c:	.word	0x0000090c
+    1e40:	.word	0x0000094c
+    1e44:	.word	0x00000920
+    1e48:	.word	0x0000065c
+    1e4c:	.word	0x00000000
+    1e50:	.word	0x00000978
+    1e54:	.word	0x000002c6
+    1e58:	.word	0x0000059c
+    1e5c:	.word	0x000000b4
+    1e60:	.word	0x00000060
+    1e64:	.word	0x000005e0
+    1e68:	.word	0x00000078
+    1e6c:	.word	0x000002cf
+    1e70:	.word	0x00000114
+
+00001e74 <gen_scope_match>:
+    1e74:	push	{r4, r5, lr}
+    1e78:	sub	sp, sp, #228	; 0xe4
+    1e7c:	mov	r4, r0
+    1e80:	mov	r5, r2
+    1e84:	ldr	r1, [pc, #184]	; 1f44 <gen_scope_match+0xd0>
+    1e88:	ldr	r2, [sp, #240]	; 0xf0
+    1e8c:	bl	0 <println>
+    1e90:	mov	r0, r4
+    1e94:	ldr	r1, [pc, #172]	; 1f48 <gen_scope_match+0xd4>
+    1e98:	bl	0 <println>
+    1e9c:	ldrh	r2, [r5, #8]
+    1ea0:	ldr	r3, [r4, #220]	; 0xdc
+    1ea4:	sub	r2, r2, #3
+    1ea8:	add	r3, r3, #1
+    1eac:	cmp	r2, #1
+    1eb0:	str	r3, [r4, #220]	; 0xdc
+    1eb4:	bhi	1f1c <gen_scope_match+0xa8>
+    1eb8:	mov	r2, #220	; 0xdc
+    1ebc:	mov	r1, #0
+    1ec0:	add	r0, sp, #4
+    1ec4:	bl	0 <memset>
+    1ec8:	add	r2, sp, #4
+    1ecc:	mov	r1, r5
+    1ed0:	ldr	r0, [r5, #12]
+    1ed4:	bl	0 <__flatcc_fb_scoped_symbol_name>
+    1ed8:	add	r2, sp, #4
+    1edc:	ldr	r1, [pc, #104]	; 1f4c <gen_scope_match+0xd8>
+    1ee0:	mov	r0, r4
+    1ee4:	bl	0 <println>
+    1ee8:	ldr	r3, [r4, #220]	; 0xdc
+    1eec:	cmp	r3, #0
+    1ef0:	beq	1f30 <gen_scope_match+0xbc>
+    1ef4:	sub	r3, r3, #1
+    1ef8:	str	r3, [r4, #220]	; 0xdc
+    1efc:	ldr	r1, [pc, #76]	; 1f50 <gen_scope_match+0xdc>
+    1f00:	mov	r0, r4
+    1f04:	bl	0 <println>
+    1f08:	ldr	r3, [r4, #220]	; 0xdc
+    1f0c:	add	r3, r3, #1
+    1f10:	str	r3, [r4, #220]	; 0xdc
+    1f14:	add	sp, sp, #228	; 0xe4
+    1f18:	pop	{r4, r5, pc}
+    1f1c:	ldr	r3, [pc, #48]	; 1f54 <gen_scope_match+0xe0>
+    1f20:	ldr	r2, [pc, #48]	; 1f58 <gen_scope_match+0xe4>
+    1f24:	ldr	r1, [pc, #48]	; 1f5c <gen_scope_match+0xe8>
+    1f28:	ldr	r0, [pc, #48]	; 1f60 <gen_scope_match+0xec>
+    1f2c:	bl	0 <__assert_fail>
+    1f30:	ldr	r3, [pc, #44]	; 1f64 <gen_scope_match+0xf0>
+    1f34:	ldr	r2, [pc, #44]	; 1f68 <gen_scope_match+0xf4>
+    1f38:	ldr	r1, [pc, #28]	; 1f5c <gen_scope_match+0xe8>
+    1f3c:	ldr	r0, [pc, #40]	; 1f6c <gen_scope_match+0xf8>
+    1f40:	bl	0 <__assert_fail>
+    1f44:	.word	0x0000099c
+    1f48:	.word	0x0000090c
+    1f4c:	.word	0x00000a20
+    1f50:	.word	0x0000065c
+    1f54:	.word	0x00000088
+    1f58:	.word	0x000002d9
+    1f5c:	.word	0x000000b4
+    1f60:	.word	0x000009e0
+    1f64:	.word	0x000000a0
+    1f68:	.word	0x000002e6
+    1f6c:	.word	0x00000114
+
+00001f70 <gen_field_match_handler.isra.12>:
+    1f70:	push	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+    1f74:	mov	r6, r2
+    1f78:	sub	sp, sp, #508	; 0x1fc
+    1f7c:	mov	r5, r1
+    1f80:	mov	r2, #220	; 0xdc
+    1f84:	mov	r1, #0
+    1f88:	mov	r4, r0
+    1f8c:	add	r0, sp, #284	; 0x11c
+    1f90:	mov	r7, r3
+    1f94:	bl	0 <memset>
+    1f98:	ldr	r0, [r6]
+    1f9c:	add	r1, sp, #80	; 0x50
+    1fa0:	bl	0 <__flatcc_fb_copy_scope>
+    1fa4:	ldrh	r3, [r5]
+    1fa8:	mov	r2, r3
+    1fac:	str	r3, [sp, #20]
+    1fb0:	ldrh	r3, [r7, #24]
+    1fb4:	sub	r2, r2, #1
+    1fb8:	clz	r2, r2
+    1fbc:	cmp	r3, #15
+    1fc0:	lsr	r2, r2, #5
+    1fc4:	movhi	r5, #0
+    1fc8:	str	r2, [sp, #64]	; 0x40
+    1fcc:	movhi	r2, r5
+    1fd0:	bhi	1fec <gen_field_match_handler.isra.12+0x7c>
+    1fd4:	ldr	r2, [pc, #3040]	; 2bbc <gen_field_match_handler.isra.12+0xc4c>
+    1fd8:	mov	r1, #1
+    1fdc:	ands	r2, r2, r1, lsl r3
+    1fe0:	movne	r2, r1
+    1fe4:	moveq	r2, #0
+    1fe8:	mov	r5, r2
+    1fec:	sub	r3, r3, #7
+    1ff0:	cmp	r3, #8
+    1ff4:	ldrls	pc, [pc, r3, lsl #2]
+    1ff8:	b	24fc <gen_field_match_handler.isra.12+0x58c>
+    1ffc:	.word	0x000023a8
+    2000:	.word	0x00002370
+    2004:	.word	0x00002020
+    2008:	.word	0x00002020
+    200c:	.word	0x000024fc
+    2010:	.word	0x000024fc
+    2014:	.word	0x000024fc
+    2018:	.word	0x00002488
+    201c:	.word	0x00002488
+    2020:	mov	r3, #0
+    2024:	str	r3, [sp, #24]
+    2028:	mov	r9, r3
+    202c:	str	r3, [sp, #32]
+    2030:	mov	r6, r3
+    2034:	str	r3, [sp, #56]	; 0x38
+    2038:	mov	r3, #1
+    203c:	str	r3, [sp, #40]	; 0x28
+    2040:	mov	r3, #0
+    2044:	str	r3, [sp, #52]	; 0x34
+    2048:	str	r3, [sp, #60]	; 0x3c
+    204c:	str	r3, [sp, #44]	; 0x2c
+    2050:	mov	fp, r3
+    2054:	and	r3, r5, #1
+    2058:	str	r3, [sp, #48]	; 0x30
+    205c:	ldr	r3, [sp, #544]	; 0x220
+    2060:	cmp	r3, #0
+    2064:	beq	2428 <gen_field_match_handler.isra.12+0x4b8>
+    2068:	ldr	r3, [sp, #48]	; 0x30
+    206c:	cmp	r3, #0
+    2070:	beq	2b54 <gen_field_match_handler.isra.12+0xbe4>
+    2074:	mov	r6, #0
+    2078:	mov	r5, r6
+    207c:	mov	r3, #1
+    2080:	str	r6, [sp, #68]	; 0x44
+    2084:	str	r6, [sp, #72]	; 0x48
+    2088:	str	r3, [sp, #76]	; 0x4c
+    208c:	cmp	fp, #1
+    2090:	beq	246c <gen_field_match_handler.isra.12+0x4fc>
+    2094:	ldr	r8, [pc, #2852]	; 2bc0 <gen_field_match_handler.isra.12+0xc50>
+    2098:	cmp	fp, #2
+    209c:	str	r8, [sp, #36]	; 0x24
+    20a0:	beq	2234 <gen_field_match_handler.isra.12+0x2c4>
+    20a4:	ldr	r3, [sp, #544]	; 0x220
+    20a8:	orr	sl, r6, r9
+    20ac:	cmp	r6, #0
+    20b0:	orr	sl, sl, r3
+    20b4:	bne	251c <gen_field_match_handler.isra.12+0x5ac>
+    20b8:	cmp	r5, #0
+    20bc:	moveq	r6, r5
+    20c0:	beq	2154 <gen_field_match_handler.isra.12+0x1e4>
+    20c4:	cmp	sl, #0
+    20c8:	beq	257c <gen_field_match_handler.isra.12+0x60c>
+    20cc:	ldrd	r2, [r7, #88]	; 0x58
+    20d0:	ldrsh	r5, [r7, #74]	; 0x4a
+    20d4:	mvn	r0, #0
+    20d8:	orrs	r1, r2, r3
+    20dc:	strd	r2, [sp, #24]
+    20e0:	mov	r1, #0
+    20e4:	beq	20ec <gen_field_match_handler.isra.12+0x17c>
+    20e8:	bl	0 <__aeabi_uldivmod>
+    20ec:	strd	r0, [sp, #8]
+    20f0:	str	r5, [sp]
+    20f4:	ldrd	r2, [sp, #24]
+    20f8:	ldr	r1, [pc, #2756]	; 2bc4 <gen_field_match_handler.isra.12+0xc54>
+    20fc:	mov	r0, r4
+    2100:	bl	0 <println>
+    2104:	ldr	r1, [pc, #2748]	; 2bc8 <gen_field_match_handler.isra.12+0xc58>
+    2108:	mov	r0, r4
+    210c:	bl	0 <println>
+    2110:	ldr	r1, [pc, #2740]	; 2bcc <gen_field_match_handler.isra.12+0xc5c>
+    2114:	mov	r0, r4
+    2118:	bl	0 <println>
+    211c:	ldr	r3, [r4, #220]	; 0xdc
+    2120:	cmp	r6, #0
+    2124:	add	r3, r3, #1
+    2128:	str	r3, [r4, #220]	; 0xdc
+    212c:	moveq	r5, #1
+    2130:	bne	25a4 <gen_field_match_handler.isra.12+0x634>
+    2134:	cmp	sl, #0
+    2138:	moveq	r3, #0
+    213c:	andne	r3, r5, #1
+    2140:	cmp	r3, #0
+    2144:	beq	2154 <gen_field_match_handler.isra.12+0x1e4>
+    2148:	ldr	r1, [pc, #2688]	; 2bd0 <gen_field_match_handler.isra.12+0xc60>
+    214c:	mov	r0, r4
+    2150:	bl	0 <println>
+    2154:	ldr	r3, [sp, #20]
+    2158:	cmp	r3, #1
+    215c:	beq	22b4 <gen_field_match_handler.isra.12+0x344>
+    2160:	eor	r3, r5, #1
+    2164:	tst	r3, r9
+    2168:	bne	2754 <gen_field_match_handler.isra.12+0x7e4>
+    216c:	cmp	r6, #0
+    2170:	bne	22cc <gen_field_match_handler.isra.12+0x35c>
+    2174:	cmp	r9, #0
+    2178:	bne	2778 <gen_field_match_handler.isra.12+0x808>
+    217c:	ldr	r3, [sp, #40]	; 0x28
+    2180:	cmp	r3, #0
+    2184:	bne	278c <gen_field_match_handler.isra.12+0x81c>
+    2188:	ldr	r3, [sp, #52]	; 0x34
+    218c:	cmp	r3, #0
+    2190:	bne	27f0 <gen_field_match_handler.isra.12+0x880>
+    2194:	ldr	r3, [sp, #32]
+    2198:	cmp	r3, #0
+    219c:	bne	2888 <gen_field_match_handler.isra.12+0x918>
+    21a0:	ldr	r3, [sp, #68]	; 0x44
+    21a4:	cmp	r3, #0
+    21a8:	beq	2820 <gen_field_match_handler.isra.12+0x8b0>
+    21ac:	ldr	r3, [sp, #72]	; 0x48
+    21b0:	ldrd	r0, [r7, #96]	; 0x60
+    21b4:	cmp	r3, #0
+    21b8:	add	r3, sp, #284	; 0x11c
+    21bc:	ldr	r2, [r7, #112]	; 0x70
+    21c0:	strd	r0, [sp]
+    21c4:	str	r3, [sp, #8]
+    21c8:	ldrne	r1, [pc, #2564]	; 2bd4 <gen_field_match_handler.isra.12+0xc64>
+    21cc:	ldrne	r3, [sp, #32]
+    21d0:	ldreq	r3, [sp, #72]	; 0x48
+    21d4:	ldreq	r1, [pc, #2556]	; 2bd8 <gen_field_match_handler.isra.12+0xc68>
+    21d8:	mov	r0, r4
+    21dc:	bl	0 <println>
+    21e0:	cmp	r5, #0
+    21e4:	beq	2228 <gen_field_match_handler.isra.12+0x2b8>
+    21e8:	cmp	sl, #0
+    21ec:	beq	279c <gen_field_match_handler.isra.12+0x82c>
+    21f0:	ldr	r1, [pc, #2532]	; 2bdc <gen_field_match_handler.isra.12+0xc6c>
+    21f4:	mov	r0, r4
+    21f8:	bl	0 <println>
+    21fc:	ldr	r3, [r4, #220]	; 0xdc
+    2200:	cmp	r3, #0
+    2204:	beq	280c <gen_field_match_handler.isra.12+0x89c>
+    2208:	sub	r3, r3, #1
+    220c:	ldr	r1, [pc, #2508]	; 2be0 <gen_field_match_handler.isra.12+0xc70>
+    2210:	mov	r0, r4
+    2214:	str	r3, [r4, #220]	; 0xdc
+    2218:	bl	0 <println>
+    221c:	ldr	r1, [pc, #2496]	; 2be4 <gen_field_match_handler.isra.12+0xc74>
+    2220:	mov	r0, r4
+    2224:	bl	0 <println>
+    2228:	cmp	fp, #1
+    222c:	bne	26d0 <gen_field_match_handler.isra.12+0x760>
+    2230:	mov	fp, #2
+    2234:	ldr	r3, [r4, #220]	; 0xdc
+    2238:	cmp	r3, #0
+    223c:	beq	2b10 <gen_field_match_handler.isra.12+0xba0>
+    2240:	sub	r3, r3, #1
+    2244:	str	r3, [r4, #220]	; 0xdc
+    2248:	ldr	r1, [pc, #2456]	; 2be8 <gen_field_match_handler.isra.12+0xc78>
+    224c:	mov	r0, r4
+    2250:	bl	0 <println>
+    2254:	ldr	r1, [r7, #104]	; 0x68
+    2258:	ldr	r3, [r4, #220]	; 0xdc
+    225c:	add	r2, sp, #284	; 0x11c
+    2260:	add	r3, r3, #1
+    2264:	ldr	r0, [r1, #12]
+    2268:	str	r3, [r4, #220]	; 0xdc
+    226c:	bl	0 <__flatcc_fb_scoped_symbol_name>
+    2270:	ldr	r3, [r7, #104]	; 0x68
+    2274:	mov	r5, #0
+    2278:	ldr	r1, [pc, #2412]	; 2bec <gen_field_match_handler.isra.12+0xc7c>
+    227c:	ldrh	r3, [r3, #8]
+    2280:	mov	r0, r4
+    2284:	mov	r6, r5
+    2288:	cmp	r3, r5
+    228c:	ldr	r3, [sp, #32]
+    2290:	moveq	r3, #1
+    2294:	str	r3, [sp, #32]
+    2298:	ldr	r3, [sp, #544]	; 0x220
+    229c:	movne	r9, #1
+    22a0:	orr	sl, r3, r9
+    22a4:	bl	0 <println>
+    22a8:	ldr	r3, [sp, #20]
+    22ac:	cmp	r3, #1
+    22b0:	bne	2160 <gen_field_match_handler.isra.12+0x1f0>
+    22b4:	ldrd	r2, [r7, #80]	; 0x50
+    22b8:	ldr	r1, [pc, #2352]	; 2bf0 <gen_field_match_handler.isra.12+0xc80>
+    22bc:	mov	r0, r4
+    22c0:	bl	0 <println>
+    22c4:	cmp	r6, #0
+    22c8:	beq	2174 <gen_field_match_handler.isra.12+0x204>
+    22cc:	mov	r2, r8
+    22d0:	ldr	r1, [pc, #2332]	; 2bf4 <gen_field_match_handler.isra.12+0xc84>
+    22d4:	mov	r0, r4
+    22d8:	bl	0 <println>
+    22dc:	ldr	r1, [pc, #2324]	; 2bf8 <gen_field_match_handler.isra.12+0xc88>
+    22e0:	mov	r0, r4
+    22e4:	bl	0 <println>
+    22e8:	ldr	r3, [r4, #220]	; 0xdc
+    22ec:	mov	r2, r8
+    22f0:	add	r3, r3, #1
+    22f4:	str	r3, [r4, #220]	; 0xdc
+    22f8:	ldr	r1, [pc, #2300]	; 2bfc <gen_field_match_handler.isra.12+0xc8c>
+    22fc:	mov	r0, r4
+    2300:	bl	0 <println>
+    2304:	ldr	r1, [pc, #2292]	; 2c00 <gen_field_match_handler.isra.12+0xc90>
+    2308:	mov	r0, r4
+    230c:	bl	0 <println>
+    2310:	ldr	r3, [r4, #220]	; 0xdc
+    2314:	cmp	r3, #0
+    2318:	beq	2afc <gen_field_match_handler.isra.12+0xb8c>
+    231c:	sub	r3, r3, #1
+    2320:	str	r3, [r4, #220]	; 0xdc
+    2324:	ldr	r1, [pc, #2228]	; 2be0 <gen_field_match_handler.isra.12+0xc70>
+    2328:	mov	r0, r4
+    232c:	bl	0 <println>
+    2330:	ldr	r3, [sp, #64]	; 0x40
+    2334:	ldr	r2, [sp, #60]	; 0x3c
+    2338:	orr	r6, r3, r5
+    233c:	ldr	r3, [sp, #44]	; 0x2c
+    2340:	orr	r3, r3, r2
+    2344:	orrs	r3, r3, r6
+    2348:	bne	2868 <gen_field_match_handler.isra.12+0x8f8>
+    234c:	ldrh	r3, [r7, #56]	; 0x38
+    2350:	sub	r3, r3, #3
+    2354:	cmp	r3, #3
+    2358:	ldrls	pc, [pc, r3, lsl #2]
+    235c:	b	289c <gen_field_match_handler.isra.12+0x92c>
+    2360:	.word	0x00002734
+    2364:	.word	0x00002728
+    2368:	.word	0x00002658
+    236c:	.word	0x00002658
+    2370:	ldr	r3, [r7, #16]
+    2374:	mov	fp, #0
+    2378:	str	fp, [sp, #60]	; 0x3c
+    237c:	str	fp, [sp, #44]	; 0x2c
+    2380:	str	r3, [sp, #24]
+    2384:	mov	r9, #0
+    2388:	and	r3, r5, #1
+    238c:	str	r9, [sp, #32]
+    2390:	str	r9, [sp, #40]	; 0x28
+    2394:	str	r9, [sp, #56]	; 0x38
+    2398:	str	r9, [sp, #52]	; 0x34
+    239c:	str	r3, [sp, #48]	; 0x30
+    23a0:	mov	r6, #1
+    23a4:	b	205c <gen_field_match_handler.isra.12+0xec>
+    23a8:	ldrh	r3, [r7, #72]	; 0x48
+    23ac:	ldr	r1, [r7, #104]	; 0x68
+    23b0:	ldr	r0, [r7, #16]
+    23b4:	adds	fp, r1, #0
+    23b8:	movne	fp, #1
+    23bc:	ands	r1, r3, #3072	; 0xc00
+    23c0:	str	r1, [sp, #52]	; 0x34
+    23c4:	and	r1, r3, #1024	; 0x400
+    23c8:	and	r3, r3, #2048	; 0x800
+    23cc:	str	r0, [sp, #24]
+    23d0:	str	r1, [sp, #44]	; 0x2c
+    23d4:	str	r3, [sp, #60]	; 0x3c
+    23d8:	beq	2384 <gen_field_match_handler.isra.12+0x414>
+    23dc:	ldr	r3, [sp, #24]
+    23e0:	eor	r2, r2, #1
+    23e4:	cmp	r3, #4
+    23e8:	orrne	r2, r2, #1
+    23ec:	cmp	r2, #0
+    23f0:	str	r2, [sp, #48]	; 0x30
+    23f4:	bne	2b88 <gen_field_match_handler.isra.12+0xc18>
+    23f8:	ldr	r3, [sp, #544]	; 0x220
+    23fc:	ldr	r5, [sp, #48]	; 0x30
+    2400:	mov	r2, #4
+    2404:	cmp	r3, #0
+    2408:	mov	r9, r5
+    240c:	str	r5, [sp, #32]
+    2410:	str	r5, [sp, #40]	; 0x28
+    2414:	str	r5, [sp, #56]	; 0x38
+    2418:	str	r2, [sp, #24]
+    241c:	mov	fp, r5
+    2420:	mov	r6, r5
+    2424:	bne	2068 <gen_field_match_handler.isra.12+0xf8>
+    2428:	ldr	r3, [sp, #544]	; 0x220
+    242c:	str	r3, [sp, #68]	; 0x44
+    2430:	ldr	r3, [sp, #48]	; 0x30
+    2434:	ldr	r2, [sp, #68]	; 0x44
+    2438:	ands	r3, r3, r2
+    243c:	str	r3, [sp, #48]	; 0x30
+    2440:	streq	r3, [sp, #76]	; 0x4c
+    2444:	streq	r3, [sp, #72]	; 0x48
+    2448:	beq	208c <gen_field_match_handler.isra.12+0x11c>
+    244c:	mov	r3, #0
+    2450:	str	r3, [sp, #48]	; 0x30
+    2454:	str	r3, [sp, #76]	; 0x4c
+    2458:	mov	r5, r3
+    245c:	cmp	fp, #1
+    2460:	mov	r3, #1
+    2464:	str	r3, [sp, #72]	; 0x48
+    2468:	bne	2094 <gen_field_match_handler.isra.12+0x124>
+    246c:	ldr	r1, [pc, #1936]	; 2c04 <gen_field_match_handler.isra.12+0xc94>
+    2470:	mov	r0, r4
+    2474:	bl	0 <println>
+    2478:	ldr	r3, [r4, #220]	; 0xdc
+    247c:	add	r3, r3, #1
+    2480:	str	r3, [r4, #220]	; 0xdc
+    2484:	b	2094 <gen_field_match_handler.isra.12+0x124>
+    2488:	ldr	r1, [r7, #16]
+    248c:	add	r2, sp, #284	; 0x11c
+    2490:	ldr	r0, [r1, #12]
+    2494:	bl	0 <__flatcc_fb_scoped_symbol_name>
+    2498:	ldr	r2, [r7, #16]
+    249c:	ldrh	r3, [r2, #8]
+    24a0:	clz	r1, r3
+    24a4:	lsr	r1, r1, #5
+    24a8:	str	r1, [sp, #32]
+    24ac:	sub	r1, r3, #3
+    24b0:	clz	r1, r1
+    24b4:	lsr	r1, r1, #5
+    24b8:	str	r1, [sp, #56]	; 0x38
+    24bc:	ldr	r1, [sp, #544]	; 0x220
+    24c0:	sub	r9, r3, #1
+    24c4:	cmp	r1, #0
+    24c8:	cmpeq	r3, #4
+    24cc:	clz	r9, r9
+    24d0:	moveq	r1, #1
+    24d4:	lsr	r9, r9, #5
+    24d8:	movne	r1, #0
+    24dc:	beq	2a58 <gen_field_match_handler.isra.12+0xae8>
+    24e0:	cmp	r3, #3
+    24e4:	beq	2a8c <gen_field_match_handler.isra.12+0xb1c>
+    24e8:	str	r1, [sp, #24]
+    24ec:	mov	r6, r1
+    24f0:	str	r1, [sp, #56]	; 0x38
+    24f4:	str	r1, [sp, #40]	; 0x28
+    24f8:	b	2040 <gen_field_match_handler.isra.12+0xd0>
+    24fc:	mov	r3, #0
+    2500:	str	r3, [sp, #24]
+    2504:	mov	r9, r3
+    2508:	str	r3, [sp, #32]
+    250c:	mov	r6, r3
+    2510:	str	r3, [sp, #56]	; 0x38
+    2514:	str	r3, [sp, #40]	; 0x28
+    2518:	b	2040 <gen_field_match_handler.isra.12+0xd0>
+    251c:	ldr	r3, [sp, #24]
+    2520:	sub	r3, r3, #1
+    2524:	cmp	r3, #10
+    2528:	ldrls	pc, [pc, r3, lsl #2]
+    252c:	b	2988 <gen_field_match_handler.isra.12+0xa18>
+    2530:	.word	0x0000263c
+    2534:	.word	0x00002a2c
+    2538:	.word	0x0000258c
+    253c:	.word	0x00002a1c
+    2540:	.word	0x0000255c
+    2544:	.word	0x00002a0c
+    2548:	.word	0x000029fc
+    254c:	.word	0x000029ec
+    2550:	.word	0x000029dc
+    2554:	.word	0x000029cc
+    2558:	.word	0x000029bc
+    255c:	cmp	r5, #0
+    2560:	beq	28d0 <gen_field_match_handler.isra.12+0x960>
+    2564:	ldr	r3, [pc, #1692]	; 2c08 <gen_field_match_handler.isra.12+0xc98>
+    2568:	cmp	sl, #0
+    256c:	mov	r6, r5
+    2570:	ldr	r8, [pc, #1684]	; 2c0c <gen_field_match_handler.isra.12+0xc9c>
+    2574:	str	r3, [sp, #36]	; 0x24
+    2578:	bne	20cc <gen_field_match_handler.isra.12+0x15c>
+    257c:	ldr	r1, [pc, #1676]	; 2c10 <gen_field_match_handler.isra.12+0xca0>
+    2580:	mov	r0, r4
+    2584:	bl	0 <println>
+    2588:	b	2104 <gen_field_match_handler.isra.12+0x194>
+    258c:	ldr	r8, [pc, #1664]	; 2c14 <gen_field_match_handler.isra.12+0xca4>
+    2590:	ldr	r3, [pc, #1664]	; 2c18 <gen_field_match_handler.isra.12+0xca8>
+    2594:	str	r3, [sp, #36]	; 0x24
+    2598:	cmp	r5, #0
+    259c:	bne	2650 <gen_field_match_handler.isra.12+0x6e0>
+    25a0:	mov	r6, r5
+    25a4:	ldr	r2, [sp, #36]	; 0x24
+    25a8:	ldr	r1, [pc, #1644]	; 2c1c <gen_field_match_handler.isra.12+0xcac>
+    25ac:	mov	r0, r4
+    25b0:	bl	0 <println>
+    25b4:	ldr	r1, [pc, #1636]	; 2c20 <gen_field_match_handler.isra.12+0xcb0>
+    25b8:	mov	r0, r4
+    25bc:	bl	0 <println>
+    25c0:	ldr	r3, [r4, #220]	; 0xdc
+    25c4:	ldr	r2, [sp, #56]	; 0x38
+    25c8:	add	r3, r3, #2
+    25cc:	cmp	r2, #0
+    25d0:	str	r3, [r4, #220]	; 0xdc
+    25d4:	beq	25e8 <gen_field_match_handler.isra.12+0x678>
+    25d8:	add	r2, sp, #284	; 0x11c
+    25dc:	ldr	r1, [pc, #1600]	; 2c24 <gen_field_match_handler.isra.12+0xcb4>
+    25e0:	mov	r0, r4
+    25e4:	bl	0 <println>
+    25e8:	ldr	r2, [r4, #208]	; 0xd0
+    25ec:	add	r3, sp, #80	; 0x50
+    25f0:	ldr	r1, [pc, #1584]	; 2c28 <gen_field_match_handler.isra.12+0xcb8>
+    25f4:	ldr	r2, [r2, #160]	; 0xa0
+    25f8:	mov	r0, r4
+    25fc:	bl	0 <println>
+    2600:	ldr	r3, [r4, #208]	; 0xd0
+    2604:	ldr	r1, [pc, #1568]	; 2c2c <gen_field_match_handler.isra.12+0xcbc>
+    2608:	mov	r0, r4
+    260c:	ldr	r2, [r3, #160]	; 0xa0
+    2610:	bl	0 <println>
+    2614:	ldr	r3, [r4, #220]	; 0xdc
+    2618:	cmp	r3, #0
+    261c:	beq	2ae8 <gen_field_match_handler.isra.12+0xb78>
+    2620:	cmp	r3, #1
+    2624:	beq	2ae0 <gen_field_match_handler.isra.12+0xb70>
+    2628:	sub	r3, r3, #2
+    262c:	mov	r5, r6
+    2630:	str	r3, [r4, #220]	; 0xdc
+    2634:	mov	r6, #1
+    2638:	b	2134 <gen_field_match_handler.isra.12+0x1c4>
+    263c:	ldr	r3, [pc, #1516]	; 2c30 <gen_field_match_handler.isra.12+0xcc0>
+    2640:	cmp	r5, #0
+    2644:	str	r3, [sp, #36]	; 0x24
+    2648:	ldr	r8, [pc, #1508]	; 2c34 <gen_field_match_handler.isra.12+0xcc4>
+    264c:	beq	25a0 <gen_field_match_handler.isra.12+0x630>
+    2650:	mov	r6, r5
+    2654:	b	20c4 <gen_field_match_handler.isra.12+0x154>
+    2658:	ldrd	r2, [r7, #48]	; 0x30
+    265c:	ldr	r1, [pc, #1492]	; 2c38 <gen_field_match_handler.isra.12+0xcc8>
+    2660:	mov	r0, r4
+    2664:	bl	0 <println>
+    2668:	ldr	r3, [r4, #220]	; 0xdc
+    266c:	add	r3, r3, #1
+    2670:	str	r3, [r4, #220]	; 0xdc
+    2674:	ldrd	r0, [r7, #88]	; 0x58
+    2678:	ldrsh	ip, [r7, #74]	; 0x4a
+    267c:	ldrd	r2, [r7, #96]	; 0x60
+    2680:	strd	r0, [sp]
+    2684:	str	ip, [sp, #8]
+    2688:	ldr	r1, [pc, #1452]	; 2c3c <gen_field_match_handler.isra.12+0xccc>
+    268c:	mov	r0, r4
+    2690:	bl	0 <println>
+    2694:	mov	r3, r8
+    2698:	mov	r2, r4
+    269c:	ldr	r1, [pc, #1436]	; 2c40 <gen_field_match_handler.isra.12+0xcd0>
+    26a0:	mov	r0, r4
+    26a4:	bl	0 <println>
+    26a8:	ldr	r3, [r4, #220]	; 0xdc
+    26ac:	cmp	r3, #0
+    26b0:	beq	2b74 <gen_field_match_handler.isra.12+0xc04>
+    26b4:	sub	r3, r3, #1
+    26b8:	str	r3, [r4, #220]	; 0xdc
+    26bc:	ldr	r1, [pc, #1308]	; 2be0 <gen_field_match_handler.isra.12+0xc70>
+    26c0:	mov	r0, r4
+    26c4:	bl	0 <println>
+    26c8:	cmp	fp, #1
+    26cc:	beq	2230 <gen_field_match_handler.isra.12+0x2c0>
+    26d0:	cmp	fp, #2
+    26d4:	beq	2aa4 <gen_field_match_handler.isra.12+0xb34>
+    26d8:	ldr	r2, [sp, #60]	; 0x3c
+    26dc:	ldr	r3, [sp, #44]	; 0x2c
+    26e0:	orr	r3, r3, r2
+    26e4:	ldr	r2, [sp, #40]	; 0x28
+    26e8:	orr	r3, r3, r2
+    26ec:	ldr	r2, [sp, #32]
+    26f0:	orr	r3, r3, fp
+    26f4:	orr	r3, r3, r2
+    26f8:	orrs	r3, r3, r5
+    26fc:	beq	271c <gen_field_match_handler.isra.12+0x7ac>
+    2700:	ldr	r1, [pc, #1340]	; 2c44 <gen_field_match_handler.isra.12+0xcd4>
+    2704:	mov	r0, r4
+    2708:	ldrd	r2, [r7, #96]	; 0x60
+    270c:	bl	0 <println>
+    2710:	mov	r0, r4
+    2714:	ldr	r1, [pc, #1324]	; 2c48 <gen_field_match_handler.isra.12+0xcd8>
+    2718:	bl	0 <println>
+    271c:	mov	r0, #0
+    2720:	add	sp, sp, #508	; 0x1fc
+    2724:	pop	{r4, r5, r6, r7, r8, r9, sl, fp, pc}
+    2728:	ldrd	r2, [r7, #48]	; 0x30
+    272c:	ldr	r1, [pc, #1304]	; 2c4c <gen_field_match_handler.isra.12+0xcdc>
+    2730:	b	2660 <gen_field_match_handler.isra.12+0x6f0>
+    2734:	ldrd	r2, [r7, #48]	; 0x30
+    2738:	ldr	r1, [pc, #1296]	; 2c50 <gen_field_match_handler.isra.12+0xce0>
+    273c:	mov	r0, r4
+    2740:	bl	0 <println>
+    2744:	ldr	r3, [r4, #220]	; 0xdc
+    2748:	add	r3, r3, #1
+    274c:	str	r3, [r4, #220]	; 0xdc
+    2750:	b	2674 <gen_field_match_handler.isra.12+0x704>
+    2754:	ldrd	r0, [r7, #88]	; 0x58
+    2758:	ldrh	ip, [r7, #74]	; 0x4a
+    275c:	ldrd	r2, [r7, #96]	; 0x60
+    2760:	strd	r0, [sp]
+    2764:	str	ip, [sp, #8]
+    2768:	ldr	r1, [pc, #1252]	; 2c54 <gen_field_match_handler.isra.12+0xce4>
+    276c:	mov	r0, r4
+    2770:	bl	0 <println>
+    2774:	b	216c <gen_field_match_handler.isra.12+0x1fc>
+    2778:	add	r2, sp, #284	; 0x11c
+    277c:	ldr	r1, [pc, #1236]	; 2c58 <gen_field_match_handler.isra.12+0xce8>
+    2780:	mov	r0, r4
+    2784:	bl	0 <println>
+    2788:	b	21e0 <gen_field_match_handler.isra.12+0x270>
+    278c:	ldr	r1, [pc, #1224]	; 2c5c <gen_field_match_handler.isra.12+0xcec>
+    2790:	mov	r0, r4
+    2794:	bl	0 <println>
+    2798:	b	21e0 <gen_field_match_handler.isra.12+0x270>
+    279c:	ldr	r1, [pc, #1212]	; 2c60 <gen_field_match_handler.isra.12+0xcf0>
+    27a0:	mov	r0, r4
+    27a4:	bl	0 <println>
+    27a8:	ldr	r1, [pc, #1176]	; 2c48 <gen_field_match_handler.isra.12+0xcd8>
+    27ac:	mov	r0, r4
+    27b0:	bl	0 <println>
+    27b4:	ldr	r1, [pc, #1056]	; 2bdc <gen_field_match_handler.isra.12+0xc6c>
+    27b8:	mov	r0, r4
+    27bc:	bl	0 <println>
+    27c0:	ldr	r3, [r4, #220]	; 0xdc
+    27c4:	cmp	r3, #0
+    27c8:	beq	280c <gen_field_match_handler.isra.12+0x89c>
+    27cc:	sub	r3, r3, #1
+    27d0:	mov	r0, r4
+    27d4:	str	r3, [r4, #220]	; 0xdc
+    27d8:	ldr	r1, [pc, #1024]	; 2be0 <gen_field_match_handler.isra.12+0xc70>
+    27dc:	bl	0 <println>
+    27e0:	ldr	r1, [pc, #1148]	; 2c64 <gen_field_match_handler.isra.12+0xcf4>
+    27e4:	mov	r0, r4
+    27e8:	bl	0 <println>
+    27ec:	b	2228 <gen_field_match_handler.isra.12+0x2b8>
+    27f0:	ldr	r3, [sp, #44]	; 0x2c
+    27f4:	ldr	r1, [pc, #1132]	; 2c68 <gen_field_match_handler.isra.12+0xcf8>
+    27f8:	clz	r2, r3
+    27fc:	mov	r0, r4
+    2800:	lsr	r2, r2, #5
+    2804:	bl	0 <println>
+    2808:	b	21e0 <gen_field_match_handler.isra.12+0x270>
+    280c:	ldr	r3, [pc, #1112]	; 2c6c <gen_field_match_handler.isra.12+0xcfc>
+    2810:	ldr	r2, [pc, #1112]	; 2c70 <gen_field_match_handler.isra.12+0xd00>
+    2814:	ldr	r1, [pc, #1112]	; 2c74 <gen_field_match_handler.isra.12+0xd04>
+    2818:	ldr	r0, [pc, #1112]	; 2c78 <gen_field_match_handler.isra.12+0xd08>
+    281c:	bl	0 <__assert_fail>
+    2820:	ldr	r3, [sp, #48]	; 0x30
+    2824:	cmp	r3, #0
+    2828:	bne	28e0 <gen_field_match_handler.isra.12+0x970>
+    282c:	cmp	r5, #0
+    2830:	bne	21e8 <gen_field_match_handler.isra.12+0x278>
+    2834:	ldr	r1, [pc, #1088]	; 2c7c <gen_field_match_handler.isra.12+0xd0c>
+    2838:	ldr	r2, [pc, #1088]	; 2c80 <gen_field_match_handler.isra.12+0xd10>
+    283c:	mov	r3, #636	; 0x27c
+    2840:	ldr	r0, [r1]
+    2844:	str	r2, [sp]
+    2848:	ldr	r1, [pc, #1076]	; 2c84 <gen_field_match_handler.isra.12+0xd14>
+    284c:	ldr	r2, [pc, #1056]	; 2c74 <gen_field_match_handler.isra.12+0xd04>
+    2850:	bl	0 <fprintf>
+    2854:	ldr	r3, [pc, #1040]	; 2c6c <gen_field_match_handler.isra.12+0xcfc>
+    2858:	mov	r2, #636	; 0x27c
+    285c:	ldr	r1, [pc, #1040]	; 2c74 <gen_field_match_handler.isra.12+0xd04>
+    2860:	ldr	r0, [pc, #1056]	; 2c88 <gen_field_match_handler.isra.12+0xd18>
+    2864:	bl	0 <__assert_fail>
+    2868:	mov	r3, r8
+    286c:	mov	r2, r4
+    2870:	ldr	r1, [pc, #968]	; 2c40 <gen_field_match_handler.isra.12+0xcd0>
+    2874:	mov	r0, r4
+    2878:	bl	0 <println>
+    287c:	cmp	r6, #0
+    2880:	bne	21e0 <gen_field_match_handler.isra.12+0x270>
+    2884:	b	26a8 <gen_field_match_handler.isra.12+0x738>
+    2888:	add	r2, sp, #284	; 0x11c
+    288c:	ldr	r1, [pc, #1016]	; 2c8c <gen_field_match_handler.isra.12+0xd1c>
+    2890:	mov	r0, r4
+    2894:	bl	0 <println>
+    2898:	b	21e0 <gen_field_match_handler.isra.12+0x270>
+    289c:	ldr	r1, [pc, #984]	; 2c7c <gen_field_match_handler.isra.12+0xd0c>
+    28a0:	ldr	r2, [pc, #1000]	; 2c90 <gen_field_match_handler.isra.12+0xd20>
+    28a4:	ldr	r3, [pc, #1000]	; 2c94 <gen_field_match_handler.isra.12+0xd24>
+    28a8:	ldr	r0, [r1]
+    28ac:	str	r2, [sp]
+    28b0:	ldr	r1, [pc, #972]	; 2c84 <gen_field_match_handler.isra.12+0xd14>
+    28b4:	ldr	r2, [pc, #952]	; 2c74 <gen_field_match_handler.isra.12+0xd04>
+    28b8:	bl	0 <fprintf>
+    28bc:	ldr	r3, [pc, #936]	; 2c6c <gen_field_match_handler.isra.12+0xcfc>
+    28c0:	ldr	r2, [pc, #972]	; 2c94 <gen_field_match_handler.isra.12+0xd24>
+    28c4:	ldr	r1, [pc, #936]	; 2c74 <gen_field_match_handler.isra.12+0xd04>
+    28c8:	ldr	r0, [pc, #952]	; 2c88 <gen_field_match_handler.isra.12+0xd18>
+    28cc:	bl	0 <__assert_fail>
+    28d0:	ldr	r3, [pc, #816]	; 2c08 <gen_field_match_handler.isra.12+0xc98>
+    28d4:	ldr	r8, [pc, #816]	; 2c0c <gen_field_match_handler.isra.12+0xc9c>
+    28d8:	str	r3, [sp, #36]	; 0x24
+    28dc:	b	25a0 <gen_field_match_handler.isra.12+0x630>
+    28e0:	ldr	r1, [pc, #824]	; 2c20 <gen_field_match_handler.isra.12+0xcb0>
+    28e4:	mov	r0, r4
+    28e8:	bl	0 <println>
+    28ec:	ldr	r3, [r4, #220]	; 0xdc
+    28f0:	add	r2, sp, #284	; 0x11c
+    28f4:	add	r3, r3, #2
+    28f8:	str	r3, [r4, #220]	; 0xdc
+    28fc:	ldr	r1, [pc, #800]	; 2c24 <gen_field_match_handler.isra.12+0xcb4>
+    2900:	mov	r0, r4
+    2904:	bl	0 <println>
+    2908:	ldr	r2, [r4, #208]	; 0xd0
+    290c:	add	r3, sp, #80	; 0x50
+    2910:	ldr	r1, [pc, #784]	; 2c28 <gen_field_match_handler.isra.12+0xcb8>
+    2914:	ldr	r2, [r2, #160]	; 0xa0
+    2918:	mov	r0, r4
+    291c:	bl	0 <println>
+    2920:	ldr	r3, [r4, #208]	; 0xd0
+    2924:	ldr	r1, [pc, #768]	; 2c2c <gen_field_match_handler.isra.12+0xcbc>
+    2928:	mov	r0, r4
+    292c:	ldr	r2, [r3, #160]	; 0xa0
+    2930:	bl	0 <println>
+    2934:	ldr	r3, [r4, #220]	; 0xdc
+    2938:	cmp	r3, #0
+    293c:	beq	2b40 <gen_field_match_handler.isra.12+0xbd0>
+    2940:	cmp	r3, #1
+    2944:	beq	2b38 <gen_field_match_handler.isra.12+0xbc8>
+    2948:	ldr	r2, [sp, #76]	; 0x4c
+    294c:	sub	r3, r3, #2
+    2950:	cmp	r2, #0
+    2954:	str	r3, [r4, #220]	; 0xdc
+    2958:	ldrd	r0, [r7, #96]	; 0x60
+    295c:	ldr	r2, [r7, #112]	; 0x70
+    2960:	add	r3, sp, #284	; 0x11c
+    2964:	beq	2a3c <gen_field_match_handler.isra.12+0xacc>
+    2968:	strd	r0, [sp]
+    296c:	str	r3, [sp, #12]
+    2970:	str	r3, [sp, #8]
+    2974:	ldr	r1, [pc, #796]	; 2c98 <gen_field_match_handler.isra.12+0xd28>
+    2978:	mov	r3, #0
+    297c:	mov	r0, r4
+    2980:	bl	0 <println>
+    2984:	b	21e0 <gen_field_match_handler.isra.12+0x270>
+    2988:	ldr	r1, [pc, #748]	; 2c7c <gen_field_match_handler.isra.12+0xd0c>
+    298c:	ldr	r2, [pc, #776]	; 2c9c <gen_field_match_handler.isra.12+0xd2c>
+    2990:	mov	r3, #96	; 0x60
+    2994:	ldr	r0, [r1]
+    2998:	str	r2, [sp]
+    299c:	ldr	r1, [pc, #736]	; 2c84 <gen_field_match_handler.isra.12+0xd14>
+    29a0:	ldr	r2, [pc, #760]	; 2ca0 <gen_field_match_handler.isra.12+0xd30>
+    29a4:	bl	0 <fprintf>
+    29a8:	ldr	r3, [pc, #756]	; 2ca4 <gen_field_match_handler.isra.12+0xd34>
+    29ac:	mov	r2, #96	; 0x60
+    29b0:	ldr	r1, [pc, #744]	; 2ca0 <gen_field_match_handler.isra.12+0xd30>
+    29b4:	ldr	r0, [pc, #716]	; 2c88 <gen_field_match_handler.isra.12+0xd18>
+    29b8:	bl	0 <__assert_fail>
+    29bc:	ldr	r3, [pc, #740]	; 2ca8 <gen_field_match_handler.isra.12+0xd38>
+    29c0:	str	r3, [sp, #36]	; 0x24
+    29c4:	mov	r8, r3
+    29c8:	b	2598 <gen_field_match_handler.isra.12+0x628>
+    29cc:	ldr	r3, [pc, #728]	; 2cac <gen_field_match_handler.isra.12+0xd3c>
+    29d0:	str	r3, [sp, #36]	; 0x24
+    29d4:	mov	r8, r3
+    29d8:	b	2598 <gen_field_match_handler.isra.12+0x628>
+    29dc:	ldr	r3, [pc, #716]	; 2cb0 <gen_field_match_handler.isra.12+0xd40>
+    29e0:	ldr	r8, [pc, #716]	; 2cb4 <gen_field_match_handler.isra.12+0xd44>
+    29e4:	str	r3, [sp, #36]	; 0x24
+    29e8:	b	2598 <gen_field_match_handler.isra.12+0x628>
+    29ec:	ldr	r3, [pc, #708]	; 2cb8 <gen_field_match_handler.isra.12+0xd48>
+    29f0:	ldr	r8, [pc, #708]	; 2cbc <gen_field_match_handler.isra.12+0xd4c>
+    29f4:	str	r3, [sp, #36]	; 0x24
+    29f8:	b	2598 <gen_field_match_handler.isra.12+0x628>
+    29fc:	ldr	r3, [pc, #700]	; 2cc0 <gen_field_match_handler.isra.12+0xd50>
+    2a00:	ldr	r8, [pc, #700]	; 2cc4 <gen_field_match_handler.isra.12+0xd54>
+    2a04:	str	r3, [sp, #36]	; 0x24
+    2a08:	b	2598 <gen_field_match_handler.isra.12+0x628>
+    2a0c:	ldr	r3, [pc, #692]	; 2cc8 <gen_field_match_handler.isra.12+0xd58>
+    2a10:	ldr	r8, [pc, #692]	; 2ccc <gen_field_match_handler.isra.12+0xd5c>
+    2a14:	str	r3, [sp, #36]	; 0x24
+    2a18:	b	2598 <gen_field_match_handler.isra.12+0x628>
+    2a1c:	ldr	r3, [pc, #484]	; 2c08 <gen_field_match_handler.isra.12+0xc98>
+    2a20:	ldr	r8, [pc, #680]	; 2cd0 <gen_field_match_handler.isra.12+0xd60>
+    2a24:	str	r3, [sp, #36]	; 0x24
+    2a28:	b	2598 <gen_field_match_handler.isra.12+0x628>
+    2a2c:	ldr	r3, [pc, #672]	; 2cd4 <gen_field_match_handler.isra.12+0xd64>
+    2a30:	ldr	r8, [pc, #672]	; 2cd8 <gen_field_match_handler.isra.12+0xd68>
+    2a34:	str	r3, [sp, #36]	; 0x24
+    2a38:	b	2598 <gen_field_match_handler.isra.12+0x628>
+    2a3c:	strd	r0, [sp]
+    2a40:	str	r3, [sp, #8]
+    2a44:	ldr	r1, [pc, #656]	; 2cdc <gen_field_match_handler.isra.12+0xd6c>
+    2a48:	mov	r3, #0
+    2a4c:	mov	r0, r4
+    2a50:	bl	0 <println>
+    2a54:	b	21e0 <gen_field_match_handler.isra.12+0x270>
+    2a58:	mov	r3, #0
+    2a5c:	str	r3, [sp, #40]	; 0x28
+    2a60:	str	r3, [sp, #24]
+    2a64:	str	r3, [sp, #52]	; 0x34
+    2a68:	str	r3, [sp, #60]	; 0x3c
+    2a6c:	str	r3, [sp, #44]	; 0x2c
+    2a70:	mov	fp, r3
+    2a74:	mov	r6, r3
+    2a78:	and	r3, r5, #1
+    2a7c:	str	r3, [sp, #48]	; 0x30
+    2a80:	mov	r3, #1
+    2a84:	str	r3, [sp, #68]	; 0x44
+    2a88:	b	2430 <gen_field_match_handler.isra.12+0x4c0>
+    2a8c:	ldr	r3, [r2, #40]	; 0x28
+    2a90:	mov	r6, #1
+    2a94:	str	r3, [sp, #24]
+    2a98:	str	r1, [sp, #40]	; 0x28
+    2a9c:	str	r6, [sp, #56]	; 0x38
+    2aa0:	b	2040 <gen_field_match_handler.isra.12+0xd0>
+    2aa4:	ldr	r1, [pc, #564]	; 2ce0 <gen_field_match_handler.isra.12+0xd70>
+    2aa8:	mov	r0, r4
+    2aac:	bl	0 <println>
+    2ab0:	ldr	r1, [pc, #556]	; 2ce4 <gen_field_match_handler.isra.12+0xd74>
+    2ab4:	mov	r0, r4
+    2ab8:	bl	0 <println>
+    2abc:	ldr	r3, [r4, #220]	; 0xdc
+    2ac0:	cmp	r3, #0
+    2ac4:	beq	2b24 <gen_field_match_handler.isra.12+0xbb4>
+    2ac8:	sub	r3, r3, #1
+    2acc:	str	r3, [r4, #220]	; 0xdc
+    2ad0:	ldr	r1, [pc, #528]	; 2ce8 <gen_field_match_handler.isra.12+0xd78>
+    2ad4:	mov	r0, r4
+    2ad8:	bl	0 <println>
+    2adc:	b	26d8 <gen_field_match_handler.isra.12+0x768>
+    2ae0:	mov	r3, #0
+    2ae4:	str	r3, [r4, #220]	; 0xdc
+    2ae8:	ldr	r3, [pc, #380]	; 2c6c <gen_field_match_handler.isra.12+0xcfc>
+    2aec:	ldr	r2, [pc, #504]	; 2cec <gen_field_match_handler.isra.12+0xd7c>
+    2af0:	ldr	r1, [pc, #380]	; 2c74 <gen_field_match_handler.isra.12+0xd04>
+    2af4:	ldr	r0, [pc, #380]	; 2c78 <gen_field_match_handler.isra.12+0xd08>
+    2af8:	bl	0 <__assert_fail>
+    2afc:	ldr	r3, [pc, #360]	; 2c6c <gen_field_match_handler.isra.12+0xcfc>
+    2b00:	ldr	r2, [pc, #488]	; 2cf0 <gen_field_match_handler.isra.12+0xd80>
+    2b04:	ldr	r1, [pc, #360]	; 2c74 <gen_field_match_handler.isra.12+0xd04>
+    2b08:	ldr	r0, [pc, #360]	; 2c78 <gen_field_match_handler.isra.12+0xd08>
+    2b0c:	bl	0 <__assert_fail>
+    2b10:	ldr	r3, [pc, #340]	; 2c6c <gen_field_match_handler.isra.12+0xcfc>
+    2b14:	ldr	r2, [pc, #472]	; 2cf4 <gen_field_match_handler.isra.12+0xd84>
+    2b18:	ldr	r1, [pc, #340]	; 2c74 <gen_field_match_handler.isra.12+0xd04>
+    2b1c:	ldr	r0, [pc, #340]	; 2c78 <gen_field_match_handler.isra.12+0xd08>
+    2b20:	bl	0 <__assert_fail>
+    2b24:	ldr	r3, [pc, #320]	; 2c6c <gen_field_match_handler.isra.12+0xcfc>
+    2b28:	ldr	r2, [pc, #456]	; 2cf8 <gen_field_match_handler.isra.12+0xd88>
+    2b2c:	ldr	r1, [pc, #320]	; 2c74 <gen_field_match_handler.isra.12+0xd04>
+    2b30:	ldr	r0, [pc, #320]	; 2c78 <gen_field_match_handler.isra.12+0xd08>
+    2b34:	bl	0 <__assert_fail>
+    2b38:	ldr	r3, [sp, #68]	; 0x44
+    2b3c:	str	r3, [r4, #220]	; 0xdc
+    2b40:	ldr	r3, [pc, #292]	; 2c6c <gen_field_match_handler.isra.12+0xcfc>
+    2b44:	ldr	r2, [pc, #432]	; 2cfc <gen_field_match_handler.isra.12+0xd8c>
+    2b48:	ldr	r1, [pc, #292]	; 2c74 <gen_field_match_handler.isra.12+0xd04>
+    2b4c:	ldr	r0, [pc, #292]	; 2c78 <gen_field_match_handler.isra.12+0xd08>
+    2b50:	bl	0 <__assert_fail>
+    2b54:	ldr	r3, [sp, #48]	; 0x30
+    2b58:	str	r3, [sp, #68]	; 0x44
+    2b5c:	mov	r6, r3
+    2b60:	str	r3, [sp, #76]	; 0x4c
+    2b64:	str	r3, [sp, #72]	; 0x48
+    2b68:	mov	r3, #1
+    2b6c:	str	r3, [sp, #48]	; 0x30
+    2b70:	b	208c <gen_field_match_handler.isra.12+0x11c>
+    2b74:	ldr	r3, [pc, #240]	; 2c6c <gen_field_match_handler.isra.12+0xcfc>
+    2b78:	ldr	r2, [pc, #384]	; 2d00 <gen_field_match_handler.isra.12+0xd90>
+    2b7c:	ldr	r1, [pc, #240]	; 2c74 <gen_field_match_handler.isra.12+0xd04>
+    2b80:	ldr	r0, [pc, #240]	; 2c78 <gen_field_match_handler.isra.12+0xd08>
+    2b84:	bl	0 <__assert_fail>
+    2b88:	ldr	r1, [pc, #236]	; 2c7c <gen_field_match_handler.isra.12+0xd0c>
+    2b8c:	ldr	r2, [pc, #368]	; 2d04 <gen_field_match_handler.isra.12+0xd94>
+    2b90:	ldr	r3, [pc, #368]	; 2d08 <gen_field_match_handler.isra.12+0xd98>
+    2b94:	ldr	r0, [r1]
+    2b98:	str	r2, [sp]
+    2b9c:	ldr	r1, [pc, #224]	; 2c84 <gen_field_match_handler.isra.12+0xd14>
+    2ba0:	ldr	r2, [pc, #204]	; 2c74 <gen_field_match_handler.isra.12+0xd04>
+    2ba4:	bl	0 <fprintf>
+    2ba8:	ldr	r3, [pc, #188]	; 2c6c <gen_field_match_handler.isra.12+0xcfc>
+    2bac:	ldr	r2, [pc, #340]	; 2d08 <gen_field_match_handler.isra.12+0xd98>
+    2bb0:	ldr	r1, [pc, #188]	; 2c74 <gen_field_match_handler.isra.12+0xd04>
+    2bb4:	ldr	r0, [pc, #204]	; 2c88 <gen_field_match_handler.isra.12+0xd18>
+    2bb8:	bl	0 <__assert_fail>
+    2bbc:	.word	0x00008280
+    2bc0:	.word	0x00000a68
+    2bc4:	.word	0x00000ca8
+    2bc8:	.word	0x00000cfc
+    2bcc:	.word	0x00000d38
+    2bd0:	.word	0x00000df0
+    2bd4:	.word	0x000011ec
+    2bd8:	.word	0x00001250
+    2bdc:	.word	0x00001450
+    2be0:	.word	0x00000120
+    2be4:	.word	0x00001570
+    2be8:	.word	0x00000b80
+    2bec:	.word	0x00000b98
+    2bf0:	.word	0x00000e38
+    2bf4:	.word	0x00000eb8
+    2bf8:	.word	0x00000ef4
+    2bfc:	.word	0x00000f08
+    2c00:	.word	0x00000f60
+    2c04:	.word	0x00000b4c
+    2c08:	.word	0x00000a74
+    2c0c:	.word	0x00000a6c
+    2c10:	.word	0x00000c68
+    2c14:	.word	0x00000b08
+    2c18:	.word	0x00000afc
+    2c1c:	.word	0x00000d48
+    2c20:	.word	0x00000d54
+    2c24:	.word	0x00000d98
+    2c28:	.word	0x00000dac
+    2c2c:	.word	0x00000dcc
+    2c30:	.word	0x00000a7c
+    2c34:	.word	0x00000a88
+    2c38:	.word	0x00000f8c
+    2c3c:	.word	0x00001088
+    2c40:	.word	0x000010d8
+    2c44:	.word	0x000014e8
+    2c48:	.word	0x00001440
+    2c4c:	.word	0x00000fd0
+    2c50:	.word	0x00001014
+    2c54:	.word	0x00000e68
+    2c58:	.word	0x000010f8
+    2c5c:	.word	0x00001130
+    2c60:	.word	0x000013e8
+    2c64:	.word	0x0000153c
+    2c68:	.word	0x0000116c
+    2c6c:	.word	0x000000b0
+    2c70:	.word	0x00000287
+    2c74:	.word	0x000000b4
+    2c78:	.word	0x00000114
+    2c7c:	.word	0x00000000
+    2c80:	.word	0x000013b4
+    2c84:	.word	0x0000059c
+    2c88:	.word	0x000005e0
+    2c8c:	.word	0x000011bc
+    2c90:	.word	0x00001058
+    2c94:	.word	0x0000024e
+    2c98:	.word	0x000012ac
+    2c9c:	.word	0x00000c30
+    2ca0:	.word	0x00000bdc
+    2ca4:	.word	0x000000c8
+    2ca8:	.word	0x00000ad8
+    2cac:	.word	0x00000ae0
+    2cb0:	.word	0x00000ac8
+    2cb4:	.word	0x00000ad0
+    2cb8:	.word	0x00000ab8
+    2cbc:	.word	0x00000ac0
+    2cc0:	.word	0x00000aa8
+    2cc4:	.word	0x00000ab0
+    2cc8:	.word	0x00000a98
+    2ccc:	.word	0x00000aa0
+    2cd0:	.word	0x00000a90
+    2cd4:	.word	0x00000ae8
+    2cd8:	.word	0x00000af4
+    2cdc:	.word	0x00001340
+    2ce0:	.word	0x0000148c
+    2ce4:	.word	0x000014a4
+    2ce8:	.word	0x000014d4
+    2cec:	.word	0x0000021b
+    2cf0:	.word	0x0000022f
+    2cf4:	.word	0x000001ea
+    2cf8:	.word	0x00000295
+    2cfc:	.word	0x00000273
+    2d00:	.word	0x0000025a
+    2d04:	.word	0x00000b10
+    2d08:	.word	0x000001d2
+
+00002d0c <gen_field_match>:
+    2d0c:	push	{r4, r5, r6, r7, lr}
+    2d10:	sub	sp, sp, #12
+    2d14:	mov	r4, r0
+    2d18:	mov	r5, r1
+    2d1c:	mov	r6, r2
+    2d20:	ldr	r1, [pc, #128]	; 2da8 <gen_field_match+0x9c>
+    2d24:	ldr	r2, [sp, #32]
+    2d28:	mov	r7, r3
+    2d2c:	bl	0 <println>
+    2d30:	mov	r0, r4
+    2d34:	ldr	r1, [pc, #112]	; 2dac <gen_field_match+0xa0>
+    2d38:	bl	0 <println>
+    2d3c:	ldr	r2, [r4, #220]	; 0xdc
+    2d40:	mov	r3, r6
+    2d44:	add	r2, r2, #1
+    2d48:	str	r7, [sp]
+    2d4c:	add	r1, r5, #8
+    2d50:	str	r2, [r4, #220]	; 0xdc
+    2d54:	mov	r0, r4
+    2d58:	add	r2, r5, #12
+    2d5c:	bl	1f70 <gen_field_match_handler.isra.12>
+    2d60:	ldr	r3, [r4, #220]	; 0xdc
+    2d64:	cmp	r3, #0
+    2d68:	beq	2d94 <gen_field_match+0x88>
+    2d6c:	sub	r3, r3, #1
+    2d70:	str	r3, [r4, #220]	; 0xdc
+    2d74:	ldr	r1, [pc, #52]	; 2db0 <gen_field_match+0xa4>
+    2d78:	mov	r0, r4
+    2d7c:	bl	0 <println>
+    2d80:	ldr	r3, [r4, #220]	; 0xdc
+    2d84:	add	r3, r3, #1
+    2d88:	str	r3, [r4, #220]	; 0xdc
+    2d8c:	add	sp, sp, #12
+    2d90:	pop	{r4, r5, r6, r7, pc}
+    2d94:	ldr	r3, [pc, #24]	; 2db4 <gen_field_match+0xa8>
+    2d98:	ldr	r2, [pc, #24]	; 2db8 <gen_field_match+0xac>
+    2d9c:	ldr	r1, [pc, #24]	; 2dbc <gen_field_match+0xb0>
+    2da0:	ldr	r0, [pc, #24]	; 2dc0 <gen_field_match+0xb4>
+    2da4:	bl	0 <__assert_fail>
+    2da8:	.word	0x0000159c
+    2dac:	.word	0x000015e0
+    2db0:	.word	0x0000065c
+    2db4:	.word	0x000000dc
+    2db8:	.word	0x000002a3
+    2dbc:	.word	0x000000b4
+    2dc0:	.word	0x00000114
+
+00002dc4 <build_compound_dict.isra.14>:
+    2dc4:	push	{r3, r4, r5, r6, r7, r8, r9, sl, fp, lr}
+    2dc8:	subs	r5, r0, #0
+    2dcc:	beq	2f34 <build_compound_dict.isra.14+0x170>
+    2dd0:	mov	r0, #0
+    2dd4:	mov	r6, r0
+    2dd8:	mov	r4, r5
+    2ddc:	b	2df0 <build_compound_dict.isra.14+0x2c>
+    2de0:	add	r6, r6, #1
+    2de4:	ldr	r4, [r4]
+    2de8:	cmp	r4, #0
+    2dec:	beq	2e34 <build_compound_dict.isra.14+0x70>
+    2df0:	ldrh	r3, [r4, #72]	; 0x48
+    2df4:	tst	r3, #4
+    2df8:	bne	2de4 <build_compound_dict.isra.14+0x20>
+    2dfc:	ldrh	r3, [r4, #24]
+    2e00:	sub	r3, r3, #14
+    2e04:	cmp	r3, #1
+    2e08:	bhi	2de0 <build_compound_dict.isra.14+0x1c>
+    2e0c:	ldr	r3, [r4, #16]
+    2e10:	ldrh	r3, [r3, #8]
+    2e14:	cmp	r3, #4
+    2e18:	bne	2de0 <build_compound_dict.isra.14+0x1c>
+    2e1c:	ldr	r3, [r4, #4]
+    2e20:	add	r6, r6, #1
+    2e24:	ldr	r3, [r3, #4]
+    2e28:	add	r3, r3, #6
+    2e2c:	add	r0, r0, r3
+    2e30:	b	2de0 <build_compound_dict.isra.14+0x1c>
+    2e34:	cmp	r6, #0
+    2e38:	str	r6, [r1]
+    2e3c:	beq	2f28 <build_compound_dict.isra.14+0x164>
+    2e40:	lsl	r7, r6, #4
+    2e44:	add	r0, r0, r7
+    2e48:	bl	0 <malloc>
+    2e4c:	subs	r8, r0, #0
+    2e50:	beq	2f28 <build_compound_dict.isra.14+0x164>
+    2e54:	ldr	r9, [pc, #228]	; 2f40 <build_compound_dict.isra.14+0x17c>
+    2e58:	add	r7, r8, r7
+    2e5c:	mov	fp, r8
+    2e60:	mov	sl, #1
+    2e64:	b	2e78 <build_compound_dict.isra.14+0xb4>
+    2e68:	mov	fp, ip
+    2e6c:	ldr	r5, [r5]
+    2e70:	cmp	r5, #0
+    2e74:	beq	2f0c <build_compound_dict.isra.14+0x148>
+    2e78:	ldrh	r3, [r5, #72]	; 0x48
+    2e7c:	add	ip, fp, #16
+    2e80:	ands	r3, r3, #4
+    2e84:	bne	2e6c <build_compound_dict.isra.14+0xa8>
+    2e88:	ldr	r2, [r5, #4]
+    2e8c:	ldrh	r0, [r5, #24]
+    2e90:	ldm	r2, {r1, r2}
+    2e94:	sub	r0, r0, #14
+    2e98:	cmp	r0, #1
+    2e9c:	stm	fp, {r1, r2, r5}
+    2ea0:	str	r3, [fp, #12]
+    2ea4:	bhi	2e68 <build_compound_dict.isra.14+0xa4>
+    2ea8:	ldr	r3, [r5, #16]
+    2eac:	ldrh	r3, [r3, #8]
+    2eb0:	cmp	r3, #4
+    2eb4:	bne	2e68 <build_compound_dict.isra.14+0xa4>
+    2eb8:	add	r3, r2, #5
+    2ebc:	str	r4, [r5, #112]	; 0x70
+    2ec0:	mov	r0, r7
+    2ec4:	str	r7, [fp, #16]
+    2ec8:	str	r3, [fp, #20]
+    2ecc:	bl	0 <memcpy>
+    2ed0:	ldr	r2, [r5, #4]
+    2ed4:	ldrh	r3, [r9, #4]
+    2ed8:	ldr	r0, [r9]
+    2edc:	ldr	r1, [r2, #4]
+    2ee0:	add	r4, r4, #1
+    2ee4:	add	r2, r7, r1
+    2ee8:	str	r0, [r7, r1]
+    2eec:	strh	r3, [r2, #4]
+    2ef0:	str	r5, [fp, #24]
+    2ef4:	ldr	r5, [r5]
+    2ef8:	str	sl, [fp, #28]
+    2efc:	cmp	r5, #0
+    2f00:	add	r7, r2, #6
+    2f04:	add	fp, fp, #32
+    2f08:	bne	2e78 <build_compound_dict.isra.14+0xb4>
+    2f0c:	mov	r1, r6
+    2f10:	ldr	r3, [pc, #44]	; 2f44 <build_compound_dict.isra.14+0x180>
+    2f14:	mov	r2, #16
+    2f18:	mov	r0, r8
+    2f1c:	bl	0 <qsort>
+    2f20:	mov	r0, r8
+    2f24:	pop	{r3, r4, r5, r6, r7, r8, r9, sl, fp, pc}
+    2f28:	mov	r8, #0
+    2f2c:	mov	r0, r8
+    2f30:	pop	{r3, r4, r5, r6, r7, r8, r9, sl, fp, pc}
+    2f34:	mov	r8, r5
+    2f38:	str	r5, [r1]
+    2f3c:	b	2f20 <build_compound_dict.isra.14+0x15c>
+    2f40:	.word	0x000015f4
+    2f44:	.word	0x00000000
+
+00002f48 <gen_enum_parser>:
+    2f48:	ldrh	r2, [r1, #8]
+    2f4c:	push	{r4, r5, lr}
+    2f50:	sub	sp, sp, #268	; 0x10c
+    2f54:	sub	r2, r2, #3
+    2f58:	mov	r3, #0
+    2f5c:	cmp	r2, #1
+    2f60:	str	r3, [sp, #20]
+    2f64:	str	r3, [sp, #12]
+    2f68:	str	r3, [sp, #16]
+    2f6c:	str	r3, [sp, #24]
+    2f70:	str	r3, [sp, #28]
+    2f74:	str	r3, [sp, #32]
+    2f78:	str	r3, [sp, #36]	; 0x24
+    2f7c:	str	r3, [sp, #40]	; 0x28
+    2f80:	bhi	3194 <gen_enum_parser+0x24c>
+    2f84:	mov	r5, r1
+    2f88:	mov	r4, r0
+    2f8c:	add	r1, sp, #12
+    2f90:	ldr	r0, [r5, #20]
+    2f94:	bl	2dc4 <build_compound_dict.isra.14>
+    2f98:	cmp	r0, #0
+    2f9c:	str	r0, [sp, #16]
+    2fa0:	beq	3140 <gen_enum_parser+0x1f8>
+    2fa4:	ldr	r2, [pc, #528]	; 31bc <gen_enum_parser+0x274>
+    2fa8:	ldr	r1, [pc, #528]	; 31c0 <gen_enum_parser+0x278>
+    2fac:	mov	r3, #2
+    2fb0:	str	r2, [sp, #20]
+    2fb4:	str	r1, [sp, #24]
+    2fb8:	mov	r2, #220	; 0xdc
+    2fbc:	mov	r1, #0
+    2fc0:	add	r0, sp, #44	; 0x2c
+    2fc4:	str	r3, [sp, #32]
+    2fc8:	str	r5, [sp, #28]
+    2fcc:	bl	0 <memset>
+    2fd0:	add	r2, sp, #44	; 0x2c
+    2fd4:	mov	r1, r5
+    2fd8:	ldr	r0, [r5, #12]
+    2fdc:	bl	0 <__flatcc_fb_scoped_symbol_name>
+    2fe0:	add	r2, sp, #44	; 0x2c
+    2fe4:	ldr	r1, [pc, #472]	; 31c4 <gen_enum_parser+0x27c>
+    2fe8:	mov	r0, r4
+    2fec:	bl	0 <println>
+    2ff0:	ldr	r3, [r4, #220]	; 0xdc
+    2ff4:	ldr	r1, [pc, #460]	; 31c8 <gen_enum_parser+0x280>
+    2ff8:	add	r3, r3, #2
+    2ffc:	str	r3, [r4, #220]	; 0xdc
+    3000:	mov	r0, r4
+    3004:	bl	0 <println>
+    3008:	ldr	r3, [r4, #220]	; 0xdc
+    300c:	cmp	r3, #0
+    3010:	beq	3180 <gen_enum_parser+0x238>
+    3014:	cmp	r3, #1
+    3018:	moveq	r3, #0
+    301c:	streq	r3, [r4, #220]	; 0xdc
+    3020:	beq	3180 <gen_enum_parser+0x238>
+    3024:	sub	r3, r3, #2
+    3028:	str	r3, [r4, #220]	; 0xdc
+    302c:	ldr	r1, [pc, #408]	; 31cc <gen_enum_parser+0x284>
+    3030:	mov	r0, r4
+    3034:	bl	0 <println>
+    3038:	ldr	r3, [r4, #220]	; 0xdc
+    303c:	ldr	r2, [sp, #12]
+    3040:	add	r3, r3, #1
+    3044:	cmp	r2, #0
+    3048:	str	r3, [r4, #220]	; 0xdc
+    304c:	beq	30fc <gen_enum_parser+0x1b4>
+    3050:	ldr	r1, [pc, #376]	; 31d0 <gen_enum_parser+0x288>
+    3054:	mov	r0, r4
+    3058:	bl	0 <println>
+    305c:	ldr	r1, [pc, #368]	; 31d4 <gen_enum_parser+0x28c>
+    3060:	mov	r0, r4
+    3064:	bl	0 <println>
+    3068:	ldr	r1, [pc, #360]	; 31d8 <gen_enum_parser+0x290>
+    306c:	mov	r0, r4
+    3070:	bl	0 <println>
+    3074:	ldr	r1, [pc, #352]	; 31dc <gen_enum_parser+0x294>
+    3078:	mov	r0, r4
+    307c:	bl	0 <println>
+    3080:	ldr	r1, [pc, #344]	; 31e0 <gen_enum_parser+0x298>
+    3084:	mov	r0, r4
+    3088:	bl	0 <println>
+    308c:	ldr	r3, [sp, #12]
+    3090:	mov	r2, #0
+    3094:	sub	r3, r3, #1
+    3098:	add	r1, sp, #16
+    309c:	str	r2, [sp]
+    30a0:	mov	r0, r4
+    30a4:	bl	528 <gen_trie>
+    30a8:	ldr	r1, [pc, #308]	; 31e4 <gen_enum_parser+0x29c>
+    30ac:	mov	r0, r4
+    30b0:	bl	0 <println>
+    30b4:	ldr	r3, [r4, #220]	; 0xdc
+    30b8:	cmp	r3, #0
+    30bc:	beq	31a8 <gen_enum_parser+0x260>
+    30c0:	sub	r3, r3, #1
+    30c4:	str	r3, [r4, #220]	; 0xdc
+    30c8:	ldr	r1, [pc, #280]	; 31e8 <gen_enum_parser+0x2a0>
+    30cc:	mov	r0, r4
+    30d0:	bl	0 <println>
+    30d4:	mov	r0, r4
+    30d8:	ldr	r1, [pc, #252]	; 31dc <gen_enum_parser+0x294>
+    30dc:	bl	0 <println>
+    30e0:	ldr	r0, [sp, #16]
+    30e4:	cmp	r0, #0
+    30e8:	beq	30f0 <gen_enum_parser+0x1a8>
+    30ec:	bl	0 <free>
+    30f0:	mov	r0, #0
+    30f4:	add	sp, sp, #268	; 0x10c
+    30f8:	pop	{r4, r5, pc}
+    30fc:	ldr	r1, [pc, #232]	; 31ec <gen_enum_parser+0x2a4>
+    3100:	mov	r0, r4
+    3104:	bl	0 <println>
+    3108:	ldr	r1, [pc, #224]	; 31f0 <gen_enum_parser+0x2a8>
+    310c:	mov	r0, r4
+    3110:	bl	0 <println>
+    3114:	ldr	r1, [pc, #216]	; 31f4 <gen_enum_parser+0x2ac>
+    3118:	mov	r0, r4
+    311c:	bl	0 <println>
+    3120:	ldr	r3, [r4, #220]	; 0xdc
+    3124:	cmp	r3, #0
+    3128:	bne	30c0 <gen_enum_parser+0x178>
+    312c:	ldr	r3, [pc, #196]	; 31f8 <gen_enum_parser+0x2b0>
+    3130:	ldr	r2, [pc, #196]	; 31fc <gen_enum_parser+0x2b4>
+    3134:	ldr	r1, [pc, #196]	; 3200 <gen_enum_parser+0x2b8>
+    3138:	ldr	r0, [pc, #196]	; 3204 <gen_enum_parser+0x2bc>
+    313c:	bl	0 <__assert_fail>
+    3140:	ldr	r3, [sp, #12]
+    3144:	cmp	r3, #0
+    3148:	ble	2fa4 <gen_enum_parser+0x5c>
+    314c:	ldr	r1, [pc, #180]	; 3208 <gen_enum_parser+0x2c0>
+    3150:	ldr	r2, [pc, #180]	; 320c <gen_enum_parser+0x2c4>
+    3154:	ldr	r3, [pc, #180]	; 3210 <gen_enum_parser+0x2c8>
+    3158:	ldr	r0, [r1]
+    315c:	str	r2, [sp]
+    3160:	ldr	r1, [pc, #172]	; 3214 <gen_enum_parser+0x2cc>
+    3164:	ldr	r2, [pc, #148]	; 3200 <gen_enum_parser+0x2b8>
+    3168:	bl	0 <fprintf>
+    316c:	ldr	r3, [pc, #132]	; 31f8 <gen_enum_parser+0x2b0>
+    3170:	ldr	r2, [pc, #152]	; 3210 <gen_enum_parser+0x2c8>
+    3174:	ldr	r1, [pc, #132]	; 3200 <gen_enum_parser+0x2b8>
+    3178:	ldr	r0, [pc, #152]	; 3218 <gen_enum_parser+0x2d0>
+    317c:	bl	0 <__assert_fail>
+    3180:	ldr	r3, [pc, #112]	; 31f8 <gen_enum_parser+0x2b0>
+    3184:	ldr	r2, [pc, #144]	; 321c <gen_enum_parser+0x2d4>
+    3188:	ldr	r1, [pc, #112]	; 3200 <gen_enum_parser+0x2b8>
+    318c:	ldr	r0, [pc, #112]	; 3204 <gen_enum_parser+0x2bc>
+    3190:	bl	0 <__assert_fail>
+    3194:	ldr	r3, [pc, #92]	; 31f8 <gen_enum_parser+0x2b0>
+    3198:	ldr	r2, [pc, #128]	; 3220 <gen_enum_parser+0x2d8>
+    319c:	ldr	r1, [pc, #92]	; 3200 <gen_enum_parser+0x2b8>
+    31a0:	ldr	r0, [pc, #124]	; 3224 <gen_enum_parser+0x2dc>
+    31a4:	bl	0 <__assert_fail>
+    31a8:	ldr	r3, [pc, #72]	; 31f8 <gen_enum_parser+0x2b0>
+    31ac:	ldr	r2, [pc, #116]	; 3228 <gen_enum_parser+0x2e0>
+    31b0:	ldr	r1, [pc, #72]	; 3200 <gen_enum_parser+0x2b8>
+    31b4:	ldr	r0, [pc, #72]	; 3204 <gen_enum_parser+0x2bc>
+    31b8:	bl	0 <__assert_fail>
+	...
+    31c4:	.word	0x000015fc
+    31c8:	.word	0x00001660
+    31cc:	.word	0x00000414
+    31d0:	.word	0x0000087c
+    31d4:	.word	0x0000089c
+    31d8:	.word	0x000008b0
+    31dc:	.word	0x0000014c
+    31e0:	.word	0x00000220
+    31e4:	.word	0x00000724
+    31e8:	.word	0x00000120
+    31ec:	.word	0x00001694
+    31f0:	.word	0x000016b0
+    31f4:	.word	0x0000085c
+    31f8:	.word	0x000000ec
+    31fc:	.word	0x000004f5
+    3200:	.word	0x000000b4
+    3204:	.word	0x00000114
+    3208:	.word	0x00000000
+    320c:	.word	0x000007b8
+    3210:	.word	0x000004e1
+    3214:	.word	0x0000059c
+    3218:	.word	0x000005e0
+    321c:	.word	0x000004ef
+    3220:	.word	0x000004de
+    3224:	.word	0x000009e0
+    3228:	.word	0x000004fe
+
+0000322c <__flatcc_fb_gen_c_json_parser>:
+    322c:	ldr	r3, [r0, #208]	; 0xd0
+    3230:	push	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+    3234:	mov	r4, r0
+    3238:	sub	sp, sp, #268	; 0x10c
+    323c:	ldr	r2, [r3, #164]	; 0xa4
+    3240:	ldr	r1, [pc, #4060]	; 4224 <__flatcc_fb_gen_c_json_parser+0xff8>
+    3244:	bl	0 <println>
+    3248:	ldr	r3, [r4, #208]	; 0xd0
+    324c:	mov	r0, r4
+    3250:	ldr	r1, [pc, #4048]	; 4228 <__flatcc_fb_gen_c_json_parser+0xffc>
+    3254:	ldr	r2, [r3, #164]	; 0xa4
+    3258:	bl	0 <println>
+    325c:	mov	r0, r4
+    3260:	ldr	r1, [pc, #4036]	; 422c <__flatcc_fb_gen_c_json_parser+0x1000>
+    3264:	bl	0 <println>
+    3268:	mov	r0, r4
+    326c:	ldr	r1, [pc, #4028]	; 4230 <__flatcc_fb_gen_c_json_parser+0x1004>
+    3270:	bl	0 <println>
+    3274:	mov	r0, r4
+    3278:	ldr	r1, [pc, #4012]	; 422c <__flatcc_fb_gen_c_json_parser+0x1000>
+    327c:	bl	0 <println>
+    3280:	mov	r0, r4
+    3284:	ldr	r1, [pc, #4008]	; 4234 <__flatcc_fb_gen_c_json_parser+0x1008>
+    3288:	bl	0 <println>
+    328c:	mov	r0, r4
+    3290:	ldr	r2, [pc, #4000]	; 4238 <__flatcc_fb_gen_c_json_parser+0x100c>
+    3294:	ldr	r1, [pc, #4000]	; 423c <__flatcc_fb_gen_c_json_parser+0x1010>
+    3298:	bl	0 <__flatcc_fb_gen_c_includes>
+    329c:	ldr	r3, [r4, #212]	; 0xd4
+    32a0:	ldr	r3, [r3, #140]	; 0x8c
+    32a4:	cmp	r3, #0
+    32a8:	beq	32c0 <__flatcc_fb_gen_c_json_parser+0x94>
+    32ac:	ldr	r3, [r4, #204]	; 0xcc
+    32b0:	mov	r2, #36	; 0x24
+    32b4:	mov	r1, #1
+    32b8:	ldr	r0, [pc, #3968]	; 4240 <__flatcc_fb_gen_c_json_parser+0x1014>
+    32bc:	bl	0 <fwrite>
+    32c0:	ldr	r1, [pc, #3940]	; 422c <__flatcc_fb_gen_c_json_parser+0x1000>
+    32c4:	mov	r0, r4
+    32c8:	bl	0 <println>
+    32cc:	ldr	r6, [r4, #208]	; 0xd0
+    32d0:	add	r0, sp, #44	; 0x2c
+    32d4:	mov	r2, #220	; 0xdc
+    32d8:	ldr	r5, [r6, #52]	; 0x34
+    32dc:	mov	r1, #0
+    32e0:	bl	0 <memset>
+    32e4:	cmp	r5, #0
+    32e8:	beq	32f8 <__flatcc_fb_gen_c_json_parser+0xcc>
+    32ec:	ldrh	r3, [r5, #8]
+    32f0:	cmp	r3, #1
+    32f4:	bls	4694 <__flatcc_fb_gen_c_json_parser+0x1468>
+    32f8:	ldr	r5, [r6, #40]	; 0x28
+    32fc:	cmp	r5, #0
+    3300:	beq	33c4 <__flatcc_fb_gen_c_json_parser+0x198>
+    3304:	ldr	r7, [pc, #3896]	; 4244 <__flatcc_fb_gen_c_json_parser+0x1018>
+    3308:	ldr	r6, [pc, #3896]	; 4248 <__flatcc_fb_gen_c_json_parser+0x101c>
+    330c:	ldr	fp, [pc, #3896]	; 424c <__flatcc_fb_gen_c_json_parser+0x1020>
+    3310:	ldr	sl, [pc, #3896]	; 4250 <__flatcc_fb_gen_c_json_parser+0x1024>
+    3314:	ldr	r9, [pc, #3896]	; 4254 <__flatcc_fb_gen_c_json_parser+0x1028>
+    3318:	ldr	r8, [pc, #3896]	; 4258 <__flatcc_fb_gen_c_json_parser+0x102c>
+    331c:	ldrh	r3, [r5, #8]
+    3320:	cmp	r3, #4
+    3324:	ldrls	pc, [pc, r3, lsl #2]
+    3328:	b	33b4 <__flatcc_fb_gen_c_json_parser+0x188>
+    332c:	.word	0x00003514
+    3330:	.word	0x00003474
+    3334:	.word	0x000033b4
+    3338:	.word	0x000034a8
+    333c:	.word	0x00003340
+    3340:	add	r2, sp, #44	; 0x2c
+    3344:	mov	r1, r5
+    3348:	ldr	r0, [r5, #12]
+    334c:	bl	0 <__flatcc_fb_scoped_symbol_name>
+    3350:	add	r2, sp, #44	; 0x2c
+    3354:	mov	r1, r8
+    3358:	mov	r0, r4
+    335c:	bl	0 <println>
+    3360:	add	r2, sp, #44	; 0x2c
+    3364:	ldr	r1, [pc, #3824]	; 425c <__flatcc_fb_gen_c_json_parser+0x1030>
+    3368:	mov	r0, r4
+    336c:	bl	0 <println>
+    3370:	add	r2, sp, #44	; 0x2c
+    3374:	mov	r1, r7
+    3378:	mov	r0, r4
+    337c:	bl	0 <println>
+    3380:	ldr	r3, [r4, #220]	; 0xdc
+    3384:	mov	r1, r6
+    3388:	add	r3, r3, #2
+    338c:	str	r3, [r4, #220]	; 0xdc
+    3390:	mov	r0, r4
+    3394:	bl	0 <println>
+    3398:	ldr	r3, [r4, #220]	; 0xdc
+    339c:	cmp	r3, #0
+    33a0:	beq	47ec <__flatcc_fb_gen_c_json_parser+0x15c0>
+    33a4:	cmp	r3, #1
+    33a8:	beq	47e4 <__flatcc_fb_gen_c_json_parser+0x15b8>
+    33ac:	sub	r3, r3, #2
+    33b0:	str	r3, [r4, #220]	; 0xdc
+    33b4:	ldr	r5, [r5]
+    33b8:	cmp	r5, #0
+    33bc:	bne	331c <__flatcc_fb_gen_c_json_parser+0xf0>
+    33c0:	ldr	r6, [r4, #208]	; 0xd0
+    33c4:	ldr	r0, [r6, #60]	; 0x3c
+    33c8:	mov	r2, r4
+    33cc:	ldr	r1, [pc, #3724]	; 4260 <__flatcc_fb_gen_c_json_parser+0x1034>
+    33d0:	bl	0 <fb_scope_table_visit>
+    33d4:	ldr	r3, [r4, #208]	; 0xd0
+    33d8:	ldr	r1, [pc, #3716]	; 4264 <__flatcc_fb_gen_c_json_parser+0x1038>
+    33dc:	mov	r0, r4
+    33e0:	ldr	r2, [r3, #160]	; 0xa0
+    33e4:	bl	0 <println>
+    33e8:	ldr	r3, [r4, #220]	; 0xdc
+    33ec:	ldr	r1, [pc, #3668]	; 4248 <__flatcc_fb_gen_c_json_parser+0x101c>
+    33f0:	add	r3, r3, #2
+    33f4:	str	r3, [r4, #220]	; 0xdc
+    33f8:	mov	r0, r4
+    33fc:	bl	0 <println>
+    3400:	ldr	r3, [r4, #220]	; 0xdc
+    3404:	cmp	r3, #0
+    3408:	beq	499c <__flatcc_fb_gen_c_json_parser+0x1770>
+    340c:	cmp	r3, #1
+    3410:	moveq	r3, #0
+    3414:	streq	r3, [r4, #220]	; 0xdc
+    3418:	beq	499c <__flatcc_fb_gen_c_json_parser+0x1770>
+    341c:	sub	r3, r3, #2
+    3420:	str	r3, [r4, #220]	; 0xdc
+    3424:	ldr	r1, [pc, #3584]	; 422c <__flatcc_fb_gen_c_json_parser+0x1000>
+    3428:	mov	r0, r4
+    342c:	bl	0 <println>
+    3430:	ldr	r3, [r4, #208]	; 0xd0
+    3434:	ldr	r6, [r3, #40]	; 0x28
+    3438:	cmp	r6, #0
+    343c:	addeq	fp, sp, #16
+    3440:	beq	356c <__flatcc_fb_gen_c_json_parser+0x340>
+    3444:	ldr	r9, [pc, #3852]	; 4358 <__flatcc_fb_gen_c_json_parser+0x112c>
+    3448:	ldr	sl, [pc, #3548]	; 422c <__flatcc_fb_gen_c_json_parser+0x1000>
+    344c:	add	fp, sp, #16
+    3450:	ldrh	r3, [r6, #8]
+    3454:	cmp	r3, #4
+    3458:	ldrls	pc, [pc, r3, lsl #2]
+    345c:	b	355c <__flatcc_fb_gen_c_json_parser+0x330>
+    3460:	.word	0x00003d54
+    3464:	.word	0x000039d4
+    3468:	.word	0x0000355c
+    346c:	.word	0x00003d44
+    3470:	.word	0x00003538
+    3474:	add	r2, sp, #44	; 0x2c
+    3478:	mov	r1, r5
+    347c:	ldr	r0, [r5, #12]
+    3480:	bl	0 <__flatcc_fb_scoped_symbol_name>
+    3484:	add	r2, sp, #44	; 0x2c
+    3488:	mov	r1, sl
+    348c:	mov	r0, r4
+    3490:	bl	0 <println>
+    3494:	add	r2, sp, #44	; 0x2c
+    3498:	mov	r1, r9
+    349c:	mov	r0, r4
+    34a0:	bl	0 <println>
+    34a4:	b	33b4 <__flatcc_fb_gen_c_json_parser+0x188>
+    34a8:	add	r2, sp, #44	; 0x2c
+    34ac:	mov	r1, r5
+    34b0:	ldr	r0, [r5, #12]
+    34b4:	bl	0 <__flatcc_fb_scoped_symbol_name>
+    34b8:	add	r2, sp, #44	; 0x2c
+    34bc:	mov	r1, r7
+    34c0:	mov	r0, r4
+    34c4:	bl	0 <println>
+    34c8:	ldr	r3, [r4, #220]	; 0xdc
+    34cc:	add	r2, sp, #44	; 0x2c
+    34d0:	add	r3, r3, #2
+    34d4:	str	r3, [r4, #220]	; 0xdc
+    34d8:	mov	r1, r6
+    34dc:	mov	r0, r4
+    34e0:	bl	0 <println>
+    34e4:	ldr	r3, [r4, #220]	; 0xdc
+    34e8:	cmp	r3, #0
+    34ec:	beq	3500 <__flatcc_fb_gen_c_json_parser+0x2d4>
+    34f0:	cmp	r3, #1
+    34f4:	bne	33ac <__flatcc_fb_gen_c_json_parser+0x180>
+    34f8:	mov	r3, #0
+    34fc:	str	r3, [r4, #220]	; 0xdc
+    3500:	ldr	r3, [pc, #3908]	; 444c <__flatcc_fb_gen_c_json_parser+0x1220>
+    3504:	ldr	r2, [pc, #3420]	; 4268 <__flatcc_fb_gen_c_json_parser+0x103c>
+    3508:	ldr	r1, [pc, #3896]	; 4448 <__flatcc_fb_gen_c_json_parser+0x121c>
+    350c:	ldr	r0, [pc, #3884]	; 4440 <__flatcc_fb_gen_c_json_parser+0x1214>
+    3510:	bl	0 <__assert_fail>
+    3514:	add	r2, sp, #44	; 0x2c
+    3518:	mov	r1, r5
+    351c:	ldr	r0, [r5, #12]
+    3520:	bl	0 <__flatcc_fb_scoped_symbol_name>
+    3524:	add	r2, sp, #44	; 0x2c
+    3528:	mov	r1, fp
+    352c:	mov	r0, r4
+    3530:	bl	0 <println>
+    3534:	b	33b4 <__flatcc_fb_gen_c_json_parser+0x188>
+    3538:	mov	r1, r6
+    353c:	mov	r0, r4
+    3540:	bl	1054 <gen_union_parser>
+    3544:	mov	r1, r6
+    3548:	mov	r0, r4
+    354c:	bl	1530 <gen_union_accept_type>
+    3550:	mov	r1, r6
+    3554:	mov	r0, r4
+    3558:	bl	2f48 <gen_enum_parser>
+    355c:	ldr	r6, [r6]
+    3560:	cmp	r6, #0
+    3564:	bne	3450 <__flatcc_fb_gen_c_json_parser+0x224>
+    3568:	ldr	r3, [r4, #208]	; 0xd0
+    356c:	ldr	r0, [r3, #60]	; 0x3c
+    3570:	mov	r2, r4
+    3574:	ldr	r1, [pc, #3312]	; 426c <__flatcc_fb_gen_c_json_parser+0x1040>
+    3578:	bl	0 <fb_scope_table_visit>
+    357c:	ldr	r5, [r4, #208]	; 0xd0
+    3580:	mov	r1, #0
+    3584:	str	r1, [sp, #16]
+    3588:	mov	r2, #44	; 0x2c
+    358c:	str	r1, [fp, #4]
+    3590:	str	r1, [fp, #8]
+    3594:	str	r1, [fp, #12]
+    3598:	str	r1, [fp, #16]
+    359c:	str	r1, [fp, #20]
+    35a0:	str	r1, [fp, #24]
+    35a4:	ldr	r8, [r5, #60]	; 0x3c
+    35a8:	add	r0, sp, r2
+    35ac:	bl	0 <memset>
+    35b0:	mov	r3, #1
+    35b4:	add	r2, sp, #44	; 0x2c
+    35b8:	mov	r0, r8
+    35bc:	ldr	r1, [pc, #3244]	; 4270 <__flatcc_fb_gen_c_json_parser+0x1044>
+    35c0:	str	r3, [sp, #44]	; 0x2c
+    35c4:	str	r5, [sp, #84]	; 0x54
+    35c8:	bl	0 <fb_scope_table_visit>
+    35cc:	ldr	r5, [sp, #48]	; 0x30
+    35d0:	mov	r1, #8
+    35d4:	mov	r0, r5
+    35d8:	bl	0 <calloc>
+    35dc:	ldr	r9, [sp, #52]	; 0x34
+    35e0:	mov	r1, #8
+    35e4:	mov	r6, r0
+    35e8:	mov	r0, r9
+    35ec:	str	r6, [sp, #60]	; 0x3c
+    35f0:	bl	0 <calloc>
+    35f4:	ldr	sl, [sp, #56]	; 0x38
+    35f8:	mov	r7, r0
+    35fc:	str	r0, [sp, #64]	; 0x40
+    3600:	mov	r0, sl
+    3604:	bl	0 <malloc>
+    3608:	cmp	r5, #0
+    360c:	movle	r5, #0
+    3610:	movgt	r5, #1
+    3614:	cmp	r6, #0
+    3618:	movne	r5, #0
+    361c:	cmp	r5, #0
+    3620:	str	r6, [sp, #72]	; 0x48
+    3624:	str	r7, [sp, #76]	; 0x4c
+    3628:	str	r0, [sp, #68]	; 0x44
+    362c:	str	r0, [sp, #80]	; 0x50
+    3630:	bne	37e0 <__flatcc_fb_gen_c_json_parser+0x5b4>
+    3634:	cmp	r9, #0
+    3638:	movle	r9, #0
+    363c:	movgt	r9, #1
+    3640:	cmp	r7, #0
+    3644:	movne	r9, #0
+    3648:	cmp	r9, #0
+    364c:	bne	37e0 <__flatcc_fb_gen_c_json_parser+0x5b4>
+    3650:	cmp	sl, #0
+    3654:	clz	r7, r0
+    3658:	lsr	r7, r7, #5
+    365c:	moveq	r7, #0
+    3660:	cmp	r7, #0
+    3664:	bne	37e0 <__flatcc_fb_gen_c_json_parser+0x5b4>
+    3668:	add	r2, sp, #44	; 0x2c
+    366c:	mov	r0, r8
+    3670:	ldr	r1, [pc, #3068]	; 4274 <__flatcc_fb_gen_c_json_parser+0x1048>
+    3674:	bl	0 <fb_scope_table_visit>
+    3678:	ldr	r1, [sp, #48]	; 0x30
+    367c:	ldr	r0, [sp, #60]	; 0x3c
+    3680:	bl	16fc <sort_entries>
+    3684:	ldr	r1, [sp, #52]	; 0x34
+    3688:	ldr	r0, [sp, #64]	; 0x40
+    368c:	bl	16fc <sort_entries>
+    3690:	ldr	r9, [sp, #52]	; 0x34
+    3694:	cmp	r9, #0
+    3698:	beq	4764 <__flatcc_fb_gen_c_json_parser+0x1538>
+    369c:	lsl	r8, r9, #4
+    36a0:	mov	r0, r8
+    36a4:	bl	0 <malloc>
+    36a8:	subs	sl, r0, #0
+    36ac:	beq	479c <__flatcc_fb_gen_c_json_parser+0x1570>
+    36b0:	cmp	r9, #0
+    36b4:	ble	36e4 <__flatcc_fb_gen_c_json_parser+0x4b8>
+    36b8:	ldr	r6, [sp, #64]	; 0x40
+    36bc:	add	r8, sl, r8
+    36c0:	mov	r5, sl
+    36c4:	ldr	r0, [r6, #4]
+    36c8:	str	r0, [r5]
+    36cc:	bl	0 <strlen>
+    36d0:	ldr	r3, [r6], #8
+    36d4:	stmib	r5, {r0, r3, r7}
+    36d8:	add	r5, r5, #16
+    36dc:	cmp	r8, r5
+    36e0:	bne	36c4 <__flatcc_fb_gen_c_json_parser+0x498>
+    36e4:	mov	r1, r9
+    36e8:	ldr	r3, [pc, #2952]	; 4278 <__flatcc_fb_gen_c_json_parser+0x104c>
+    36ec:	mov	r2, #16
+    36f0:	mov	r0, sl
+    36f4:	bl	0 <qsort>
+    36f8:	ldr	r9, [sp, #52]	; 0x34
+    36fc:	str	sl, [sp, #16]
+    3700:	ldr	r3, [r4, #208]	; 0xd0
+    3704:	ldr	r1, [pc, #2928]	; 427c <__flatcc_fb_gen_c_json_parser+0x1050>
+    3708:	ldr	r0, [pc, #2928]	; 4280 <__flatcc_fb_gen_c_json_parser+0x1054>
+    370c:	ldr	r2, [r3, #160]	; 0xa0
+    3710:	mov	r5, #0
+    3714:	mov	r3, #4
+    3718:	str	r1, [sp, #20]
+    371c:	str	r0, [sp, #24]
+    3720:	ldr	r1, [pc, #2876]	; 4264 <__flatcc_fb_gen_c_json_parser+0x1038>
+    3724:	mov	r0, r4
+    3728:	str	r3, [sp, #32]
+    372c:	str	r5, [sp, #28]
+    3730:	bl	0 <println>
+    3734:	ldr	r3, [r4, #220]	; 0xdc
+    3738:	ldr	r1, [pc, #2884]	; 4284 <__flatcc_fb_gen_c_json_parser+0x1058>
+    373c:	add	r3, r3, #2
+    3740:	str	r3, [r4, #220]	; 0xdc
+    3744:	mov	r0, r4
+    3748:	bl	0 <println>
+    374c:	ldr	r3, [r4, #220]	; 0xdc
+    3750:	cmp	r3, r5
+    3754:	beq	494c <__flatcc_fb_gen_c_json_parser+0x1720>
+    3758:	cmp	r3, #1
+    375c:	streq	r5, [r4, #220]	; 0xdc
+    3760:	beq	494c <__flatcc_fb_gen_c_json_parser+0x1720>
+    3764:	sub	r3, r3, #2
+    3768:	str	r3, [r4, #220]	; 0xdc
+    376c:	ldr	r1, [pc, #3044]	; 4358 <__flatcc_fb_gen_c_json_parser+0x112c>
+    3770:	mov	r0, r4
+    3774:	bl	0 <println>
+    3778:	ldr	r3, [r4, #220]	; 0xdc
+    377c:	cmp	r9, #0
+    3780:	add	r3, r3, #1
+    3784:	str	r3, [r4, #220]	; 0xdc
+    3788:	bne	4474 <__flatcc_fb_gen_c_json_parser+0x1248>
+    378c:	ldr	r1, [pc, #2804]	; 4288 <__flatcc_fb_gen_c_json_parser+0x105c>
+    3790:	mov	r0, r4
+    3794:	bl	0 <println>
+    3798:	ldr	r1, [pc, #2796]	; 428c <__flatcc_fb_gen_c_json_parser+0x1060>
+    379c:	mov	r0, r4
+    37a0:	bl	0 <println>
+    37a4:	ldr	r3, [r4, #220]	; 0xdc
+    37a8:	cmp	r3, #0
+    37ac:	beq	4960 <__flatcc_fb_gen_c_json_parser+0x1734>
+    37b0:	sub	r3, r3, #1
+    37b4:	str	r3, [r4, #220]	; 0xdc
+    37b8:	ldr	r1, [pc, #3004]	; 437c <__flatcc_fb_gen_c_json_parser+0x1150>
+    37bc:	mov	r0, r4
+    37c0:	bl	0 <println>
+    37c4:	mov	r0, r4
+    37c8:	ldr	r1, [pc, #2652]	; 422c <__flatcc_fb_gen_c_json_parser+0x1000>
+    37cc:	bl	0 <println>
+    37d0:	ldr	r0, [sp, #16]
+    37d4:	cmp	r0, #0
+    37d8:	beq	37e0 <__flatcc_fb_gen_c_json_parser+0x5b4>
+    37dc:	bl	0 <free>
+    37e0:	add	r0, sp, #44	; 0x2c
+    37e4:	bl	1bc0 <clear_catalog>
+    37e8:	ldr	r3, [r4, #208]	; 0xd0
+    37ec:	ldr	r5, [r3, #52]	; 0x34
+    37f0:	cmp	r5, #0
+    37f4:	beq	3990 <__flatcc_fb_gen_c_json_parser+0x764>
+    37f8:	ldrh	r6, [r5, #8]
+    37fc:	cmp	r6, #0
+    3800:	beq	4520 <__flatcc_fb_gen_c_json_parser+0x12f4>
+    3804:	cmp	r6, #1
+    3808:	bne	3990 <__flatcc_fb_gen_c_json_parser+0x764>
+    380c:	mov	r2, #220	; 0xdc
+    3810:	mov	r1, #0
+    3814:	add	r0, sp, #44	; 0x2c
+    3818:	bl	0 <memset>
+    381c:	add	r2, sp, #44	; 0x2c
+    3820:	mov	r1, r5
+    3824:	ldr	r0, [r5, #12]
+    3828:	bl	0 <__flatcc_fb_scoped_symbol_name>
+    382c:	ldr	r3, [r4, #208]	; 0xd0
+    3830:	ldr	r1, [pc, #2940]	; 43b4 <__flatcc_fb_gen_c_json_parser+0x1188>
+    3834:	mov	r0, r4
+    3838:	ldr	r2, [r3, #160]	; 0xa0
+    383c:	bl	0 <println>
+    3840:	ldr	r3, [r4, #220]	; 0xdc
+    3844:	ldr	r1, [pc, #2824]	; 4354 <__flatcc_fb_gen_c_json_parser+0x1128>
+    3848:	add	r3, r3, #2
+    384c:	str	r3, [r4, #220]	; 0xdc
+    3850:	mov	r0, r4
+    3854:	bl	0 <println>
+    3858:	ldr	r3, [r4, #220]	; 0xdc
+    385c:	cmp	r3, #0
+    3860:	beq	4924 <__flatcc_fb_gen_c_json_parser+0x16f8>
+    3864:	cmp	r3, #1
+    3868:	moveq	r3, #0
+    386c:	streq	r3, [r4, #220]	; 0xdc
+    3870:	beq	4924 <__flatcc_fb_gen_c_json_parser+0x16f8>
+    3874:	sub	r3, r3, #2
+    3878:	str	r3, [r4, #220]	; 0xdc
+    387c:	ldr	r1, [pc, #2772]	; 4358 <__flatcc_fb_gen_c_json_parser+0x112c>
+    3880:	mov	r0, r4
+    3884:	bl	0 <println>
+    3888:	ldr	r3, [r4, #220]	; 0xdc
+    388c:	ldr	r1, [pc, #2556]	; 4290 <__flatcc_fb_gen_c_json_parser+0x1064>
+    3890:	add	r3, r3, #1
+    3894:	str	r3, [r4, #220]	; 0xdc
+    3898:	mov	r0, r4
+    389c:	bl	0 <println>
+    38a0:	ldr	r1, [pc, #2744]	; 4360 <__flatcc_fb_gen_c_json_parser+0x1134>
+    38a4:	mov	r0, r4
+    38a8:	bl	0 <println>
+    38ac:	ldr	r1, [pc, #2424]	; 422c <__flatcc_fb_gen_c_json_parser+0x1000>
+    38b0:	mov	r0, r4
+    38b4:	bl	0 <println>
+    38b8:	ldr	r1, [pc, #2516]	; 4294 <__flatcc_fb_gen_c_json_parser+0x1068>
+    38bc:	mov	r0, r4
+    38c0:	bl	0 <println>
+    38c4:	ldr	r1, [pc, #2716]	; 4368 <__flatcc_fb_gen_c_json_parser+0x113c>
+    38c8:	mov	r0, r4
+    38cc:	bl	0 <println>
+    38d0:	ldr	r2, [r4, #208]	; 0xd0
+    38d4:	ldrh	r3, [r2, #16]
+    38d8:	cmp	r3, #2
+    38dc:	beq	4784 <__flatcc_fb_gen_c_json_parser+0x1558>
+    38e0:	ldr	r1, [pc, #2692]	; 436c <__flatcc_fb_gen_c_json_parser+0x1140>
+    38e4:	mov	r0, r4
+    38e8:	bl	0 <println>
+    38ec:	add	r2, sp, #44	; 0x2c
+    38f0:	ldr	r1, [pc, #2464]	; 4298 <__flatcc_fb_gen_c_json_parser+0x106c>
+    38f4:	mov	r0, r4
+    38f8:	bl	0 <println>
+    38fc:	ldr	r1, [pc, #2672]	; 4374 <__flatcc_fb_gen_c_json_parser+0x1148>
+    3900:	mov	r0, r4
+    3904:	bl	0 <println>
+    3908:	ldr	r3, [r4, #220]	; 0xdc
+    390c:	ldr	r1, [pc, #2660]	; 4378 <__flatcc_fb_gen_c_json_parser+0x114c>
+    3910:	add	r3, r3, #1
+    3914:	str	r3, [r4, #220]	; 0xdc
+    3918:	mov	r0, r4
+    391c:	bl	0 <println>
+    3920:	ldr	r3, [r4, #220]	; 0xdc
+    3924:	cmp	r3, #0
+    3928:	beq	4988 <__flatcc_fb_gen_c_json_parser+0x175c>
+    392c:	sub	r3, r3, #1
+    3930:	str	r3, [r4, #220]	; 0xdc
+    3934:	ldr	r1, [pc, #2624]	; 437c <__flatcc_fb_gen_c_json_parser+0x1150>
+    3938:	mov	r0, r4
+    393c:	bl	0 <println>
+    3940:	ldr	r1, [pc, #2616]	; 4380 <__flatcc_fb_gen_c_json_parser+0x1154>
+    3944:	mov	r0, r4
+    3948:	bl	0 <println>
+    394c:	ldr	r1, [pc, #2608]	; 4384 <__flatcc_fb_gen_c_json_parser+0x1158>
+    3950:	mov	r0, r4
+    3954:	bl	0 <println>
+    3958:	ldr	r1, [pc, #2600]	; 4388 <__flatcc_fb_gen_c_json_parser+0x115c>
+    395c:	mov	r0, r4
+    3960:	bl	0 <println>
+    3964:	ldr	r3, [r4, #220]	; 0xdc
+    3968:	cmp	r3, #0
+    396c:	beq	4974 <__flatcc_fb_gen_c_json_parser+0x1748>
+    3970:	sub	r3, r3, #1
+    3974:	ldr	r1, [pc, #2560]	; 437c <__flatcc_fb_gen_c_json_parser+0x1150>
+    3978:	mov	r0, r4
+    397c:	str	r3, [r4, #220]	; 0xdc
+    3980:	bl	0 <println>
+    3984:	ldr	r1, [pc, #2208]	; 422c <__flatcc_fb_gen_c_json_parser+0x1000>
+    3988:	mov	r0, r4
+    398c:	bl	0 <println>
+    3990:	ldr	r3, [r4, #212]	; 0xd4
+    3994:	ldr	r3, [r3, #140]	; 0x8c
+    3998:	cmp	r3, #0
+    399c:	beq	39b4 <__flatcc_fb_gen_c_json_parser+0x788>
+    39a0:	ldr	r3, [r4, #204]	; 0xcc
+    39a4:	mov	r2, #36	; 0x24
+    39a8:	mov	r1, #1
+    39ac:	ldr	r0, [pc, #2280]	; 429c <__flatcc_fb_gen_c_json_parser+0x1070>
+    39b0:	bl	0 <fwrite>
+    39b4:	ldr	r3, [r4, #208]	; 0xd0
+    39b8:	mov	r0, r4
+    39bc:	ldr	r1, [pc, #2268]	; 42a0 <__flatcc_fb_gen_c_json_parser+0x1074>
+    39c0:	ldr	r2, [r3, #164]	; 0xa4
+    39c4:	bl	0 <println>
+    39c8:	mov	r0, #0
+    39cc:	add	sp, sp, #268	; 0x10c
+    39d0:	pop	{r4, r5, r6, r7, r8, r9, sl, fp, pc}
+    39d4:	mov	r3, #0
+    39d8:	str	r3, [fp]
+    39dc:	str	r3, [fp, #4]
+    39e0:	str	r3, [fp, #8]
+    39e4:	str	r3, [fp, #12]
+    39e8:	str	r3, [fp, #16]
+    39ec:	str	r3, [fp, #20]
+    39f0:	str	r3, [fp, #24]
+    39f4:	ldrh	r3, [r6, #8]
+    39f8:	cmp	r3, #1
+    39fc:	bne	4800 <__flatcc_fb_gen_c_json_parser+0x15d4>
+    3a00:	add	r1, sp, #12
+    3a04:	ldr	r0, [r6, #20]
+    3a08:	bl	2dc4 <build_compound_dict.isra.14>
+    3a0c:	cmp	r0, #0
+    3a10:	str	r0, [sp, #16]
+    3a14:	beq	41b0 <__flatcc_fb_gen_c_json_parser+0xf84>
+    3a18:	ldr	r1, [pc, #2348]	; 434c <__flatcc_fb_gen_c_json_parser+0x1120>
+    3a1c:	ldr	r0, [pc, #2348]	; 4350 <__flatcc_fb_gen_c_json_parser+0x1124>
+    3a20:	mov	r3, #1
+    3a24:	mov	r2, #220	; 0xdc
+    3a28:	str	r1, [sp, #20]
+    3a2c:	str	r0, [sp, #24]
+    3a30:	mov	r1, #0
+    3a34:	add	r0, sp, #44	; 0x2c
+    3a38:	str	r3, [sp, #32]
+    3a3c:	str	r6, [sp, #28]
+    3a40:	bl	0 <memset>
+    3a44:	add	r2, sp, #44	; 0x2c
+    3a48:	mov	r1, r6
+    3a4c:	ldr	r0, [r6, #12]
+    3a50:	bl	0 <__flatcc_fb_scoped_symbol_name>
+    3a54:	add	r2, sp, #44	; 0x2c
+    3a58:	ldr	r1, [pc, #2116]	; 42a4 <__flatcc_fb_gen_c_json_parser+0x1078>
+    3a5c:	mov	r0, r4
+    3a60:	bl	0 <println>
+    3a64:	mov	r1, r9
+    3a68:	mov	r0, r4
+    3a6c:	bl	0 <println>
+    3a70:	ldr	r3, [r4, #220]	; 0xdc
+    3a74:	ldr	r1, [pc, #2092]	; 42a8 <__flatcc_fb_gen_c_json_parser+0x107c>
+    3a78:	add	r3, r3, #1
+    3a7c:	str	r3, [r4, #220]	; 0xdc
+    3a80:	mov	r0, r4
+    3a84:	bl	0 <println>
+    3a88:	ldr	r3, [sp, #12]
+    3a8c:	cmp	r3, #0
+    3a90:	ble	3ac4 <__flatcc_fb_gen_c_json_parser+0x898>
+    3a94:	ldr	r1, [pc, #2064]	; 42ac <__flatcc_fb_gen_c_json_parser+0x1080>
+    3a98:	mov	r0, r4
+    3a9c:	bl	0 <println>
+    3aa0:	ldr	r1, [pc, #2056]	; 42b0 <__flatcc_fb_gen_c_json_parser+0x1084>
+    3aa4:	mov	r0, r4
+    3aa8:	bl	0 <println>
+    3aac:	ldr	r1, [pc, #2180]	; 4338 <__flatcc_fb_gen_c_json_parser+0x110c>
+    3ab0:	mov	r0, r4
+    3ab4:	bl	0 <println>
+    3ab8:	ldr	r1, [pc, #2172]	; 433c <__flatcc_fb_gen_c_json_parser+0x1110>
+    3abc:	mov	r0, r4
+    3ac0:	bl	0 <println>
+    3ac4:	mov	r1, sl
+    3ac8:	mov	r0, r4
+    3acc:	bl	0 <println>
+    3ad0:	ldr	r1, [pc, #2012]	; 42b4 <__flatcc_fb_gen_c_json_parser+0x1088>
+    3ad4:	mov	r0, r4
+    3ad8:	bl	0 <println>
+    3adc:	ldr	r1, [pc, #2004]	; 42b8 <__flatcc_fb_gen_c_json_parser+0x108c>
+    3ae0:	mov	r0, r4
+    3ae4:	bl	0 <println>
+    3ae8:	ldr	r3, [r4, #220]	; 0xdc
+    3aec:	ldr	r2, [sp, #12]
+    3af0:	add	r3, r3, #1
+    3af4:	cmp	r2, #0
+    3af8:	str	r3, [r4, #220]	; 0xdc
+    3afc:	bne	4178 <__flatcc_fb_gen_c_json_parser+0xf4c>
+    3b00:	ldr	r1, [pc, #1972]	; 42bc <__flatcc_fb_gen_c_json_parser+0x1090>
+    3b04:	mov	r0, r4
+    3b08:	bl	0 <println>
+    3b0c:	ldr	r1, [pc, #2076]	; 4330 <__flatcc_fb_gen_c_json_parser+0x1104>
+    3b10:	mov	r0, r4
+    3b14:	bl	0 <println>
+    3b18:	ldr	r1, [pc, #1952]	; 42c0 <__flatcc_fb_gen_c_json_parser+0x1094>
+    3b1c:	mov	r0, r4
+    3b20:	bl	0 <println>
+    3b24:	ldr	r3, [r4, #220]	; 0xdc
+    3b28:	cmp	r3, #0
+    3b2c:	beq	49c4 <__flatcc_fb_gen_c_json_parser+0x1798>
+    3b30:	sub	r3, r3, #1
+    3b34:	str	r3, [r4, #220]	; 0xdc
+    3b38:	ldr	r1, [pc, #2108]	; 437c <__flatcc_fb_gen_c_json_parser+0x1150>
+    3b3c:	mov	r0, r4
+    3b40:	bl	0 <println>
+    3b44:	ldr	r1, [pc, #2040]	; 4344 <__flatcc_fb_gen_c_json_parser+0x1118>
+    3b48:	mov	r0, r4
+    3b4c:	bl	0 <println>
+    3b50:	ldr	r3, [sp, #12]
+    3b54:	cmp	r3, #0
+    3b58:	ble	3b8c <__flatcc_fb_gen_c_json_parser+0x960>
+    3b5c:	ldr	r2, [r4, #220]	; 0xdc
+    3b60:	mov	r3, #0
+    3b64:	str	r3, [r4, #220]	; 0xdc
+    3b68:	ldr	r1, [pc, #1876]	; 42c4 <__flatcc_fb_gen_c_json_parser+0x1098>
+    3b6c:	mov	r0, r4
+    3b70:	str	r2, [r4, #228]	; 0xe4
+    3b74:	bl	0 <println>
+    3b78:	ldr	r3, [r4, #228]	; 0xe4
+    3b7c:	ldr	r1, [pc, #1860]	; 42c8 <__flatcc_fb_gen_c_json_parser+0x109c>
+    3b80:	str	r3, [r4, #220]	; 0xdc
+    3b84:	mov	r0, r4
+    3b88:	bl	0 <println>
+    3b8c:	ldr	r3, [r4, #220]	; 0xdc
+    3b90:	cmp	r3, #0
+    3b94:	beq	4910 <__flatcc_fb_gen_c_json_parser+0x16e4>
+    3b98:	sub	r3, r3, #1
+    3b9c:	str	r3, [r4, #220]	; 0xdc
+    3ba0:	ldr	r1, [pc, #2004]	; 437c <__flatcc_fb_gen_c_json_parser+0x1150>
+    3ba4:	mov	r0, r4
+    3ba8:	bl	0 <println>
+    3bac:	mov	r0, r4
+    3bb0:	mov	r1, sl
+    3bb4:	bl	0 <println>
+    3bb8:	ldr	r0, [sp, #16]
+    3bbc:	cmp	r0, #0
+    3bc0:	beq	3bc8 <__flatcc_fb_gen_c_json_parser+0x99c>
+    3bc4:	bl	0 <free>
+    3bc8:	ldrh	r3, [r6, #8]
+    3bcc:	cmp	r3, #1
+    3bd0:	bne	48fc <__flatcc_fb_gen_c_json_parser+0x16d0>
+    3bd4:	mov	r2, #220	; 0xdc
+    3bd8:	mov	r1, #0
+    3bdc:	add	r0, sp, #44	; 0x2c
+    3be0:	bl	0 <memset>
+    3be4:	add	r2, sp, #44	; 0x2c
+    3be8:	mov	r1, r6
+    3bec:	ldr	r0, [r6, #12]
+    3bf0:	bl	0 <__flatcc_fb_scoped_symbol_name>
+    3bf4:	add	r2, sp, #44	; 0x2c
+    3bf8:	ldr	r1, [pc, #1740]	; 42cc <__flatcc_fb_gen_c_json_parser+0x10a0>
+    3bfc:	mov	r0, r4
+    3c00:	bl	0 <println>
+    3c04:	mov	r1, r9
+    3c08:	mov	r0, r4
+    3c0c:	bl	0 <println>
+    3c10:	ldr	r3, [r4, #220]	; 0xdc
+    3c14:	ldr	r1, [pc, #1684]	; 42b0 <__flatcc_fb_gen_c_json_parser+0x1084>
+    3c18:	add	r3, r3, #1
+    3c1c:	str	r3, [r4, #220]	; 0xdc
+    3c20:	mov	r0, r4
+    3c24:	bl	0 <println>
+    3c28:	mov	r1, sl
+    3c2c:	mov	r0, r4
+    3c30:	bl	0 <println>
+    3c34:	ldr	r1, [pc, #1684]	; 42d0 <__flatcc_fb_gen_c_json_parser+0x10a4>
+    3c38:	mov	r0, r4
+    3c3c:	bl	0 <println>
+    3c40:	ldrh	r0, [r6, #104]	; 0x68
+    3c44:	ldrd	r2, [r6, #112]	; 0x70
+    3c48:	ldr	r1, [pc, #1668]	; 42d4 <__flatcc_fb_gen_c_json_parser+0x10a8>
+    3c4c:	str	r0, [sp]
+    3c50:	mov	r0, r4
+    3c54:	bl	0 <println>
+    3c58:	add	r2, sp, #44	; 0x2c
+    3c5c:	ldr	r1, [pc, #1652]	; 42d8 <__flatcc_fb_gen_c_json_parser+0x10ac>
+    3c60:	mov	r0, r4
+    3c64:	bl	0 <println>
+    3c68:	ldr	r1, [pc, #1644]	; 42dc <__flatcc_fb_gen_c_json_parser+0x10b0>
+    3c6c:	mov	r0, r4
+    3c70:	bl	0 <println>
+    3c74:	ldr	r1, [pc, #1736]	; 4344 <__flatcc_fb_gen_c_json_parser+0x1118>
+    3c78:	mov	r0, r4
+    3c7c:	bl	0 <println>
+    3c80:	ldr	r2, [r4, #220]	; 0xdc
+    3c84:	mov	r3, #0
+    3c88:	str	r2, [r4, #228]	; 0xe4
+    3c8c:	str	r3, [r4, #220]	; 0xdc
+    3c90:	ldr	r1, [pc, #1580]	; 42c4 <__flatcc_fb_gen_c_json_parser+0x1098>
+    3c94:	mov	r0, r4
+    3c98:	bl	0 <println>
+    3c9c:	ldr	r3, [r4, #228]	; 0xe4
+    3ca0:	ldr	r1, [pc, #1568]	; 42c8 <__flatcc_fb_gen_c_json_parser+0x109c>
+    3ca4:	str	r3, [r4, #220]	; 0xdc
+    3ca8:	mov	r0, r4
+    3cac:	bl	0 <println>
+    3cb0:	ldr	r3, [r4, #220]	; 0xdc
+    3cb4:	cmp	r3, #0
+    3cb8:	beq	48e8 <__flatcc_fb_gen_c_json_parser+0x16bc>
+    3cbc:	sub	r3, r3, #1
+    3cc0:	str	r3, [r4, #220]	; 0xdc
+    3cc4:	ldr	r1, [pc, #1712]	; 437c <__flatcc_fb_gen_c_json_parser+0x1150>
+    3cc8:	mov	r0, r4
+    3ccc:	bl	0 <println>
+    3cd0:	mov	r1, sl
+    3cd4:	mov	r0, r4
+    3cd8:	bl	0 <println>
+    3cdc:	add	r2, sp, #44	; 0x2c
+    3ce0:	ldr	r1, [pc, #1528]	; 42e0 <__flatcc_fb_gen_c_json_parser+0x10b4>
+    3ce4:	mov	r0, r4
+    3ce8:	bl	0 <println>
+    3cec:	mov	r1, r9
+    3cf0:	mov	r0, r4
+    3cf4:	bl	0 <println>
+    3cf8:	ldr	r3, [r4, #220]	; 0xdc
+    3cfc:	add	r2, sp, #44	; 0x2c
+    3d00:	add	r3, r3, #1
+    3d04:	str	r3, [r4, #220]	; 0xdc
+    3d08:	ldr	r1, [pc, #1492]	; 42e4 <__flatcc_fb_gen_c_json_parser+0x10b8>
+    3d0c:	mov	r0, r4
+    3d10:	bl	0 <println>
+    3d14:	ldr	r3, [r4, #220]	; 0xdc
+    3d18:	cmp	r3, #0
+    3d1c:	beq	48d4 <__flatcc_fb_gen_c_json_parser+0x16a8>
+    3d20:	sub	r3, r3, #1
+    3d24:	mov	r0, r4
+    3d28:	str	r3, [r4, #220]	; 0xdc
+    3d2c:	ldr	r1, [pc, #1608]	; 437c <__flatcc_fb_gen_c_json_parser+0x1150>
+    3d30:	bl	0 <println>
+    3d34:	mov	r1, sl
+    3d38:	mov	r0, r4
+    3d3c:	bl	0 <println>
+    3d40:	b	355c <__flatcc_fb_gen_c_json_parser+0x330>
+    3d44:	mov	r1, r6
+    3d48:	mov	r0, r4
+    3d4c:	bl	2f48 <gen_enum_parser>
+    3d50:	b	355c <__flatcc_fb_gen_c_json_parser+0x330>
+    3d54:	mov	r3, #0
+    3d58:	str	r3, [fp]
+    3d5c:	str	r3, [fp, #4]
+    3d60:	str	r3, [fp, #8]
+    3d64:	str	r3, [fp, #12]
+    3d68:	str	r3, [fp, #16]
+    3d6c:	str	r3, [fp, #20]
+    3d70:	str	r3, [fp, #24]
+    3d74:	ldrh	r5, [r6, #8]
+    3d78:	cmp	r5, r3
+    3d7c:	bne	49b0 <__flatcc_fb_gen_c_json_parser+0x1784>
+    3d80:	add	r1, sp, #12
+    3d84:	ldr	r0, [r6, #20]
+    3d88:	bl	2dc4 <build_compound_dict.isra.14>
+    3d8c:	cmp	r0, #0
+    3d90:	str	r0, [sp, #16]
+    3d94:	beq	44f4 <__flatcc_fb_gen_c_json_parser+0x12c8>
+    3d98:	ldr	r1, [sp, #12]
+    3d9c:	ldr	r2, [pc, #1448]	; 434c <__flatcc_fb_gen_c_json_parser+0x1120>
+    3da0:	ldr	r3, [pc, #1448]	; 4350 <__flatcc_fb_gen_c_json_parser+0x1124>
+    3da4:	cmp	r1, #0
+    3da8:	str	r6, [sp, #28]
+    3dac:	str	r5, [sp, #32]
+    3db0:	str	r5, [sp, #36]	; 0x24
+    3db4:	str	r2, [sp, #20]
+    3db8:	str	r3, [sp, #24]
+    3dbc:	ble	3de4 <__flatcc_fb_gen_c_json_parser+0xbb8>
+    3dc0:	add	r1, r0, r1, lsl #4
+    3dc4:	mov	r3, r5
+    3dc8:	ldr	r2, [r0, #12]
+    3dcc:	add	r0, r0, #16
+    3dd0:	cmp	r2, #0
+    3dd4:	addne	r3, r3, #1
+    3dd8:	cmp	r1, r0
+    3ddc:	bne	3dc8 <__flatcc_fb_gen_c_json_parser+0xb9c>
+    3de0:	str	r3, [sp, #36]	; 0x24
+    3de4:	mov	r2, #220	; 0xdc
+    3de8:	mov	r1, #0
+    3dec:	add	r0, sp, #44	; 0x2c
+    3df0:	bl	0 <memset>
+    3df4:	add	r2, sp, #44	; 0x2c
+    3df8:	mov	r1, r6
+    3dfc:	ldr	r0, [r6, #12]
+    3e00:	bl	0 <__flatcc_fb_scoped_symbol_name>
+    3e04:	add	r2, sp, #44	; 0x2c
+    3e08:	ldr	r1, [pc, #1240]	; 42e8 <__flatcc_fb_gen_c_json_parser+0x10bc>
+    3e0c:	mov	r0, r4
+    3e10:	bl	0 <println>
+    3e14:	mov	r1, r9
+    3e18:	mov	r0, r4
+    3e1c:	bl	0 <println>
+    3e20:	ldr	r3, [r4, #220]	; 0xdc
+    3e24:	ldr	r1, [pc, #1148]	; 42a8 <__flatcc_fb_gen_c_json_parser+0x107c>
+    3e28:	add	r3, r3, #1
+    3e2c:	str	r3, [r4, #220]	; 0xdc
+    3e30:	mov	r0, r4
+    3e34:	bl	0 <println>
+    3e38:	ldr	r3, [sp, #12]
+    3e3c:	cmp	r3, #0
+    3e40:	ble	3e74 <__flatcc_fb_gen_c_json_parser+0xc48>
+    3e44:	ldr	r1, [pc, #1124]	; 42b0 <__flatcc_fb_gen_c_json_parser+0x1084>
+    3e48:	mov	r0, r4
+    3e4c:	bl	0 <println>
+    3e50:	ldr	r1, [pc, #1172]	; 42ec <__flatcc_fb_gen_c_json_parser+0x10c0>
+    3e54:	mov	r0, r4
+    3e58:	bl	0 <println>
+    3e5c:	ldr	r1, [pc, #1236]	; 4338 <__flatcc_fb_gen_c_json_parser+0x110c>
+    3e60:	mov	r0, r4
+    3e64:	bl	0 <println>
+    3e68:	ldr	r1, [pc, #1228]	; 433c <__flatcc_fb_gen_c_json_parser+0x1110>
+    3e6c:	mov	r0, r4
+    3e70:	bl	0 <println>
+    3e74:	ldr	r3, [sp, #36]	; 0x24
+    3e78:	cmp	r3, #0
+    3e7c:	bne	41f0 <__flatcc_fb_gen_c_json_parser+0xfc4>
+    3e80:	mov	r1, sl
+    3e84:	mov	r0, r4
+    3e88:	bl	0 <println>
+    3e8c:	ldr	r1, [pc, #1084]	; 42d0 <__flatcc_fb_gen_c_json_parser+0x10a4>
+    3e90:	mov	r0, r4
+    3e94:	bl	0 <println>
+    3e98:	ldrd	r2, [r6, #96]	; 0x60
+    3e9c:	ldr	r1, [pc, #1100]	; 42f0 <__flatcc_fb_gen_c_json_parser+0x10c4>
+    3ea0:	mov	r0, r4
+    3ea4:	bl	0 <println>
+    3ea8:	ldr	r2, [sp, #36]	; 0x24
+    3eac:	cmp	r2, #0
+    3eb0:	bne	4210 <__flatcc_fb_gen_c_json_parser+0xfe4>
+    3eb4:	ldr	r1, [pc, #1016]	; 42b4 <__flatcc_fb_gen_c_json_parser+0x1088>
+    3eb8:	mov	r0, r4
+    3ebc:	bl	0 <println>
+    3ec0:	ldr	r1, [pc, #1008]	; 42b8 <__flatcc_fb_gen_c_json_parser+0x108c>
+    3ec4:	mov	r0, r4
+    3ec8:	bl	0 <println>
+    3ecc:	ldr	r3, [r4, #220]	; 0xdc
+    3ed0:	ldr	r1, [pc, #1052]	; 42f4 <__flatcc_fb_gen_c_json_parser+0x10c8>
+    3ed4:	add	r3, r3, #1
+    3ed8:	str	r3, [r4, #220]	; 0xdc
+    3edc:	mov	r0, r4
+    3ee0:	bl	0 <println>
+    3ee4:	ldr	r3, [sp, #12]
+    3ee8:	cmp	r3, #0
+    3eec:	ble	4458 <__flatcc_fb_gen_c_json_parser+0x122c>
+    3ef0:	ldr	r1, [pc, #1096]	; 4340 <__flatcc_fb_gen_c_json_parser+0x1114>
+    3ef4:	mov	r0, r4
+    3ef8:	bl	0 <println>
+    3efc:	ldr	r3, [sp, #12]
+    3f00:	mov	r2, #0
+    3f04:	sub	r3, r3, #1
+    3f08:	str	r2, [sp]
+    3f0c:	mov	r1, fp
+    3f10:	mov	r0, r4
+    3f14:	bl	528 <gen_trie>
+    3f18:	ldr	r1, [pc, #984]	; 42f8 <__flatcc_fb_gen_c_json_parser+0x10cc>
+    3f1c:	mov	r0, r4
+    3f20:	bl	0 <println>
+    3f24:	ldr	r3, [r4, #220]	; 0xdc
+    3f28:	cmp	r3, #0
+    3f2c:	beq	48c0 <__flatcc_fb_gen_c_json_parser+0x1694>
+    3f30:	sub	r3, r3, #1
+    3f34:	str	r3, [r4, #220]	; 0xdc
+    3f38:	ldr	r1, [pc, #1084]	; 437c <__flatcc_fb_gen_c_json_parser+0x1150>
+    3f3c:	mov	r0, r4
+    3f40:	bl	0 <println>
+    3f44:	ldr	r1, [pc, #944]	; 42fc <__flatcc_fb_gen_c_json_parser+0x10d0>
+    3f48:	mov	r0, r4
+    3f4c:	bl	0 <println>
+    3f50:	ldr	r1, [sp, #12]
+    3f54:	cmp	r1, #0
+    3f58:	ble	4080 <__flatcc_fb_gen_c_json_parser+0xe54>
+    3f5c:	mov	r5, #0
+    3f60:	mov	r8, r5
+    3f64:	mov	r7, #1
+    3f68:	b	3fa0 <__flatcc_fb_gen_c_json_parser+0xd74>
+    3f6c:	subs	r2, r2, ip
+    3f70:	ldr	r1, [pc, #904]	; 4300 <__flatcc_fb_gen_c_json_parser+0x10d4>
+    3f74:	sbc	r3, r3, ip, asr #31
+    3f78:	mov	r0, r4
+    3f7c:	bl	0 <println>
+    3f80:	ldr	r3, [r4, #220]	; 0xdc
+    3f84:	ldr	r1, [sp, #12]
+    3f88:	mov	r7, r8
+    3f8c:	add	r3, r3, #1
+    3f90:	str	r3, [r4, #220]	; 0xdc
+    3f94:	add	r5, r5, #1
+    3f98:	cmp	r5, r1
+    3f9c:	bge	4014 <__flatcc_fb_gen_c_json_parser+0xde8>
+    3fa0:	ldr	r3, [sp, #16]
+    3fa4:	add	r3, r3, r5, lsl #4
+    3fa8:	ldr	r3, [r3, #8]
+    3fac:	ldrh	r2, [r3, #72]	; 0x48
+    3fb0:	tst	r2, #4
+    3fb4:	bne	3f94 <__flatcc_fb_gen_c_json_parser+0xd68>
+    3fb8:	ldrh	r0, [r3, #24]
+    3fbc:	sub	r0, r0, #14
+    3fc0:	cmp	r0, #1
+    3fc4:	movhi	ip, r8
+    3fc8:	ldrls	r0, [r3, #16]
+    3fcc:	ldrhls	ip, [r0, #8]
+    3fd0:	subls	ip, ip, #4
+    3fd4:	clzls	ip, ip
+    3fd8:	lsrls	ip, ip, #5
+    3fdc:	tst	r2, #256	; 0x100
+    3fe0:	beq	3f94 <__flatcc_fb_gen_c_json_parser+0xd68>
+    3fe4:	cmp	r7, #0
+    3fe8:	ldrd	r2, [r3, #96]	; 0x60
+    3fec:	bne	3f6c <__flatcc_fb_gen_c_json_parser+0xd40>
+    3ff0:	subs	r2, r2, ip
+    3ff4:	ldr	r1, [pc, #776]	; 4304 <__flatcc_fb_gen_c_json_parser+0x10d8>
+    3ff8:	sbc	r3, r3, ip, asr #31
+    3ffc:	mov	r0, r4
+    4000:	bl	0 <println>
+    4004:	ldr	r1, [sp, #12]
+    4008:	add	r5, r5, #1
+    400c:	cmp	r5, r1
+    4010:	blt	3fa0 <__flatcc_fb_gen_c_json_parser+0xd74>
+    4014:	cmp	r7, #0
+    4018:	bne	4080 <__flatcc_fb_gen_c_json_parser+0xe54>
+    401c:	ldr	r3, [r4, #220]	; 0xdc
+    4020:	cmp	r3, #0
+    4024:	beq	4828 <__flatcc_fb_gen_c_json_parser+0x15fc>
+    4028:	sub	r3, r3, #1
+    402c:	str	r3, [r4, #220]	; 0xdc
+    4030:	ldr	r1, [pc, #720]	; 4308 <__flatcc_fb_gen_c_json_parser+0x10dc>
+    4034:	mov	r0, r4
+    4038:	bl	0 <println>
+    403c:	ldr	r3, [r4, #220]	; 0xdc
+    4040:	ldr	r1, [pc, #708]	; 430c <__flatcc_fb_gen_c_json_parser+0x10e0>
+    4044:	add	r3, r3, #1
+    4048:	str	r3, [r4, #220]	; 0xdc
+    404c:	mov	r0, r4
+    4050:	bl	0 <println>
+    4054:	ldr	r1, [pc, #692]	; 4310 <__flatcc_fb_gen_c_json_parser+0x10e4>
+    4058:	mov	r0, r4
+    405c:	bl	0 <println>
+    4060:	ldr	r3, [r4, #220]	; 0xdc
+    4064:	cmp	r3, #0
+    4068:	beq	4814 <__flatcc_fb_gen_c_json_parser+0x15e8>
+    406c:	sub	r3, r3, #1
+    4070:	str	r3, [r4, #220]	; 0xdc
+    4074:	ldr	r1, [pc, #768]	; 437c <__flatcc_fb_gen_c_json_parser+0x1150>
+    4078:	mov	r0, r4
+    407c:	bl	0 <println>
+    4080:	ldr	r3, [sp, #36]	; 0x24
+    4084:	cmp	r3, #0
+    4088:	bne	4200 <__flatcc_fb_gen_c_json_parser+0xfd4>
+    408c:	ldr	r1, [pc, #640]	; 4314 <__flatcc_fb_gen_c_json_parser+0x10e8>
+    4090:	mov	r0, r4
+    4094:	bl	0 <println>
+    4098:	ldr	r1, [pc, #676]	; 4344 <__flatcc_fb_gen_c_json_parser+0x1118>
+    409c:	mov	r0, r4
+    40a0:	bl	0 <println>
+    40a4:	ldr	r2, [r4, #220]	; 0xdc
+    40a8:	mov	r3, #0
+    40ac:	str	r2, [r4, #228]	; 0xe4
+    40b0:	str	r3, [r4, #220]	; 0xdc
+    40b4:	ldr	r1, [pc, #520]	; 42c4 <__flatcc_fb_gen_c_json_parser+0x1098>
+    40b8:	mov	r0, r4
+    40bc:	bl	0 <println>
+    40c0:	ldr	r3, [r4, #228]	; 0xe4
+    40c4:	ldr	r1, [pc, #508]	; 42c8 <__flatcc_fb_gen_c_json_parser+0x109c>
+    40c8:	str	r3, [r4, #220]	; 0xdc
+    40cc:	mov	r0, r4
+    40d0:	bl	0 <println>
+    40d4:	ldr	r3, [r4, #220]	; 0xdc
+    40d8:	cmp	r3, #0
+    40dc:	beq	4850 <__flatcc_fb_gen_c_json_parser+0x1624>
+    40e0:	sub	r3, r3, #1
+    40e4:	str	r3, [r4, #220]	; 0xdc
+    40e8:	ldr	r1, [pc, #652]	; 437c <__flatcc_fb_gen_c_json_parser+0x1150>
+    40ec:	mov	r0, r4
+    40f0:	bl	0 <println>
+    40f4:	mov	r1, sl
+    40f8:	mov	r0, r4
+    40fc:	bl	0 <println>
+    4100:	add	r2, sp, #44	; 0x2c
+    4104:	ldr	r1, [pc, #468]	; 42e0 <__flatcc_fb_gen_c_json_parser+0x10b4>
+    4108:	mov	r0, r4
+    410c:	bl	0 <println>
+    4110:	mov	r1, r9
+    4114:	mov	r0, r4
+    4118:	bl	0 <println>
+    411c:	ldr	r3, [r4, #220]	; 0xdc
+    4120:	add	r2, sp, #44	; 0x2c
+    4124:	add	r3, r3, #1
+    4128:	str	r3, [r4, #220]	; 0xdc
+    412c:	ldr	r1, [pc, #484]	; 4318 <__flatcc_fb_gen_c_json_parser+0x10ec>
+    4130:	mov	r0, r4
+    4134:	bl	0 <println>
+    4138:	ldr	r3, [r4, #220]	; 0xdc
+    413c:	cmp	r3, #0
+    4140:	beq	483c <__flatcc_fb_gen_c_json_parser+0x1610>
+    4144:	sub	r3, r3, #1
+    4148:	str	r3, [r4, #220]	; 0xdc
+    414c:	ldr	r1, [pc, #552]	; 437c <__flatcc_fb_gen_c_json_parser+0x1150>
+    4150:	mov	r0, r4
+    4154:	bl	0 <println>
+    4158:	mov	r0, r4
+    415c:	mov	r1, sl
+    4160:	bl	0 <println>
+    4164:	ldr	r0, [sp, #16]
+    4168:	cmp	r0, #0
+    416c:	beq	355c <__flatcc_fb_gen_c_json_parser+0x330>
+    4170:	bl	0 <free>
+    4174:	b	355c <__flatcc_fb_gen_c_json_parser+0x330>
+    4178:	mov	r0, r4
+    417c:	ldr	r1, [pc, #368]	; 42f4 <__flatcc_fb_gen_c_json_parser+0x10c8>
+    4180:	bl	0 <println>
+    4184:	mov	r0, r4
+    4188:	ldr	r1, [pc, #432]	; 4340 <__flatcc_fb_gen_c_json_parser+0x1114>
+    418c:	bl	0 <println>
+    4190:	ldr	r3, [sp, #12]
+    4194:	mov	r2, #0
+    4198:	sub	r3, r3, #1
+    419c:	str	r2, [sp]
+    41a0:	mov	r1, fp
+    41a4:	mov	r0, r4
+    41a8:	bl	528 <gen_trie>
+    41ac:	b	3b18 <__flatcc_fb_gen_c_json_parser+0x8ec>
+    41b0:	ldr	r3, [sp, #12]
+    41b4:	cmp	r3, #0
+    41b8:	ble	3a18 <__flatcc_fb_gen_c_json_parser+0x7ec>
+    41bc:	ldr	r1, [pc, #540]	; 43e0 <__flatcc_fb_gen_c_json_parser+0x11b4>
+    41c0:	ldr	r2, [pc, #532]	; 43dc <__flatcc_fb_gen_c_json_parser+0x11b0>
+    41c4:	ldr	r3, [pc, #336]	; 431c <__flatcc_fb_gen_c_json_parser+0x10f0>
+    41c8:	ldr	r0, [r1]
+    41cc:	str	r2, [sp]
+    41d0:	ldr	r1, [pc, #528]	; 43e8 <__flatcc_fb_gen_c_json_parser+0x11bc>
+    41d4:	ldr	r2, [pc, #620]	; 4448 <__flatcc_fb_gen_c_json_parser+0x121c>
+    41d8:	bl	0 <fprintf>
+    41dc:	ldr	r3, [pc, #620]	; 4450 <__flatcc_fb_gen_c_json_parser+0x1224>
+    41e0:	ldr	r2, [pc, #308]	; 431c <__flatcc_fb_gen_c_json_parser+0x10f0>
+    41e4:	ldr	r1, [pc, #604]	; 4448 <__flatcc_fb_gen_c_json_parser+0x121c>
+    41e8:	ldr	r0, [pc, #508]	; 43ec <__flatcc_fb_gen_c_json_parser+0x11c0>
+    41ec:	bl	0 <__assert_fail>
+    41f0:	ldr	r1, [pc, #296]	; 4320 <__flatcc_fb_gen_c_json_parser+0x10f4>
+    41f4:	mov	r0, r4
+    41f8:	bl	0 <println>
+    41fc:	b	3e80 <__flatcc_fb_gen_c_json_parser+0xc54>
+    4200:	ldr	r1, [pc, #284]	; 4324 <__flatcc_fb_gen_c_json_parser+0x10f8>
+    4204:	mov	r0, r4
+    4208:	bl	0 <println>
+    420c:	b	408c <__flatcc_fb_gen_c_json_parser+0xe60>
+    4210:	asr	r3, r2, #31
+    4214:	ldr	r1, [pc, #268]	; 4328 <__flatcc_fb_gen_c_json_parser+0x10fc>
+    4218:	mov	r0, r4
+    421c:	bl	0 <println>
+    4220:	b	3eb4 <__flatcc_fb_gen_c_json_parser+0xc88>
+    4224:	.word	0x000016c0
+    4228:	.word	0x000016dc
+    422c:	.word	0x0000014c
+    4230:	.word	0x000016f8
+    4234:	.word	0x00001748
+    4238:	.word	0x00001770
+    423c:	.word	0x00001780
+    4240:	.word	0x00001790
+    4244:	.word	0x000015fc
+    4248:	.word	0x00000350
+    424c:	.word	0x00001b88
+    4250:	.word	0x00001a84
+    4254:	.word	0x00001b04
+    4258:	.word	0x000019c0
+    425c:	.word	0x00001a50
+    4260:	.word	0x00000000
+    4264:	.word	0x00001c0c
+    4268:	.word	0x000006d3
+	...
+    4284:	.word	0x000007f4
+    4288:	.word	0x000023f4
+    428c:	.word	0x0000085c
+    4290:	.word	0x00002618
+    4294:	.word	0x00002634
+    4298:	.word	0x00002650
+    429c:	.word	0x0000268c
+    42a0:	.word	0x000026b4
+    42a4:	.word	0x00001c98
+    42a8:	.word	0x00001d18
+    42ac:	.word	0x00001d24
+    42b0:	.word	0x00001d40
+    42b4:	.word	0x00001d4c
+    42b8:	.word	0x00000d38
+    42bc:	.word	0x00001d8c
+    42c0:	.word	0x00001dd8
+    42c4:	.word	0x00001e14
+    42c8:	.word	0x000006cc
+    42cc:	.word	0x00001e1c
+    42d0:	.word	0x00000418
+    42d4:	.word	0x00001ea0
+    42d8:	.word	0x000010f8
+    42dc:	.word	0x00001eec
+    42e0:	.word	0x00001f40
+    42e4:	.word	0x00001fd4
+    42e8:	.word	0x00002058
+    42ec:	.word	0x000020dc
+    42f0:	.word	0x00002114
+    42f4:	.word	0x00001da0
+    42f8:	.word	0x000021cc
+    42fc:	.word	0x00002208
+    4300:	.word	0x00002228
+    4304:	.word	0x00002264
+    4308:	.word	0x000022a0
+    430c:	.word	0x000022a4
+    4310:	.word	0x000022fc
+    4314:	.word	0x00002350
+    4318:	.word	0x00002394
+    431c:	.word	0x00000517
+    4320:	.word	0x00002100
+    4324:	.word	0x0000230c
+    4328:	.word	0x00002154
+    432c:	.word	0x000021b0
+    4330:	.word	0x0000001c
+    4334:	.word	0x0000087c
+    4338:	.word	0x0000089c
+    433c:	.word	0x000008b0
+    4340:	.word	0x00000220
+    4344:	.word	0x00000724
+    4348:	.word	0x000004c3
+	...
+    4354:	.word	0x00002430
+    4358:	.word	0x00000414
+    435c:	.word	0x0000245c
+    4360:	.word	0x0000247c
+    4364:	.word	0x00002498
+    4368:	.word	0x000024b4
+    436c:	.word	0x00002530
+    4370:	.word	0x00002568
+    4374:	.word	0x0000259c
+    4378:	.word	0x000025b0
+    437c:	.word	0x00000120
+    4380:	.word	0x000025c4
+    4384:	.word	0x000025f8
+    4388:	.word	0x0000260c
+    438c:	.word	0x0000065e
+    4390:	.word	0x000017b8
+    4394:	.word	0x000017bc
+    4398:	.word	0x00001814
+    439c:	.word	0x00001818
+    43a0:	.word	0x0000185c
+    43a4:	.word	0x00001894
+    43a8:	.word	0x000018bc
+    43ac:	.word	0x00001904
+    43b0:	.word	0x00001944
+    43b4:	.word	0x00001948
+    43b8:	.word	0x00001994
+    43bc:	.word	0x0000014c
+    43c0:	.word	0x000024f0
+    43c4:	.word	0x000004aa
+    43c8:	.word	0x00000515
+    43cc:	.word	0x000005b2
+    43d0:	.word	0x000005c7
+    43d4:	.word	0x000005c1
+    43d8:	.word	0x000005b5
+    43dc:	.word	0x000007b8
+    43e0:	.word	0x00000000
+    43e4:	.word	0x000006c3
+    43e8:	.word	0x0000059c
+    43ec:	.word	0x000005e0
+    43f0:	.word	0x0000064a
+    43f4:	.word	0x000006b4
+    43f8:	.word	0x0000059e
+    43fc:	.word	0x0000055a
+    4400:	.word	0x00000134
+    4404:	.word	0x00000549
+    4408:	.word	0x00001c78
+    440c:	.word	0x0000053f
+    4410:	.word	0x0000066d
+    4414:	.word	0x0000065a
+    4418:	.word	0x000004b5
+    441c:	.word	0x0000015c
+    4420:	.word	0x000004ba
+    4424:	.word	0x00000681
+    4428:	.word	0x0000018c
+    442c:	.word	0x0000067d
+    4430:	.word	0x000006db
+    4434:	.word	0x0000056e
+    4438:	.word	0x00002038
+    443c:	.word	0x00000148
+    4440:	.word	0x00000114
+    4444:	.word	0x00000536
+    4448:	.word	0x000000b4
+    444c:	.word	0x000000fc
+    4450:	.word	0x00000118
+    4454:	.word	0x00000174
+    4458:	mov	r0, r4
+    445c:	ldr	r1, [pc, #-312]	; 432c <__flatcc_fb_gen_c_json_parser+0x1100>
+    4460:	bl	0 <println>
+    4464:	ldr	r1, [pc, #-316]	; 4330 <__flatcc_fb_gen_c_json_parser+0x1104>
+    4468:	mov	r0, r4
+    446c:	bl	0 <println>
+    4470:	b	3f18 <__flatcc_fb_gen_c_json_parser+0xcec>
+    4474:	ldr	r1, [pc, #-328]	; 4334 <__flatcc_fb_gen_c_json_parser+0x1108>
+    4478:	mov	r0, r4
+    447c:	bl	0 <println>
+    4480:	ldr	r1, [pc, #-336]	; 4338 <__flatcc_fb_gen_c_json_parser+0x110c>
+    4484:	mov	r0, r4
+    4488:	bl	0 <println>
+    448c:	ldr	r1, [pc, #-344]	; 433c <__flatcc_fb_gen_c_json_parser+0x1110>
+    4490:	mov	r0, r4
+    4494:	bl	0 <println>
+    4498:	ldr	r1, [pc, #-228]	; 43bc <__flatcc_fb_gen_c_json_parser+0x1190>
+    449c:	mov	r0, r4
+    44a0:	bl	0 <println>
+    44a4:	ldr	r1, [pc, #-364]	; 4340 <__flatcc_fb_gen_c_json_parser+0x1114>
+    44a8:	mov	r0, r4
+    44ac:	bl	0 <println>
+    44b0:	sub	r3, r9, #1
+    44b4:	mov	r2, r5
+    44b8:	mov	r1, fp
+    44bc:	mov	r0, r4
+    44c0:	str	r5, [sp]
+    44c4:	bl	528 <gen_trie>
+    44c8:	ldr	r1, [pc, #-396]	; 4344 <__flatcc_fb_gen_c_json_parser+0x1118>
+    44cc:	mov	r0, r4
+    44d0:	bl	0 <println>
+    44d4:	ldr	r3, [r4, #220]	; 0xdc
+    44d8:	cmp	r3, #0
+    44dc:	bne	37b0 <__flatcc_fb_gen_c_json_parser+0x584>
+    44e0:	ldr	r3, [pc, #-204]	; 441c <__flatcc_fb_gen_c_json_parser+0x11f0>
+    44e4:	ldr	r2, [pc, #-420]	; 4348 <__flatcc_fb_gen_c_json_parser+0x111c>
+    44e8:	ldr	r1, [pc, #-168]	; 4448 <__flatcc_fb_gen_c_json_parser+0x121c>
+    44ec:	ldr	r0, [pc, #-180]	; 4440 <__flatcc_fb_gen_c_json_parser+0x1214>
+    44f0:	bl	0 <__assert_fail>
+    44f4:	ldr	r3, [sp, #12]
+    44f8:	cmp	r3, #0
+    44fc:	bgt	4864 <__flatcc_fb_gen_c_json_parser+0x1638>
+    4500:	ldr	r2, [pc, #-444]	; 434c <__flatcc_fb_gen_c_json_parser+0x1120>
+    4504:	ldr	r3, [pc, #-444]	; 4350 <__flatcc_fb_gen_c_json_parser+0x1124>
+    4508:	str	r6, [sp, #28]
+    450c:	str	r0, [sp, #32]
+    4510:	str	r0, [sp, #36]	; 0x24
+    4514:	str	r2, [sp, #20]
+    4518:	str	r3, [sp, #24]
+    451c:	b	3de4 <__flatcc_fb_gen_c_json_parser+0xbb8>
+    4520:	mov	r2, #220	; 0xdc
+    4524:	mov	r1, r6
+    4528:	add	r0, sp, #44	; 0x2c
+    452c:	bl	0 <memset>
+    4530:	add	r2, sp, #44	; 0x2c
+    4534:	mov	r1, r5
+    4538:	ldr	r0, [r5, #12]
+    453c:	bl	0 <__flatcc_fb_scoped_symbol_name>
+    4540:	ldr	r3, [r4, #208]	; 0xd0
+    4544:	ldr	r1, [pc, #-408]	; 43b4 <__flatcc_fb_gen_c_json_parser+0x1188>
+    4548:	mov	r0, r4
+    454c:	ldr	r2, [r3, #160]	; 0xa0
+    4550:	bl	0 <println>
+    4554:	ldr	r3, [r4, #220]	; 0xdc
+    4558:	ldr	r1, [pc, #-524]	; 4354 <__flatcc_fb_gen_c_json_parser+0x1128>
+    455c:	add	r3, r3, #2
+    4560:	str	r3, [r4, #220]	; 0xdc
+    4564:	mov	r0, r4
+    4568:	bl	0 <println>
+    456c:	ldr	r3, [r4, #220]	; 0xdc
+    4570:	cmp	r3, #0
+    4574:	beq	4898 <__flatcc_fb_gen_c_json_parser+0x166c>
+    4578:	cmp	r3, #1
+    457c:	streq	r6, [r4, #220]	; 0xdc
+    4580:	beq	4898 <__flatcc_fb_gen_c_json_parser+0x166c>
+    4584:	sub	r3, r3, #2
+    4588:	str	r3, [r4, #220]	; 0xdc
+    458c:	ldr	r1, [pc, #-572]	; 4358 <__flatcc_fb_gen_c_json_parser+0x112c>
+    4590:	mov	r0, r4
+    4594:	bl	0 <println>
+    4598:	ldr	r3, [r4, #220]	; 0xdc
+    459c:	ldr	r1, [pc, #-584]	; 435c <__flatcc_fb_gen_c_json_parser+0x1130>
+    45a0:	add	r3, r3, #1
+    45a4:	str	r3, [r4, #220]	; 0xdc
+    45a8:	mov	r0, r4
+    45ac:	bl	0 <println>
+    45b0:	ldr	r1, [pc, #-600]	; 4360 <__flatcc_fb_gen_c_json_parser+0x1134>
+    45b4:	mov	r0, r4
+    45b8:	bl	0 <println>
+    45bc:	ldr	r1, [pc, #-520]	; 43bc <__flatcc_fb_gen_c_json_parser+0x1190>
+    45c0:	mov	r0, r4
+    45c4:	bl	0 <println>
+    45c8:	ldr	r1, [pc, #-620]	; 4364 <__flatcc_fb_gen_c_json_parser+0x1138>
+    45cc:	mov	r0, r4
+    45d0:	bl	0 <println>
+    45d4:	ldr	r1, [pc, #-628]	; 4368 <__flatcc_fb_gen_c_json_parser+0x113c>
+    45d8:	mov	r0, r4
+    45dc:	bl	0 <println>
+    45e0:	ldr	r2, [r4, #208]	; 0xd0
+    45e4:	ldrh	r3, [r2, #16]
+    45e8:	cmp	r3, #2
+    45ec:	beq	476c <__flatcc_fb_gen_c_json_parser+0x1540>
+    45f0:	ldr	r1, [pc, #-652]	; 436c <__flatcc_fb_gen_c_json_parser+0x1140>
+    45f4:	mov	r0, r4
+    45f8:	bl	0 <println>
+    45fc:	add	r2, sp, #44	; 0x2c
+    4600:	ldr	r1, [pc, #-664]	; 4370 <__flatcc_fb_gen_c_json_parser+0x1144>
+    4604:	mov	r0, r4
+    4608:	bl	0 <println>
+    460c:	ldr	r1, [pc, #-672]	; 4374 <__flatcc_fb_gen_c_json_parser+0x1148>
+    4610:	mov	r0, r4
+    4614:	bl	0 <println>
+    4618:	ldr	r3, [r4, #220]	; 0xdc
+    461c:	ldr	r1, [pc, #-684]	; 4378 <__flatcc_fb_gen_c_json_parser+0x114c>
+    4620:	add	r3, r3, #1
+    4624:	str	r3, [r4, #220]	; 0xdc
+    4628:	mov	r0, r4
+    462c:	bl	0 <println>
+    4630:	ldr	r3, [r4, #220]	; 0xdc
+    4634:	cmp	r3, #0
+    4638:	beq	4938 <__flatcc_fb_gen_c_json_parser+0x170c>
+    463c:	sub	r3, r3, #1
+    4640:	str	r3, [r4, #220]	; 0xdc
+    4644:	ldr	r1, [pc, #-720]	; 437c <__flatcc_fb_gen_c_json_parser+0x1150>
+    4648:	mov	r0, r4
+    464c:	bl	0 <println>
+    4650:	ldr	r1, [pc, #-728]	; 4380 <__flatcc_fb_gen_c_json_parser+0x1154>
+    4654:	mov	r0, r4
+    4658:	bl	0 <println>
+    465c:	ldr	r1, [pc, #-736]	; 4384 <__flatcc_fb_gen_c_json_parser+0x1158>
+    4660:	mov	r0, r4
+    4664:	bl	0 <println>
+    4668:	ldr	r1, [pc, #-744]	; 4388 <__flatcc_fb_gen_c_json_parser+0x115c>
+    466c:	mov	r0, r4
+    4670:	bl	0 <println>
+    4674:	ldr	r3, [r4, #220]	; 0xdc
+    4678:	cmp	r3, #0
+    467c:	bne	3970 <__flatcc_fb_gen_c_json_parser+0x744>
+    4680:	ldr	r3, [pc, #-564]	; 4454 <__flatcc_fb_gen_c_json_parser+0x1228>
+    4684:	ldr	r2, [pc, #-768]	; 438c <__flatcc_fb_gen_c_json_parser+0x1160>
+    4688:	ldr	r1, [pc, #-584]	; 4448 <__flatcc_fb_gen_c_json_parser+0x121c>
+    468c:	ldr	r0, [pc, #-596]	; 4440 <__flatcc_fb_gen_c_json_parser+0x1214>
+    4690:	bl	0 <__assert_fail>
+    4694:	ldr	r1, [pc, #-780]	; 4390 <__flatcc_fb_gen_c_json_parser+0x1164>
+    4698:	mov	r0, r4
+    469c:	bl	0 <println>
+    46a0:	ldr	r1, [pc, #-788]	; 4394 <__flatcc_fb_gen_c_json_parser+0x1168>
+    46a4:	mov	r0, r4
+    46a8:	bl	0 <println>
+    46ac:	ldr	r1, [pc, #-796]	; 4398 <__flatcc_fb_gen_c_json_parser+0x116c>
+    46b0:	mov	r0, r4
+    46b4:	bl	0 <println>
+    46b8:	ldr	r1, [pc, #-804]	; 439c <__flatcc_fb_gen_c_json_parser+0x1170>
+    46bc:	mov	r0, r4
+    46c0:	bl	0 <println>
+    46c4:	ldr	r1, [pc, #-812]	; 43a0 <__flatcc_fb_gen_c_json_parser+0x1174>
+    46c8:	mov	r0, r4
+    46cc:	bl	0 <println>
+    46d0:	ldr	r1, [pc, #-820]	; 43a4 <__flatcc_fb_gen_c_json_parser+0x1178>
+    46d4:	mov	r0, r4
+    46d8:	bl	0 <println>
+    46dc:	ldr	r1, [pc, #-828]	; 43a8 <__flatcc_fb_gen_c_json_parser+0x117c>
+    46e0:	mov	r0, r4
+    46e4:	bl	0 <println>
+    46e8:	ldr	r1, [pc, #-836]	; 43ac <__flatcc_fb_gen_c_json_parser+0x1180>
+    46ec:	mov	r0, r4
+    46f0:	bl	0 <println>
+    46f4:	ldr	r1, [pc, #-844]	; 43b0 <__flatcc_fb_gen_c_json_parser+0x1184>
+    46f8:	mov	r0, r4
+    46fc:	bl	0 <println>
+    4700:	ldr	r3, [r4, #208]	; 0xd0
+    4704:	ldr	r1, [pc, #-856]	; 43b4 <__flatcc_fb_gen_c_json_parser+0x1188>
+    4708:	mov	r0, r4
+    470c:	ldr	r2, [r3, #160]	; 0xa0
+    4710:	bl	0 <println>
+    4714:	ldr	r3, [r4, #220]	; 0xdc
+    4718:	ldr	r1, [pc, #-872]	; 43b8 <__flatcc_fb_gen_c_json_parser+0x118c>
+    471c:	add	r3, r3, #2
+    4720:	str	r3, [r4, #220]	; 0xdc
+    4724:	mov	r0, r4
+    4728:	bl	0 <println>
+    472c:	ldr	r3, [r4, #220]	; 0xdc
+    4730:	cmp	r3, #0
+    4734:	beq	48ac <__flatcc_fb_gen_c_json_parser+0x1680>
+    4738:	cmp	r3, #1
+    473c:	moveq	r3, #0
+    4740:	streq	r3, [r4, #220]	; 0xdc
+    4744:	beq	48ac <__flatcc_fb_gen_c_json_parser+0x1680>
+    4748:	sub	r3, r3, #2
+    474c:	str	r3, [r4, #220]	; 0xdc
+    4750:	ldr	r1, [pc, #-924]	; 43bc <__flatcc_fb_gen_c_json_parser+0x1190>
+    4754:	mov	r0, r4
+    4758:	bl	0 <println>
+    475c:	ldr	r6, [r4, #208]	; 0xd0
+    4760:	b	32f8 <__flatcc_fb_gen_c_json_parser+0xcc>
+    4764:	str	r9, [sp, #16]
+    4768:	b	3700 <__flatcc_fb_gen_c_json_parser+0x4d4>
+    476c:	ldr	r3, [r2, #8]
+    4770:	ldr	r1, [pc, #-952]	; 43c0 <__flatcc_fb_gen_c_json_parser+0x1194>
+    4774:	ldr	r2, [r2, #12]
+    4778:	mov	r0, r4
+    477c:	bl	0 <println>
+    4780:	b	45fc <__flatcc_fb_gen_c_json_parser+0x13d0>
+    4784:	ldr	r3, [r2, #8]
+    4788:	ldr	r1, [pc, #-976]	; 43c0 <__flatcc_fb_gen_c_json_parser+0x1194>
+    478c:	ldr	r2, [r2, #12]
+    4790:	mov	r0, r4
+    4794:	bl	0 <println>
+    4798:	b	38ec <__flatcc_fb_gen_c_json_parser+0x6c0>
+    479c:	cmp	r9, #0
+    47a0:	str	sl, [sp, #16]
+    47a4:	ble	3700 <__flatcc_fb_gen_c_json_parser+0x4d4>
+    47a8:	add	r0, sp, #44	; 0x2c
+    47ac:	bl	1bc0 <clear_catalog>
+    47b0:	ldr	r1, [pc, #-984]	; 43e0 <__flatcc_fb_gen_c_json_parser+0x11b4>
+    47b4:	ldr	r2, [pc, #-992]	; 43dc <__flatcc_fb_gen_c_json_parser+0x11b0>
+    47b8:	ldr	r3, [pc, #-1020]	; 43c4 <__flatcc_fb_gen_c_json_parser+0x1198>
+    47bc:	ldr	r0, [r1]
+    47c0:	str	r2, [sp]
+    47c4:	ldr	r1, [pc, #-996]	; 43e8 <__flatcc_fb_gen_c_json_parser+0x11bc>
+    47c8:	ldr	r2, [pc, #-904]	; 4448 <__flatcc_fb_gen_c_json_parser+0x121c>
+    47cc:	bl	0 <fprintf>
+    47d0:	ldr	r3, [pc, #-956]	; 441c <__flatcc_fb_gen_c_json_parser+0x11f0>
+    47d4:	ldr	r2, [pc, #-1048]	; 43c4 <__flatcc_fb_gen_c_json_parser+0x1198>
+    47d8:	ldr	r1, [pc, #-920]	; 4448 <__flatcc_fb_gen_c_json_parser+0x121c>
+    47dc:	ldr	r0, [pc, #-1016]	; 43ec <__flatcc_fb_gen_c_json_parser+0x11c0>
+    47e0:	bl	0 <__assert_fail>
+    47e4:	mov	r3, #0
+    47e8:	str	r3, [r4, #220]	; 0xdc
+    47ec:	ldr	r3, [pc, #-936]	; 444c <__flatcc_fb_gen_c_json_parser+0x1220>
+    47f0:	ldr	r2, [pc, #-1044]	; 43e4 <__flatcc_fb_gen_c_json_parser+0x11b8>
+    47f4:	ldr	r1, [pc, #-948]	; 4448 <__flatcc_fb_gen_c_json_parser+0x121c>
+    47f8:	ldr	r0, [pc, #-960]	; 4440 <__flatcc_fb_gen_c_json_parser+0x1214>
+    47fc:	bl	0 <__assert_fail>
+    4800:	ldr	r3, [pc, #-952]	; 4450 <__flatcc_fb_gen_c_json_parser+0x1224>
+    4804:	ldr	r2, [pc, #-1092]	; 43c8 <__flatcc_fb_gen_c_json_parser+0x119c>
+    4808:	ldr	r1, [pc, #-968]	; 4448 <__flatcc_fb_gen_c_json_parser+0x121c>
+    480c:	ldr	r0, [pc, #-1036]	; 4408 <__flatcc_fb_gen_c_json_parser+0x11dc>
+    4810:	bl	0 <__assert_fail>
+    4814:	ldr	r3, [pc, #-992]	; 443c <__flatcc_fb_gen_c_json_parser+0x1210>
+    4818:	ldr	r2, [pc, #-1096]	; 43d8 <__flatcc_fb_gen_c_json_parser+0x11ac>
+    481c:	ldr	r1, [pc, #-988]	; 4448 <__flatcc_fb_gen_c_json_parser+0x121c>
+    4820:	ldr	r0, [pc, #-1000]	; 4440 <__flatcc_fb_gen_c_json_parser+0x1214>
+    4824:	bl	0 <__assert_fail>
+    4828:	ldr	r3, [pc, #-1012]	; 443c <__flatcc_fb_gen_c_json_parser+0x1210>
+    482c:	ldr	r2, [pc, #-1128]	; 43cc <__flatcc_fb_gen_c_json_parser+0x11a0>
+    4830:	ldr	r1, [pc, #-1008]	; 4448 <__flatcc_fb_gen_c_json_parser+0x121c>
+    4834:	ldr	r0, [pc, #-1020]	; 4440 <__flatcc_fb_gen_c_json_parser+0x1214>
+    4838:	bl	0 <__assert_fail>
+    483c:	ldr	r3, [pc, #-1032]	; 443c <__flatcc_fb_gen_c_json_parser+0x1210>
+    4840:	ldr	r2, [pc, #-1144]	; 43d0 <__flatcc_fb_gen_c_json_parser+0x11a4>
+    4844:	ldr	r1, [pc, #-1028]	; 4448 <__flatcc_fb_gen_c_json_parser+0x121c>
+    4848:	ldr	r0, [pc, #-1040]	; 4440 <__flatcc_fb_gen_c_json_parser+0x1214>
+    484c:	bl	0 <__assert_fail>
+    4850:	ldr	r3, [pc, #-1052]	; 443c <__flatcc_fb_gen_c_json_parser+0x1210>
+    4854:	ldr	r2, [pc, #-1160]	; 43d4 <__flatcc_fb_gen_c_json_parser+0x11a8>
+    4858:	ldr	r1, [pc, #-1048]	; 4448 <__flatcc_fb_gen_c_json_parser+0x121c>
+    485c:	ldr	r0, [pc, #-1060]	; 4440 <__flatcc_fb_gen_c_json_parser+0x1214>
+    4860:	bl	0 <__assert_fail>
+    4864:	ldr	r1, [pc, #-1164]	; 43e0 <__flatcc_fb_gen_c_json_parser+0x11b4>
+    4868:	ldr	r2, [pc, #-1172]	; 43dc <__flatcc_fb_gen_c_json_parser+0x11b0>
+    486c:	mov	r3, #1392	; 0x570
+    4870:	ldr	r0, [r1]
+    4874:	str	r2, [sp]
+    4878:	ldr	r1, [pc, #-1176]	; 43e8 <__flatcc_fb_gen_c_json_parser+0x11bc>
+    487c:	ldr	r2, [pc, #-1084]	; 4448 <__flatcc_fb_gen_c_json_parser+0x121c>
+    4880:	bl	0 <fprintf>
+    4884:	ldr	r3, [pc, #-1104]	; 443c <__flatcc_fb_gen_c_json_parser+0x1210>
+    4888:	mov	r2, #1392	; 0x570
+    488c:	ldr	r1, [pc, #-1100]	; 4448 <__flatcc_fb_gen_c_json_parser+0x121c>
+    4890:	ldr	r0, [pc, #-1196]	; 43ec <__flatcc_fb_gen_c_json_parser+0x11c0>
+    4894:	bl	0 <__assert_fail>
+    4898:	ldr	r3, [pc, #-1100]	; 4454 <__flatcc_fb_gen_c_json_parser+0x1228>
+    489c:	ldr	r2, [pc, #-1204]	; 43f0 <__flatcc_fb_gen_c_json_parser+0x11c4>
+    48a0:	ldr	r1, [pc, #-1120]	; 4448 <__flatcc_fb_gen_c_json_parser+0x121c>
+    48a4:	ldr	r0, [pc, #-1132]	; 4440 <__flatcc_fb_gen_c_json_parser+0x1214>
+    48a8:	bl	0 <__assert_fail>
+    48ac:	ldr	r3, [pc, #-1128]	; 444c <__flatcc_fb_gen_c_json_parser+0x1220>
+    48b0:	ldr	r2, [pc, #-1220]	; 43f4 <__flatcc_fb_gen_c_json_parser+0x11c8>
+    48b4:	ldr	r1, [pc, #-1140]	; 4448 <__flatcc_fb_gen_c_json_parser+0x121c>
+    48b8:	ldr	r0, [pc, #-1152]	; 4440 <__flatcc_fb_gen_c_json_parser+0x1214>
+    48bc:	bl	0 <__assert_fail>
+    48c0:	ldr	r3, [pc, #-1164]	; 443c <__flatcc_fb_gen_c_json_parser+0x1210>
+    48c4:	ldr	r2, [pc, #-1236]	; 43f8 <__flatcc_fb_gen_c_json_parser+0x11cc>
+    48c8:	ldr	r1, [pc, #-1160]	; 4448 <__flatcc_fb_gen_c_json_parser+0x121c>
+    48cc:	ldr	r0, [pc, #-1172]	; 4440 <__flatcc_fb_gen_c_json_parser+0x1214>
+    48d0:	bl	0 <__assert_fail>
+    48d4:	ldr	r3, [pc, #-1244]	; 4400 <__flatcc_fb_gen_c_json_parser+0x11d4>
+    48d8:	mov	r2, #1376	; 0x560
+    48dc:	ldr	r1, [pc, #-1180]	; 4448 <__flatcc_fb_gen_c_json_parser+0x121c>
+    48e0:	ldr	r0, [pc, #-1192]	; 4440 <__flatcc_fb_gen_c_json_parser+0x1214>
+    48e4:	bl	0 <__assert_fail>
+    48e8:	ldr	r3, [pc, #-1264]	; 4400 <__flatcc_fb_gen_c_json_parser+0x11d4>
+    48ec:	ldr	r2, [pc, #-1272]	; 43fc <__flatcc_fb_gen_c_json_parser+0x11d0>
+    48f0:	ldr	r1, [pc, #-1200]	; 4448 <__flatcc_fb_gen_c_json_parser+0x121c>
+    48f4:	ldr	r0, [pc, #-1212]	; 4440 <__flatcc_fb_gen_c_json_parser+0x1214>
+    48f8:	bl	0 <__assert_fail>
+    48fc:	ldr	r3, [pc, #-1284]	; 4400 <__flatcc_fb_gen_c_json_parser+0x11d4>
+    4900:	ldr	r2, [pc, #-1284]	; 4404 <__flatcc_fb_gen_c_json_parser+0x11d8>
+    4904:	ldr	r1, [pc, #-1220]	; 4448 <__flatcc_fb_gen_c_json_parser+0x121c>
+    4908:	ldr	r0, [pc, #-1288]	; 4408 <__flatcc_fb_gen_c_json_parser+0x11dc>
+    490c:	bl	0 <__assert_fail>
+    4910:	ldr	r3, [pc, #-1224]	; 4450 <__flatcc_fb_gen_c_json_parser+0x1224>
+    4914:	ldr	r2, [pc, #-1296]	; 440c <__flatcc_fb_gen_c_json_parser+0x11e0>
+    4918:	ldr	r1, [pc, #-1240]	; 4448 <__flatcc_fb_gen_c_json_parser+0x121c>
+    491c:	ldr	r0, [pc, #-1252]	; 4440 <__flatcc_fb_gen_c_json_parser+0x1214>
+    4920:	bl	0 <__assert_fail>
+    4924:	ldr	r3, [pc, #-1284]	; 4428 <__flatcc_fb_gen_c_json_parser+0x11fc>
+    4928:	ldr	r2, [pc, #-1312]	; 4410 <__flatcc_fb_gen_c_json_parser+0x11e4>
+    492c:	ldr	r1, [pc, #-1260]	; 4448 <__flatcc_fb_gen_c_json_parser+0x121c>
+    4930:	ldr	r0, [pc, #-1272]	; 4440 <__flatcc_fb_gen_c_json_parser+0x1214>
+    4934:	bl	0 <__assert_fail>
+    4938:	ldr	r3, [pc, #-1260]	; 4454 <__flatcc_fb_gen_c_json_parser+0x1228>
+    493c:	ldr	r2, [pc, #-1328]	; 4414 <__flatcc_fb_gen_c_json_parser+0x11e8>
+    4940:	ldr	r1, [pc, #-1280]	; 4448 <__flatcc_fb_gen_c_json_parser+0x121c>
+    4944:	ldr	r0, [pc, #-1292]	; 4440 <__flatcc_fb_gen_c_json_parser+0x1214>
+    4948:	bl	0 <__assert_fail>
+    494c:	ldr	r3, [pc, #-1336]	; 441c <__flatcc_fb_gen_c_json_parser+0x11f0>
+    4950:	ldr	r2, [pc, #-1344]	; 4418 <__flatcc_fb_gen_c_json_parser+0x11ec>
+    4954:	ldr	r1, [pc, #-1300]	; 4448 <__flatcc_fb_gen_c_json_parser+0x121c>
+    4958:	ldr	r0, [pc, #-1312]	; 4440 <__flatcc_fb_gen_c_json_parser+0x1214>
+    495c:	bl	0 <__assert_fail>
+    4960:	ldr	r3, [pc, #-1356]	; 441c <__flatcc_fb_gen_c_json_parser+0x11f0>
+    4964:	ldr	r2, [pc, #-1356]	; 4420 <__flatcc_fb_gen_c_json_parser+0x11f4>
+    4968:	ldr	r1, [pc, #-1320]	; 4448 <__flatcc_fb_gen_c_json_parser+0x121c>
+    496c:	ldr	r0, [pc, #-1332]	; 4440 <__flatcc_fb_gen_c_json_parser+0x1214>
+    4970:	bl	0 <__assert_fail>
+    4974:	ldr	r3, [pc, #-1364]	; 4428 <__flatcc_fb_gen_c_json_parser+0x11fc>
+    4978:	ldr	r2, [pc, #-1372]	; 4424 <__flatcc_fb_gen_c_json_parser+0x11f8>
+    497c:	ldr	r1, [pc, #-1340]	; 4448 <__flatcc_fb_gen_c_json_parser+0x121c>
+    4980:	ldr	r0, [pc, #-1352]	; 4440 <__flatcc_fb_gen_c_json_parser+0x1214>
+    4984:	bl	0 <__assert_fail>
+    4988:	ldr	r3, [pc, #-1384]	; 4428 <__flatcc_fb_gen_c_json_parser+0x11fc>
+    498c:	ldr	r2, [pc, #-1384]	; 442c <__flatcc_fb_gen_c_json_parser+0x1200>
+    4990:	ldr	r1, [pc, #-1360]	; 4448 <__flatcc_fb_gen_c_json_parser+0x121c>
+    4994:	ldr	r0, [pc, #-1372]	; 4440 <__flatcc_fb_gen_c_json_parser+0x1214>
+    4998:	bl	0 <__assert_fail>
+    499c:	ldr	r3, [pc, #-1368]	; 444c <__flatcc_fb_gen_c_json_parser+0x1220>
+    49a0:	ldr	r2, [pc, #-1400]	; 4430 <__flatcc_fb_gen_c_json_parser+0x1204>
+    49a4:	ldr	r1, [pc, #-1380]	; 4448 <__flatcc_fb_gen_c_json_parser+0x121c>
+    49a8:	ldr	r0, [pc, #-1392]	; 4440 <__flatcc_fb_gen_c_json_parser+0x1214>
+    49ac:	bl	0 <__assert_fail>
+    49b0:	ldr	r3, [pc, #-1404]	; 443c <__flatcc_fb_gen_c_json_parser+0x1210>
+    49b4:	ldr	r2, [pc, #-1416]	; 4434 <__flatcc_fb_gen_c_json_parser+0x1208>
+    49b8:	ldr	r1, [pc, #-1400]	; 4448 <__flatcc_fb_gen_c_json_parser+0x121c>
+    49bc:	ldr	r0, [pc, #-1420]	; 4438 <__flatcc_fb_gen_c_json_parser+0x120c>
+    49c0:	bl	0 <__assert_fail>
+    49c4:	ldr	r3, [pc, #-1404]	; 4450 <__flatcc_fb_gen_c_json_parser+0x1224>
+    49c8:	ldr	r2, [pc, #-1420]	; 4444 <__flatcc_fb_gen_c_json_parser+0x1218>
+    49cc:	ldr	r1, [pc, #-1420]	; 4448 <__flatcc_fb_gen_c_json_parser+0x121c>
+    49d0:	ldr	r0, [pc, #-1432]	; 4440 <__flatcc_fb_gen_c_json_parser+0x1214>
+    49d4:	bl	0 <__assert_fail>

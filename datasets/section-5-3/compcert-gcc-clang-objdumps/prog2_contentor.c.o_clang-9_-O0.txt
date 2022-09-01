@@ -1,0 +1,73 @@
+
+../compcert-repos/prog2/CMakeFiles/5.1.dir/Aula05_Filas_e_Pilhas/1/contentor.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <contentor_novo>:
+   0:	push	{fp, lr}
+   4:	mov	fp, sp
+   8:	sub	sp, sp, #24
+   c:	str	r0, [fp, #-4]
+  10:	vstr	s0, [fp, #-8]
+  14:	mov	r0, #8
+  18:	bl	0 <malloc>
+  1c:	str	r0, [sp, #12]
+  20:	ldr	r0, [fp, #-4]
+  24:	bl	0 <strlen>
+  28:	add	r0, r0, #1
+  2c:	mov	r1, r0
+  30:	str	r1, [sp, #8]
+  34:	bl	0 <malloc>
+  38:	ldr	r1, [sp, #12]
+  3c:	str	r0, [r1]
+  40:	ldr	r0, [sp, #12]
+  44:	ldr	r0, [r0]
+  48:	ldr	r1, [fp, #-4]
+  4c:	bl	0 <strcpy>
+  50:	vldr	s0, [fp, #-8]
+  54:	ldr	r1, [sp, #12]
+  58:	vstr	s0, [r1, #4]
+  5c:	ldr	r1, [sp, #12]
+  60:	str	r0, [sp, #4]
+  64:	mov	r0, r1
+  68:	mov	sp, fp
+  6c:	pop	{fp, pc}
+
+00000070 <contentor_apaga>:
+  70:	push	{fp, lr}
+  74:	mov	fp, sp
+  78:	sub	sp, sp, #8
+  7c:	str	r0, [sp, #4]
+  80:	ldr	r0, [sp, #4]
+  84:	ldr	r0, [r0]
+  88:	bl	0 <free>
+  8c:	ldr	r0, [sp, #4]
+  90:	bl	0 <free>
+  94:	mov	sp, fp
+  98:	pop	{fp, pc}
+
+0000009c <contentor_imprime>:
+  9c:	push	{fp, lr}
+  a0:	mov	fp, sp
+  a4:	sub	sp, sp, #8
+  a8:	str	r0, [sp, #4]
+  ac:	ldr	r0, [sp, #4]
+  b0:	movw	r1, #0
+  b4:	cmp	r0, r1
+  b8:	bne	cc <contentor_imprime+0x30>
+  bc:	movw	r0, #0
+  c0:	movt	r0, #0
+  c4:	bl	0 <printf>
+  c8:	b	f0 <contentor_imprime+0x54>
+  cc:	ldr	r0, [sp, #4]
+  d0:	ldr	r1, [r0]
+  d4:	ldr	r0, [sp, #4]
+  d8:	vldr	s0, [r0, #4]
+  dc:	vcvt.f64.f32	d16, s0
+  e0:	movw	r0, #0
+  e4:	movt	r0, #0
+  e8:	vmov	r2, r3, d16
+  ec:	bl	0 <printf>
+  f0:	mov	sp, fp
+  f4:	pop	{fp, pc}

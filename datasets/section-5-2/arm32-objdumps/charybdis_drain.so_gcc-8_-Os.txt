@@ -1,0 +1,156 @@
+
+../repos/charybdis/extensions/.libs/drain.so:     file format elf32-littlearm
+
+
+Disassembly of section .init:
+
+00000390 <_init>:
+ 390:	push	{r3, lr}
+ 394:	bl	3d4 <call_weak_fn>
+ 398:	pop	{r3, pc}
+
+Disassembly of section .plt:
+
+0000039c <.plt>:
+ 39c:	push	{lr}		; (str lr, [sp, #-4]!)
+ 3a0:	ldr	lr, [pc, #4]	; 3ac <.plt+0x10>
+ 3a4:	add	lr, pc, lr
+ 3a8:	ldr	pc, [lr, #8]!
+ 3ac:	.word	0x00010c54
+
+000003b0 <__cxa_finalize@plt>:
+ 3b0:	add	ip, pc, #0, 12
+ 3b4:	add	ip, ip, #16, 20	; 0x10000
+ 3b8:	ldr	pc, [ip, #3156]!	; 0xc54
+
+000003bc <__gmon_start__@plt>:
+ 3bc:	add	ip, pc, #0, 12
+ 3c0:	add	ip, ip, #16, 20	; 0x10000
+ 3c4:	ldr	pc, [ip, #3148]!	; 0xc4c
+
+000003c8 <exit_client@plt>:
+ 3c8:	add	ip, pc, #0, 12
+ 3cc:	add	ip, ip, #16, 20	; 0x10000
+ 3d0:	ldr	pc, [ip, #3140]!	; 0xc44
+
+Disassembly of section .text:
+
+000003d4 <call_weak_fn>:
+ 3d4:	ldr	r3, [pc, #20]	; 3f0 <call_weak_fn+0x1c>
+ 3d8:	ldr	r2, [pc, #20]	; 3f4 <call_weak_fn+0x20>
+ 3dc:	add	r3, pc, r3
+ 3e0:	ldr	r2, [r3, r2]
+ 3e4:	cmp	r2, #0
+ 3e8:	bxeq	lr
+ 3ec:	b	3bc <__gmon_start__@plt>
+ 3f0:	.word	0x00010c1c
+ 3f4:	.word	0x00000020
+
+000003f8 <deregister_tm_clones>:
+ 3f8:	ldr	r0, [pc, #44]	; 42c <deregister_tm_clones+0x34>
+ 3fc:	ldr	r3, [pc, #44]	; 430 <deregister_tm_clones+0x38>
+ 400:	add	r0, pc, r0
+ 404:	add	r3, pc, r3
+ 408:	cmp	r3, r0
+ 40c:	ldr	r3, [pc, #32]	; 434 <deregister_tm_clones+0x3c>
+ 410:	add	r3, pc, r3
+ 414:	bxeq	lr
+ 418:	ldr	r2, [pc, #24]	; 438 <deregister_tm_clones+0x40>
+ 41c:	ldr	r3, [r3, r2]
+ 420:	cmp	r3, #0
+ 424:	bxeq	lr
+ 428:	bx	r3
+ 42c:	.word	0x00010c6c
+ 430:	.word	0x00010c68
+ 434:	.word	0x00010be8
+ 438:	.word	0x0000001c
+
+0000043c <register_tm_clones>:
+ 43c:	ldr	r0, [pc, #56]	; 47c <register_tm_clones+0x40>
+ 440:	ldr	r3, [pc, #56]	; 480 <register_tm_clones+0x44>
+ 444:	add	r0, pc, r0
+ 448:	add	r3, pc, r3
+ 44c:	sub	r1, r3, r0
+ 450:	ldr	r3, [pc, #44]	; 484 <register_tm_clones+0x48>
+ 454:	asr	r1, r1, #2
+ 458:	add	r3, pc, r3
+ 45c:	add	r1, r1, r1, lsr #31
+ 460:	asrs	r1, r1, #1
+ 464:	bxeq	lr
+ 468:	ldr	r2, [pc, #24]	; 488 <register_tm_clones+0x4c>
+ 46c:	ldr	r3, [r3, r2]
+ 470:	cmp	r3, #0
+ 474:	bxeq	lr
+ 478:	bx	r3
+ 47c:	.word	0x00010c28
+ 480:	.word	0x00010c24
+ 484:	.word	0x00010ba0
+ 488:	.word	0x00000024
+
+0000048c <__do_global_dtors_aux>:
+ 48c:	ldr	r3, [pc, #76]	; 4e0 <__do_global_dtors_aux+0x54>
+ 490:	ldr	r2, [pc, #76]	; 4e4 <__do_global_dtors_aux+0x58>
+ 494:	add	r3, pc, r3
+ 498:	add	r2, pc, r2
+ 49c:	ldrb	r3, [r3]
+ 4a0:	cmp	r3, #0
+ 4a4:	bxne	lr
+ 4a8:	ldr	r3, [pc, #56]	; 4e8 <__do_global_dtors_aux+0x5c>
+ 4ac:	push	{r4, lr}
+ 4b0:	ldr	r3, [r2, r3]
+ 4b4:	cmp	r3, #0
+ 4b8:	beq	4c8 <__do_global_dtors_aux+0x3c>
+ 4bc:	ldr	r3, [pc, #40]	; 4ec <__do_global_dtors_aux+0x60>
+ 4c0:	ldr	r0, [pc, r3]
+ 4c4:	bl	3b0 <__cxa_finalize@plt>
+ 4c8:	bl	3f8 <deregister_tm_clones>
+ 4cc:	ldr	r3, [pc, #28]	; 4f0 <__do_global_dtors_aux+0x64>
+ 4d0:	mov	r2, #1
+ 4d4:	add	r3, pc, r3
+ 4d8:	strb	r2, [r3]
+ 4dc:	pop	{r4, pc}
+ 4e0:	.word	0x00010bd8
+ 4e4:	.word	0x00010b60
+ 4e8:	.word	0x00000018
+ 4ec:	.word	0x00010b68
+ 4f0:	.word	0x00010b98
+
+000004f4 <frame_dummy>:
+ 4f4:	b	43c <register_tm_clones>
+
+000004f8 <check_new_user>:
+ 4f8:	ldr	r2, [pc, #92]	; 55c <check_new_user+0x64>
+ 4fc:	push	{r0, r1, r4, r5}
+ 500:	mov	r1, r0
+ 504:	ldr	r3, [pc, #84]	; 560 <check_new_user+0x68>
+ 508:	add	r2, pc, r2
+ 50c:	ldr	r3, [r2, r3]
+ 510:	ldr	r3, [r3, #376]	; 0x178
+ 514:	cmp	r3, #0
+ 518:	ldreq	r3, [pc, #68]	; 564 <check_new_user+0x6c>
+ 51c:	addeq	r3, pc, r3
+ 520:	ldr	r0, [r1, #64]	; 0x40
+ 524:	mov	r5, #0
+ 528:	and	r4, r0, #4194304	; 0x400000
+ 52c:	orrs	r0, r4, r5
+ 530:	bne	550 <check_new_user+0x58>
+ 534:	ldr	r0, [pc, #44]	; 568 <check_new_user+0x70>
+ 538:	ldr	r2, [r2, r0]
+ 53c:	mov	r0, r1
+ 540:	str	r2, [sp, #4]
+ 544:	add	sp, sp, #8
+ 548:	pop	{r4, r5}
+ 54c:	b	3c8 <exit_client@plt>
+ 550:	add	sp, sp, #8
+ 554:	pop	{r4, r5}
+ 558:	bx	lr
+ 55c:	.word	0x00010af0
+ 560:	.word	0x0000002c
+ 564:	.word	0x0000008f
+ 568:	.word	0x00000028
+
+Disassembly of section .fini:
+
+0000056c <_fini>:
+ 56c:	push	{r3, lr}
+ 570:	pop	{r3, pc}

@@ -1,0 +1,1250 @@
+
+../repos/dvidelabs-flatcc-3b39ef7/src/compiler/CMakeFiles/flatcc.dir/__/__/external/hash/cmetrohash64.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <crotate_right>:
+       0:	mov	ip, sp
+       4:	sub	sp, sp, #32
+       8:	str	ip, [sp]
+       c:	str	lr, [sp, #4]
+      10:	str	r4, [sp, #8]
+      14:	str	r5, [sp, #12]
+      18:	str	r6, [sp, #16]
+      1c:	str	r7, [sp, #20]
+      20:	str	r8, [sp, #24]
+      24:	mov	r5, r2
+      28:	mov	r6, r1
+      2c:	mov	r7, r0
+      30:	mov	r2, r5
+      34:	mov	r1, r6
+      38:	mov	r0, r7
+      3c:	bl	0 <__compcert_i64_shr>
+      40:	mov	r4, r1
+      44:	mov	r8, r0
+      48:	rsb	r2, r5, #64	; 0x40
+      4c:	mov	r1, r6
+      50:	mov	r0, r7
+      54:	bl	0 <__compcert_i64_shl>
+      58:	orr	r1, r4, r1
+      5c:	orr	r0, r8, r0
+      60:	ldr	r4, [sp, #8]
+      64:	ldr	r5, [sp, #12]
+      68:	ldr	r6, [sp, #16]
+      6c:	ldr	r7, [sp, #20]
+      70:	ldr	r8, [sp, #24]
+      74:	ldr	lr, [sp, #4]
+      78:	add	sp, sp, #32
+      7c:	bx	lr
+
+00000080 <cread_u64>:
+      80:	mov	ip, sp
+      84:	sub	sp, sp, #8
+      88:	str	ip, [sp]
+      8c:	str	lr, [sp, #4]
+      90:	ldrb	r1, [r0, #2]
+      94:	lsr	ip, r1, #16
+      98:	ldrb	r3, [r0, #1]
+      9c:	orr	ip, ip, r3, lsr #24
+      a0:	ldrb	r1, [r0, #3]
+      a4:	orr	r2, ip, r1, lsr #8
+      a8:	ldrb	r1, [r0, #4]
+      ac:	orr	r2, r2, r1
+      b0:	ldrb	ip, [r0, #5]
+      b4:	orr	r1, r2, ip, lsl #8
+      b8:	ldrb	r2, [r0, #6]
+      bc:	orr	ip, r1, r2, lsl #16
+      c0:	ldrb	r2, [r0, #7]
+      c4:	orr	r1, ip, r2, lsl #24
+      c8:	ldrb	r3, [r0]
+      cc:	ldrb	r2, [r0, #1]
+      d0:	orr	r3, r3, r2, lsl #8
+      d4:	ldrb	r2, [r0, #2]
+      d8:	orr	r2, r3, r2, lsl #16
+      dc:	ldrb	ip, [r0, #3]
+      e0:	orr	r0, r2, ip, lsl #24
+      e4:	ldr	lr, [sp, #4]
+      e8:	add	sp, sp, #8
+      ec:	bx	lr
+
+000000f0 <cread_u32>:
+      f0:	mov	ip, sp
+      f4:	sub	sp, sp, #8
+      f8:	str	ip, [sp]
+      fc:	str	lr, [sp, #4]
+     100:	mov	r1, #0
+     104:	ldrb	r3, [r0]
+     108:	ldrb	ip, [r0, #1]
+     10c:	orr	r3, r3, ip, lsl #8
+     110:	ldrb	r2, [r0, #2]
+     114:	orr	r2, r3, r2, lsl #16
+     118:	ldrb	r3, [r0, #3]
+     11c:	orr	r0, r2, r3, lsl #24
+     120:	ldr	lr, [sp, #4]
+     124:	add	sp, sp, #8
+     128:	bx	lr
+
+0000012c <cread_u16>:
+     12c:	mov	ip, sp
+     130:	sub	sp, sp, #8
+     134:	str	ip, [sp]
+     138:	str	lr, [sp, #4]
+     13c:	ldrb	r1, [r0]
+     140:	bic	r3, r1, #16711680	; 0xff0000
+     144:	bic	r3, r3, #-16777216	; 0xff000000
+     148:	ldrb	ip, [r0, #1]
+     14c:	bic	r0, ip, #16711680	; 0xff0000
+     150:	bic	r0, r0, #-16777216	; 0xff000000
+     154:	orr	r0, r3, r0, lsl #8
+     158:	asr	r1, r0, #31
+     15c:	ldr	lr, [sp, #4]
+     160:	add	sp, sp, #8
+     164:	bx	lr
+
+00000168 <cread_u8>:
+     168:	mov	ip, sp
+     16c:	sub	sp, sp, #8
+     170:	str	ip, [sp]
+     174:	str	lr, [sp, #4]
+     178:	mov	r1, #0
+     17c:	ldrb	r0, [r0]
+     180:	ldr	lr, [sp, #4]
+     184:	add	sp, sp, #8
+     188:	bx	lr
+
+0000018c <cmetrohash64_1>:
+     18c:	mov	ip, sp
+     190:	sub	sp, sp, #80	; 0x50
+     194:	str	ip, [sp]
+     198:	str	lr, [sp, #4]
+     19c:	str	r4, [sp, #8]
+     1a0:	str	r5, [sp, #12]
+     1a4:	str	r6, [sp, #16]
+     1a8:	str	r7, [sp, #20]
+     1ac:	str	r8, [sp, #24]
+     1b0:	str	r9, [sp, #28]
+     1b4:	str	sl, [sp, #32]
+     1b8:	str	fp, [sp, #36]	; 0x24
+     1bc:	ldr	r6, [ip, #4]
+     1c0:	ldr	r1, [ip]
+     1c4:	mov	r8, r0
+     1c8:	add	r7, r8, r2
+     1cc:	mov	ip, #0
+     1d0:	ldr	r0, [pc, #2180]	; a5c <cmetrohash64_1+0x8d0>
+     1d4:	ldr	r4, [r0]
+     1d8:	ldr	r0, [r0, #4]
+     1dc:	adds	r4, r1, r4
+     1e0:	adc	r5, ip, r0
+     1e4:	ldr	ip, [pc, #2164]	; a60 <cmetrohash64_1+0x8d4>
+     1e8:	ldr	r0, [ip]
+     1ec:	ldr	r1, [ip, #4]
+     1f0:	umull	ip, r9, r4, r0
+     1f4:	mla	r1, r4, r1, r9
+     1f8:	mla	r0, r5, r0, r1
+     1fc:	adds	lr, ip, r2
+     200:	adc	r1, r0, r3
+     204:	mov	r0, lr
+     208:	str	r0, [sp, #40]	; 0x28
+     20c:	str	r1, [sp, #44]	; 0x2c
+     210:	mov	ip, #0
+     214:	cmp	r3, ip
+     218:	bne	22c <cmetrohash64_1+0xa0>
+     21c:	mov	r3, #32
+     220:	cmp	r2, r3
+     224:	bcs	238 <cmetrohash64_1+0xac>
+     228:	b	644 <cmetrohash64_1+0x4b8>
+     22c:	mov	r0, #0
+     230:	cmp	r3, r0
+     234:	bls	644 <cmetrohash64_1+0x4b8>
+     238:	ldr	r2, [sp, #40]	; 0x28
+     23c:	ldr	r1, [sp, #44]	; 0x2c
+     240:	str	r2, [sp, #48]	; 0x30
+     244:	str	r1, [sp, #52]	; 0x34
+     248:	ldr	r0, [sp, #40]	; 0x28
+     24c:	ldr	r3, [sp, #44]	; 0x2c
+     250:	str	r0, [sp, #56]	; 0x38
+     254:	str	r3, [sp, #60]	; 0x3c
+     258:	ldr	r0, [sp, #40]	; 0x28
+     25c:	ldr	ip, [sp, #44]	; 0x2c
+     260:	str	r0, [sp, #64]	; 0x40
+     264:	str	ip, [sp, #68]	; 0x44
+     268:	ldr	r0, [sp, #40]	; 0x28
+     26c:	ldr	r3, [sp, #44]	; 0x2c
+     270:	str	r0, [sp, #72]	; 0x48
+     274:	str	r3, [sp, #76]	; 0x4c
+     278:	mov	r0, r8
+     27c:	bl	80 <cread_u64>
+     280:	ldr	r3, [sp, #48]	; 0x30
+     284:	ldr	r4, [sp, #52]	; 0x34
+     288:	ldr	r2, [pc, #2000]	; a60 <cmetrohash64_1+0x8d4>
+     28c:	ldr	ip, [r2]
+     290:	ldr	r2, [r2, #4]
+     294:	umull	r5, r9, r0, ip
+     298:	mla	r2, r0, r2, r9
+     29c:	mla	r2, r1, ip, r2
+     2a0:	adds	r0, r3, r5
+     2a4:	adc	ip, r4, r2
+     2a8:	str	r0, [sp, #48]	; 0x30
+     2ac:	str	ip, [sp, #52]	; 0x34
+     2b0:	add	r4, r8, #8
+     2b4:	ldr	r0, [sp, #48]	; 0x30
+     2b8:	ldr	r1, [sp, #52]	; 0x34
+     2bc:	mov	r2, #29
+     2c0:	bl	0 <crotate_right>
+     2c4:	ldr	r3, [sp, #64]	; 0x40
+     2c8:	ldr	r2, [sp, #68]	; 0x44
+     2cc:	adds	lr, r0, r3
+     2d0:	adc	r3, r1, r2
+     2d4:	mov	r2, lr
+     2d8:	str	r2, [sp, #48]	; 0x30
+     2dc:	str	r3, [sp, #52]	; 0x34
+     2e0:	mov	r0, r4
+     2e4:	bl	80 <cread_u64>
+     2e8:	ldr	r8, [sp, #56]	; 0x38
+     2ec:	ldr	r5, [sp, #60]	; 0x3c
+     2f0:	ldr	r3, [pc, #1888]	; a58 <cmetrohash64_1+0x8cc>
+     2f4:	ldr	r2, [r3]
+     2f8:	ldr	r3, [r3, #4]
+     2fc:	umull	ip, r9, r0, r2
+     300:	mla	r3, r0, r3, r9
+     304:	mla	r1, r1, r2, r3
+     308:	adds	r0, r8, ip
+     30c:	adc	r1, r5, r1
+     310:	str	r0, [sp, #56]	; 0x38
+     314:	str	r1, [sp, #60]	; 0x3c
+     318:	add	r4, r4, #8
+     31c:	ldr	r0, [sp, #56]	; 0x38
+     320:	ldr	r1, [sp, #60]	; 0x3c
+     324:	mov	r2, #29
+     328:	bl	0 <crotate_right>
+     32c:	ldr	r3, [sp, #72]	; 0x48
+     330:	ldr	r2, [sp, #76]	; 0x4c
+     334:	adds	lr, r0, r3
+     338:	adc	r3, r1, r2
+     33c:	mov	r1, lr
+     340:	str	r1, [sp, #56]	; 0x38
+     344:	str	r3, [sp, #60]	; 0x3c
+     348:	mov	r0, r4
+     34c:	bl	80 <cread_u64>
+     350:	ldr	r5, [sp, #64]	; 0x40
+     354:	ldr	r3, [sp, #68]	; 0x44
+     358:	ldr	ip, [pc, #1788]	; a5c <cmetrohash64_1+0x8d0>
+     35c:	ldr	r2, [ip]
+     360:	ldr	r8, [ip, #4]
+     364:	umull	ip, r9, r0, r2
+     368:	mla	r0, r0, r8, r9
+     36c:	mla	r2, r1, r2, r0
+     370:	adds	r0, r5, ip
+     374:	adc	r1, r3, r2
+     378:	str	r0, [sp, #64]	; 0x40
+     37c:	str	r1, [sp, #68]	; 0x44
+     380:	add	r4, r4, #8
+     384:	ldr	r0, [sp, #64]	; 0x40
+     388:	ldr	r1, [sp, #68]	; 0x44
+     38c:	mov	r2, #29
+     390:	bl	0 <crotate_right>
+     394:	ldr	r3, [sp, #48]	; 0x30
+     398:	ldr	r2, [sp, #52]	; 0x34
+     39c:	adds	r3, r0, r3
+     3a0:	adc	r0, r1, r2
+     3a4:	str	r3, [sp, #64]	; 0x40
+     3a8:	str	r0, [sp, #68]	; 0x44
+     3ac:	mov	r0, r4
+     3b0:	bl	80 <cread_u64>
+     3b4:	ldr	r5, [sp, #72]	; 0x48
+     3b8:	ldr	r2, [sp, #76]	; 0x4c
+     3bc:	ldr	r3, [pc, #1680]	; a54 <cmetrohash64_1+0x8c8>
+     3c0:	ldr	r8, [r3]
+     3c4:	ldr	ip, [r3, #4]
+     3c8:	umull	r3, r9, r0, r8
+     3cc:	mla	ip, r0, ip, r9
+     3d0:	mla	r0, r1, r8, ip
+     3d4:	adds	lr, r5, r3
+     3d8:	adc	r1, r2, r0
+     3dc:	mov	r2, lr
+     3e0:	str	r2, [sp, #72]	; 0x48
+     3e4:	str	r1, [sp, #76]	; 0x4c
+     3e8:	add	r8, r4, #8
+     3ec:	ldr	r0, [sp, #72]	; 0x48
+     3f0:	ldr	r1, [sp, #76]	; 0x4c
+     3f4:	mov	r2, #29
+     3f8:	bl	0 <crotate_right>
+     3fc:	ldr	ip, [sp, #56]	; 0x38
+     400:	ldr	r2, [sp, #60]	; 0x3c
+     404:	adds	ip, r0, ip
+     408:	adc	r2, r1, r2
+     40c:	str	ip, [sp, #72]	; 0x48
+     410:	str	r2, [sp, #76]	; 0x4c
+     414:	sub	r0, r7, #32
+     418:	cmp	r8, r0
+     41c:	bls	278 <cmetrohash64_1+0xec>
+     420:	ldr	r3, [sp, #48]	; 0x30
+     424:	ldr	r2, [sp, #52]	; 0x34
+     428:	ldr	r1, [sp, #72]	; 0x48
+     42c:	ldr	ip, [sp, #76]	; 0x4c
+     430:	adds	lr, r3, r1
+     434:	adc	r3, r2, ip
+     438:	mov	r2, lr
+     43c:	ldr	ip, [pc, #1564]	; a60 <cmetrohash64_1+0x8d4>
+     440:	ldr	r1, [ip]
+     444:	ldr	r4, [ip, #4]
+     448:	umull	ip, r0, r2, r1
+     44c:	mla	r2, r2, r4, r0
+     450:	mla	r0, r3, r1, r2
+     454:	ldr	r2, [sp, #56]	; 0x38
+     458:	ldr	r1, [sp, #60]	; 0x3c
+     45c:	adds	lr, ip, r2
+     460:	adc	r1, r0, r1
+     464:	mov	r0, lr
+     468:	mov	r2, #33	; 0x21
+     46c:	bl	0 <crotate_right>
+     470:	ldr	r3, [sp, #64]	; 0x40
+     474:	ldr	ip, [sp, #68]	; 0x44
+     478:	ldr	r4, [pc, #1496]	; a58 <cmetrohash64_1+0x8cc>
+     47c:	ldr	r2, [r4]
+     480:	ldr	r4, [r4, #4]
+     484:	umull	r5, r9, r0, r2
+     488:	mla	r0, r0, r4, r9
+     48c:	mla	r1, r1, r2, r0
+     490:	eor	r2, ip, r1
+     494:	eor	r1, r3, r5
+     498:	str	r1, [sp, #64]	; 0x40
+     49c:	str	r2, [sp, #68]	; 0x44
+     4a0:	ldr	r3, [sp, #56]	; 0x38
+     4a4:	ldr	r2, [sp, #60]	; 0x3c
+     4a8:	ldr	ip, [sp, #64]	; 0x40
+     4ac:	ldr	r0, [sp, #68]	; 0x44
+     4b0:	adds	lr, r3, ip
+     4b4:	adc	r4, r2, r0
+     4b8:	mov	r0, lr
+     4bc:	ldr	r3, [pc, #1428]	; a58 <cmetrohash64_1+0x8cc>
+     4c0:	ldr	r1, [r3]
+     4c4:	ldr	r2, [r3, #4]
+     4c8:	umull	r3, ip, r0, r1
+     4cc:	mla	ip, r0, r2, ip
+     4d0:	mla	r1, r4, r1, ip
+     4d4:	ldr	ip, [sp, #48]	; 0x30
+     4d8:	ldr	r0, [sp, #52]	; 0x34
+     4dc:	adds	lr, r3, ip
+     4e0:	adc	r1, r1, r0
+     4e4:	mov	r0, lr
+     4e8:	mov	r2, #33	; 0x21
+     4ec:	bl	0 <crotate_right>
+     4f0:	ldr	r4, [sp, #72]	; 0x48
+     4f4:	ldr	ip, [sp, #76]	; 0x4c
+     4f8:	ldr	r3, [pc, #1376]	; a60 <cmetrohash64_1+0x8d4>
+     4fc:	ldr	r2, [r3]
+     500:	ldr	r5, [r3, #4]
+     504:	umull	r3, r9, r0, r2
+     508:	mla	r0, r0, r5, r9
+     50c:	mla	r0, r1, r2, r0
+     510:	eor	r1, ip, r0
+     514:	eor	r0, r4, r3
+     518:	str	r0, [sp, #72]	; 0x48
+     51c:	str	r1, [sp, #76]	; 0x4c
+     520:	ldr	r2, [sp, #48]	; 0x30
+     524:	ldr	r3, [sp, #52]	; 0x34
+     528:	ldr	r0, [sp, #64]	; 0x40
+     52c:	ldr	r1, [sp, #68]	; 0x44
+     530:	adds	lr, r2, r0
+     534:	adc	r2, r3, r1
+     538:	mov	r3, lr
+     53c:	ldr	r0, [pc, #1308]	; a60 <cmetrohash64_1+0x8d4>
+     540:	ldr	ip, [r0]
+     544:	ldr	r4, [r0, #4]
+     548:	umull	r0, r1, r3, ip
+     54c:	mla	r1, r3, r4, r1
+     550:	mla	r1, r2, ip, r1
+     554:	ldr	ip, [sp, #72]	; 0x48
+     558:	ldr	r2, [sp, #76]	; 0x4c
+     55c:	adds	r0, r0, ip
+     560:	adc	r1, r1, r2
+     564:	mov	r2, #33	; 0x21
+     568:	bl	0 <crotate_right>
+     56c:	ldr	r2, [sp, #48]	; 0x30
+     570:	ldr	r4, [sp, #52]	; 0x34
+     574:	ldr	r3, [pc, #1244]	; a58 <cmetrohash64_1+0x8cc>
+     578:	ldr	r5, [r3]
+     57c:	ldr	r9, [r3, #4]
+     580:	umull	ip, r3, r0, r5
+     584:	mla	r3, r0, r9, r3
+     588:	mla	r3, r1, r5, r3
+     58c:	eor	r0, r4, r3
+     590:	eor	r3, r2, ip
+     594:	str	r3, [sp, #48]	; 0x30
+     598:	str	r0, [sp, #52]	; 0x34
+     59c:	ldr	r1, [sp, #56]	; 0x38
+     5a0:	ldr	r3, [sp, #60]	; 0x3c
+     5a4:	ldr	ip, [sp, #72]	; 0x48
+     5a8:	ldr	r0, [sp, #76]	; 0x4c
+     5ac:	adds	ip, r1, ip
+     5b0:	adc	r0, r3, r0
+     5b4:	ldr	r1, [pc, #1180]	; a58 <cmetrohash64_1+0x8cc>
+     5b8:	ldr	r3, [r1]
+     5bc:	ldr	r2, [r1, #4]
+     5c0:	umull	r1, r4, ip, r3
+     5c4:	mla	r2, ip, r2, r4
+     5c8:	mla	r3, r0, r3, r2
+     5cc:	ldr	r2, [sp, #64]	; 0x40
+     5d0:	ldr	ip, [sp, #68]	; 0x44
+     5d4:	adds	r0, r1, r2
+     5d8:	adc	r1, r3, ip
+     5dc:	mov	r2, #33	; 0x21
+     5e0:	bl	0 <crotate_right>
+     5e4:	ldr	ip, [sp, #56]	; 0x38
+     5e8:	ldr	r4, [sp, #60]	; 0x3c
+     5ec:	ldr	r2, [pc, #1132]	; a60 <cmetrohash64_1+0x8d4>
+     5f0:	ldr	r5, [r2]
+     5f4:	ldr	r2, [r2, #4]
+     5f8:	umull	r3, r9, r0, r5
+     5fc:	mla	r0, r0, r2, r9
+     600:	mla	r0, r1, r5, r0
+     604:	eor	r2, r4, r0
+     608:	eor	r1, ip, r3
+     60c:	str	r1, [sp, #56]	; 0x38
+     610:	str	r2, [sp, #60]	; 0x3c
+     614:	ldr	r4, [sp, #40]	; 0x28
+     618:	ldr	r1, [sp, #44]	; 0x2c
+     61c:	ldr	ip, [sp, #48]	; 0x30
+     620:	ldr	r2, [sp, #52]	; 0x34
+     624:	ldr	r5, [sp, #56]	; 0x38
+     628:	ldr	r0, [sp, #60]	; 0x3c
+     62c:	eor	r3, r2, r0
+     630:	eor	r2, ip, r5
+     634:	adds	r2, r4, r2
+     638:	adc	r0, r1, r3
+     63c:	str	r2, [sp, #40]	; 0x28
+     640:	str	r0, [sp, #44]	; 0x2c
+     644:	sub	r1, r7, r8
+     648:	cmp	r1, #16
+     64c:	blt	784 <cmetrohash64_1+0x5f8>
+     650:	mov	r0, r8
+     654:	bl	80 <cread_u64>
+     658:	ldr	ip, [sp, #40]	; 0x28
+     65c:	ldr	r4, [sp, #44]	; 0x2c
+     660:	ldr	r3, [pc, #1016]	; a60 <cmetrohash64_1+0x8d4>
+     664:	ldr	r9, [r3]
+     668:	ldr	r5, [r3, #4]
+     66c:	umull	r2, r3, r0, r9
+     670:	mla	r3, r0, r5, r3
+     674:	mla	r3, r1, r9, r3
+     678:	adds	r0, ip, r2
+     67c:	adc	r1, r4, r3
+     680:	add	r5, r8, #8
+     684:	mov	r2, #33	; 0x21
+     688:	bl	0 <crotate_right>
+     68c:	ldr	r3, [pc, #964]	; a58 <cmetrohash64_1+0x8cc>
+     690:	ldr	r2, [r3]
+     694:	ldr	r3, [r3, #4]
+     698:	umull	sl, ip, r0, r2
+     69c:	mla	r3, r0, r3, ip
+     6a0:	mla	r4, r1, r2, r3
+     6a4:	mov	r0, r5
+     6a8:	bl	80 <cread_u64>
+     6ac:	ldr	r8, [sp, #40]	; 0x28
+     6b0:	ldr	r9, [sp, #44]	; 0x2c
+     6b4:	ldr	r2, [pc, #924]	; a58 <cmetrohash64_1+0x8cc>
+     6b8:	ldr	ip, [r2]
+     6bc:	ldr	r2, [r2, #4]
+     6c0:	umull	r3, fp, r0, ip
+     6c4:	mla	r0, r0, r2, fp
+     6c8:	mla	ip, r1, ip, r0
+     6cc:	adds	r0, r8, r3
+     6d0:	adc	r1, r9, ip
+     6d4:	add	r8, r5, #8
+     6d8:	mov	r2, #33	; 0x21
+     6dc:	bl	0 <crotate_right>
+     6e0:	ldr	r3, [pc, #884]	; a5c <cmetrohash64_1+0x8d0>
+     6e4:	ldr	r2, [r3]
+     6e8:	ldr	r3, [r3, #4]
+     6ec:	umull	r5, ip, r0, r2
+     6f0:	mla	r3, r0, r3, ip
+     6f4:	mla	r9, r1, r2, r3
+     6f8:	mov	r3, r4
+     6fc:	mov	fp, sl
+     700:	ldr	r0, [pc, #856]	; a60 <cmetrohash64_1+0x8d4>
+     704:	ldr	ip, [r0]
+     708:	ldr	r1, [r0, #4]
+     70c:	umull	r0, r2, fp, ip
+     710:	mla	r1, fp, r1, r2
+     714:	mla	r1, r3, ip, r1
+     718:	mov	r2, #35	; 0x23
+     71c:	bl	0 <crotate_right>
+     720:	adds	ip, r0, r5
+     724:	adc	r2, r1, r9
+     728:	eor	r4, r4, r2
+     72c:	eor	sl, sl, ip
+     730:	ldr	r2, [pc, #796]	; a54 <cmetrohash64_1+0x8c8>
+     734:	ldr	r1, [r2]
+     738:	ldr	r3, [r2, #4]
+     73c:	mov	ip, r5
+     740:	umull	r0, fp, ip, r1
+     744:	mov	r2, r9
+     748:	mov	ip, r5
+     74c:	mla	ip, ip, r3, fp
+     750:	mla	r1, r2, r1, ip
+     754:	mov	r2, #35	; 0x23
+     758:	bl	0 <crotate_right>
+     75c:	adds	r3, r0, sl
+     760:	adc	r0, r1, r4
+     764:	eor	r0, r9, r0
+     768:	eor	ip, r5, r3
+     76c:	ldr	r2, [sp, #40]	; 0x28
+     770:	ldr	r1, [sp, #44]	; 0x2c
+     774:	adds	ip, r2, ip
+     778:	adc	r0, r1, r0
+     77c:	str	ip, [sp, #40]	; 0x28
+     780:	str	r0, [sp, #44]	; 0x2c
+     784:	sub	r2, r7, r8
+     788:	cmp	r2, #8
+     78c:	blt	80c <cmetrohash64_1+0x680>
+     790:	mov	r0, r8
+     794:	bl	80 <cread_u64>
+     798:	ldr	ip, [sp, #40]	; 0x28
+     79c:	ldr	r4, [sp, #44]	; 0x2c
+     7a0:	ldr	r2, [pc, #684]	; a54 <cmetrohash64_1+0x8c8>
+     7a4:	ldr	r5, [r2]
+     7a8:	ldr	r2, [r2, #4]
+     7ac:	umull	r3, r9, r0, r5
+     7b0:	mla	r0, r0, r2, r9
+     7b4:	mla	r0, r1, r5, r0
+     7b8:	adds	r1, ip, r3
+     7bc:	adc	r0, r4, r0
+     7c0:	str	r1, [sp, #40]	; 0x28
+     7c4:	str	r0, [sp, #44]	; 0x2c
+     7c8:	add	r8, r8, #8
+     7cc:	ldr	r0, [sp, #40]	; 0x28
+     7d0:	ldr	r1, [sp, #44]	; 0x2c
+     7d4:	mov	r2, #33	; 0x21
+     7d8:	bl	0 <crotate_right>
+     7dc:	ldr	r4, [sp, #40]	; 0x28
+     7e0:	ldr	ip, [sp, #44]	; 0x2c
+     7e4:	ldr	r3, [pc, #620]	; a58 <cmetrohash64_1+0x8cc>
+     7e8:	ldr	r2, [r3]
+     7ec:	ldr	r5, [r3, #4]
+     7f0:	umull	r3, r9, r0, r2
+     7f4:	mla	r0, r0, r5, r9
+     7f8:	mla	r0, r1, r2, r0
+     7fc:	eor	ip, ip, r0
+     800:	eor	r2, r4, r3
+     804:	str	r2, [sp, #40]	; 0x28
+     808:	str	ip, [sp, #44]	; 0x2c
+     80c:	sub	r3, r7, r8
+     810:	cmp	r3, #4
+     814:	blt	894 <cmetrohash64_1+0x708>
+     818:	mov	r0, r8
+     81c:	bl	f0 <cread_u32>
+     820:	ldr	r3, [sp, #40]	; 0x28
+     824:	ldr	ip, [sp, #44]	; 0x2c
+     828:	ldr	r4, [pc, #548]	; a54 <cmetrohash64_1+0x8c8>
+     82c:	ldr	r2, [r4]
+     830:	ldr	r5, [r4, #4]
+     834:	umull	r9, r4, r0, r2
+     838:	mla	r0, r0, r5, r4
+     83c:	mla	r0, r1, r2, r0
+     840:	adds	r1, r3, r9
+     844:	adc	ip, ip, r0
+     848:	str	r1, [sp, #40]	; 0x28
+     84c:	str	ip, [sp, #44]	; 0x2c
+     850:	add	r8, r8, #4
+     854:	ldr	r0, [sp, #40]	; 0x28
+     858:	ldr	r1, [sp, #44]	; 0x2c
+     85c:	mov	r2, #15
+     860:	bl	0 <crotate_right>
+     864:	ldr	ip, [sp, #40]	; 0x28
+     868:	ldr	r4, [sp, #44]	; 0x2c
+     86c:	ldr	r2, [pc, #484]	; a58 <cmetrohash64_1+0x8cc>
+     870:	ldr	r9, [r2]
+     874:	ldr	r5, [r2, #4]
+     878:	umull	r2, r3, r0, r9
+     87c:	mla	r0, r0, r5, r3
+     880:	mla	r3, r1, r9, r0
+     884:	eor	r1, r4, r3
+     888:	eor	r0, ip, r2
+     88c:	str	r0, [sp, #40]	; 0x28
+     890:	str	r1, [sp, #44]	; 0x2c
+     894:	sub	r0, r7, r8
+     898:	cmp	r0, #2
+     89c:	blt	91c <cmetrohash64_1+0x790>
+     8a0:	mov	r0, r8
+     8a4:	bl	12c <cread_u16>
+     8a8:	ldr	ip, [sp, #40]	; 0x28
+     8ac:	ldr	r4, [sp, #44]	; 0x2c
+     8b0:	ldr	r2, [pc, #412]	; a54 <cmetrohash64_1+0x8c8>
+     8b4:	ldr	r3, [r2]
+     8b8:	ldr	r2, [r2, #4]
+     8bc:	umull	r5, r9, r0, r3
+     8c0:	mla	r2, r0, r2, r9
+     8c4:	mla	r0, r1, r3, r2
+     8c8:	adds	ip, ip, r5
+     8cc:	adc	r2, r4, r0
+     8d0:	str	ip, [sp, #40]	; 0x28
+     8d4:	str	r2, [sp, #44]	; 0x2c
+     8d8:	add	r8, r8, #2
+     8dc:	ldr	r0, [sp, #40]	; 0x28
+     8e0:	ldr	r1, [sp, #44]	; 0x2c
+     8e4:	mov	r2, #13
+     8e8:	bl	0 <crotate_right>
+     8ec:	ldr	r4, [sp, #40]	; 0x28
+     8f0:	ldr	ip, [sp, #44]	; 0x2c
+     8f4:	ldr	r3, [pc, #348]	; a58 <cmetrohash64_1+0x8cc>
+     8f8:	ldr	r5, [r3]
+     8fc:	ldr	r2, [r3, #4]
+     900:	umull	r3, r9, r0, r5
+     904:	mla	r0, r0, r2, r9
+     908:	mla	r0, r1, r5, r0
+     90c:	eor	ip, ip, r0
+     910:	eor	r3, r4, r3
+     914:	str	r3, [sp, #40]	; 0x28
+     918:	str	ip, [sp, #44]	; 0x2c
+     91c:	sub	r3, r7, r8
+     920:	cmp	r3, #1
+     924:	blt	9a0 <cmetrohash64_1+0x814>
+     928:	mov	r0, r8
+     92c:	bl	168 <cread_u8>
+     930:	ldr	r5, [sp, #40]	; 0x28
+     934:	ldr	r4, [sp, #44]	; 0x2c
+     938:	ldr	r2, [pc, #276]	; a54 <cmetrohash64_1+0x8c8>
+     93c:	ldr	ip, [r2]
+     940:	ldr	r7, [r2, #4]
+     944:	umull	r3, r2, r0, ip
+     948:	mla	r2, r0, r7, r2
+     94c:	mla	ip, r1, ip, r2
+     950:	adds	r3, r5, r3
+     954:	adc	r1, r4, ip
+     958:	str	r3, [sp, #40]	; 0x28
+     95c:	str	r1, [sp, #44]	; 0x2c
+     960:	ldr	r0, [sp, #40]	; 0x28
+     964:	ldr	r1, [sp, #44]	; 0x2c
+     968:	mov	r2, #25
+     96c:	bl	0 <crotate_right>
+     970:	ldr	r4, [sp, #40]	; 0x28
+     974:	ldr	ip, [sp, #44]	; 0x2c
+     978:	ldr	r2, [pc, #216]	; a58 <cmetrohash64_1+0x8cc>
+     97c:	ldr	r5, [r2]
+     980:	ldr	r3, [r2, #4]
+     984:	umull	r2, r7, r0, r5
+     988:	mla	r0, r0, r3, r7
+     98c:	mla	r1, r1, r5, r0
+     990:	eor	ip, ip, r1
+     994:	eor	r3, r4, r2
+     998:	str	r3, [sp, #40]	; 0x28
+     99c:	str	ip, [sp, #44]	; 0x2c
+     9a0:	ldr	r0, [sp, #40]	; 0x28
+     9a4:	ldr	r1, [sp, #44]	; 0x2c
+     9a8:	mov	r2, #33	; 0x21
+     9ac:	bl	0 <crotate_right>
+     9b0:	ldr	r2, [sp, #40]	; 0x28
+     9b4:	ldr	r3, [sp, #44]	; 0x2c
+     9b8:	eor	r3, r3, r1
+     9bc:	eor	r1, r2, r0
+     9c0:	str	r1, [sp, #40]	; 0x28
+     9c4:	str	r3, [sp, #44]	; 0x2c
+     9c8:	ldr	ip, [sp, #40]	; 0x28
+     9cc:	ldr	r2, [sp, #44]	; 0x2c
+     9d0:	ldr	r0, [pc, #136]	; a60 <cmetrohash64_1+0x8d4>
+     9d4:	ldr	r3, [r0]
+     9d8:	ldr	r0, [r0, #4]
+     9dc:	umull	r1, r4, ip, r3
+     9e0:	mla	r0, ip, r0, r4
+     9e4:	mla	ip, r2, r3, r0
+     9e8:	str	r1, [sp, #40]	; 0x28
+     9ec:	str	ip, [sp, #44]	; 0x2c
+     9f0:	ldr	r0, [sp, #40]	; 0x28
+     9f4:	ldr	r1, [sp, #44]	; 0x2c
+     9f8:	mov	r2, #33	; 0x21
+     9fc:	bl	0 <crotate_right>
+     a00:	ldr	ip, [sp, #40]	; 0x28
+     a04:	ldr	r2, [sp, #44]	; 0x2c
+     a08:	eor	r3, r2, r1
+     a0c:	eor	r2, ip, r0
+     a10:	str	r2, [sp, #40]	; 0x28
+     a14:	str	r3, [sp, #44]	; 0x2c
+     a18:	add	r1, sp, #40	; 0x28
+     a1c:	mov	r2, #8
+     a20:	mov	r0, r6
+     a24:	bl	0 <memcpy>
+     a28:	ldr	r4, [sp, #8]
+     a2c:	ldr	r5, [sp, #12]
+     a30:	ldr	r6, [sp, #16]
+     a34:	ldr	r7, [sp, #20]
+     a38:	ldr	r8, [sp, #24]
+     a3c:	ldr	r9, [sp, #28]
+     a40:	ldr	sl, [sp, #32]
+     a44:	ldr	fp, [sp, #36]	; 0x24
+     a48:	ldr	lr, [sp, #4]
+     a4c:	add	sp, sp, #80	; 0x50
+     a50:	bx	lr
+     a54:	.word	0x00000018
+     a58:	.word	0x00000008
+     a5c:	.word	0x00000010
+     a60:	.word	0x00000000
+
+00000a64 <cmetrohash64_2>:
+     a64:	mov	ip, sp
+     a68:	sub	sp, sp, #80	; 0x50
+     a6c:	str	ip, [sp]
+     a70:	str	lr, [sp, #4]
+     a74:	str	r4, [sp, #8]
+     a78:	str	r5, [sp, #12]
+     a7c:	str	r6, [sp, #16]
+     a80:	str	r7, [sp, #20]
+     a84:	str	r8, [sp, #24]
+     a88:	str	r9, [sp, #28]
+     a8c:	str	sl, [sp, #32]
+     a90:	str	fp, [sp, #36]	; 0x24
+     a94:	ldr	r6, [ip, #4]
+     a98:	ldr	r1, [ip]
+     a9c:	mov	r8, r0
+     aa0:	add	r7, r8, r2
+     aa4:	mov	ip, #0
+     aa8:	ldr	r0, [pc, #2172]	; 132c <cmetrohash64_2+0x8c8>
+     aac:	ldr	r4, [r0]
+     ab0:	ldr	r0, [r0, #4]
+     ab4:	adds	r4, r1, r4
+     ab8:	adc	r5, ip, r0
+     abc:	ldr	ip, [pc, #2156]	; 1330 <cmetrohash64_2+0x8cc>
+     ac0:	ldr	r0, [ip]
+     ac4:	ldr	r1, [ip, #4]
+     ac8:	umull	ip, r9, r4, r0
+     acc:	mla	r1, r4, r1, r9
+     ad0:	mla	r0, r5, r0, r1
+     ad4:	adds	lr, ip, r2
+     ad8:	adc	r1, r0, r3
+     adc:	mov	r0, lr
+     ae0:	str	r0, [sp, #40]	; 0x28
+     ae4:	str	r1, [sp, #44]	; 0x2c
+     ae8:	mov	ip, #0
+     aec:	cmp	r3, ip
+     af0:	bne	b04 <cmetrohash64_2+0xa0>
+     af4:	mov	r3, #32
+     af8:	cmp	r2, r3
+     afc:	bcs	b10 <cmetrohash64_2+0xac>
+     b00:	b	f1c <cmetrohash64_2+0x4b8>
+     b04:	mov	r0, #0
+     b08:	cmp	r3, r0
+     b0c:	bls	f1c <cmetrohash64_2+0x4b8>
+     b10:	ldr	r2, [sp, #40]	; 0x28
+     b14:	ldr	r1, [sp, #44]	; 0x2c
+     b18:	str	r2, [sp, #48]	; 0x30
+     b1c:	str	r1, [sp, #52]	; 0x34
+     b20:	ldr	r0, [sp, #40]	; 0x28
+     b24:	ldr	r3, [sp, #44]	; 0x2c
+     b28:	str	r0, [sp, #56]	; 0x38
+     b2c:	str	r3, [sp, #60]	; 0x3c
+     b30:	ldr	r0, [sp, #40]	; 0x28
+     b34:	ldr	ip, [sp, #44]	; 0x2c
+     b38:	str	r0, [sp, #64]	; 0x40
+     b3c:	str	ip, [sp, #68]	; 0x44
+     b40:	ldr	r0, [sp, #40]	; 0x28
+     b44:	ldr	r3, [sp, #44]	; 0x2c
+     b48:	str	r0, [sp, #72]	; 0x48
+     b4c:	str	r3, [sp, #76]	; 0x4c
+     b50:	mov	r0, r8
+     b54:	bl	80 <cread_u64>
+     b58:	ldr	r3, [sp, #48]	; 0x30
+     b5c:	ldr	r4, [sp, #52]	; 0x34
+     b60:	ldr	r2, [pc, #1992]	; 1330 <cmetrohash64_2+0x8cc>
+     b64:	ldr	ip, [r2]
+     b68:	ldr	r2, [r2, #4]
+     b6c:	umull	r5, r9, r0, ip
+     b70:	mla	r2, r0, r2, r9
+     b74:	mla	r2, r1, ip, r2
+     b78:	adds	r0, r3, r5
+     b7c:	adc	ip, r4, r2
+     b80:	str	r0, [sp, #48]	; 0x30
+     b84:	str	ip, [sp, #52]	; 0x34
+     b88:	add	r4, r8, #8
+     b8c:	ldr	r0, [sp, #48]	; 0x30
+     b90:	ldr	r1, [sp, #52]	; 0x34
+     b94:	mov	r2, #29
+     b98:	bl	0 <crotate_right>
+     b9c:	ldr	r3, [sp, #64]	; 0x40
+     ba0:	ldr	r2, [sp, #68]	; 0x44
+     ba4:	adds	lr, r0, r3
+     ba8:	adc	r3, r1, r2
+     bac:	mov	r2, lr
+     bb0:	str	r2, [sp, #48]	; 0x30
+     bb4:	str	r3, [sp, #52]	; 0x34
+     bb8:	mov	r0, r4
+     bbc:	bl	80 <cread_u64>
+     bc0:	ldr	r8, [sp, #56]	; 0x38
+     bc4:	ldr	r5, [sp, #60]	; 0x3c
+     bc8:	ldr	r3, [pc, #1896]	; 1338 <cmetrohash64_2+0x8d4>
+     bcc:	ldr	r2, [r3]
+     bd0:	ldr	r3, [r3, #4]
+     bd4:	umull	ip, r9, r0, r2
+     bd8:	mla	r3, r0, r3, r9
+     bdc:	mla	r1, r1, r2, r3
+     be0:	adds	r0, r8, ip
+     be4:	adc	r1, r5, r1
+     be8:	str	r0, [sp, #56]	; 0x38
+     bec:	str	r1, [sp, #60]	; 0x3c
+     bf0:	add	r4, r4, #8
+     bf4:	ldr	r0, [sp, #56]	; 0x38
+     bf8:	ldr	r1, [sp, #60]	; 0x3c
+     bfc:	mov	r2, #29
+     c00:	bl	0 <crotate_right>
+     c04:	ldr	r3, [sp, #72]	; 0x48
+     c08:	ldr	r2, [sp, #76]	; 0x4c
+     c0c:	adds	lr, r0, r3
+     c10:	adc	r3, r1, r2
+     c14:	mov	r1, lr
+     c18:	str	r1, [sp, #56]	; 0x38
+     c1c:	str	r3, [sp, #60]	; 0x3c
+     c20:	mov	r0, r4
+     c24:	bl	80 <cread_u64>
+     c28:	ldr	r5, [sp, #64]	; 0x40
+     c2c:	ldr	r3, [sp, #68]	; 0x44
+     c30:	ldr	ip, [pc, #1780]	; 132c <cmetrohash64_2+0x8c8>
+     c34:	ldr	r2, [ip]
+     c38:	ldr	r8, [ip, #4]
+     c3c:	umull	ip, r9, r0, r2
+     c40:	mla	r0, r0, r8, r9
+     c44:	mla	r2, r1, r2, r0
+     c48:	adds	r0, r5, ip
+     c4c:	adc	r1, r3, r2
+     c50:	str	r0, [sp, #64]	; 0x40
+     c54:	str	r1, [sp, #68]	; 0x44
+     c58:	add	r4, r4, #8
+     c5c:	ldr	r0, [sp, #64]	; 0x40
+     c60:	ldr	r1, [sp, #68]	; 0x44
+     c64:	mov	r2, #29
+     c68:	bl	0 <crotate_right>
+     c6c:	ldr	r3, [sp, #48]	; 0x30
+     c70:	ldr	r2, [sp, #52]	; 0x34
+     c74:	adds	r3, r0, r3
+     c78:	adc	r0, r1, r2
+     c7c:	str	r3, [sp, #64]	; 0x40
+     c80:	str	r0, [sp, #68]	; 0x44
+     c84:	mov	r0, r4
+     c88:	bl	80 <cread_u64>
+     c8c:	ldr	r5, [sp, #72]	; 0x48
+     c90:	ldr	r2, [sp, #76]	; 0x4c
+     c94:	ldr	r3, [pc, #1688]	; 1334 <cmetrohash64_2+0x8d0>
+     c98:	ldr	r8, [r3]
+     c9c:	ldr	ip, [r3, #4]
+     ca0:	umull	r3, r9, r0, r8
+     ca4:	mla	ip, r0, ip, r9
+     ca8:	mla	r0, r1, r8, ip
+     cac:	adds	lr, r5, r3
+     cb0:	adc	r1, r2, r0
+     cb4:	mov	r2, lr
+     cb8:	str	r2, [sp, #72]	; 0x48
+     cbc:	str	r1, [sp, #76]	; 0x4c
+     cc0:	add	r8, r4, #8
+     cc4:	ldr	r0, [sp, #72]	; 0x48
+     cc8:	ldr	r1, [sp, #76]	; 0x4c
+     ccc:	mov	r2, #29
+     cd0:	bl	0 <crotate_right>
+     cd4:	ldr	ip, [sp, #56]	; 0x38
+     cd8:	ldr	r2, [sp, #60]	; 0x3c
+     cdc:	adds	ip, r0, ip
+     ce0:	adc	r2, r1, r2
+     ce4:	str	ip, [sp, #72]	; 0x48
+     ce8:	str	r2, [sp, #76]	; 0x4c
+     cec:	sub	r0, r7, #32
+     cf0:	cmp	r8, r0
+     cf4:	bls	b50 <cmetrohash64_2+0xec>
+     cf8:	ldr	r3, [sp, #48]	; 0x30
+     cfc:	ldr	r2, [sp, #52]	; 0x34
+     d00:	ldr	r1, [sp, #72]	; 0x48
+     d04:	ldr	ip, [sp, #76]	; 0x4c
+     d08:	adds	lr, r3, r1
+     d0c:	adc	r3, r2, ip
+     d10:	mov	r2, lr
+     d14:	ldr	ip, [pc, #1556]	; 1330 <cmetrohash64_2+0x8cc>
+     d18:	ldr	r1, [ip]
+     d1c:	ldr	r4, [ip, #4]
+     d20:	umull	ip, r0, r2, r1
+     d24:	mla	r2, r2, r4, r0
+     d28:	mla	r0, r3, r1, r2
+     d2c:	ldr	r2, [sp, #56]	; 0x38
+     d30:	ldr	r1, [sp, #60]	; 0x3c
+     d34:	adds	lr, ip, r2
+     d38:	adc	r1, r0, r1
+     d3c:	mov	r0, lr
+     d40:	mov	r2, #30
+     d44:	bl	0 <crotate_right>
+     d48:	ldr	r3, [sp, #64]	; 0x40
+     d4c:	ldr	ip, [sp, #68]	; 0x44
+     d50:	ldr	r4, [pc, #1504]	; 1338 <cmetrohash64_2+0x8d4>
+     d54:	ldr	r2, [r4]
+     d58:	ldr	r4, [r4, #4]
+     d5c:	umull	r5, r9, r0, r2
+     d60:	mla	r0, r0, r4, r9
+     d64:	mla	r1, r1, r2, r0
+     d68:	eor	r2, ip, r1
+     d6c:	eor	r1, r3, r5
+     d70:	str	r1, [sp, #64]	; 0x40
+     d74:	str	r2, [sp, #68]	; 0x44
+     d78:	ldr	r3, [sp, #56]	; 0x38
+     d7c:	ldr	r2, [sp, #60]	; 0x3c
+     d80:	ldr	ip, [sp, #64]	; 0x40
+     d84:	ldr	r0, [sp, #68]	; 0x44
+     d88:	adds	lr, r3, ip
+     d8c:	adc	r4, r2, r0
+     d90:	mov	r0, lr
+     d94:	ldr	r3, [pc, #1436]	; 1338 <cmetrohash64_2+0x8d4>
+     d98:	ldr	r1, [r3]
+     d9c:	ldr	r2, [r3, #4]
+     da0:	umull	r3, ip, r0, r1
+     da4:	mla	ip, r0, r2, ip
+     da8:	mla	r1, r4, r1, ip
+     dac:	ldr	ip, [sp, #48]	; 0x30
+     db0:	ldr	r0, [sp, #52]	; 0x34
+     db4:	adds	lr, r3, ip
+     db8:	adc	r1, r1, r0
+     dbc:	mov	r0, lr
+     dc0:	mov	r2, #30
+     dc4:	bl	0 <crotate_right>
+     dc8:	ldr	r4, [sp, #72]	; 0x48
+     dcc:	ldr	ip, [sp, #76]	; 0x4c
+     dd0:	ldr	r3, [pc, #1368]	; 1330 <cmetrohash64_2+0x8cc>
+     dd4:	ldr	r2, [r3]
+     dd8:	ldr	r5, [r3, #4]
+     ddc:	umull	r3, r9, r0, r2
+     de0:	mla	r0, r0, r5, r9
+     de4:	mla	r0, r1, r2, r0
+     de8:	eor	r1, ip, r0
+     dec:	eor	r0, r4, r3
+     df0:	str	r0, [sp, #72]	; 0x48
+     df4:	str	r1, [sp, #76]	; 0x4c
+     df8:	ldr	r2, [sp, #48]	; 0x30
+     dfc:	ldr	r3, [sp, #52]	; 0x34
+     e00:	ldr	r0, [sp, #64]	; 0x40
+     e04:	ldr	r1, [sp, #68]	; 0x44
+     e08:	adds	lr, r2, r0
+     e0c:	adc	r2, r3, r1
+     e10:	mov	r3, lr
+     e14:	ldr	r0, [pc, #1300]	; 1330 <cmetrohash64_2+0x8cc>
+     e18:	ldr	ip, [r0]
+     e1c:	ldr	r4, [r0, #4]
+     e20:	umull	r0, r1, r3, ip
+     e24:	mla	r1, r3, r4, r1
+     e28:	mla	r1, r2, ip, r1
+     e2c:	ldr	ip, [sp, #72]	; 0x48
+     e30:	ldr	r2, [sp, #76]	; 0x4c
+     e34:	adds	r0, r0, ip
+     e38:	adc	r1, r1, r2
+     e3c:	mov	r2, #30
+     e40:	bl	0 <crotate_right>
+     e44:	ldr	r2, [sp, #48]	; 0x30
+     e48:	ldr	r4, [sp, #52]	; 0x34
+     e4c:	ldr	r3, [pc, #1252]	; 1338 <cmetrohash64_2+0x8d4>
+     e50:	ldr	r5, [r3]
+     e54:	ldr	r9, [r3, #4]
+     e58:	umull	ip, r3, r0, r5
+     e5c:	mla	r3, r0, r9, r3
+     e60:	mla	r3, r1, r5, r3
+     e64:	eor	r0, r4, r3
+     e68:	eor	r3, r2, ip
+     e6c:	str	r3, [sp, #48]	; 0x30
+     e70:	str	r0, [sp, #52]	; 0x34
+     e74:	ldr	r1, [sp, #56]	; 0x38
+     e78:	ldr	r3, [sp, #60]	; 0x3c
+     e7c:	ldr	ip, [sp, #72]	; 0x48
+     e80:	ldr	r0, [sp, #76]	; 0x4c
+     e84:	adds	ip, r1, ip
+     e88:	adc	r0, r3, r0
+     e8c:	ldr	r1, [pc, #1188]	; 1338 <cmetrohash64_2+0x8d4>
+     e90:	ldr	r3, [r1]
+     e94:	ldr	r2, [r1, #4]
+     e98:	umull	r1, r4, ip, r3
+     e9c:	mla	r2, ip, r2, r4
+     ea0:	mla	r3, r0, r3, r2
+     ea4:	ldr	r2, [sp, #64]	; 0x40
+     ea8:	ldr	ip, [sp, #68]	; 0x44
+     eac:	adds	r0, r1, r2
+     eb0:	adc	r1, r3, ip
+     eb4:	mov	r2, #30
+     eb8:	bl	0 <crotate_right>
+     ebc:	ldr	ip, [sp, #56]	; 0x38
+     ec0:	ldr	r4, [sp, #60]	; 0x3c
+     ec4:	ldr	r2, [pc, #1124]	; 1330 <cmetrohash64_2+0x8cc>
+     ec8:	ldr	r5, [r2]
+     ecc:	ldr	r2, [r2, #4]
+     ed0:	umull	r3, r9, r0, r5
+     ed4:	mla	r0, r0, r2, r9
+     ed8:	mla	r0, r1, r5, r0
+     edc:	eor	r2, r4, r0
+     ee0:	eor	r1, ip, r3
+     ee4:	str	r1, [sp, #56]	; 0x38
+     ee8:	str	r2, [sp, #60]	; 0x3c
+     eec:	ldr	r4, [sp, #40]	; 0x28
+     ef0:	ldr	r1, [sp, #44]	; 0x2c
+     ef4:	ldr	ip, [sp, #48]	; 0x30
+     ef8:	ldr	r2, [sp, #52]	; 0x34
+     efc:	ldr	r5, [sp, #56]	; 0x38
+     f00:	ldr	r0, [sp, #60]	; 0x3c
+     f04:	eor	r3, r2, r0
+     f08:	eor	r2, ip, r5
+     f0c:	adds	r2, r4, r2
+     f10:	adc	r0, r1, r3
+     f14:	str	r2, [sp, #40]	; 0x28
+     f18:	str	r0, [sp, #44]	; 0x2c
+     f1c:	sub	r1, r7, r8
+     f20:	cmp	r1, #16
+     f24:	blt	105c <cmetrohash64_2+0x5f8>
+     f28:	mov	r0, r8
+     f2c:	bl	80 <cread_u64>
+     f30:	ldr	ip, [sp, #40]	; 0x28
+     f34:	ldr	r4, [sp, #44]	; 0x2c
+     f38:	ldr	r3, [pc, #1004]	; 132c <cmetrohash64_2+0x8c8>
+     f3c:	ldr	r9, [r3]
+     f40:	ldr	r5, [r3, #4]
+     f44:	umull	r2, r3, r0, r9
+     f48:	mla	r3, r0, r5, r3
+     f4c:	mla	r3, r1, r9, r3
+     f50:	adds	r0, ip, r2
+     f54:	adc	r1, r4, r3
+     f58:	add	r5, r8, #8
+     f5c:	mov	r2, #29
+     f60:	bl	0 <crotate_right>
+     f64:	ldr	r3, [pc, #968]	; 1334 <cmetrohash64_2+0x8d0>
+     f68:	ldr	r2, [r3]
+     f6c:	ldr	r3, [r3, #4]
+     f70:	umull	sl, ip, r0, r2
+     f74:	mla	r3, r0, r3, ip
+     f78:	mla	r4, r1, r2, r3
+     f7c:	mov	r0, r5
+     f80:	bl	80 <cread_u64>
+     f84:	ldr	r8, [sp, #40]	; 0x28
+     f88:	ldr	r9, [sp, #44]	; 0x2c
+     f8c:	ldr	r2, [pc, #920]	; 132c <cmetrohash64_2+0x8c8>
+     f90:	ldr	ip, [r2]
+     f94:	ldr	r2, [r2, #4]
+     f98:	umull	r3, fp, r0, ip
+     f9c:	mla	r0, r0, r2, fp
+     fa0:	mla	ip, r1, ip, r0
+     fa4:	adds	r0, r8, r3
+     fa8:	adc	r1, r9, ip
+     fac:	add	r8, r5, #8
+     fb0:	mov	r2, #29
+     fb4:	bl	0 <crotate_right>
+     fb8:	ldr	r3, [pc, #884]	; 1334 <cmetrohash64_2+0x8d0>
+     fbc:	ldr	r2, [r3]
+     fc0:	ldr	r3, [r3, #4]
+     fc4:	umull	r5, ip, r0, r2
+     fc8:	mla	r3, r0, r3, ip
+     fcc:	mla	r9, r1, r2, r3
+     fd0:	mov	r3, r4
+     fd4:	mov	fp, sl
+     fd8:	ldr	r0, [pc, #848]	; 1330 <cmetrohash64_2+0x8cc>
+     fdc:	ldr	ip, [r0]
+     fe0:	ldr	r1, [r0, #4]
+     fe4:	umull	r0, r2, fp, ip
+     fe8:	mla	r1, fp, r1, r2
+     fec:	mla	r1, r3, ip, r1
+     ff0:	mov	r2, #34	; 0x22
+     ff4:	bl	0 <crotate_right>
+     ff8:	adds	ip, r0, r5
+     ffc:	adc	r2, r1, r9
+    1000:	eor	r4, r4, r2
+    1004:	eor	sl, sl, ip
+    1008:	ldr	r2, [pc, #804]	; 1334 <cmetrohash64_2+0x8d0>
+    100c:	ldr	r1, [r2]
+    1010:	ldr	r3, [r2, #4]
+    1014:	mov	ip, r5
+    1018:	umull	r0, fp, ip, r1
+    101c:	mov	r2, r9
+    1020:	mov	ip, r5
+    1024:	mla	ip, ip, r3, fp
+    1028:	mla	r1, r2, r1, ip
+    102c:	mov	r2, #34	; 0x22
+    1030:	bl	0 <crotate_right>
+    1034:	adds	r3, r0, sl
+    1038:	adc	r0, r1, r4
+    103c:	eor	r0, r9, r0
+    1040:	eor	ip, r5, r3
+    1044:	ldr	r2, [sp, #40]	; 0x28
+    1048:	ldr	r1, [sp, #44]	; 0x2c
+    104c:	adds	ip, r2, ip
+    1050:	adc	r0, r1, r0
+    1054:	str	ip, [sp, #40]	; 0x28
+    1058:	str	r0, [sp, #44]	; 0x2c
+    105c:	sub	r2, r7, r8
+    1060:	cmp	r2, #8
+    1064:	blt	10e4 <cmetrohash64_2+0x680>
+    1068:	mov	r0, r8
+    106c:	bl	80 <cread_u64>
+    1070:	ldr	ip, [sp, #40]	; 0x28
+    1074:	ldr	r4, [sp, #44]	; 0x2c
+    1078:	ldr	r2, [pc, #692]	; 1334 <cmetrohash64_2+0x8d0>
+    107c:	ldr	r5, [r2]
+    1080:	ldr	r2, [r2, #4]
+    1084:	umull	r3, r9, r0, r5
+    1088:	mla	r0, r0, r2, r9
+    108c:	mla	r0, r1, r5, r0
+    1090:	adds	r1, ip, r3
+    1094:	adc	r0, r4, r0
+    1098:	str	r1, [sp, #40]	; 0x28
+    109c:	str	r0, [sp, #44]	; 0x2c
+    10a0:	add	r8, r8, #8
+    10a4:	ldr	r0, [sp, #40]	; 0x28
+    10a8:	ldr	r1, [sp, #44]	; 0x2c
+    10ac:	mov	r2, #36	; 0x24
+    10b0:	bl	0 <crotate_right>
+    10b4:	ldr	r4, [sp, #40]	; 0x28
+    10b8:	ldr	ip, [sp, #44]	; 0x2c
+    10bc:	ldr	r3, [pc, #628]	; 1338 <cmetrohash64_2+0x8d4>
+    10c0:	ldr	r2, [r3]
+    10c4:	ldr	r5, [r3, #4]
+    10c8:	umull	r3, r9, r0, r2
+    10cc:	mla	r0, r0, r5, r9
+    10d0:	mla	r0, r1, r2, r0
+    10d4:	eor	ip, ip, r0
+    10d8:	eor	r2, r4, r3
+    10dc:	str	r2, [sp, #40]	; 0x28
+    10e0:	str	ip, [sp, #44]	; 0x2c
+    10e4:	sub	r3, r7, r8
+    10e8:	cmp	r3, #4
+    10ec:	blt	116c <cmetrohash64_2+0x708>
+    10f0:	mov	r0, r8
+    10f4:	bl	f0 <cread_u32>
+    10f8:	ldr	r3, [sp, #40]	; 0x28
+    10fc:	ldr	ip, [sp, #44]	; 0x2c
+    1100:	ldr	r4, [pc, #556]	; 1334 <cmetrohash64_2+0x8d0>
+    1104:	ldr	r2, [r4]
+    1108:	ldr	r5, [r4, #4]
+    110c:	umull	r9, r4, r0, r2
+    1110:	mla	r0, r0, r5, r4
+    1114:	mla	r0, r1, r2, r0
+    1118:	adds	r1, r3, r9
+    111c:	adc	ip, ip, r0
+    1120:	str	r1, [sp, #40]	; 0x28
+    1124:	str	ip, [sp, #44]	; 0x2c
+    1128:	add	r8, r8, #4
+    112c:	ldr	r0, [sp, #40]	; 0x28
+    1130:	ldr	r1, [sp, #44]	; 0x2c
+    1134:	mov	r2, #15
+    1138:	bl	0 <crotate_right>
+    113c:	ldr	ip, [sp, #40]	; 0x28
+    1140:	ldr	r4, [sp, #44]	; 0x2c
+    1144:	ldr	r2, [pc, #492]	; 1338 <cmetrohash64_2+0x8d4>
+    1148:	ldr	r9, [r2]
+    114c:	ldr	r5, [r2, #4]
+    1150:	umull	r2, r3, r0, r9
+    1154:	mla	r0, r0, r5, r3
+    1158:	mla	r3, r1, r9, r0
+    115c:	eor	r1, r4, r3
+    1160:	eor	r0, ip, r2
+    1164:	str	r0, [sp, #40]	; 0x28
+    1168:	str	r1, [sp, #44]	; 0x2c
+    116c:	sub	r0, r7, r8
+    1170:	cmp	r0, #2
+    1174:	blt	11f4 <cmetrohash64_2+0x790>
+    1178:	mov	r0, r8
+    117c:	bl	12c <cread_u16>
+    1180:	ldr	ip, [sp, #40]	; 0x28
+    1184:	ldr	r4, [sp, #44]	; 0x2c
+    1188:	ldr	r2, [pc, #420]	; 1334 <cmetrohash64_2+0x8d0>
+    118c:	ldr	r3, [r2]
+    1190:	ldr	r2, [r2, #4]
+    1194:	umull	r5, r9, r0, r3
+    1198:	mla	r2, r0, r2, r9
+    119c:	mla	r0, r1, r3, r2
+    11a0:	adds	ip, ip, r5
+    11a4:	adc	r2, r4, r0
+    11a8:	str	ip, [sp, #40]	; 0x28
+    11ac:	str	r2, [sp, #44]	; 0x2c
+    11b0:	add	r8, r8, #2
+    11b4:	ldr	r0, [sp, #40]	; 0x28
+    11b8:	ldr	r1, [sp, #44]	; 0x2c
+    11bc:	mov	r2, #15
+    11c0:	bl	0 <crotate_right>
+    11c4:	ldr	r4, [sp, #40]	; 0x28
+    11c8:	ldr	ip, [sp, #44]	; 0x2c
+    11cc:	ldr	r3, [pc, #356]	; 1338 <cmetrohash64_2+0x8d4>
+    11d0:	ldr	r5, [r3]
+    11d4:	ldr	r2, [r3, #4]
+    11d8:	umull	r3, r9, r0, r5
+    11dc:	mla	r0, r0, r2, r9
+    11e0:	mla	r0, r1, r5, r0
+    11e4:	eor	ip, ip, r0
+    11e8:	eor	r3, r4, r3
+    11ec:	str	r3, [sp, #40]	; 0x28
+    11f0:	str	ip, [sp, #44]	; 0x2c
+    11f4:	sub	r3, r7, r8
+    11f8:	cmp	r3, #1
+    11fc:	blt	1278 <cmetrohash64_2+0x814>
+    1200:	mov	r0, r8
+    1204:	bl	168 <cread_u8>
+    1208:	ldr	r5, [sp, #40]	; 0x28
+    120c:	ldr	r4, [sp, #44]	; 0x2c
+    1210:	ldr	r2, [pc, #284]	; 1334 <cmetrohash64_2+0x8d0>
+    1214:	ldr	ip, [r2]
+    1218:	ldr	r7, [r2, #4]
+    121c:	umull	r3, r2, r0, ip
+    1220:	mla	r2, r0, r7, r2
+    1224:	mla	ip, r1, ip, r2
+    1228:	adds	r3, r5, r3
+    122c:	adc	r1, r4, ip
+    1230:	str	r3, [sp, #40]	; 0x28
+    1234:	str	r1, [sp, #44]	; 0x2c
+    1238:	ldr	r0, [sp, #40]	; 0x28
+    123c:	ldr	r1, [sp, #44]	; 0x2c
+    1240:	mov	r2, #23
+    1244:	bl	0 <crotate_right>
+    1248:	ldr	r4, [sp, #40]	; 0x28
+    124c:	ldr	ip, [sp, #44]	; 0x2c
+    1250:	ldr	r2, [pc, #224]	; 1338 <cmetrohash64_2+0x8d4>
+    1254:	ldr	r5, [r2]
+    1258:	ldr	r3, [r2, #4]
+    125c:	umull	r2, r7, r0, r5
+    1260:	mla	r0, r0, r3, r7
+    1264:	mla	r1, r1, r5, r0
+    1268:	eor	ip, ip, r1
+    126c:	eor	r3, r4, r2
+    1270:	str	r3, [sp, #40]	; 0x28
+    1274:	str	ip, [sp, #44]	; 0x2c
+    1278:	ldr	r0, [sp, #40]	; 0x28
+    127c:	ldr	r1, [sp, #44]	; 0x2c
+    1280:	mov	r2, #28
+    1284:	bl	0 <crotate_right>
+    1288:	ldr	r2, [sp, #40]	; 0x28
+    128c:	ldr	r3, [sp, #44]	; 0x2c
+    1290:	eor	r3, r3, r1
+    1294:	eor	r1, r2, r0
+    1298:	str	r1, [sp, #40]	; 0x28
+    129c:	str	r3, [sp, #44]	; 0x2c
+    12a0:	ldr	ip, [sp, #40]	; 0x28
+    12a4:	ldr	r2, [sp, #44]	; 0x2c
+    12a8:	ldr	r0, [pc, #128]	; 1330 <cmetrohash64_2+0x8cc>
+    12ac:	ldr	r3, [r0]
+    12b0:	ldr	r0, [r0, #4]
+    12b4:	umull	r1, r4, ip, r3
+    12b8:	mla	r0, ip, r0, r4
+    12bc:	mla	ip, r2, r3, r0
+    12c0:	str	r1, [sp, #40]	; 0x28
+    12c4:	str	ip, [sp, #44]	; 0x2c
+    12c8:	ldr	r0, [sp, #40]	; 0x28
+    12cc:	ldr	r1, [sp, #44]	; 0x2c
+    12d0:	mov	r2, #29
+    12d4:	bl	0 <crotate_right>
+    12d8:	ldr	ip, [sp, #40]	; 0x28
+    12dc:	ldr	r2, [sp, #44]	; 0x2c
+    12e0:	eor	r3, r2, r1
+    12e4:	eor	r2, ip, r0
+    12e8:	str	r2, [sp, #40]	; 0x28
+    12ec:	str	r3, [sp, #44]	; 0x2c
+    12f0:	add	r1, sp, #40	; 0x28
+    12f4:	mov	r2, #8
+    12f8:	mov	r0, r6
+    12fc:	bl	0 <memcpy>
+    1300:	ldr	r4, [sp, #8]
+    1304:	ldr	r5, [sp, #12]
+    1308:	ldr	r6, [sp, #16]
+    130c:	ldr	r7, [sp, #20]
+    1310:	ldr	r8, [sp, #24]
+    1314:	ldr	r9, [sp, #28]
+    1318:	ldr	sl, [sp, #32]
+    131c:	ldr	fp, [sp, #36]	; 0x24
+    1320:	ldr	lr, [sp, #4]
+    1324:	add	sp, sp, #80	; 0x50
+    1328:	bx	lr
+    132c:	.word	0x00000030
+    1330:	.word	0x00000020
+    1334:	.word	0x00000038
+    1338:	.word	0x00000028

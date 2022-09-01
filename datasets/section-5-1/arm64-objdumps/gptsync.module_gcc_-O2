@@ -1,0 +1,503 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//gptsync.module_gcc_-O2:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_cmd_gptsync.part.0>:
+   0:	sub	sp, sp, #0x270
+   4:	stp	x29, x30, [sp]
+   8:	mov	x29, sp
+   c:	stp	x19, x20, [sp, #16]
+  10:	ldr	x19, [x1]
+  14:	stp	x21, x22, [sp, #32]
+  18:	mov	x21, x1
+  1c:	stp	x23, x24, [sp, #48]
+  20:	mov	w24, w0
+  24:	ldrb	w0, [x19]
+  28:	cmp	w0, #0x28
+  2c:	b.eq	b4 <grub_cmd_gptsync.part.0+0xb4>  // b.none
+  30:	mov	x0, x19
+  34:	bl	0 <grub_device_open>
+  38:	mov	x20, x0
+  3c:	cbz	x20, 550 <grub_cmd_gptsync.part.0+0x550>
+  40:	ldr	x0, [x20]
+  44:	cbz	x0, 5b0 <grub_cmd_gptsync.part.0+0x5b0>
+  48:	add	x4, sp, #0x70
+  4c:	mov	x3, #0x200                 	// #512
+  50:	mov	x2, #0x0                   	// #0
+  54:	mov	x1, #0x0                   	// #0
+  58:	bl	0 <grub_disk_read>
+  5c:	cbnz	w0, 5e8 <grub_cmd_gptsync.part.0+0x5e8>
+  60:	ldrh	w2, [sp, #622]
+  64:	mov	w0, #0xaa55                	// #43605
+  68:	mov	x1, #0x0                   	// #0
+  6c:	cmp	w2, w0
+  70:	b.ne	578 <grub_cmd_gptsync.part.0+0x578>  // b.any
+  74:	add	x0, sp, #0x70
+  78:	add	x2, x0, x1
+  7c:	add	x1, x1, #0x10
+  80:	ldrb	w0, [x2, #450]
+  84:	cmp	w0, #0xee
+  88:	b.eq	d4 <grub_cmd_gptsync.part.0+0xd4>  // b.none
+  8c:	cmp	x1, #0x40
+  90:	b.ne	74 <grub_cmd_gptsync.part.0+0x74>  // b.any
+  94:	mov	x0, x20
+  98:	bl	0 <grub_device_close>
+  9c:	adrp	x1, 0 <grub_cmd_gptsync.part.0>
+  a0:	mov	w0, #0x13                  	// #19
+  a4:	ldr	x1, [x1]
+  a8:	bl	0 <grub_error>
+  ac:	mov	w19, w0
+  b0:	b	55c <grub_cmd_gptsync.part.0+0x55c>
+  b4:	mov	x0, x19
+  b8:	bl	0 <grub_strlen>
+  bc:	add	x19, x19, x0
+  c0:	ldurb	w19, [x19, #-1]
+  c4:	cmp	w19, #0x29
+  c8:	b.eq	668 <grub_cmd_gptsync.part.0+0x668>  // b.none
+  cc:	ldr	x19, [x21]
+  d0:	b	30 <grub_cmd_gptsync.part.0+0x30>
+  d4:	ldr	x0, [x20]
+  d8:	cmp	w24, #0x1
+  dc:	mov	w23, #0x1                   	// #1
+  e0:	ldr	x22, [x0, #16]
+  e4:	b.le	344 <grub_cmd_gptsync.part.0+0x344>
+  e8:	sub	w0, w24, #0x2
+  ec:	add	x24, sp, #0x23e
+  f0:	stp	x25, x26, [sp, #64]
+  f4:	mov	w25, #0x3ff                 	// #1023
+  f8:	add	x0, x0, #0x2
+  fc:	stp	x27, x28, [sp, #80]
+ 100:	mov	w28, #0x565b                	// #22107
+ 104:	mov	x19, #0x1                   	// #1
+ 108:	movk	w25, #0xfb, lsl #16
+ 10c:	movk	w28, #0x515, lsl #16
+ 110:	str	x0, [sp, #96]
+ 114:	str	wzr, [sp, #108]
+ 118:	ldr	x0, [x21, x19, lsl #3]
+ 11c:	mov	w1, #0x2b                  	// #43
+ 120:	bl	0 <grub_strchr>
+ 124:	mov	x27, x0
+ 128:	cbz	x0, 4fc <grub_cmd_gptsync.part.0+0x4fc>
+ 12c:	ldrb	w23, [x27]
+ 130:	strb	wzr, [x27]
+ 134:	ldr	x1, [x21, x19, lsl #3]
+ 138:	ldr	x0, [x20]
+ 13c:	bl	0 <grub_partition_probe>
+ 140:	mov	x26, x0
+ 144:	strb	w23, [x27]
+ 148:	cbz	x26, 618 <grub_cmd_gptsync.part.0+0x618>
+ 14c:	ldp	x1, x0, [x26, #8]
+ 150:	mov	x5, #0xffffffff            	// #4294967295
+ 154:	add	x0, x1, x0
+ 158:	cmp	x0, x5
+ 15c:	b.hi	640 <grub_cmd_gptsync.part.0+0x640>  // b.pmore
+ 160:	cmp	x22, x1
+ 164:	csel	x22, x22, x1, ls  // ls = plast
+ 168:	cbz	x27, 174 <grub_cmd_gptsync.part.0+0x174>
+ 16c:	ldrb	w0, [x27, #1]
+ 170:	cbnz	w0, 528 <grub_cmd_gptsync.part.0+0x528>
+ 174:	ldr	x1, [x20]
+ 178:	mov	x0, x20
+ 17c:	str	x26, [x1, #40]
+ 180:	bl	0 <grub_fs_probe>
+ 184:	mov	x27, x0
+ 188:	adrp	x1, 0 <grub_cmd_gptsync.part.0>
+ 18c:	ldr	x0, [x1]
+ 190:	ldr	w1, [x0]
+ 194:	cmp	w1, #0x8
+ 198:	b.eq	540 <grub_cmd_gptsync.part.0+0x540>  // b.none
+ 19c:	cbz	x27, 490 <grub_cmd_gptsync.part.0+0x490>
+ 1a0:	adrp	x1, 0 <grub_cmd_gptsync.part.0>
+ 1a4:	ldr	x0, [x27, #16]
+ 1a8:	ldr	x1, [x1]
+ 1ac:	bl	0 <grub_strcmp>
+ 1b0:	mov	w1, #0x7                   	// #7
+ 1b4:	cbz	w0, 1e8 <grub_cmd_gptsync.part.0+0x1e8>
+ 1b8:	adrp	x1, 0 <grub_cmd_gptsync.part.0>
+ 1bc:	ldr	x0, [x27, #16]
+ 1c0:	ldr	x1, [x1]
+ 1c4:	bl	0 <grub_strcmp>
+ 1c8:	mov	w1, #0xc                   	// #12
+ 1cc:	cbz	w0, 1e8 <grub_cmd_gptsync.part.0+0x1e8>
+ 1d0:	adrp	x1, 0 <grub_cmd_gptsync.part.0>
+ 1d4:	ldr	x0, [x27, #16]
+ 1d8:	ldr	x1, [x1]
+ 1dc:	bl	0 <grub_strcmp>
+ 1e0:	cbnz	w0, 478 <grub_cmd_gptsync.part.0+0x478>
+ 1e4:	mov	w1, #0xaf                  	// #175
+ 1e8:	ldr	x0, [x20]
+ 1ec:	str	xzr, [x0, #40]
+ 1f0:	cmp	w23, #0x2b
+ 1f4:	b.eq	498 <grub_cmd_gptsync.part.0+0x498>  // b.none
+ 1f8:	strb	wzr, [x24]
+ 1fc:	strb	w1, [x24, #4]
+ 200:	ldr	x0, [x26, #8]
+ 204:	str	w0, [x24, #8]
+ 208:	cmp	w0, w25
+ 20c:	b.hi	4c4 <grub_cmd_gptsync.part.0+0x4c4>  // b.pmore
+ 210:	mov	w1, #0x4105                	// #16645
+ 214:	umull	x2, w0, w28
+ 218:	movk	w1, #0x410, lsl #16
+ 21c:	mov	w3, #0x8081                	// #32897
+ 220:	movk	w3, #0x8080, lsl #16
+ 224:	umull	x1, w0, w1
+ 228:	lsr	x5, x2, #32
+ 22c:	sub	w2, w0, w5
+ 230:	lsr	x6, x1, #32
+ 234:	add	w2, w5, w2, lsr #1
+ 238:	sub	w1, w0, w6
+ 23c:	lsr	w5, w2, #15
+ 240:	lsr	w2, w2, #13
+ 244:	add	w1, w6, w1, lsr #1
+ 248:	and	w5, w5, #0xffffffc0
+ 24c:	strb	w2, [x24, #3]
+ 250:	lsr	w1, w1, #5
+ 254:	lsl	w7, w1, #6
+ 258:	umull	x6, w1, w3
+ 25c:	sub	w7, w7, w1
+ 260:	sub	w0, w0, w7
+ 264:	add	w0, w0, #0x1
+ 268:	lsr	x2, x6, #39
+ 26c:	orr	w0, w5, w0
+ 270:	strb	w0, [x24, #2]
+ 274:	lsl	w0, w2, #8
+ 278:	sub	w2, w0, w2
+ 27c:	sub	w1, w1, w2
+ 280:	strb	w1, [x24, #1]
+ 284:	ldp	x0, x1, [x26, #8]
+ 288:	add	w0, w0, w1
+ 28c:	sub	w0, w0, #0x1
+ 290:	cmp	w0, w25
+ 294:	b.hi	4e8 <grub_cmd_gptsync.part.0+0x4e8>  // b.pmore
+ 298:	mov	w1, #0x4105                	// #16645
+ 29c:	umull	x2, w0, w28
+ 2a0:	movk	w1, #0x410, lsl #16
+ 2a4:	mov	w3, #0x8081                	// #32897
+ 2a8:	movk	w3, #0x8080, lsl #16
+ 2ac:	umull	x1, w0, w1
+ 2b0:	lsr	x5, x2, #32
+ 2b4:	sub	w2, w0, w5
+ 2b8:	lsr	x6, x1, #32
+ 2bc:	add	w2, w5, w2, lsr #1
+ 2c0:	sub	w1, w0, w6
+ 2c4:	lsr	w5, w2, #15
+ 2c8:	lsr	w2, w2, #13
+ 2cc:	add	w1, w6, w1, lsr #1
+ 2d0:	and	w5, w5, #0xffffffc0
+ 2d4:	strb	w2, [x24, #7]
+ 2d8:	lsr	w1, w1, #5
+ 2dc:	lsl	w7, w1, #6
+ 2e0:	umull	x6, w1, w3
+ 2e4:	sub	w7, w7, w1
+ 2e8:	sub	w0, w0, w7
+ 2ec:	add	w0, w0, #0x1
+ 2f0:	lsr	x2, x6, #39
+ 2f4:	orr	w0, w5, w0
+ 2f8:	strb	w0, [x24, #6]
+ 2fc:	lsl	w0, w2, #8
+ 300:	sub	w2, w0, w2
+ 304:	sub	w1, w1, w2
+ 308:	strb	w1, [x24, #5]
+ 30c:	ldr	x1, [x26, #16]
+ 310:	str	w1, [x24, #12]
+ 314:	mov	x0, x26
+ 318:	add	w23, w19, #0x1
+ 31c:	add	x19, x19, #0x1
+ 320:	add	x24, x24, #0x10
+ 324:	bl	0 <grub_free>
+ 328:	ldr	x0, [sp, #96]
+ 32c:	cmp	x0, x19
+ 330:	b.ne	118 <grub_cmd_gptsync.part.0+0x118>  // b.any
+ 334:	cmp	w23, #0x3
+ 338:	ldp	x25, x26, [sp, #64]
+ 33c:	ldp	x27, x28, [sp, #80]
+ 340:	b.gt	370 <grub_cmd_gptsync.part.0+0x370>
+ 344:	add	x0, sp, #0x70
+ 348:	add	x19, x0, w23, sxtw #4
+ 34c:	add	x19, x19, #0x1be
+ 350:	mov	x0, x19
+ 354:	add	w23, w23, #0x1
+ 358:	mov	x2, #0x10                  	// #16
+ 35c:	mov	w1, #0x0                   	// #0
+ 360:	bl	0 <grub_memset>
+ 364:	add	x19, x19, #0x10
+ 368:	cmp	w23, #0x4
+ 36c:	b.ne	350 <grub_cmd_gptsync.part.0+0x350>  // b.any
+ 370:	mov	x0, #0xffffffff            	// #4294967295
+ 374:	cmp	x22, x0
+ 378:	b.hi	6a0 <grub_cmd_gptsync.part.0+0x6a0>  // b.pmore
+ 37c:	sub	x22, x22, #0x1
+ 380:	mov	w3, #0x4105                	// #16645
+ 384:	movk	w3, #0x410, lsl #16
+ 388:	mov	w4, #0xffffffee            	// #-18
+ 38c:	strb	w4, [sp, #562]
+ 390:	mov	w0, #0x565b                	// #22107
+ 394:	umull	x3, w22, w3
+ 398:	movk	w0, #0x515, lsl #16
+ 39c:	mov	w2, #0x8081                	// #32897
+ 3a0:	add	x6, sp, #0x210
+ 3a4:	umull	x0, w22, w0
+ 3a8:	movk	w2, #0x8080, lsl #16
+ 3ac:	lsr	x4, x3, #32
+ 3b0:	mov	w1, #0x1                   	// #1
+ 3b4:	sub	w3, w22, w4
+ 3b8:	stur	w1, [x6, #38]
+ 3bc:	lsr	x0, x0, #32
+ 3c0:	mov	w5, #0x20000               	// #131072
+ 3c4:	add	w3, w4, w3, lsr #1
+ 3c8:	sub	w1, w22, w0
+ 3cc:	stur	w5, [x6, #30]
+ 3d0:	mov	w5, #0x3ff                 	// #1023
+ 3d4:	lsr	w3, w3, #5
+ 3d8:	add	w1, w0, w1, lsr #1
+ 3dc:	movk	w5, #0xfb, lsl #16
+ 3e0:	cmp	w22, w5
+ 3e4:	lsl	w0, w3, #6
+ 3e8:	mov	w5, w22
+ 3ec:	umull	x2, w3, w2
+ 3f0:	sub	w0, w0, w3
+ 3f4:	sub	w22, w22, w0
+ 3f8:	lsr	w4, w1, #13
+ 3fc:	add	w0, w22, #0x1
+ 400:	lsr	x2, x2, #39
+ 404:	lsl	w6, w2, #8
+ 408:	sub	w2, w6, w2
+ 40c:	sub	w2, w3, w2
+ 410:	b.hi	6c0 <grub_cmd_gptsync.part.0+0x6c0>  // b.pmore
+ 414:	lsr	w1, w1, #15
+ 418:	strb	w2, [sp, #563]
+ 41c:	and	w1, w1, #0xffffffc0
+ 420:	strb	w4, [sp, #565]
+ 424:	orr	w0, w1, w0
+ 428:	strb	w0, [sp, #564]
+ 42c:	add	x7, sp, #0x210
+ 430:	mov	w6, #0xffffaa55            	// #-21931
+ 434:	ldr	x0, [x20]
+ 438:	add	x4, sp, #0x70
+ 43c:	stur	w5, [x7, #42]
+ 440:	mov	x3, #0x200                 	// #512
+ 444:	mov	x2, #0x0                   	// #0
+ 448:	mov	x1, #0x0                   	// #0
+ 44c:	strh	w6, [sp, #622]
+ 450:	bl	0 <grub_disk_write>
+ 454:	mov	w19, w0
+ 458:	mov	x0, x20
+ 45c:	cbnz	w19, 54c <grub_cmd_gptsync.part.0+0x54c>
+ 460:	bl	0 <grub_device_close>
+ 464:	adrp	x0, 0 <grub_cmd_gptsync.part.0>
+ 468:	ldr	x1, [x21]
+ 46c:	ldr	x0, [x0]
+ 470:	bl	0 <grub_printf_>
+ 474:	b	55c <grub_cmd_gptsync.part.0+0x55c>
+ 478:	adrp	x1, 0 <grub_cmd_gptsync.part.0>
+ 47c:	ldr	x0, [x27, #16]
+ 480:	ldr	x1, [x1]
+ 484:	bl	0 <grub_strcmp>
+ 488:	cbz	w0, 1e4 <grub_cmd_gptsync.part.0+0x1e4>
+ 48c:	nop
+ 490:	mov	w1, #0x83                  	// #131
+ 494:	b	1e8 <grub_cmd_gptsync.part.0+0x1e8>
+ 498:	mov	w0, #0xffffff80            	// #-128
+ 49c:	strb	w0, [x24]
+ 4a0:	ldr	w0, [sp, #108]
+ 4a4:	cbnz	w0, 6d4 <grub_cmd_gptsync.part.0+0x6d4>
+ 4a8:	strb	w1, [x24, #4]
+ 4ac:	mov	w0, #0x1                   	// #1
+ 4b0:	str	w0, [sp, #108]
+ 4b4:	ldr	x0, [x26, #8]
+ 4b8:	str	w0, [x24, #8]
+ 4bc:	cmp	w0, w25
+ 4c0:	b.ls	210 <grub_cmd_gptsync.part.0+0x210>  // b.plast
+ 4c4:	mov	w0, #0xffffffff            	// #-1
+ 4c8:	strb	w0, [x24, #1]
+ 4cc:	strb	w0, [x24, #2]
+ 4d0:	strb	w0, [x24, #3]
+ 4d4:	ldp	x0, x1, [x26, #8]
+ 4d8:	add	w0, w0, w1
+ 4dc:	sub	w0, w0, #0x1
+ 4e0:	cmp	w0, w25
+ 4e4:	b.ls	298 <grub_cmd_gptsync.part.0+0x298>  // b.plast
+ 4e8:	mov	w0, #0xffffffff            	// #-1
+ 4ec:	strb	w0, [x24, #5]
+ 4f0:	strb	w0, [x24, #6]
+ 4f4:	strb	w0, [x24, #7]
+ 4f8:	b	30c <grub_cmd_gptsync.part.0+0x30c>
+ 4fc:	ldr	x0, [x21, x19, lsl #3]
+ 500:	mov	w1, #0x2d                  	// #45
+ 504:	bl	0 <grub_strchr>
+ 508:	mov	x27, x0
+ 50c:	cbnz	x0, 12c <grub_cmd_gptsync.part.0+0x12c>
+ 510:	ldr	x1, [x21, x19, lsl #3]
+ 514:	mov	w23, #0x0                   	// #0
+ 518:	ldr	x0, [x20]
+ 51c:	bl	0 <grub_partition_probe>
+ 520:	mov	x26, x0
+ 524:	b	148 <grub_cmd_gptsync.part.0+0x148>
+ 528:	mov	x1, #0x0                   	// #0
+ 52c:	add	x0, x27, #0x1
+ 530:	mov	w2, #0x0                   	// #0
+ 534:	bl	0 <grub_strtoul>
+ 538:	and	w1, w0, #0xff
+ 53c:	b	1f0 <grub_cmd_gptsync.part.0+0x1f0>
+ 540:	mov	w1, #0x83                  	// #131
+ 544:	str	wzr, [x0]
+ 548:	b	1e8 <grub_cmd_gptsync.part.0+0x1e8>
+ 54c:	bl	0 <grub_device_close>
+ 550:	adrp	x0, 0 <grub_cmd_gptsync.part.0>
+ 554:	ldr	x0, [x0]
+ 558:	ldr	w19, [x0]
+ 55c:	mov	w0, w19
+ 560:	ldp	x29, x30, [sp]
+ 564:	ldp	x19, x20, [sp, #16]
+ 568:	ldp	x21, x22, [sp, #32]
+ 56c:	ldp	x23, x24, [sp, #48]
+ 570:	add	sp, sp, #0x270
+ 574:	ret
+ 578:	mov	x0, x20
+ 57c:	bl	0 <grub_device_close>
+ 580:	adrp	x1, 0 <grub_cmd_gptsync.part.0>
+ 584:	mov	w0, #0x13                  	// #19
+ 588:	ldr	x1, [x1]
+ 58c:	bl	0 <grub_error>
+ 590:	mov	w19, w0
+ 594:	mov	w0, w19
+ 598:	ldp	x29, x30, [sp]
+ 59c:	ldp	x19, x20, [sp, #16]
+ 5a0:	ldp	x21, x22, [sp, #32]
+ 5a4:	ldp	x23, x24, [sp, #48]
+ 5a8:	add	sp, sp, #0x270
+ 5ac:	ret
+ 5b0:	mov	x0, x20
+ 5b4:	bl	0 <grub_device_close>
+ 5b8:	adrp	x1, 0 <grub_cmd_gptsync.part.0>
+ 5bc:	mov	w0, #0x12                  	// #18
+ 5c0:	ldr	x1, [x1]
+ 5c4:	bl	0 <grub_error>
+ 5c8:	mov	w19, w0
+ 5cc:	mov	w0, w19
+ 5d0:	ldp	x29, x30, [sp]
+ 5d4:	ldp	x19, x20, [sp, #16]
+ 5d8:	ldp	x21, x22, [sp, #32]
+ 5dc:	ldp	x23, x24, [sp, #48]
+ 5e0:	add	sp, sp, #0x270
+ 5e4:	ret
+ 5e8:	mov	x0, x20
+ 5ec:	bl	0 <grub_device_close>
+ 5f0:	adrp	x0, 0 <grub_cmd_gptsync.part.0>
+ 5f4:	ldp	x29, x30, [sp]
+ 5f8:	ldr	x0, [x0]
+ 5fc:	ldp	x21, x22, [sp, #32]
+ 600:	ldr	w19, [x0]
+ 604:	ldp	x23, x24, [sp, #48]
+ 608:	mov	w0, w19
+ 60c:	ldp	x19, x20, [sp, #16]
+ 610:	add	sp, sp, #0x270
+ 614:	ret
+ 618:	mov	x0, x20
+ 61c:	bl	0 <grub_device_close>
+ 620:	adrp	x1, 0 <grub_cmd_gptsync.part.0>
+ 624:	mov	w0, #0xc                   	// #12
+ 628:	ldr	x1, [x1]
+ 62c:	bl	0 <grub_error>
+ 630:	mov	w19, w0
+ 634:	ldp	x25, x26, [sp, #64]
+ 638:	ldp	x27, x28, [sp, #80]
+ 63c:	b	55c <grub_cmd_gptsync.part.0+0x55c>
+ 640:	mov	x0, x20
+ 644:	bl	0 <grub_device_close>
+ 648:	adrp	x1, 0 <grub_cmd_gptsync.part.0>
+ 64c:	mov	w0, #0xb                   	// #11
+ 650:	ldr	x1, [x1]
+ 654:	bl	0 <grub_error>
+ 658:	mov	w19, w0
+ 65c:	ldp	x25, x26, [sp, #64]
+ 660:	ldp	x27, x28, [sp, #80]
+ 664:	b	55c <grub_cmd_gptsync.part.0+0x55c>
+ 668:	ldr	x20, [x21]
+ 66c:	mov	x0, x20
+ 670:	bl	0 <grub_strlen>
+ 674:	add	x20, x20, x0
+ 678:	sturb	wzr, [x20, #-1]
+ 67c:	ldr	x0, [x21]
+ 680:	add	x0, x0, #0x1
+ 684:	bl	0 <grub_device_open>
+ 688:	ldr	x22, [x21]
+ 68c:	mov	x20, x0
+ 690:	mov	x0, x22
+ 694:	bl	0 <grub_strlen>
+ 698:	strb	w19, [x22, x0]
+ 69c:	b	3c <grub_cmd_gptsync.part.0+0x3c>
+ 6a0:	add	x3, sp, #0x210
+ 6a4:	mov	w0, #0x1                   	// #1
+ 6a8:	mov	w2, #0x20000               	// #131072
+ 6ac:	mov	w1, #0xffffffee            	// #-18
+ 6b0:	mov	w5, #0xffffffff            	// #-1
+ 6b4:	strb	w1, [sp, #562]
+ 6b8:	stur	w2, [x3, #30]
+ 6bc:	stur	w0, [x3, #38]
+ 6c0:	mov	w1, #0xffffffff            	// #-1
+ 6c4:	mov	w0, #0xffffffff            	// #-1
+ 6c8:	strb	w1, [sp, #563]
+ 6cc:	strh	w0, [sp, #564]
+ 6d0:	b	42c <grub_cmd_gptsync.part.0+0x42c>
+ 6d4:	mov	x0, x20
+ 6d8:	bl	0 <grub_device_close>
+ 6dc:	adrp	x1, 0 <grub_cmd_gptsync.part.0>
+ 6e0:	mov	w0, #0x12                  	// #18
+ 6e4:	ldr	x1, [x1]
+ 6e8:	bl	0 <grub_error>
+ 6ec:	mov	w19, w0
+ 6f0:	ldp	x25, x26, [sp, #64]
+ 6f4:	ldp	x27, x28, [sp, #80]
+ 6f8:	b	55c <grub_cmd_gptsync.part.0+0x55c>
+ 6fc:	nop
+	...
+
+0000000000000760 <grub_cmd_gptsync>:
+ 760:	mov	w0, w1
+ 764:	mov	x1, x2
+ 768:	cmp	w0, #0x0
+ 76c:	b.le	78c <grub_cmd_gptsync+0x2c>
+ 770:	cmp	w0, #0x4
+ 774:	b.gt	77c <grub_cmd_gptsync+0x1c>
+ 778:	b	0 <grub_cmd_gptsync.part.0>
+ 77c:	adrp	x1, 0 <grub_cmd_gptsync.part.0>
+ 780:	mov	w0, #0x12                  	// #18
+ 784:	ldr	x1, [x1]
+ 788:	b	0 <grub_error>
+ 78c:	adrp	x1, 0 <grub_cmd_gptsync.part.0>
+ 790:	mov	w0, #0x12                  	// #18
+ 794:	ldr	x1, [x1]
+ 798:	b	0 <grub_error>
+ 79c:	nop
+	...
+
+00000000000007b0 <grub_mod_init>:
+ 7b0:	stp	x29, x30, [sp, #-16]!
+ 7b4:	adrp	x3, 0 <grub_cmd_gptsync.part.0>
+ 7b8:	adrp	x2, 0 <grub_cmd_gptsync.part.0>
+ 7bc:	adrp	x1, 0 <grub_cmd_gptsync.part.0>
+ 7c0:	adrp	x0, 0 <grub_cmd_gptsync.part.0>
+ 7c4:	mov	x29, sp
+ 7c8:	ldr	x3, [x3]
+ 7cc:	mov	w4, #0x0                   	// #0
+ 7d0:	ldr	x2, [x2]
+ 7d4:	ldr	x1, [x1]
+ 7d8:	ldr	x0, [x0]
+ 7dc:	bl	0 <grub_register_command_prio>
+ 7e0:	adrp	x1, 0 <grub_cmd_gptsync.part.0>
+ 7e4:	ldr	x1, [x1]
+ 7e8:	str	x0, [x1]
+ 7ec:	ldp	x29, x30, [sp], #16
+ 7f0:	ret
+ 7f4:	nop
+	...
+
+0000000000000820 <grub_mod_fini>:
+ 820:	adrp	x0, 0 <grub_cmd_gptsync.part.0>
+ 824:	ldr	x0, [x0]
+ 828:	ldr	x0, [x0]
+ 82c:	b	0 <grub_unregister_command>
+	...

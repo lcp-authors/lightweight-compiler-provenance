@@ -1,0 +1,341 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//part_bsd.module_gcc_-O1:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <netopenbsdlabel_partition_map_iterate>:
+   0:	stp	x29, x30, [sp, #-112]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	stp	x21, x22, [sp, #32]
+  10:	str	x23, [sp, #48]
+  14:	mov	x19, x0
+  18:	and	w23, w1, #0xff
+  1c:	mov	x22, x2
+  20:	mov	x21, x3
+  24:	mov	x20, x4
+  28:	ldr	x0, [x0, #40]
+  2c:	cbz	x0, 48 <netopenbsdlabel_partition_map_iterate+0x48>
+  30:	ldr	x0, [x0, #48]
+  34:	adrp	x1, 0 <netopenbsdlabel_partition_map_iterate>
+  38:	ldr	x1, [x1]
+  3c:	ldr	x0, [x0, #16]
+  40:	bl	0 <grub_strcmp>
+  44:	cbz	w0, 90 <netopenbsdlabel_partition_map_iterate+0x90>
+  48:	strb	w23, [sp, #72]
+  4c:	str	x22, [sp, #80]
+  50:	str	x21, [sp, #88]
+  54:	str	x20, [sp, #96]
+  58:	str	wzr, [sp, #104]
+  5c:	add	x2, sp, #0x48
+  60:	adrp	x0, 0 <netopenbsdlabel_partition_map_iterate>
+  64:	ldr	x1, [x0]
+  68:	mov	x0, x19
+  6c:	bl	0 <grub_partition_msdos_iterate>
+  70:	cbnz	w0, 7c <netopenbsdlabel_partition_map_iterate+0x7c>
+  74:	ldr	w1, [sp, #104]
+  78:	cbz	w1, a4 <netopenbsdlabel_partition_map_iterate+0xa4>
+  7c:	ldp	x19, x20, [sp, #16]
+  80:	ldp	x21, x22, [sp, #32]
+  84:	ldr	x23, [sp, #48]
+  88:	ldp	x29, x30, [sp], #112
+  8c:	ret
+  90:	adrp	x0, 0 <netopenbsdlabel_partition_map_iterate>
+  94:	ldr	x1, [x0]
+  98:	mov	w0, #0x13                  	// #19
+  9c:	bl	0 <grub_error>
+  a0:	b	7c <netopenbsdlabel_partition_map_iterate+0x7c>
+  a4:	adrp	x0, 0 <netopenbsdlabel_partition_map_iterate>
+  a8:	ldr	x1, [x0]
+  ac:	mov	w0, #0x13                  	// #19
+  b0:	bl	0 <grub_error>
+  b4:	b	7c <netopenbsdlabel_partition_map_iterate+0x7c>
+	...
+
+00000000000000d8 <openbsdlabel_partition_map_iterate>:
+  d8:	stp	x29, x30, [sp, #-16]!
+  dc:	mov	x29, sp
+  e0:	mov	x4, x2
+  e4:	mov	x3, x1
+  e8:	adrp	x1, 0 <netopenbsdlabel_partition_map_iterate>
+  ec:	ldr	x2, [x1]
+  f0:	mov	w1, #0xffffffa6            	// #-90
+  f4:	bl	0 <netopenbsdlabel_partition_map_iterate>
+  f8:	ldp	x29, x30, [sp], #16
+  fc:	ret
+	...
+
+0000000000000108 <netbsdlabel_partition_map_iterate>:
+ 108:	stp	x29, x30, [sp, #-16]!
+ 10c:	mov	x29, sp
+ 110:	adrp	x3, 0 <netopenbsdlabel_partition_map_iterate>
+ 114:	ldr	x5, [x3]
+ 118:	mov	x4, x2
+ 11c:	mov	x3, x1
+ 120:	add	x2, x5, #0x20
+ 124:	mov	w1, #0xffffffa9            	// #-87
+ 128:	bl	0 <netopenbsdlabel_partition_map_iterate>
+ 12c:	ldp	x29, x30, [sp], #16
+ 130:	ret
+ 134:	nop
+	...
+
+0000000000000140 <iterate_real>:
+ 140:	stp	x29, x30, [sp, #-320]!
+ 144:	mov	x29, sp
+ 148:	stp	x19, x20, [sp, #16]
+ 14c:	stp	x21, x22, [sp, #32]
+ 150:	stp	x23, x24, [sp, #48]
+ 154:	stp	x25, x26, [sp, #64]
+ 158:	mov	x20, x0
+ 15c:	mov	x19, x1
+ 160:	mov	w23, w2
+ 164:	mov	x21, x3
+ 168:	mov	x24, x4
+ 16c:	mov	x25, x5
+ 170:	add	x4, sp, #0xa8
+ 174:	mov	x3, #0x94                  	// #148
+ 178:	mov	x2, #0x0                   	// #0
+ 17c:	bl	0 <grub_disk_read>
+ 180:	cbnz	w0, 1d0 <iterate_real+0x90>
+ 184:	mov	w22, w0
+ 188:	mov	w0, #0x4557                	// #17751
+ 18c:	movk	w0, #0x8256, lsl #16
+ 190:	ldr	w1, [sp, #168]
+ 194:	cmp	w1, w0
+ 198:	b.ne	1f8 <iterate_real+0xb8>  // b.any
+ 19c:	ldrh	w0, [sp, #306]
+ 1a0:	cmp	w23, #0x0
+ 1a4:	mov	x23, #0x0                   	// #0
+ 1a8:	ccmp	w0, #0x2, #0x0, ne  // ne = any
+ 1ac:	b.hi	210 <iterate_real+0xd0>  // b.pmore
+ 1b0:	lsl	x19, x19, #9
+ 1b4:	add	x19, x19, #0x94
+ 1b8:	str	wzr, [sp, #104]
+ 1bc:	ldrh	w0, [sp, #306]
+ 1c0:	cbz	w0, 1dc <iterate_real+0x9c>
+ 1c4:	mov	w1, #0x0                   	// #0
+ 1c8:	mov	x26, #0x10                  	// #16
+ 1cc:	b	270 <iterate_real+0x130>
+ 1d0:	adrp	x0, 0 <netopenbsdlabel_partition_map_iterate>
+ 1d4:	ldr	x0, [x0]
+ 1d8:	ldr	w22, [x0]
+ 1dc:	mov	w0, w22
+ 1e0:	ldp	x19, x20, [sp, #16]
+ 1e4:	ldp	x21, x22, [sp, #32]
+ 1e8:	ldp	x23, x24, [sp, #48]
+ 1ec:	ldp	x25, x26, [sp, #64]
+ 1f0:	ldp	x29, x30, [sp], #320
+ 1f4:	ret
+ 1f8:	adrp	x0, 0 <netopenbsdlabel_partition_map_iterate>
+ 1fc:	ldr	x1, [x0]
+ 200:	mov	w0, #0x13                  	// #19
+ 204:	bl	0 <grub_error>
+ 208:	mov	w22, w0
+ 20c:	b	1dc <iterate_real+0x9c>
+ 210:	add	x4, sp, #0x58
+ 214:	mov	x3, #0x10                  	// #16
+ 218:	mov	x2, #0xb4                  	// #180
+ 21c:	and	x1, x19, #0x7fffffffffffff
+ 220:	mov	x0, x20
+ 224:	bl	0 <grub_disk_read>
+ 228:	cbnz	w0, 234 <iterate_real+0xf4>
+ 22c:	ldr	w23, [sp, #92]
+ 230:	b	1b0 <iterate_real+0x70>
+ 234:	adrp	x0, 0 <netopenbsdlabel_partition_map_iterate>
+ 238:	ldr	x0, [x0]
+ 23c:	ldr	w22, [x0]
+ 240:	b	1dc <iterate_real+0x9c>
+ 244:	adrp	x0, 0 <netopenbsdlabel_partition_map_iterate>
+ 248:	ldr	x0, [x0]
+ 24c:	ldr	w22, [x0]
+ 250:	b	1dc <iterate_real+0x9c>
+ 254:	ldr	w1, [sp, #104]
+ 258:	add	w1, w1, #0x1
+ 25c:	str	w1, [sp, #104]
+ 260:	add	x19, x19, #0x10
+ 264:	ldrh	w0, [sp, #306]
+ 268:	cmp	w1, w0
+ 26c:	b.ge	1dc <iterate_real+0x9c>  // b.tcont
+ 270:	cmp	w1, #0x2
+ 274:	b.eq	254 <iterate_real+0x114>  // b.none
+ 278:	lsr	x1, x19, #9
+ 27c:	str	x1, [sp, #128]
+ 280:	and	w2, w19, #0x1ff
+ 284:	str	w2, [sp, #136]
+ 288:	add	x4, sp, #0x58
+ 28c:	mov	x3, x26
+ 290:	sxtw	x2, w2
+ 294:	mov	x0, x20
+ 298:	bl	0 <grub_disk_read>
+ 29c:	cbnz	w0, 244 <iterate_real+0x104>
+ 2a0:	ldr	w0, [sp, #92]
+ 2a4:	str	x0, [sp, #112]
+ 2a8:	ldr	w1, [sp, #88]
+ 2ac:	str	x1, [sp, #120]
+ 2b0:	str	x21, [sp, #152]
+ 2b4:	cmp	x1, #0x0
+ 2b8:	ccmp	x0, x23, #0x0, ne  // ne = any
+ 2bc:	b.cc	254 <iterate_real+0x114>  // b.lo, b.ul, b.last
+ 2c0:	sub	x0, x0, x23
+ 2c4:	str	x0, [sp, #112]
+ 2c8:	mov	x2, x25
+ 2cc:	add	x1, sp, #0x68
+ 2d0:	mov	x0, x20
+ 2d4:	blr	x24
+ 2d8:	cbz	w0, 254 <iterate_real+0x114>
+ 2dc:	adrp	x0, 0 <netopenbsdlabel_partition_map_iterate>
+ 2e0:	ldr	x0, [x0]
+ 2e4:	ldr	w22, [x0]
+ 2e8:	b	1dc <iterate_real+0x9c>
+ 2ec:	nop
+	...
+
+0000000000000300 <check_msdos>:
+ 300:	stp	x29, x30, [sp, #-32]!
+ 304:	mov	x29, sp
+ 308:	str	x19, [sp, #16]
+ 30c:	mov	x19, x2
+ 310:	ldrb	w3, [x1, #56]
+ 314:	ldrb	w2, [x2]
+ 318:	cmp	w3, w2
+ 31c:	b.eq	330 <check_msdos+0x30>  // b.none
+ 320:	mov	w0, #0x0                   	// #0
+ 324:	ldr	x19, [sp, #16]
+ 328:	ldp	x29, x30, [sp], #32
+ 32c:	ret
+ 330:	ldr	x1, [x1, #8]
+ 334:	ldr	x5, [x19, #24]
+ 338:	ldr	x4, [x19, #16]
+ 33c:	ldr	x3, [x19, #8]
+ 340:	mov	w2, #0x0                   	// #0
+ 344:	add	x1, x1, #0x1
+ 348:	bl	140 <iterate_real>
+ 34c:	cbz	w0, 364 <check_msdos+0x64>
+ 350:	cmp	w0, #0x13
+ 354:	b.eq	378 <check_msdos+0x78>  // b.none
+ 358:	bl	0 <grub_print_error>
+ 35c:	mov	w0, #0x0                   	// #0
+ 360:	b	324 <check_msdos+0x24>
+ 364:	ldr	w0, [x19, #32]
+ 368:	add	w0, w0, #0x1
+ 36c:	str	w0, [x19, #32]
+ 370:	mov	w0, #0x1                   	// #1
+ 374:	b	324 <check_msdos+0x24>
+ 378:	adrp	x0, 0 <netopenbsdlabel_partition_map_iterate>
+ 37c:	ldr	x0, [x0]
+ 380:	str	wzr, [x0]
+ 384:	mov	w0, #0x0                   	// #0
+ 388:	b	324 <check_msdos+0x24>
+ 38c:	nop
+	...
+
+0000000000000398 <bsdlabel_partition_map_iterate>:
+ 398:	stp	x29, x30, [sp, #-48]!
+ 39c:	mov	x29, sp
+ 3a0:	stp	x19, x20, [sp, #16]
+ 3a4:	str	x21, [sp, #32]
+ 3a8:	mov	x19, x0
+ 3ac:	mov	x21, x1
+ 3b0:	mov	x20, x2
+ 3b4:	ldr	x0, [x0, #40]
+ 3b8:	cbz	x0, 454 <bsdlabel_partition_map_iterate+0xbc>
+ 3bc:	ldr	x0, [x0, #48]
+ 3c0:	adrp	x1, 0 <netopenbsdlabel_partition_map_iterate>
+ 3c4:	ldr	x1, [x1]
+ 3c8:	ldr	x0, [x0, #16]
+ 3cc:	bl	0 <grub_strcmp>
+ 3d0:	cbnz	w0, 40c <bsdlabel_partition_map_iterate+0x74>
+ 3d4:	ldr	x0, [x19, #40]
+ 3d8:	ldrb	w1, [x0, #56]
+ 3dc:	cmp	w1, #0xa5
+ 3e0:	b.ne	414 <bsdlabel_partition_map_iterate+0x7c>  // b.any
+ 3e4:	adrp	x0, 0 <netopenbsdlabel_partition_map_iterate>
+ 3e8:	ldr	x3, [x0]
+ 3ec:	mov	x5, x20
+ 3f0:	mov	x4, x21
+ 3f4:	add	x3, x3, #0x40
+ 3f8:	mov	w2, #0x1                   	// #1
+ 3fc:	mov	x1, #0x1                   	// #1
+ 400:	mov	x0, x19
+ 404:	bl	140 <iterate_real>
+ 408:	b	478 <bsdlabel_partition_map_iterate+0xe0>
+ 40c:	ldr	x0, [x19, #40]
+ 410:	cbz	x0, 454 <bsdlabel_partition_map_iterate+0xbc>
+ 414:	ldr	x0, [x0, #48]
+ 418:	adrp	x1, 0 <netopenbsdlabel_partition_map_iterate>
+ 41c:	ldr	x1, [x1]
+ 420:	ldr	x0, [x0, #16]
+ 424:	bl	0 <grub_strcmp>
+ 428:	cbz	w0, 488 <bsdlabel_partition_map_iterate+0xf0>
+ 42c:	ldr	x0, [x19, #40]
+ 430:	ldr	x3, [x0, #48]
+ 434:	adrp	x0, 0 <netopenbsdlabel_partition_map_iterate>
+ 438:	ldr	x0, [x0]
+ 43c:	add	x2, x0, #0x20
+ 440:	add	x1, x0, #0x40
+ 444:	cmp	x3, x2
+ 448:	ccmp	x3, x1, #0x4, ne  // ne = any
+ 44c:	ccmp	x3, x0, #0x4, ne  // ne = any
+ 450:	b.eq	488 <bsdlabel_partition_map_iterate+0xf0>  // b.none
+ 454:	adrp	x0, 0 <netopenbsdlabel_partition_map_iterate>
+ 458:	ldr	x3, [x0]
+ 45c:	mov	x5, x20
+ 460:	mov	x4, x21
+ 464:	add	x3, x3, #0x40
+ 468:	mov	w2, #0x0                   	// #0
+ 46c:	mov	x1, #0x1                   	// #1
+ 470:	mov	x0, x19
+ 474:	bl	140 <iterate_real>
+ 478:	ldp	x19, x20, [sp, #16]
+ 47c:	ldr	x21, [sp, #32]
+ 480:	ldp	x29, x30, [sp], #48
+ 484:	ret
+ 488:	adrp	x0, 0 <netopenbsdlabel_partition_map_iterate>
+ 48c:	ldr	x1, [x0]
+ 490:	mov	w0, #0x13                  	// #19
+ 494:	bl	0 <grub_error>
+ 498:	b	478 <bsdlabel_partition_map_iterate+0xe0>
+ 49c:	nop
+	...
+
+00000000000004b8 <grub_mod_init>:
+ 4b8:	stp	x29, x30, [sp, #-32]!
+ 4bc:	mov	x29, sp
+ 4c0:	stp	x19, x20, [sp, #16]
+ 4c4:	adrp	x0, 0 <netopenbsdlabel_partition_map_iterate>
+ 4c8:	ldr	x20, [x0]
+ 4cc:	adrp	x0, 0 <netopenbsdlabel_partition_map_iterate>
+ 4d0:	ldr	x19, [x0]
+ 4d4:	add	x1, x20, #0x40
+ 4d8:	mov	x0, x19
+ 4dc:	bl	0 <grub_list_push>
+ 4e0:	add	x1, x20, #0x20
+ 4e4:	mov	x0, x19
+ 4e8:	bl	0 <grub_list_push>
+ 4ec:	mov	x1, x20
+ 4f0:	mov	x0, x19
+ 4f4:	bl	0 <grub_list_push>
+ 4f8:	ldp	x19, x20, [sp, #16]
+ 4fc:	ldp	x29, x30, [sp], #32
+ 500:	ret
+ 504:	nop
+	...
+
+0000000000000518 <grub_mod_fini>:
+ 518:	stp	x29, x30, [sp, #-32]!
+ 51c:	mov	x29, sp
+ 520:	str	x19, [sp, #16]
+ 524:	adrp	x0, 0 <netopenbsdlabel_partition_map_iterate>
+ 528:	ldr	x19, [x0]
+ 52c:	add	x0, x19, #0x40
+ 530:	bl	0 <grub_list_remove>
+ 534:	add	x0, x19, #0x20
+ 538:	bl	0 <grub_list_remove>
+ 53c:	mov	x0, x19
+ 540:	bl	0 <grub_list_remove>
+ 544:	ldr	x19, [sp, #16]
+ 548:	ldp	x29, x30, [sp], #32
+ 54c:	ret
+	...

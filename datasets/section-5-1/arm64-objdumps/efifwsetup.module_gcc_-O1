@@ -1,0 +1,102 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//efifwsetup.module_gcc_-O1:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_cmd_fwsetup>:
+   0:	stp	x29, x30, [sp, #-48]!
+   4:	mov	x29, sp
+   8:	mov	x0, #0x1                   	// #1
+   c:	str	x0, [sp, #40]
+  10:	mov	w0, #0xdf61                	// #57185
+  14:	movk	w0, #0x8be4, lsl #16
+  18:	str	w0, [sp, #16]
+  1c:	mov	w0, #0xffff93ca            	// #-27702
+  20:	strh	w0, [sp, #20]
+  24:	mov	w0, #0x11d2                	// #4562
+  28:	strh	w0, [sp, #22]
+  2c:	mov	x0, #0xdaa                 	// #3498
+  30:	movk	x0, #0xe000, lsl #16
+  34:	movk	x0, #0x398, lsl #32
+  38:	movk	x0, #0x8c2b, lsl #48
+  3c:	str	x0, [sp, #24]
+  40:	add	x2, sp, #0x20
+  44:	add	x1, sp, #0x10
+  48:	adrp	x0, 0 <grub_cmd_fwsetup>
+  4c:	ldr	x0, [x0]
+  50:	bl	0 <grub_efi_get_variable>
+  54:	cbz	x0, 64 <grub_cmd_fwsetup+0x64>
+  58:	ldr	x1, [sp, #32]
+  5c:	cmp	x1, #0x8
+  60:	b.eq	88 <grub_cmd_fwsetup+0x88>  // b.none
+  64:	mov	x3, #0x8                   	// #8
+  68:	add	x2, sp, #0x28
+  6c:	add	x1, sp, #0x10
+  70:	adrp	x0, 0 <grub_cmd_fwsetup>
+  74:	ldr	x0, [x0]
+  78:	bl	0 <grub_efi_set_variable>
+  7c:	cbz	w0, 9c <grub_cmd_fwsetup+0x9c>
+  80:	ldp	x29, x30, [sp], #48
+  84:	ret
+  88:	ldr	x1, [x0]
+  8c:	ldr	x0, [sp, #40]
+  90:	orr	x0, x0, x1
+  94:	str	x0, [sp, #40]
+  98:	b	64 <grub_cmd_fwsetup+0x64>
+  9c:	bl	0 <grub_reboot>
+	...
+
+00000000000000a8 <grub_mod_init>:
+  a8:	stp	x29, x30, [sp, #-48]!
+  ac:	mov	x29, sp
+  b0:	str	xzr, [sp, #24]
+  b4:	mov	w0, #0xdf61                	// #57185
+  b8:	movk	w0, #0x8be4, lsl #16
+  bc:	str	w0, [sp, #32]
+  c0:	mov	w0, #0xffff93ca            	// #-27702
+  c4:	strh	w0, [sp, #36]
+  c8:	mov	w0, #0x11d2                	// #4562
+  cc:	strh	w0, [sp, #38]
+  d0:	mov	x0, #0xdaa                 	// #3498
+  d4:	movk	x0, #0xe000, lsl #16
+  d8:	movk	x0, #0x398, lsl #32
+  dc:	movk	x0, #0x8c2b, lsl #48
+  e0:	str	x0, [sp, #40]
+  e4:	add	x2, sp, #0x18
+  e8:	add	x1, sp, #0x20
+  ec:	adrp	x0, 0 <grub_cmd_fwsetup>
+  f0:	ldr	x0, [x0]
+  f4:	bl	0 <grub_efi_get_variable>
+  f8:	cbz	x0, 104 <grub_mod_init+0x5c>
+  fc:	ldr	x0, [x0]
+ 100:	tbnz	w0, #0, 10c <grub_mod_init+0x64>
+ 104:	ldp	x29, x30, [sp], #48
+ 108:	ret
+ 10c:	mov	w4, #0x0                   	// #0
+ 110:	adrp	x0, 0 <grub_cmd_fwsetup>
+ 114:	ldr	x3, [x0]
+ 118:	mov	x2, #0x0                   	// #0
+ 11c:	adrp	x0, 0 <grub_cmd_fwsetup>
+ 120:	ldr	x1, [x0]
+ 124:	adrp	x0, 0 <grub_cmd_fwsetup>
+ 128:	ldr	x0, [x0]
+ 12c:	bl	0 <grub_register_command_prio>
+ 130:	adrp	x1, 0 <grub_cmd_fwsetup>
+ 134:	ldr	x1, [x1]
+ 138:	str	x0, [x1]
+ 13c:	b	104 <grub_mod_init+0x5c>
+	...
+
+0000000000000168 <grub_mod_fini>:
+ 168:	adrp	x0, 0 <grub_cmd_fwsetup>
+ 16c:	ldr	x0, [x0]
+ 170:	ldr	x0, [x0]
+ 174:	cbz	x0, 18c <grub_mod_fini+0x24>
+ 178:	stp	x29, x30, [sp, #-16]!
+ 17c:	mov	x29, sp
+ 180:	bl	0 <grub_unregister_command>
+ 184:	ldp	x29, x30, [sp], #16
+ 188:	ret
+ 18c:	ret
+	...

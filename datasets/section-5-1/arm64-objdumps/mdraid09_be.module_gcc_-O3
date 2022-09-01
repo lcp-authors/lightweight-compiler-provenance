@@ -1,0 +1,158 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//mdraid09_be.module_gcc_-O3:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_mdraid_detect>:
+   0:	stp	x29, x30, [sp, #-96]!
+   4:	mov	x29, sp
+   8:	stp	x19, x20, [sp, #16]
+   c:	stp	x21, x22, [sp, #32]
+  10:	mov	x22, x1
+  14:	mov	x21, x0
+  18:	stp	x23, x24, [sp, #48]
+  1c:	mov	x23, x2
+  20:	bl	0 <grub_disk_get_size>
+  24:	cmn	x0, #0x1
+  28:	b.eq	1f0 <grub_mdraid_detect+0x1f0>  // b.none
+  2c:	and	x3, x0, #0xffffffffffffff80
+  30:	mov	x20, x0
+  34:	sub	x24, x3, #0x80
+  38:	mov	x0, #0x1000                	// #4096
+  3c:	bl	0 <grub_malloc>
+  40:	mov	x19, x0
+  44:	cbz	x0, 1f0 <grub_mdraid_detect+0x1f0>
+  48:	mov	x0, x21
+  4c:	mov	x4, x19
+  50:	mov	x1, x24
+  54:	mov	x3, #0x1000                	// #4096
+  58:	mov	x2, #0x0                   	// #0
+  5c:	bl	0 <grub_disk_read>
+  60:	cbnz	w0, 1cc <grub_mdraid_detect+0x1cc>
+  64:	ldr	w1, [x19]
+  68:	mov	w0, #0x2ba9                	// #11177
+  6c:	movk	w0, #0xfc4e, lsl #16
+  70:	cmp	w1, w0
+  74:	b.ne	1cc <grub_mdraid_detect+0x1cc>  // b.any
+  78:	ldr	w0, [x19, #4]
+  7c:	cbnz	w0, 1cc <grub_mdraid_detect+0x1cc>
+  80:	ldr	w1, [x19, #8]
+  84:	mov	w0, #0x5a000000            	// #1509949440
+  88:	cmp	w1, w0
+  8c:	b.ne	1cc <grub_mdraid_detect+0x1cc>  // b.any
+  90:	ldr	w0, [x19, #32]
+  94:	rev	w0, w0
+  98:	cmp	x20, x0, lsl #1
+  9c:	b.ls	1cc <grub_mdraid_detect+0x1cc>  // b.plast
+  a0:	ldr	w20, [x19, #28]
+  a4:	rev	w20, w20
+  a8:	cmn	w20, #0x4
+  ac:	b.eq	20c <grub_mdraid_detect+0x20c>  // b.none
+  b0:	sub	w0, w20, #0x4
+  b4:	cmp	w0, #0x2
+  b8:	ccmp	w20, #0x1, #0x0, hi  // hi = pmore
+  bc:	b.ls	c8 <grub_mdraid_detect+0xc8>  // b.plast
+  c0:	cmp	w20, #0xa
+  c4:	b.ne	1b8 <grub_mdraid_detect+0x1b8>  // b.any
+  c8:	ldr	w0, [x19, #3968]
+  cc:	mov	w1, #0xffff0002            	// #-65534
+  d0:	rev	w0, w0
+  d4:	add	w0, w0, w1
+  d8:	cmp	w0, #0x1
+  dc:	b.ls	1cc <grub_mdraid_detect+0x1cc>  // b.plast
+  e0:	mov	x0, #0x10                  	// #16
+  e4:	bl	0 <grub_malloc>
+  e8:	mov	x21, x0
+  ec:	cbz	x0, 1cc <grub_mdraid_detect+0x1cc>
+  f0:	ldr	w2, [x19, #20]
+  f4:	adrp	x0, 0 <grub_mdraid_detect>
+  f8:	mov	x1, #0x20                  	// #32
+  fc:	rev	w2, w2
+ 100:	str	w2, [x21]
+ 104:	ldr	x2, [x0]
+ 108:	add	x0, sp, #0x40
+ 10c:	ldr	w3, [x19, #52]
+ 110:	rev	w3, w3
+ 114:	str	w3, [x21, #4]
+ 118:	ldr	w3, [x19, #56]
+ 11c:	rev	w3, w3
+ 120:	str	w3, [x21, #8]
+ 124:	ldr	w3, [x19, #60]
+ 128:	rev	w3, w3
+ 12c:	str	w3, [x21, #12]
+ 130:	ldr	w3, [x19, #3968]
+ 134:	str	xzr, [x23]
+ 138:	rev	w3, w3
+ 13c:	str	w3, [x22]
+ 140:	ldr	w3, [x19, #44]
+ 144:	str	xzr, [x22, #8]
+ 148:	rev	w3, w3
+ 14c:	bl	0 <grub_snprintf>
+ 150:	ldr	w0, [x19, #32]
+ 154:	add	x3, sp, #0x40
+ 158:	ldr	w5, [x19, #260]
+ 15c:	mov	w7, w20
+ 160:	rev	w4, w0
+ 164:	ldr	w2, [x19, #40]
+ 168:	ldr	w6, [x19, #256]
+ 16c:	rev	w5, w5
+ 170:	cmp	w0, #0x0
+ 174:	lsl	x4, x4, #1
+ 178:	mov	x1, x21
+ 17c:	csel	x4, x4, x24, ne  // ne = any
+ 180:	lsr	w5, w5, #9
+ 184:	rev	w2, w2
+ 188:	rev	w6, w6
+ 18c:	mov	x0, #0x10                  	// #16
+ 190:	bl	0 <grub_diskfilter_make_raid>
+ 194:	mov	x20, x0
+ 198:	mov	x0, x19
+ 19c:	bl	0 <grub_free>
+ 1a0:	mov	x0, x20
+ 1a4:	ldp	x19, x20, [sp, #16]
+ 1a8:	ldp	x21, x22, [sp, #32]
+ 1ac:	ldp	x23, x24, [sp, #48]
+ 1b0:	ldp	x29, x30, [sp], #96
+ 1b4:	ret
+ 1b8:	adrp	x1, 0 <grub_mdraid_detect>
+ 1bc:	mov	w2, w20
+ 1c0:	mov	w0, #0x18                  	// #24
+ 1c4:	ldr	x1, [x1]
+ 1c8:	bl	0 <grub_error>
+ 1cc:	mov	x0, x19
+ 1d0:	mov	x20, #0x0                   	// #0
+ 1d4:	bl	0 <grub_free>
+ 1d8:	mov	x0, x20
+ 1dc:	ldp	x19, x20, [sp, #16]
+ 1e0:	ldp	x21, x22, [sp, #32]
+ 1e4:	ldp	x23, x24, [sp, #48]
+ 1e8:	ldp	x29, x30, [sp], #96
+ 1ec:	ret
+ 1f0:	mov	x20, #0x0                   	// #0
+ 1f4:	mov	x0, x20
+ 1f8:	ldp	x19, x20, [sp, #16]
+ 1fc:	ldp	x21, x22, [sp, #32]
+ 200:	ldp	x23, x24, [sp, #48]
+ 204:	ldp	x29, x30, [sp], #96
+ 208:	ret
+ 20c:	mov	w20, #0x1                   	// #1
+ 210:	b	c8 <grub_mdraid_detect+0xc8>
+ 214:	nop
+	...
+
+0000000000000228 <grub_mod_init>:
+ 228:	adrp	x1, 0 <grub_mdraid_detect>
+ 22c:	adrp	x0, 0 <grub_mdraid_detect>
+ 230:	ldr	x1, [x1]
+ 234:	ldr	x0, [x0]
+ 238:	b	0 <grub_list_push>
+ 23c:	nop
+	...
+
+0000000000000250 <grub_mod_fini>:
+ 250:	adrp	x0, 0 <grub_mdraid_detect>
+ 254:	ldr	x0, [x0]
+ 258:	b	0 <grub_list_remove>
+ 25c:	nop
+	...

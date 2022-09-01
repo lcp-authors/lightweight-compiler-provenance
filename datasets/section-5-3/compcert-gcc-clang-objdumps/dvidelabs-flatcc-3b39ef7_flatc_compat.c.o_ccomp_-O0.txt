@@ -1,0 +1,3377 @@
+
+../repos/dvidelabs-flatcc-3b39ef7/test/flatc_compat/CMakeFiles/flatc_compat.dir/flatc_compat.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <__portable_aligned_alloc>:
+       0:	mov	ip, sp
+       4:	sub	sp, sp, #16
+       8:	str	ip, [sp]
+       c:	str	lr, [sp, #4]
+      10:	str	r4, [sp, #8]
+      14:	mov	r4, r0
+      18:	add	r3, r1, r4
+      1c:	add	r0, r3, #3
+      20:	cmp	r4, #4
+      24:	bcs	2c <__portable_aligned_alloc+0x2c>
+      28:	mov	r4, #4
+      2c:	bl	0 <malloc>
+      30:	mov	r1, r0
+      34:	add	r0, r1, r4
+      38:	add	ip, r0, #3
+      3c:	sub	r2, r4, #1
+      40:	bic	r0, ip, r2
+      44:	sub	lr, r0, #4096	; 0x1000
+      48:	str	r1, [lr, #4092]	; 0xffc
+      4c:	ldr	r4, [sp, #8]
+      50:	ldr	lr, [sp, #4]
+      54:	add	sp, sp, #16
+      58:	bx	lr
+
+0000005c <__portable_aligned_free>:
+      5c:	mov	ip, sp
+      60:	sub	sp, sp, #8
+      64:	str	ip, [sp]
+      68:	str	lr, [sp, #4]
+      6c:	cmp	r0, #0
+      70:	beq	80 <__portable_aligned_free+0x24>
+      74:	sub	lr, r0, #4096	; 0x1000
+      78:	ldr	r0, [lr, #4092]	; 0xffc
+      7c:	bl	0 <free>
+      80:	ldr	lr, [sp, #4]
+      84:	add	sp, sp, #8
+      88:	bx	lr
+
+0000008c <flatbuffers_uint8_cast_from_pe>:
+      8c:	mov	ip, sp
+      90:	sub	sp, sp, #8
+      94:	str	ip, [sp]
+      98:	str	lr, [sp, #4]
+      9c:	and	r0, r0, #255	; 0xff
+      a0:	ldr	lr, [sp, #4]
+      a4:	add	sp, sp, #8
+      a8:	bx	lr
+
+000000ac <flatbuffers_uint8_read_from_pe>:
+      ac:	mov	ip, sp
+      b0:	sub	sp, sp, #8
+      b4:	str	ip, [sp]
+      b8:	str	lr, [sp, #4]
+      bc:	ldrb	r0, [r0]
+      c0:	and	r0, r0, #255	; 0xff
+      c4:	bl	8c <flatbuffers_uint8_cast_from_pe>
+      c8:	and	r0, r0, #255	; 0xff
+      cc:	ldr	lr, [sp, #4]
+      d0:	add	sp, sp, #8
+      d4:	bx	lr
+
+000000d8 <flatbuffers_uint32_cast_from_pe>:
+      d8:	mov	ip, sp
+      dc:	sub	sp, sp, #8
+      e0:	str	ip, [sp]
+      e4:	str	lr, [sp, #4]
+      e8:	ldr	lr, [sp, #4]
+      ec:	add	sp, sp, #8
+      f0:	bx	lr
+
+000000f4 <flatbuffers_uint32_read_from_pe>:
+      f4:	mov	ip, sp
+      f8:	sub	sp, sp, #8
+      fc:	str	ip, [sp]
+     100:	str	lr, [sp, #4]
+     104:	ldr	r0, [r0]
+     108:	bl	d8 <flatbuffers_uint32_cast_from_pe>
+     10c:	ldr	lr, [sp, #4]
+     110:	add	sp, sp, #8
+     114:	bx	lr
+
+00000118 <flatbuffers_uint64_cast_from_pe>:
+     118:	mov	ip, sp
+     11c:	sub	sp, sp, #8
+     120:	str	ip, [sp]
+     124:	str	lr, [sp, #4]
+     128:	ldr	lr, [sp, #4]
+     12c:	add	sp, sp, #8
+     130:	bx	lr
+
+00000134 <flatbuffers_uint64_read_from_pe>:
+     134:	mov	ip, sp
+     138:	sub	sp, sp, #8
+     13c:	str	ip, [sp]
+     140:	str	lr, [sp, #4]
+     144:	mov	r1, r0
+     148:	ldr	r0, [r1]
+     14c:	ldr	r1, [r1, #4]
+     150:	bl	118 <flatbuffers_uint64_cast_from_pe>
+     154:	ldr	lr, [sp, #4]
+     158:	add	sp, sp, #8
+     15c:	bx	lr
+
+00000160 <flatbuffers_int8_cast_from_pe>:
+     160:	mov	ip, sp
+     164:	sub	sp, sp, #8
+     168:	str	ip, [sp]
+     16c:	str	lr, [sp, #4]
+     170:	and	r0, r0, #255	; 0xff
+     174:	sbfx	r0, r0, #0, #8
+     178:	sbfx	r0, r0, #0, #8
+     17c:	ldr	lr, [sp, #4]
+     180:	add	sp, sp, #8
+     184:	bx	lr
+
+00000188 <flatbuffers_int8_read_from_pe>:
+     188:	mov	ip, sp
+     18c:	sub	sp, sp, #8
+     190:	str	ip, [sp]
+     194:	str	lr, [sp, #4]
+     198:	ldrsb	r0, [r0]
+     19c:	sbfx	r0, r0, #0, #8
+     1a0:	bl	160 <flatbuffers_int8_cast_from_pe>
+     1a4:	sbfx	r0, r0, #0, #8
+     1a8:	ldr	lr, [sp, #4]
+     1ac:	add	sp, sp, #8
+     1b0:	bx	lr
+
+000001b4 <flatbuffers_int16_cast_from_pe>:
+     1b4:	mov	ip, sp
+     1b8:	sub	sp, sp, #8
+     1bc:	str	ip, [sp]
+     1c0:	str	lr, [sp, #4]
+     1c4:	bic	r0, r0, #16711680	; 0xff0000
+     1c8:	bic	r0, r0, #-16777216	; 0xff000000
+     1cc:	sbfx	r0, r0, #0, #16
+     1d0:	sbfx	r0, r0, #0, #16
+     1d4:	ldr	lr, [sp, #4]
+     1d8:	add	sp, sp, #8
+     1dc:	bx	lr
+
+000001e0 <flatbuffers_int16_read_from_pe>:
+     1e0:	mov	ip, sp
+     1e4:	sub	sp, sp, #8
+     1e8:	str	ip, [sp]
+     1ec:	str	lr, [sp, #4]
+     1f0:	ldrsh	r0, [r0]
+     1f4:	sbfx	r0, r0, #0, #16
+     1f8:	bl	1b4 <flatbuffers_int16_cast_from_pe>
+     1fc:	sbfx	r0, r0, #0, #16
+     200:	ldr	lr, [sp, #4]
+     204:	add	sp, sp, #8
+     208:	bx	lr
+
+0000020c <flatbuffers_int32_cast_from_pe>:
+     20c:	mov	ip, sp
+     210:	sub	sp, sp, #8
+     214:	str	ip, [sp]
+     218:	str	lr, [sp, #4]
+     21c:	ldr	lr, [sp, #4]
+     220:	add	sp, sp, #8
+     224:	bx	lr
+
+00000228 <flatbuffers_int32_read_from_pe>:
+     228:	mov	ip, sp
+     22c:	sub	sp, sp, #8
+     230:	str	ip, [sp]
+     234:	str	lr, [sp, #4]
+     238:	ldr	r0, [r0]
+     23c:	bl	20c <flatbuffers_int32_cast_from_pe>
+     240:	ldr	lr, [sp, #4]
+     244:	add	sp, sp, #8
+     248:	bx	lr
+
+0000024c <flatbuffers_int64_cast_from_pe>:
+     24c:	mov	ip, sp
+     250:	sub	sp, sp, #8
+     254:	str	ip, [sp]
+     258:	str	lr, [sp, #4]
+     25c:	ldr	lr, [sp, #4]
+     260:	add	sp, sp, #8
+     264:	bx	lr
+
+00000268 <flatbuffers_int64_read_from_pe>:
+     268:	mov	ip, sp
+     26c:	sub	sp, sp, #8
+     270:	str	ip, [sp]
+     274:	str	lr, [sp, #4]
+     278:	mov	r1, r0
+     27c:	ldr	r0, [r1]
+     280:	ldr	r1, [r1, #4]
+     284:	bl	24c <flatbuffers_int64_cast_from_pe>
+     288:	ldr	lr, [sp, #4]
+     28c:	add	sp, sp, #8
+     290:	bx	lr
+
+00000294 <flatbuffers_float_cast_from_pe>:
+     294:	mov	ip, sp
+     298:	sub	sp, sp, #16
+     29c:	str	ip, [sp]
+     2a0:	str	lr, [sp, #4]
+     2a4:	vstr	s0, [sp, #8]
+     2a8:	ldr	r0, [sp, #8]
+     2ac:	str	r0, [sp, #8]
+     2b0:	vldr	s0, [sp, #8]
+     2b4:	ldr	lr, [sp, #4]
+     2b8:	add	sp, sp, #16
+     2bc:	bx	lr
+
+000002c0 <flatbuffers_float_read_from_pe>:
+     2c0:	mov	ip, sp
+     2c4:	sub	sp, sp, #8
+     2c8:	str	ip, [sp]
+     2cc:	str	lr, [sp, #4]
+     2d0:	vldr	s0, [r0]
+     2d4:	vmov.f32	s0, s0
+     2d8:	bl	294 <flatbuffers_float_cast_from_pe>
+     2dc:	ldr	lr, [sp, #4]
+     2e0:	add	sp, sp, #8
+     2e4:	bx	lr
+
+000002e8 <flatbuffers_double_cast_from_pe>:
+     2e8:	mov	ip, sp
+     2ec:	sub	sp, sp, #16
+     2f0:	str	ip, [sp]
+     2f4:	str	lr, [sp, #4]
+     2f8:	vstr	d0, [sp, #8]
+     2fc:	ldr	r0, [sp, #8]
+     300:	ldr	r1, [sp, #12]
+     304:	str	r0, [sp, #8]
+     308:	str	r1, [sp, #12]
+     30c:	vldr	d0, [sp, #8]
+     310:	ldr	lr, [sp, #4]
+     314:	add	sp, sp, #16
+     318:	bx	lr
+
+0000031c <flatbuffers_double_read_from_pe>:
+     31c:	mov	ip, sp
+     320:	sub	sp, sp, #8
+     324:	str	ip, [sp]
+     328:	str	lr, [sp, #4]
+     32c:	vldr	d0, [r0]
+     330:	bl	2e8 <flatbuffers_double_cast_from_pe>
+     334:	ldr	lr, [sp, #4]
+     338:	add	sp, sp, #8
+     33c:	bx	lr
+
+00000340 <__flatbuffers_uoffset_cast_from_pe>:
+     340:	mov	ip, sp
+     344:	sub	sp, sp, #8
+     348:	str	ip, [sp]
+     34c:	str	lr, [sp, #4]
+     350:	ldr	lr, [sp, #4]
+     354:	add	sp, sp, #8
+     358:	bx	lr
+
+0000035c <__flatbuffers_uoffset_read_from_pe>:
+     35c:	mov	ip, sp
+     360:	sub	sp, sp, #8
+     364:	str	ip, [sp]
+     368:	str	lr, [sp, #4]
+     36c:	ldr	r0, [r0]
+     370:	bl	340 <__flatbuffers_uoffset_cast_from_pe>
+     374:	ldr	lr, [sp, #4]
+     378:	add	sp, sp, #8
+     37c:	bx	lr
+
+00000380 <__flatbuffers_soffset_cast_from_pe>:
+     380:	mov	ip, sp
+     384:	sub	sp, sp, #8
+     388:	str	ip, [sp]
+     38c:	str	lr, [sp, #4]
+     390:	ldr	lr, [sp, #4]
+     394:	add	sp, sp, #8
+     398:	bx	lr
+
+0000039c <__flatbuffers_soffset_read_from_pe>:
+     39c:	mov	ip, sp
+     3a0:	sub	sp, sp, #8
+     3a4:	str	ip, [sp]
+     3a8:	str	lr, [sp, #4]
+     3ac:	ldr	r0, [r0]
+     3b0:	bl	380 <__flatbuffers_soffset_cast_from_pe>
+     3b4:	ldr	lr, [sp, #4]
+     3b8:	add	sp, sp, #8
+     3bc:	bx	lr
+
+000003c0 <__flatbuffers_voffset_cast_from_pe>:
+     3c0:	mov	ip, sp
+     3c4:	sub	sp, sp, #8
+     3c8:	str	ip, [sp]
+     3cc:	str	lr, [sp, #4]
+     3d0:	bic	r0, r0, #16711680	; 0xff0000
+     3d4:	bic	r0, r0, #-16777216	; 0xff000000
+     3d8:	ldr	lr, [sp, #4]
+     3dc:	add	sp, sp, #8
+     3e0:	bx	lr
+
+000003e4 <__flatbuffers_voffset_read_from_pe>:
+     3e4:	mov	ip, sp
+     3e8:	sub	sp, sp, #8
+     3ec:	str	ip, [sp]
+     3f0:	str	lr, [sp, #4]
+     3f4:	ldrh	r0, [r0]
+     3f8:	bic	r0, r0, #16711680	; 0xff0000
+     3fc:	bic	r0, r0, #-16777216	; 0xff000000
+     400:	bl	3c0 <__flatbuffers_voffset_cast_from_pe>
+     404:	bic	r0, r0, #16711680	; 0xff0000
+     408:	bic	r0, r0, #-16777216	; 0xff000000
+     40c:	ldr	lr, [sp, #4]
+     410:	add	sp, sp, #8
+     414:	bx	lr
+
+00000418 <__flatbuffers_utype_cast_from_pe>:
+     418:	mov	ip, sp
+     41c:	sub	sp, sp, #8
+     420:	str	ip, [sp]
+     424:	str	lr, [sp, #4]
+     428:	and	r0, r0, #255	; 0xff
+     42c:	ldr	lr, [sp, #4]
+     430:	add	sp, sp, #8
+     434:	bx	lr
+
+00000438 <__flatbuffers_utype_read_from_pe>:
+     438:	mov	ip, sp
+     43c:	sub	sp, sp, #8
+     440:	str	ip, [sp]
+     444:	str	lr, [sp, #4]
+     448:	ldrb	r0, [r0]
+     44c:	and	r0, r0, #255	; 0xff
+     450:	bl	418 <__flatbuffers_utype_cast_from_pe>
+     454:	and	r0, r0, #255	; 0xff
+     458:	ldr	lr, [sp, #4]
+     45c:	add	sp, sp, #8
+     460:	bx	lr
+
+00000464 <__flatbuffers_thash_cast_from_pe>:
+     464:	mov	ip, sp
+     468:	sub	sp, sp, #8
+     46c:	str	ip, [sp]
+     470:	str	lr, [sp, #4]
+     474:	ldr	lr, [sp, #4]
+     478:	add	sp, sp, #8
+     47c:	bx	lr
+
+00000480 <__flatbuffers_thash_cast_from_le>:
+     480:	mov	ip, sp
+     484:	sub	sp, sp, #8
+     488:	str	ip, [sp]
+     48c:	str	lr, [sp, #4]
+     490:	ldr	lr, [sp, #4]
+     494:	add	sp, sp, #8
+     498:	bx	lr
+
+0000049c <__flatbuffers_thash_read_from_pe>:
+     49c:	mov	ip, sp
+     4a0:	sub	sp, sp, #8
+     4a4:	str	ip, [sp]
+     4a8:	str	lr, [sp, #4]
+     4ac:	ldr	r0, [r0]
+     4b0:	bl	464 <__flatbuffers_thash_cast_from_pe>
+     4b4:	ldr	lr, [sp, #4]
+     4b8:	add	sp, sp, #8
+     4bc:	bx	lr
+
+000004c0 <flatbuffers_vec_len>:
+     4c0:	mov	ip, sp
+     4c4:	sub	sp, sp, #8
+     4c8:	str	ip, [sp]
+     4cc:	str	lr, [sp, #4]
+     4d0:	cmp	r0, #0
+     4d4:	beq	4e4 <flatbuffers_vec_len+0x24>
+     4d8:	sub	r0, r0, #4
+     4dc:	bl	35c <__flatbuffers_uoffset_read_from_pe>
+     4e0:	b	4e8 <flatbuffers_vec_len+0x28>
+     4e4:	mov	r0, #0
+     4e8:	ldr	lr, [sp, #4]
+     4ec:	add	sp, sp, #8
+     4f0:	bx	lr
+
+000004f4 <flatbuffers_string_len>:
+     4f4:	mov	ip, sp
+     4f8:	sub	sp, sp, #8
+     4fc:	str	ip, [sp]
+     500:	str	lr, [sp, #4]
+     504:	cmp	r0, #0
+     508:	beq	518 <flatbuffers_string_len+0x24>
+     50c:	sub	r0, r0, #4
+     510:	bl	35c <__flatbuffers_uoffset_read_from_pe>
+     514:	b	51c <flatbuffers_string_len+0x28>
+     518:	mov	r0, #0
+     51c:	ldr	lr, [sp, #4]
+     520:	add	sp, sp, #8
+     524:	bx	lr
+
+00000528 <flatbuffers_string_vec_len>:
+     528:	mov	ip, sp
+     52c:	sub	sp, sp, #8
+     530:	str	ip, [sp]
+     534:	str	lr, [sp, #4]
+     538:	cmp	r0, #0
+     53c:	beq	54c <flatbuffers_string_vec_len+0x24>
+     540:	sub	r0, r0, #4
+     544:	bl	35c <__flatbuffers_uoffset_read_from_pe>
+     548:	b	550 <flatbuffers_string_vec_len+0x28>
+     54c:	mov	r0, #0
+     550:	ldr	lr, [sp, #4]
+     554:	add	sp, sp, #8
+     558:	bx	lr
+
+0000055c <flatbuffers_string_vec_at>:
+     55c:	mov	ip, sp
+     560:	sub	sp, sp, #16
+     564:	str	ip, [sp]
+     568:	str	lr, [sp, #4]
+     56c:	str	r4, [sp, #8]
+     570:	str	r5, [sp, #12]
+     574:	mov	r5, r1
+     578:	add	r4, r0, r5, lsl #2
+     57c:	bl	4c0 <flatbuffers_vec_len>
+     580:	cmp	r0, r5
+     584:	bls	59c <flatbuffers_string_vec_at+0x40>
+     588:	ldr	r0, [pc, #88]	; 5e8 <flatbuffers_string_vec_at+0x8c>
+     58c:	cmp	r0, #0
+     590:	movne	r3, #1
+     594:	moveq	r3, #0
+     598:	b	5a0 <flatbuffers_string_vec_at+0x44>
+     59c:	mov	r3, #0
+     5a0:	cmp	r3, #0
+     5a4:	bne	5bc <flatbuffers_string_vec_at+0x60>
+     5a8:	ldr	r0, [pc, #48]	; 5e0 <flatbuffers_string_vec_at+0x84>
+     5ac:	ldr	r1, [pc, #48]	; 5e4 <flatbuffers_string_vec_at+0x88>
+     5b0:	mov	r2, #108	; 0x6c
+     5b4:	ldr	r3, [pc, #48]	; 5ec <flatbuffers_string_vec_at+0x90>
+     5b8:	bl	0 <__assert_fail>
+     5bc:	mov	r0, r4
+     5c0:	bl	35c <__flatbuffers_uoffset_read_from_pe>
+     5c4:	add	r0, r4, r0
+     5c8:	add	r0, r0, #4
+     5cc:	ldr	r4, [sp, #8]
+     5d0:	ldr	r5, [sp, #12]
+     5d4:	ldr	lr, [sp, #4]
+     5d8:	add	sp, sp, #16
+     5dc:	bx	lr
+     5e0:	.word	0x000006f2
+     5e4:	.word	0x00000028
+     5e8:	.word	0x0000016f
+     5ec:	.word	0x00000821
+
+000005f0 <flatbuffers_uint8_vec_len>:
+     5f0:	mov	ip, sp
+     5f4:	sub	sp, sp, #8
+     5f8:	str	ip, [sp]
+     5fc:	str	lr, [sp, #4]
+     600:	bl	4c0 <flatbuffers_vec_len>
+     604:	ldr	lr, [sp, #4]
+     608:	add	sp, sp, #8
+     60c:	bx	lr
+
+00000610 <flatbuffers_uint8_vec_at>:
+     610:	mov	ip, sp
+     614:	sub	sp, sp, #16
+     618:	str	ip, [sp]
+     61c:	str	lr, [sp, #4]
+     620:	str	r4, [sp, #8]
+     624:	str	r5, [sp, #12]
+     628:	mov	r4, r1
+     62c:	mov	r5, r0
+     630:	mov	r0, r5
+     634:	bl	4c0 <flatbuffers_vec_len>
+     638:	cmp	r0, r4
+     63c:	bls	654 <flatbuffers_uint8_vec_at+0x44>
+     640:	ldr	r1, [pc, #84]	; 69c <flatbuffers_uint8_vec_at+0x8c>
+     644:	cmp	r1, #0
+     648:	movne	r3, #1
+     64c:	moveq	r3, #0
+     650:	b	658 <flatbuffers_uint8_vec_at+0x48>
+     654:	mov	r3, #0
+     658:	cmp	r3, #0
+     65c:	bne	674 <flatbuffers_uint8_vec_at+0x64>
+     660:	ldr	r0, [pc, #44]	; 694 <flatbuffers_uint8_vec_at+0x84>
+     664:	ldr	r1, [pc, #44]	; 698 <flatbuffers_uint8_vec_at+0x88>
+     668:	movw	r2, #395	; 0x18b
+     66c:	ldr	r3, [pc, #44]	; 6a0 <flatbuffers_uint8_vec_at+0x90>
+     670:	bl	0 <__assert_fail>
+     674:	add	r0, r5, r4
+     678:	bl	ac <flatbuffers_uint8_read_from_pe>
+     67c:	and	r0, r0, #255	; 0xff
+     680:	ldr	r4, [sp, #8]
+     684:	ldr	r5, [sp, #12]
+     688:	ldr	lr, [sp, #4]
+     68c:	add	sp, sp, #16
+     690:	bx	lr
+     694:	.word	0x000006f2
+     698:	.word	0x00000028
+     69c:	.word	0x0000016f
+     6a0:	.word	0x0000083b
+
+000006a4 <flatbuffers_has_identifier>:
+     6a4:	mov	ip, sp
+     6a8:	sub	sp, sp, #24
+     6ac:	str	ip, [sp]
+     6b0:	str	lr, [sp, #4]
+     6b4:	str	r4, [sp, #8]
+     6b8:	mov	r4, r0
+     6bc:	mov	r3, #0
+     6c0:	str	r3, [sp, #16]
+     6c4:	cmp	r1, #0
+     6c8:	bne	6d4 <flatbuffers_has_identifier+0x30>
+     6cc:	mov	r0, #1
+     6d0:	b	718 <flatbuffers_has_identifier+0x74>
+     6d4:	add	r0, sp, #16
+     6d8:	mov	r2, #4
+     6dc:	bl	0 <strncpy>
+     6e0:	ldr	r0, [sp, #16]
+     6e4:	bl	480 <__flatbuffers_thash_cast_from_le>
+     6e8:	str	r0, [sp, #16]
+     6ec:	add	r0, r4, #4
+     6f0:	bl	49c <__flatbuffers_thash_read_from_pe>
+     6f4:	ldr	r1, [sp, #16]
+     6f8:	cmp	r1, #0
+     6fc:	beq	714 <flatbuffers_has_identifier+0x70>
+     700:	ldr	r1, [sp, #16]
+     704:	cmp	r0, r1
+     708:	moveq	r0, #1
+     70c:	movne	r0, #0
+     710:	b	718 <flatbuffers_has_identifier+0x74>
+     714:	mov	r0, #1
+     718:	ldr	r4, [sp, #8]
+     71c:	ldr	lr, [sp, #4]
+     720:	add	sp, sp, #24
+     724:	bx	lr
+
+00000728 <MyGame_Example_Color_cast_from_pe>:
+     728:	mov	ip, sp
+     72c:	sub	sp, sp, #8
+     730:	str	ip, [sp]
+     734:	str	lr, [sp, #4]
+     738:	and	r0, r0, #255	; 0xff
+     73c:	sbfx	r0, r0, #0, #8
+     740:	sbfx	r0, r0, #0, #8
+     744:	ldr	lr, [sp, #4]
+     748:	add	sp, sp, #8
+     74c:	bx	lr
+
+00000750 <MyGame_Example_Color_read_from_pe>:
+     750:	mov	ip, sp
+     754:	sub	sp, sp, #8
+     758:	str	ip, [sp]
+     75c:	str	lr, [sp, #4]
+     760:	ldrsb	r0, [r0]
+     764:	sbfx	r0, r0, #0, #8
+     768:	bl	728 <MyGame_Example_Color_cast_from_pe>
+     76c:	sbfx	r0, r0, #0, #8
+     770:	ldr	lr, [sp, #4]
+     774:	add	sp, sp, #8
+     778:	bx	lr
+
+0000077c <MyGame_Example_Test_vec_at>:
+     77c:	mov	ip, sp
+     780:	sub	sp, sp, #16
+     784:	str	ip, [sp]
+     788:	str	lr, [sp, #4]
+     78c:	str	r4, [sp, #8]
+     790:	str	r5, [sp, #12]
+     794:	mov	r4, r1
+     798:	mov	r5, r0
+     79c:	mov	r0, r5
+     7a0:	bl	4c0 <flatbuffers_vec_len>
+     7a4:	cmp	r0, r4
+     7a8:	bls	7c0 <MyGame_Example_Test_vec_at+0x44>
+     7ac:	ldr	r3, [pc, #72]	; 7fc <MyGame_Example_Test_vec_at+0x80>
+     7b0:	cmp	r3, #0
+     7b4:	movne	r0, #1
+     7b8:	moveq	r0, #0
+     7bc:	b	7c4 <MyGame_Example_Test_vec_at+0x48>
+     7c0:	mov	r0, #0
+     7c4:	cmp	r0, #0
+     7c8:	bne	7e0 <MyGame_Example_Test_vec_at+0x64>
+     7cc:	ldr	r0, [pc, #36]	; 7f8 <MyGame_Example_Test_vec_at+0x7c>
+     7d0:	ldr	r1, [pc, #40]	; 800 <MyGame_Example_Test_vec_at+0x84>
+     7d4:	mov	r2, #380	; 0x17c
+     7d8:	ldr	r3, [pc, #36]	; 804 <MyGame_Example_Test_vec_at+0x88>
+     7dc:	bl	0 <__assert_fail>
+     7e0:	add	r0, r5, r4, lsl #2
+     7e4:	ldr	r4, [sp, #8]
+     7e8:	ldr	r5, [sp, #12]
+     7ec:	ldr	lr, [sp, #4]
+     7f0:	add	sp, sp, #16
+     7f4:	bx	lr
+     7f8:	.word	0x000006f2
+     7fc:	.word	0x0000016f
+     800:	.word	0x000002c9
+     804:	.word	0x00000854
+
+00000808 <MyGame_Example_Test_vec_len>:
+     808:	mov	ip, sp
+     80c:	sub	sp, sp, #8
+     810:	str	ip, [sp]
+     814:	str	lr, [sp, #4]
+     818:	cmp	r0, #0
+     81c:	beq	82c <MyGame_Example_Test_vec_len+0x24>
+     820:	sub	r0, r0, #4
+     824:	bl	35c <__flatbuffers_uoffset_read_from_pe>
+     828:	b	830 <MyGame_Example_Test_vec_len+0x28>
+     82c:	mov	r0, #0
+     830:	ldr	lr, [sp, #4]
+     834:	add	sp, sp, #8
+     838:	bx	lr
+
+0000083c <MyGame_Example_Test_a>:
+     83c:	mov	ip, sp
+     840:	sub	sp, sp, #8
+     844:	str	ip, [sp]
+     848:	str	lr, [sp, #4]
+     84c:	cmp	r0, #0
+     850:	beq	85c <MyGame_Example_Test_a+0x20>
+     854:	bl	1e0 <flatbuffers_int16_read_from_pe>
+     858:	b	860 <MyGame_Example_Test_a+0x24>
+     85c:	mov	r0, #0
+     860:	sbfx	r0, r0, #0, #16
+     864:	ldr	lr, [sp, #4]
+     868:	add	sp, sp, #8
+     86c:	bx	lr
+
+00000870 <MyGame_Example_Test_b>:
+     870:	mov	ip, sp
+     874:	sub	sp, sp, #8
+     878:	str	ip, [sp]
+     87c:	str	lr, [sp, #4]
+     880:	cmp	r0, #0
+     884:	beq	894 <MyGame_Example_Test_b+0x24>
+     888:	add	r0, r0, #2
+     88c:	bl	188 <flatbuffers_int8_read_from_pe>
+     890:	b	898 <MyGame_Example_Test_b+0x28>
+     894:	mov	r0, #0
+     898:	sbfx	r0, r0, #0, #8
+     89c:	ldr	lr, [sp, #4]
+     8a0:	add	sp, sp, #8
+     8a4:	bx	lr
+
+000008a8 <MyGame_Example_Vec3_x>:
+     8a8:	mov	ip, sp
+     8ac:	sub	sp, sp, #8
+     8b0:	str	ip, [sp]
+     8b4:	str	lr, [sp, #4]
+     8b8:	cmp	r0, #0
+     8bc:	beq	8c8 <MyGame_Example_Vec3_x+0x20>
+     8c0:	bl	2c0 <flatbuffers_float_read_from_pe>
+     8c4:	b	8cc <MyGame_Example_Vec3_x+0x24>
+     8c8:	vldr	s0, [pc, #8]	; 8d8 <MyGame_Example_Vec3_x+0x30>
+     8cc:	ldr	lr, [sp, #4]
+     8d0:	add	sp, sp, #8
+     8d4:	bx	lr
+     8d8:	.word	0x00000000
+
+000008dc <MyGame_Example_Vec3_y>:
+     8dc:	mov	ip, sp
+     8e0:	sub	sp, sp, #8
+     8e4:	str	ip, [sp]
+     8e8:	str	lr, [sp, #4]
+     8ec:	cmp	r0, #0
+     8f0:	beq	900 <MyGame_Example_Vec3_y+0x24>
+     8f4:	add	r0, r0, #4
+     8f8:	bl	2c0 <flatbuffers_float_read_from_pe>
+     8fc:	b	904 <MyGame_Example_Vec3_y+0x28>
+     900:	vldr	s0, [pc, #8]	; 910 <MyGame_Example_Vec3_y+0x34>
+     904:	ldr	lr, [sp, #4]
+     908:	add	sp, sp, #8
+     90c:	bx	lr
+     910:	.word	0x00000000
+
+00000914 <MyGame_Example_Vec3_z>:
+     914:	mov	ip, sp
+     918:	sub	sp, sp, #8
+     91c:	str	ip, [sp]
+     920:	str	lr, [sp, #4]
+     924:	cmp	r0, #0
+     928:	beq	938 <MyGame_Example_Vec3_z+0x24>
+     92c:	add	r0, r0, #8
+     930:	bl	2c0 <flatbuffers_float_read_from_pe>
+     934:	b	93c <MyGame_Example_Vec3_z+0x28>
+     938:	vldr	s0, [pc, #8]	; 948 <MyGame_Example_Vec3_z+0x34>
+     93c:	ldr	lr, [sp, #4]
+     940:	add	sp, sp, #8
+     944:	bx	lr
+     948:	.word	0x00000000
+
+0000094c <MyGame_Example_Vec3_test1>:
+     94c:	mov	ip, sp
+     950:	sub	sp, sp, #8
+     954:	str	ip, [sp]
+     958:	str	lr, [sp, #4]
+     95c:	cmp	r0, #0
+     960:	beq	970 <MyGame_Example_Vec3_test1+0x24>
+     964:	add	r0, r0, #16
+     968:	bl	31c <flatbuffers_double_read_from_pe>
+     96c:	b	974 <MyGame_Example_Vec3_test1+0x28>
+     970:	vldr	d0, [pc, #8]	; 980 <MyGame_Example_Vec3_test1+0x34>
+     974:	ldr	lr, [sp, #4]
+     978:	add	sp, sp, #8
+     97c:	bx	lr
+	...
+
+00000988 <MyGame_Example_Vec3_test2>:
+     988:	mov	ip, sp
+     98c:	sub	sp, sp, #8
+     990:	str	ip, [sp]
+     994:	str	lr, [sp, #4]
+     998:	cmp	r0, #0
+     99c:	beq	9ac <MyGame_Example_Vec3_test2+0x24>
+     9a0:	add	r0, r0, #24
+     9a4:	bl	750 <MyGame_Example_Color_read_from_pe>
+     9a8:	b	9b0 <MyGame_Example_Vec3_test2+0x28>
+     9ac:	mov	r0, #0
+     9b0:	sbfx	r0, r0, #0, #8
+     9b4:	ldr	lr, [sp, #4]
+     9b8:	add	sp, sp, #8
+     9bc:	bx	lr
+
+000009c0 <MyGame_Example_Vec3_test3>:
+     9c0:	mov	ip, sp
+     9c4:	sub	sp, sp, #8
+     9c8:	str	ip, [sp]
+     9cc:	str	lr, [sp, #4]
+     9d0:	cmp	r0, #0
+     9d4:	bne	9e0 <MyGame_Example_Vec3_test3+0x20>
+     9d8:	mov	r0, #0
+     9dc:	b	9e4 <MyGame_Example_Vec3_test3+0x24>
+     9e0:	add	r0, r0, #26
+     9e4:	ldr	lr, [sp, #4]
+     9e8:	add	sp, sp, #8
+     9ec:	bx	lr
+
+000009f0 <MyGame_Example_Monster_as_root>:
+     9f0:	mov	ip, sp
+     9f4:	sub	sp, sp, #16
+     9f8:	str	ip, [sp]
+     9fc:	str	lr, [sp, #4]
+     a00:	str	r4, [sp, #8]
+     a04:	mov	r4, r0
+     a08:	ldr	r1, [pc, #76]	; a5c <MyGame_Example_Monster_as_root+0x6c>
+     a0c:	cmp	r4, #0
+     a10:	beq	a2c <MyGame_Example_Monster_as_root+0x3c>
+     a14:	mov	r0, r4
+     a18:	bl	6a4 <flatbuffers_has_identifier>
+     a1c:	cmp	r0, #0
+     a20:	moveq	r1, #1
+     a24:	movne	r1, #0
+     a28:	b	a30 <MyGame_Example_Monster_as_root+0x40>
+     a2c:	mov	r1, #1
+     a30:	cmp	r1, #0
+     a34:	bne	a48 <MyGame_Example_Monster_as_root+0x58>
+     a38:	mov	r0, r4
+     a3c:	bl	35c <__flatbuffers_uoffset_read_from_pe>
+     a40:	add	r0, r4, r0
+     a44:	b	a4c <MyGame_Example_Monster_as_root+0x5c>
+     a48:	mov	r0, #0
+     a4c:	ldr	r4, [sp, #8]
+     a50:	ldr	lr, [sp, #4]
+     a54:	add	sp, sp, #16
+     a58:	bx	lr
+     a5c:	.word	0x000000ae
+
+00000a60 <MyGame_Example_Monster_pos>:
+     a60:	mov	ip, sp
+     a64:	sub	sp, sp, #24
+     a68:	str	ip, [sp]
+     a6c:	str	lr, [sp, #4]
+     a70:	str	r4, [sp, #8]
+     a74:	str	r5, [sp, #12]
+     a78:	str	r6, [sp, #16]
+     a7c:	str	r7, [sp, #20]
+     a80:	mov	r4, r0
+     a84:	mov	r5, #0
+     a88:	cmp	r4, #0
+     a8c:	beq	aa4 <MyGame_Example_Monster_pos+0x44>
+     a90:	ldr	r1, [pc, #220]	; b74 <MyGame_Example_Monster_pos+0x114>
+     a94:	cmp	r1, #0
+     a98:	movne	r2, #1
+     a9c:	moveq	r2, #0
+     aa0:	b	aa8 <MyGame_Example_Monster_pos+0x48>
+     aa4:	mov	r2, #0
+     aa8:	cmp	r2, #0
+     aac:	bne	ac4 <MyGame_Example_Monster_pos+0x64>
+     ab0:	ldr	r0, [pc, #184]	; b70 <MyGame_Example_Monster_pos+0x110>
+     ab4:	ldr	r1, [pc, #188]	; b78 <MyGame_Example_Monster_pos+0x118>
+     ab8:	mov	r2, #696	; 0x2b8
+     abc:	ldr	r3, [pc, #188]	; b80 <MyGame_Example_Monster_pos+0x120>
+     ac0:	bl	0 <__assert_fail>
+     ac4:	mov	r7, #0
+     ac8:	mov	r0, r4
+     acc:	bl	39c <__flatbuffers_soffset_read_from_pe>
+     ad0:	sub	r6, r4, r0
+     ad4:	mov	r0, r6
+     ad8:	bl	3e4 <__flatbuffers_voffset_read_from_pe>
+     adc:	lsl	r1, r7, #1
+     ae0:	add	r1, r1, #6
+     ae4:	cmp	r0, r1
+     ae8:	bcc	b00 <MyGame_Example_Monster_pos+0xa0>
+     aec:	add	r3, r6, r7, lsl #1
+     af0:	add	r0, r3, #4
+     af4:	bl	3e4 <__flatbuffers_voffset_read_from_pe>
+     af8:	bic	r5, r0, #16711680	; 0xff0000
+     afc:	bic	r5, r5, #-16777216	; 0xff000000
+     b00:	cmp	r5, #0
+     b04:	beq	b10 <MyGame_Example_Monster_pos+0xb0>
+     b08:	add	r0, r4, r5
+     b0c:	b	b54 <MyGame_Example_Monster_pos+0xf4>
+     b10:	mov	r0, #1
+     b14:	cmp	r0, #0
+     b18:	beq	b30 <MyGame_Example_Monster_pos+0xd0>
+     b1c:	ldr	r0, [pc, #88]	; b7c <MyGame_Example_Monster_pos+0x11c>
+     b20:	cmp	r0, #0
+     b24:	movne	r0, #1
+     b28:	moveq	r0, #0
+     b2c:	b	b34 <MyGame_Example_Monster_pos+0xd4>
+     b30:	mov	r0, #0
+     b34:	cmp	r0, #0
+     b38:	bne	b50 <MyGame_Example_Monster_pos+0xf0>
+     b3c:	ldr	r0, [pc, #64]	; b84 <MyGame_Example_Monster_pos+0x124>
+     b40:	ldr	r1, [pc, #48]	; b78 <MyGame_Example_Monster_pos+0x118>
+     b44:	mov	r2, #696	; 0x2b8
+     b48:	ldr	r3, [pc, #48]	; b80 <MyGame_Example_Monster_pos+0x120>
+     b4c:	bl	0 <__assert_fail>
+     b50:	mov	r0, #0
+     b54:	ldr	r4, [sp, #8]
+     b58:	ldr	r5, [sp, #12]
+     b5c:	ldr	r6, [sp, #16]
+     b60:	ldr	r7, [sp, #20]
+     b64:	ldr	lr, [sp, #4]
+     b68:	add	sp, sp, #24
+     b6c:	bx	lr
+     b70:	.word	0x00000149
+     b74:	.word	0x000001a2
+     b78:	.word	0x000002c9
+     b7c:	.word	0x00000536
+     b80:	.word	0x0000086f
+     b84:	.word	0x000001fa
+
+00000b88 <MyGame_Example_Monster_hp>:
+     b88:	mov	ip, sp
+     b8c:	sub	sp, sp, #24
+     b90:	str	ip, [sp]
+     b94:	str	lr, [sp, #4]
+     b98:	str	r4, [sp, #8]
+     b9c:	str	r5, [sp, #12]
+     ba0:	str	r6, [sp, #16]
+     ba4:	str	r7, [sp, #20]
+     ba8:	mov	r4, r0
+     bac:	mov	r5, #0
+     bb0:	cmp	r4, #0
+     bb4:	beq	bcc <MyGame_Example_Monster_hp+0x44>
+     bb8:	ldr	r2, [pc, #168]	; c68 <MyGame_Example_Monster_hp+0xe0>
+     bbc:	cmp	r2, #0
+     bc0:	movne	ip, #1
+     bc4:	moveq	ip, #0
+     bc8:	b	bd0 <MyGame_Example_Monster_hp+0x48>
+     bcc:	mov	ip, #0
+     bd0:	cmp	ip, #0
+     bd4:	bne	bec <MyGame_Example_Monster_hp+0x64>
+     bd8:	ldr	r0, [pc, #132]	; c64 <MyGame_Example_Monster_hp+0xdc>
+     bdc:	ldr	r1, [pc, #136]	; c6c <MyGame_Example_Monster_hp+0xe4>
+     be0:	movw	r2, #697	; 0x2b9
+     be4:	ldr	r3, [pc, #116]	; c60 <MyGame_Example_Monster_hp+0xd8>
+     be8:	bl	0 <__assert_fail>
+     bec:	mov	r7, #2
+     bf0:	mov	r0, r4
+     bf4:	bl	39c <__flatbuffers_soffset_read_from_pe>
+     bf8:	sub	r6, r4, r0
+     bfc:	mov	r0, r6
+     c00:	bl	3e4 <__flatbuffers_voffset_read_from_pe>
+     c04:	lsl	r1, r7, #1
+     c08:	add	r1, r1, #6
+     c0c:	cmp	r0, r1
+     c10:	bcc	c28 <MyGame_Example_Monster_hp+0xa0>
+     c14:	add	r0, r6, r7, lsl #1
+     c18:	add	r0, r0, #4
+     c1c:	bl	3e4 <__flatbuffers_voffset_read_from_pe>
+     c20:	bic	r5, r0, #16711680	; 0xff0000
+     c24:	bic	r5, r5, #-16777216	; 0xff000000
+     c28:	cmp	r5, #0
+     c2c:	beq	c3c <MyGame_Example_Monster_hp+0xb4>
+     c30:	add	r0, r4, r5
+     c34:	bl	1e0 <flatbuffers_int16_read_from_pe>
+     c38:	b	c40 <MyGame_Example_Monster_hp+0xb8>
+     c3c:	mov	r0, #100	; 0x64
+     c40:	sbfx	r0, r0, #0, #16
+     c44:	ldr	r4, [sp, #8]
+     c48:	ldr	r5, [sp, #12]
+     c4c:	ldr	r6, [sp, #16]
+     c50:	ldr	r7, [sp, #20]
+     c54:	ldr	lr, [sp, #4]
+     c58:	add	sp, sp, #24
+     c5c:	bx	lr
+     c60:	.word	0x0000088a
+     c64:	.word	0x00000149
+     c68:	.word	0x000001a2
+     c6c:	.word	0x000002c9
+
+00000c70 <MyGame_Example_Monster_name>:
+     c70:	mov	ip, sp
+     c74:	sub	sp, sp, #24
+     c78:	str	ip, [sp]
+     c7c:	str	lr, [sp, #4]
+     c80:	str	r4, [sp, #8]
+     c84:	str	r5, [sp, #12]
+     c88:	str	r6, [sp, #16]
+     c8c:	str	r7, [sp, #20]
+     c90:	mov	r4, r0
+     c94:	mov	r6, #0
+     c98:	cmp	r4, #0
+     c9c:	beq	cb4 <MyGame_Example_Monster_name+0x44>
+     ca0:	ldr	r1, [pc, #244]	; d9c <MyGame_Example_Monster_name+0x12c>
+     ca4:	cmp	r1, #0
+     ca8:	movne	r0, #1
+     cac:	moveq	r0, #0
+     cb0:	b	cb8 <MyGame_Example_Monster_name+0x48>
+     cb4:	mov	r0, #0
+     cb8:	cmp	r0, #0
+     cbc:	bne	cd4 <MyGame_Example_Monster_name+0x64>
+     cc0:	ldr	r0, [pc, #204]	; d94 <MyGame_Example_Monster_name+0x124>
+     cc4:	ldr	r1, [pc, #212]	; da0 <MyGame_Example_Monster_name+0x130>
+     cc8:	movw	r2, #699	; 0x2bb
+     ccc:	ldr	r3, [pc, #188]	; d90 <MyGame_Example_Monster_name+0x120>
+     cd0:	bl	0 <__assert_fail>
+     cd4:	mov	r7, #3
+     cd8:	mov	r0, r4
+     cdc:	bl	39c <__flatbuffers_soffset_read_from_pe>
+     ce0:	sub	r5, r4, r0
+     ce4:	mov	r0, r5
+     ce8:	bl	3e4 <__flatbuffers_voffset_read_from_pe>
+     cec:	lsl	r3, r7, #1
+     cf0:	add	r1, r3, #6
+     cf4:	cmp	r0, r1
+     cf8:	bcc	d10 <MyGame_Example_Monster_name+0xa0>
+     cfc:	add	r1, r5, r7, lsl #1
+     d00:	add	r0, r1, #4
+     d04:	bl	3e4 <__flatbuffers_voffset_read_from_pe>
+     d08:	bic	r6, r0, #16711680	; 0xff0000
+     d0c:	bic	r6, r6, #-16777216	; 0xff000000
+     d10:	cmp	r6, #0
+     d14:	beq	d30 <MyGame_Example_Monster_name+0xc0>
+     d18:	add	r4, r4, r6
+     d1c:	mov	r0, r4
+     d20:	bl	35c <__flatbuffers_uoffset_read_from_pe>
+     d24:	add	r0, r4, r0
+     d28:	add	r0, r0, #4
+     d2c:	b	d74 <MyGame_Example_Monster_name+0x104>
+     d30:	mov	r0, #0
+     d34:	cmp	r0, #0
+     d38:	beq	d50 <MyGame_Example_Monster_name+0xe0>
+     d3c:	ldr	r0, [pc, #96]	; da4 <MyGame_Example_Monster_name+0x134>
+     d40:	cmp	r0, #0
+     d44:	movne	r0, #1
+     d48:	moveq	r0, #0
+     d4c:	b	d54 <MyGame_Example_Monster_name+0xe4>
+     d50:	mov	r0, #0
+     d54:	cmp	r0, #0
+     d58:	bne	d70 <MyGame_Example_Monster_name+0x100>
+     d5c:	ldr	r0, [pc, #52]	; d98 <MyGame_Example_Monster_name+0x128>
+     d60:	ldr	r1, [pc, #56]	; da0 <MyGame_Example_Monster_name+0x130>
+     d64:	movw	r2, #699	; 0x2bb
+     d68:	ldr	r3, [pc, #32]	; d90 <MyGame_Example_Monster_name+0x120>
+     d6c:	bl	0 <__assert_fail>
+     d70:	mov	r0, #0
+     d74:	ldr	r4, [sp, #8]
+     d78:	ldr	r5, [sp, #12]
+     d7c:	ldr	r6, [sp, #16]
+     d80:	ldr	r7, [sp, #20]
+     d84:	ldr	lr, [sp, #4]
+     d88:	add	sp, sp, #24
+     d8c:	bx	lr
+     d90:	.word	0x000008a4
+     d94:	.word	0x00000149
+     d98:	.word	0x0000023e
+     d9c:	.word	0x000001a2
+     da0:	.word	0x000002c9
+     da4:	.word	0x00000536
+
+00000da8 <MyGame_Example_Monster_inventory>:
+     da8:	mov	ip, sp
+     dac:	sub	sp, sp, #24
+     db0:	str	ip, [sp]
+     db4:	str	lr, [sp, #4]
+     db8:	str	r4, [sp, #8]
+     dbc:	str	r5, [sp, #12]
+     dc0:	str	r6, [sp, #16]
+     dc4:	str	r7, [sp, #20]
+     dc8:	mov	r4, r0
+     dcc:	mov	r6, #0
+     dd0:	cmp	r4, #0
+     dd4:	beq	dec <MyGame_Example_Monster_inventory+0x44>
+     dd8:	ldr	r1, [pc, #240]	; ed0 <MyGame_Example_Monster_inventory+0x128>
+     ddc:	cmp	r1, #0
+     de0:	movne	r0, #1
+     de4:	moveq	r0, #0
+     de8:	b	df0 <MyGame_Example_Monster_inventory+0x48>
+     dec:	mov	r0, #0
+     df0:	cmp	r0, #0
+     df4:	bne	e0c <MyGame_Example_Monster_inventory+0x64>
+     df8:	ldr	r0, [pc, #204]	; ecc <MyGame_Example_Monster_inventory+0x124>
+     dfc:	ldr	r1, [pc, #208]	; ed4 <MyGame_Example_Monster_inventory+0x12c>
+     e00:	movw	r2, #706	; 0x2c2
+     e04:	ldr	r3, [pc, #188]	; ec8 <MyGame_Example_Monster_inventory+0x120>
+     e08:	bl	0 <__assert_fail>
+     e0c:	mov	r7, #5
+     e10:	mov	r0, r4
+     e14:	bl	39c <__flatbuffers_soffset_read_from_pe>
+     e18:	sub	r5, r4, r0
+     e1c:	mov	r0, r5
+     e20:	bl	3e4 <__flatbuffers_voffset_read_from_pe>
+     e24:	lsl	r3, r7, #1
+     e28:	add	r1, r3, #6
+     e2c:	cmp	r0, r1
+     e30:	bcc	e48 <MyGame_Example_Monster_inventory+0xa0>
+     e34:	add	r1, r5, r7, lsl #1
+     e38:	add	r0, r1, #4
+     e3c:	bl	3e4 <__flatbuffers_voffset_read_from_pe>
+     e40:	bic	r6, r0, #16711680	; 0xff0000
+     e44:	bic	r6, r6, #-16777216	; 0xff000000
+     e48:	cmp	r6, #0
+     e4c:	beq	e68 <MyGame_Example_Monster_inventory+0xc0>
+     e50:	add	r4, r4, r6
+     e54:	mov	r0, r4
+     e58:	bl	35c <__flatbuffers_uoffset_read_from_pe>
+     e5c:	add	r0, r4, r0
+     e60:	add	r0, r0, #4
+     e64:	b	eac <MyGame_Example_Monster_inventory+0x104>
+     e68:	mov	r0, #1
+     e6c:	cmp	r0, #0
+     e70:	beq	e88 <MyGame_Example_Monster_inventory+0xe0>
+     e74:	ldr	r0, [pc, #92]	; ed8 <MyGame_Example_Monster_inventory+0x130>
+     e78:	cmp	r0, #0
+     e7c:	movne	r0, #1
+     e80:	moveq	r0, #0
+     e84:	b	e8c <MyGame_Example_Monster_inventory+0xe4>
+     e88:	mov	r0, #0
+     e8c:	cmp	r0, #0
+     e90:	bne	ea8 <MyGame_Example_Monster_inventory+0x100>
+     e94:	ldr	r0, [pc, #64]	; edc <MyGame_Example_Monster_inventory+0x134>
+     e98:	ldr	r1, [pc, #52]	; ed4 <MyGame_Example_Monster_inventory+0x12c>
+     e9c:	movw	r2, #706	; 0x2c2
+     ea0:	ldr	r3, [pc, #32]	; ec8 <MyGame_Example_Monster_inventory+0x120>
+     ea4:	bl	0 <__assert_fail>
+     ea8:	mov	r0, #0
+     eac:	ldr	r4, [sp, #8]
+     eb0:	ldr	r5, [sp, #12]
+     eb4:	ldr	r6, [sp, #16]
+     eb8:	ldr	r7, [sp, #20]
+     ebc:	ldr	lr, [sp, #4]
+     ec0:	add	sp, sp, #24
+     ec4:	bx	lr
+     ec8:	.word	0x000008c0
+     ecc:	.word	0x00000149
+     ed0:	.word	0x000001a2
+     ed4:	.word	0x000002c9
+     ed8:	.word	0x00000536
+     edc:	.word	0x000001fa
+
+00000ee0 <MyGame_Example_Monster_testarrayofstring>:
+     ee0:	mov	ip, sp
+     ee4:	sub	sp, sp, #24
+     ee8:	str	ip, [sp]
+     eec:	str	lr, [sp, #4]
+     ef0:	str	r4, [sp, #8]
+     ef4:	str	r5, [sp, #12]
+     ef8:	str	r6, [sp, #16]
+     efc:	str	r7, [sp, #20]
+     f00:	mov	r4, r0
+     f04:	mov	r6, #0
+     f08:	cmp	r4, #0
+     f0c:	beq	f24 <MyGame_Example_Monster_testarrayofstring+0x44>
+     f10:	ldr	r1, [pc, #240]	; 1008 <MyGame_Example_Monster_testarrayofstring+0x128>
+     f14:	cmp	r1, #0
+     f18:	movne	r0, #1
+     f1c:	moveq	r0, #0
+     f20:	b	f28 <MyGame_Example_Monster_testarrayofstring+0x48>
+     f24:	mov	r0, #0
+     f28:	cmp	r0, #0
+     f2c:	bne	f44 <MyGame_Example_Monster_testarrayofstring+0x64>
+     f30:	ldr	r0, [pc, #204]	; 1004 <MyGame_Example_Monster_testarrayofstring+0x124>
+     f34:	ldr	r1, [pc, #208]	; 100c <MyGame_Example_Monster_testarrayofstring+0x12c>
+     f38:	mov	r2, #712	; 0x2c8
+     f3c:	ldr	r3, [pc, #188]	; 1000 <MyGame_Example_Monster_testarrayofstring+0x120>
+     f40:	bl	0 <__assert_fail>
+     f44:	mov	r7, #10
+     f48:	mov	r0, r4
+     f4c:	bl	39c <__flatbuffers_soffset_read_from_pe>
+     f50:	sub	r5, r4, r0
+     f54:	mov	r0, r5
+     f58:	bl	3e4 <__flatbuffers_voffset_read_from_pe>
+     f5c:	lsl	r3, r7, #1
+     f60:	add	r1, r3, #6
+     f64:	cmp	r0, r1
+     f68:	bcc	f80 <MyGame_Example_Monster_testarrayofstring+0xa0>
+     f6c:	add	r1, r5, r7, lsl #1
+     f70:	add	r0, r1, #4
+     f74:	bl	3e4 <__flatbuffers_voffset_read_from_pe>
+     f78:	bic	r6, r0, #16711680	; 0xff0000
+     f7c:	bic	r6, r6, #-16777216	; 0xff000000
+     f80:	cmp	r6, #0
+     f84:	beq	fa0 <MyGame_Example_Monster_testarrayofstring+0xc0>
+     f88:	add	r4, r4, r6
+     f8c:	mov	r0, r4
+     f90:	bl	35c <__flatbuffers_uoffset_read_from_pe>
+     f94:	add	r0, r4, r0
+     f98:	add	r0, r0, #4
+     f9c:	b	fe4 <MyGame_Example_Monster_testarrayofstring+0x104>
+     fa0:	mov	r0, #1
+     fa4:	cmp	r0, #0
+     fa8:	beq	fc0 <MyGame_Example_Monster_testarrayofstring+0xe0>
+     fac:	ldr	r0, [pc, #92]	; 1010 <MyGame_Example_Monster_testarrayofstring+0x130>
+     fb0:	cmp	r0, #0
+     fb4:	movne	r0, #1
+     fb8:	moveq	r0, #0
+     fbc:	b	fc4 <MyGame_Example_Monster_testarrayofstring+0xe4>
+     fc0:	mov	r0, #0
+     fc4:	cmp	r0, #0
+     fc8:	bne	fe0 <MyGame_Example_Monster_testarrayofstring+0x100>
+     fcc:	ldr	r0, [pc, #64]	; 1014 <MyGame_Example_Monster_testarrayofstring+0x134>
+     fd0:	ldr	r1, [pc, #52]	; 100c <MyGame_Example_Monster_testarrayofstring+0x12c>
+     fd4:	mov	r2, #712	; 0x2c8
+     fd8:	ldr	r3, [pc, #32]	; 1000 <MyGame_Example_Monster_testarrayofstring+0x120>
+     fdc:	bl	0 <__assert_fail>
+     fe0:	mov	r0, #0
+     fe4:	ldr	r4, [sp, #8]
+     fe8:	ldr	r5, [sp, #12]
+     fec:	ldr	r6, [sp, #16]
+     ff0:	ldr	r7, [sp, #20]
+     ff4:	ldr	lr, [sp, #4]
+     ff8:	add	sp, sp, #24
+     ffc:	bx	lr
+    1000:	.word	0x000008e1
+    1004:	.word	0x00000149
+    1008:	.word	0x000001a2
+    100c:	.word	0x000002c9
+    1010:	.word	0x00000536
+    1014:	.word	0x000001fa
+
+00001018 <MyGame_Example_Monster_test_type>:
+    1018:	mov	ip, sp
+    101c:	sub	sp, sp, #24
+    1020:	str	ip, [sp]
+    1024:	str	lr, [sp, #4]
+    1028:	str	r4, [sp, #8]
+    102c:	str	r5, [sp, #12]
+    1030:	str	r6, [sp, #16]
+    1034:	str	r7, [sp, #20]
+    1038:	mov	r4, r0
+    103c:	mov	r5, #0
+    1040:	cmp	r4, #0
+    1044:	beq	105c <MyGame_Example_Monster_test_type+0x44>
+    1048:	ldr	r2, [pc, #168]	; 10f8 <MyGame_Example_Monster_test_type+0xe0>
+    104c:	cmp	r2, #0
+    1050:	movne	ip, #1
+    1054:	moveq	ip, #0
+    1058:	b	1060 <MyGame_Example_Monster_test_type+0x48>
+    105c:	mov	ip, #0
+    1060:	cmp	ip, #0
+    1064:	bne	107c <MyGame_Example_Monster_test_type+0x64>
+    1068:	ldr	r0, [pc, #132]	; 10f4 <MyGame_Example_Monster_test_type+0xdc>
+    106c:	ldr	r1, [pc, #136]	; 10fc <MyGame_Example_Monster_test_type+0xe4>
+    1070:	movw	r2, #717	; 0x2cd
+    1074:	ldr	r3, [pc, #116]	; 10f0 <MyGame_Example_Monster_test_type+0xd8>
+    1078:	bl	0 <__assert_fail>
+    107c:	mov	r7, #7
+    1080:	mov	r0, r4
+    1084:	bl	39c <__flatbuffers_soffset_read_from_pe>
+    1088:	sub	r6, r4, r0
+    108c:	mov	r0, r6
+    1090:	bl	3e4 <__flatbuffers_voffset_read_from_pe>
+    1094:	lsl	r1, r7, #1
+    1098:	add	r1, r1, #6
+    109c:	cmp	r0, r1
+    10a0:	bcc	10b8 <MyGame_Example_Monster_test_type+0xa0>
+    10a4:	add	r0, r6, r7, lsl #1
+    10a8:	add	r0, r0, #4
+    10ac:	bl	3e4 <__flatbuffers_voffset_read_from_pe>
+    10b0:	bic	r5, r0, #16711680	; 0xff0000
+    10b4:	bic	r5, r5, #-16777216	; 0xff000000
+    10b8:	cmp	r5, #0
+    10bc:	beq	10cc <MyGame_Example_Monster_test_type+0xb4>
+    10c0:	add	r0, r4, r5
+    10c4:	bl	438 <__flatbuffers_utype_read_from_pe>
+    10c8:	b	10d0 <MyGame_Example_Monster_test_type+0xb8>
+    10cc:	mov	r0, #0
+    10d0:	and	r0, r0, #255	; 0xff
+    10d4:	ldr	r4, [sp, #8]
+    10d8:	ldr	r5, [sp, #12]
+    10dc:	ldr	r6, [sp, #16]
+    10e0:	ldr	r7, [sp, #20]
+    10e4:	ldr	lr, [sp, #4]
+    10e8:	add	sp, sp, #24
+    10ec:	bx	lr
+    10f0:	.word	0x0000090a
+    10f4:	.word	0x00000149
+    10f8:	.word	0x000001a2
+    10fc:	.word	0x000002c9
+
+00001100 <MyGame_Example_Monster_test>:
+    1100:	mov	ip, sp
+    1104:	sub	sp, sp, #24
+    1108:	str	ip, [sp]
+    110c:	str	lr, [sp, #4]
+    1110:	str	r4, [sp, #8]
+    1114:	str	r5, [sp, #12]
+    1118:	str	r6, [sp, #16]
+    111c:	str	r7, [sp, #20]
+    1120:	mov	r4, r0
+    1124:	mov	r6, #0
+    1128:	cmp	r4, #0
+    112c:	beq	1144 <MyGame_Example_Monster_test+0x44>
+    1130:	ldr	r2, [pc, #232]	; 1220 <MyGame_Example_Monster_test+0x120>
+    1134:	cmp	r2, #0
+    1138:	movne	r1, #1
+    113c:	moveq	r1, #0
+    1140:	b	1148 <MyGame_Example_Monster_test+0x48>
+    1144:	mov	r1, #0
+    1148:	cmp	r1, #0
+    114c:	bne	1164 <MyGame_Example_Monster_test+0x64>
+    1150:	ldr	r0, [pc, #196]	; 121c <MyGame_Example_Monster_test+0x11c>
+    1154:	ldr	r1, [pc, #204]	; 1228 <MyGame_Example_Monster_test+0x128>
+    1158:	movw	r2, #717	; 0x2cd
+    115c:	ldr	r3, [pc, #192]	; 1224 <MyGame_Example_Monster_test+0x124>
+    1160:	bl	0 <__assert_fail>
+    1164:	mov	r7, #8
+    1168:	mov	r0, r4
+    116c:	bl	39c <__flatbuffers_soffset_read_from_pe>
+    1170:	sub	r5, r4, r0
+    1174:	mov	r0, r5
+    1178:	bl	3e4 <__flatbuffers_voffset_read_from_pe>
+    117c:	lsl	r3, r7, #1
+    1180:	add	ip, r3, #6
+    1184:	cmp	r0, ip
+    1188:	bcc	11a0 <MyGame_Example_Monster_test+0xa0>
+    118c:	add	r1, r5, r7, lsl #1
+    1190:	add	r0, r1, #4
+    1194:	bl	3e4 <__flatbuffers_voffset_read_from_pe>
+    1198:	bic	r6, r0, #16711680	; 0xff0000
+    119c:	bic	r6, r6, #-16777216	; 0xff000000
+    11a0:	cmp	r6, #0
+    11a4:	beq	11bc <MyGame_Example_Monster_test+0xbc>
+    11a8:	add	r4, r4, r6
+    11ac:	mov	r0, r4
+    11b0:	bl	35c <__flatbuffers_uoffset_read_from_pe>
+    11b4:	add	r0, r4, r0
+    11b8:	b	1200 <MyGame_Example_Monster_test+0x100>
+    11bc:	mov	r0, #1
+    11c0:	cmp	r0, #0
+    11c4:	beq	11dc <MyGame_Example_Monster_test+0xdc>
+    11c8:	ldr	r0, [pc, #92]	; 122c <MyGame_Example_Monster_test+0x12c>
+    11cc:	cmp	r0, #0
+    11d0:	movne	r0, #1
+    11d4:	moveq	r0, #0
+    11d8:	b	11e0 <MyGame_Example_Monster_test+0xe0>
+    11dc:	mov	r0, #0
+    11e0:	cmp	r0, #0
+    11e4:	bne	11fc <MyGame_Example_Monster_test+0xfc>
+    11e8:	ldr	r0, [pc, #64]	; 1230 <MyGame_Example_Monster_test+0x130>
+    11ec:	ldr	r1, [pc, #52]	; 1228 <MyGame_Example_Monster_test+0x128>
+    11f0:	movw	r2, #717	; 0x2cd
+    11f4:	ldr	r3, [pc, #40]	; 1224 <MyGame_Example_Monster_test+0x124>
+    11f8:	bl	0 <__assert_fail>
+    11fc:	mov	r0, #0
+    1200:	ldr	r4, [sp, #8]
+    1204:	ldr	r5, [sp, #12]
+    1208:	ldr	r6, [sp, #16]
+    120c:	ldr	r7, [sp, #20]
+    1210:	ldr	lr, [sp, #4]
+    1214:	add	sp, sp, #24
+    1218:	bx	lr
+    121c:	.word	0x00000149
+    1220:	.word	0x000001a2
+    1224:	.word	0x0000092b
+    1228:	.word	0x000002c9
+    122c:	.word	0x00000536
+    1230:	.word	0x000001fa
+
+00001234 <MyGame_Example_Monster_test4>:
+    1234:	mov	ip, sp
+    1238:	sub	sp, sp, #24
+    123c:	str	ip, [sp]
+    1240:	str	lr, [sp, #4]
+    1244:	str	r4, [sp, #8]
+    1248:	str	r5, [sp, #12]
+    124c:	str	r6, [sp, #16]
+    1250:	str	r7, [sp, #20]
+    1254:	mov	r4, r0
+    1258:	mov	r6, #0
+    125c:	cmp	r4, #0
+    1260:	beq	1278 <MyGame_Example_Monster_test4+0x44>
+    1264:	ldr	r1, [pc, #236]	; 1358 <MyGame_Example_Monster_test4+0x124>
+    1268:	cmp	r1, #0
+    126c:	movne	r0, #1
+    1270:	moveq	r0, #0
+    1274:	b	127c <MyGame_Example_Monster_test4+0x48>
+    1278:	mov	r0, #0
+    127c:	cmp	r0, #0
+    1280:	bne	1298 <MyGame_Example_Monster_test4+0x64>
+    1284:	ldr	r0, [pc, #200]	; 1354 <MyGame_Example_Monster_test4+0x120>
+    1288:	ldr	r1, [pc, #204]	; 135c <MyGame_Example_Monster_test4+0x128>
+    128c:	movw	r2, #718	; 0x2ce
+    1290:	ldr	r3, [pc, #208]	; 1368 <MyGame_Example_Monster_test4+0x134>
+    1294:	bl	0 <__assert_fail>
+    1298:	mov	r7, #9
+    129c:	mov	r0, r4
+    12a0:	bl	39c <__flatbuffers_soffset_read_from_pe>
+    12a4:	sub	r5, r4, r0
+    12a8:	mov	r0, r5
+    12ac:	bl	3e4 <__flatbuffers_voffset_read_from_pe>
+    12b0:	lsl	r3, r7, #1
+    12b4:	add	r1, r3, #6
+    12b8:	cmp	r0, r1
+    12bc:	bcc	12d4 <MyGame_Example_Monster_test4+0xa0>
+    12c0:	add	r1, r5, r7, lsl #1
+    12c4:	add	r0, r1, #4
+    12c8:	bl	3e4 <__flatbuffers_voffset_read_from_pe>
+    12cc:	bic	r6, r0, #16711680	; 0xff0000
+    12d0:	bic	r6, r6, #-16777216	; 0xff000000
+    12d4:	cmp	r6, #0
+    12d8:	beq	12f4 <MyGame_Example_Monster_test4+0xc0>
+    12dc:	add	r4, r4, r6
+    12e0:	mov	r0, r4
+    12e4:	bl	35c <__flatbuffers_uoffset_read_from_pe>
+    12e8:	add	r0, r4, r0
+    12ec:	add	r0, r0, #4
+    12f0:	b	1338 <MyGame_Example_Monster_test4+0x104>
+    12f4:	mov	r0, #1
+    12f8:	cmp	r0, #0
+    12fc:	beq	1314 <MyGame_Example_Monster_test4+0xe0>
+    1300:	ldr	r0, [pc, #88]	; 1360 <MyGame_Example_Monster_test4+0x12c>
+    1304:	cmp	r0, #0
+    1308:	movne	r0, #1
+    130c:	moveq	r0, #0
+    1310:	b	1318 <MyGame_Example_Monster_test4+0xe4>
+    1314:	mov	r0, #0
+    1318:	cmp	r0, #0
+    131c:	bne	1334 <MyGame_Example_Monster_test4+0x100>
+    1320:	ldr	r0, [pc, #60]	; 1364 <MyGame_Example_Monster_test4+0x130>
+    1324:	ldr	r1, [pc, #48]	; 135c <MyGame_Example_Monster_test4+0x128>
+    1328:	movw	r2, #718	; 0x2ce
+    132c:	ldr	r3, [pc, #52]	; 1368 <MyGame_Example_Monster_test4+0x134>
+    1330:	bl	0 <__assert_fail>
+    1334:	mov	r0, #0
+    1338:	ldr	r4, [sp, #8]
+    133c:	ldr	r5, [sp, #12]
+    1340:	ldr	r6, [sp, #16]
+    1344:	ldr	r7, [sp, #20]
+    1348:	ldr	lr, [sp, #4]
+    134c:	add	sp, sp, #24
+    1350:	bx	lr
+    1354:	.word	0x00000149
+    1358:	.word	0x000001a2
+    135c:	.word	0x000002c9
+    1360:	.word	0x00000536
+    1364:	.word	0x000001fa
+    1368:	.word	0x00000947
+
+0000136c <MyGame_Example_Monster_testhashs32_fnv1>:
+    136c:	mov	ip, sp
+    1370:	sub	sp, sp, #24
+    1374:	str	ip, [sp]
+    1378:	str	lr, [sp, #4]
+    137c:	str	r4, [sp, #8]
+    1380:	str	r5, [sp, #12]
+    1384:	str	r6, [sp, #16]
+    1388:	str	r7, [sp, #20]
+    138c:	mov	r4, r0
+    1390:	mov	r5, #0
+    1394:	cmp	r4, #0
+    1398:	beq	13b0 <MyGame_Example_Monster_testhashs32_fnv1+0x44>
+    139c:	ldr	r2, [pc, #164]	; 1448 <MyGame_Example_Monster_testhashs32_fnv1+0xdc>
+    13a0:	cmp	r2, #0
+    13a4:	movne	ip, #1
+    13a8:	moveq	ip, #0
+    13ac:	b	13b4 <MyGame_Example_Monster_testhashs32_fnv1+0x48>
+    13b0:	mov	ip, #0
+    13b4:	cmp	ip, #0
+    13b8:	bne	13d0 <MyGame_Example_Monster_testhashs32_fnv1+0x64>
+    13bc:	ldr	r0, [pc, #128]	; 1444 <MyGame_Example_Monster_testhashs32_fnv1+0xd8>
+    13c0:	ldr	r1, [pc, #132]	; 144c <MyGame_Example_Monster_testhashs32_fnv1+0xe0>
+    13c4:	mov	r2, #724	; 0x2d4
+    13c8:	ldr	r3, [pc, #112]	; 1440 <MyGame_Example_Monster_testhashs32_fnv1+0xd4>
+    13cc:	bl	0 <__assert_fail>
+    13d0:	mov	r7, #16
+    13d4:	mov	r0, r4
+    13d8:	bl	39c <__flatbuffers_soffset_read_from_pe>
+    13dc:	sub	r6, r4, r0
+    13e0:	mov	r0, r6
+    13e4:	bl	3e4 <__flatbuffers_voffset_read_from_pe>
+    13e8:	lsl	r1, r7, #1
+    13ec:	add	r1, r1, #6
+    13f0:	cmp	r0, r1
+    13f4:	bcc	140c <MyGame_Example_Monster_testhashs32_fnv1+0xa0>
+    13f8:	add	r0, r6, r7, lsl #1
+    13fc:	add	r0, r0, #4
+    1400:	bl	3e4 <__flatbuffers_voffset_read_from_pe>
+    1404:	bic	r5, r0, #16711680	; 0xff0000
+    1408:	bic	r5, r5, #-16777216	; 0xff000000
+    140c:	cmp	r5, #0
+    1410:	beq	1420 <MyGame_Example_Monster_testhashs32_fnv1+0xb4>
+    1414:	add	r0, r4, r5
+    1418:	bl	228 <flatbuffers_int32_read_from_pe>
+    141c:	b	1424 <MyGame_Example_Monster_testhashs32_fnv1+0xb8>
+    1420:	mov	r0, #0
+    1424:	ldr	r4, [sp, #8]
+    1428:	ldr	r5, [sp, #12]
+    142c:	ldr	r6, [sp, #16]
+    1430:	ldr	r7, [sp, #20]
+    1434:	ldr	lr, [sp, #4]
+    1438:	add	sp, sp, #24
+    143c:	bx	lr
+    1440:	.word	0x00000964
+    1444:	.word	0x00000149
+    1448:	.word	0x000001a2
+    144c:	.word	0x000002c9
+
+00001450 <MyGame_Example_Monster_testhashu32_fnv1>:
+    1450:	mov	ip, sp
+    1454:	sub	sp, sp, #24
+    1458:	str	ip, [sp]
+    145c:	str	lr, [sp, #4]
+    1460:	str	r4, [sp, #8]
+    1464:	str	r5, [sp, #12]
+    1468:	str	r6, [sp, #16]
+    146c:	str	r7, [sp, #20]
+    1470:	mov	r4, r0
+    1474:	mov	r5, #0
+    1478:	cmp	r4, #0
+    147c:	beq	1494 <MyGame_Example_Monster_testhashu32_fnv1+0x44>
+    1480:	ldr	r2, [pc, #160]	; 1528 <MyGame_Example_Monster_testhashu32_fnv1+0xd8>
+    1484:	cmp	r2, #0
+    1488:	movne	ip, #1
+    148c:	moveq	ip, #0
+    1490:	b	1498 <MyGame_Example_Monster_testhashu32_fnv1+0x48>
+    1494:	mov	ip, #0
+    1498:	cmp	ip, #0
+    149c:	bne	14b4 <MyGame_Example_Monster_testhashu32_fnv1+0x64>
+    14a0:	ldr	r0, [pc, #124]	; 1524 <MyGame_Example_Monster_testhashu32_fnv1+0xd4>
+    14a4:	ldr	r1, [pc, #128]	; 152c <MyGame_Example_Monster_testhashu32_fnv1+0xdc>
+    14a8:	movw	r2, #725	; 0x2d5
+    14ac:	ldr	r3, [pc, #124]	; 1530 <MyGame_Example_Monster_testhashu32_fnv1+0xe0>
+    14b0:	bl	0 <__assert_fail>
+    14b4:	mov	r7, #17
+    14b8:	mov	r0, r4
+    14bc:	bl	39c <__flatbuffers_soffset_read_from_pe>
+    14c0:	sub	r6, r4, r0
+    14c4:	mov	r0, r6
+    14c8:	bl	3e4 <__flatbuffers_voffset_read_from_pe>
+    14cc:	lsl	r1, r7, #1
+    14d0:	add	r1, r1, #6
+    14d4:	cmp	r0, r1
+    14d8:	bcc	14f0 <MyGame_Example_Monster_testhashu32_fnv1+0xa0>
+    14dc:	add	r0, r6, r7, lsl #1
+    14e0:	add	r0, r0, #4
+    14e4:	bl	3e4 <__flatbuffers_voffset_read_from_pe>
+    14e8:	bic	r5, r0, #16711680	; 0xff0000
+    14ec:	bic	r5, r5, #-16777216	; 0xff000000
+    14f0:	cmp	r5, #0
+    14f4:	beq	1504 <MyGame_Example_Monster_testhashu32_fnv1+0xb4>
+    14f8:	add	r0, r4, r5
+    14fc:	bl	f4 <flatbuffers_uint32_read_from_pe>
+    1500:	b	1508 <MyGame_Example_Monster_testhashu32_fnv1+0xb8>
+    1504:	mov	r0, #0
+    1508:	ldr	r4, [sp, #8]
+    150c:	ldr	r5, [sp, #12]
+    1510:	ldr	r6, [sp, #16]
+    1514:	ldr	r7, [sp, #20]
+    1518:	ldr	lr, [sp, #4]
+    151c:	add	sp, sp, #24
+    1520:	bx	lr
+    1524:	.word	0x00000149
+    1528:	.word	0x000001a2
+    152c:	.word	0x000002c9
+    1530:	.word	0x0000098c
+
+00001534 <MyGame_Example_Monster_testhashs64_fnv1>:
+    1534:	mov	ip, sp
+    1538:	sub	sp, sp, #24
+    153c:	str	ip, [sp]
+    1540:	str	lr, [sp, #4]
+    1544:	str	r4, [sp, #8]
+    1548:	str	r5, [sp, #12]
+    154c:	str	r6, [sp, #16]
+    1550:	str	r7, [sp, #20]
+    1554:	mov	r4, r0
+    1558:	mov	r6, #0
+    155c:	cmp	r4, #0
+    1560:	beq	1578 <MyGame_Example_Monster_testhashs64_fnv1+0x44>
+    1564:	ldr	r0, [pc, #164]	; 1610 <MyGame_Example_Monster_testhashs64_fnv1+0xdc>
+    1568:	cmp	r0, #0
+    156c:	movne	r1, #1
+    1570:	moveq	r1, #0
+    1574:	b	157c <MyGame_Example_Monster_testhashs64_fnv1+0x48>
+    1578:	mov	r1, #0
+    157c:	cmp	r1, #0
+    1580:	bne	1598 <MyGame_Example_Monster_testhashs64_fnv1+0x64>
+    1584:	ldr	r0, [pc, #128]	; 160c <MyGame_Example_Monster_testhashs64_fnv1+0xd8>
+    1588:	ldr	r1, [pc, #132]	; 1614 <MyGame_Example_Monster_testhashs64_fnv1+0xe0>
+    158c:	movw	r2, #726	; 0x2d6
+    1590:	ldr	r3, [pc, #128]	; 1618 <MyGame_Example_Monster_testhashs64_fnv1+0xe4>
+    1594:	bl	0 <__assert_fail>
+    1598:	mov	r7, #18
+    159c:	mov	r0, r4
+    15a0:	bl	39c <__flatbuffers_soffset_read_from_pe>
+    15a4:	sub	r5, r4, r0
+    15a8:	mov	r0, r5
+    15ac:	bl	3e4 <__flatbuffers_voffset_read_from_pe>
+    15b0:	lsl	ip, r7, #1
+    15b4:	add	r3, ip, #6
+    15b8:	cmp	r0, r3
+    15bc:	bcc	15d4 <MyGame_Example_Monster_testhashs64_fnv1+0xa0>
+    15c0:	add	r0, r5, r7, lsl #1
+    15c4:	add	r0, r0, #4
+    15c8:	bl	3e4 <__flatbuffers_voffset_read_from_pe>
+    15cc:	bic	r6, r0, #16711680	; 0xff0000
+    15d0:	bic	r6, r6, #-16777216	; 0xff000000
+    15d4:	cmp	r6, #0
+    15d8:	beq	15e8 <MyGame_Example_Monster_testhashs64_fnv1+0xb4>
+    15dc:	add	r0, r4, r6
+    15e0:	bl	268 <flatbuffers_int64_read_from_pe>
+    15e4:	b	15f0 <MyGame_Example_Monster_testhashs64_fnv1+0xbc>
+    15e8:	mov	r1, #0
+    15ec:	mov	r0, #0
+    15f0:	ldr	r4, [sp, #8]
+    15f4:	ldr	r5, [sp, #12]
+    15f8:	ldr	r6, [sp, #16]
+    15fc:	ldr	r7, [sp, #20]
+    1600:	ldr	lr, [sp, #4]
+    1604:	add	sp, sp, #24
+    1608:	bx	lr
+    160c:	.word	0x00000149
+    1610:	.word	0x000001a2
+    1614:	.word	0x000002c9
+    1618:	.word	0x000009b4
+
+0000161c <MyGame_Example_Monster_testhashu64_fnv1>:
+    161c:	mov	ip, sp
+    1620:	sub	sp, sp, #24
+    1624:	str	ip, [sp]
+    1628:	str	lr, [sp, #4]
+    162c:	str	r4, [sp, #8]
+    1630:	str	r5, [sp, #12]
+    1634:	str	r6, [sp, #16]
+    1638:	str	r7, [sp, #20]
+    163c:	mov	r4, r0
+    1640:	mov	r6, #0
+    1644:	cmp	r4, #0
+    1648:	beq	1660 <MyGame_Example_Monster_testhashu64_fnv1+0x44>
+    164c:	ldr	r0, [pc, #164]	; 16f8 <MyGame_Example_Monster_testhashu64_fnv1+0xdc>
+    1650:	cmp	r0, #0
+    1654:	movne	r1, #1
+    1658:	moveq	r1, #0
+    165c:	b	1664 <MyGame_Example_Monster_testhashu64_fnv1+0x48>
+    1660:	mov	r1, #0
+    1664:	cmp	r1, #0
+    1668:	bne	1680 <MyGame_Example_Monster_testhashu64_fnv1+0x64>
+    166c:	ldr	r0, [pc, #128]	; 16f4 <MyGame_Example_Monster_testhashu64_fnv1+0xd8>
+    1670:	ldr	r1, [pc, #132]	; 16fc <MyGame_Example_Monster_testhashu64_fnv1+0xe0>
+    1674:	movw	r2, #727	; 0x2d7
+    1678:	ldr	r3, [pc, #128]	; 1700 <MyGame_Example_Monster_testhashu64_fnv1+0xe4>
+    167c:	bl	0 <__assert_fail>
+    1680:	mov	r7, #19
+    1684:	mov	r0, r4
+    1688:	bl	39c <__flatbuffers_soffset_read_from_pe>
+    168c:	sub	r5, r4, r0
+    1690:	mov	r0, r5
+    1694:	bl	3e4 <__flatbuffers_voffset_read_from_pe>
+    1698:	lsl	ip, r7, #1
+    169c:	add	r3, ip, #6
+    16a0:	cmp	r0, r3
+    16a4:	bcc	16bc <MyGame_Example_Monster_testhashu64_fnv1+0xa0>
+    16a8:	add	r0, r5, r7, lsl #1
+    16ac:	add	r0, r0, #4
+    16b0:	bl	3e4 <__flatbuffers_voffset_read_from_pe>
+    16b4:	bic	r6, r0, #16711680	; 0xff0000
+    16b8:	bic	r6, r6, #-16777216	; 0xff000000
+    16bc:	cmp	r6, #0
+    16c0:	beq	16d0 <MyGame_Example_Monster_testhashu64_fnv1+0xb4>
+    16c4:	add	r0, r4, r6
+    16c8:	bl	134 <flatbuffers_uint64_read_from_pe>
+    16cc:	b	16d8 <MyGame_Example_Monster_testhashu64_fnv1+0xbc>
+    16d0:	mov	r1, #0
+    16d4:	mov	r0, #0
+    16d8:	ldr	r4, [sp, #8]
+    16dc:	ldr	r5, [sp, #12]
+    16e0:	ldr	r6, [sp, #16]
+    16e4:	ldr	r7, [sp, #20]
+    16e8:	ldr	lr, [sp, #4]
+    16ec:	add	sp, sp, #24
+    16f0:	bx	lr
+    16f4:	.word	0x00000149
+    16f8:	.word	0x000001a2
+    16fc:	.word	0x000002c9
+    1700:	.word	0x000009dc
+
+00001704 <MyGame_Example_Monster_testhashs32_fnv1a>:
+    1704:	mov	ip, sp
+    1708:	sub	sp, sp, #24
+    170c:	str	ip, [sp]
+    1710:	str	lr, [sp, #4]
+    1714:	str	r4, [sp, #8]
+    1718:	str	r5, [sp, #12]
+    171c:	str	r6, [sp, #16]
+    1720:	str	r7, [sp, #20]
+    1724:	mov	r4, r0
+    1728:	mov	r5, #0
+    172c:	cmp	r4, #0
+    1730:	beq	1748 <MyGame_Example_Monster_testhashs32_fnv1a+0x44>
+    1734:	ldr	r2, [pc, #160]	; 17dc <MyGame_Example_Monster_testhashs32_fnv1a+0xd8>
+    1738:	cmp	r2, #0
+    173c:	movne	ip, #1
+    1740:	moveq	ip, #0
+    1744:	b	174c <MyGame_Example_Monster_testhashs32_fnv1a+0x48>
+    1748:	mov	ip, #0
+    174c:	cmp	ip, #0
+    1750:	bne	1768 <MyGame_Example_Monster_testhashs32_fnv1a+0x64>
+    1754:	ldr	r0, [pc, #124]	; 17d8 <MyGame_Example_Monster_testhashs32_fnv1a+0xd4>
+    1758:	ldr	r1, [pc, #128]	; 17e0 <MyGame_Example_Monster_testhashs32_fnv1a+0xdc>
+    175c:	mov	r2, #728	; 0x2d8
+    1760:	ldr	r3, [pc, #124]	; 17e4 <MyGame_Example_Monster_testhashs32_fnv1a+0xe0>
+    1764:	bl	0 <__assert_fail>
+    1768:	mov	r7, #20
+    176c:	mov	r0, r4
+    1770:	bl	39c <__flatbuffers_soffset_read_from_pe>
+    1774:	sub	r6, r4, r0
+    1778:	mov	r0, r6
+    177c:	bl	3e4 <__flatbuffers_voffset_read_from_pe>
+    1780:	lsl	r1, r7, #1
+    1784:	add	r1, r1, #6
+    1788:	cmp	r0, r1
+    178c:	bcc	17a4 <MyGame_Example_Monster_testhashs32_fnv1a+0xa0>
+    1790:	add	r0, r6, r7, lsl #1
+    1794:	add	r0, r0, #4
+    1798:	bl	3e4 <__flatbuffers_voffset_read_from_pe>
+    179c:	bic	r5, r0, #16711680	; 0xff0000
+    17a0:	bic	r5, r5, #-16777216	; 0xff000000
+    17a4:	cmp	r5, #0
+    17a8:	beq	17b8 <MyGame_Example_Monster_testhashs32_fnv1a+0xb4>
+    17ac:	add	r0, r4, r5
+    17b0:	bl	228 <flatbuffers_int32_read_from_pe>
+    17b4:	b	17bc <MyGame_Example_Monster_testhashs32_fnv1a+0xb8>
+    17b8:	mov	r0, #0
+    17bc:	ldr	r4, [sp, #8]
+    17c0:	ldr	r5, [sp, #12]
+    17c4:	ldr	r6, [sp, #16]
+    17c8:	ldr	r7, [sp, #20]
+    17cc:	ldr	lr, [sp, #4]
+    17d0:	add	sp, sp, #24
+    17d4:	bx	lr
+    17d8:	.word	0x00000149
+    17dc:	.word	0x000001a2
+    17e0:	.word	0x000002c9
+    17e4:	.word	0x00000a04
+
+000017e8 <MyGame_Example_Monster_testhashu32_fnv1a>:
+    17e8:	mov	ip, sp
+    17ec:	sub	sp, sp, #24
+    17f0:	str	ip, [sp]
+    17f4:	str	lr, [sp, #4]
+    17f8:	str	r4, [sp, #8]
+    17fc:	str	r5, [sp, #12]
+    1800:	str	r6, [sp, #16]
+    1804:	str	r7, [sp, #20]
+    1808:	mov	r4, r0
+    180c:	mov	r5, #0
+    1810:	cmp	r4, #0
+    1814:	beq	182c <MyGame_Example_Monster_testhashu32_fnv1a+0x44>
+    1818:	ldr	r2, [pc, #164]	; 18c4 <MyGame_Example_Monster_testhashu32_fnv1a+0xdc>
+    181c:	cmp	r2, #0
+    1820:	movne	ip, #1
+    1824:	moveq	ip, #0
+    1828:	b	1830 <MyGame_Example_Monster_testhashu32_fnv1a+0x48>
+    182c:	mov	ip, #0
+    1830:	cmp	ip, #0
+    1834:	bne	184c <MyGame_Example_Monster_testhashu32_fnv1a+0x64>
+    1838:	ldr	r0, [pc, #124]	; 18bc <MyGame_Example_Monster_testhashu32_fnv1a+0xd4>
+    183c:	ldr	r1, [pc, #132]	; 18c8 <MyGame_Example_Monster_testhashu32_fnv1a+0xe0>
+    1840:	movw	r2, #729	; 0x2d9
+    1844:	ldr	r3, [pc, #116]	; 18c0 <MyGame_Example_Monster_testhashu32_fnv1a+0xd8>
+    1848:	bl	0 <__assert_fail>
+    184c:	mov	r7, #21
+    1850:	mov	r0, r4
+    1854:	bl	39c <__flatbuffers_soffset_read_from_pe>
+    1858:	sub	r6, r4, r0
+    185c:	mov	r0, r6
+    1860:	bl	3e4 <__flatbuffers_voffset_read_from_pe>
+    1864:	lsl	r1, r7, #1
+    1868:	add	r1, r1, #6
+    186c:	cmp	r0, r1
+    1870:	bcc	1888 <MyGame_Example_Monster_testhashu32_fnv1a+0xa0>
+    1874:	add	r0, r6, r7, lsl #1
+    1878:	add	r0, r0, #4
+    187c:	bl	3e4 <__flatbuffers_voffset_read_from_pe>
+    1880:	bic	r5, r0, #16711680	; 0xff0000
+    1884:	bic	r5, r5, #-16777216	; 0xff000000
+    1888:	cmp	r5, #0
+    188c:	beq	189c <MyGame_Example_Monster_testhashu32_fnv1a+0xb4>
+    1890:	add	r0, r4, r5
+    1894:	bl	f4 <flatbuffers_uint32_read_from_pe>
+    1898:	b	18a0 <MyGame_Example_Monster_testhashu32_fnv1a+0xb8>
+    189c:	mov	r0, #0
+    18a0:	ldr	r4, [sp, #8]
+    18a4:	ldr	r5, [sp, #12]
+    18a8:	ldr	r6, [sp, #16]
+    18ac:	ldr	r7, [sp, #20]
+    18b0:	ldr	lr, [sp, #4]
+    18b4:	add	sp, sp, #24
+    18b8:	bx	lr
+    18bc:	.word	0x00000149
+    18c0:	.word	0x00000a2d
+    18c4:	.word	0x000001a2
+    18c8:	.word	0x000002c9
+
+000018cc <MyGame_Example_Monster_testhashs64_fnv1a>:
+    18cc:	mov	ip, sp
+    18d0:	sub	sp, sp, #24
+    18d4:	str	ip, [sp]
+    18d8:	str	lr, [sp, #4]
+    18dc:	str	r4, [sp, #8]
+    18e0:	str	r5, [sp, #12]
+    18e4:	str	r6, [sp, #16]
+    18e8:	str	r7, [sp, #20]
+    18ec:	mov	r4, r0
+    18f0:	mov	r6, #0
+    18f4:	cmp	r4, #0
+    18f8:	beq	1910 <MyGame_Example_Monster_testhashs64_fnv1a+0x44>
+    18fc:	ldr	r0, [pc, #164]	; 19a8 <MyGame_Example_Monster_testhashs64_fnv1a+0xdc>
+    1900:	cmp	r0, #0
+    1904:	movne	r1, #1
+    1908:	moveq	r1, #0
+    190c:	b	1914 <MyGame_Example_Monster_testhashs64_fnv1a+0x48>
+    1910:	mov	r1, #0
+    1914:	cmp	r1, #0
+    1918:	bne	1930 <MyGame_Example_Monster_testhashs64_fnv1a+0x64>
+    191c:	ldr	r0, [pc, #128]	; 19a4 <MyGame_Example_Monster_testhashs64_fnv1a+0xd8>
+    1920:	ldr	r1, [pc, #132]	; 19ac <MyGame_Example_Monster_testhashs64_fnv1a+0xe0>
+    1924:	movw	r2, #730	; 0x2da
+    1928:	ldr	r3, [pc, #128]	; 19b0 <MyGame_Example_Monster_testhashs64_fnv1a+0xe4>
+    192c:	bl	0 <__assert_fail>
+    1930:	mov	r7, #22
+    1934:	mov	r0, r4
+    1938:	bl	39c <__flatbuffers_soffset_read_from_pe>
+    193c:	sub	r5, r4, r0
+    1940:	mov	r0, r5
+    1944:	bl	3e4 <__flatbuffers_voffset_read_from_pe>
+    1948:	lsl	ip, r7, #1
+    194c:	add	r3, ip, #6
+    1950:	cmp	r0, r3
+    1954:	bcc	196c <MyGame_Example_Monster_testhashs64_fnv1a+0xa0>
+    1958:	add	r0, r5, r7, lsl #1
+    195c:	add	r0, r0, #4
+    1960:	bl	3e4 <__flatbuffers_voffset_read_from_pe>
+    1964:	bic	r6, r0, #16711680	; 0xff0000
+    1968:	bic	r6, r6, #-16777216	; 0xff000000
+    196c:	cmp	r6, #0
+    1970:	beq	1980 <MyGame_Example_Monster_testhashs64_fnv1a+0xb4>
+    1974:	add	r0, r4, r6
+    1978:	bl	268 <flatbuffers_int64_read_from_pe>
+    197c:	b	1988 <MyGame_Example_Monster_testhashs64_fnv1a+0xbc>
+    1980:	mov	r1, #0
+    1984:	mov	r0, #0
+    1988:	ldr	r4, [sp, #8]
+    198c:	ldr	r5, [sp, #12]
+    1990:	ldr	r6, [sp, #16]
+    1994:	ldr	r7, [sp, #20]
+    1998:	ldr	lr, [sp, #4]
+    199c:	add	sp, sp, #24
+    19a0:	bx	lr
+    19a4:	.word	0x00000149
+    19a8:	.word	0x000001a2
+    19ac:	.word	0x000002c9
+    19b0:	.word	0x00000a56
+
+000019b4 <MyGame_Example_Monster_testhashu64_fnv1a>:
+    19b4:	mov	ip, sp
+    19b8:	sub	sp, sp, #24
+    19bc:	str	ip, [sp]
+    19c0:	str	lr, [sp, #4]
+    19c4:	str	r4, [sp, #8]
+    19c8:	str	r5, [sp, #12]
+    19cc:	str	r6, [sp, #16]
+    19d0:	str	r7, [sp, #20]
+    19d4:	mov	r4, r0
+    19d8:	mov	r6, #0
+    19dc:	cmp	r4, #0
+    19e0:	beq	19f8 <MyGame_Example_Monster_testhashu64_fnv1a+0x44>
+    19e4:	ldr	r0, [pc, #168]	; 1a94 <MyGame_Example_Monster_testhashu64_fnv1a+0xe0>
+    19e8:	cmp	r0, #0
+    19ec:	movne	r1, #1
+    19f0:	moveq	r1, #0
+    19f4:	b	19fc <MyGame_Example_Monster_testhashu64_fnv1a+0x48>
+    19f8:	mov	r1, #0
+    19fc:	cmp	r1, #0
+    1a00:	bne	1a18 <MyGame_Example_Monster_testhashu64_fnv1a+0x64>
+    1a04:	ldr	r0, [pc, #128]	; 1a8c <MyGame_Example_Monster_testhashu64_fnv1a+0xd8>
+    1a08:	ldr	r1, [pc, #136]	; 1a98 <MyGame_Example_Monster_testhashu64_fnv1a+0xe4>
+    1a0c:	movw	r2, #731	; 0x2db
+    1a10:	ldr	r3, [pc, #120]	; 1a90 <MyGame_Example_Monster_testhashu64_fnv1a+0xdc>
+    1a14:	bl	0 <__assert_fail>
+    1a18:	mov	r7, #23
+    1a1c:	mov	r0, r4
+    1a20:	bl	39c <__flatbuffers_soffset_read_from_pe>
+    1a24:	sub	r5, r4, r0
+    1a28:	mov	r0, r5
+    1a2c:	bl	3e4 <__flatbuffers_voffset_read_from_pe>
+    1a30:	lsl	ip, r7, #1
+    1a34:	add	r3, ip, #6
+    1a38:	cmp	r0, r3
+    1a3c:	bcc	1a54 <MyGame_Example_Monster_testhashu64_fnv1a+0xa0>
+    1a40:	add	r0, r5, r7, lsl #1
+    1a44:	add	r0, r0, #4
+    1a48:	bl	3e4 <__flatbuffers_voffset_read_from_pe>
+    1a4c:	bic	r6, r0, #16711680	; 0xff0000
+    1a50:	bic	r6, r6, #-16777216	; 0xff000000
+    1a54:	cmp	r6, #0
+    1a58:	beq	1a68 <MyGame_Example_Monster_testhashu64_fnv1a+0xb4>
+    1a5c:	add	r0, r4, r6
+    1a60:	bl	134 <flatbuffers_uint64_read_from_pe>
+    1a64:	b	1a70 <MyGame_Example_Monster_testhashu64_fnv1a+0xbc>
+    1a68:	mov	r1, #0
+    1a6c:	mov	r0, #0
+    1a70:	ldr	r4, [sp, #8]
+    1a74:	ldr	r5, [sp, #12]
+    1a78:	ldr	r6, [sp, #16]
+    1a7c:	ldr	r7, [sp, #20]
+    1a80:	ldr	lr, [sp, #4]
+    1a84:	add	sp, sp, #24
+    1a88:	bx	lr
+    1a8c:	.word	0x00000149
+    1a90:	.word	0x00000a7f
+    1a94:	.word	0x000001a2
+    1a98:	.word	0x000002c9
+
+00001a9c <MyGame_Example_Any_union_verifier>:
+    1a9c:	mov	ip, sp
+    1aa0:	sub	sp, sp, #8
+    1aa4:	str	ip, [sp]
+    1aa8:	str	lr, [sp, #4]
+    1aac:	ldrb	r2, [r0, #12]
+    1ab0:	cmp	r2, #3
+    1ab4:	bcs	1ae0 <MyGame_Example_Any_union_verifier+0x44>
+    1ab8:	cmp	r2, #1
+    1abc:	beq	1ad4 <MyGame_Example_Any_union_verifier+0x38>
+    1ac0:	cmp	r2, #2
+    1ac4:	bne	1afc <MyGame_Example_Any_union_verifier+0x60>
+    1ac8:	ldr	r1, [pc, #72]	; 1b18 <MyGame_Example_Any_union_verifier+0x7c>
+    1acc:	bl	0 <flatcc_verify_union_table>
+    1ad0:	b	1b0c <MyGame_Example_Any_union_verifier+0x70>
+    1ad4:	ldr	r1, [pc, #64]	; 1b1c <MyGame_Example_Any_union_verifier+0x80>
+    1ad8:	bl	0 <flatcc_verify_union_table>
+    1adc:	b	1b0c <MyGame_Example_Any_union_verifier+0x70>
+    1ae0:	cmp	r2, #3
+    1ae4:	beq	1b04 <MyGame_Example_Any_union_verifier+0x68>
+    1ae8:	cmp	r2, #4
+    1aec:	bne	1afc <MyGame_Example_Any_union_verifier+0x60>
+    1af0:	ldr	r1, [pc, #40]	; 1b20 <MyGame_Example_Any_union_verifier+0x84>
+    1af4:	bl	0 <flatcc_verify_union_table>
+    1af8:	b	1b0c <MyGame_Example_Any_union_verifier+0x70>
+    1afc:	mov	r0, #0
+    1b00:	b	1b0c <MyGame_Example_Any_union_verifier+0x70>
+    1b04:	ldr	r1, [pc, #24]	; 1b24 <MyGame_Example_Any_union_verifier+0x88>
+    1b08:	bl	0 <flatcc_verify_union_table>
+    1b0c:	ldr	lr, [sp, #4]
+    1b10:	add	sp, sp, #8
+    1b14:	bx	lr
+	...
+
+00001b28 <Fantasy_Character_union_verifier>:
+    1b28:	mov	ip, sp
+    1b2c:	sub	sp, sp, #8
+    1b30:	str	ip, [sp]
+    1b34:	str	lr, [sp, #4]
+    1b38:	ldrb	ip, [r0, #12]
+    1b3c:	cmp	ip, #10
+    1b40:	bcs	1b88 <Fantasy_Character_union_verifier+0x60>
+    1b44:	cmp	ip, #2
+    1b48:	beq	1b7c <Fantasy_Character_union_verifier+0x54>
+    1b4c:	cmp	ip, #8
+    1b50:	beq	1b6c <Fantasy_Character_union_verifier+0x44>
+    1b54:	cmp	ip, #9
+    1b58:	bne	1ba8 <Fantasy_Character_union_verifier+0x80>
+    1b5c:	mov	r1, #4
+    1b60:	mov	r2, #4
+    1b64:	bl	0 <flatcc_verify_union_struct>
+    1b68:	b	1bc4 <Fantasy_Character_union_verifier+0x9c>
+    1b6c:	mov	r1, #2
+    1b70:	mov	r2, #2
+    1b74:	bl	0 <flatcc_verify_union_struct>
+    1b78:	b	1bc4 <Fantasy_Character_union_verifier+0x9c>
+    1b7c:	ldr	r1, [pc, #76]	; 1bd0 <Fantasy_Character_union_verifier+0xa8>
+    1b80:	bl	0 <flatcc_verify_union_table>
+    1b84:	b	1bc4 <Fantasy_Character_union_verifier+0x9c>
+    1b88:	cmp	ip, #10
+    1b8c:	beq	1bb8 <Fantasy_Character_union_verifier+0x90>
+    1b90:	cmp	ip, #11
+    1b94:	beq	1bb0 <Fantasy_Character_union_verifier+0x88>
+    1b98:	cmp	ip, #255	; 0xff
+    1b9c:	bne	1ba8 <Fantasy_Character_union_verifier+0x80>
+    1ba0:	bl	0 <flatcc_verify_union_string>
+    1ba4:	b	1bc4 <Fantasy_Character_union_verifier+0x9c>
+    1ba8:	mov	r0, #0
+    1bac:	b	1bc4 <Fantasy_Character_union_verifier+0x9c>
+    1bb0:	bl	0 <flatcc_verify_union_string>
+    1bb4:	b	1bc4 <Fantasy_Character_union_verifier+0x9c>
+    1bb8:	mov	r1, #4
+    1bbc:	mov	r2, #4
+    1bc0:	bl	0 <flatcc_verify_union_struct>
+    1bc4:	ldr	lr, [sp, #4]
+    1bc8:	add	sp, sp, #8
+    1bcc:	bx	lr
+    1bd0:	.word	0x00000000
+
+00001bd4 <MyGame_InParentNamespace_verify_table>:
+    1bd4:	mov	ip, sp
+    1bd8:	sub	sp, sp, #8
+    1bdc:	str	ip, [sp]
+    1be0:	str	lr, [sp, #4]
+    1be4:	mov	r0, #0
+    1be8:	ldr	lr, [sp, #4]
+    1bec:	add	sp, sp, #8
+    1bf0:	bx	lr
+
+00001bf4 <MyGame_Example2_Monster_verify_table>:
+    1bf4:	mov	ip, sp
+    1bf8:	sub	sp, sp, #8
+    1bfc:	str	ip, [sp]
+    1c00:	str	lr, [sp, #4]
+    1c04:	mov	r0, #0
+    1c08:	ldr	lr, [sp, #4]
+    1c0c:	add	sp, sp, #8
+    1c10:	bx	lr
+
+00001c14 <MyGame_Example_TestSimpleTableWithEnum_verify_table>:
+    1c14:	mov	ip, sp
+    1c18:	sub	sp, sp, #16
+    1c1c:	str	ip, [sp]
+    1c20:	str	lr, [sp, #4]
+    1c24:	str	r4, [sp, #8]
+    1c28:	mov	r4, r0
+    1c2c:	mov	r1, #0
+    1c30:	mov	r2, #1
+    1c34:	mov	r3, #1
+    1c38:	mov	r0, r4
+    1c3c:	bl	0 <flatcc_verify_field>
+    1c40:	cmp	r0, #0
+    1c44:	bne	1ca0 <MyGame_Example_TestSimpleTableWithEnum_verify_table+0x8c>
+    1c48:	mov	r1, #1
+    1c4c:	mov	r2, #1
+    1c50:	mov	r3, #1
+    1c54:	mov	r0, r4
+    1c58:	bl	0 <flatcc_verify_field>
+    1c5c:	cmp	r0, #0
+    1c60:	bne	1ca0 <MyGame_Example_TestSimpleTableWithEnum_verify_table+0x8c>
+    1c64:	mov	r1, #2
+    1c68:	mov	r2, #1
+    1c6c:	mov	r3, #1
+    1c70:	mov	r0, r4
+    1c74:	bl	0 <flatcc_verify_field>
+    1c78:	cmp	r0, #0
+    1c7c:	bne	1ca0 <MyGame_Example_TestSimpleTableWithEnum_verify_table+0x8c>
+    1c80:	mov	r1, #3
+    1c84:	mov	r2, #1
+    1c88:	mov	r3, #1
+    1c8c:	mov	r0, r4
+    1c90:	bl	0 <flatcc_verify_field>
+    1c94:	cmp	r0, #0
+    1c98:	bne	1ca0 <MyGame_Example_TestSimpleTableWithEnum_verify_table+0x8c>
+    1c9c:	mov	r0, #0
+    1ca0:	ldr	r4, [sp, #8]
+    1ca4:	ldr	lr, [sp, #4]
+    1ca8:	add	sp, sp, #16
+    1cac:	bx	lr
+
+00001cb0 <MyGame_Example_Stat_verify_table>:
+    1cb0:	mov	ip, sp
+    1cb4:	sub	sp, sp, #16
+    1cb8:	str	ip, [sp]
+    1cbc:	str	lr, [sp, #4]
+    1cc0:	str	r4, [sp, #8]
+    1cc4:	mov	r4, r0
+    1cc8:	mov	r1, #0
+    1ccc:	mov	r2, #0
+    1cd0:	mov	r0, r4
+    1cd4:	bl	0 <flatcc_verify_string_field>
+    1cd8:	cmp	r0, #0
+    1cdc:	bne	1d1c <MyGame_Example_Stat_verify_table+0x6c>
+    1ce0:	mov	r1, #1
+    1ce4:	mov	r2, #8
+    1ce8:	mov	r3, #8
+    1cec:	mov	r0, r4
+    1cf0:	bl	0 <flatcc_verify_field>
+    1cf4:	cmp	r0, #0
+    1cf8:	bne	1d1c <MyGame_Example_Stat_verify_table+0x6c>
+    1cfc:	mov	r1, #2
+    1d00:	mov	r2, #2
+    1d04:	mov	r3, #2
+    1d08:	mov	r0, r4
+    1d0c:	bl	0 <flatcc_verify_field>
+    1d10:	cmp	r0, #0
+    1d14:	bne	1d1c <MyGame_Example_Stat_verify_table+0x6c>
+    1d18:	mov	r0, #0
+    1d1c:	ldr	r4, [sp, #8]
+    1d20:	ldr	lr, [sp, #4]
+    1d24:	add	sp, sp, #16
+    1d28:	bx	lr
+
+00001d2c <MyGame_Example_Alt_verify_table>:
+    1d2c:	mov	ip, sp
+    1d30:	sub	sp, sp, #16
+    1d34:	str	ip, [sp]
+    1d38:	str	lr, [sp, #4]
+    1d3c:	str	r4, [sp, #8]
+    1d40:	mov	r4, r0
+    1d44:	mov	r1, #0
+    1d48:	mov	r2, #0
+    1d4c:	ldr	r3, [pc, #96]	; 1db4 <MyGame_Example_Alt_verify_table+0x88>
+    1d50:	mov	r0, r4
+    1d54:	bl	0 <flatcc_verify_table_field>
+    1d58:	cmp	r0, #0
+    1d5c:	bne	1d9c <MyGame_Example_Alt_verify_table+0x70>
+    1d60:	mov	r1, #1
+    1d64:	mov	r2, #0
+    1d68:	ldr	r3, [pc, #64]	; 1db0 <MyGame_Example_Alt_verify_table+0x84>
+    1d6c:	mov	r0, r4
+    1d70:	bl	0 <flatcc_verify_table_field>
+    1d74:	cmp	r0, #0
+    1d78:	bne	1d9c <MyGame_Example_Alt_verify_table+0x70>
+    1d7c:	mov	r1, #3
+    1d80:	mov	r2, #0
+    1d84:	ldr	r3, [pc, #32]	; 1dac <MyGame_Example_Alt_verify_table+0x80>
+    1d88:	mov	r0, r4
+    1d8c:	bl	0 <flatcc_verify_union_vector_field>
+    1d90:	cmp	r0, #0
+    1d94:	bne	1d9c <MyGame_Example_Alt_verify_table+0x70>
+    1d98:	mov	r0, #0
+    1d9c:	ldr	r4, [sp, #8]
+    1da0:	ldr	lr, [sp, #4]
+    1da4:	add	sp, sp, #16
+    1da8:	bx	lr
+	...
+
+00001db8 <MyGame_Example_TestJSONPrefix_verify_table>:
+    1db8:	mov	ip, sp
+    1dbc:	sub	sp, sp, #16
+    1dc0:	str	ip, [sp]
+    1dc4:	str	lr, [sp, #4]
+    1dc8:	str	r4, [sp, #8]
+    1dcc:	mov	r4, r0
+    1dd0:	mov	r1, #0
+    1dd4:	mov	r2, #0
+    1dd8:	ldr	r3, [pc, #96]	; 1e40 <MyGame_Example_TestJSONPrefix_verify_table+0x88>
+    1ddc:	mov	r0, r4
+    1de0:	bl	0 <flatcc_verify_table_field>
+    1de4:	cmp	r0, #0
+    1de8:	bne	1e28 <MyGame_Example_TestJSONPrefix_verify_table+0x70>
+    1dec:	mov	r1, #1
+    1df0:	mov	r2, #0
+    1df4:	ldr	r3, [pc, #60]	; 1e38 <MyGame_Example_TestJSONPrefix_verify_table+0x80>
+    1df8:	mov	r0, r4
+    1dfc:	bl	0 <flatcc_verify_table_field>
+    1e00:	cmp	r0, #0
+    1e04:	bne	1e28 <MyGame_Example_TestJSONPrefix_verify_table+0x70>
+    1e08:	mov	r1, #2
+    1e0c:	mov	r2, #0
+    1e10:	ldr	r3, [pc, #36]	; 1e3c <MyGame_Example_TestJSONPrefix_verify_table+0x84>
+    1e14:	mov	r0, r4
+    1e18:	bl	0 <flatcc_verify_table_field>
+    1e1c:	cmp	r0, #0
+    1e20:	bne	1e28 <MyGame_Example_TestJSONPrefix_verify_table+0x70>
+    1e24:	mov	r0, #0
+    1e28:	ldr	r4, [sp, #8]
+    1e2c:	ldr	lr, [sp, #4]
+    1e30:	add	sp, sp, #16
+    1e34:	bx	lr
+	...
+
+00001e44 <MyGame_Example_TestJSONPrefixParsing_verify_table>:
+    1e44:	mov	ip, sp
+    1e48:	sub	sp, sp, #16
+    1e4c:	str	ip, [sp]
+    1e50:	str	lr, [sp, #4]
+    1e54:	str	r4, [sp, #8]
+    1e58:	mov	r4, r0
+    1e5c:	mov	r1, #0
+    1e60:	mov	r2, #0
+    1e64:	mov	r0, r4
+    1e68:	bl	0 <flatcc_verify_string_field>
+    1e6c:	cmp	r0, #0
+    1e70:	bne	1f50 <MyGame_Example_TestJSONPrefixParsing_verify_table+0x10c>
+    1e74:	mov	r1, #1
+    1e78:	mov	r2, #4
+    1e7c:	mov	r3, #4
+    1e80:	mov	r0, r4
+    1e84:	bl	0 <flatcc_verify_field>
+    1e88:	cmp	r0, #0
+    1e8c:	bne	1f50 <MyGame_Example_TestJSONPrefixParsing_verify_table+0x10c>
+    1e90:	mov	r1, #2
+    1e94:	mov	r2, #0
+    1e98:	mov	r0, r4
+    1e9c:	bl	0 <flatcc_verify_string_field>
+    1ea0:	cmp	r0, #0
+    1ea4:	bne	1f50 <MyGame_Example_TestJSONPrefixParsing_verify_table+0x10c>
+    1ea8:	mov	r1, #3
+    1eac:	mov	r2, #8
+    1eb0:	mov	r3, #8
+    1eb4:	mov	r0, r4
+    1eb8:	bl	0 <flatcc_verify_field>
+    1ebc:	cmp	r0, #0
+    1ec0:	bne	1f50 <MyGame_Example_TestJSONPrefixParsing_verify_table+0x10c>
+    1ec4:	mov	r1, #4
+    1ec8:	mov	r2, #0
+    1ecc:	mov	r0, r4
+    1ed0:	bl	0 <flatcc_verify_string_field>
+    1ed4:	cmp	r0, #0
+    1ed8:	bne	1f50 <MyGame_Example_TestJSONPrefixParsing_verify_table+0x10c>
+    1edc:	mov	r1, #5
+    1ee0:	mov	r2, #8
+    1ee4:	mov	r3, #8
+    1ee8:	mov	r0, r4
+    1eec:	bl	0 <flatcc_verify_field>
+    1ef0:	cmp	r0, #0
+    1ef4:	bne	1f50 <MyGame_Example_TestJSONPrefixParsing_verify_table+0x10c>
+    1ef8:	mov	r1, #6
+    1efc:	mov	r2, #4
+    1f00:	mov	r3, #4
+    1f04:	mov	r0, r4
+    1f08:	bl	0 <flatcc_verify_field>
+    1f0c:	cmp	r0, #0
+    1f10:	bne	1f50 <MyGame_Example_TestJSONPrefixParsing_verify_table+0x10c>
+    1f14:	mov	r1, #7
+    1f18:	mov	r2, #8
+    1f1c:	mov	r3, #8
+    1f20:	mov	r0, r4
+    1f24:	bl	0 <flatcc_verify_field>
+    1f28:	cmp	r0, #0
+    1f2c:	bne	1f50 <MyGame_Example_TestJSONPrefixParsing_verify_table+0x10c>
+    1f30:	mov	r1, #8
+    1f34:	mov	r2, #4
+    1f38:	mov	r3, #4
+    1f3c:	mov	r0, r4
+    1f40:	bl	0 <flatcc_verify_field>
+    1f44:	cmp	r0, #0
+    1f48:	bne	1f50 <MyGame_Example_TestJSONPrefixParsing_verify_table+0x10c>
+    1f4c:	mov	r0, #0
+    1f50:	ldr	r4, [sp, #8]
+    1f54:	ldr	lr, [sp, #4]
+    1f58:	add	sp, sp, #16
+    1f5c:	bx	lr
+
+00001f60 <MyGame_Example_TestJSONPrefixParsing2_verify_table>:
+    1f60:	mov	ip, sp
+    1f64:	sub	sp, sp, #16
+    1f68:	str	ip, [sp]
+    1f6c:	str	lr, [sp, #4]
+    1f70:	str	r4, [sp, #8]
+    1f74:	mov	r4, r0
+    1f78:	mov	r1, #0
+    1f7c:	mov	r2, #8
+    1f80:	mov	r3, #8
+    1f84:	mov	r0, r4
+    1f88:	bl	0 <flatcc_verify_field>
+    1f8c:	cmp	r0, #0
+    1f90:	bne	1fb4 <MyGame_Example_TestJSONPrefixParsing2_verify_table+0x54>
+    1f94:	mov	r1, #1
+    1f98:	mov	r2, #4
+    1f9c:	mov	r3, #4
+    1fa0:	mov	r0, r4
+    1fa4:	bl	0 <flatcc_verify_field>
+    1fa8:	cmp	r0, #0
+    1fac:	bne	1fb4 <MyGame_Example_TestJSONPrefixParsing2_verify_table+0x54>
+    1fb0:	mov	r0, #0
+    1fb4:	ldr	r4, [sp, #8]
+    1fb8:	ldr	lr, [sp, #4]
+    1fbc:	add	sp, sp, #16
+    1fc0:	bx	lr
+
+00001fc4 <MyGame_Example_TestJSONPrefixParsing3_verify_table>:
+    1fc4:	mov	ip, sp
+    1fc8:	sub	sp, sp, #16
+    1fcc:	str	ip, [sp]
+    1fd0:	str	lr, [sp, #4]
+    1fd4:	str	r4, [sp, #8]
+    1fd8:	mov	r4, r0
+    1fdc:	mov	r1, #0
+    1fe0:	mov	r2, #8
+    1fe4:	mov	r3, #8
+    1fe8:	mov	r0, r4
+    1fec:	bl	0 <flatcc_verify_field>
+    1ff0:	cmp	r0, #0
+    1ff4:	bne	2018 <MyGame_Example_TestJSONPrefixParsing3_verify_table+0x54>
+    1ff8:	mov	r1, #1
+    1ffc:	mov	r2, #4
+    2000:	mov	r3, #4
+    2004:	mov	r0, r4
+    2008:	bl	0 <flatcc_verify_field>
+    200c:	cmp	r0, #0
+    2010:	bne	2018 <MyGame_Example_TestJSONPrefixParsing3_verify_table+0x54>
+    2014:	mov	r0, #0
+    2018:	ldr	r4, [sp, #8]
+    201c:	ldr	lr, [sp, #4]
+    2020:	add	sp, sp, #16
+    2024:	bx	lr
+
+00002028 <MyGame_Example_TestBase64_verify_table>:
+    2028:	mov	ip, sp
+    202c:	sub	sp, sp, #24
+    2030:	str	ip, [sp, #8]
+    2034:	str	lr, [sp, #12]
+    2038:	str	r4, [sp, #16]
+    203c:	str	r5, [sp, #20]
+    2040:	mov	r4, r0
+    2044:	mov	r1, #0
+    2048:	mov	r2, #0
+    204c:	mov	r3, #1
+    2050:	mov	r0, #1
+    2054:	mvn	ip, #0
+    2058:	str	ip, [sp, #4]
+    205c:	str	r0, [sp]
+    2060:	mov	r0, r4
+    2064:	bl	0 <flatcc_verify_vector_field>
+    2068:	cmp	r0, #0
+    206c:	bne	20cc <MyGame_Example_TestBase64_verify_table+0xa4>
+    2070:	mov	r1, #1
+    2074:	mov	r2, #0
+    2078:	mov	r3, #1
+    207c:	mov	r5, #1
+    2080:	mvn	r0, #0
+    2084:	str	r0, [sp, #4]
+    2088:	str	r5, [sp]
+    208c:	mov	r0, r4
+    2090:	bl	0 <flatcc_verify_vector_field>
+    2094:	cmp	r0, #0
+    2098:	bne	20cc <MyGame_Example_TestBase64_verify_table+0xa4>
+    209c:	mov	r1, #2
+    20a0:	mov	r2, #0
+    20a4:	mov	r3, #0
+    20a8:	mov	ip, #1
+    20ac:	ldr	r0, [pc, #44]	; 20e0 <MyGame_Example_TestBase64_verify_table+0xb8>
+    20b0:	str	r0, [sp, #4]
+    20b4:	str	ip, [sp]
+    20b8:	mov	r0, r4
+    20bc:	bl	0 <flatcc_verify_table_as_nested_root>
+    20c0:	cmp	r0, #0
+    20c4:	bne	20cc <MyGame_Example_TestBase64_verify_table+0xa4>
+    20c8:	mov	r0, #0
+    20cc:	ldr	r4, [sp, #16]
+    20d0:	ldr	r5, [sp, #20]
+    20d4:	ldr	lr, [sp, #12]
+    20d8:	add	sp, sp, #24
+    20dc:	bx	lr
+    20e0:	.word	0x00000000
+
+000020e4 <MyGame_Example_Monster_verify_table>:
+    20e4:	mov	ip, sp
+    20e8:	sub	sp, sp, #24
+    20ec:	str	ip, [sp, #8]
+    20f0:	str	lr, [sp, #12]
+    20f4:	str	r4, [sp, #16]
+    20f8:	str	r5, [sp, #20]
+    20fc:	mov	r4, r0
+    2100:	mov	r1, #0
+    2104:	mov	r2, #32
+    2108:	mov	r3, #16
+    210c:	mov	r0, r4
+    2110:	bl	0 <flatcc_verify_field>
+    2114:	cmp	r0, #0
+    2118:	bne	2540 <MyGame_Example_Monster_verify_table+0x45c>
+    211c:	mov	r1, #2
+    2120:	mov	r2, #2
+    2124:	mov	r3, #2
+    2128:	mov	r0, r4
+    212c:	bl	0 <flatcc_verify_field>
+    2130:	cmp	r0, #0
+    2134:	bne	2540 <MyGame_Example_Monster_verify_table+0x45c>
+    2138:	mov	r1, #1
+    213c:	mov	r2, #2
+    2140:	mov	r3, #2
+    2144:	mov	r0, r4
+    2148:	bl	0 <flatcc_verify_field>
+    214c:	cmp	r0, #0
+    2150:	bne	2540 <MyGame_Example_Monster_verify_table+0x45c>
+    2154:	mov	r1, #3
+    2158:	mov	r2, #1
+    215c:	mov	r0, r4
+    2160:	bl	0 <flatcc_verify_string_field>
+    2164:	cmp	r0, #0
+    2168:	bne	2540 <MyGame_Example_Monster_verify_table+0x45c>
+    216c:	mov	r1, #6
+    2170:	mov	r2, #1
+    2174:	mov	r3, #1
+    2178:	mov	r0, r4
+    217c:	bl	0 <flatcc_verify_field>
+    2180:	cmp	r0, #0
+    2184:	bne	2540 <MyGame_Example_Monster_verify_table+0x45c>
+    2188:	mov	r1, #5
+    218c:	mov	r2, #0
+    2190:	mov	r3, #1
+    2194:	mov	r0, #1
+    2198:	mvn	r5, #0
+    219c:	str	r5, [sp, #4]
+    21a0:	str	r0, [sp]
+    21a4:	mov	r0, r4
+    21a8:	bl	0 <flatcc_verify_vector_field>
+    21ac:	cmp	r0, #0
+    21b0:	bne	2540 <MyGame_Example_Monster_verify_table+0x45c>
+    21b4:	mov	r1, #11
+    21b8:	mov	r2, #0
+    21bc:	ldr	r3, [pc, #920]	; 255c <MyGame_Example_Monster_verify_table+0x478>
+    21c0:	mov	r0, r4
+    21c4:	bl	0 <flatcc_verify_table_vector_field>
+    21c8:	cmp	r0, #0
+    21cc:	bne	2540 <MyGame_Example_Monster_verify_table+0x45c>
+    21d0:	mov	r1, #10
+    21d4:	mov	r2, #0
+    21d8:	mov	r0, r4
+    21dc:	bl	0 <flatcc_verify_string_vector_field>
+    21e0:	cmp	r0, #0
+    21e4:	bne	2540 <MyGame_Example_Monster_verify_table+0x45c>
+    21e8:	mov	r1, #28
+    21ec:	mov	r2, #0
+    21f0:	mov	r0, r4
+    21f4:	bl	0 <flatcc_verify_string_vector_field>
+    21f8:	cmp	r0, #0
+    21fc:	bne	2540 <MyGame_Example_Monster_verify_table+0x45c>
+    2200:	mov	r1, #24
+    2204:	mov	r2, #0
+    2208:	mov	r3, #1
+    220c:	mov	r5, #1
+    2210:	mvn	r0, #0
+    2214:	str	r0, [sp, #4]
+    2218:	str	r5, [sp]
+    221c:	mov	r0, r4
+    2220:	bl	0 <flatcc_verify_vector_field>
+    2224:	cmp	r0, #0
+    2228:	bne	2540 <MyGame_Example_Monster_verify_table+0x45c>
+    222c:	mov	r1, #29
+    2230:	mov	r2, #0
+    2234:	mov	r3, #8
+    2238:	mov	r0, #4
+    223c:	mvn	ip, #-536870912	; 0xe0000000
+    2240:	str	ip, [sp, #4]
+    2244:	str	r0, [sp]
+    2248:	mov	r0, r4
+    224c:	bl	0 <flatcc_verify_vector_field>
+    2250:	cmp	r0, #0
+    2254:	bne	2540 <MyGame_Example_Monster_verify_table+0x45c>
+    2258:	mov	r1, #12
+    225c:	mov	r2, #0
+    2260:	ldr	r3, [pc, #756]	; 255c <MyGame_Example_Monster_verify_table+0x478>
+    2264:	mov	r0, r4
+    2268:	bl	0 <flatcc_verify_table_field>
+    226c:	cmp	r0, #0
+    2270:	bne	2540 <MyGame_Example_Monster_verify_table+0x45c>
+    2274:	mov	r1, #8
+    2278:	mov	r2, #0
+    227c:	ldr	r3, [pc, #720]	; 2554 <MyGame_Example_Monster_verify_table+0x470>
+    2280:	mov	r0, r4
+    2284:	bl	0 <flatcc_verify_union_field>
+    2288:	cmp	r0, #0
+    228c:	bne	2540 <MyGame_Example_Monster_verify_table+0x45c>
+    2290:	mov	r1, #9
+    2294:	mov	r2, #0
+    2298:	mov	r3, #4
+    229c:	mov	r0, #2
+    22a0:	mvn	ip, #-1073741824	; 0xc0000000
+    22a4:	str	ip, [sp, #4]
+    22a8:	str	r0, [sp]
+    22ac:	mov	r0, r4
+    22b0:	bl	0 <flatcc_verify_vector_field>
+    22b4:	cmp	r0, #0
+    22b8:	bne	2540 <MyGame_Example_Monster_verify_table+0x45c>
+    22bc:	mov	r1, #31
+    22c0:	mov	r2, #0
+    22c4:	mov	r3, #4
+    22c8:	mov	r0, #2
+    22cc:	mvn	r5, #-1073741824	; 0xc0000000
+    22d0:	str	r5, [sp, #4]
+    22d4:	str	r0, [sp]
+    22d8:	mov	r0, r4
+    22dc:	bl	0 <flatcc_verify_vector_field>
+    22e0:	cmp	r0, #0
+    22e4:	bne	2540 <MyGame_Example_Monster_verify_table+0x45c>
+    22e8:	mov	r1, #13
+    22ec:	mov	r2, #0
+    22f0:	mov	r3, #0
+    22f4:	mov	ip, #1
+    22f8:	ldr	r0, [pc, #604]	; 255c <MyGame_Example_Monster_verify_table+0x478>
+    22fc:	str	r0, [sp, #4]
+    2300:	str	ip, [sp]
+    2304:	mov	r0, r4
+    2308:	bl	0 <flatcc_verify_table_as_nested_root>
+    230c:	cmp	r0, #0
+    2310:	bne	2540 <MyGame_Example_Monster_verify_table+0x45c>
+    2314:	mov	r1, #14
+    2318:	mov	r2, #0
+    231c:	ldr	r3, [pc, #572]	; 2560 <MyGame_Example_Monster_verify_table+0x47c>
+    2320:	mov	r0, r4
+    2324:	bl	0 <flatcc_verify_table_field>
+    2328:	cmp	r0, #0
+    232c:	bne	2540 <MyGame_Example_Monster_verify_table+0x45c>
+    2330:	mov	r1, #15
+    2334:	mov	r2, #1
+    2338:	mov	r3, #1
+    233c:	mov	r0, r4
+    2340:	bl	0 <flatcc_verify_field>
+    2344:	cmp	r0, #0
+    2348:	bne	2540 <MyGame_Example_Monster_verify_table+0x45c>
+    234c:	mov	r1, #16
+    2350:	mov	r2, #4
+    2354:	mov	r3, #4
+    2358:	mov	r0, r4
+    235c:	bl	0 <flatcc_verify_field>
+    2360:	cmp	r0, #0
+    2364:	bne	2540 <MyGame_Example_Monster_verify_table+0x45c>
+    2368:	mov	r1, #17
+    236c:	mov	r2, #4
+    2370:	mov	r3, #4
+    2374:	mov	r0, r4
+    2378:	bl	0 <flatcc_verify_field>
+    237c:	cmp	r0, #0
+    2380:	bne	2540 <MyGame_Example_Monster_verify_table+0x45c>
+    2384:	mov	r1, #18
+    2388:	mov	r2, #8
+    238c:	mov	r3, #8
+    2390:	mov	r0, r4
+    2394:	bl	0 <flatcc_verify_field>
+    2398:	cmp	r0, #0
+    239c:	bne	2540 <MyGame_Example_Monster_verify_table+0x45c>
+    23a0:	mov	r1, #19
+    23a4:	mov	r2, #8
+    23a8:	mov	r3, #8
+    23ac:	mov	r0, r4
+    23b0:	bl	0 <flatcc_verify_field>
+    23b4:	cmp	r0, #0
+    23b8:	bne	2540 <MyGame_Example_Monster_verify_table+0x45c>
+    23bc:	mov	r1, #20
+    23c0:	mov	r2, #4
+    23c4:	mov	r3, #4
+    23c8:	mov	r0, r4
+    23cc:	bl	0 <flatcc_verify_field>
+    23d0:	cmp	r0, #0
+    23d4:	bne	2540 <MyGame_Example_Monster_verify_table+0x45c>
+    23d8:	mov	r1, #21
+    23dc:	mov	r2, #4
+    23e0:	mov	r3, #4
+    23e4:	mov	r0, r4
+    23e8:	bl	0 <flatcc_verify_field>
+    23ec:	cmp	r0, #0
+    23f0:	bne	2540 <MyGame_Example_Monster_verify_table+0x45c>
+    23f4:	mov	r1, #22
+    23f8:	mov	r2, #8
+    23fc:	mov	r3, #8
+    2400:	mov	r0, r4
+    2404:	bl	0 <flatcc_verify_field>
+    2408:	cmp	r0, #0
+    240c:	bne	2540 <MyGame_Example_Monster_verify_table+0x45c>
+    2410:	mov	r1, #23
+    2414:	mov	r2, #8
+    2418:	mov	r3, #8
+    241c:	mov	r0, r4
+    2420:	bl	0 <flatcc_verify_field>
+    2424:	cmp	r0, #0
+    2428:	bne	2540 <MyGame_Example_Monster_verify_table+0x45c>
+    242c:	mov	r1, #25
+    2430:	mov	r2, #4
+    2434:	mov	r3, #4
+    2438:	mov	r0, r4
+    243c:	bl	0 <flatcc_verify_field>
+    2440:	cmp	r0, #0
+    2444:	bne	2540 <MyGame_Example_Monster_verify_table+0x45c>
+    2448:	mov	r1, #26
+    244c:	mov	r2, #4
+    2450:	mov	r3, #4
+    2454:	mov	r0, r4
+    2458:	bl	0 <flatcc_verify_field>
+    245c:	cmp	r0, #0
+    2460:	bne	2540 <MyGame_Example_Monster_verify_table+0x45c>
+    2464:	mov	r1, #27
+    2468:	mov	r2, #4
+    246c:	mov	r3, #4
+    2470:	mov	r0, r4
+    2474:	bl	0 <flatcc_verify_field>
+    2478:	cmp	r0, #0
+    247c:	bne	2540 <MyGame_Example_Monster_verify_table+0x45c>
+    2480:	mov	r1, #30
+    2484:	mov	r2, #0
+    2488:	mov	r3, #1
+    248c:	mov	r0, #1
+    2490:	mvn	ip, #0
+    2494:	str	ip, [sp, #4]
+    2498:	str	r0, [sp]
+    249c:	mov	r0, r4
+    24a0:	bl	0 <flatcc_verify_vector_field>
+    24a4:	cmp	r0, #0
+    24a8:	bne	2540 <MyGame_Example_Monster_verify_table+0x45c>
+    24ac:	mov	r1, #32
+    24b0:	mov	r2, #0
+    24b4:	mov	r3, #8
+    24b8:	mov	r0, #8
+    24bc:	mvn	ip, #-536870912	; 0xe0000000
+    24c0:	str	ip, [sp, #4]
+    24c4:	str	r0, [sp]
+    24c8:	mov	r0, r4
+    24cc:	bl	0 <flatcc_verify_vector_field>
+    24d0:	cmp	r0, #0
+    24d4:	bne	2540 <MyGame_Example_Monster_verify_table+0x45c>
+    24d8:	mov	r1, #33	; 0x21
+    24dc:	mov	r2, #0
+    24e0:	mov	r3, #8
+    24e4:	mov	r5, #8
+    24e8:	mvn	r0, #-536870912	; 0xe0000000
+    24ec:	str	r0, [sp, #4]
+    24f0:	str	r5, [sp]
+    24f4:	mov	r0, r4
+    24f8:	bl	0 <flatcc_verify_vector_field>
+    24fc:	cmp	r0, #0
+    2500:	bne	2540 <MyGame_Example_Monster_verify_table+0x45c>
+    2504:	mov	r1, #34	; 0x22
+    2508:	mov	r2, #0
+    250c:	ldr	r3, [pc, #68]	; 2558 <MyGame_Example_Monster_verify_table+0x474>
+    2510:	mov	r0, r4
+    2514:	bl	0 <flatcc_verify_table_field>
+    2518:	cmp	r0, #0
+    251c:	bne	2540 <MyGame_Example_Monster_verify_table+0x45c>
+    2520:	mov	r1, #35	; 0x23
+    2524:	mov	r2, #0
+    2528:	ldr	r3, [pc, #52]	; 2564 <MyGame_Example_Monster_verify_table+0x480>
+    252c:	mov	r0, r4
+    2530:	bl	0 <flatcc_verify_table_field>
+    2534:	cmp	r0, #0
+    2538:	bne	2540 <MyGame_Example_Monster_verify_table+0x45c>
+    253c:	mov	r0, #0
+    2540:	ldr	r4, [sp, #16]
+    2544:	ldr	r5, [sp, #20]
+    2548:	ldr	lr, [sp, #12]
+    254c:	add	sp, sp, #24
+    2550:	bx	lr
+	...
+
+00002568 <MyGame_Example_Monster_verify_as_root>:
+    2568:	mov	ip, sp
+    256c:	sub	sp, sp, #8
+    2570:	str	ip, [sp]
+    2574:	str	lr, [sp, #4]
+    2578:	ldr	r2, [pc, #20]	; 2594 <MyGame_Example_Monster_verify_as_root+0x2c>
+    257c:	ldr	r3, [pc, #12]	; 2590 <MyGame_Example_Monster_verify_as_root+0x28>
+    2580:	bl	0 <flatcc_verify_table_as_root>
+    2584:	ldr	lr, [sp, #4]
+    2588:	add	sp, sp, #8
+    258c:	bx	lr
+    2590:	.word	0x00000000
+    2594:	.word	0x000000ae
+
+00002598 <MyGame_Example_Monster_verify_as_root_with_identifier>:
+    2598:	mov	ip, sp
+    259c:	sub	sp, sp, #8
+    25a0:	str	ip, [sp]
+    25a4:	str	lr, [sp, #4]
+    25a8:	ldr	r3, [pc, #12]	; 25bc <MyGame_Example_Monster_verify_as_root_with_identifier+0x24>
+    25ac:	bl	0 <flatcc_verify_table_as_root>
+    25b0:	ldr	lr, [sp, #4]
+    25b4:	add	sp, sp, #8
+    25b8:	bx	lr
+    25bc:	.word	0x00000000
+
+000025c0 <Fantasy_Attacker_verify_table>:
+    25c0:	mov	ip, sp
+    25c4:	sub	sp, sp, #8
+    25c8:	str	ip, [sp]
+    25cc:	str	lr, [sp, #4]
+    25d0:	mov	r1, #0
+    25d4:	mov	r2, #4
+    25d8:	mov	r3, #4
+    25dc:	bl	0 <flatcc_verify_field>
+    25e0:	cmp	r0, #0
+    25e4:	bne	25ec <Fantasy_Attacker_verify_table+0x2c>
+    25e8:	mov	r0, #0
+    25ec:	ldr	lr, [sp, #4]
+    25f0:	add	sp, sp, #8
+    25f4:	bx	lr
+
+000025f8 <Fantasy_Movie_verify_table>:
+    25f8:	mov	ip, sp
+    25fc:	sub	sp, sp, #16
+    2600:	str	ip, [sp]
+    2604:	str	lr, [sp, #4]
+    2608:	str	r4, [sp, #8]
+    260c:	mov	r4, r0
+    2610:	mov	r1, #1
+    2614:	mov	r2, #0
+    2618:	ldr	r3, [pc, #144]	; 26b0 <Fantasy_Movie_verify_table+0xb8>
+    261c:	mov	r0, r4
+    2620:	bl	0 <flatcc_verify_union_field>
+    2624:	cmp	r0, #0
+    2628:	bne	26a0 <Fantasy_Movie_verify_table+0xa8>
+    262c:	mov	r1, #3
+    2630:	mov	r2, #0
+    2634:	ldr	r3, [pc, #116]	; 26b0 <Fantasy_Movie_verify_table+0xb8>
+    2638:	mov	r0, r4
+    263c:	bl	0 <flatcc_verify_union_field>
+    2640:	cmp	r0, #0
+    2644:	bne	26a0 <Fantasy_Movie_verify_table+0xa8>
+    2648:	mov	r1, #5
+    264c:	mov	r2, #0
+    2650:	ldr	r3, [pc, #88]	; 26b0 <Fantasy_Movie_verify_table+0xb8>
+    2654:	mov	r0, r4
+    2658:	bl	0 <flatcc_verify_union_field>
+    265c:	cmp	r0, #0
+    2660:	bne	26a0 <Fantasy_Movie_verify_table+0xa8>
+    2664:	mov	r1, #7
+    2668:	mov	r2, #0
+    266c:	ldr	r3, [pc, #60]	; 26b0 <Fantasy_Movie_verify_table+0xb8>
+    2670:	mov	r0, r4
+    2674:	bl	0 <flatcc_verify_union_field>
+    2678:	cmp	r0, #0
+    267c:	bne	26a0 <Fantasy_Movie_verify_table+0xa8>
+    2680:	mov	r1, #9
+    2684:	mov	r2, #0
+    2688:	ldr	r3, [pc, #32]	; 26b0 <Fantasy_Movie_verify_table+0xb8>
+    268c:	mov	r0, r4
+    2690:	bl	0 <flatcc_verify_union_vector_field>
+    2694:	cmp	r0, #0
+    2698:	bne	26a0 <Fantasy_Movie_verify_table+0xa8>
+    269c:	mov	r0, #0
+    26a0:	ldr	r4, [sp, #8]
+    26a4:	ldr	lr, [sp, #4]
+    26a8:	add	sp, sp, #16
+    26ac:	bx	lr
+    26b0:	.word	0x00000000
+
+000026b4 <readfile>:
+    26b4:	mov	ip, sp
+    26b8:	sub	sp, sp, #40	; 0x28
+    26bc:	str	ip, [sp]
+    26c0:	str	lr, [sp, #4]
+    26c4:	str	r4, [sp, #8]
+    26c8:	str	r5, [sp, #12]
+    26cc:	str	r6, [sp, #16]
+    26d0:	str	r7, [sp, #20]
+    26d4:	str	r8, [sp, #24]
+    26d8:	mov	r8, r1
+    26dc:	cmp	r2, #0
+    26e0:	bne	26ec <readfile+0x38>
+    26e4:	add	r4, sp, #32
+    26e8:	b	26f0 <readfile+0x3c>
+    26ec:	mov	r4, r2
+    26f0:	ldr	r1, [pc, #272]	; 2808 <readfile+0x154>
+    26f4:	bl	0 <fopen>
+    26f8:	mov	r7, r0
+    26fc:	mov	r6, #0
+    2700:	mov	r5, #0
+    2704:	cmp	r7, #0
+    2708:	beq	27bc <readfile+0x108>
+    270c:	mov	r1, #0
+    2710:	mov	r2, #2
+    2714:	mov	r0, r7
+    2718:	bl	0 <fseek>
+    271c:	mov	r0, r7
+    2720:	bl	0 <ftell>
+    2724:	mov	r6, r0
+    2728:	str	r6, [r4]
+    272c:	cmp	r8, #0
+    2730:	bhi	273c <readfile+0x88>
+    2734:	mov	r2, #0
+    2738:	b	2748 <readfile+0x94>
+    273c:	cmp	r6, r8
+    2740:	movhi	r2, #1
+    2744:	movls	r2, #0
+    2748:	cmp	r2, #0
+    274c:	bne	27bc <readfile+0x108>
+    2750:	mov	r0, r7
+    2754:	bl	0 <rewind>
+    2758:	cmp	r6, #0
+    275c:	bne	2768 <readfile+0xb4>
+    2760:	mov	r0, #1
+    2764:	b	276c <readfile+0xb8>
+    2768:	mov	r0, r6
+    276c:	bl	0 <malloc>
+    2770:	mov	r5, r0
+    2774:	cmp	r5, #0
+    2778:	beq	27bc <readfile+0x108>
+    277c:	mov	r8, #0
+    2780:	add	r0, r5, r8
+    2784:	mov	r1, #1
+    2788:	sub	r2, r6, r8
+    278c:	mov	r3, r7
+    2790:	bl	0 <fread>
+    2794:	cmp	r0, #0
+    2798:	beq	27a4 <readfile+0xf0>
+    279c:	add	r8, r8, r0
+    27a0:	b	2780 <readfile+0xcc>
+    27a4:	cmp	r8, r6
+    27a8:	bne	27bc <readfile+0x108>
+    27ac:	mov	r0, r7
+    27b0:	bl	0 <fclose>
+    27b4:	str	r6, [r4]
+    27b8:	b	27e4 <readfile+0x130>
+    27bc:	cmp	r7, #0
+    27c0:	beq	27cc <readfile+0x118>
+    27c4:	mov	r0, r7
+    27c8:	bl	0 <fclose>
+    27cc:	cmp	r5, #0
+    27d0:	beq	27dc <readfile+0x128>
+    27d4:	mov	r0, r5
+    27d8:	bl	0 <free>
+    27dc:	str	r6, [r4]
+    27e0:	mov	r5, #0
+    27e4:	mov	r0, r5
+    27e8:	ldr	r4, [sp, #8]
+    27ec:	ldr	r5, [sp, #12]
+    27f0:	ldr	r6, [sp, #16]
+    27f4:	ldr	r7, [sp, #20]
+    27f8:	ldr	r8, [sp, #24]
+    27fc:	ldr	lr, [sp, #4]
+    2800:	add	sp, sp, #40	; 0x28
+    2804:	bx	lr
+    2808:	.word	0x0000019f
+
+0000280c <hexdump>:
+    280c:	mov	ip, sp
+    2810:	sub	sp, sp, #48	; 0x30
+    2814:	str	ip, [sp]
+    2818:	str	lr, [sp, #4]
+    281c:	str	r4, [sp, #8]
+    2820:	str	r5, [sp, #12]
+    2824:	str	r6, [sp, #16]
+    2828:	str	r7, [sp, #20]
+    282c:	mov	r4, r3
+    2830:	mov	r5, r2
+    2834:	mov	r6, r1
+    2838:	mov	r2, r0
+    283c:	cmp	r2, #0
+    2840:	beq	2850 <hexdump+0x44>
+    2844:	ldr	r1, [pc, #316]	; 2988 <hexdump+0x17c>
+    2848:	mov	r0, r4
+    284c:	bl	0 <fprintf>
+    2850:	mov	r7, #0
+    2854:	cmp	r7, r5
+    2858:	bcs	292c <hexdump+0x120>
+    285c:	and	r1, r7, #15
+    2860:	cmp	r1, #0
+    2864:	bne	2894 <hexdump+0x88>
+    2868:	cmp	r7, #0
+    286c:	beq	2880 <hexdump+0x74>
+    2870:	ldr	r1, [pc, #268]	; 2984 <hexdump+0x178>
+    2874:	add	r2, sp, #24
+    2878:	mov	r0, r4
+    287c:	bl	0 <fprintf>
+    2880:	ldr	r1, [pc, #248]	; 2980 <hexdump+0x174>
+    2884:	mov	r2, r7
+    2888:	mov	r0, r4
+    288c:	bl	0 <fprintf>
+    2890:	b	28ac <hexdump+0xa0>
+    2894:	and	r3, r7, #7
+    2898:	cmp	r3, #0
+    289c:	bne	28ac <hexdump+0xa0>
+    28a0:	ldr	r1, [pc, #208]	; 2978 <hexdump+0x16c>
+    28a4:	mov	r0, r4
+    28a8:	bl	0 <fprintf>
+    28ac:	ldr	r1, [pc, #200]	; 297c <hexdump+0x170>
+    28b0:	ldrb	r2, [r6, r7]
+    28b4:	mov	r0, r4
+    28b8:	bl	0 <fprintf>
+    28bc:	ldrb	r3, [r6, r7]
+    28c0:	cmp	r3, #32
+    28c4:	blt	28dc <hexdump+0xd0>
+    28c8:	ldrb	r2, [r6, r7]
+    28cc:	cmp	r2, #126	; 0x7e
+    28d0:	movgt	r1, #1
+    28d4:	movle	r1, #0
+    28d8:	b	28e0 <hexdump+0xd4>
+    28dc:	mov	r1, #1
+    28e0:	cmp	r1, #0
+    28e4:	bne	2900 <hexdump+0xf4>
+    28e8:	add	r2, sp, #24
+    28ec:	and	r0, r7, #15
+    28f0:	ldrb	r3, [r6, r7]
+    28f4:	and	r1, r3, #255	; 0xff
+    28f8:	strb	r1, [r2, r0]
+    28fc:	b	2910 <hexdump+0x104>
+    2900:	add	r0, sp, #24
+    2904:	and	r3, r7, #15
+    2908:	mov	r2, #46	; 0x2e
+    290c:	strb	r2, [r0, r3]
+    2910:	add	r0, sp, #24
+    2914:	and	ip, r7, #15
+    2918:	add	r2, r0, ip
+    291c:	mov	r3, #0
+    2920:	strb	r3, [r2, #1]
+    2924:	add	r7, r7, #1
+    2928:	b	2854 <hexdump+0x48>
+    292c:	and	ip, r7, #15
+    2930:	cmp	ip, #0
+    2934:	beq	294c <hexdump+0x140>
+    2938:	ldr	r1, [pc, #76]	; 298c <hexdump+0x180>
+    293c:	mov	r0, r4
+    2940:	bl	0 <fprintf>
+    2944:	add	r7, r7, #1
+    2948:	b	292c <hexdump+0x120>
+    294c:	ldr	r1, [pc, #48]	; 2984 <hexdump+0x178>
+    2950:	add	r2, sp, #24
+    2954:	mov	r0, r4
+    2958:	bl	0 <fprintf>
+    295c:	ldr	r4, [sp, #8]
+    2960:	ldr	r5, [sp, #12]
+    2964:	ldr	r6, [sp, #16]
+    2968:	ldr	r7, [sp, #20]
+    296c:	ldr	lr, [sp, #4]
+    2970:	add	sp, sp, #48	; 0x30
+    2974:	bx	lr
+    2978:	.word	0x000004ba
+    297c:	.word	0x0000025f
+    2980:	.word	0x000001c6
+    2984:	.word	0x00000440
+    2988:	.word	0x000003f9
+    298c:	.word	0x000000aa
+
+00002990 <verify_monster>:
+    2990:	mov	ip, sp
+    2994:	sub	sp, sp, #24
+    2998:	str	ip, [sp]
+    299c:	str	lr, [sp, #4]
+    29a0:	str	r4, [sp, #8]
+    29a4:	str	r5, [sp, #12]
+    29a8:	str	r6, [sp, #16]
+    29ac:	mov	r6, r0
+    29b0:	mov	r0, r6
+    29b4:	bl	9f0 <MyGame_Example_Monster_as_root>
+    29b8:	mov	r5, r0
+    29bc:	cmp	r5, #0
+    29c0:	bne	29d4 <verify_monster+0x44>
+    29c4:	ldr	r0, [pc, #1588]	; 3000 <verify_monster+0x670>
+    29c8:	bl	0 <printf>
+    29cc:	mvn	r0, #0
+    29d0:	b	2fc8 <verify_monster+0x638>
+    29d4:	mov	r0, r5
+    29d8:	bl	b88 <MyGame_Example_Monster_hp>
+    29dc:	cmp	r0, #80	; 0x50
+    29e0:	beq	29f4 <verify_monster+0x64>
+    29e4:	ldr	r0, [pc, #1664]	; 306c <verify_monster+0x6dc>
+    29e8:	bl	0 <printf>
+    29ec:	mvn	r0, #0
+    29f0:	b	2fc8 <verify_monster+0x638>
+    29f4:	mov	r0, r5
+    29f8:	bl	a60 <MyGame_Example_Monster_pos>
+    29fc:	mov	r4, r0
+    2a00:	cmp	r4, #0
+    2a04:	bne	2a18 <verify_monster+0x88>
+    2a08:	ldr	r0, [pc, #1632]	; 3070 <verify_monster+0x6e0>
+    2a0c:	bl	0 <printf>
+    2a10:	mvn	r0, #0
+    2a14:	b	2fc8 <verify_monster+0x638>
+    2a18:	sub	r2, r4, r6
+    2a1c:	and	ip, r2, #15
+    2a20:	cmp	ip, #0
+    2a24:	beq	2a38 <verify_monster+0xa8>
+    2a28:	ldr	r0, [pc, #1528]	; 3028 <verify_monster+0x698>
+    2a2c:	bl	0 <printf>
+    2a30:	mvn	r0, #0
+    2a34:	b	2fc8 <verify_monster+0x638>
+    2a38:	mov	r0, r4
+    2a3c:	bl	8a8 <MyGame_Example_Vec3_x>
+    2a40:	vmov.f32	s4, #112	; 0x3f800000  1.0
+    2a44:	vcmp.f32	s0, s4
+    2a48:	vmrs	APSR_nzcv, fpscr
+    2a4c:	beq	2a60 <verify_monster+0xd0>
+    2a50:	ldr	r0, [pc, #1460]	; 300c <verify_monster+0x67c>
+    2a54:	bl	0 <printf>
+    2a58:	mvn	r0, #0
+    2a5c:	b	2fc8 <verify_monster+0x638>
+    2a60:	mov	r0, r4
+    2a64:	bl	8dc <MyGame_Example_Vec3_y>
+    2a68:	vmov.f32	s12, #0	; 0x40000000  2.0
+    2a6c:	vcmp.f32	s0, s12
+    2a70:	vmrs	APSR_nzcv, fpscr
+    2a74:	beq	2a88 <verify_monster+0xf8>
+    2a78:	ldr	r0, [pc, #1436]	; 301c <verify_monster+0x68c>
+    2a7c:	bl	0 <printf>
+    2a80:	mvn	r0, #0
+    2a84:	b	2fc8 <verify_monster+0x638>
+    2a88:	mov	r0, r4
+    2a8c:	bl	914 <MyGame_Example_Vec3_z>
+    2a90:	vmov.f32	s2, #8	; 0x40400000  3.0
+    2a94:	vcmp.f32	s0, s2
+    2a98:	vmrs	APSR_nzcv, fpscr
+    2a9c:	beq	2ab0 <verify_monster+0x120>
+    2aa0:	ldr	r0, [pc, #1428]	; 303c <verify_monster+0x6ac>
+    2aa4:	bl	0 <printf>
+    2aa8:	mvn	r0, #0
+    2aac:	b	2fc8 <verify_monster+0x638>
+    2ab0:	mov	r0, r4
+    2ab4:	bl	94c <MyGame_Example_Vec3_test1>
+    2ab8:	vmov.f64	d1, #8	; 0x40400000  3.0
+    2abc:	vcmp.f64	d0, d1
+    2ac0:	vmrs	APSR_nzcv, fpscr
+    2ac4:	beq	2ad8 <verify_monster+0x148>
+    2ac8:	ldr	r0, [pc, #1360]	; 3020 <verify_monster+0x690>
+    2acc:	bl	0 <printf>
+    2ad0:	mvn	r0, #0
+    2ad4:	b	2fc8 <verify_monster+0x638>
+    2ad8:	mov	r0, r4
+    2adc:	bl	988 <MyGame_Example_Vec3_test2>
+    2ae0:	cmp	r0, #2
+    2ae4:	beq	2af8 <verify_monster+0x168>
+    2ae8:	ldr	r0, [pc, #1276]	; 2fec <verify_monster+0x65c>
+    2aec:	bl	0 <printf>
+    2af0:	mvn	r0, #0
+    2af4:	b	2fc8 <verify_monster+0x638>
+    2af8:	mov	r0, r4
+    2afc:	bl	9c0 <MyGame_Example_Vec3_test3>
+    2b00:	mov	r4, r0
+    2b04:	mov	r0, r4
+    2b08:	bl	83c <MyGame_Example_Test_a>
+    2b0c:	cmp	r0, #5
+    2b10:	bne	2b2c <verify_monster+0x19c>
+    2b14:	mov	r0, r4
+    2b18:	bl	870 <MyGame_Example_Test_b>
+    2b1c:	cmp	r0, #6
+    2b20:	movne	r0, #1
+    2b24:	moveq	r0, #0
+    2b28:	b	2b30 <verify_monster+0x1a0>
+    2b2c:	mov	r0, #1
+    2b30:	cmp	r0, #0
+    2b34:	beq	2b48 <verify_monster+0x1b8>
+    2b38:	ldr	r0, [pc, #1236]	; 3014 <verify_monster+0x684>
+    2b3c:	bl	0 <printf>
+    2b40:	mvn	r0, #0
+    2b44:	b	2fc8 <verify_monster+0x638>
+    2b48:	mov	r0, r5
+    2b4c:	bl	c70 <MyGame_Example_Monster_name>
+    2b50:	mov	r4, r0
+    2b54:	mov	r0, r4
+    2b58:	bl	4f4 <flatbuffers_string_len>
+    2b5c:	cmp	r0, #9
+    2b60:	beq	2b74 <verify_monster+0x1e4>
+    2b64:	ldr	r0, [pc, #1296]	; 307c <verify_monster+0x6ec>
+    2b68:	bl	0 <printf>
+    2b6c:	mvn	r0, #0
+    2b70:	b	2fc8 <verify_monster+0x638>
+    2b74:	cmp	r4, #0
+    2b78:	beq	2b98 <verify_monster+0x208>
+    2b7c:	ldr	r1, [pc, #1240]	; 305c <verify_monster+0x6cc>
+    2b80:	mov	r0, r4
+    2b84:	bl	0 <strcmp>
+    2b88:	cmp	r0, #0
+    2b8c:	movne	r1, #1
+    2b90:	moveq	r1, #0
+    2b94:	b	2b9c <verify_monster+0x20c>
+    2b98:	mov	r1, #1
+    2b9c:	cmp	r1, #0
+    2ba0:	beq	2bb4 <verify_monster+0x224>
+    2ba4:	ldr	r0, [pc, #1112]	; 3004 <verify_monster+0x674>
+    2ba8:	bl	0 <printf>
+    2bac:	mvn	r0, #0
+    2bb0:	b	2fc8 <verify_monster+0x638>
+    2bb4:	mov	r0, r5
+    2bb8:	bl	da8 <MyGame_Example_Monster_inventory>
+    2bbc:	mov	r4, r0
+    2bc0:	mov	r0, r4
+    2bc4:	bl	5f0 <flatbuffers_uint8_vec_len>
+    2bc8:	cmp	r0, #5
+    2bcc:	beq	2be0 <verify_monster+0x250>
+    2bd0:	ldr	r0, [pc, #1048]	; 2ff0 <verify_monster+0x660>
+    2bd4:	bl	0 <printf>
+    2bd8:	mvn	r0, #0
+    2bdc:	b	2fc8 <verify_monster+0x638>
+    2be0:	mov	r6, #0
+    2be4:	cmp	r6, #5
+    2be8:	bge	2c1c <verify_monster+0x28c>
+    2bec:	mov	r1, r6
+    2bf0:	mov	r0, r4
+    2bf4:	bl	610 <flatbuffers_uint8_vec_at>
+    2bf8:	cmp	r0, r6
+    2bfc:	beq	2c14 <verify_monster+0x284>
+    2c00:	ldr	r0, [pc, #1084]	; 3044 <verify_monster+0x6b4>
+    2c04:	mov	r1, r6
+    2c08:	bl	0 <printf>
+    2c0c:	mvn	r0, #0
+    2c10:	b	2fc8 <verify_monster+0x638>
+    2c14:	add	r6, r6, #1
+    2c18:	b	2be4 <verify_monster+0x254>
+    2c1c:	mov	r0, r5
+    2c20:	bl	ee0 <MyGame_Example_Monster_testarrayofstring>
+    2c24:	mov	r4, r0
+    2c28:	cmp	r0, #0
+    2c2c:	bne	2c40 <verify_monster+0x2b0>
+    2c30:	ldr	r0, [pc, #956]	; 2ff4 <verify_monster+0x664>
+    2c34:	bl	0 <printf>
+    2c38:	mvn	r0, #0
+    2c3c:	b	2fc8 <verify_monster+0x638>
+    2c40:	mov	r0, r4
+    2c44:	bl	528 <flatbuffers_string_vec_len>
+    2c48:	cmp	r0, #2
+    2c4c:	beq	2c60 <verify_monster+0x2d0>
+    2c50:	ldr	r0, [pc, #1036]	; 3064 <verify_monster+0x6d4>
+    2c54:	bl	0 <printf>
+    2c58:	mvn	r0, #0
+    2c5c:	b	2fc8 <verify_monster+0x638>
+    2c60:	mov	r1, #0
+    2c64:	mov	r0, r4
+    2c68:	bl	55c <flatbuffers_string_vec_at>
+    2c6c:	ldr	r1, [pc, #904]	; 2ffc <verify_monster+0x66c>
+    2c70:	bl	0 <strcmp>
+    2c74:	cmp	r0, #0
+    2c78:	beq	2c8c <verify_monster+0x2fc>
+    2c7c:	ldr	r0, [pc, #1008]	; 3074 <verify_monster+0x6e4>
+    2c80:	bl	0 <printf>
+    2c84:	mvn	r0, #0
+    2c88:	b	2fc8 <verify_monster+0x638>
+    2c8c:	mov	r1, #1
+    2c90:	mov	r0, r4
+    2c94:	bl	55c <flatbuffers_string_vec_at>
+    2c98:	ldr	r1, [pc, #948]	; 3054 <verify_monster+0x6c4>
+    2c9c:	bl	0 <strcmp>
+    2ca0:	cmp	r0, #0
+    2ca4:	beq	2cb8 <verify_monster+0x328>
+    2ca8:	ldr	r0, [pc, #892]	; 302c <verify_monster+0x69c>
+    2cac:	bl	0 <printf>
+    2cb0:	mvn	r0, #0
+    2cb4:	b	2fc8 <verify_monster+0x638>
+    2cb8:	mov	r0, r5
+    2cbc:	bl	1018 <MyGame_Example_Monster_test_type>
+    2cc0:	and	r0, r0, #255	; 0xff
+    2cc4:	cmp	r0, #1
+    2cc8:	beq	2cdc <verify_monster+0x34c>
+    2ccc:	ldr	r0, [pc, #860]	; 3030 <verify_monster+0x6a0>
+    2cd0:	bl	0 <printf>
+    2cd4:	mvn	r0, #0
+    2cd8:	b	2fc8 <verify_monster+0x638>
+    2cdc:	mov	r0, r5
+    2ce0:	bl	1100 <MyGame_Example_Monster_test>
+    2ce4:	cmp	r0, #0
+    2ce8:	bne	2cfc <verify_monster+0x36c>
+    2cec:	ldr	r0, [pc, #752]	; 2fe4 <verify_monster+0x654>
+    2cf0:	bl	0 <printf>
+    2cf4:	mvn	r0, #0
+    2cf8:	b	2fc8 <verify_monster+0x638>
+    2cfc:	bl	c70 <MyGame_Example_Monster_name>
+    2d00:	ldr	r1, [pc, #812]	; 3034 <verify_monster+0x6a4>
+    2d04:	bl	0 <strcmp>
+    2d08:	cmp	r0, #0
+    2d0c:	beq	2d20 <verify_monster+0x390>
+    2d10:	ldr	r0, [pc, #840]	; 3060 <verify_monster+0x6d0>
+    2d14:	bl	0 <printf>
+    2d18:	mvn	r0, #0
+    2d1c:	b	2fc8 <verify_monster+0x638>
+    2d20:	mov	r0, r5
+    2d24:	bl	1234 <MyGame_Example_Monster_test4>
+    2d28:	mov	r4, r0
+    2d2c:	mov	r0, r4
+    2d30:	bl	808 <MyGame_Example_Test_vec_len>
+    2d34:	cmp	r0, #2
+    2d38:	beq	2d4c <verify_monster+0x3bc>
+    2d3c:	ldr	r0, [pc, #772]	; 3048 <verify_monster+0x6b8>
+    2d40:	bl	0 <printf>
+    2d44:	mvn	r0, #0
+    2d48:	b	2fc8 <verify_monster+0x638>
+    2d4c:	mov	r1, #0
+    2d50:	mov	r0, r4
+    2d54:	bl	77c <MyGame_Example_Test_vec_at>
+    2d58:	mov	r6, r0
+    2d5c:	mov	r0, r6
+    2d60:	bl	83c <MyGame_Example_Test_a>
+    2d64:	cmp	r0, #10
+    2d68:	beq	2d7c <verify_monster+0x3ec>
+    2d6c:	ldr	r0, [pc, #732]	; 3050 <verify_monster+0x6c0>
+    2d70:	bl	0 <printf>
+    2d74:	mvn	r0, #0
+    2d78:	b	2fc8 <verify_monster+0x638>
+    2d7c:	mov	r0, r6
+    2d80:	bl	870 <MyGame_Example_Test_b>
+    2d84:	cmp	r0, #20
+    2d88:	beq	2d9c <verify_monster+0x40c>
+    2d8c:	ldr	r0, [pc, #708]	; 3058 <verify_monster+0x6c8>
+    2d90:	bl	0 <printf>
+    2d94:	mvn	r0, #0
+    2d98:	b	2fc8 <verify_monster+0x638>
+    2d9c:	mov	r1, #1
+    2da0:	mov	r0, r4
+    2da4:	bl	77c <MyGame_Example_Test_vec_at>
+    2da8:	mov	r4, r0
+    2dac:	mov	r0, r4
+    2db0:	bl	83c <MyGame_Example_Test_a>
+    2db4:	cmp	r0, #30
+    2db8:	beq	2dcc <verify_monster+0x43c>
+    2dbc:	ldr	r0, [pc, #564]	; 2ff8 <verify_monster+0x668>
+    2dc0:	bl	0 <printf>
+    2dc4:	mvn	r0, #0
+    2dc8:	b	2fc8 <verify_monster+0x638>
+    2dcc:	mov	r0, r4
+    2dd0:	bl	870 <MyGame_Example_Test_b>
+    2dd4:	cmp	r0, #40	; 0x28
+    2dd8:	beq	2dec <verify_monster+0x45c>
+    2ddc:	ldr	r0, [pc, #516]	; 2fe8 <verify_monster+0x658>
+    2de0:	bl	0 <printf>
+    2de4:	mvn	r0, #0
+    2de8:	b	2fc8 <verify_monster+0x638>
+    2dec:	mov	r0, r5
+    2df0:	bl	136c <MyGame_Example_Monster_testhashs32_fnv1>
+    2df4:	movw	lr, #51521	; 0xc941
+    2df8:	movt	lr, #56697	; 0xdd79
+    2dfc:	cmp	r0, lr
+    2e00:	beq	2e18 <verify_monster+0x488>
+    2e04:	ldr	r0, [pc, #564]	; 3040 <verify_monster+0x6b0>
+    2e08:	ldr	r1, [pc, #572]	; 304c <verify_monster+0x6bc>
+    2e0c:	mov	r2, #148	; 0x94
+    2e10:	ldr	r3, [pc, #456]	; 2fe0 <verify_monster+0x650>
+    2e14:	bl	0 <__assert_fail>
+    2e18:	mov	r0, r5
+    2e1c:	bl	1450 <MyGame_Example_Monster_testhashu32_fnv1>
+    2e20:	eor	r3, r0, #65	; 0x41
+    2e24:	eor	r3, r3, #51456	; 0xc900
+    2e28:	eor	r3, r3, #7929856	; 0x790000
+    2e2c:	eor	r3, r3, #-587202560	; 0xdd000000
+    2e30:	cmp	r3, #0
+    2e34:	beq	2e4c <verify_monster+0x4bc>
+    2e38:	ldr	r0, [pc, #484]	; 3024 <verify_monster+0x694>
+    2e3c:	ldr	r1, [pc, #520]	; 304c <verify_monster+0x6bc>
+    2e40:	mov	r2, #149	; 0x95
+    2e44:	ldr	r3, [pc, #404]	; 2fe0 <verify_monster+0x650>
+    2e48:	bl	0 <__assert_fail>
+    2e4c:	mov	r0, r5
+    2e50:	bl	1534 <MyGame_Example_Monster_testhashs64_fnv1>
+    2e54:	eor	ip, r1, #205	; 0xcd
+    2e58:	eor	ip, ip, #1015808	; 0xf8000
+    2e5c:	eor	ip, ip, #1845493760	; 0x6e000000
+    2e60:	eor	r1, r0, #129	; 0x81
+    2e64:	eor	r1, r1, #37120	; 0x9100
+    2e68:	eor	r1, r1, #8060928	; 0x7b0000
+    2e6c:	eor	r1, r1, #-234881024	; 0xf2000000
+    2e70:	orr	ip, ip, r1
+    2e74:	cmp	ip, #0
+    2e78:	beq	2e90 <verify_monster+0x500>
+    2e7c:	ldr	r0, [pc, #500]	; 3078 <verify_monster+0x6e8>
+    2e80:	ldr	r1, [pc, #452]	; 304c <verify_monster+0x6bc>
+    2e84:	mov	r2, #150	; 0x96
+    2e88:	ldr	r3, [pc, #336]	; 2fe0 <verify_monster+0x650>
+    2e8c:	bl	0 <__assert_fail>
+    2e90:	mov	r0, r5
+    2e94:	bl	161c <MyGame_Example_Monster_testhashu64_fnv1>
+    2e98:	eor	r1, r1, #205	; 0xcd
+    2e9c:	eor	r1, r1, #1015808	; 0xf8000
+    2ea0:	eor	r1, r1, #1845493760	; 0x6e000000
+    2ea4:	eor	r2, r0, #129	; 0x81
+    2ea8:	eor	r2, r2, #37120	; 0x9100
+    2eac:	eor	r2, r2, #8060928	; 0x7b0000
+    2eb0:	eor	r2, r2, #-234881024	; 0xf2000000
+    2eb4:	orr	r0, r1, r2
+    2eb8:	cmp	r0, #0
+    2ebc:	beq	2ed4 <verify_monster+0x544>
+    2ec0:	ldr	r0, [pc, #416]	; 3068 <verify_monster+0x6d8>
+    2ec4:	ldr	r1, [pc, #384]	; 304c <verify_monster+0x6bc>
+    2ec8:	mov	r2, #151	; 0x97
+    2ecc:	ldr	r3, [pc, #268]	; 2fe0 <verify_monster+0x650>
+    2ed0:	bl	0 <__assert_fail>
+    2ed4:	mov	r0, r5
+    2ed8:	bl	1704 <MyGame_Example_Monster_testhashs32_fnv1a>
+    2edc:	movw	lr, #42097	; 0xa471
+    2ee0:	movt	lr, #36481	; 0x8e81
+    2ee4:	cmp	r0, lr
+    2ee8:	beq	2f00 <verify_monster+0x570>
+    2eec:	ldr	r0, [pc, #292]	; 3018 <verify_monster+0x688>
+    2ef0:	ldr	r1, [pc, #340]	; 304c <verify_monster+0x6bc>
+    2ef4:	mov	r2, #152	; 0x98
+    2ef8:	ldr	r3, [pc, #224]	; 2fe0 <verify_monster+0x650>
+    2efc:	bl	0 <__assert_fail>
+    2f00:	mov	r0, r5
+    2f04:	bl	17e8 <MyGame_Example_Monster_testhashu32_fnv1a>
+    2f08:	eor	r2, r0, #113	; 0x71
+    2f0c:	eor	r2, r2, #107520	; 0x1a400
+    2f10:	eor	r2, r2, #243269632	; 0xe800000
+    2f14:	eor	r2, r2, #-2147483648	; 0x80000000
+    2f18:	cmp	r2, #0
+    2f1c:	beq	2f34 <verify_monster+0x5a4>
+    2f20:	ldr	r0, [pc, #232]	; 3010 <verify_monster+0x680>
+    2f24:	ldr	r1, [pc, #288]	; 304c <verify_monster+0x6bc>
+    2f28:	mov	r2, #153	; 0x99
+    2f2c:	ldr	r3, [pc, #172]	; 2fe0 <verify_monster+0x650>
+    2f30:	bl	0 <__assert_fail>
+    2f34:	mov	r0, r5
+    2f38:	bl	18cc <MyGame_Example_Monster_testhashs64_fnv1a>
+    2f3c:	eor	r3, r1, #220	; 0xdc
+    2f40:	eor	r3, r3, #83968	; 0x14800
+    2f44:	eor	r3, r3, #66584576	; 0x3f80000
+    2f48:	eor	r3, r3, #1073741824	; 0x40000000
+    2f4c:	eor	r2, r0, #241	; 0xf1
+    2f50:	eor	r2, r2, #56576	; 0xdd00
+    2f54:	eor	r2, r2, #6750208	; 0x670000
+    2f58:	eor	r2, r2, #-956301312	; 0xc7000000
+    2f5c:	orr	r1, r3, r2
+    2f60:	cmp	r1, #0
+    2f64:	beq	2f7c <verify_monster+0x5ec>
+    2f68:	ldr	r0, [pc, #200]	; 3038 <verify_monster+0x6a8>
+    2f6c:	ldr	r1, [pc, #216]	; 304c <verify_monster+0x6bc>
+    2f70:	mov	r2, #154	; 0x9a
+    2f74:	ldr	r3, [pc, #100]	; 2fe0 <verify_monster+0x650>
+    2f78:	bl	0 <__assert_fail>
+    2f7c:	mov	r0, r5
+    2f80:	bl	19b4 <MyGame_Example_Monster_testhashu64_fnv1a>
+    2f84:	eor	r1, r1, #220	; 0xdc
+    2f88:	eor	r1, r1, #83968	; 0x14800
+    2f8c:	eor	r1, r1, #66584576	; 0x3f80000
+    2f90:	eor	r1, r1, #1073741824	; 0x40000000
+    2f94:	eor	r0, r0, #241	; 0xf1
+    2f98:	eor	r0, r0, #56576	; 0xdd00
+    2f9c:	eor	r0, r0, #6750208	; 0x670000
+    2fa0:	eor	r0, r0, #-956301312	; 0xc7000000
+    2fa4:	orr	r0, r1, r0
+    2fa8:	cmp	r0, #0
+    2fac:	beq	2fc4 <verify_monster+0x634>
+    2fb0:	ldr	r0, [pc, #80]	; 3008 <verify_monster+0x678>
+    2fb4:	ldr	r1, [pc, #144]	; 304c <verify_monster+0x6bc>
+    2fb8:	mov	r2, #155	; 0x9b
+    2fbc:	ldr	r3, [pc, #28]	; 2fe0 <verify_monster+0x650>
+    2fc0:	bl	0 <__assert_fail>
+    2fc4:	mov	r0, #0
+    2fc8:	ldr	r4, [sp, #8]
+    2fcc:	ldr	r5, [sp, #12]
+    2fd0:	ldr	r6, [sp, #16]
+    2fd4:	ldr	lr, [sp, #4]
+    2fd8:	add	sp, sp, #24
+    2fdc:	bx	lr
+    2fe0:	.word	0x00000aa8
+    2fe4:	.word	0x00000566
+    2fe8:	.word	0x0000069d
+    2fec:	.word	0x000002b3
+    2ff0:	.word	0x000006d6
+    2ff4:	.word	0x00000182
+    2ff8:	.word	0x000001e3
+    2ffc:	.word	0x00000265
+    3000:	.word	0x000005a0
+    3004:	.word	0x0000010f
+    3008:	.word	0x000007e1
+    300c:	.word	0x00000291
+    3010:	.word	0x0000047f
+    3014:	.word	0x0000054d
+    3018:	.word	0x00000765
+    301c:	.word	0x000006b4
+    3020:	.word	0x000001ce
+    3024:	.word	0x00000385
+    3028:	.word	0x00000000
+    302c:	.word	0x0000026b
+    3030:	.word	0x00000511
+    3034:	.word	0x000004b5
+    3038:	.word	0x000004d1
+    303c:	.word	0x0000057e
+    3040:	.word	0x000000b3
+    3044:	.word	0x00000462
+    3048:	.word	0x00000124
+    304c:	.word	0x000005ce
+    3050:	.word	0x000005b7
+    3054:	.word	0x000007db
+    3058:	.word	0x0000074e
+    305c:	.word	0x000001bc
+    3060:	.word	0x00000427
+    3064:	.word	0x000003fe
+    3068:	.word	0x000003ba
+    306c:	.word	0x0000021b
+    3070:	.word	0x00000522
+    3074:	.word	0x00000729
+    3078:	.word	0x00000639
+    307c:	.word	0x00000446
+
+00003080 <main>:
+    3080:	mov	ip, sp
+    3084:	sub	sp, sp, #24
+    3088:	str	ip, [sp]
+    308c:	str	lr, [sp, #4]
+    3090:	str	r4, [sp, #8]
+    3094:	str	r5, [sp, #12]
+    3098:	mov	r4, r1
+    309c:	mov	r5, r0
+    30a0:	cmp	r5, #1
+    30a4:	bne	30b0 <main+0x30>
+    30a8:	mov	r0, #0
+    30ac:	b	30bc <main+0x3c>
+    30b0:	cmp	r5, #2
+    30b4:	movne	r0, #1
+    30b8:	moveq	r0, #0
+    30bc:	cmp	r0, #0
+    30c0:	beq	30dc <main+0x5c>
+    30c4:	ldr	r2, [pc, #316]	; 3208 <main+0x188>
+    30c8:	ldr	r0, [r2]
+    30cc:	ldr	r1, [pc, #316]	; 3210 <main+0x190>
+    30d0:	bl	0 <fprintf>
+    30d4:	mov	r0, #1
+    30d8:	bl	0 <exit>
+    30dc:	cmp	r5, #2
+    30e0:	bne	30f0 <main+0x70>
+    30e4:	ldr	r0, [pc, #300]	; 3218 <main+0x198>
+    30e8:	ldr	r1, [r4, #4]
+    30ec:	str	r1, [r0]
+    30f0:	ldr	r0, [pc, #288]	; 3218 <main+0x198>
+    30f4:	ldr	r0, [r0]
+    30f8:	mov	r1, #1024	; 0x400
+    30fc:	add	r2, sp, #16
+    3100:	bl	26b4 <readfile>
+    3104:	mov	r5, r0
+    3108:	mov	r0, #256	; 0x100
+    310c:	ldr	r1, [sp, #16]
+    3110:	add	r1, r1, #255	; 0xff
+    3114:	bic	r1, r1, #255	; 0xff
+    3118:	bl	0 <__portable_aligned_alloc>
+    311c:	mov	r4, r0
+    3120:	ldr	r2, [sp, #16]
+    3124:	mov	r1, r5
+    3128:	mov	r0, r4
+    312c:	bl	0 <memcpy>
+    3130:	mov	r0, r5
+    3134:	bl	0 <free>
+    3138:	cmp	r4, #0
+    313c:	bne	3160 <main+0xe0>
+    3140:	ldr	r0, [pc, #192]	; 3208 <main+0x188>
+    3144:	ldr	r0, [r0]
+    3148:	ldr	r1, [pc, #196]	; 3214 <main+0x194>
+    314c:	ldr	ip, [pc, #196]	; 3218 <main+0x198>
+    3150:	ldr	r2, [ip]
+    3154:	bl	0 <fprintf>
+    3158:	mvn	r0, #0
+    315c:	b	31ec <main+0x16c>
+    3160:	ldr	r0, [pc, #152]	; 3200 <main+0x180>
+    3164:	ldr	r2, [sp, #16]
+    3168:	ldr	r3, [pc, #152]	; 3208 <main+0x188>
+    316c:	ldr	r3, [r3]
+    3170:	mov	r1, r4
+    3174:	bl	280c <hexdump>
+    3178:	ldr	r1, [sp, #16]
+    317c:	ldr	r2, [pc, #136]	; 320c <main+0x18c>
+    3180:	mov	r0, r4
+    3184:	bl	2598 <MyGame_Example_Monster_verify_as_root_with_identifier>
+    3188:	cmp	r0, #0
+    318c:	beq	31a8 <main+0x128>
+    3190:	ldr	r3, [pc, #112]	; 3208 <main+0x188>
+    3194:	ldr	r0, [r3]
+    3198:	ldr	r1, [pc, #100]	; 3204 <main+0x184>
+    319c:	bl	0 <fprintf>
+    31a0:	mvn	r5, #0
+    31a4:	b	31e0 <main+0x160>
+    31a8:	ldr	r1, [sp, #16]
+    31ac:	mov	r0, r4
+    31b0:	bl	2568 <MyGame_Example_Monster_verify_as_root>
+    31b4:	cmp	r0, #0
+    31b8:	beq	31d4 <main+0x154>
+    31bc:	ldr	r2, [pc, #68]	; 3208 <main+0x188>
+    31c0:	ldr	r0, [r2]
+    31c4:	ldr	r1, [pc, #80]	; 321c <main+0x19c>
+    31c8:	bl	0 <fprintf>
+    31cc:	mvn	r5, #0
+    31d0:	b	31e0 <main+0x160>
+    31d4:	mov	r0, r4
+    31d8:	bl	2990 <verify_monster>
+    31dc:	mov	r5, r0
+    31e0:	mov	r0, r4
+    31e4:	bl	5c <__portable_aligned_free>
+    31e8:	mov	r0, r5
+    31ec:	ldr	r4, [sp, #8]
+    31f0:	ldr	r5, [sp, #12]
+    31f4:	ldr	lr, [sp, #4]
+    31f8:	add	sp, sp, #24
+    31fc:	bx	lr
+    3200:	.word	0x000004bc
+    3204:	.word	0x000000e8
+    3208:	.word	0x00000000
+    320c:	.word	0x000000ae
+    3210:	.word	0x00000345
+    3214:	.word	0x00000678
+    3218:	.word	0x00000000
+    321c:	.word	0x0000079c

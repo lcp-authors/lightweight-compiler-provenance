@@ -1,0 +1,660 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//tftp.mod_gcc_-O2:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_mod_init-0xa70>:
+   0:	ldr	x2, [x0]
+   4:	mov	w4, #0xffffffff            	// #-1
+   8:	ldr	x0, [x1]
+   c:	ldr	x1, [x2, #8]
+  10:	ldr	x0, [x0, #8]
+  14:	ldrh	w2, [x1, #2]
+  18:	ldrh	w3, [x0, #2]
+  1c:	lsr	w1, w2, #8
+  20:	orr	w1, w1, w2, lsl #8
+  24:	lsr	w2, w3, #8
+  28:	orr	w3, w2, w3, lsl #8
+  2c:	sub	w1, w1, w3
+  30:	sxth	w1, w1
+  34:	cmp	w1, #0x0
+  38:	cset	w0, ne  // ne = any
+  3c:	csel	w0, w0, w4, le
+  40:	ret
+  44:	nop
+  48:	sub	sp, sp, #0x250
+  4c:	stp	x29, x30, [sp]
+  50:	mov	x29, sp
+  54:	stp	x19, x20, [sp, #16]
+  58:	mov	x20, x1
+  5c:	add	x1, sp, #0x50
+  60:	str	x1, [sp, #48]
+  64:	add	x1, sp, #0x250
+  68:	mov	x19, x2
+  6c:	str	x21, [sp, #32]
+  70:	mov	x21, x0
+  74:	add	x0, sp, #0x30
+  78:	str	x1, [sp, #72]
+  7c:	bl	0 <grub_netbuff_clear>
+  80:	mov	x1, #0x200                 	// #512
+  84:	add	x0, sp, #0x30
+  88:	bl	0 <grub_netbuff_reserve>
+  8c:	add	x0, sp, #0x30
+  90:	mov	x1, #0x4                   	// #4
+  94:	bl	0 <grub_netbuff_push>
+  98:	cbz	w0, b0 <grub_mod_init-0x9c0>
+  9c:	ldp	x29, x30, [sp]
+  a0:	ldp	x19, x20, [sp, #16]
+  a4:	ldr	x21, [sp, #32]
+  a8:	add	sp, sp, #0x250
+  ac:	ret
+  b0:	ldr	x3, [sp, #56]
+  b4:	ubfx	w1, w19, #8, #8
+  b8:	ubfiz	w2, w19, #8, #16
+  bc:	ldr	x0, [x20]
+  c0:	orr	w2, w2, w1
+  c4:	mov	w1, #0x400                 	// #1024
+  c8:	strh	w1, [x3]
+  cc:	strh	w2, [x3, #2]
+  d0:	add	x1, sp, #0x30
+  d4:	bl	0 <grub_net_send_udp_packet>
+  d8:	cbnz	w0, 9c <grub_mod_init-0x9d4>
+  dc:	str	x19, [x21]
+  e0:	ldp	x29, x30, [sp]
+  e4:	ldp	x19, x20, [sp, #16]
+  e8:	ldr	x21, [sp, #32]
+  ec:	add	sp, sp, #0x250
+  f0:	ret
+  f4:	nop
+  f8:	ldr	x1, [x0, #8]
+  fc:	ldr	x1, [x1, #8]
+ 100:	ldr	x2, [x1, #40]
+ 104:	cmp	x2, #0x31
+ 108:	b.hi	12c <grub_mod_init-0x944>  // b.pmore
+ 10c:	ldr	w2, [x1, #64]
+ 110:	ldr	x0, [x0, #80]
+ 114:	cbnz	w2, 11c <grub_mod_init-0x954>
+ 118:	str	wzr, [x1, #68]
+ 11c:	ldr	x2, [x0, #8]
+ 120:	ldr	x1, [x0, #24]
+ 124:	cmp	x1, x2
+ 128:	b.cc	134 <grub_mod_init-0x93c>  // b.lo, b.ul, b.last
+ 12c:	mov	w0, #0x0                   	// #0
+ 130:	ret
+ 134:	add	x1, x0, #0x128
+ 138:	add	x0, x0, #0x18
+ 13c:	b	48 <grub_mod_init-0xa28>
+ 140:	stp	x29, x30, [sp, #-112]!
+ 144:	mov	x29, sp
+ 148:	stp	x19, x20, [sp, #16]
+ 14c:	ldp	x19, x3, [x1, #8]
+ 150:	stp	x21, x22, [sp, #32]
+ 154:	mov	x21, x2
+ 158:	str	x1, [sp, #104]
+ 15c:	ldr	x20, [x2, #80]
+ 160:	sub	x2, x3, x19
+ 164:	cmp	x2, #0x1
+ 168:	b.le	39c <grub_mod_init-0x6d4>
+ 16c:	mov	x0, x1
+ 170:	ldrh	w1, [x19]
+ 174:	lsl	w4, w1, #8
+ 178:	orr	w1, w4, w1, lsr #8
+ 17c:	sxth	w1, w1
+ 180:	cmp	w1, #0x5
+ 184:	b.eq	1b4 <grub_mod_init-0x8bc>  // b.none
+ 188:	cmp	w1, #0x6
+ 18c:	b.eq	284 <grub_mod_init-0x7ec>  // b.none
+ 190:	cmp	w1, #0x3
+ 194:	b.eq	20c <grub_mod_init-0x864>  // b.none
+ 198:	mov	w22, #0x0                   	// #0
+ 19c:	bl	0 <grub_netbuff_free>
+ 1a0:	mov	w0, w22
+ 1a4:	ldp	x19, x20, [sp, #16]
+ 1a8:	ldp	x21, x22, [sp, #32]
+ 1ac:	ldp	x29, x30, [sp], #112
+ 1b0:	ret
+ 1b4:	mov	w1, #0x1                   	// #1
+ 1b8:	str	w1, [x20, #32]
+ 1bc:	mov	w22, #0x0                   	// #0
+ 1c0:	bl	0 <grub_netbuff_free>
+ 1c4:	add	x1, x19, #0x4
+ 1c8:	mov	w0, #0x1d                  	// #29
+ 1cc:	bl	0 <grub_error>
+ 1d0:	adrp	x1, 0 <grub_mod_init-0xa70>
+ 1d4:	add	x0, x20, #0x28
+ 1d8:	mov	x2, #0x100                 	// #256
+ 1dc:	ldr	x1, [x1]
+ 1e0:	bl	0 <grub_memmove>
+ 1e4:	adrp	x0, 0 <grub_mod_init-0xa70>
+ 1e8:	ldr	x0, [x0]
+ 1ec:	ldr	w1, [x0]
+ 1f0:	str	wzr, [x0]
+ 1f4:	mov	w0, w22
+ 1f8:	str	w1, [x20, #36]
+ 1fc:	ldp	x19, x20, [sp, #16]
+ 200:	ldp	x21, x22, [sp, #32]
+ 204:	ldp	x29, x30, [sp], #112
+ 208:	ret
+ 20c:	cmp	x2, #0x3
+ 210:	b.le	324 <grub_mod_init-0x74c>
+ 214:	ldr	x0, [x20, #304]
+ 218:	add	x1, sp, #0x68
+ 21c:	bl	0 <grub_priority_queue_push>
+ 220:	mov	w22, w0
+ 224:	cbnz	w0, 1a0 <grub_mod_init-0x8d0>
+ 228:	add	x19, x20, #0x18
+ 22c:	stp	x23, x24, [sp, #48]
+ 230:	add	x23, x20, #0x128
+ 234:	stp	x25, x26, [sp, #64]
+ 238:	ldr	x0, [x20, #304]
+ 23c:	bl	0 <grub_priority_queue_top>
+ 240:	cbz	x0, 278 <grub_mod_init-0x7f8>
+ 244:	ldr	x25, [x0]
+ 248:	ldr	x1, [x20, #8]
+ 24c:	ldr	x24, [x25, #8]
+ 250:	mvn	w1, w1
+ 254:	ldrh	w0, [x24, #2]
+ 258:	lsr	w2, w0, #8
+ 25c:	orr	w0, w2, w0, lsl #8
+ 260:	and	w2, w0, #0xffff
+ 264:	add	w0, w1, w0, uxth
+ 268:	sxth	w0, w0
+ 26c:	cmp	w0, #0x0
+ 270:	b.lt	4d4 <grub_mod_init-0x59c>  // b.tstop
+ 274:	b.eq	3b0 <grub_mod_init-0x6c0>  // b.none
+ 278:	ldp	x23, x24, [sp, #48]
+ 27c:	ldp	x25, x26, [sp, #64]
+ 280:	b	1a0 <grub_mod_init-0x8d0>
+ 284:	mov	w2, #0x200                 	// #512
+ 288:	mov	w1, #0x1                   	// #1
+ 28c:	str	w2, [x20, #16]
+ 290:	add	x19, x19, #0x2
+ 294:	str	w1, [x20, #32]
+ 298:	cmp	x3, x19
+ 29c:	b.ls	304 <grub_mod_init-0x76c>  // b.plast
+ 2a0:	adrp	x0, 0 <grub_mod_init-0xa70>
+ 2a4:	ldr	x21, [x0]
+ 2a8:	add	x22, x21, #0x8
+ 2ac:	nop
+ 2b0:	mov	x1, x21
+ 2b4:	mov	x0, x19
+ 2b8:	mov	x2, #0x6                   	// #6
+ 2bc:	bl	0 <grub_memcmp>
+ 2c0:	cbz	w0, 384 <grub_mod_init-0x6ec>
+ 2c4:	mov	x1, x22
+ 2c8:	mov	x0, x19
+ 2cc:	mov	x2, #0x8                   	// #8
+ 2d0:	bl	0 <grub_memcmp>
+ 2d4:	cbz	w0, 36c <grub_mod_init-0x704>
+ 2d8:	ldr	x0, [sp, #104]
+ 2dc:	ldr	x3, [x0, #16]
+ 2e0:	cmp	x19, x3
+ 2e4:	b.cc	2f0 <grub_mod_init-0x780>  // b.lo, b.ul, b.last
+ 2e8:	b	35c <grub_mod_init-0x714>
+ 2ec:	b.eq	35c <grub_mod_init-0x714>  // b.none
+ 2f0:	ldrb	w2, [x19], #1
+ 2f4:	cmp	x19, x3
+ 2f8:	cbnz	w2, 2ec <grub_mod_init-0x784>
+ 2fc:	cmp	x19, x3
+ 300:	b.cc	2b0 <grub_mod_init-0x7c0>  // b.lo, b.ul, b.last
+ 304:	str	xzr, [x20, #8]
+ 308:	mov	w22, #0x0                   	// #0
+ 30c:	bl	0 <grub_netbuff_free>
+ 310:	add	x1, x20, #0x128
+ 314:	add	x0, x20, #0x18
+ 318:	mov	x2, #0x0                   	// #0
+ 31c:	bl	48 <grub_mod_init-0xa28>
+ 320:	b	1d0 <grub_mod_init-0x8a0>
+ 324:	adrp	x3, 0 <grub_mod_init-0xa70>
+ 328:	adrp	x2, 0 <grub_mod_init-0xa70>
+ 32c:	adrp	x0, 0 <grub_mod_init-0xa70>
+ 330:	mov	w1, #0xce                  	// #206
+ 334:	ldr	x3, [x3]
+ 338:	mov	w22, #0x0                   	// #0
+ 33c:	ldr	x2, [x2]
+ 340:	ldr	x0, [x0]
+ 344:	bl	0 <grub_real_dprintf>
+ 348:	mov	w0, w22
+ 34c:	ldp	x19, x20, [sp, #16]
+ 350:	ldp	x21, x22, [sp, #32]
+ 354:	ldp	x29, x30, [sp], #112
+ 358:	ret
+ 35c:	add	x19, x19, #0x1
+ 360:	cmp	x19, x3
+ 364:	b.cc	2b0 <grub_mod_init-0x7c0>  // b.lo, b.ul, b.last
+ 368:	b	304 <grub_mod_init-0x76c>
+ 36c:	add	x0, x19, #0x8
+ 370:	mov	w2, #0x0                   	// #0
+ 374:	mov	x1, #0x0                   	// #0
+ 378:	bl	0 <grub_strtoul>
+ 37c:	str	w0, [x20, #16]
+ 380:	b	2d8 <grub_mod_init-0x798>
+ 384:	add	x0, x19, #0x6
+ 388:	mov	w2, #0x0                   	// #0
+ 38c:	mov	x1, #0x0                   	// #0
+ 390:	bl	0 <grub_strtoul>
+ 394:	str	x0, [x20]
+ 398:	b	2c4 <grub_mod_init-0x7ac>
+ 39c:	adrp	x3, 0 <grub_mod_init-0xa70>
+ 3a0:	adrp	x2, 0 <grub_mod_init-0xa70>
+ 3a4:	adrp	x0, 0 <grub_mod_init-0xa70>
+ 3a8:	mov	w1, #0xaf                  	// #175
+ 3ac:	b	334 <grub_mod_init-0x73c>
+ 3b0:	add	x23, x20, #0x128
+ 3b4:	add	x19, x20, #0x18
+ 3b8:	mov	w26, #0x1                   	// #1
+ 3bc:	stp	x27, x28, [sp, #80]
+ 3c0:	mov	x27, #0x100000001           	// #4294967297
+ 3c4:	ldr	x0, [x20, #304]
+ 3c8:	bl	0 <grub_priority_queue_pop>
+ 3cc:	ldr	x0, [x21, #8]
+ 3d0:	ldr	x0, [x0, #8]
+ 3d4:	ldr	x1, [x0, #40]
+ 3d8:	cmp	x1, #0x31
+ 3dc:	b.ls	51c <grub_mod_init-0x554>  // b.plast
+ 3e0:	str	w26, [x0, #68]
+ 3e4:	mov	x0, x25
+ 3e8:	mov	x1, #0x4                   	// #4
+ 3ec:	bl	0 <grub_netbuff_pull>
+ 3f0:	cbnz	w0, 508 <grub_mod_init-0x568>
+ 3f4:	ldp	x0, x28, [x25, #8]
+ 3f8:	ldr	x2, [x20, #8]
+ 3fc:	ldr	w1, [x20, #16]
+ 400:	add	x2, x2, #0x1
+ 404:	str	x2, [x20, #8]
+ 408:	sub	x28, x28, x0
+ 40c:	cmp	w1, w28
+ 410:	b.ls	43c <grub_mod_init-0x634>  // b.plast
+ 414:	ldr	x0, [x20, #24]
+ 418:	cmp	x2, x0
+ 41c:	b.hi	538 <grub_mod_init-0x538>  // b.pmore
+ 420:	ldr	x1, [x21, #8]
+ 424:	ldr	x0, [x20, #296]
+ 428:	ldr	x1, [x1, #8]
+ 42c:	str	x27, [x1, #64]
+ 430:	bl	0 <grub_net_udp_close>
+ 434:	str	xzr, [x20, #296]
+ 438:	ldr	w1, [x20, #16]
+ 43c:	cmp	w28, w1
+ 440:	b.hi	4f8 <grub_mod_init-0x578>  // b.pmore
+ 444:	ldp	x1, x0, [x25, #8]
+ 448:	sub	x0, x0, x1
+ 44c:	cmp	x0, #0x0
+ 450:	b.le	4c8 <grub_mod_init-0x5a8>
+ 454:	ldr	x1, [x21, #8]
+ 458:	mov	x0, #0x20                  	// #32
+ 45c:	ldr	x28, [x1, #8]
+ 460:	bl	0 <grub_malloc>
+ 464:	add	x1, x28, #0x18
+ 468:	cbz	x0, 498 <grub_mod_init-0x5d8>
+ 46c:	ldr	x2, [x28, #24]
+ 470:	stp	xzr, xzr, [x0]
+ 474:	stp	x1, x25, [x0, #16]
+ 478:	cbz	x2, 548 <grub_mod_init-0x528>
+ 47c:	ldr	x2, [x1, #8]
+ 480:	str	x0, [x2]
+ 484:	str	x0, [x1, #8]
+ 488:	str	x0, [x0, #8]
+ 48c:	ldr	x0, [x1, #16]
+ 490:	add	x0, x0, #0x1
+ 494:	str	x0, [x1, #16]
+ 498:	ldrh	w0, [x24, #2]
+ 49c:	ldr	x1, [x20, #8]
+ 4a0:	lsr	w2, w0, #8
+ 4a4:	orr	w0, w2, w0, lsl #8
+ 4a8:	mvn	w1, w1
+ 4ac:	add	w0, w0, w1
+ 4b0:	tst	w0, #0xffff
+ 4b4:	b.eq	3c4 <grub_mod_init-0x6ac>  // b.none
+ 4b8:	ldp	x23, x24, [sp, #48]
+ 4bc:	ldp	x25, x26, [sp, #64]
+ 4c0:	ldp	x27, x28, [sp, #80]
+ 4c4:	b	1a0 <grub_mod_init-0x8d0>
+ 4c8:	mov	x0, x25
+ 4cc:	bl	0 <grub_netbuff_free>
+ 4d0:	b	498 <grub_mod_init-0x5d8>
+ 4d4:	and	x2, x2, #0xffff
+ 4d8:	mov	x1, x23
+ 4dc:	mov	x0, x19
+ 4e0:	bl	48 <grub_mod_init-0xa28>
+ 4e4:	mov	x0, x25
+ 4e8:	bl	0 <grub_netbuff_free>
+ 4ec:	ldr	x0, [x20, #304]
+ 4f0:	bl	0 <grub_priority_queue_pop>
+ 4f4:	b	238 <grub_mod_init-0x838>
+ 4f8:	sub	w1, w28, w1
+ 4fc:	mov	x0, x25
+ 500:	bl	0 <grub_netbuff_unput>
+ 504:	cbz	w0, 444 <grub_mod_init-0x62c>
+ 508:	mov	w22, w0
+ 50c:	ldp	x23, x24, [sp, #48]
+ 510:	ldp	x25, x26, [sp, #64]
+ 514:	ldp	x27, x28, [sp, #80]
+ 518:	b	1a0 <grub_mod_init-0x8d0>
+ 51c:	ldr	x2, [x20, #8]
+ 520:	mov	x1, x23
+ 524:	mov	x0, x19
+ 528:	add	x2, x2, #0x1
+ 52c:	bl	48 <grub_mod_init-0xa28>
+ 530:	cbz	w0, 3e4 <grub_mod_init-0x68c>
+ 534:	b	508 <grub_mod_init-0x568>
+ 538:	mov	x1, x23
+ 53c:	mov	x0, x19
+ 540:	bl	48 <grub_mod_init-0xa28>
+ 544:	b	420 <grub_mod_init-0x650>
+ 548:	str	x0, [x1, #8]
+ 54c:	str	x0, [x28, #24]
+ 550:	b	48c <grub_mod_init-0x5e4>
+ 554:	nop
+	...
+ 588:	stp	x29, x30, [sp, #-32]!
+ 58c:	mov	x29, sp
+ 590:	str	x19, [sp, #16]
+ 594:	mov	x19, x0
+ 598:	b	5ac <grub_mod_init-0x4c4>
+ 59c:	ldr	x0, [x0]
+ 5a0:	bl	0 <grub_netbuff_free>
+ 5a4:	ldr	x0, [x19]
+ 5a8:	bl	0 <grub_priority_queue_pop>
+ 5ac:	ldr	x0, [x19]
+ 5b0:	bl	0 <grub_priority_queue_top>
+ 5b4:	cbnz	x0, 59c <grub_mod_init-0x4d4>
+ 5b8:	ldr	x0, [x19]
+ 5bc:	ldr	x19, [sp, #16]
+ 5c0:	ldp	x29, x30, [sp], #32
+ 5c4:	b	0 <grub_priority_queue_destroy>
+ 5c8:	sub	sp, sp, #0x240
+ 5cc:	stp	x29, x30, [sp]
+ 5d0:	mov	x29, sp
+ 5d4:	str	x19, [sp, #16]
+ 5d8:	ldr	x19, [x0, #80]
+ 5dc:	ldr	x0, [x19, #296]
+ 5e0:	cbz	x0, 624 <grub_mod_init-0x44c>
+ 5e4:	add	x1, sp, #0x40
+ 5e8:	str	x1, [sp, #32]
+ 5ec:	add	x1, sp, #0x240
+ 5f0:	add	x0, sp, #0x20
+ 5f4:	str	x1, [sp, #56]
+ 5f8:	bl	0 <grub_netbuff_clear>
+ 5fc:	mov	x1, #0x200                 	// #512
+ 600:	add	x0, sp, #0x20
+ 604:	bl	0 <grub_netbuff_reserve>
+ 608:	add	x0, sp, #0x20
+ 60c:	mov	x1, #0xb                   	// #11
+ 610:	bl	0 <grub_netbuff_push>
+ 614:	cbz	w0, 648 <grub_mod_init-0x428>
+ 618:	bl	0 <grub_print_error>
+ 61c:	ldr	x0, [x19, #296]
+ 620:	bl	0 <grub_net_udp_close>
+ 624:	add	x0, x19, #0x130
+ 628:	bl	588 <grub_mod_init-0x4e8>
+ 62c:	mov	x0, x19
+ 630:	bl	0 <grub_free>
+ 634:	mov	w0, #0x0                   	// #0
+ 638:	ldp	x29, x30, [sp]
+ 63c:	ldr	x19, [sp, #16]
+ 640:	add	sp, sp, #0x240
+ 644:	ret
+ 648:	adrp	x1, 0 <grub_mod_init-0xa70>
+ 64c:	mov	w3, #0x500                 	// #1280
+ 650:	ldr	x0, [sp, #40]
+ 654:	mov	x2, #0x7                   	// #7
+ 658:	ldr	x1, [x1]
+ 65c:	str	w3, [x0], #4
+ 660:	bl	0 <grub_memmove>
+ 664:	ldr	x0, [x19, #296]
+ 668:	add	x1, sp, #0x20
+ 66c:	bl	0 <grub_net_send_udp_packet>
+ 670:	cbz	w0, 61c <grub_mod_init-0x454>
+ 674:	b	618 <grub_mod_init-0x458>
+	...
+ 680:	sub	sp, sp, #0x690
+ 684:	stp	x29, x30, [sp]
+ 688:	mov	x29, sp
+ 68c:	stp	x19, x20, [sp, #16]
+ 690:	stp	x21, x22, [sp, #32]
+ 694:	mov	x22, x0
+ 698:	mov	x21, x1
+ 69c:	mov	x0, #0x138                 	// #312
+ 6a0:	bl	0 <grub_zalloc>
+ 6a4:	cbz	x0, 948 <grub_mod_init-0x128>
+ 6a8:	add	x2, sp, #0x68c
+ 6ac:	add	x1, sp, #0xb0
+ 6b0:	mov	x20, x0
+ 6b4:	add	x0, sp, #0x70
+ 6b8:	str	x1, [sp, #112]
+ 6bc:	str	x2, [sp, #136]
+ 6c0:	bl	0 <grub_netbuff_clear>
+ 6c4:	mov	x1, #0x5dc                 	// #1500
+ 6c8:	add	x0, sp, #0x70
+ 6cc:	bl	0 <grub_netbuff_reserve>
+ 6d0:	add	x0, sp, #0x70
+ 6d4:	mov	x1, #0x204                 	// #516
+ 6d8:	bl	0 <grub_netbuff_push>
+ 6dc:	mov	w19, w0
+ 6e0:	cbnz	w0, 928 <grub_mod_init-0x148>
+ 6e4:	ldr	x19, [sp, #120]
+ 6e8:	stp	x23, x24, [sp, #48]
+ 6ec:	mov	x1, x21
+ 6f0:	str	x25, [sp, #64]
+ 6f4:	mov	w0, #0x100                 	// #256
+ 6f8:	strh	w0, [x19], #2
+ 6fc:	mov	x0, x19
+ 700:	bl	0 <grub_strcpy>
+ 704:	mov	x0, x21
+ 708:	bl	0 <grub_strlen>
+ 70c:	mov	x23, x0
+ 710:	mov	x0, x21
+ 714:	bl	0 <grub_strlen>
+ 718:	add	x0, x0, #0x1
+ 71c:	adrp	x1, 0 <grub_mod_init-0xa70>
+ 720:	add	x19, x19, x0
+ 724:	mov	x0, x19
+ 728:	ldr	x25, [x1]
+ 72c:	mov	x1, x25
+ 730:	bl	0 <grub_strcpy>
+ 734:	mov	x0, x25
+ 738:	bl	0 <grub_strlen>
+ 73c:	add	w23, w23, w0
+ 740:	mov	x0, x25
+ 744:	bl	0 <grub_strlen>
+ 748:	adrp	x1, 0 <grub_mod_init-0xa70>
+ 74c:	add	x0, x0, #0x1
+ 750:	add	x19, x19, x0
+ 754:	add	w23, w23, #0x2
+ 758:	ldr	x25, [x1]
+ 75c:	mov	x0, x19
+ 760:	mov	x1, x25
+ 764:	bl	0 <grub_strcpy>
+ 768:	mov	x0, x25
+ 76c:	bl	0 <grub_strlen>
+ 770:	mov	x24, x0
+ 774:	mov	x0, x25
+ 778:	bl	0 <grub_strlen>
+ 77c:	adrp	x1, 0 <grub_mod_init-0xa70>
+ 780:	add	x0, x0, #0x1
+ 784:	add	x19, x19, x0
+ 788:	ldr	x25, [x1]
+ 78c:	mov	x0, x19
+ 790:	mov	x1, x25
+ 794:	bl	0 <grub_strcpy>
+ 798:	mov	x0, x25
+ 79c:	bl	0 <grub_strlen>
+ 7a0:	add	w24, w24, w0
+ 7a4:	mov	x0, x25
+ 7a8:	bl	0 <grub_strlen>
+ 7ac:	adrp	x1, 0 <grub_mod_init-0xa70>
+ 7b0:	add	x0, x0, #0x1
+ 7b4:	add	x19, x19, x0
+ 7b8:	add	w24, w24, #0x2
+ 7bc:	ldr	x25, [x1]
+ 7c0:	mov	x0, x19
+ 7c4:	add	w24, w24, w23
+ 7c8:	mov	x1, x25
+ 7cc:	bl	0 <grub_strcpy>
+ 7d0:	mov	x0, x25
+ 7d4:	bl	0 <grub_strlen>
+ 7d8:	mov	x23, x0
+ 7dc:	mov	x0, x25
+ 7e0:	bl	0 <grub_strlen>
+ 7e4:	adrp	x1, 0 <grub_mod_init-0xa70>
+ 7e8:	add	x0, x0, #0x1
+ 7ec:	add	x0, x19, x0
+ 7f0:	ldr	x19, [x1]
+ 7f4:	mov	x1, x19
+ 7f8:	bl	0 <grub_strcpy>
+ 7fc:	mov	x0, x19
+ 800:	bl	0 <grub_strlen>
+ 804:	add	w23, w23, w0
+ 808:	mov	x0, x19
+ 80c:	bl	0 <grub_strlen>
+ 810:	ldp	x2, x1, [sp, #120]
+ 814:	add	w23, w23, #0x2
+ 818:	add	w23, w23, w24
+ 81c:	add	x0, sp, #0x70
+ 820:	add	w23, w23, #0x2
+ 824:	add	x23, x2, w23, sxtw
+ 828:	sub	x1, x1, x23
+ 82c:	bl	0 <grub_netbuff_unput>
+ 830:	mov	w19, w0
+ 834:	cbnz	w0, 900 <grub_mod_init-0x170>
+ 838:	adrp	x1, 0 <grub_mod_init-0xa70>
+ 83c:	mov	w0, #0x1                   	// #1
+ 840:	str	w0, [x22, #72]
+ 844:	mov	x0, #0x8                   	// #8
+ 848:	ldr	x1, [x1]
+ 84c:	str	x20, [x22, #80]
+ 850:	bl	0 <grub_priority_queue_new>
+ 854:	str	x0, [x20, #304]
+ 858:	cbz	x0, 974 <grub_mod_init-0xfc>
+ 85c:	ldr	x0, [x22, #8]
+ 860:	add	x1, sp, #0x90
+ 864:	ldr	x0, [x0, #8]
+ 868:	ldr	x0, [x0]
+ 86c:	bl	0 <grub_net_resolve_address>
+ 870:	mov	w19, w0
+ 874:	cbnz	w0, 8f8 <grub_mod_init-0x178>
+ 878:	adrp	x0, 0 <grub_mod_init-0xa70>
+ 87c:	mov	x3, x22
+ 880:	ldp	x6, x7, [sp, #144]
+ 884:	mov	w1, #0x45                  	// #69
+ 888:	ldp	x4, x5, [sp, #160]
+ 88c:	stp	x6, x7, [sp, #80]
+ 890:	ldr	x2, [x0]
+ 894:	add	x0, sp, #0x50
+ 898:	stp	x4, x5, [sp, #96]
+ 89c:	bl	0 <grub_net_udp_open>
+ 8a0:	str	x0, [x20, #296]
+ 8a4:	cbz	x0, 96c <grub_mod_init-0x104>
+ 8a8:	add	x24, x20, #0x20
+ 8ac:	mov	w23, #0x190                 	// #400
+ 8b0:	ldr	x25, [sp, #120]
+ 8b4:	b	8d0 <grub_mod_init-0x1a0>
+ 8b8:	bl	0 <grub_net_poll_cards>
+ 8bc:	ldr	w0, [x20, #32]
+ 8c0:	cmp	w23, #0x4b0
+ 8c4:	cbnz	w0, 994 <grub_mod_init-0xdc>
+ 8c8:	b.eq	9d0 <grub_mod_init-0xa0>  // b.none
+ 8cc:	ldr	x0, [x20, #296]
+ 8d0:	add	x1, sp, #0x70
+ 8d4:	str	x25, [sp, #120]
+ 8d8:	bl	0 <grub_net_send_udp_packet>
+ 8dc:	mov	x1, x24
+ 8e0:	mov	w19, w0
+ 8e4:	mov	w0, w23
+ 8e8:	add	w23, w23, #0x14
+ 8ec:	cbz	w19, 8b8 <grub_mod_init-0x1b8>
+ 8f0:	ldr	x0, [x20, #296]
+ 8f4:	bl	0 <grub_net_udp_close>
+ 8f8:	add	x0, x20, #0x130
+ 8fc:	bl	588 <grub_mod_init-0x4e8>
+ 900:	mov	x0, x20
+ 904:	bl	0 <grub_free>
+ 908:	mov	w0, w19
+ 90c:	ldp	x29, x30, [sp]
+ 910:	ldp	x19, x20, [sp, #16]
+ 914:	ldp	x21, x22, [sp, #32]
+ 918:	ldp	x23, x24, [sp, #48]
+ 91c:	ldr	x25, [sp, #64]
+ 920:	add	sp, sp, #0x690
+ 924:	ret
+ 928:	mov	x0, x20
+ 92c:	bl	0 <grub_free>
+ 930:	mov	w0, w19
+ 934:	ldp	x29, x30, [sp]
+ 938:	ldp	x19, x20, [sp, #16]
+ 93c:	ldp	x21, x22, [sp, #32]
+ 940:	add	sp, sp, #0x690
+ 944:	ret
+ 948:	adrp	x0, 0 <grub_mod_init-0xa70>
+ 94c:	ldp	x29, x30, [sp]
+ 950:	ldr	x0, [x0]
+ 954:	ldp	x21, x22, [sp, #32]
+ 958:	ldr	w19, [x0]
+ 95c:	mov	w0, w19
+ 960:	ldp	x19, x20, [sp, #16]
+ 964:	add	sp, sp, #0x690
+ 968:	ret
+ 96c:	add	x0, x20, #0x130
+ 970:	bl	588 <grub_mod_init-0x4e8>
+ 974:	mov	x0, x20
+ 978:	bl	0 <grub_free>
+ 97c:	adrp	x0, 0 <grub_mod_init-0xa70>
+ 980:	ldp	x23, x24, [sp, #48]
+ 984:	ldr	x0, [x0]
+ 988:	ldr	x25, [sp, #64]
+ 98c:	ldr	w19, [x0]
+ 990:	b	930 <grub_mod_init-0x140>
+ 994:	adrp	x0, 0 <grub_mod_init-0xa70>
+ 998:	add	x1, x20, #0x28
+ 99c:	mov	x2, #0x100                 	// #256
+ 9a0:	ldr	x0, [x0]
+ 9a4:	bl	0 <grub_memmove>
+ 9a8:	ldr	w19, [x20, #36]
+ 9ac:	adrp	x0, 0 <grub_mod_init-0xa70>
+ 9b0:	ldr	x21, [x0]
+ 9b4:	str	w19, [x21]
+ 9b8:	cbnz	w19, 9f4 <grub_mod_init-0x7c>
+ 9bc:	ldr	x0, [x20]
+ 9c0:	ldp	x23, x24, [sp, #48]
+ 9c4:	ldr	x25, [sp, #64]
+ 9c8:	str	x0, [x22, #64]
+ 9cc:	b	930 <grub_mod_init-0x140>
+ 9d0:	adrp	x1, 0 <grub_mod_init-0xa70>
+ 9d4:	mov	x2, x21
+ 9d8:	mov	w0, #0x1c                  	// #28
+ 9dc:	ldr	x1, [x1]
+ 9e0:	bl	0 <grub_error>
+ 9e4:	adrp	x0, 0 <grub_mod_init-0xa70>
+ 9e8:	ldr	x21, [x0]
+ 9ec:	ldr	w19, [x21]
+ 9f0:	b	9b8 <grub_mod_init-0xb8>
+ 9f4:	ldr	x0, [x20, #296]
+ 9f8:	bl	0 <grub_net_udp_close>
+ 9fc:	add	x0, x20, #0x130
+ a00:	bl	588 <grub_mod_init-0x4e8>
+ a04:	mov	x0, x20
+ a08:	bl	0 <grub_free>
+ a0c:	ldr	w19, [x21]
+ a10:	ldp	x23, x24, [sp, #48]
+ a14:	ldr	x25, [sp, #64]
+ a18:	b	930 <grub_mod_init-0x140>
+ a1c:	nop
+	...
+
+0000000000000a70 <grub_mod_init>:
+ a70:	adrp	x1, 0 <grub_mod_init-0xa70>
+ a74:	adrp	x0, 0 <grub_mod_init-0xa70>
+ a78:	ldr	x1, [x1]
+ a7c:	ldr	x0, [x0]
+ a80:	b	0 <grub_list_push>
+ a84:	nop
+	...
+
+0000000000000a98 <grub_mod_fini>:
+ a98:	adrp	x0, 0 <grub_mod_init-0xa70>
+ a9c:	ldr	x0, [x0]
+ aa0:	b	0 <grub_list_remove>
+ aa4:	nop
+	...

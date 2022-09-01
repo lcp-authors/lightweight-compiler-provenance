@@ -1,0 +1,480 @@
+
+../compcert-repos/prog2/CMakeFiles/MT2E1-1.dir/Extras/Miniteste2-Exemplo1/prob1/tabdispersao.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <tabela_nova>:
+   0:	push	{r4, r5, r6, r7, fp, lr}
+   4:	add	fp, sp, #16
+   8:	mov	r4, #0
+   c:	cmp	r0, #1
+  10:	blt	5c <tabela_nova+0x5c>
+  14:	mov	r6, r1
+  18:	cmp	r1, #0
+  1c:	beq	5c <tabela_nova+0x5c>
+  20:	mov	r5, r0
+  24:	mov	r0, #12
+  28:	bl	0 <malloc>
+  2c:	cmp	r0, #0
+  30:	beq	5c <tabela_nova+0x5c>
+  34:	mov	r7, r0
+  38:	mov	r0, r5
+  3c:	mov	r1, #4
+  40:	bl	0 <calloc>
+  44:	cmp	r0, #0
+  48:	str	r0, [r7, #4]
+  4c:	beq	64 <tabela_nova+0x64>
+  50:	mov	r4, r7
+  54:	str	r6, [r7]
+  58:	str	r5, [r7, #8]
+  5c:	mov	r0, r4
+  60:	pop	{r4, r5, r6, r7, fp, pc}
+  64:	mov	r0, r7
+  68:	bl	0 <free>
+  6c:	mov	r0, r4
+  70:	pop	{r4, r5, r6, r7, fp, pc}
+
+00000074 <tabela_apaga>:
+  74:	cmp	r0, #0
+  78:	bxeq	lr
+  7c:	push	{r4, r5, r6, r7, fp, lr}
+  80:	add	fp, sp, #16
+  84:	mov	r4, r0
+  88:	ldr	r0, [r0, #4]
+  8c:	ldr	r1, [r4, #8]
+  90:	cmp	r1, #1
+  94:	blt	dc <tabela_apaga+0x68>
+  98:	mov	r6, #0
+  9c:	b	ac <tabela_apaga+0x38>
+  a0:	add	r6, r6, #1
+  a4:	cmp	r6, r1
+  a8:	bge	dc <tabela_apaga+0x68>
+  ac:	ldr	r5, [r0, r6, lsl #2]
+  b0:	cmp	r5, #0
+  b4:	beq	a0 <tabela_apaga+0x2c>
+  b8:	ldm	r5, {r0, r7}
+  bc:	bl	0 <free>
+  c0:	mov	r0, r5
+  c4:	bl	0 <free>
+  c8:	cmp	r7, #0
+  cc:	mov	r5, r7
+  d0:	bne	b8 <tabela_apaga+0x44>
+  d4:	ldmib	r4, {r0, r1}
+  d8:	b	a0 <tabela_apaga+0x2c>
+  dc:	bl	0 <free>
+  e0:	mov	r0, r4
+  e4:	pop	{r4, r5, r6, r7, fp, lr}
+  e8:	b	0 <free>
+
+000000ec <tabela_adiciona>:
+  ec:	push	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+  f0:	add	fp, sp, #28
+  f4:	sub	sp, sp, #4
+  f8:	mvn	sl, #1
+  fc:	cmp	r0, #0
+ 100:	beq	118 <tabela_adiciona+0x2c>
+ 104:	cmp	r1, #0
+ 108:	mov	r7, r1
+ 10c:	movne	r9, r2
+ 110:	cmpne	r2, #0
+ 114:	bne	124 <tabela_adiciona+0x38>
+ 118:	mov	r0, sl
+ 11c:	sub	sp, fp, #28
+ 120:	pop	{r4, r5, r6, r7, r8, r9, sl, fp, pc}
+ 124:	ldr	r2, [r0]
+ 128:	ldr	r1, [r0, #8]
+ 12c:	mov	r6, r0
+ 130:	mov	r0, r7
+ 134:	blx	r2
+ 138:	mov	r8, r0
+ 13c:	ldr	r0, [r6, #4]
+ 140:	ldr	r4, [r0, r8, lsl #2]
+ 144:	cmp	r4, #0
+ 148:	beq	170 <tabela_adiciona+0x84>
+ 14c:	ldr	r5, [r4]
+ 150:	mov	r1, r7
+ 154:	mov	r0, r5
+ 158:	bl	0 <strcmp>
+ 15c:	cmp	r0, #0
+ 160:	beq	1c0 <tabela_adiciona+0xd4>
+ 164:	ldr	r4, [r4, #4]
+ 168:	cmp	r4, #0
+ 16c:	bne	14c <tabela_adiciona+0x60>
+ 170:	mov	r0, #8
+ 174:	bl	0 <malloc>
+ 178:	cmp	r0, #0
+ 17c:	beq	118 <tabela_adiciona+0x2c>
+ 180:	mov	r5, r0
+ 184:	mov	r0, #150	; 0x96
+ 188:	bl	0 <malloc>
+ 18c:	cmp	r0, #0
+ 190:	str	r0, [r5]
+ 194:	beq	118 <tabela_adiciona+0x2c>
+ 198:	mov	r1, r7
+ 19c:	bl	0 <strcpy>
+ 1a0:	add	r0, r0, #50	; 0x32
+ 1a4:	mov	r1, r9
+ 1a8:	bl	0 <strcpy>
+ 1ac:	ldr	r0, [r6, #4]
+ 1b0:	ldr	r1, [r0, r8, lsl #2]
+ 1b4:	str	r1, [r5, #4]
+ 1b8:	str	r5, [r0, r8, lsl #2]
+ 1bc:	b	1cc <tabela_adiciona+0xe0>
+ 1c0:	add	r0, r5, #50	; 0x32
+ 1c4:	mov	r1, r9
+ 1c8:	bl	0 <strcpy>
+ 1cc:	mov	sl, #0
+ 1d0:	b	118 <tabela_adiciona+0x2c>
+
+000001d4 <tabela_remove>:
+ 1d4:	push	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+ 1d8:	add	fp, sp, #28
+ 1dc:	sub	sp, sp, #4
+ 1e0:	cmp	r0, #0
+ 1e4:	beq	264 <tabela_remove+0x90>
+ 1e8:	mov	r6, r1
+ 1ec:	ldr	r2, [r0]
+ 1f0:	ldr	r1, [r0, #8]
+ 1f4:	mov	r4, r0
+ 1f8:	mov	r0, r6
+ 1fc:	blx	r2
+ 200:	ldr	r9, [r4, #4]
+ 204:	mvn	sl, #2
+ 208:	ldr	r7, [r9, r0, lsl #2]
+ 20c:	cmp	r7, #0
+ 210:	beq	2a0 <tabela_remove+0xcc>
+ 214:	ldr	r5, [r7]
+ 218:	mov	r8, r0
+ 21c:	mov	r1, r6
+ 220:	mov	r0, r5
+ 224:	bl	0 <strcmp>
+ 228:	cmp	r0, #0
+ 22c:	beq	26c <tabela_remove+0x98>
+ 230:	mov	r4, r7
+ 234:	ldr	r7, [r4, #4]
+ 238:	cmp	r7, #0
+ 23c:	beq	2a0 <tabela_remove+0xcc>
+ 240:	ldr	r5, [r7]
+ 244:	mov	r1, r6
+ 248:	mov	r0, r5
+ 24c:	bl	0 <strcmp>
+ 250:	cmp	r0, #0
+ 254:	mov	r0, r4
+ 258:	mov	r4, r7
+ 25c:	bne	234 <tabela_remove+0x60>
+ 260:	b	270 <tabela_remove+0x9c>
+ 264:	mvn	sl, #1
+ 268:	b	2a0 <tabela_remove+0xcc>
+ 26c:	mov	r0, #0
+ 270:	ldr	r1, [r7, #4]
+ 274:	cmp	r0, #0
+ 278:	beq	284 <tabela_remove+0xb0>
+ 27c:	str	r1, [r0, #4]
+ 280:	b	28c <tabela_remove+0xb8>
+ 284:	str	r1, [r9, r8, lsl #2]
+ 288:	ldr	r5, [r7]
+ 28c:	mov	r0, r5
+ 290:	bl	0 <free>
+ 294:	mov	r0, r7
+ 298:	bl	0 <free>
+ 29c:	mov	sl, #0
+ 2a0:	mov	r0, sl
+ 2a4:	sub	sp, fp, #28
+ 2a8:	pop	{r4, r5, r6, r7, r8, r9, sl, fp, pc}
+
+000002ac <tabela_existe>:
+ 2ac:	push	{r4, r5, r6, sl, fp, lr}
+ 2b0:	add	fp, sp, #16
+ 2b4:	cmp	r0, #0
+ 2b8:	mvn	r5, #1
+ 2bc:	movne	r4, r1
+ 2c0:	cmpne	r1, #0
+ 2c4:	bne	2d0 <tabela_existe+0x24>
+ 2c8:	mov	r0, r5
+ 2cc:	pop	{r4, r5, r6, sl, fp, pc}
+ 2d0:	ldr	r2, [r0]
+ 2d4:	ldr	r1, [r0, #8]
+ 2d8:	mov	r6, r0
+ 2dc:	mov	r0, r4
+ 2e0:	blx	r2
+ 2e4:	ldr	r1, [r6, #4]
+ 2e8:	mvn	r5, #2
+ 2ec:	ldr	r6, [r1, r0, lsl #2]
+ 2f0:	cmp	r6, #0
+ 2f4:	beq	2c8 <tabela_existe+0x1c>
+ 2f8:	ldr	r0, [r6]
+ 2fc:	mov	r1, r4
+ 300:	bl	0 <strcmp>
+ 304:	cmp	r0, #0
+ 308:	beq	31c <tabela_existe+0x70>
+ 30c:	ldr	r6, [r6, #4]
+ 310:	cmp	r6, #0
+ 314:	bne	2f8 <tabela_existe+0x4c>
+ 318:	b	2c8 <tabela_existe+0x1c>
+ 31c:	mov	r5, #1
+ 320:	mov	r0, r5
+ 324:	pop	{r4, r5, r6, sl, fp, pc}
+
+00000328 <tabela_valor>:
+ 328:	push	{r4, r5, r6, r7, fp, lr}
+ 32c:	add	fp, sp, #16
+ 330:	mov	r4, #0
+ 334:	cmp	r0, #0
+ 338:	beq	388 <tabela_valor+0x60>
+ 33c:	mov	r5, r1
+ 340:	ldr	r2, [r0]
+ 344:	ldr	r1, [r0, #8]
+ 348:	mov	r6, r0
+ 34c:	mov	r0, r5
+ 350:	blx	r2
+ 354:	ldr	r1, [r6, #4]
+ 358:	ldr	r7, [r1, r0, lsl #2]
+ 35c:	cmp	r7, #0
+ 360:	beq	388 <tabela_valor+0x60>
+ 364:	ldr	r6, [r7]
+ 368:	mov	r1, r5
+ 36c:	mov	r0, r6
+ 370:	bl	0 <strcmp>
+ 374:	cmp	r0, #0
+ 378:	beq	390 <tabela_valor+0x68>
+ 37c:	ldr	r7, [r7, #4]
+ 380:	cmp	r7, #0
+ 384:	bne	364 <tabela_valor+0x3c>
+ 388:	mov	r0, r4
+ 38c:	pop	{r4, r5, r6, r7, fp, pc}
+ 390:	add	r4, r6, #50	; 0x32
+ 394:	mov	r0, r4
+ 398:	pop	{r4, r5, r6, r7, fp, pc}
+
+0000039c <tabela_esvazia>:
+ 39c:	push	{r4, r5, r6, r7, fp, lr}
+ 3a0:	add	fp, sp, #16
+ 3a4:	cmp	r0, #0
+ 3a8:	beq	414 <tabela_esvazia+0x78>
+ 3ac:	ldr	r1, [r0, #8]
+ 3b0:	mov	r4, r0
+ 3b4:	cmp	r1, #1
+ 3b8:	blt	41c <tabela_esvazia+0x80>
+ 3bc:	mov	r6, #0
+ 3c0:	b	3d8 <tabela_esvazia+0x3c>
+ 3c4:	mov	r0, #0
+ 3c8:	str	r0, [r2, r6, lsl #2]
+ 3cc:	add	r6, r6, #1
+ 3d0:	cmp	r6, r1
+ 3d4:	bge	410 <tabela_esvazia+0x74>
+ 3d8:	ldr	r2, [r4, #4]
+ 3dc:	ldr	r5, [r2, r6, lsl #2]
+ 3e0:	cmp	r5, #0
+ 3e4:	beq	3c4 <tabela_esvazia+0x28>
+ 3e8:	ldm	r5, {r0, r7}
+ 3ec:	bl	0 <free>
+ 3f0:	mov	r0, r5
+ 3f4:	bl	0 <free>
+ 3f8:	cmp	r7, #0
+ 3fc:	mov	r5, r7
+ 400:	bne	3e8 <tabela_esvazia+0x4c>
+ 404:	ldr	r2, [r4, #4]
+ 408:	ldr	r1, [r4, #8]
+ 40c:	b	3c4 <tabela_esvazia+0x28>
+ 410:	pop	{r4, r5, r6, r7, fp, pc}
+ 414:	mvn	r0, #1
+ 418:	pop	{r4, r5, r6, r7, fp, pc}
+ 41c:	mov	r0, #0
+ 420:	pop	{r4, r5, r6, r7, fp, pc}
+
+00000424 <tabela_numelementos>:
+ 424:	cmp	r0, #0
+ 428:	mvneq	r0, #1
+ 42c:	bxeq	lr
+ 430:	ldr	r1, [r0, #8]
+ 434:	cmp	r1, #1
+ 438:	movlt	r0, #0
+ 43c:	bxlt	lr
+ 440:	ldr	ip, [r0, #4]
+ 444:	mov	r0, #0
+ 448:	mov	r3, #0
+ 44c:	b	45c <tabela_numelementos+0x38>
+ 450:	add	r3, r3, #1
+ 454:	cmp	r3, r1
+ 458:	bxge	lr
+ 45c:	ldr	r2, [ip, r3, lsl #2]
+ 460:	cmp	r2, #0
+ 464:	beq	450 <tabela_numelementos+0x2c>
+ 468:	ldr	r2, [r2, #4]
+ 46c:	add	r0, r0, #1
+ 470:	cmp	r2, #0
+ 474:	bne	468 <tabela_numelementos+0x44>
+ 478:	b	450 <tabela_numelementos+0x2c>
+
+0000047c <tabela_elementos>:
+ 47c:	push	{r4, r5, r6, r7, r8, r9, sl, fp, lr}
+ 480:	add	fp, sp, #28
+ 484:	sub	sp, sp, #4
+ 488:	cmp	r0, #0
+ 48c:	beq	564 <tabela_elementos+0xe8>
+ 490:	ldr	r2, [r0, #8]
+ 494:	mov	r5, r0
+ 498:	cmp	r2, #1
+ 49c:	blt	56c <tabela_elementos+0xf0>
+ 4a0:	ldr	r7, [r5, #4]
+ 4a4:	mov	r0, #0
+ 4a8:	mov	r3, #0
+ 4ac:	b	4bc <tabela_elementos+0x40>
+ 4b0:	add	r3, r3, #1
+ 4b4:	cmp	r3, r2
+ 4b8:	beq	4dc <tabela_elementos+0x60>
+ 4bc:	ldr	r6, [r7, r3, lsl #2]
+ 4c0:	cmp	r6, #0
+ 4c4:	beq	4b0 <tabela_elementos+0x34>
+ 4c8:	ldr	r6, [r6, #4]
+ 4cc:	add	r0, r0, #1
+ 4d0:	cmp	r6, #0
+ 4d4:	bne	4c8 <tabela_elementos+0x4c>
+ 4d8:	b	4b0 <tabela_elementos+0x34>
+ 4dc:	mov	r6, #0
+ 4e0:	cmp	r0, #1
+ 4e4:	str	r0, [r1]
+ 4e8:	blt	578 <tabela_elementos+0xfc>
+ 4ec:	mov	r1, #150	; 0x96
+ 4f0:	mul	r0, r0, r1
+ 4f4:	bl	0 <malloc>
+ 4f8:	cmp	r0, #0
+ 4fc:	beq	578 <tabela_elementos+0xfc>
+ 500:	ldr	sl, [r5, #8]
+ 504:	mov	r8, r0
+ 508:	cmp	sl, #1
+ 50c:	blt	584 <tabela_elementos+0x108>
+ 510:	mov	r4, #0
+ 514:	mov	r6, #0
+ 518:	b	528 <tabela_elementos+0xac>
+ 51c:	add	r6, r6, #1
+ 520:	cmp	r6, sl
+ 524:	bge	584 <tabela_elementos+0x108>
+ 528:	ldr	r9, [r7, r6, lsl #2]
+ 52c:	cmp	r9, #0
+ 530:	beq	51c <tabela_elementos+0xa0>
+ 534:	mov	r0, #150	; 0x96
+ 538:	mla	r5, r4, r0, r8
+ 53c:	ldr	r1, [r9]
+ 540:	mov	r0, r5
+ 544:	mov	r2, #150	; 0x96
+ 548:	bl	0 <memcpy>
+ 54c:	ldr	r9, [r9, #4]
+ 550:	add	r5, r5, #150	; 0x96
+ 554:	add	r4, r4, #1
+ 558:	cmp	r9, #0
+ 55c:	bne	53c <tabela_elementos+0xc0>
+ 560:	b	51c <tabela_elementos+0xa0>
+ 564:	mvn	r0, #1
+ 568:	b	570 <tabela_elementos+0xf4>
+ 56c:	mov	r0, #0
+ 570:	str	r0, [r1]
+ 574:	mov	r6, #0
+ 578:	mov	r0, r6
+ 57c:	sub	sp, fp, #28
+ 580:	pop	{r4, r5, r6, r7, r8, r9, sl, fp, pc}
+ 584:	mov	r6, r8
+ 588:	b	578 <tabela_elementos+0xfc>
+
+0000058c <hash_krm>:
+ 58c:	ldrb	r2, [r0]
+ 590:	cmp	r2, #0
+ 594:	beq	5b4 <hash_krm+0x28>
+ 598:	add	r3, r0, #1
+ 59c:	mov	r0, #7
+ 5a0:	uxtab	r0, r0, r2
+ 5a4:	ldrb	r2, [r3], #1
+ 5a8:	cmp	r2, #0
+ 5ac:	bne	5a0 <hash_krm+0x14>
+ 5b0:	b	5b8 <hash_krm+0x2c>
+ 5b4:	mov	r0, #7
+ 5b8:	udiv	r2, r0, r1
+ 5bc:	mls	r0, r2, r1, r0
+ 5c0:	bx	lr
+
+000005c4 <hash_djbm>:
+ 5c4:	ldrb	r2, [r0]
+ 5c8:	cmp	r2, #0
+ 5cc:	beq	5f4 <hash_djbm+0x30>
+ 5d0:	add	r3, r0, #1
+ 5d4:	movw	r0, #5347	; 0x14e3
+ 5d8:	uxtb	r2, r2
+ 5dc:	rsb	r0, r0, r0, lsl #5
+ 5e0:	eor	r0, r0, r2
+ 5e4:	ldrb	r2, [r3], #1
+ 5e8:	cmp	r2, #0
+ 5ec:	bne	5d8 <hash_djbm+0x14>
+ 5f0:	b	5f8 <hash_djbm+0x34>
+ 5f4:	movw	r0, #5347	; 0x14e3
+ 5f8:	udiv	r2, r0, r1
+ 5fc:	mls	r0, r2, r1, r0
+ 600:	bx	lr
+
+00000604 <mostraTabela>:
+ 604:	push	{r4, r5, r6, r7, r8, sl, fp, lr}
+ 608:	add	fp, sp, #24
+ 60c:	mov	r4, r0
+ 610:	cmp	r0, #0
+ 614:	beq	660 <mostraTabela+0x5c>
+ 618:	ldr	r0, [r4, #8]
+ 61c:	cmp	r0, #1
+ 620:	blt	668 <mostraTabela+0x64>
+ 624:	ldr	r2, [r4, #4]
+ 628:	mov	r1, #0
+ 62c:	mov	r3, #0
+ 630:	b	640 <mostraTabela+0x3c>
+ 634:	add	r3, r3, #1
+ 638:	cmp	r3, r0
+ 63c:	beq	66c <mostraTabela+0x68>
+ 640:	ldr	r7, [r2, r3, lsl #2]
+ 644:	cmp	r7, #0
+ 648:	beq	634 <mostraTabela+0x30>
+ 64c:	ldr	r7, [r7, #4]
+ 650:	add	r1, r1, #1
+ 654:	cmp	r7, #0
+ 658:	bne	64c <mostraTabela+0x48>
+ 65c:	b	634 <mostraTabela+0x30>
+ 660:	mvn	r1, #1
+ 664:	b	66c <mostraTabela+0x68>
+ 668:	mov	r1, #0
+ 66c:	movw	r0, #0
+ 670:	movt	r0, #0
+ 674:	bl	0 <printf>
+ 678:	ldr	r0, [r4, #8]
+ 67c:	cmp	r0, #1
+ 680:	blt	700 <mostraTabela+0xfc>
+ 684:	movw	r8, #0
+ 688:	movw	r7, #0
+ 68c:	mov	r5, #0
+ 690:	movt	r8, #0
+ 694:	movt	r7, #0
+ 698:	b	6b4 <mostraTabela+0xb0>
+ 69c:	mov	r0, #10
+ 6a0:	bl	0 <putchar>
+ 6a4:	ldr	r0, [r4, #8]
+ 6a8:	add	r5, r5, #1
+ 6ac:	cmp	r5, r0
+ 6b0:	bge	700 <mostraTabela+0xfc>
+ 6b4:	ldr	r1, [r4, #4]
+ 6b8:	ldr	r1, [r1, r5, lsl #2]
+ 6bc:	cmp	r1, #0
+ 6c0:	beq	6a8 <mostraTabela+0xa4>
+ 6c4:	mov	r0, r8
+ 6c8:	mov	r1, r5
+ 6cc:	bl	0 <printf>
+ 6d0:	ldr	r0, [r4, #4]
+ 6d4:	ldr	r6, [r0, r5, lsl #2]
+ 6d8:	cmp	r6, #0
+ 6dc:	beq	69c <mostraTabela+0x98>
+ 6e0:	ldr	r1, [r6]
+ 6e4:	mov	r0, r7
+ 6e8:	add	r2, r1, #50	; 0x32
+ 6ec:	bl	0 <printf>
+ 6f0:	ldr	r6, [r6, #4]
+ 6f4:	cmp	r6, #0
+ 6f8:	bne	6e0 <mostraTabela+0xdc>
+ 6fc:	b	69c <mostraTabela+0x98>
+ 700:	mov	r0, #10
+ 704:	pop	{r4, r5, r6, r7, r8, sl, fp, lr}
+ 708:	b	0 <putchar>

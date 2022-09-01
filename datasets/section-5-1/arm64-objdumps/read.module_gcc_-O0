@@ -1,0 +1,175 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//read.module_gcc_-O0:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_isprint>:
+   0:	sub	sp, sp, #0x10
+   4:	str	w0, [sp, #12]
+   8:	ldr	w0, [sp, #12]
+   c:	cmp	w0, #0x1f
+  10:	b.le	28 <grub_isprint+0x28>
+  14:	ldr	w0, [sp, #12]
+  18:	cmp	w0, #0x7e
+  1c:	b.gt	28 <grub_isprint+0x28>
+  20:	mov	w0, #0x1                   	// #1
+  24:	b	2c <grub_isprint+0x2c>
+  28:	mov	w0, #0x0                   	// #0
+  2c:	add	sp, sp, #0x10
+  30:	ret
+
+0000000000000034 <grub_register_command>:
+  34:	stp	x29, x30, [sp, #-48]!
+  38:	mov	x29, sp
+  3c:	str	x0, [sp, #40]
+  40:	str	x1, [sp, #32]
+  44:	str	x2, [sp, #24]
+  48:	str	x3, [sp, #16]
+  4c:	mov	w4, #0x0                   	// #0
+  50:	ldr	x3, [sp, #16]
+  54:	ldr	x2, [sp, #24]
+  58:	ldr	x1, [sp, #32]
+  5c:	ldr	x0, [sp, #40]
+  60:	bl	0 <grub_register_command_prio>
+  64:	ldp	x29, x30, [sp], #48
+  68:	ret
+
+000000000000006c <grub_getline>:
+  6c:	stp	x29, x30, [sp, #-48]!
+  70:	mov	x29, sp
+  74:	str	wzr, [sp, #44]
+  78:	ldr	w0, [sp, #44]
+  7c:	add	w0, w0, #0x1
+  80:	sxtw	x0, w0
+  84:	add	x0, x0, #0x4
+  88:	bl	0 <grub_malloc>
+  8c:	str	x0, [sp, #32]
+  90:	ldr	x0, [sp, #32]
+  94:	cmp	x0, #0x0
+  98:	b.ne	a4 <grub_getline+0x38>  // b.any
+  9c:	mov	x0, #0x0                   	// #0
+  a0:	b	168 <grub_getline+0xfc>
+  a4:	bl	0 <grub_getkey>
+  a8:	strb	w0, [sp, #31]
+  ac:	ldrb	w0, [sp, #31]
+  b0:	cmp	w0, #0xa
+  b4:	b.eq	154 <grub_getline+0xe8>  // b.none
+  b8:	ldrb	w0, [sp, #31]
+  bc:	cmp	w0, #0xd
+  c0:	b.eq	154 <grub_getline+0xe8>  // b.none
+  c4:	ldrsw	x0, [sp, #44]
+  c8:	ldr	x1, [sp, #32]
+  cc:	add	x0, x1, x0
+  d0:	ldrb	w1, [sp, #31]
+  d4:	strb	w1, [x0]
+  d8:	ldrb	w0, [sp, #31]
+  dc:	bl	0 <grub_isprint>
+  e0:	cmp	w0, #0x0
+  e4:	b.eq	100 <grub_getline+0x94>  // b.none
+  e8:	ldrb	w0, [sp, #31]
+  ec:	mov	w1, w0
+  f0:	adrp	x0, 0 <grub_isprint>
+  f4:	add	x0, x0, #0x0
+  f8:	ldr	x0, [x0]
+  fc:	bl	0 <grub_printf>
+ 100:	ldr	w0, [sp, #44]
+ 104:	add	w0, w0, #0x1
+ 108:	str	w0, [sp, #44]
+ 10c:	ldr	w0, [sp, #44]
+ 110:	add	w0, w0, #0x1
+ 114:	sxtw	x0, w0
+ 118:	add	x0, x0, #0x4
+ 11c:	mov	x1, x0
+ 120:	ldr	x0, [sp, #32]
+ 124:	bl	0 <grub_realloc>
+ 128:	str	x0, [sp, #16]
+ 12c:	ldr	x0, [sp, #16]
+ 130:	cmp	x0, #0x0
+ 134:	b.ne	148 <grub_getline+0xdc>  // b.any
+ 138:	ldr	x0, [sp, #32]
+ 13c:	bl	0 <grub_free>
+ 140:	mov	x0, #0x0                   	// #0
+ 144:	b	168 <grub_getline+0xfc>
+ 148:	ldr	x0, [sp, #16]
+ 14c:	str	x0, [sp, #32]
+ 150:	b	a4 <grub_getline+0x38>
+ 154:	ldrsw	x0, [sp, #44]
+ 158:	ldr	x1, [sp, #32]
+ 15c:	add	x0, x1, x0
+ 160:	strb	wzr, [x0]
+ 164:	ldr	x0, [sp, #32]
+ 168:	ldp	x29, x30, [sp], #48
+ 16c:	ret
+	...
+
+0000000000000178 <grub_cmd_read>:
+ 178:	stp	x29, x30, [sp, #-64]!
+ 17c:	mov	x29, sp
+ 180:	str	x0, [sp, #40]
+ 184:	str	w1, [sp, #36]
+ 188:	str	x2, [sp, #24]
+ 18c:	bl	6c <grub_getline>
+ 190:	str	x0, [sp, #56]
+ 194:	ldr	x0, [sp, #56]
+ 198:	cmp	x0, #0x0
+ 19c:	b.ne	1b4 <grub_cmd_read+0x3c>  // b.any
+ 1a0:	adrp	x0, 0 <grub_isprint>
+ 1a4:	add	x0, x0, #0x0
+ 1a8:	ldr	x0, [x0]
+ 1ac:	ldr	w0, [x0]
+ 1b0:	b	1dc <grub_cmd_read+0x64>
+ 1b4:	ldr	w0, [sp, #36]
+ 1b8:	cmp	w0, #0x0
+ 1bc:	b.le	1d0 <grub_cmd_read+0x58>
+ 1c0:	ldr	x0, [sp, #24]
+ 1c4:	ldr	x0, [x0]
+ 1c8:	ldr	x1, [sp, #56]
+ 1cc:	bl	0 <grub_env_set>
+ 1d0:	ldr	x0, [sp, #56]
+ 1d4:	bl	0 <grub_free>
+ 1d8:	mov	w0, #0x0                   	// #0
+ 1dc:	ldp	x29, x30, [sp], #64
+ 1e0:	ret
+ 1e4:	nop
+	...
+
+00000000000001f0 <grub_mod_init>:
+ 1f0:	stp	x29, x30, [sp, #-32]!
+ 1f4:	mov	x29, sp
+ 1f8:	str	x0, [sp, #24]
+ 1fc:	adrp	x0, 0 <grub_isprint>
+ 200:	add	x0, x0, #0x0
+ 204:	ldr	x3, [x0]
+ 208:	adrp	x0, 0 <grub_isprint>
+ 20c:	add	x0, x0, #0x0
+ 210:	ldr	x2, [x0]
+ 214:	adrp	x0, 0 <grub_isprint>
+ 218:	add	x0, x0, #0x0
+ 21c:	ldr	x1, [x0]
+ 220:	adrp	x0, 0 <grub_isprint>
+ 224:	add	x0, x0, #0x0
+ 228:	ldr	x0, [x0]
+ 22c:	bl	34 <grub_register_command>
+ 230:	mov	x1, x0
+ 234:	adrp	x0, 0 <grub_isprint>
+ 238:	add	x0, x0, #0x0
+ 23c:	ldr	x0, [x0]
+ 240:	str	x1, [x0]
+ 244:	nop
+ 248:	ldp	x29, x30, [sp], #32
+ 24c:	ret
+	...
+
+0000000000000278 <grub_mod_fini>:
+ 278:	stp	x29, x30, [sp, #-16]!
+ 27c:	mov	x29, sp
+ 280:	adrp	x0, 0 <grub_isprint>
+ 284:	add	x0, x0, #0x0
+ 288:	ldr	x0, [x0]
+ 28c:	ldr	x0, [x0]
+ 290:	bl	0 <grub_unregister_command>
+ 294:	nop
+ 298:	ldp	x29, x30, [sp], #16
+ 29c:	ret
+	...

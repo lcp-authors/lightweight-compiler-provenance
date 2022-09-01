@@ -1,0 +1,336 @@
+
+../compcert-repos/prog2/CMakeFiles/8.dir/Aula08_Grafos_T2/grafo.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <cria_elem>:
+   0:	push	{r4, lr}
+   4:	mov	r4, r0
+   8:	mov	r0, #8
+   c:	bl	0 <malloc>
+  10:	cmp	r0, #0
+  14:	movne	r3, #0
+  18:	strne	r4, [r0]
+  1c:	strne	r3, [r0, #4]
+  20:	pop	{r4, pc}
+
+00000024 <grafo_novo>:
+  24:	push	{r4, r5, r6, lr}
+  28:	subs	r5, r0, #0
+  2c:	ble	78 <grafo_novo+0x54>
+  30:	mov	r0, #8
+  34:	bl	0 <malloc>
+  38:	lsl	r4, r5, #3
+  3c:	mov	r6, r0
+  40:	str	r5, [r0]
+  44:	mov	r0, r4
+  48:	bl	0 <malloc>
+  4c:	mov	r2, #0
+  50:	mov	r3, r0
+  54:	add	r1, r0, r4
+  58:	str	r0, [r6, #4]
+  5c:	str	r2, [r3]
+  60:	str	r2, [r3, #4]
+  64:	add	r3, r3, #8
+  68:	cmp	r3, r1
+  6c:	bne	5c <grafo_novo+0x38>
+  70:	mov	r0, r6
+  74:	pop	{r4, r5, r6, pc}
+  78:	mov	r6, #0
+  7c:	b	70 <grafo_novo+0x4c>
+
+00000080 <grafo_apaga>:
+  80:	push	{r4, r5, r6, lr}
+  84:	subs	r6, r0, #0
+  88:	popeq	{r4, r5, r6, pc}
+  8c:	ldm	r6, {r2, r3}
+  90:	cmp	r2, #0
+  94:	ble	cc <grafo_apaga+0x4c>
+  98:	mov	r5, #0
+  9c:	add	r1, r3, r5, lsl #3
+  a0:	ldr	r0, [r1, #4]
+  a4:	cmp	r0, #0
+  a8:	beq	c0 <grafo_apaga+0x40>
+  ac:	ldr	r4, [r0, #4]
+  b0:	bl	0 <free>
+  b4:	subs	r0, r4, #0
+  b8:	bne	ac <grafo_apaga+0x2c>
+  bc:	ldm	r6, {r2, r3}
+  c0:	add	r5, r5, #1
+  c4:	cmp	r2, r5
+  c8:	bgt	9c <grafo_apaga+0x1c>
+  cc:	mov	r0, r3
+  d0:	bl	0 <free>
+  d4:	mov	r0, r6
+  d8:	pop	{r4, r5, r6, lr}
+  dc:	b	0 <free>
+
+000000e0 <grafo_aresta>:
+  e0:	cmp	r0, #0
+  e4:	beq	140 <grafo_aresta+0x60>
+  e8:	ldr	r3, [r0]
+  ec:	cmp	r3, r1
+  f0:	blt	140 <grafo_aresta+0x60>
+  f4:	cmp	r3, r2
+  f8:	blt	134 <grafo_aresta+0x54>
+  fc:	ldr	r3, [r0, #4]
+ 100:	add	r1, r3, r1, lsl #3
+ 104:	ldr	r0, [r1, #4]
+ 108:	cmp	r0, #0
+ 10c:	bne	120 <grafo_aresta+0x40>
+ 110:	bx	lr
+ 114:	ldr	r0, [r0, #4]
+ 118:	cmp	r0, #0
+ 11c:	beq	13c <grafo_aresta+0x5c>
+ 120:	ldr	r3, [r0]
+ 124:	cmp	r2, r3
+ 128:	bne	114 <grafo_aresta+0x34>
+ 12c:	mov	r0, #1
+ 130:	bx	lr
+ 134:	mov	r0, #0
+ 138:	bx	lr
+ 13c:	bx	lr
+ 140:	mvn	r0, #0
+ 144:	bx	lr
+
+00000148 <grafo_adiciona>:
+ 148:	cmp	r0, #0
+ 14c:	beq	1ec <grafo_adiciona+0xa4>
+ 150:	ldr	r3, [r0]
+ 154:	cmp	r3, r2
+ 158:	cmpge	r3, r1
+ 15c:	blt	1ec <grafo_adiciona+0xa4>
+ 160:	push	{r4, r5, r6, r7, r8, lr}
+ 164:	ldr	r7, [r0, #4]
+ 168:	add	r5, r7, r1, lsl #3
+ 16c:	ldr	r6, [r5, #4]
+ 170:	cmp	r6, #0
+ 174:	beq	1a4 <grafo_adiciona+0x5c>
+ 178:	ldr	r1, [r6]
+ 17c:	cmp	r2, r1
+ 180:	beq	1e4 <grafo_adiciona+0x9c>
+ 184:	mov	r3, r6
+ 188:	b	198 <grafo_adiciona+0x50>
+ 18c:	ldr	r0, [r3]
+ 190:	cmp	r2, r0
+ 194:	beq	1e4 <grafo_adiciona+0x9c>
+ 198:	ldr	r3, [r3, #4]
+ 19c:	cmp	r3, #0
+ 1a0:	bne	18c <grafo_adiciona+0x44>
+ 1a4:	mov	r0, #8
+ 1a8:	mov	r4, r2
+ 1ac:	bl	0 <malloc>
+ 1b0:	subs	r3, r0, #0
+ 1b4:	beq	1d8 <grafo_adiciona+0x90>
+ 1b8:	ldr	r2, [r7]
+ 1bc:	mov	r0, #1
+ 1c0:	add	r2, r2, #1
+ 1c4:	str	r4, [r3]
+ 1c8:	str	r3, [r5, #4]
+ 1cc:	str	r6, [r3, #4]
+ 1d0:	str	r2, [r7]
+ 1d4:	pop	{r4, r5, r6, r7, r8, pc}
+ 1d8:	str	r3, [r5, #4]
+ 1dc:	str	r6, [r3, #4]
+ 1e0:	udf	#0
+ 1e4:	mov	r0, #0
+ 1e8:	pop	{r4, r5, r6, r7, r8, pc}
+ 1ec:	mvn	r0, #0
+ 1f0:	bx	lr
+
+000001f4 <grafo_remove>:
+ 1f4:	cmp	r0, #0
+ 1f8:	beq	2a8 <grafo_remove+0xb4>
+ 1fc:	cmp	r1, r2
+ 200:	ldr	ip, [r0]
+ 204:	movge	r3, r1
+ 208:	movlt	r3, r2
+ 20c:	cmp	ip, r3
+ 210:	blt	2a8 <grafo_remove+0xb4>
+ 214:	ldr	ip, [r0, #4]
+ 218:	add	r1, ip, r1, lsl #3
+ 21c:	ldr	r3, [r1, #4]
+ 220:	cmp	r3, #0
+ 224:	beq	27c <grafo_remove+0x88>
+ 228:	ldr	r0, [r3]
+ 22c:	push	{r4, lr}
+ 230:	cmp	r2, r0
+ 234:	bne	24c <grafo_remove+0x58>
+ 238:	b	284 <grafo_remove+0x90>
+ 23c:	ldr	r1, [r0]
+ 240:	cmp	r2, r1
+ 244:	beq	25c <grafo_remove+0x68>
+ 248:	mov	r3, r0
+ 24c:	ldr	r0, [r3, #4]
+ 250:	cmp	r0, #0
+ 254:	bne	23c <grafo_remove+0x48>
+ 258:	pop	{r4, pc}
+ 25c:	ldr	r2, [ip]
+ 260:	ldr	r1, [r0, #4]
+ 264:	sub	r2, r2, #1
+ 268:	str	r1, [r3, #4]
+ 26c:	str	r2, [ip]
+ 270:	bl	0 <free>
+ 274:	mov	r0, #1
+ 278:	pop	{r4, pc}
+ 27c:	mov	r0, r3
+ 280:	bx	lr
+ 284:	ldr	r2, [ip]
+ 288:	ldr	r0, [r3, #4]
+ 28c:	sub	r2, r2, #1
+ 290:	str	r0, [r1, #4]
+ 294:	mov	r0, r3
+ 298:	str	r2, [ip]
+ 29c:	bl	0 <free>
+ 2a0:	mov	r0, #1
+ 2a4:	pop	{r4, pc}
+ 2a8:	mvn	r0, #0
+ 2ac:	bx	lr
+
+000002b0 <v_sucessores>:
+ 2b0:	push	{r4, r5, r6, lr}
+ 2b4:	subs	r5, r0, #0
+ 2b8:	beq	328 <v_sucessores+0x78>
+ 2bc:	ldr	r3, [r5]
+ 2c0:	cmp	r1, #0
+ 2c4:	cmpge	r3, r1
+ 2c8:	movgt	r3, #1
+ 2cc:	movle	r3, #0
+ 2d0:	ble	320 <v_sucessores+0x70>
+ 2d4:	mov	r4, r1
+ 2d8:	bl	0 <vetor_novo>
+ 2dc:	ldr	r1, [r5, #4]
+ 2e0:	add	r1, r1, r4, lsl #3
+ 2e4:	ldr	r4, [r1, #4]
+ 2e8:	cmp	r4, #0
+ 2ec:	mov	r6, r0
+ 2f0:	beq	318 <v_sucessores+0x68>
+ 2f4:	mov	r5, #0
+ 2f8:	mov	r2, r5
+ 2fc:	ldr	r1, [r4]
+ 300:	mov	r0, r6
+ 304:	bl	0 <vetor_insere>
+ 308:	ldr	r4, [r4, #4]
+ 30c:	add	r5, r5, #1
+ 310:	cmp	r4, #0
+ 314:	bne	2f8 <v_sucessores+0x48>
+ 318:	mov	r0, r6
+ 31c:	pop	{r4, r5, r6, pc}
+ 320:	mov	r6, r3
+ 324:	b	318 <v_sucessores+0x68>
+ 328:	mov	r6, r5
+ 32c:	b	318 <v_sucessores+0x68>
+
+00000330 <v_antecessores>:
+ 330:	push	{r4, r5, r6, r7, r8, lr}
+ 334:	subs	r6, r0, #0
+ 338:	beq	3e0 <v_antecessores+0xb0>
+ 33c:	ldr	r3, [r6]
+ 340:	cmp	r1, #0
+ 344:	cmpge	r3, r1
+ 348:	movgt	r3, #1
+ 34c:	movle	r3, #0
+ 350:	ble	3d4 <v_antecessores+0xa4>
+ 354:	mov	r4, r1
+ 358:	bl	0 <vetor_novo>
+ 35c:	ldr	r1, [r6]
+ 360:	cmp	r1, #0
+ 364:	mov	r7, r0
+ 368:	ble	3a4 <v_antecessores+0x74>
+ 36c:	mov	r8, #0
+ 370:	mov	r5, r8
+ 374:	ldr	r3, [r6, #4]
+ 378:	add	r3, r3, r5, lsl #3
+ 37c:	b	38c <v_antecessores+0x5c>
+ 380:	ldr	r2, [r3]
+ 384:	cmp	r4, r2
+ 388:	beq	3ac <v_antecessores+0x7c>
+ 38c:	ldr	r3, [r3, #4]
+ 390:	cmp	r3, #0
+ 394:	bne	380 <v_antecessores+0x50>
+ 398:	add	r5, r5, #1
+ 39c:	cmp	r1, r5
+ 3a0:	bgt	374 <v_antecessores+0x44>
+ 3a4:	mov	r0, r7
+ 3a8:	pop	{r4, r5, r6, r7, r8, pc}
+ 3ac:	mov	r1, r5
+ 3b0:	mov	r2, r8
+ 3b4:	mov	r0, r7
+ 3b8:	bl	0 <vetor_insere>
+ 3bc:	ldr	r1, [r6]
+ 3c0:	add	r5, r5, #1
+ 3c4:	cmp	r1, r5
+ 3c8:	add	r8, r8, #1
+ 3cc:	bgt	374 <v_antecessores+0x44>
+ 3d0:	b	3a4 <v_antecessores+0x74>
+ 3d4:	mov	r7, r3
+ 3d8:	mov	r0, r7
+ 3dc:	pop	{r4, r5, r6, r7, r8, pc}
+ 3e0:	mov	r7, r6
+ 3e4:	b	3a4 <v_antecessores+0x74>
+
+000003e8 <v_grau>:
+ 3e8:	subs	r2, r1, #0
+ 3ec:	push	{r4, r5, r6, lr}
+ 3f0:	blt	444 <v_grau+0x5c>
+ 3f4:	mov	r5, r2
+ 3f8:	mov	r4, r0
+ 3fc:	bl	330 <v_antecessores>
+ 400:	mov	r1, r5
+ 404:	mov	r6, r0
+ 408:	mov	r0, r4
+ 40c:	bl	2b0 <v_sucessores>
+ 410:	mov	r5, r0
+ 414:	mov	r0, r6
+ 418:	bl	0 <vetor_tamanho>
+ 41c:	mov	r4, r0
+ 420:	mov	r0, r5
+ 424:	bl	0 <vetor_tamanho>
+ 428:	add	r4, r4, r0
+ 42c:	mov	r0, r6
+ 430:	bl	0 <vetor_apaga>
+ 434:	mov	r0, r5
+ 438:	bl	0 <vetor_apaga>
+ 43c:	mov	r0, r4
+ 440:	pop	{r4, r5, r6, pc}
+ 444:	mvn	r4, #0
+ 448:	b	43c <v_grau+0x54>
+
+0000044c <v_celebridade>:
+ 44c:	subs	r3, r0, #0
+ 450:	beq	4d4 <v_celebridade+0x88>
+ 454:	ldr	r0, [r3, #4]
+ 458:	ldr	ip, [r0, r1, lsl #3]
+ 45c:	cmp	ip, #0
+ 460:	bne	4c4 <v_celebridade+0x78>
+ 464:	push	{r4, lr}
+ 468:	ldr	r4, [r3]
+ 46c:	cmp	r4, #0
+ 470:	ble	4cc <v_celebridade+0x80>
+ 474:	add	lr, r0, r4, lsl #3
+ 478:	ldr	r3, [r0, #4]
+ 47c:	cmp	r3, #0
+ 480:	bne	494 <v_celebridade+0x48>
+ 484:	b	4a4 <v_celebridade+0x58>
+ 488:	ldr	r3, [r3, #4]
+ 48c:	cmp	r3, #0
+ 490:	beq	4a4 <v_celebridade+0x58>
+ 494:	ldr	r2, [r3]
+ 498:	cmp	r1, r2
+ 49c:	bne	488 <v_celebridade+0x3c>
+ 4a0:	add	ip, ip, #1
+ 4a4:	add	r0, r0, #8
+ 4a8:	cmp	lr, r0
+ 4ac:	bne	478 <v_celebridade+0x2c>
+ 4b0:	add	ip, ip, #1
+ 4b4:	sub	r0, r4, ip
+ 4b8:	clz	r0, r0
+ 4bc:	lsr	r0, r0, #5
+ 4c0:	pop	{r4, pc}
+ 4c4:	mov	r0, #0
+ 4c8:	bx	lr
+ 4cc:	mov	ip, #1
+ 4d0:	b	4b4 <v_celebridade+0x68>
+ 4d4:	mvn	r0, #0
+ 4d8:	bx	lr

@@ -1,0 +1,862 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//ufs2.module_gcc_-O2:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_ufs_close>:
+   0:	stp	x29, x30, [sp, #-16]!
+   4:	mov	x29, sp
+   8:	ldr	x0, [x0, #80]
+   c:	bl	0 <grub_free>
+  10:	mov	w0, #0x0                   	// #0
+  14:	ldp	x29, x30, [sp], #16
+  18:	ret
+  1c:	nop
+
+0000000000000020 <grub_ufs_read_inode>:
+  20:	stp	x29, x30, [sp, #-16]!
+  24:	mov	x4, x2
+  28:	mov	x29, sp
+  2c:	ldp	w3, w2, [x0, #184]
+  30:	udiv	w5, w1, w3
+  34:	msub	w3, w5, w3, w1
+  38:	mul	w5, w5, w2
+  3c:	cbz	x4, 88 <grub_ufs_read_inode+0x68>
+  40:	ldr	w1, [x0, #16]
+  44:	cmp	w3, #0x0
+  48:	ldr	w6, [x0, #100]
+  4c:	and	w2, w3, #0x1
+  50:	ldr	x0, [x0, #1376]
+  54:	add	w1, w5, w1
+  58:	cneg	w2, w2, lt  // lt = tstop
+  5c:	add	w3, w3, w3, lsr #31
+  60:	lsl	w1, w1, w6
+  64:	add	w1, w1, w3, asr #1
+  68:	sbfiz	x2, x2, #8, #32
+  6c:	mov	x3, #0x100                 	// #256
+  70:	bl	0 <grub_disk_read>
+  74:	adrp	x0, 0 <grub_ufs_close>
+  78:	ldp	x29, x30, [sp], #16
+  7c:	ldr	x0, [x0]
+  80:	ldr	w0, [x0]
+  84:	ret
+  88:	add	x4, x0, #0x568
+  8c:	str	w1, [x0, #1640]
+  90:	b	40 <grub_ufs_read_inode+0x20>
+  94:	nop
+	...
+
+00000000000000a0 <grub_ufs_mount>:
+  a0:	stp	x29, x30, [sp, #-64]!
+  a4:	mov	x29, sp
+  a8:	stp	x19, x20, [sp, #16]
+  ac:	stp	x21, x22, [sp, #32]
+  b0:	mov	x21, x0
+  b4:	mov	x0, #0x678                 	// #1656
+  b8:	bl	0 <grub_malloc>
+  bc:	mov	x19, x0
+  c0:	cbz	x0, 17c <grub_ufs_mount+0xdc>
+  c4:	adrp	x0, 0 <grub_ufs_close>
+  c8:	ldr	x20, [x0]
+  cc:	ldr	w1, [x20]
+  d0:	cmn	w1, #0x1
+  d4:	b.eq	1d8 <grub_ufs_mount+0x138>  // b.none
+  d8:	adrp	x0, 0 <grub_ufs_close>
+  dc:	str	x23, [sp, #48]
+  e0:	mov	w23, #0x119                 	// #281
+  e4:	ldr	x22, [x0]
+  e8:	movk	w23, #0x1954, lsl #16
+  ec:	b	fc <grub_ufs_mount+0x5c>
+  f0:	ldr	w1, [x20, #4]!
+  f4:	cmn	w1, #0x1
+  f8:	b.eq	1c0 <grub_ufs_mount+0x120>  // b.none
+  fc:	sxtw	x1, w1
+ 100:	mov	x4, x19
+ 104:	mov	x0, x21
+ 108:	mov	x3, #0x560                 	// #1376
+ 10c:	mov	x2, #0x0                   	// #0
+ 110:	bl	0 <grub_disk_read>
+ 114:	ldr	w1, [x22]
+ 118:	cbnz	w1, 190 <grub_ufs_mount+0xf0>
+ 11c:	ldr	w1, [x19, #1372]
+ 120:	cmp	w1, w23
+ 124:	b.ne	f0 <grub_ufs_mount+0x50>  // b.any
+ 128:	ldr	w1, [x19, #48]
+ 12c:	sub	w0, w1, #0x1
+ 130:	tst	w0, w1
+ 134:	cbz	w1, f0 <grub_ufs_mount+0x50>
+ 138:	b.ne	f0 <grub_ufs_mount+0x50>  // b.any
+ 13c:	ldr	w0, [x19, #184]
+ 140:	cbz	w0, f0 <grub_ufs_mount+0x50>
+ 144:	str	wzr, [x19, #1648]
+ 148:	cmp	w1, #0x1
+ 14c:	b.eq	170 <grub_ufs_mount+0xd0>  // b.none
+ 150:	mov	w0, #0x1                   	// #1
+ 154:	mov	w4, w0
+ 158:	mov	w2, w0
+ 15c:	add	w0, w0, #0x1
+ 160:	lsl	w3, w4, w2
+ 164:	cmp	w3, w1
+ 168:	b.cc	158 <grub_ufs_mount+0xb8>  // b.lo, b.ul, b.last
+ 16c:	str	w2, [x19, #1648]
+ 170:	ldr	x23, [sp, #48]
+ 174:	str	x21, [x19, #1376]
+ 178:	str	wzr, [x19, #1644]
+ 17c:	mov	x0, x19
+ 180:	ldp	x19, x20, [sp, #16]
+ 184:	ldp	x21, x22, [sp, #32]
+ 188:	ldp	x29, x30, [sp], #64
+ 18c:	ret
+ 190:	ldr	x23, [sp, #48]
+ 194:	cmp	w1, #0x0
+ 198:	ccmp	w1, #0xb, #0x4, ne  // ne = any
+ 19c:	b.eq	1c4 <grub_ufs_mount+0x124>  // b.none
+ 1a0:	mov	x0, x19
+ 1a4:	mov	x19, #0x0                   	// #0
+ 1a8:	bl	0 <grub_free>
+ 1ac:	mov	x0, x19
+ 1b0:	ldp	x19, x20, [sp, #16]
+ 1b4:	ldp	x21, x22, [sp, #32]
+ 1b8:	ldp	x29, x30, [sp], #64
+ 1bc:	ret
+ 1c0:	ldr	x23, [sp, #48]
+ 1c4:	adrp	x1, 0 <grub_ufs_close>
+ 1c8:	mov	w0, #0x9                   	// #9
+ 1cc:	ldr	x1, [x1]
+ 1d0:	bl	0 <grub_error>
+ 1d4:	b	1a0 <grub_ufs_mount+0x100>
+ 1d8:	adrp	x0, 0 <grub_ufs_close>
+ 1dc:	ldr	x0, [x0]
+ 1e0:	ldr	w1, [x0]
+ 1e4:	b	194 <grub_ufs_mount+0xf4>
+	...
+
+0000000000000200 <grub_ufs_mtime>:
+ 200:	stp	x29, x30, [sp, #-48]!
+ 204:	adrp	x2, 0 <grub_ufs_close>
+ 208:	mov	x29, sp
+ 20c:	str	x21, [sp, #32]
+ 210:	ldr	x21, [x2]
+ 214:	stp	x19, x20, [sp, #16]
+ 218:	mov	x19, x0
+ 21c:	mov	x20, x1
+ 220:	ldr	x0, [x21]
+ 224:	bl	0 <grub_dl_ref>
+ 228:	ldr	x0, [x19]
+ 22c:	bl	a0 <grub_ufs_mount>
+ 230:	mov	x19, x0
+ 234:	cbz	x0, 278 <grub_ufs_mtime+0x78>
+ 238:	ldr	x1, [x19, #1072]
+ 23c:	ldr	w0, [x0, #32]
+ 240:	cmp	x1, w0, sxtw
+ 244:	csel	w0, w0, w1, le
+ 248:	str	w0, [x20]
+ 24c:	ldr	x0, [x21]
+ 250:	bl	0 <grub_dl_unref>
+ 254:	mov	x0, x19
+ 258:	bl	0 <grub_free>
+ 25c:	adrp	x0, 0 <grub_ufs_close>
+ 260:	ldp	x19, x20, [sp, #16]
+ 264:	ldr	x0, [x0]
+ 268:	ldr	x21, [sp, #32]
+ 26c:	ldr	w0, [x0]
+ 270:	ldp	x29, x30, [sp], #48
+ 274:	ret
+ 278:	str	wzr, [x20]
+ 27c:	b	24c <grub_ufs_mtime+0x4c>
+	...
+
+0000000000000290 <grub_ufs_uuid>:
+ 290:	stp	x29, x30, [sp, #-48]!
+ 294:	adrp	x2, 0 <grub_ufs_close>
+ 298:	mov	x29, sp
+ 29c:	stp	x19, x20, [sp, #16]
+ 2a0:	mov	x20, x1
+ 2a4:	ldr	x19, [x0]
+ 2a8:	str	x21, [sp, #32]
+ 2ac:	ldr	x21, [x2]
+ 2b0:	ldr	x0, [x21]
+ 2b4:	bl	0 <grub_dl_ref>
+ 2b8:	mov	x0, x19
+ 2bc:	bl	a0 <grub_ufs_mount>
+ 2c0:	mov	x19, x0
+ 2c4:	cbz	x0, 2d0 <grub_ufs_uuid+0x40>
+ 2c8:	ldr	x0, [x0, #144]
+ 2cc:	cbnz	x0, 300 <grub_ufs_uuid+0x70>
+ 2d0:	str	xzr, [x20]
+ 2d4:	ldr	x0, [x21]
+ 2d8:	bl	0 <grub_dl_unref>
+ 2dc:	mov	x0, x19
+ 2e0:	bl	0 <grub_free>
+ 2e4:	adrp	x0, 0 <grub_ufs_close>
+ 2e8:	ldp	x19, x20, [sp, #16]
+ 2ec:	ldr	x0, [x0]
+ 2f0:	ldr	x21, [sp, #32]
+ 2f4:	ldr	w0, [x0]
+ 2f8:	ldp	x29, x30, [sp], #48
+ 2fc:	ret
+ 300:	adrp	x0, 0 <grub_ufs_close>
+ 304:	ldp	w1, w2, [x19, #144]
+ 308:	ldr	x0, [x0]
+ 30c:	bl	0 <grub_xasprintf>
+ 310:	str	x0, [x20]
+ 314:	b	2d4 <grub_ufs_uuid+0x44>
+	...
+
+0000000000000330 <grub_ufs_label>:
+ 330:	stp	x29, x30, [sp, #-48]!
+ 334:	adrp	x2, 0 <grub_ufs_close>
+ 338:	mov	x29, sp
+ 33c:	str	x21, [sp, #32]
+ 340:	ldr	x21, [x2]
+ 344:	stp	x19, x20, [sp, #16]
+ 348:	mov	x19, x0
+ 34c:	mov	x20, x1
+ 350:	ldr	x0, [x21]
+ 354:	bl	0 <grub_dl_ref>
+ 358:	ldr	x0, [x19]
+ 35c:	str	xzr, [x20]
+ 360:	bl	a0 <grub_ufs_mount>
+ 364:	mov	x19, x0
+ 368:	cbz	x0, 378 <grub_ufs_label+0x48>
+ 36c:	add	x0, x0, #0x2a8
+ 370:	bl	0 <grub_strdup>
+ 374:	str	x0, [x20]
+ 378:	ldr	x0, [x21]
+ 37c:	bl	0 <grub_dl_unref>
+ 380:	mov	x0, x19
+ 384:	bl	0 <grub_free>
+ 388:	adrp	x0, 0 <grub_ufs_close>
+ 38c:	ldp	x19, x20, [sp, #16]
+ 390:	ldr	x0, [x0]
+ 394:	ldr	x21, [sp, #32]
+ 398:	ldr	w0, [x0]
+ 39c:	ldp	x29, x30, [sp], #48
+ 3a0:	ret
+ 3a4:	nop
+	...
+
+00000000000003b8 <grub_ufs_read_file>:
+ 3b8:	stp	x29, x30, [sp, #-176]!
+ 3bc:	mov	x29, sp
+ 3c0:	stp	x23, x24, [sp, #48]
+ 3c4:	mov	x24, x0
+ 3c8:	ldr	x0, [x0, #1400]
+ 3cc:	stp	x19, x20, [sp, #16]
+ 3d0:	mov	x19, x3
+ 3d4:	add	x3, x4, x3
+ 3d8:	stp	x25, x26, [sp, #64]
+ 3dc:	cmp	x3, x0
+ 3e0:	stp	x27, x28, [sp, #80]
+ 3e4:	mov	x25, x5
+ 3e8:	stp	x1, x2, [sp, #104]
+ 3ec:	str	x3, [sp, #120]
+ 3f0:	str	x4, [sp, #152]
+ 3f4:	b.ls	404 <grub_ufs_read_file+0x4c>  // b.plast
+ 3f8:	sub	x1, x0, x19
+ 3fc:	str	x0, [sp, #120]
+ 400:	str	x1, [sp, #152]
+ 404:	ldr	w27, [x24, #48]
+ 408:	ldr	x1, [sp, #120]
+ 40c:	mov	w20, w27
+ 410:	ldr	w0, [x24, #1648]
+ 414:	sub	x20, x20, #0x1
+ 418:	add	x20, x20, x1
+ 41c:	lsr	x28, x19, x0
+ 420:	lsr	x20, x20, x0
+ 424:	cmp	x20, x28
+ 428:	b.ls	53c <grub_ufs_read_file+0x184>  // b.plast
+ 42c:	adrp	x0, 0 <grub_ufs_close>
+ 430:	stp	x21, x22, [sp, #32]
+ 434:	sub	x22, x20, #0x1
+ 438:	ldr	x21, [x0]
+ 43c:	mov	w26, #0x1                   	// #1
+ 440:	cmp	x28, #0xb
+ 444:	b.ls	57c <grub_ufs_read_file+0x1c4>  // b.plast
+ 448:	ldr	w10, [x24, #1648]
+ 44c:	sub	x0, x28, #0xc
+ 450:	ldr	w23, [x24, #100]
+ 454:	sub	w10, w10, #0x3
+ 458:	lsl	w9, w26, w10
+ 45c:	sxtw	x12, w9
+ 460:	cmp	x0, w9, sxtw
+ 464:	b.cc	640 <grub_ufs_read_file+0x288>  // b.lo, b.ul, b.last
+ 468:	smull	x2, w9, w9
+ 46c:	sub	x12, x0, x12
+ 470:	cmp	x12, x2
+ 474:	b.cc	668 <grub_ufs_read_file+0x2b0>  // b.lo, b.ul, b.last
+ 478:	lsl	w1, w10, #1
+ 47c:	sub	x12, x12, x2
+ 480:	add	w0, w1, w10
+ 484:	lsr	x0, x12, x0
+ 488:	cbz	x0, 5ac <grub_ufs_read_file+0x1f4>
+ 48c:	adrp	x0, 0 <grub_ufs_close>
+ 490:	ldr	x1, [x0]
+ 494:	mov	w0, #0x9                   	// #9
+ 498:	bl	0 <grub_error>
+ 49c:	mov	x1, #0x0                   	// #0
+ 4a0:	ldr	w0, [x21]
+ 4a4:	cbnz	w0, 58c <grub_ufs_read_file+0x1d4>
+ 4a8:	mov	w2, w27
+ 4ac:	cmp	x22, x28
+ 4b0:	b.ne	4cc <grub_ufs_read_file+0x114>  // b.any
+ 4b4:	ldr	w0, [x24, #48]
+ 4b8:	ldr	x3, [sp, #120]
+ 4bc:	sub	w2, w0, #0x1
+ 4c0:	mov	w0, w0
+ 4c4:	ands	x2, x2, x3
+ 4c8:	csel	x2, x0, x2, eq  // eq = none
+ 4cc:	ldr	w0, [x24, #1648]
+ 4d0:	mov	w23, #0x0                   	// #0
+ 4d4:	lsr	x0, x19, x0
+ 4d8:	cmp	x0, x28
+ 4dc:	b.eq	558 <grub_ufs_read_file+0x1a0>  // b.none
+ 4e0:	cbz	x1, 56c <grub_ufs_read_file+0x1b4>
+ 4e4:	ldr	x0, [x24, #1376]
+ 4e8:	mov	x3, x2
+ 4ec:	ldr	x5, [sp, #104]
+ 4f0:	mov	x4, x25
+ 4f4:	ldr	w8, [x24, #100]
+ 4f8:	sxtw	x2, w23
+ 4fc:	str	x5, [x0, #48]
+ 500:	ldr	x5, [sp, #112]
+ 504:	str	x5, [x0, #56]
+ 508:	lsl	x1, x1, x8
+ 50c:	bl	0 <grub_disk_read>
+ 510:	ldr	x1, [x24, #1376]
+ 514:	ldr	w0, [x21]
+ 518:	str	xzr, [x1, #48]
+ 51c:	cbnz	w0, 58c <grub_ufs_read_file+0x1d4>
+ 520:	ldr	w27, [x24, #48]
+ 524:	add	x28, x28, #0x1
+ 528:	cmp	x20, x28
+ 52c:	sub	w9, w27, w23
+ 530:	add	x25, x25, x9
+ 534:	b.ne	440 <grub_ufs_read_file+0x88>  // b.any
+ 538:	ldp	x21, x22, [sp, #32]
+ 53c:	ldp	x19, x20, [sp, #16]
+ 540:	ldp	x23, x24, [sp, #48]
+ 544:	ldp	x25, x26, [sp, #64]
+ 548:	ldp	x27, x28, [sp, #80]
+ 54c:	ldr	x0, [sp, #152]
+ 550:	ldp	x29, x30, [sp], #176
+ 554:	ret
+ 558:	sub	w8, w27, #0x1
+ 55c:	and	x8, x8, x19
+ 560:	mov	w23, w8
+ 564:	sub	x2, x2, w8, sxtw
+ 568:	cbnz	x1, 4e4 <grub_ufs_read_file+0x12c>
+ 56c:	mov	x0, x25
+ 570:	mov	w1, #0x0                   	// #0
+ 574:	bl	0 <grub_memset>
+ 578:	b	520 <grub_ufs_read_file+0x168>
+ 57c:	add	x0, x24, #0x5d8
+ 580:	ldr	x1, [x0, x28, lsl #3]
+ 584:	ldr	w0, [x21]
+ 588:	cbz	w0, 4a8 <grub_ufs_read_file+0xf0>
+ 58c:	mov	x0, #0xffffffffffffffff    	// #-1
+ 590:	ldp	x19, x20, [sp, #16]
+ 594:	ldp	x21, x22, [sp, #32]
+ 598:	ldp	x23, x24, [sp, #48]
+ 59c:	ldp	x25, x26, [sp, #64]
+ 5a0:	ldp	x27, x28, [sp, #80]
+ 5a4:	ldp	x29, x30, [sp], #176
+ 5a8:	ret
+ 5ac:	lsr	x2, x12, x1
+ 5b0:	add	x4, sp, #0xa8
+ 5b4:	ldr	x0, [x24, #1376]
+ 5b8:	lsl	x2, x2, #3
+ 5bc:	ldr	x1, [x24, #1608]
+ 5c0:	mov	x3, #0x8                   	// #8
+ 5c4:	str	x12, [sp, #128]
+ 5c8:	str	w10, [sp, #136]
+ 5cc:	lsl	x1, x1, x23
+ 5d0:	str	w9, [sp, #148]
+ 5d4:	bl	0 <grub_disk_read>
+ 5d8:	ldr	w9, [sp, #148]
+ 5dc:	add	x4, sp, #0xa8
+ 5e0:	ldr	x12, [sp, #128]
+ 5e4:	sub	w9, w9, #0x1
+ 5e8:	ldr	w10, [sp, #136]
+ 5ec:	mov	x3, #0x8                   	// #8
+ 5f0:	ldr	x1, [sp, #168]
+ 5f4:	sxtw	x9, w9
+ 5f8:	ldr	x0, [x24, #1376]
+ 5fc:	lsr	x2, x12, x10
+ 600:	and	x2, x2, x9
+ 604:	lsl	x1, x1, x23
+ 608:	stp	x9, x12, [sp, #128]
+ 60c:	lsl	x2, x2, #3
+ 610:	bl	0 <grub_disk_read>
+ 614:	ldp	x9, x12, [sp, #128]
+ 618:	add	x4, sp, #0xa8
+ 61c:	ldr	x1, [sp, #168]
+ 620:	mov	x3, #0x8                   	// #8
+ 624:	ldr	x0, [x24, #1376]
+ 628:	and	x12, x12, x9
+ 62c:	lsl	x1, x1, x23
+ 630:	lsl	x2, x12, #3
+ 634:	bl	0 <grub_disk_read>
+ 638:	ldr	x1, [sp, #168]
+ 63c:	b	4a0 <grub_ufs_read_file+0xe8>
+ 640:	ldr	x0, [x24, #1376]
+ 644:	lsl	x2, x28, #3
+ 648:	ldr	x1, [x24, #1592]
+ 64c:	sub	x2, x2, #0x60
+ 650:	add	x4, sp, #0xa8
+ 654:	mov	x3, #0x8                   	// #8
+ 658:	lsl	x1, x1, x23
+ 65c:	bl	0 <grub_disk_read>
+ 660:	ldr	x1, [sp, #168]
+ 664:	b	4a0 <grub_ufs_read_file+0xe8>
+ 668:	ldr	x0, [x24, #1376]
+ 66c:	lsr	x2, x12, x10
+ 670:	ldr	x1, [x24, #1600]
+ 674:	lsl	x2, x2, #3
+ 678:	add	x4, sp, #0xa8
+ 67c:	mov	x3, #0x8                   	// #8
+ 680:	str	x12, [sp, #128]
+ 684:	lsl	x1, x1, x23
+ 688:	str	w9, [sp, #136]
+ 68c:	bl	0 <grub_disk_read>
+ 690:	ldr	w9, [sp, #136]
+ 694:	add	x4, sp, #0xa8
+ 698:	ldr	x12, [sp, #128]
+ 69c:	sub	w2, w9, #0x1
+ 6a0:	ldr	x1, [sp, #168]
+ 6a4:	sxtw	x2, w2
+ 6a8:	ldr	x0, [x24, #1376]
+ 6ac:	and	x2, x2, x12
+ 6b0:	lsl	x1, x1, x23
+ 6b4:	mov	x3, #0x8                   	// #8
+ 6b8:	lsl	x2, x2, #3
+ 6bc:	bl	0 <grub_disk_read>
+ 6c0:	ldr	x1, [sp, #168]
+ 6c4:	b	4a0 <grub_ufs_read_file+0xe8>
+	...
+
+00000000000006d8 <grub_ufs_read>:
+ 6d8:	mov	x6, x0
+ 6dc:	mov	x5, x1
+ 6e0:	ldr	x3, [x0, #24]
+ 6e4:	mov	x4, x2
+ 6e8:	ldp	x0, x1, [x0, #80]
+ 6ec:	ldr	x2, [x6, #96]
+ 6f0:	b	3b8 <grub_ufs_read_file>
+ 6f4:	nop
+
+00000000000006f8 <grub_ufs_find_file>:
+ 6f8:	stp	x29, x30, [sp, #-112]!
+ 6fc:	mov	x29, sp
+ 700:	stp	x21, x22, [sp, #32]
+ 704:	mov	x21, x0
+ 708:	mov	x0, x1
+ 70c:	stp	x25, x26, [sp, #64]
+ 710:	mov	x26, x1
+ 714:	bl	0 <grub_strlen>
+ 718:	add	x0, x0, #0x2
+ 71c:	bl	0 <grub_malloc>
+ 720:	cbz	x0, 880 <grub_ufs_find_file+0x188>
+ 724:	stp	x23, x24, [sp, #48]
+ 728:	mov	x24, x26
+ 72c:	mov	x23, x0
+ 730:	stp	x19, x20, [sp, #16]
+ 734:	stp	x27, x28, [sp, #80]
+ 738:	adrp	x27, 0 <grub_ufs_close>
+ 73c:	ldrb	w0, [x24]
+ 740:	cmp	w0, #0x2f
+ 744:	b.ne	754 <grub_ufs_find_file+0x5c>  // b.any
+ 748:	ldrb	w0, [x24, #1]!
+ 74c:	cmp	w0, #0x2f
+ 750:	b.eq	748 <grub_ufs_find_file+0x50>  // b.none
+ 754:	cbz	w0, 98c <grub_ufs_find_file+0x294>
+ 758:	ldrh	w0, [x21, #1384]
+ 75c:	and	w0, w0, #0xe000
+ 760:	cmp	w0, #0x4, lsl #12
+ 764:	b.ne	970 <grub_ufs_find_file+0x278>  // b.any
+ 768:	ldrb	w0, [x24]
+ 76c:	mov	x25, x24
+ 770:	cmp	w0, #0x2f
+ 774:	ccmp	w0, #0x0, #0x4, ne  // ne = any
+ 778:	b.eq	790 <grub_ufs_find_file+0x98>  // b.none
+ 77c:	nop
+ 780:	ldrb	w0, [x25, #1]!
+ 784:	cmp	w0, #0x2f
+ 788:	ccmp	w0, #0x0, #0x4, ne  // ne = any
+ 78c:	b.ne	780 <grub_ufs_find_file+0x88>  // b.any
+ 790:	ldr	x0, [x21, #1400]
+ 794:	cbz	x0, 860 <grub_ufs_find_file+0x168>
+ 798:	sub	x22, x25, x24
+ 79c:	mov	w19, #0x0                   	// #0
+ 7a0:	mov	x20, #0x0                   	// #0
+ 7a4:	b	810 <grub_ufs_find_file+0x118>
+ 7a8:	ldrb	w28, [sp, #111]
+ 7ac:	add	x3, x20, #0x8
+ 7b0:	mov	x5, x23
+ 7b4:	mov	x2, #0x0                   	// #0
+ 7b8:	cmp	x28, x22
+ 7bc:	b.lt	7f8 <grub_ufs_find_file+0x100>  // b.tstop
+ 7c0:	cinc	x4, x22, ne  // ne = any
+ 7c4:	mov	x0, x21
+ 7c8:	mov	x1, #0x0                   	// #0
+ 7cc:	bl	3b8 <grub_ufs_read_file>
+ 7d0:	tbnz	x0, #63, 830 <grub_ufs_find_file+0x138>
+ 7d4:	mov	x2, x22
+ 7d8:	mov	x1, x23
+ 7dc:	mov	x0, x24
+ 7e0:	bl	0 <grub_strncmp>
+ 7e4:	cbnz	w0, 7f8 <grub_ufs_find_file+0x100>
+ 7e8:	cmp	x28, x22
+ 7ec:	b.eq	89c <grub_ufs_find_file+0x1a4>  // b.none
+ 7f0:	ldrb	w0, [x23, x22]
+ 7f4:	cbz	w0, 89c <grub_ufs_find_file+0x1a4>
+ 7f8:	ldrh	w1, [sp, #108]
+ 7fc:	ldr	x0, [x21, #1400]
+ 800:	add	w20, w19, w1
+ 804:	mov	x19, x20
+ 808:	cmp	x0, w20, uxtw
+ 80c:	b.ls	860 <grub_ufs_find_file+0x168>  // b.plast
+ 810:	add	x5, sp, #0x68
+ 814:	mov	x3, x20
+ 818:	mov	x0, x21
+ 81c:	mov	x4, #0x8                   	// #8
+ 820:	mov	x2, #0x0                   	// #0
+ 824:	mov	x1, #0x0                   	// #0
+ 828:	bl	3b8 <grub_ufs_read_file>
+ 82c:	tbz	x0, #63, 7a8 <grub_ufs_find_file+0xb0>
+ 830:	adrp	x0, 0 <grub_ufs_close>
+ 834:	ldr	x19, [x0]
+ 838:	mov	x0, x23
+ 83c:	bl	0 <grub_free>
+ 840:	ldr	w0, [x19]
+ 844:	ldp	x19, x20, [sp, #16]
+ 848:	ldp	x23, x24, [sp, #48]
+ 84c:	ldp	x27, x28, [sp, #80]
+ 850:	ldp	x21, x22, [sp, #32]
+ 854:	ldp	x25, x26, [sp, #64]
+ 858:	ldp	x29, x30, [sp], #112
+ 85c:	ret
+ 860:	adrp	x1, 0 <grub_ufs_close>
+ 864:	mov	x2, x26
+ 868:	mov	w0, #0x5                   	// #5
+ 86c:	ldr	x1, [x1]
+ 870:	bl	0 <grub_error>
+ 874:	adrp	x0, 0 <grub_ufs_close>
+ 878:	ldr	x19, [x0]
+ 87c:	b	838 <grub_ufs_find_file+0x140>
+ 880:	adrp	x0, 0 <grub_ufs_close>
+ 884:	ldp	x21, x22, [sp, #32]
+ 888:	ldr	x0, [x0]
+ 88c:	ldp	x25, x26, [sp, #64]
+ 890:	ldr	w0, [x0]
+ 894:	ldp	x29, x30, [sp], #112
+ 898:	ret
+ 89c:	ldr	w1, [sp, #104]
+ 8a0:	mov	x0, x21
+ 8a4:	ldr	w20, [x21, #1640]
+ 8a8:	mov	x2, #0x0                   	// #0
+ 8ac:	bl	20 <grub_ufs_read_inode>
+ 8b0:	ldrh	w0, [x21, #1384]
+ 8b4:	and	w0, w0, #0xe000
+ 8b8:	cmp	w0, #0xa, lsl #12
+ 8bc:	b.eq	8c8 <grub_ufs_find_file+0x1d0>  // b.none
+ 8c0:	mov	x24, x25
+ 8c4:	b	73c <grub_ufs_find_file+0x44>
+ 8c8:	ldr	w0, [x21, #1644]
+ 8cc:	ldr	x22, [x21, #1400]
+ 8d0:	add	w0, w0, #0x1
+ 8d4:	str	w0, [x21, #1644]
+ 8d8:	cmp	w0, #0x8
+ 8dc:	b.gt	9a8 <grub_ufs_find_file+0x2b0>
+ 8e0:	add	x0, x22, #0x1
+ 8e4:	bl	0 <grub_malloc>
+ 8e8:	mov	x19, x0
+ 8ec:	cbz	x0, 95c <grub_ufs_find_file+0x264>
+ 8f0:	ldr	x1, [x21, #1408]
+ 8f4:	cbnz	x1, 904 <grub_ufs_find_file+0x20c>
+ 8f8:	ldr	x1, [x21, #1400]
+ 8fc:	cmp	x1, #0x78
+ 900:	b.ls	9bc <grub_ufs_find_file+0x2c4>  // b.plast
+ 904:	mov	x5, x19
+ 908:	mov	x4, x22
+ 90c:	mov	x0, x21
+ 910:	mov	x3, #0x0                   	// #0
+ 914:	mov	x2, #0x0                   	// #0
+ 918:	mov	x1, #0x0                   	// #0
+ 91c:	bl	3b8 <grub_ufs_read_file>
+ 920:	tbnz	x0, #63, 954 <grub_ufs_find_file+0x25c>
+ 924:	strb	wzr, [x19, x22]
+ 928:	mov	x0, x21
+ 92c:	mov	x2, #0x0                   	// #0
+ 930:	ldrb	w1, [x19]
+ 934:	cmp	w1, #0x2f
+ 938:	mov	w1, #0x2                   	// #2
+ 93c:	csel	w1, w20, w1, ne  // ne = any
+ 940:	bl	20 <grub_ufs_read_inode>
+ 944:	cbnz	w0, 954 <grub_ufs_find_file+0x25c>
+ 948:	mov	x1, x19
+ 94c:	mov	x0, x21
+ 950:	bl	6f8 <grub_ufs_find_file>
+ 954:	mov	x0, x19
+ 958:	bl	0 <grub_free>
+ 95c:	ldr	x19, [x27]
+ 960:	ldr	w0, [x19]
+ 964:	cbnz	w0, 838 <grub_ufs_find_file+0x140>
+ 968:	mov	x24, x25
+ 96c:	b	73c <grub_ufs_find_file+0x44>
+ 970:	adrp	x1, 0 <grub_ufs_close>
+ 974:	mov	w0, #0x4                   	// #4
+ 978:	ldr	x1, [x1]
+ 97c:	bl	0 <grub_error>
+ 980:	adrp	x0, 0 <grub_ufs_close>
+ 984:	ldr	x19, [x0]
+ 988:	b	838 <grub_ufs_find_file+0x140>
+ 98c:	mov	x0, x23
+ 990:	bl	0 <grub_free>
+ 994:	mov	w0, #0x0                   	// #0
+ 998:	ldp	x19, x20, [sp, #16]
+ 99c:	ldp	x23, x24, [sp, #48]
+ 9a0:	ldp	x27, x28, [sp, #80]
+ 9a4:	b	850 <grub_ufs_find_file+0x158>
+ 9a8:	adrp	x1, 0 <grub_ufs_close>
+ 9ac:	mov	w0, #0x19                  	// #25
+ 9b0:	ldr	x1, [x1]
+ 9b4:	bl	0 <grub_error>
+ 9b8:	b	95c <grub_ufs_find_file+0x264>
+ 9bc:	add	x1, x21, #0x5d8
+ 9c0:	bl	0 <grub_strcpy>
+ 9c4:	b	924 <grub_ufs_find_file+0x22c>
+	...
+
+00000000000009e8 <grub_ufs_dir>:
+ 9e8:	stp	x29, x30, [sp, #-368]!
+ 9ec:	mov	x29, sp
+ 9f0:	ldr	x0, [x0]
+ 9f4:	stp	x19, x20, [sp, #16]
+ 9f8:	mov	x20, x1
+ 9fc:	stp	x21, x22, [sp, #32]
+ a00:	mov	x21, x2
+ a04:	mov	x22, x3
+ a08:	bl	a0 <grub_ufs_mount>
+ a0c:	cbz	x0, a84 <grub_ufs_dir+0x9c>
+ a10:	mov	x19, x0
+ a14:	mov	x2, #0x0                   	// #0
+ a18:	mov	w1, #0x2                   	// #2
+ a1c:	stp	x23, x24, [sp, #48]
+ a20:	bl	20 <grub_ufs_read_inode>
+ a24:	adrp	x0, 0 <grub_ufs_close>
+ a28:	ldr	x23, [x0]
+ a2c:	ldr	w0, [x23]
+ a30:	cbnz	w0, a70 <grub_ufs_dir+0x88>
+ a34:	cbz	x20, a44 <grub_ufs_dir+0x5c>
+ a38:	ldrb	w0, [x20]
+ a3c:	cmp	w0, #0x2f
+ a40:	b.eq	aa0 <grub_ufs_dir+0xb8>  // b.none
+ a44:	adrp	x1, 0 <grub_ufs_close>
+ a48:	mov	x2, x20
+ a4c:	mov	w0, #0x7                   	// #7
+ a50:	ldr	x1, [x1]
+ a54:	bl	0 <grub_error>
+ a58:	ldr	w0, [x23]
+ a5c:	ldp	x19, x20, [sp, #16]
+ a60:	ldp	x21, x22, [sp, #32]
+ a64:	ldp	x23, x24, [sp, #48]
+ a68:	ldp	x29, x30, [sp], #368
+ a6c:	ret
+ a70:	ldp	x19, x20, [sp, #16]
+ a74:	ldp	x21, x22, [sp, #32]
+ a78:	ldp	x23, x24, [sp, #48]
+ a7c:	ldp	x29, x30, [sp], #368
+ a80:	ret
+ a84:	adrp	x0, 0 <grub_ufs_close>
+ a88:	ldp	x19, x20, [sp, #16]
+ a8c:	ldr	x0, [x0]
+ a90:	ldp	x21, x22, [sp, #32]
+ a94:	ldr	w0, [x0]
+ a98:	ldp	x29, x30, [sp], #368
+ a9c:	ret
+ aa0:	mov	x1, x20
+ aa4:	mov	x0, x19
+ aa8:	bl	6f8 <grub_ufs_find_file>
+ aac:	ldr	w24, [x23]
+ ab0:	cbnz	w24, bcc <grub_ufs_dir+0x1e4>
+ ab4:	ldrh	w0, [x19, #1384]
+ ab8:	and	w0, w0, #0xe000
+ abc:	cmp	w0, #0x4, lsl #12
+ ac0:	b.ne	bec <grub_ufs_dir+0x204>  // b.any
+ ac4:	ldr	x0, [x19, #1400]
+ ac8:	cbz	x0, bcc <grub_ufs_dir+0x1e4>
+ acc:	stp	x25, x26, [sp, #64]
+ ad0:	mov	x26, #0x0                   	// #0
+ ad4:	b	ba8 <grub_ufs_dir+0x1c0>
+ ad8:	ldrh	w0, [sp, #92]
+ adc:	cbz	w0, bc8 <grub_ufs_dir+0x1e0>
+ ae0:	ldrb	w4, [sp, #95]
+ ae4:	add	w0, w4, #0x1
+ ae8:	and	x25, x4, #0xff
+ aec:	sxtw	x0, w0
+ af0:	bl	0 <grub_malloc>
+ af4:	mov	x2, #0x10                  	// #16
+ af8:	mov	x20, x0
+ afc:	mov	w1, #0x0                   	// #0
+ b00:	add	x0, sp, #0x60
+ b04:	cbz	x20, bc8 <grub_ufs_dir+0x1e0>
+ b08:	bl	0 <grub_memset>
+ b0c:	mov	x2, #0x0                   	// #0
+ b10:	mov	x1, #0x0                   	// #0
+ b14:	add	x3, x26, #0x8
+ b18:	mov	x5, x20
+ b1c:	mov	x4, x25
+ b20:	mov	x0, x19
+ b24:	bl	3b8 <grub_ufs_read_file>
+ b28:	mov	x1, x0
+ b2c:	add	x2, sp, #0x70
+ b30:	mov	x0, x19
+ b34:	tbnz	x1, #63, c00 <grub_ufs_dir+0x218>
+ b38:	strb	wzr, [x20, x25]
+ b3c:	ldr	w1, [sp, #88]
+ b40:	bl	20 <grub_ufs_read_inode>
+ b44:	ldrh	w0, [sp, #112]
+ b48:	add	x1, sp, #0x60
+ b4c:	ldrb	w3, [sp, #96]
+ b50:	mov	x2, x22
+ b54:	and	w0, w0, #0xe000
+ b58:	cmp	w0, #0x4, lsl #12
+ b5c:	and	w3, w3, #0xfffffffc
+ b60:	cset	w4, eq  // eq = none
+ b64:	mov	x0, x20
+ b68:	orr	w4, w4, #0x2
+ b6c:	ldr	x5, [sp, #152]
+ b70:	orr	w3, w3, w4
+ b74:	strb	w3, [sp, #96]
+ b78:	str	w5, [sp, #100]
+ b7c:	blr	x21
+ b80:	mov	w1, w0
+ b84:	mov	x0, x20
+ b88:	cbnz	w1, c10 <grub_ufs_dir+0x228>
+ b8c:	bl	0 <grub_free>
+ b90:	ldrh	w1, [sp, #92]
+ b94:	ldr	x0, [x19, #1400]
+ b98:	add	w26, w24, w1
+ b9c:	mov	x24, x26
+ ba0:	cmp	x0, w26, uxtw
+ ba4:	b.ls	bc8 <grub_ufs_dir+0x1e0>  // b.plast
+ ba8:	add	x5, sp, #0x58
+ bac:	mov	x3, x26
+ bb0:	mov	x0, x19
+ bb4:	mov	x4, #0x8                   	// #8
+ bb8:	mov	x2, #0x0                   	// #0
+ bbc:	mov	x1, #0x0                   	// #0
+ bc0:	bl	3b8 <grub_ufs_read_file>
+ bc4:	tbz	x0, #63, ad8 <grub_ufs_dir+0xf0>
+ bc8:	ldp	x25, x26, [sp, #64]
+ bcc:	mov	x0, x19
+ bd0:	bl	0 <grub_free>
+ bd4:	ldr	w0, [x23]
+ bd8:	ldp	x19, x20, [sp, #16]
+ bdc:	ldp	x21, x22, [sp, #32]
+ be0:	ldp	x23, x24, [sp, #48]
+ be4:	ldp	x29, x30, [sp], #368
+ be8:	ret
+ bec:	adrp	x1, 0 <grub_ufs_close>
+ bf0:	mov	w0, #0x4                   	// #4
+ bf4:	ldr	x1, [x1]
+ bf8:	bl	0 <grub_error>
+ bfc:	b	bcc <grub_ufs_dir+0x1e4>
+ c00:	mov	x0, x20
+ c04:	bl	0 <grub_free>
+ c08:	ldp	x25, x26, [sp, #64]
+ c0c:	b	bcc <grub_ufs_dir+0x1e4>
+ c10:	bl	0 <grub_free>
+ c14:	ldp	x25, x26, [sp, #64]
+ c18:	b	bcc <grub_ufs_dir+0x1e4>
+ c1c:	nop
+	...
+
+0000000000000c38 <grub_ufs_open>:
+ c38:	stp	x29, x30, [sp, #-48]!
+ c3c:	mov	x29, sp
+ c40:	stp	x21, x22, [sp, #32]
+ c44:	mov	x21, x0
+ c48:	ldr	x0, [x0, #8]
+ c4c:	stp	x19, x20, [sp, #16]
+ c50:	mov	x20, x1
+ c54:	ldr	x0, [x0]
+ c58:	bl	a0 <grub_ufs_mount>
+ c5c:	cbz	x0, cb8 <grub_ufs_open+0x80>
+ c60:	mov	x19, x0
+ c64:	mov	x2, #0x0                   	// #0
+ c68:	mov	w1, #0x2                   	// #2
+ c6c:	bl	20 <grub_ufs_read_inode>
+ c70:	adrp	x0, 0 <grub_ufs_close>
+ c74:	ldr	x22, [x0]
+ c78:	ldr	w0, [x22]
+ c7c:	cbnz	w0, cd4 <grub_ufs_open+0x9c>
+ c80:	cbz	x20, c90 <grub_ufs_open+0x58>
+ c84:	ldrb	w0, [x20]
+ c88:	cmp	w0, #0x2f
+ c8c:	b.eq	cf0 <grub_ufs_open+0xb8>  // b.none
+ c90:	adrp	x1, 0 <grub_ufs_close>
+ c94:	mov	x2, x20
+ c98:	mov	w0, #0x7                   	// #7
+ c9c:	ldr	x1, [x1]
+ ca0:	bl	0 <grub_error>
+ ca4:	ldr	w0, [x22]
+ ca8:	ldp	x19, x20, [sp, #16]
+ cac:	ldp	x21, x22, [sp, #32]
+ cb0:	ldp	x29, x30, [sp], #48
+ cb4:	ret
+ cb8:	adrp	x0, 0 <grub_ufs_close>
+ cbc:	ldp	x19, x20, [sp, #16]
+ cc0:	ldr	x0, [x0]
+ cc4:	ldp	x21, x22, [sp, #32]
+ cc8:	ldr	w0, [x0]
+ ccc:	ldp	x29, x30, [sp], #48
+ cd0:	ret
+ cd4:	mov	x0, x19
+ cd8:	bl	0 <grub_free>
+ cdc:	ldr	w0, [x22]
+ ce0:	ldp	x19, x20, [sp, #16]
+ ce4:	ldp	x21, x22, [sp, #32]
+ ce8:	ldp	x29, x30, [sp], #48
+ cec:	ret
+ cf0:	mov	x1, x20
+ cf4:	mov	x0, x19
+ cf8:	bl	6f8 <grub_ufs_find_file>
+ cfc:	ldr	w0, [x22]
+ d00:	cbnz	w0, cd4 <grub_ufs_open+0x9c>
+ d04:	ldr	x1, [x19, #1400]
+ d08:	str	x1, [x21, #64]
+ d0c:	str	x19, [x21, #80]
+ d10:	ldp	x19, x20, [sp, #16]
+ d14:	ldp	x21, x22, [sp, #32]
+ d18:	ldp	x29, x30, [sp], #48
+ d1c:	ret
+	...
+
+0000000000000d30 <grub_mod_init>:
+ d30:	stp	x29, x30, [sp, #-32]!
+ d34:	adrp	x2, 0 <grub_ufs_close>
+ d38:	adrp	x1, 0 <grub_ufs_close>
+ d3c:	mov	x29, sp
+ d40:	str	x19, [sp, #16]
+ d44:	mov	x19, x0
+ d48:	ldr	x0, [x2]
+ d4c:	ldr	x1, [x1]
+ d50:	add	x1, x1, #0x18
+ d54:	bl	0 <grub_list_push>
+ d58:	adrp	x0, 0 <grub_ufs_close>
+ d5c:	ldr	x0, [x0]
+ d60:	str	x19, [x0]
+ d64:	ldr	x19, [sp, #16]
+ d68:	ldp	x29, x30, [sp], #32
+ d6c:	ret
+	...
+
+0000000000000d88 <grub_mod_fini>:
+ d88:	adrp	x0, 0 <grub_ufs_close>
+ d8c:	ldr	x0, [x0]
+ d90:	add	x0, x0, #0x18
+ d94:	b	0 <grub_list_remove>
+	...

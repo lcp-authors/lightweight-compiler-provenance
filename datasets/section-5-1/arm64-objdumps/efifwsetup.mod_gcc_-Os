@@ -1,0 +1,92 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//efifwsetup.mod_gcc_-Os:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_mod_init-0xa0>:
+   0:	stp	x29, x30, [sp, #-64]!
+   4:	mov	x0, #0x1                   	// #1
+   8:	mov	x29, sp
+   c:	str	x0, [sp, #32]
+  10:	mov	x0, #0xdf61                	// #57185
+  14:	movk	x0, #0x8be4, lsl #16
+  18:	str	x19, [sp, #16]
+  1c:	movk	x0, #0x93ca, lsl #32
+  20:	adrp	x19, 0 <grub_mod_init-0xa0>
+  24:	movk	x0, #0x11d2, lsl #48
+  28:	str	x0, [sp, #48]
+  2c:	mov	x0, #0xdaa                 	// #3498
+  30:	add	x2, sp, #0x28
+  34:	movk	x0, #0xe000, lsl #16
+  38:	add	x1, sp, #0x30
+  3c:	movk	x0, #0x398, lsl #32
+  40:	movk	x0, #0x8c2b, lsl #48
+  44:	str	x0, [sp, #56]
+  48:	ldr	x0, [x19]
+  4c:	bl	0 <grub_efi_get_variable>
+  50:	cbz	x0, 70 <grub_mod_init-0x30>
+  54:	ldr	x1, [sp, #40]
+  58:	cmp	x1, #0x8
+  5c:	b.ne	70 <grub_mod_init-0x30>  // b.any
+  60:	ldr	x1, [x0]
+  64:	ldr	x0, [sp, #32]
+  68:	orr	x0, x0, x1
+  6c:	str	x0, [sp, #32]
+  70:	ldr	x0, [x19]
+  74:	add	x2, sp, #0x20
+  78:	add	x1, sp, #0x30
+  7c:	mov	x3, #0x8                   	// #8
+  80:	bl	0 <grub_efi_set_variable>
+  84:	cbnz	w0, 8c <grub_mod_init-0x14>
+  88:	bl	0 <grub_reboot>
+  8c:	ldr	x19, [sp, #16]
+  90:	ldp	x29, x30, [sp], #64
+  94:	ret
+	...
+
+00000000000000a0 <grub_mod_init>:
+  a0:	mov	x0, #0xdf61                	// #57185
+  a4:	stp	x29, x30, [sp, #-48]!
+  a8:	movk	x0, #0x8be4, lsl #16
+  ac:	movk	x0, #0x93ca, lsl #32
+  b0:	mov	x29, sp
+  b4:	movk	x0, #0x11d2, lsl #48
+  b8:	stp	xzr, x0, [sp, #24]
+  bc:	mov	x0, #0xdaa                 	// #3498
+  c0:	movk	x0, #0xe000, lsl #16
+  c4:	movk	x0, #0x398, lsl #32
+  c8:	add	x2, sp, #0x18
+  cc:	movk	x0, #0x8c2b, lsl #48
+  d0:	str	x0, [sp, #40]
+  d4:	adrp	x0, 0 <grub_mod_init-0xa0>
+  d8:	add	x1, sp, #0x20
+  dc:	ldr	x0, [x0]
+  e0:	bl	0 <grub_efi_get_variable>
+  e4:	cbz	x0, 120 <grub_mod_init+0x80>
+  e8:	ldr	x0, [x0]
+  ec:	tbz	w0, #0, 120 <grub_mod_init+0x80>
+  f0:	adrp	x0, 0 <grub_mod_init-0xa0>
+  f4:	mov	w4, #0x0                   	// #0
+  f8:	mov	x2, #0x0                   	// #0
+  fc:	ldr	x3, [x0]
+ 100:	adrp	x0, 0 <grub_mod_init-0xa0>
+ 104:	ldr	x1, [x0]
+ 108:	adrp	x0, 0 <grub_mod_init-0xa0>
+ 10c:	ldr	x0, [x0]
+ 110:	bl	0 <grub_register_command_prio>
+ 114:	adrp	x1, 0 <grub_mod_init-0xa0>
+ 118:	ldr	x1, [x1]
+ 11c:	str	x0, [x1]
+ 120:	ldp	x29, x30, [sp], #48
+ 124:	ret
+	...
+
+0000000000000150 <grub_mod_fini>:
+ 150:	adrp	x0, 0 <grub_mod_init-0xa0>
+ 154:	ldr	x0, [x0]
+ 158:	ldr	x0, [x0]
+ 15c:	cbz	x0, 164 <grub_mod_fini+0x14>
+ 160:	b	0 <grub_unregister_command>
+ 164:	ret
+	...

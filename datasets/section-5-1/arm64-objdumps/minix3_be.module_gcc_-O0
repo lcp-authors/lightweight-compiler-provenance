@@ -1,0 +1,1171 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//minix3_be.module_gcc_-O0:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_swap_bytes16>:
+       0:	sub	sp, sp, #0x10
+       4:	strh	w0, [sp, #14]
+       8:	ldrh	w0, [sp, #14]
+       c:	lsl	w0, w0, #8
+      10:	sxth	w1, w0
+      14:	ldrh	w0, [sp, #14]
+      18:	lsr	w0, w0, #8
+      1c:	and	w0, w0, #0xffff
+      20:	sxth	w0, w0
+      24:	orr	w0, w1, w0
+      28:	sxth	w0, w0
+      2c:	and	w0, w0, #0xffff
+      30:	add	sp, sp, #0x10
+      34:	ret
+
+0000000000000038 <grub_swap_bytes32>:
+      38:	sub	sp, sp, #0x10
+      3c:	str	w0, [sp, #12]
+      40:	ldr	w0, [sp, #12]
+      44:	rev	w0, w0
+      48:	add	sp, sp, #0x10
+      4c:	ret
+
+0000000000000050 <grub_fs_register>:
+      50:	stp	x29, x30, [sp, #-32]!
+      54:	mov	x29, sp
+      58:	str	x0, [sp, #24]
+      5c:	ldr	x1, [sp, #24]
+      60:	adrp	x0, 0 <grub_swap_bytes16>
+      64:	add	x0, x0, #0x0
+      68:	ldr	x0, [x0]
+      6c:	bl	0 <grub_list_push>
+      70:	nop
+      74:	ldp	x29, x30, [sp], #32
+      78:	ret
+      7c:	nop
+	...
+
+0000000000000088 <grub_fs_unregister>:
+      88:	stp	x29, x30, [sp, #-32]!
+      8c:	mov	x29, sp
+      90:	str	x0, [sp, #24]
+      94:	ldr	x0, [sp, #24]
+      98:	bl	0 <grub_list_remove>
+      9c:	nop
+      a0:	ldp	x29, x30, [sp], #32
+      a4:	ret
+
+00000000000000a8 <grub_minix_zone2sect>:
+      a8:	sub	sp, sp, #0x10
+      ac:	str	x0, [sp, #8]
+      b0:	str	w1, [sp, #4]
+      b4:	ldr	w1, [sp, #4]
+      b8:	ldr	x0, [sp, #8]
+      bc:	ldr	x0, [x0, #128]
+      c0:	mul	x0, x1, x0
+      c4:	add	sp, sp, #0x10
+      c8:	ret
+
+00000000000000cc <grub_get_indir>:
+      cc:	stp	x29, x30, [sp, #-64]!
+      d0:	mov	x29, sp
+      d4:	str	x19, [sp, #16]
+      d8:	str	x0, [sp, #40]
+      dc:	str	w1, [sp, #36]
+      e0:	str	w2, [sp, #32]
+      e4:	ldr	x0, [sp, #40]
+      e8:	ldr	x19, [x0, #112]
+      ec:	ldr	w1, [sp, #36]
+      f0:	ldr	x0, [sp, #40]
+      f4:	bl	a8 <grub_minix_zone2sect>
+      f8:	mov	x5, x0
+      fc:	ldr	w0, [sp, #32]
+     100:	lsl	x0, x0, #2
+     104:	add	x1, sp, #0x3c
+     108:	mov	x4, x1
+     10c:	mov	x3, #0x4                   	// #4
+     110:	mov	x2, x0
+     114:	mov	x1, x5
+     118:	mov	x0, x19
+     11c:	bl	0 <grub_disk_read>
+     120:	ldr	w0, [sp, #60]
+     124:	bl	38 <grub_swap_bytes32>
+     128:	ldr	x19, [sp, #16]
+     12c:	ldp	x29, x30, [sp], #64
+     130:	ret
+
+0000000000000134 <grub_minix_get_file_block>:
+     134:	stp	x29, x30, [sp, #-48]!
+     138:	mov	x29, sp
+     13c:	str	x0, [sp, #24]
+     140:	str	w1, [sp, #20]
+     144:	ldr	w0, [sp, #20]
+     148:	cmp	w0, #0x6
+     14c:	b.hi	170 <grub_minix_get_file_block+0x3c>  // b.pmore
+     150:	ldr	x1, [sp, #24]
+     154:	ldr	w0, [sp, #20]
+     158:	add	x0, x0, #0xc
+     15c:	lsl	x0, x0, #2
+     160:	add	x0, x1, x0
+     164:	ldr	w0, [x0, #8]
+     168:	bl	38 <grub_swap_bytes32>
+     16c:	b	378 <grub_minix_get_file_block+0x244>
+     170:	ldr	w0, [sp, #20]
+     174:	sub	w0, w0, #0x7
+     178:	str	w0, [sp, #20]
+     17c:	ldr	x0, [sp, #24]
+     180:	ldr	w0, [x0, #96]
+     184:	ldr	w1, [sp, #20]
+     188:	cmp	w1, w0
+     18c:	b.cs	1b8 <grub_minix_get_file_block+0x84>  // b.hs, b.nlast
+     190:	ldr	x0, [sp, #24]
+     194:	ldr	w0, [x0, #84]
+     198:	bl	38 <grub_swap_bytes32>
+     19c:	ldr	w2, [sp, #20]
+     1a0:	mov	w1, w0
+     1a4:	ldr	x0, [sp, #24]
+     1a8:	bl	cc <grub_get_indir>
+     1ac:	str	w0, [sp, #44]
+     1b0:	ldr	w0, [sp, #44]
+     1b4:	b	378 <grub_minix_get_file_block+0x244>
+     1b8:	ldr	x0, [sp, #24]
+     1bc:	ldr	w0, [x0, #96]
+     1c0:	ldr	w1, [sp, #20]
+     1c4:	sub	w0, w1, w0
+     1c8:	str	w0, [sp, #20]
+     1cc:	ldr	w1, [sp, #20]
+     1d0:	ldr	x0, [sp, #24]
+     1d4:	ldr	w0, [x0, #96]
+     1d8:	mov	w2, w0
+     1dc:	ldr	x0, [sp, #24]
+     1e0:	ldr	w0, [x0, #96]
+     1e4:	mov	w0, w0
+     1e8:	mul	x0, x2, x0
+     1ec:	cmp	x1, x0
+     1f0:	b.cs	25c <grub_minix_get_file_block+0x128>  // b.hs, b.nlast
+     1f4:	ldr	x0, [sp, #24]
+     1f8:	ldr	w0, [x0, #88]
+     1fc:	bl	38 <grub_swap_bytes32>
+     200:	mov	w3, w0
+     204:	ldr	x0, [sp, #24]
+     208:	ldr	w0, [x0, #96]
+     20c:	ldr	w1, [sp, #20]
+     210:	udiv	w0, w1, w0
+     214:	mov	w2, w0
+     218:	mov	w1, w3
+     21c:	ldr	x0, [sp, #24]
+     220:	bl	cc <grub_get_indir>
+     224:	str	w0, [sp, #44]
+     228:	ldr	x0, [sp, #24]
+     22c:	ldr	w1, [x0, #96]
+     230:	ldr	w0, [sp, #20]
+     234:	udiv	w2, w0, w1
+     238:	mul	w1, w2, w1
+     23c:	sub	w0, w0, w1
+     240:	mov	w2, w0
+     244:	ldr	w1, [sp, #44]
+     248:	ldr	x0, [sp, #24]
+     24c:	bl	cc <grub_get_indir>
+     250:	str	w0, [sp, #44]
+     254:	ldr	w0, [sp, #44]
+     258:	b	378 <grub_minix_get_file_block+0x244>
+     25c:	ldr	x0, [sp, #24]
+     260:	ldr	w1, [x0, #96]
+     264:	ldr	x0, [sp, #24]
+     268:	ldr	w0, [x0, #96]
+     26c:	mul	w0, w1, w0
+     270:	ldr	w1, [sp, #20]
+     274:	sub	w0, w1, w0
+     278:	str	w0, [sp, #20]
+     27c:	ldr	w1, [sp, #20]
+     280:	ldr	x0, [sp, #24]
+     284:	ldr	w0, [x0, #96]
+     288:	mov	w2, w0
+     28c:	ldr	x0, [sp, #24]
+     290:	ldr	w0, [x0, #96]
+     294:	mov	w0, w0
+     298:	mul	x2, x2, x0
+     29c:	ldr	x0, [sp, #24]
+     2a0:	ldr	w0, [x0, #96]
+     2a4:	mov	w0, w0
+     2a8:	mul	x0, x2, x0
+     2ac:	cmp	x1, x0
+     2b0:	b.cs	360 <grub_minix_get_file_block+0x22c>  // b.hs, b.nlast
+     2b4:	ldr	x0, [sp, #24]
+     2b8:	ldr	w0, [x0, #92]
+     2bc:	bl	38 <grub_swap_bytes32>
+     2c0:	mov	w3, w0
+     2c4:	ldr	x0, [sp, #24]
+     2c8:	ldr	w0, [x0, #96]
+     2cc:	ldr	w1, [sp, #20]
+     2d0:	udiv	w1, w1, w0
+     2d4:	ldr	x0, [sp, #24]
+     2d8:	ldr	w0, [x0, #96]
+     2dc:	udiv	w0, w1, w0
+     2e0:	mov	w2, w0
+     2e4:	mov	w1, w3
+     2e8:	ldr	x0, [sp, #24]
+     2ec:	bl	cc <grub_get_indir>
+     2f0:	str	w0, [sp, #44]
+     2f4:	ldr	x0, [sp, #24]
+     2f8:	ldr	w0, [x0, #96]
+     2fc:	ldr	w1, [sp, #20]
+     300:	udiv	w0, w1, w0
+     304:	ldr	x1, [sp, #24]
+     308:	ldr	w1, [x1, #96]
+     30c:	udiv	w2, w0, w1
+     310:	mul	w1, w2, w1
+     314:	sub	w0, w0, w1
+     318:	mov	w2, w0
+     31c:	ldr	w1, [sp, #44]
+     320:	ldr	x0, [sp, #24]
+     324:	bl	cc <grub_get_indir>
+     328:	str	w0, [sp, #44]
+     32c:	ldr	x0, [sp, #24]
+     330:	ldr	w1, [x0, #96]
+     334:	ldr	w0, [sp, #20]
+     338:	udiv	w2, w0, w1
+     33c:	mul	w1, w2, w1
+     340:	sub	w0, w0, w1
+     344:	mov	w2, w0
+     348:	ldr	w1, [sp, #44]
+     34c:	ldr	x0, [sp, #24]
+     350:	bl	cc <grub_get_indir>
+     354:	str	w0, [sp, #44]
+     358:	ldr	w0, [sp, #44]
+     35c:	b	378 <grub_minix_get_file_block+0x244>
+     360:	adrp	x0, 0 <grub_swap_bytes16>
+     364:	add	x0, x0, #0x0
+     368:	ldr	x1, [x0]
+     36c:	mov	w0, #0xb                   	// #11
+     370:	bl	0 <grub_error>
+     374:	mov	w0, #0x0                   	// #0
+     378:	ldp	x29, x30, [sp], #48
+     37c:	ret
+	...
+
+0000000000000388 <grub_minix_read_file>:
+     388:	stp	x29, x30, [sp, #-128]!
+     38c:	mov	x29, sp
+     390:	str	x19, [sp, #16]
+     394:	str	x0, [sp, #72]
+     398:	str	x1, [sp, #64]
+     39c:	str	x2, [sp, #56]
+     3a0:	str	x3, [sp, #48]
+     3a4:	str	x4, [sp, #40]
+     3a8:	str	x5, [sp, #32]
+     3ac:	ldr	x0, [sp, #72]
+     3b0:	ldr	w0, [x0, #40]
+     3b4:	bl	38 <grub_swap_bytes32>
+     3b8:	mov	w0, w0
+     3bc:	ldr	x1, [sp, #48]
+     3c0:	cmp	x1, x0
+     3c4:	b.ls	3e4 <grub_minix_read_file+0x5c>  // b.plast
+     3c8:	adrp	x0, 0 <grub_swap_bytes16>
+     3cc:	add	x0, x0, #0x0
+     3d0:	ldr	x1, [x0]
+     3d4:	mov	w0, #0xb                   	// #11
+     3d8:	bl	0 <grub_error>
+     3dc:	mov	x0, #0xffffffffffffffff    	// #-1
+     3e0:	b	634 <grub_minix_read_file+0x2ac>
+     3e4:	ldr	x1, [sp, #40]
+     3e8:	ldr	x0, [sp, #48]
+     3ec:	add	x19, x1, x0
+     3f0:	ldr	x0, [sp, #72]
+     3f4:	ldr	w0, [x0, #40]
+     3f8:	bl	38 <grub_swap_bytes32>
+     3fc:	mov	w0, w0
+     400:	cmp	x19, x0
+     404:	b.ls	424 <grub_minix_read_file+0x9c>  // b.plast
+     408:	ldr	x0, [sp, #72]
+     40c:	ldr	w0, [x0, #40]
+     410:	bl	38 <grub_swap_bytes32>
+     414:	mov	w1, w0
+     418:	ldr	x0, [sp, #48]
+     41c:	sub	x0, x1, x0
+     420:	str	x0, [sp, #40]
+     424:	ldr	x0, [sp, #40]
+     428:	cmp	x0, #0x0
+     42c:	b.ne	438 <grub_minix_read_file+0xb0>  // b.any
+     430:	mov	x0, #0x0                   	// #0
+     434:	b	634 <grub_minix_read_file+0x2ac>
+     438:	ldr	x1, [sp, #40]
+     43c:	ldr	x0, [sp, #48]
+     440:	add	x0, x1, x0
+     444:	sub	x0, x0, #0x1
+     448:	lsr	x0, x0, #9
+     44c:	mov	w1, w0
+     450:	ldr	x0, [sp, #72]
+     454:	ldr	x0, [x0, #128]
+     458:	udiv	x0, x1, x0
+     45c:	add	w0, w0, #0x1
+     460:	str	w0, [sp, #100]
+     464:	ldr	x0, [sp, #48]
+     468:	mov	w1, w0
+     46c:	ldr	x0, [sp, #72]
+     470:	ldr	x0, [x0, #128]
+     474:	lsl	x0, x0, #9
+     478:	udiv	x0, x1, x0
+     47c:	str	w0, [sp, #96]
+     480:	ldr	x0, [sp, #48]
+     484:	mov	w0, w0
+     488:	ldr	x1, [sp, #72]
+     48c:	ldr	x1, [x1, #128]
+     490:	lsl	x1, x1, #9
+     494:	udiv	x2, x0, x1
+     498:	mul	x1, x2, x1
+     49c:	sub	x0, x0, x1
+     4a0:	str	w0, [sp, #92]
+     4a4:	ldr	w0, [sp, #96]
+     4a8:	str	w0, [sp, #124]
+     4ac:	b	620 <grub_minix_read_file+0x298>
+     4b0:	ldr	x0, [sp, #72]
+     4b4:	ldr	x0, [x0, #128]
+     4b8:	lsl	x0, x0, #9
+     4bc:	str	x0, [sp, #112]
+     4c0:	str	xzr, [sp, #104]
+     4c4:	ldr	w1, [sp, #124]
+     4c8:	ldr	x0, [sp, #72]
+     4cc:	bl	134 <grub_minix_get_file_block>
+     4d0:	str	w0, [sp, #88]
+     4d4:	adrp	x0, 0 <grub_swap_bytes16>
+     4d8:	add	x0, x0, #0x0
+     4dc:	ldr	x0, [x0]
+     4e0:	ldr	w0, [x0]
+     4e4:	cmp	w0, #0x0
+     4e8:	b.eq	4f4 <grub_minix_read_file+0x16c>  // b.none
+     4ec:	mov	x0, #0xffffffffffffffff    	// #-1
+     4f0:	b	634 <grub_minix_read_file+0x2ac>
+     4f4:	ldr	w0, [sp, #100]
+     4f8:	sub	w0, w0, #0x1
+     4fc:	ldr	w1, [sp, #124]
+     500:	cmp	w1, w0
+     504:	b.ne	554 <grub_minix_read_file+0x1cc>  // b.any
+     508:	ldr	x0, [sp, #40]
+     50c:	mov	w1, w0
+     510:	ldr	x0, [sp, #48]
+     514:	add	w0, w1, w0
+     518:	mov	w0, w0
+     51c:	ldr	x1, [sp, #72]
+     520:	ldr	x1, [x1, #128]
+     524:	lsl	x1, x1, #9
+     528:	udiv	x2, x0, x1
+     52c:	mul	x1, x2, x1
+     530:	sub	x0, x0, x1
+     534:	str	x0, [sp, #112]
+     538:	ldr	x0, [sp, #112]
+     53c:	cmp	x0, #0x0
+     540:	b.ne	554 <grub_minix_read_file+0x1cc>  // b.any
+     544:	ldr	x0, [sp, #72]
+     548:	ldr	x0, [x0, #128]
+     54c:	lsl	x0, x0, #9
+     550:	str	x0, [sp, #112]
+     554:	ldr	w1, [sp, #124]
+     558:	ldr	w0, [sp, #96]
+     55c:	cmp	w1, w0
+     560:	b.ne	57c <grub_minix_read_file+0x1f4>  // b.any
+     564:	ldr	w0, [sp, #92]
+     568:	str	x0, [sp, #104]
+     56c:	ldr	x1, [sp, #112]
+     570:	ldr	x0, [sp, #104]
+     574:	sub	x0, x1, x0
+     578:	str	x0, [sp, #112]
+     57c:	ldr	x0, [sp, #72]
+     580:	ldr	x0, [x0, #112]
+     584:	ldr	x1, [sp, #64]
+     588:	str	x1, [x0, #48]
+     58c:	ldr	x0, [sp, #72]
+     590:	ldr	x0, [x0, #112]
+     594:	ldr	x1, [sp, #56]
+     598:	str	x1, [x0, #56]
+     59c:	ldr	x0, [sp, #72]
+     5a0:	ldr	x19, [x0, #112]
+     5a4:	ldr	w1, [sp, #88]
+     5a8:	ldr	x0, [sp, #72]
+     5ac:	bl	a8 <grub_minix_zone2sect>
+     5b0:	ldr	x4, [sp, #32]
+     5b4:	ldr	x3, [sp, #112]
+     5b8:	ldr	x2, [sp, #104]
+     5bc:	mov	x1, x0
+     5c0:	mov	x0, x19
+     5c4:	bl	0 <grub_disk_read>
+     5c8:	ldr	x0, [sp, #72]
+     5cc:	ldr	x0, [x0, #112]
+     5d0:	str	xzr, [x0, #48]
+     5d4:	adrp	x0, 0 <grub_swap_bytes16>
+     5d8:	add	x0, x0, #0x0
+     5dc:	ldr	x0, [x0]
+     5e0:	ldr	w0, [x0]
+     5e4:	cmp	w0, #0x0
+     5e8:	b.eq	5f4 <grub_minix_read_file+0x26c>  // b.none
+     5ec:	mov	x0, #0xffffffffffffffff    	// #-1
+     5f0:	b	634 <grub_minix_read_file+0x2ac>
+     5f4:	ldr	x0, [sp, #72]
+     5f8:	ldr	x0, [x0, #128]
+     5fc:	lsl	x1, x0, #9
+     600:	ldr	x0, [sp, #104]
+     604:	sub	x0, x1, x0
+     608:	ldr	x1, [sp, #32]
+     60c:	add	x0, x1, x0
+     610:	str	x0, [sp, #32]
+     614:	ldr	w0, [sp, #124]
+     618:	add	w0, w0, #0x1
+     61c:	str	w0, [sp, #124]
+     620:	ldr	w1, [sp, #124]
+     624:	ldr	w0, [sp, #100]
+     628:	cmp	w1, w0
+     62c:	b.cc	4b0 <grub_minix_read_file+0x128>  // b.lo, b.ul, b.last
+     630:	ldr	x0, [sp, #40]
+     634:	ldr	x19, [sp, #16]
+     638:	ldp	x29, x30, [sp], #128
+     63c:	ret
+	...
+
+0000000000000650 <grub_minix_read_inode>:
+     650:	stp	x29, x30, [sp, #-80]!
+     654:	mov	x29, sp
+     658:	str	x19, [sp, #16]
+     65c:	str	x0, [sp, #40]
+     660:	str	w1, [sp, #36]
+     664:	ldr	x0, [sp, #40]
+     668:	str	x0, [sp, #72]
+     66c:	ldr	x0, [sp, #40]
+     670:	ldr	w1, [sp, #36]
+     674:	str	w1, [x0, #100]
+     678:	ldr	w0, [sp, #36]
+     67c:	sub	w0, w0, #0x1
+     680:	str	w0, [sp, #36]
+     684:	ldr	x0, [sp, #72]
+     688:	ldrh	w0, [x0, #6]
+     68c:	bl	0 <grub_swap_bytes16>
+     690:	and	w0, w0, #0xffff
+     694:	add	w19, w0, #0x2
+     698:	ldr	x0, [sp, #72]
+     69c:	ldrh	w0, [x0, #8]
+     6a0:	bl	0 <grub_swap_bytes16>
+     6a4:	and	w0, w0, #0xffff
+     6a8:	add	w0, w19, w0
+     6ac:	mov	w1, w0
+     6b0:	ldr	x0, [sp, #40]
+     6b4:	bl	a8 <grub_minix_zone2sect>
+     6b8:	str	x0, [sp, #64]
+     6bc:	ldr	w0, [sp, #36]
+     6c0:	lsr	w0, w0, #3
+     6c4:	mov	w0, w0
+     6c8:	ldr	x1, [sp, #64]
+     6cc:	add	x0, x1, x0
+     6d0:	str	x0, [sp, #64]
+     6d4:	ldr	w0, [sp, #36]
+     6d8:	and	w0, w0, #0x7
+     6dc:	lsl	w0, w0, #6
+     6e0:	str	w0, [sp, #60]
+     6e4:	ldr	x0, [sp, #40]
+     6e8:	ldr	x5, [x0, #112]
+     6ec:	ldrsw	x1, [sp, #60]
+     6f0:	ldr	x0, [sp, #40]
+     6f4:	add	x0, x0, #0x20
+     6f8:	mov	x4, x0
+     6fc:	mov	x3, #0x40                  	// #64
+     700:	mov	x2, x1
+     704:	ldr	x1, [sp, #64]
+     708:	mov	x0, x5
+     70c:	bl	0 <grub_disk_read>
+     710:	mov	w0, #0x0                   	// #0
+     714:	ldr	x19, [sp, #16]
+     718:	ldp	x29, x30, [sp], #80
+     71c:	ret
+
+0000000000000720 <grub_minix_lookup_symlink>:
+     720:	stp	x29, x30, [sp, #-48]!
+     724:	mov	x29, sp
+     728:	str	x0, [sp, #24]
+     72c:	str	w1, [sp, #20]
+     730:	ldr	x0, [sp, #24]
+     734:	ldr	w0, [x0, #40]
+     738:	bl	38 <grub_swap_bytes32>
+     73c:	mov	w0, w0
+     740:	str	x0, [sp, #40]
+     744:	ldr	x0, [sp, #24]
+     748:	ldr	w0, [x0, #104]
+     74c:	add	w1, w0, #0x1
+     750:	ldr	x0, [sp, #24]
+     754:	str	w1, [x0, #104]
+     758:	ldr	x0, [sp, #24]
+     75c:	ldr	w0, [x0, #104]
+     760:	cmp	w0, #0x8
+     764:	b.le	780 <grub_minix_lookup_symlink+0x60>
+     768:	adrp	x0, 0 <grub_swap_bytes16>
+     76c:	add	x0, x0, #0x0
+     770:	ldr	x1, [x0]
+     774:	mov	w0, #0x19                  	// #25
+     778:	bl	0 <grub_error>
+     77c:	b	854 <grub_minix_lookup_symlink+0x134>
+     780:	ldr	x0, [sp, #40]
+     784:	add	x0, x0, #0x1
+     788:	bl	0 <grub_malloc>
+     78c:	str	x0, [sp, #32]
+     790:	ldr	x0, [sp, #32]
+     794:	cmp	x0, #0x0
+     798:	b.ne	7b0 <grub_minix_lookup_symlink+0x90>  // b.any
+     79c:	adrp	x0, 0 <grub_swap_bytes16>
+     7a0:	add	x0, x0, #0x0
+     7a4:	ldr	x0, [x0]
+     7a8:	ldr	w0, [x0]
+     7ac:	b	854 <grub_minix_lookup_symlink+0x134>
+     7b0:	ldr	x5, [sp, #32]
+     7b4:	ldr	x4, [sp, #40]
+     7b8:	mov	x3, #0x0                   	// #0
+     7bc:	mov	x2, #0x0                   	// #0
+     7c0:	mov	x1, #0x0                   	// #0
+     7c4:	ldr	x0, [sp, #24]
+     7c8:	bl	388 <grub_minix_read_file>
+     7cc:	cmp	x0, #0x0
+     7d0:	b.ge	7e8 <grub_minix_lookup_symlink+0xc8>  // b.tcont
+     7d4:	adrp	x0, 0 <grub_swap_bytes16>
+     7d8:	add	x0, x0, #0x0
+     7dc:	ldr	x0, [x0]
+     7e0:	ldr	w0, [x0]
+     7e4:	b	854 <grub_minix_lookup_symlink+0x134>
+     7e8:	ldr	x1, [sp, #32]
+     7ec:	ldr	x0, [sp, #40]
+     7f0:	add	x0, x1, x0
+     7f4:	strb	wzr, [x0]
+     7f8:	ldr	x0, [sp, #32]
+     7fc:	ldrb	w0, [x0]
+     800:	cmp	w0, #0x2f
+     804:	b.ne	810 <grub_minix_lookup_symlink+0xf0>  // b.any
+     808:	mov	w0, #0x1                   	// #1
+     80c:	str	w0, [sp, #20]
+     810:	ldr	w1, [sp, #20]
+     814:	ldr	x0, [sp, #24]
+     818:	bl	650 <grub_minix_read_inode>
+     81c:	cmp	w0, #0x0
+     820:	b.eq	838 <grub_minix_lookup_symlink+0x118>  // b.none
+     824:	adrp	x0, 0 <grub_swap_bytes16>
+     828:	add	x0, x0, #0x0
+     82c:	ldr	x0, [x0]
+     830:	ldr	w0, [x0]
+     834:	b	854 <grub_minix_lookup_symlink+0x134>
+     838:	ldr	x1, [sp, #32]
+     83c:	ldr	x0, [sp, #24]
+     840:	bl	870 <grub_minix_find_file>
+     844:	adrp	x0, 0 <grub_swap_bytes16>
+     848:	add	x0, x0, #0x0
+     84c:	ldr	x0, [x0]
+     850:	ldr	w0, [x0]
+     854:	ldp	x29, x30, [sp], #48
+     858:	ret
+     85c:	nop
+	...
+
+0000000000000870 <grub_minix_find_file>:
+     870:	stp	x29, x30, [sp, #-128]!
+     874:	mov	x29, sp
+     878:	str	x0, [sp, #24]
+     87c:	str	x1, [sp, #16]
+     880:	ldr	x0, [sp, #16]
+     884:	str	x0, [sp, #112]
+     888:	str	wzr, [sp, #108]
+     88c:	ldr	x0, [sp, #112]
+     890:	str	x0, [sp, #120]
+     894:	b	8a4 <grub_minix_find_file+0x34>
+     898:	ldr	x0, [sp, #120]
+     89c:	add	x0, x0, #0x1
+     8a0:	str	x0, [sp, #120]
+     8a4:	ldr	x0, [sp, #120]
+     8a8:	ldrb	w0, [x0]
+     8ac:	cmp	w0, #0x2f
+     8b0:	b.eq	898 <grub_minix_find_file+0x28>  // b.none
+     8b4:	ldr	x0, [sp, #120]
+     8b8:	ldrb	w0, [x0]
+     8bc:	cmp	w0, #0x0
+     8c0:	b.ne	8cc <grub_minix_find_file+0x5c>  // b.any
+     8c4:	mov	w0, #0x0                   	// #0
+     8c8:	b	b04 <grub_minix_find_file+0x294>
+     8cc:	ldr	x0, [sp, #24]
+     8d0:	ldrh	w0, [x0, #32]
+     8d4:	bl	0 <grub_swap_bytes16>
+     8d8:	and	w0, w0, #0xffff
+     8dc:	and	w0, w0, #0x4000
+     8e0:	cmp	w0, #0x4, lsl #12
+     8e4:	b.eq	900 <grub_minix_find_file+0x90>  // b.none
+     8e8:	adrp	x0, 0 <grub_swap_bytes16>
+     8ec:	add	x0, x0, #0x0
+     8f0:	ldr	x1, [x0]
+     8f4:	mov	w0, #0x4                   	// #4
+     8f8:	bl	0 <grub_error>
+     8fc:	b	b04 <grub_minix_find_file+0x294>
+     900:	ldr	x0, [sp, #120]
+     904:	str	x0, [sp, #112]
+     908:	b	918 <grub_minix_find_file+0xa8>
+     90c:	ldr	x0, [sp, #112]
+     910:	add	x0, x0, #0x1
+     914:	str	x0, [sp, #112]
+     918:	ldr	x0, [sp, #112]
+     91c:	ldrb	w0, [x0]
+     920:	cmp	w0, #0x0
+     924:	b.eq	938 <grub_minix_find_file+0xc8>  // b.none
+     928:	ldr	x0, [sp, #112]
+     92c:	ldrb	w0, [x0]
+     930:	cmp	w0, #0x2f
+     934:	b.ne	90c <grub_minix_find_file+0x9c>  // b.any
+     938:	str	wzr, [sp, #108]
+     93c:	ldr	x0, [sp, #24]
+     940:	ldr	w0, [x0, #40]
+     944:	bl	38 <grub_swap_bytes32>
+     948:	mov	w1, w0
+     94c:	ldr	w0, [sp, #108]
+     950:	cmp	w0, w1
+     954:	b.cc	984 <grub_minix_find_file+0x114>  // b.lo, b.ul, b.last
+     958:	ldr	x2, [sp, #16]
+     95c:	adrp	x0, 0 <grub_swap_bytes16>
+     960:	add	x0, x0, #0x0
+     964:	ldr	x1, [x0]
+     968:	mov	w0, #0x5                   	// #5
+     96c:	bl	0 <grub_error>
+     970:	adrp	x0, 0 <grub_swap_bytes16>
+     974:	add	x0, x0, #0x0
+     978:	ldr	x0, [x0]
+     97c:	ldr	w0, [x0]
+     980:	b	b04 <grub_minix_find_file+0x294>
+     984:	ldr	w0, [sp, #108]
+     988:	add	x1, sp, #0x64
+     98c:	mov	x5, x1
+     990:	mov	x4, #0x4                   	// #4
+     994:	mov	x3, x0
+     998:	mov	x2, #0x0                   	// #0
+     99c:	mov	x1, #0x0                   	// #0
+     9a0:	ldr	x0, [sp, #24]
+     9a4:	bl	388 <grub_minix_read_file>
+     9a8:	cmp	x0, #0x0
+     9ac:	b.ge	9c4 <grub_minix_find_file+0x154>  // b.tcont
+     9b0:	adrp	x0, 0 <grub_swap_bytes16>
+     9b4:	add	x0, x0, #0x0
+     9b8:	ldr	x0, [x0]
+     9bc:	ldr	w0, [x0]
+     9c0:	b	b04 <grub_minix_find_file+0x294>
+     9c4:	ldr	w0, [sp, #108]
+     9c8:	add	x1, x0, #0x4
+     9cc:	ldr	x0, [sp, #24]
+     9d0:	ldr	w0, [x0, #120]
+     9d4:	sxtw	x0, w0
+     9d8:	add	x2, sp, #0x20
+     9dc:	mov	x5, x2
+     9e0:	mov	x4, x0
+     9e4:	mov	x3, x1
+     9e8:	mov	x2, #0x0                   	// #0
+     9ec:	mov	x1, #0x0                   	// #0
+     9f0:	ldr	x0, [sp, #24]
+     9f4:	bl	388 <grub_minix_read_file>
+     9f8:	cmp	x0, #0x0
+     9fc:	b.ge	a14 <grub_minix_find_file+0x1a4>  // b.tcont
+     a00:	adrp	x0, 0 <grub_swap_bytes16>
+     a04:	add	x0, x0, #0x0
+     a08:	ldr	x0, [x0]
+     a0c:	ldr	w0, [x0]
+     a10:	b	b04 <grub_minix_find_file+0x294>
+     a14:	ldr	x0, [sp, #24]
+     a18:	ldr	w0, [x0, #120]
+     a1c:	mov	w1, w0
+     a20:	ldr	w0, [sp, #108]
+     a24:	add	w0, w1, w0
+     a28:	add	w0, w0, #0x4
+     a2c:	str	w0, [sp, #108]
+     a30:	ldr	x0, [sp, #24]
+     a34:	ldr	w0, [x0, #120]
+     a38:	sxtw	x0, w0
+     a3c:	add	x1, sp, #0x20
+     a40:	strb	wzr, [x1, x0]
+     a44:	ldr	x1, [sp, #112]
+     a48:	ldr	x0, [sp, #120]
+     a4c:	sub	x0, x1, x0
+     a50:	mov	x1, x0
+     a54:	add	x0, sp, #0x20
+     a58:	mov	x2, x1
+     a5c:	mov	x1, x0
+     a60:	ldr	x0, [sp, #120]
+     a64:	bl	0 <grub_strncmp>
+     a68:	cmp	w0, #0x0
+     a6c:	b.ne	93c <grub_minix_find_file+0xcc>  // b.any
+     a70:	ldr	x1, [sp, #112]
+     a74:	ldr	x0, [sp, #120]
+     a78:	sub	x0, x1, x0
+     a7c:	add	x1, sp, #0x20
+     a80:	ldrb	w0, [x1, x0]
+     a84:	cmp	w0, #0x0
+     a88:	b.ne	93c <grub_minix_find_file+0xcc>  // b.any
+     a8c:	ldr	x0, [sp, #24]
+     a90:	ldr	w0, [x0, #100]
+     a94:	str	w0, [sp, #104]
+     a98:	ldr	w0, [sp, #100]
+     a9c:	bl	38 <grub_swap_bytes32>
+     aa0:	mov	w1, w0
+     aa4:	ldr	x0, [sp, #24]
+     aa8:	bl	650 <grub_minix_read_inode>
+     aac:	ldr	x0, [sp, #24]
+     ab0:	ldrh	w0, [x0, #32]
+     ab4:	bl	0 <grub_swap_bytes16>
+     ab8:	and	w0, w0, #0xffff
+     abc:	mov	w1, w0
+     ac0:	mov	w0, #0xa000                	// #40960
+     ac4:	and	w0, w1, w0
+     ac8:	cmp	w0, #0xa, lsl #12
+     acc:	b.ne	88c <grub_minix_find_file+0x1c>  // b.any
+     ad0:	ldr	w1, [sp, #104]
+     ad4:	ldr	x0, [sp, #24]
+     ad8:	bl	720 <grub_minix_lookup_symlink>
+     adc:	adrp	x0, 0 <grub_swap_bytes16>
+     ae0:	add	x0, x0, #0x0
+     ae4:	ldr	x0, [x0]
+     ae8:	ldr	w0, [x0]
+     aec:	cmp	w0, #0x0
+     af0:	b.eq	88c <grub_minix_find_file+0x1c>  // b.none
+     af4:	adrp	x0, 0 <grub_swap_bytes16>
+     af8:	add	x0, x0, #0x0
+     afc:	ldr	x0, [x0]
+     b00:	ldr	w0, [x0]
+     b04:	ldp	x29, x30, [sp], #128
+     b08:	ret
+     b0c:	nop
+	...
+
+0000000000000b28 <grub_minix_mount>:
+     b28:	stp	x29, x30, [sp, #-64]!
+     b2c:	mov	x29, sp
+     b30:	str	x19, [sp, #16]
+     b34:	str	x0, [sp, #40]
+     b38:	mov	x0, #0x88                  	// #136
+     b3c:	bl	0 <grub_malloc>
+     b40:	str	x0, [sp, #56]
+     b44:	ldr	x0, [sp, #56]
+     b48:	cmp	x0, #0x0
+     b4c:	b.ne	b58 <grub_minix_mount+0x30>  // b.any
+     b50:	mov	x0, #0x0                   	// #0
+     b54:	b	ce8 <grub_minix_mount+0x1c0>
+     b58:	ldr	x0, [sp, #56]
+     b5c:	mov	x4, x0
+     b60:	mov	x3, #0x20                  	// #32
+     b64:	mov	x2, #0x0                   	// #0
+     b68:	mov	x1, #0x2                   	// #2
+     b6c:	ldr	x0, [sp, #40]
+     b70:	bl	0 <grub_disk_read>
+     b74:	adrp	x0, 0 <grub_swap_bytes16>
+     b78:	add	x0, x0, #0x0
+     b7c:	ldr	x0, [x0]
+     b80:	ldr	w0, [x0]
+     b84:	cmp	w0, #0x0
+     b88:	b.ne	ca4 <grub_minix_mount+0x17c>  // b.any
+     b8c:	ldr	x0, [sp, #56]
+     b90:	ldrh	w1, [x0, #24]
+     b94:	mov	w0, #0x5a4d                	// #23117
+     b98:	cmp	w1, w0
+     b9c:	b.ne	cac <grub_minix_mount+0x184>  // b.any
+     ba0:	ldr	x0, [sp, #56]
+     ba4:	mov	w1, #0x3c                  	// #60
+     ba8:	str	w1, [x0, #120]
+     bac:	ldr	x0, [sp, #56]
+     bb0:	ldrh	w0, [x0, #12]
+     bb4:	bl	0 <grub_swap_bytes16>
+     bb8:	and	w0, w0, #0xffff
+     bbc:	cmp	w0, #0x13
+     bc0:	b.hi	cb4 <grub_minix_mount+0x18c>  // b.pmore
+     bc4:	ldr	x0, [sp, #56]
+     bc8:	ldr	x1, [sp, #40]
+     bcc:	str	x1, [x0, #112]
+     bd0:	ldr	x0, [sp, #56]
+     bd4:	str	wzr, [x0, #104]
+     bd8:	ldr	x0, [sp, #56]
+     bdc:	ldrh	w1, [x0, #28]
+     be0:	mov	w0, #0xffff                	// #65535
+     be4:	cmp	w1, w0
+     be8:	b.ne	bfc <grub_minix_mount+0xd4>  // b.any
+     bec:	ldr	x0, [sp, #56]
+     bf0:	mov	x1, #0x2                   	// #2
+     bf4:	str	x1, [x0, #128]
+     bf8:	b	c5c <grub_minix_mount+0x134>
+     bfc:	ldr	x0, [sp, #56]
+     c00:	ldrh	w0, [x0, #28]
+     c04:	cmp	w0, #0x2
+     c08:	b.eq	cbc <grub_minix_mount+0x194>  // b.none
+     c0c:	ldr	x0, [sp, #56]
+     c10:	ldrh	w0, [x0, #28]
+     c14:	cmp	w0, #0x0
+     c18:	b.eq	cbc <grub_minix_mount+0x194>  // b.none
+     c1c:	ldr	x0, [sp, #56]
+     c20:	ldrh	w0, [x0, #28]
+     c24:	mov	w1, w0
+     c28:	mov	w0, #0xff01                	// #65281
+     c2c:	and	w0, w1, w0
+     c30:	cmp	w0, #0x0
+     c34:	b.ne	cbc <grub_minix_mount+0x194>  // b.any
+     c38:	ldr	x0, [sp, #56]
+     c3c:	ldrh	w0, [x0, #28]
+     c40:	bl	0 <grub_swap_bytes16>
+     c44:	and	w0, w0, #0xffff
+     c48:	lsr	w0, w0, #9
+     c4c:	and	w0, w0, #0xffff
+     c50:	and	x1, x0, #0xffff
+     c54:	ldr	x0, [sp, #56]
+     c58:	str	x1, [x0, #128]
+     c5c:	ldr	x0, [sp, #56]
+     c60:	ldr	x19, [x0, #128]
+     c64:	ldr	x0, [sp, #56]
+     c68:	ldrh	w0, [x0, #12]
+     c6c:	bl	0 <grub_swap_bytes16>
+     c70:	and	w0, w0, #0xffff
+     c74:	add	w0, w0, #0x9
+     c78:	lsl	x0, x19, x0
+     c7c:	lsr	x0, x0, #2
+     c80:	mov	w1, w0
+     c84:	ldr	x0, [sp, #56]
+     c88:	str	w1, [x0, #96]
+     c8c:	ldr	x0, [sp, #56]
+     c90:	ldr	w0, [x0, #96]
+     c94:	cmp	w0, #0x0
+     c98:	b.eq	cc4 <grub_minix_mount+0x19c>  // b.none
+     c9c:	ldr	x0, [sp, #56]
+     ca0:	b	ce8 <grub_minix_mount+0x1c0>
+     ca4:	nop
+     ca8:	b	cc8 <grub_minix_mount+0x1a0>
+     cac:	nop
+     cb0:	b	cc8 <grub_minix_mount+0x1a0>
+     cb4:	nop
+     cb8:	b	cc8 <grub_minix_mount+0x1a0>
+     cbc:	nop
+     cc0:	b	cc8 <grub_minix_mount+0x1a0>
+     cc4:	nop
+     cc8:	ldr	x0, [sp, #56]
+     ccc:	bl	0 <grub_free>
+     cd0:	adrp	x0, 0 <grub_swap_bytes16>
+     cd4:	add	x0, x0, #0x0
+     cd8:	ldr	x1, [x0]
+     cdc:	mov	w0, #0x9                   	// #9
+     ce0:	bl	0 <grub_error>
+     ce4:	mov	x0, #0x0                   	// #0
+     ce8:	ldr	x19, [sp, #16]
+     cec:	ldp	x29, x30, [sp], #64
+     cf0:	ret
+     cf4:	nop
+	...
+
+0000000000000d08 <grub_minix_dir>:
+     d08:	stp	x29, x30, [sp, #-160]!
+     d0c:	mov	x29, sp
+     d10:	str	x0, [sp, #40]
+     d14:	str	x1, [sp, #32]
+     d18:	str	x2, [sp, #24]
+     d1c:	str	x3, [sp, #16]
+     d20:	str	xzr, [sp, #144]
+     d24:	str	wzr, [sp, #156]
+     d28:	ldr	x0, [sp, #40]
+     d2c:	ldr	x0, [x0]
+     d30:	bl	b28 <grub_minix_mount>
+     d34:	str	x0, [sp, #144]
+     d38:	ldr	x0, [sp, #144]
+     d3c:	cmp	x0, #0x0
+     d40:	b.ne	d58 <grub_minix_dir+0x50>  // b.any
+     d44:	adrp	x0, 0 <grub_swap_bytes16>
+     d48:	add	x0, x0, #0x0
+     d4c:	ldr	x0, [x0]
+     d50:	ldr	w0, [x0]
+     d54:	b	fac <grub_minix_dir+0x2a4>
+     d58:	mov	w1, #0x1                   	// #1
+     d5c:	ldr	x0, [sp, #144]
+     d60:	bl	650 <grub_minix_read_inode>
+     d64:	adrp	x0, 0 <grub_swap_bytes16>
+     d68:	add	x0, x0, #0x0
+     d6c:	ldr	x0, [x0]
+     d70:	ldr	w0, [x0]
+     d74:	cmp	w0, #0x0
+     d78:	b.ne	f80 <grub_minix_dir+0x278>  // b.any
+     d7c:	ldr	x1, [sp, #32]
+     d80:	ldr	x0, [sp, #144]
+     d84:	bl	870 <grub_minix_find_file>
+     d88:	adrp	x0, 0 <grub_swap_bytes16>
+     d8c:	add	x0, x0, #0x0
+     d90:	ldr	x0, [x0]
+     d94:	ldr	w0, [x0]
+     d98:	cmp	w0, #0x0
+     d9c:	b.ne	f88 <grub_minix_dir+0x280>  // b.any
+     da0:	ldr	x0, [sp, #144]
+     da4:	ldrh	w0, [x0, #32]
+     da8:	bl	0 <grub_swap_bytes16>
+     dac:	and	w0, w0, #0xffff
+     db0:	and	w0, w0, #0x4000
+     db4:	cmp	w0, #0x4, lsl #12
+     db8:	b.eq	f60 <grub_minix_dir+0x258>  // b.none
+     dbc:	adrp	x0, 0 <grub_swap_bytes16>
+     dc0:	add	x0, x0, #0x0
+     dc4:	ldr	x1, [x0]
+     dc8:	mov	w0, #0x4                   	// #4
+     dcc:	bl	0 <grub_error>
+     dd0:	b	f94 <grub_minix_dir+0x28c>
+     dd4:	ldr	x0, [sp, #144]
+     dd8:	ldr	w0, [x0, #100]
+     ddc:	str	w0, [sp, #140]
+     de0:	add	x0, sp, #0x78
+     de4:	mov	x2, #0x10                  	// #16
+     de8:	mov	w1, #0x0                   	// #0
+     dec:	bl	0 <grub_memset>
+     df0:	ldr	w0, [sp, #156]
+     df4:	add	x1, sp, #0x88
+     df8:	mov	x5, x1
+     dfc:	mov	x4, #0x4                   	// #4
+     e00:	mov	x3, x0
+     e04:	mov	x2, #0x0                   	// #0
+     e08:	mov	x1, #0x0                   	// #0
+     e0c:	ldr	x0, [sp, #144]
+     e10:	bl	388 <grub_minix_read_file>
+     e14:	cmp	x0, #0x0
+     e18:	b.ge	e30 <grub_minix_dir+0x128>  // b.tcont
+     e1c:	adrp	x0, 0 <grub_swap_bytes16>
+     e20:	add	x0, x0, #0x0
+     e24:	ldr	x0, [x0]
+     e28:	ldr	w0, [x0]
+     e2c:	b	fac <grub_minix_dir+0x2a4>
+     e30:	ldr	w0, [sp, #156]
+     e34:	add	x1, x0, #0x4
+     e38:	ldr	x0, [sp, #144]
+     e3c:	ldr	w0, [x0, #120]
+     e40:	sxtw	x0, w0
+     e44:	add	x2, sp, #0x38
+     e48:	mov	x5, x2
+     e4c:	mov	x4, x0
+     e50:	mov	x3, x1
+     e54:	mov	x2, #0x0                   	// #0
+     e58:	mov	x1, #0x0                   	// #0
+     e5c:	ldr	x0, [sp, #144]
+     e60:	bl	388 <grub_minix_read_file>
+     e64:	cmp	x0, #0x0
+     e68:	b.ge	e80 <grub_minix_dir+0x178>  // b.tcont
+     e6c:	adrp	x0, 0 <grub_swap_bytes16>
+     e70:	add	x0, x0, #0x0
+     e74:	ldr	x0, [x0]
+     e78:	ldr	w0, [x0]
+     e7c:	b	fac <grub_minix_dir+0x2a4>
+     e80:	ldr	x0, [sp, #144]
+     e84:	ldr	w0, [x0, #120]
+     e88:	sxtw	x0, w0
+     e8c:	add	x1, sp, #0x38
+     e90:	strb	wzr, [x1, x0]
+     e94:	ldr	w0, [sp, #136]
+     e98:	cmp	w0, #0x0
+     e9c:	b.ne	ec0 <grub_minix_dir+0x1b8>  // b.any
+     ea0:	ldr	x0, [sp, #144]
+     ea4:	ldr	w0, [x0, #120]
+     ea8:	mov	w1, w0
+     eac:	ldr	w0, [sp, #156]
+     eb0:	add	w0, w1, w0
+     eb4:	add	w0, w0, #0x4
+     eb8:	str	w0, [sp, #156]
+     ebc:	b	f60 <grub_minix_dir+0x258>
+     ec0:	ldr	w0, [sp, #136]
+     ec4:	bl	38 <grub_swap_bytes32>
+     ec8:	mov	w1, w0
+     ecc:	ldr	x0, [sp, #144]
+     ed0:	bl	650 <grub_minix_read_inode>
+     ed4:	ldr	x0, [sp, #144]
+     ed8:	ldrh	w0, [x0, #32]
+     edc:	bl	0 <grub_swap_bytes16>
+     ee0:	and	w0, w0, #0xffff
+     ee4:	and	w0, w0, #0x4000
+     ee8:	cmp	w0, #0x4, lsl #12
+     eec:	cset	w0, eq  // eq = none
+     ef0:	and	w1, w0, #0xff
+     ef4:	ldrb	w0, [sp, #120]
+     ef8:	bfxil	w0, w1, #0, #1
+     efc:	strb	w0, [sp, #120]
+     f00:	ldrb	w0, [sp, #120]
+     f04:	orr	w0, w0, #0x2
+     f08:	strb	w0, [sp, #120]
+     f0c:	ldr	x0, [sp, #144]
+     f10:	ldr	w0, [x0, #48]
+     f14:	bl	38 <grub_swap_bytes32>
+     f18:	str	w0, [sp, #124]
+     f1c:	add	x1, sp, #0x78
+     f20:	add	x0, sp, #0x38
+     f24:	ldr	x3, [sp, #24]
+     f28:	ldr	x2, [sp, #16]
+     f2c:	blr	x3
+     f30:	cmp	w0, #0x0
+     f34:	b.ne	f90 <grub_minix_dir+0x288>  // b.any
+     f38:	ldr	w1, [sp, #140]
+     f3c:	ldr	x0, [sp, #144]
+     f40:	bl	650 <grub_minix_read_inode>
+     f44:	ldr	x0, [sp, #144]
+     f48:	ldr	w0, [x0, #120]
+     f4c:	mov	w1, w0
+     f50:	ldr	w0, [sp, #156]
+     f54:	add	w0, w1, w0
+     f58:	add	w0, w0, #0x4
+     f5c:	str	w0, [sp, #156]
+     f60:	ldr	x0, [sp, #144]
+     f64:	ldr	w0, [x0, #40]
+     f68:	bl	38 <grub_swap_bytes32>
+     f6c:	mov	w1, w0
+     f70:	ldr	w0, [sp, #156]
+     f74:	cmp	w0, w1
+     f78:	b.cc	dd4 <grub_minix_dir+0xcc>  // b.lo, b.ul, b.last
+     f7c:	b	f94 <grub_minix_dir+0x28c>
+     f80:	nop
+     f84:	b	f94 <grub_minix_dir+0x28c>
+     f88:	nop
+     f8c:	b	f94 <grub_minix_dir+0x28c>
+     f90:	nop
+     f94:	ldr	x0, [sp, #144]
+     f98:	bl	0 <grub_free>
+     f9c:	adrp	x0, 0 <grub_swap_bytes16>
+     fa0:	add	x0, x0, #0x0
+     fa4:	ldr	x0, [x0]
+     fa8:	ldr	w0, [x0]
+     fac:	ldp	x29, x30, [sp], #160
+     fb0:	ret
+     fb4:	nop
+	...
+
+0000000000000fc8 <grub_minix_open>:
+     fc8:	stp	x29, x30, [sp, #-48]!
+     fcc:	mov	x29, sp
+     fd0:	str	x0, [sp, #24]
+     fd4:	str	x1, [sp, #16]
+     fd8:	ldr	x0, [sp, #24]
+     fdc:	ldr	x0, [x0, #8]
+     fe0:	ldr	x0, [x0]
+     fe4:	bl	b28 <grub_minix_mount>
+     fe8:	str	x0, [sp, #40]
+     fec:	ldr	x0, [sp, #40]
+     ff0:	cmp	x0, #0x0
+     ff4:	b.ne	100c <grub_minix_open+0x44>  // b.any
+     ff8:	adrp	x0, 0 <grub_swap_bytes16>
+     ffc:	add	x0, x0, #0x0
+    1000:	ldr	x0, [x0]
+    1004:	ldr	w0, [x0]
+    1008:	b	10fc <grub_minix_open+0x134>
+    100c:	mov	w1, #0x1                   	// #1
+    1010:	ldr	x0, [sp, #40]
+    1014:	bl	650 <grub_minix_read_inode>
+    1018:	adrp	x0, 0 <grub_swap_bytes16>
+    101c:	add	x0, x0, #0x0
+    1020:	ldr	x0, [x0]
+    1024:	ldr	w0, [x0]
+    1028:	cmp	w0, #0x0
+    102c:	b.eq	104c <grub_minix_open+0x84>  // b.none
+    1030:	ldr	x0, [sp, #40]
+    1034:	bl	0 <grub_free>
+    1038:	adrp	x0, 0 <grub_swap_bytes16>
+    103c:	add	x0, x0, #0x0
+    1040:	ldr	x0, [x0]
+    1044:	ldr	w0, [x0]
+    1048:	b	10fc <grub_minix_open+0x134>
+    104c:	ldr	x0, [sp, #16]
+    1050:	cmp	x0, #0x0
+    1054:	b.eq	1068 <grub_minix_open+0xa0>  // b.none
+    1058:	ldr	x0, [sp, #16]
+    105c:	ldrb	w0, [x0]
+    1060:	cmp	w0, #0x2f
+    1064:	b.eq	1094 <grub_minix_open+0xcc>  // b.none
+    1068:	ldr	x2, [sp, #16]
+    106c:	adrp	x0, 0 <grub_swap_bytes16>
+    1070:	add	x0, x0, #0x0
+    1074:	ldr	x1, [x0]
+    1078:	mov	w0, #0x7                   	// #7
+    107c:	bl	0 <grub_error>
+    1080:	adrp	x0, 0 <grub_swap_bytes16>
+    1084:	add	x0, x0, #0x0
+    1088:	ldr	x0, [x0]
+    108c:	ldr	w0, [x0]
+    1090:	b	10fc <grub_minix_open+0x134>
+    1094:	ldr	x1, [sp, #16]
+    1098:	ldr	x0, [sp, #40]
+    109c:	bl	870 <grub_minix_find_file>
+    10a0:	adrp	x0, 0 <grub_swap_bytes16>
+    10a4:	add	x0, x0, #0x0
+    10a8:	ldr	x0, [x0]
+    10ac:	ldr	w0, [x0]
+    10b0:	cmp	w0, #0x0
+    10b4:	b.eq	10d4 <grub_minix_open+0x10c>  // b.none
+    10b8:	ldr	x0, [sp, #40]
+    10bc:	bl	0 <grub_free>
+    10c0:	adrp	x0, 0 <grub_swap_bytes16>
+    10c4:	add	x0, x0, #0x0
+    10c8:	ldr	x0, [x0]
+    10cc:	ldr	w0, [x0]
+    10d0:	b	10fc <grub_minix_open+0x134>
+    10d4:	ldr	x0, [sp, #24]
+    10d8:	ldr	x1, [sp, #40]
+    10dc:	str	x1, [x0, #80]
+    10e0:	ldr	x0, [sp, #40]
+    10e4:	ldr	w0, [x0, #40]
+    10e8:	bl	38 <grub_swap_bytes32>
+    10ec:	mov	w1, w0
+    10f0:	ldr	x0, [sp, #24]
+    10f4:	str	x1, [x0, #64]
+    10f8:	mov	w0, #0x0                   	// #0
+    10fc:	ldp	x29, x30, [sp], #48
+    1100:	ret
+    1104:	nop
+	...
+
+0000000000001118 <grub_minix_read>:
+    1118:	stp	x29, x30, [sp, #-64]!
+    111c:	mov	x29, sp
+    1120:	str	x0, [sp, #40]
+    1124:	str	x1, [sp, #32]
+    1128:	str	x2, [sp, #24]
+    112c:	ldr	x0, [sp, #40]
+    1130:	ldr	x0, [x0, #80]
+    1134:	str	x0, [sp, #56]
+    1138:	ldr	x0, [sp, #40]
+    113c:	ldr	x1, [x0, #88]
+    1140:	ldr	x0, [sp, #40]
+    1144:	ldr	x2, [x0, #96]
+    1148:	ldr	x0, [sp, #40]
+    114c:	ldr	x0, [x0, #24]
+    1150:	ldr	x5, [sp, #32]
+    1154:	ldr	x4, [sp, #24]
+    1158:	mov	x3, x0
+    115c:	ldr	x0, [sp, #56]
+    1160:	bl	388 <grub_minix_read_file>
+    1164:	ldp	x29, x30, [sp], #64
+    1168:	ret
+
+000000000000116c <grub_minix_close>:
+    116c:	stp	x29, x30, [sp, #-32]!
+    1170:	mov	x29, sp
+    1174:	str	x0, [sp, #24]
+    1178:	ldr	x0, [sp, #24]
+    117c:	ldr	x0, [x0, #80]
+    1180:	bl	0 <grub_free>
+    1184:	mov	w0, #0x0                   	// #0
+    1188:	ldp	x29, x30, [sp], #32
+    118c:	ret
+
+0000000000001190 <grub_mod_init>:
+    1190:	stp	x29, x30, [sp, #-32]!
+    1194:	mov	x29, sp
+    1198:	str	x0, [sp, #24]
+    119c:	adrp	x0, 0 <grub_swap_bytes16>
+    11a0:	add	x0, x0, #0x0
+    11a4:	ldr	x0, [x0]
+    11a8:	bl	50 <grub_fs_register>
+    11ac:	adrp	x0, 0 <grub_swap_bytes16>
+    11b0:	add	x0, x0, #0x0
+    11b4:	ldr	x0, [x0]
+    11b8:	ldr	x1, [sp, #24]
+    11bc:	str	x1, [x0]
+    11c0:	nop
+    11c4:	ldp	x29, x30, [sp], #32
+    11c8:	ret
+    11cc:	nop
+	...
+
+00000000000011e0 <grub_mod_fini>:
+    11e0:	stp	x29, x30, [sp, #-16]!
+    11e4:	mov	x29, sp
+    11e8:	adrp	x0, 0 <grub_swap_bytes16>
+    11ec:	add	x0, x0, #0x0
+    11f0:	ldr	x0, [x0]
+    11f4:	bl	88 <grub_fs_unregister>
+    11f8:	nop
+    11fc:	ldp	x29, x30, [sp], #16
+    1200:	ret
+    1204:	nop
+	...

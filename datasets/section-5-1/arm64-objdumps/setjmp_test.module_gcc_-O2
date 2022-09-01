@@ -1,0 +1,80 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//setjmp_test.module_gcc_-O2:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <setjmp_test>:
+   0:	stp	x29, x30, [sp, #-32]!
+   4:	adrp	x0, 0 <setjmp_test>
+   8:	mov	x29, sp
+   c:	ldr	x1, [x0]
+  10:	str	x19, [sp, #16]
+  14:	add	x0, x1, #0x8
+  18:	stp	wzr, wzr, [x1]
+  1c:	bl	0 <grub_setjmp>
+  20:	adrp	x1, 0 <setjmp_test>
+  24:	adrp	x3, 0 <setjmp_test>
+  28:	adrp	x4, 0 <setjmp_test>
+  2c:	adrp	x2, 0 <setjmp_test>
+  30:	ldr	x19, [x1]
+  34:	adrp	x1, 0 <setjmp_test>
+  38:	ldr	x5, [x3]
+  3c:	mov	w6, w0
+  40:	ldr	w7, [x19]
+  44:	mov	w3, #0x3c                  	// #60
+  48:	ldr	x1, [x1]
+  4c:	cmp	w7, w0
+  50:	ldr	x4, [x4]
+  54:	cset	w0, eq  // eq = none
+  58:	ldr	x2, [x2]
+  5c:	bl	0 <grub_test_assert_helper>
+  60:	ldr	w1, [x19, #4]
+  64:	add	w0, w1, #0x1
+  68:	str	w0, [x19, #4]
+  6c:	cmp	w1, #0x3
+  70:	b.eq	b8 <setjmp_test+0xb8>  // b.none
+  74:	b.gt	8c <setjmp_test+0x8c>
+  78:	cmp	w1, #0x1
+  7c:	b.eq	c4 <setjmp_test+0xc4>  // b.none
+  80:	cmp	w1, #0x2
+  84:	b.eq	c4 <setjmp_test+0xc4>  // b.none
+  88:	cbz	w1, d0 <setjmp_test+0xd0>
+  8c:	adrp	x3, 0 <setjmp_test>
+  90:	adrp	x0, 0 <setjmp_test>
+  94:	adrp	x2, 0 <setjmp_test>
+  98:	adrp	x1, 0 <setjmp_test>
+  9c:	ldr	x5, [x3]
+  a0:	mov	w3, #0x4c                  	// #76
+  a4:	ldr	x4, [x0]
+  a8:	mov	w0, #0x0                   	// #0
+  ac:	ldr	x2, [x2]
+  b0:	ldr	x1, [x1]
+  b4:	bl	0 <grub_test_assert_helper>
+  b8:	ldr	x19, [sp, #16]
+  bc:	ldp	x29, x30, [sp], #32
+  c0:	ret
+  c4:	mov	x0, x19
+  c8:	str	w1, [x0], #8
+  cc:	bl	0 <grub_longjmp>
+  d0:	mov	x0, x19
+  d4:	mov	w2, #0x1                   	// #1
+  d8:	str	w2, [x0], #8
+  dc:	bl	0 <grub_longjmp>
+	...
+
+0000000000000118 <grub_mod_init>:
+ 118:	adrp	x1, 0 <setjmp_test>
+ 11c:	adrp	x0, 0 <setjmp_test>
+ 120:	ldr	x1, [x1]
+ 124:	ldr	x0, [x0]
+ 128:	b	0 <grub_test_register>
+ 12c:	nop
+	...
+
+0000000000000140 <grub_mod_fini>:
+ 140:	adrp	x0, 0 <setjmp_test>
+ 144:	ldr	x0, [x0]
+ 148:	b	0 <grub_test_unregister>
+ 14c:	nop
+	...

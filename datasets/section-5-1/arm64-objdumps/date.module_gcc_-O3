@@ -1,0 +1,266 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//date.module_gcc_-O3:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_cmd_date>:
+   0:	stp	x29, x30, [sp, #-208]!
+   4:	adrp	x0, 0 <grub_cmd_date>
+   8:	mov	x29, sp
+   c:	ldr	x0, [x0]
+  10:	stp	x21, x22, [sp, #32]
+  14:	mov	x21, x2
+  18:	stp	x19, x20, [sp, #16]
+  1c:	mov	w19, w1
+  20:	ldp	x2, x3, [x0]
+  24:	stp	x2, x3, [sp, #160]
+  28:	ldp	x2, x3, [x0, #16]
+  2c:	stp	x2, x3, [sp, #176]
+  30:	ldp	x0, x1, [x0, #32]
+  34:	stp	x0, x1, [sp, #192]
+  38:	cbnz	w19, 6c <grub_cmd_date+0x6c>
+  3c:	add	x0, sp, #0x80
+  40:	bl	0 <grub_get_datetime>
+  44:	mov	w19, w0
+  48:	cbz	w0, 304 <grub_cmd_date+0x304>
+  4c:	adrp	x0, 0 <grub_cmd_date>
+  50:	ldr	x0, [x0]
+  54:	ldr	w19, [x0]
+  58:	mov	w0, w19
+  5c:	ldp	x19, x20, [sp, #16]
+  60:	ldp	x21, x22, [sp, #32]
+  64:	ldp	x29, x30, [sp], #208
+  68:	ret
+  6c:	sub	w19, w19, #0x1
+  70:	stp	x27, x28, [sp, #80]
+  74:	add	x19, x19, #0x1
+  78:	add	x27, sp, #0x88
+  7c:	mov	x2, #0x18                  	// #24
+  80:	mov	x0, x27
+  84:	mov	w1, #0x0                   	// #0
+  88:	add	x20, sp, #0xa0
+  8c:	stp	x23, x24, [sp, #48]
+  90:	add	x24, sp, #0xa4
+  94:	stp	x25, x26, [sp, #64]
+  98:	bl	0 <grub_memset>
+  9c:	add	x0, x21, x19, lsl #3
+  a0:	mov	w25, #0x1                   	// #1
+  a4:	str	wzr, [sp, #104]
+  a8:	str	x0, [sp, #120]
+  ac:	ldr	x0, [x21]
+  b0:	add	x1, sp, #0x80
+  b4:	mov	w2, #0xa                   	// #10
+  b8:	str	x0, [sp, #128]
+  bc:	bl	0 <grub_strtoul>
+  c0:	ldr	x1, [sp, #128]
+  c4:	ldrb	w22, [x1]
+  c8:	cmp	w22, #0x2d
+  cc:	b.eq	294 <grub_cmd_date+0x294>  // b.none
+  d0:	cmp	w22, #0x3a
+  d4:	b.ne	2ac <grub_cmd_date+0x2ac>  // b.any
+  d8:	mov	w2, #0xffffffc7            	// #-57
+  dc:	mov	w26, #0x0                   	// #0
+  e0:	mov	w28, #0x8                   	// #8
+  e4:	mov	w19, #0x3                   	// #3
+  e8:	str	w2, [sp, #116]
+  ec:	sxtw	x23, w19
+  f0:	str	w0, [x27, x23, lsl #2]
+  f4:	ldrb	w0, [x1]
+  f8:	cbz	w0, 370 <grub_cmd_date+0x370>
+  fc:	cmp	w22, w0
+ 100:	b.ne	2ac <grub_cmd_date+0x2ac>  // b.any
+ 104:	add	x0, x1, #0x1
+ 108:	mov	w2, #0xa                   	// #10
+ 10c:	add	x1, sp, #0x80
+ 110:	bl	0 <grub_strtoul>
+ 114:	add	w1, w19, #0x1
+ 118:	ldr	x2, [sp, #128]
+ 11c:	lsl	w6, w25, w1
+ 120:	str	w0, [x27, w1, sxtw #2]
+ 124:	orr	w28, w28, w6
+ 128:	ldrb	w1, [x2]
+ 12c:	cbz	w1, 2e0 <grub_cmd_date+0x2e0>
+ 130:	cmp	w1, w22
+ 134:	b.ne	2ac <grub_cmd_date+0x2ac>  // b.any
+ 138:	add	x0, x2, #0x1
+ 13c:	add	x1, sp, #0x80
+ 140:	mov	w2, #0xa                   	// #10
+ 144:	bl	0 <grub_strtoul>
+ 148:	add	w1, w19, #0x2
+ 14c:	ldr	x2, [sp, #128]
+ 150:	lsl	w6, w25, w1
+ 154:	str	w0, [x27, w1, sxtw #2]
+ 158:	orr	w28, w28, w6
+ 15c:	ldrb	w0, [x2]
+ 160:	cbnz	w0, 2ac <grub_cmd_date+0x2ac>
+ 164:	mov	w0, #0x3                   	// #3
+ 168:	lsl	x2, x23, #3
+ 16c:	ldr	w1, [x27, x23, lsl #2]
+ 170:	ldr	w6, [x20, x2]
+ 174:	cmp	w6, w1
+ 178:	b.gt	2ac <grub_cmd_date+0x2ac>
+ 17c:	ldr	w2, [x24, x2]
+ 180:	cmp	w2, w1
+ 184:	b.lt	2ac <grub_cmd_date+0x2ac>  // b.tstop
+ 188:	subs	w0, w0, #0x1
+ 18c:	add	w1, w19, #0x1
+ 190:	b.eq	1e8 <grub_cmd_date+0x1e8>  // b.none
+ 194:	sxtw	x1, w1
+ 198:	lsl	x2, x1, #3
+ 19c:	ldr	w1, [x27, x1, lsl #2]
+ 1a0:	ldr	w6, [x20, x2]
+ 1a4:	cmp	w1, w6
+ 1a8:	b.lt	2ac <grub_cmd_date+0x2ac>  // b.tstop
+ 1ac:	ldr	w2, [x24, x2]
+ 1b0:	cmp	w2, w1
+ 1b4:	b.lt	2ac <grub_cmd_date+0x2ac>  // b.tstop
+ 1b8:	add	w19, w19, #0x2
+ 1bc:	cmp	w0, #0x1
+ 1c0:	b.eq	1e8 <grub_cmd_date+0x1e8>  // b.none
+ 1c4:	sxtw	x19, w19
+ 1c8:	lsl	x1, x19, #3
+ 1cc:	ldr	w0, [x27, x19, lsl #2]
+ 1d0:	ldr	w2, [x20, x1]
+ 1d4:	cmp	w0, w2
+ 1d8:	b.lt	2ac <grub_cmd_date+0x2ac>  // b.tstop
+ 1dc:	ldr	w1, [x24, x1]
+ 1e0:	cmp	w0, w1
+ 1e4:	b.gt	2ac <grub_cmd_date+0x2ac>
+ 1e8:	ldr	w1, [sp, #104]
+ 1ec:	add	x21, x21, #0x8
+ 1f0:	ldr	w0, [sp, #116]
+ 1f4:	and	w26, w0, w1
+ 1f8:	orr	w0, w26, w28
+ 1fc:	str	w0, [sp, #104]
+ 200:	ldr	x0, [sp, #120]
+ 204:	cmp	x21, x0
+ 208:	b.ne	ac <grub_cmd_date+0xac>  // b.any
+ 20c:	add	x0, sp, #0x80
+ 210:	bl	0 <grub_get_datetime>
+ 214:	cbnz	w0, 378 <grub_cmd_date+0x378>
+ 218:	ldr	x0, [sp, #104]
+ 21c:	tbz	w0, #0, 228 <grub_cmd_date+0x228>
+ 220:	ldr	w0, [sp, #136]
+ 224:	strh	w0, [sp, #128]
+ 228:	ldr	x0, [sp, #104]
+ 22c:	tbz	w0, #1, 238 <grub_cmd_date+0x238>
+ 230:	ldr	w0, [sp, #140]
+ 234:	strb	w0, [sp, #130]
+ 238:	ldr	x0, [sp, #104]
+ 23c:	tbz	w0, #2, 248 <grub_cmd_date+0x248>
+ 240:	ldr	w0, [sp, #144]
+ 244:	strb	w0, [sp, #131]
+ 248:	ldr	x0, [sp, #104]
+ 24c:	tbz	w0, #3, 258 <grub_cmd_date+0x258>
+ 250:	ldr	w0, [sp, #148]
+ 254:	strb	w0, [sp, #132]
+ 258:	ldr	x0, [sp, #104]
+ 25c:	tbz	w0, #4, 268 <grub_cmd_date+0x268>
+ 260:	ldr	w0, [sp, #152]
+ 264:	strb	w0, [sp, #133]
+ 268:	ldr	x0, [sp, #104]
+ 26c:	tbz	w0, #5, 278 <grub_cmd_date+0x278>
+ 270:	ldr	w0, [sp, #156]
+ 274:	strb	w0, [sp, #134]
+ 278:	add	x0, sp, #0x80
+ 27c:	bl	0 <grub_set_datetime>
+ 280:	mov	w19, w0
+ 284:	ldp	x23, x24, [sp, #48]
+ 288:	ldp	x25, x26, [sp, #64]
+ 28c:	ldp	x27, x28, [sp, #80]
+ 290:	b	58 <grub_cmd_date+0x58>
+ 294:	mov	w26, #0x1                   	// #1
+ 298:	mov	w2, #0xfffffff8            	// #-8
+ 29c:	mov	w28, w26
+ 2a0:	mov	w19, #0x0                   	// #0
+ 2a4:	str	w2, [sp, #116]
+ 2a8:	b	ec <grub_cmd_date+0xec>
+ 2ac:	adrp	x1, 0 <grub_cmd_date>
+ 2b0:	mov	w0, #0x12                  	// #18
+ 2b4:	ldr	x1, [x1]
+ 2b8:	bl	0 <grub_error>
+ 2bc:	mov	w19, w0
+ 2c0:	mov	w0, w19
+ 2c4:	ldp	x19, x20, [sp, #16]
+ 2c8:	ldp	x21, x22, [sp, #32]
+ 2cc:	ldp	x23, x24, [sp, #48]
+ 2d0:	ldp	x25, x26, [sp, #64]
+ 2d4:	ldp	x27, x28, [sp, #80]
+ 2d8:	ldp	x29, x30, [sp], #208
+ 2dc:	ret
+ 2e0:	mov	w0, #0x2                   	// #2
+ 2e4:	cbz	w26, 168 <grub_cmd_date+0x168>
+ 2e8:	ldp	w2, w1, [sp, #136]
+ 2ec:	lsl	w28, w28, #1
+ 2f0:	mov	w0, #0x2                   	// #2
+ 2f4:	mov	w19, #0x1                   	// #1
+ 2f8:	mov	x23, #0x1                   	// #1
+ 2fc:	stp	w2, w1, [sp, #140]
+ 300:	b	168 <grub_cmd_date+0x168>
+ 304:	ldrh	w20, [sp, #128]
+ 308:	add	x0, sp, #0x80
+ 30c:	ldrb	w21, [sp, #130]
+ 310:	ldrb	w22, [sp, #131]
+ 314:	stp	x23, x24, [sp, #48]
+ 318:	ldrb	w23, [sp, #132]
+ 31c:	ldrb	w24, [sp, #133]
+ 320:	stp	x25, x26, [sp, #64]
+ 324:	ldrb	w25, [sp, #134]
+ 328:	bl	0 <grub_get_weekday_name>
+ 32c:	mov	x7, x0
+ 330:	adrp	x0, 0 <grub_cmd_date>
+ 334:	mov	w6, w25
+ 338:	mov	w5, w24
+ 33c:	mov	w4, w23
+ 340:	ldr	x0, [x0]
+ 344:	mov	w3, w22
+ 348:	mov	w2, w21
+ 34c:	mov	w1, w20
+ 350:	bl	0 <grub_printf>
+ 354:	mov	w0, w19
+ 358:	ldp	x19, x20, [sp, #16]
+ 35c:	ldp	x21, x22, [sp, #32]
+ 360:	ldp	x23, x24, [sp, #48]
+ 364:	ldp	x25, x26, [sp, #64]
+ 368:	ldp	x29, x30, [sp], #208
+ 36c:	ret
+ 370:	mov	w0, #0x1                   	// #1
+ 374:	b	168 <grub_cmd_date+0x168>
+ 378:	adrp	x0, 0 <grub_cmd_date>
+ 37c:	ldp	x23, x24, [sp, #48]
+ 380:	ldr	x0, [x0]
+ 384:	ldp	x25, x26, [sp, #64]
+ 388:	ldr	w19, [x0]
+ 38c:	ldp	x27, x28, [sp, #80]
+ 390:	b	58 <grub_cmd_date+0x58>
+ 394:	nop
+	...
+
+00000000000003b8 <grub_mod_init>:
+ 3b8:	stp	x29, x30, [sp, #-16]!
+ 3bc:	adrp	x3, 0 <grub_cmd_date>
+ 3c0:	adrp	x2, 0 <grub_cmd_date>
+ 3c4:	adrp	x1, 0 <grub_cmd_date>
+ 3c8:	adrp	x0, 0 <grub_cmd_date>
+ 3cc:	mov	x29, sp
+ 3d0:	ldr	x3, [x3]
+ 3d4:	mov	w4, #0x0                   	// #0
+ 3d8:	ldr	x2, [x2]
+ 3dc:	ldr	x1, [x1]
+ 3e0:	ldr	x0, [x0]
+ 3e4:	bl	0 <grub_register_command_prio>
+ 3e8:	adrp	x1, 0 <grub_cmd_date>
+ 3ec:	ldr	x1, [x1]
+ 3f0:	str	x0, [x1]
+ 3f4:	ldp	x29, x30, [sp], #16
+ 3f8:	ret
+ 3fc:	nop
+	...
+
+0000000000000428 <grub_mod_fini>:
+ 428:	adrp	x0, 0 <grub_cmd_date>
+ 42c:	ldr	x0, [x0]
+ 430:	ldr	x0, [x0]
+ 434:	b	0 <grub_unregister_command>
+	...

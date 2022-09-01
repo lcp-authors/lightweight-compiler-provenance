@@ -1,0 +1,74 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//crtbeginS.o_clang_-O1:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <deregister_tm_clones>:
+   0:	adrp	x0, 0 <__TMC_END__>
+   4:	add	x0, x0, #0x0
+   8:	adrp	x1, 0 <deregister_tm_clones>
+   c:	add	x1, x1, #0x0
+  10:	cmp	x0, x1
+  14:	b.eq	40 <deregister_tm_clones+0x40>  // b.none
+  18:	adrp	x1, 0 <_ITM_deregisterTMCloneTable>
+  1c:	ldr	x1, [x1]
+  20:	cbz	x1, 40 <deregister_tm_clones+0x40>
+  24:	stp	x29, x30, [sp, #-16]!
+  28:	mov	x29, sp
+  2c:	adrp	x0, 0 <deregister_tm_clones>
+  30:	add	x0, x0, #0x0
+  34:	blr	x1
+  38:	ldp	x29, x30, [sp], #16
+  3c:	ret
+  40:	ret
+
+0000000000000044 <register_tm_clones>:
+  44:	adrp	x0, 0 <__TMC_END__>
+  48:	add	x0, x0, #0x0
+  4c:	adrp	x1, 0 <deregister_tm_clones>
+  50:	add	x1, x1, #0x0
+  54:	sub	x0, x0, x1
+  58:	lsr	x1, x0, #63
+  5c:	add	x0, x1, x0, asr #3
+  60:	cmp	xzr, x0, asr #1
+  64:	b.eq	94 <register_tm_clones+0x50>  // b.none
+  68:	asr	x1, x0, #1
+  6c:	adrp	x2, 0 <_ITM_registerTMCloneTable>
+  70:	ldr	x2, [x2]
+  74:	cbz	x2, 94 <register_tm_clones+0x50>
+  78:	stp	x29, x30, [sp, #-16]!
+  7c:	mov	x29, sp
+  80:	adrp	x0, 0 <deregister_tm_clones>
+  84:	add	x0, x0, #0x0
+  88:	blr	x2
+  8c:	ldp	x29, x30, [sp], #16
+  90:	ret
+  94:	ret
+
+0000000000000098 <__do_global_dtors_aux>:
+  98:	adrp	x0, 0 <deregister_tm_clones>
+  9c:	ldrb	w0, [x0]
+  a0:	cbnz	w0, dc <__do_global_dtors_aux+0x44>
+  a4:	stp	x29, x30, [sp, #-16]!
+  a8:	mov	x29, sp
+  ac:	adrp	x0, 0 <__cxa_finalize>
+  b0:	ldr	x0, [x0]
+  b4:	cbz	x0, c4 <__do_global_dtors_aux+0x2c>
+  b8:	adrp	x0, 0 <deregister_tm_clones>
+  bc:	ldr	x0, [x0]
+  c0:	bl	0 <__cxa_finalize>
+  c4:	bl	0 <deregister_tm_clones>
+  c8:	adrp	x0, 0 <deregister_tm_clones>
+  cc:	mov	w1, #0x1                   	// #1
+  d0:	strb	w1, [x0]
+  d4:	ldp	x29, x30, [sp], #16
+  d8:	ret
+  dc:	ret
+
+00000000000000e0 <frame_dummy>:
+  e0:	stp	x29, x30, [sp, #-16]!
+  e4:	mov	x29, sp
+  e8:	bl	44 <register_tm_clones>
+  ec:	ldp	x29, x30, [sp], #16
+  f0:	ret

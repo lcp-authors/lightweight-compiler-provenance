@@ -1,0 +1,1001 @@
+
+../repos/stcorp-coda-3a25f25/CMakeFiles/coda.dir/libcoda/coda-detection.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <coda_detection_rule_entry_delete>:
+   0:	mov	ip, sp
+   4:	sub	sp, sp, #16
+   8:	str	ip, [sp]
+   c:	str	lr, [sp, #4]
+  10:	str	r4, [sp, #8]
+  14:	mov	r4, r0
+  18:	ldr	r1, [r4]
+  1c:	cmp	r1, #0
+  20:	beq	2c <coda_detection_rule_entry_delete+0x2c>
+  24:	ldr	r0, [r4]
+  28:	bl	0 <free>
+  2c:	ldr	r0, [r4, #4]
+  30:	cmp	r0, #0
+  34:	beq	40 <coda_detection_rule_entry_delete+0x40>
+  38:	ldr	r0, [r4, #4]
+  3c:	bl	0 <coda_expression_delete>
+  40:	mov	r0, r4
+  44:	bl	0 <free>
+  48:	ldr	r4, [sp, #8]
+  4c:	ldr	lr, [sp, #4]
+  50:	add	sp, sp, #16
+  54:	bx	lr
+
+00000058 <coda_detection_rule_entry_new>:
+  58:	mov	ip, sp
+  5c:	sub	sp, sp, #32
+  60:	str	ip, [sp, #4]
+  64:	str	lr, [sp, #8]
+  68:	str	r4, [sp, #16]
+  6c:	str	r5, [sp, #20]
+  70:	mov	r5, r0
+  74:	cmp	r5, #0
+  78:	beq	e8 <coda_detection_rule_entry_new+0x90>
+  7c:	add	r1, sp, #28
+  80:	mov	r0, r5
+  84:	bl	0 <coda_expression_from_string>
+  88:	cmp	r0, #0
+  8c:	beq	98 <coda_detection_rule_entry_new+0x40>
+  90:	mov	r0, #0
+  94:	b	178 <coda_detection_rule_entry_new+0x120>
+  98:	ldr	r0, [sp, #28]
+  9c:	add	r1, sp, #24
+  a0:	bl	0 <coda_expression_get_type>
+  a4:	cmp	r0, #0
+  a8:	beq	bc <coda_detection_rule_entry_new+0x64>
+  ac:	ldr	r0, [sp, #28]
+  b0:	bl	0 <coda_expression_delete>
+  b4:	mov	r0, #0
+  b8:	b	178 <coda_detection_rule_entry_new+0x120>
+  bc:	ldr	r0, [sp, #28]
+  c0:	bl	0 <coda_expression_delete>
+  c4:	ldr	r1, [sp, #24]
+  c8:	cmp	r1, #4
+  cc:	beq	e8 <coda_detection_rule_entry_new+0x90>
+  d0:	movw	r0, #65136	; 0xfe70
+  d4:	movt	r0, #65535	; 0xffff
+  d8:	ldr	r1, [pc, #176]	; 190 <coda_detection_rule_entry_new+0x138>
+  dc:	bl	0 <coda_set_error>
+  e0:	mov	r0, #0
+  e4:	b	178 <coda_detection_rule_entry_new+0x120>
+  e8:	mov	r0, #8
+  ec:	bl	0 <malloc>
+  f0:	mov	r4, r0
+  f4:	cmp	r4, #0
+  f8:	bne	120 <coda_detection_rule_entry_new+0xc8>
+  fc:	mvn	r0, #0
+ 100:	ldr	r1, [pc, #132]	; 18c <coda_detection_rule_entry_new+0x134>
+ 104:	mov	r2, #8
+ 108:	ldr	r3, [pc, #132]	; 194 <coda_detection_rule_entry_new+0x13c>
+ 10c:	mov	ip, #82	; 0x52
+ 110:	str	ip, [sp]
+ 114:	bl	0 <coda_set_error>
+ 118:	mov	r0, #0
+ 11c:	b	178 <coda_detection_rule_entry_new+0x120>
+ 120:	mov	r2, #0
+ 124:	str	r2, [r4]
+ 128:	mov	r3, #0
+ 12c:	str	r3, [r4, #4]
+ 130:	cmp	r5, #0
+ 134:	beq	174 <coda_detection_rule_entry_new+0x11c>
+ 138:	mov	r0, r5
+ 13c:	bl	0 <strdup>
+ 140:	str	r0, [r4]
+ 144:	ldr	r0, [r4]
+ 148:	cmp	r0, #0
+ 14c:	bne	174 <coda_detection_rule_entry_new+0x11c>
+ 150:	mvn	r0, #0
+ 154:	ldr	r1, [pc, #60]	; 198 <coda_detection_rule_entry_new+0x140>
+ 158:	ldr	r2, [pc, #52]	; 194 <coda_detection_rule_entry_new+0x13c>
+ 15c:	mov	r3, #94	; 0x5e
+ 160:	bl	0 <coda_set_error>
+ 164:	mov	r0, r4
+ 168:	bl	0 <free>
+ 16c:	mov	r0, #0
+ 170:	b	178 <coda_detection_rule_entry_new+0x120>
+ 174:	mov	r0, r4
+ 178:	ldr	r4, [sp, #16]
+ 17c:	ldr	r5, [sp, #20]
+ 180:	ldr	lr, [sp, #8]
+ 184:	add	sp, sp, #32
+ 188:	bx	lr
+ 18c:	.word	0x0000018d
+ 190:	.word	0x0000006f
+ 194:	.word	0x000000d2
+ 198:	.word	0x00000130
+
+0000019c <coda_detection_rule_entry_set_expression>:
+ 19c:	mov	ip, sp
+ 1a0:	sub	sp, sp, #8
+ 1a4:	str	ip, [sp]
+ 1a8:	str	lr, [sp, #4]
+ 1ac:	ldr	r2, [r0, #4]
+ 1b0:	cmp	r2, #0
+ 1b4:	beq	1d0 <coda_detection_rule_entry_set_expression+0x34>
+ 1b8:	movw	r0, #65136	; 0xfe70
+ 1bc:	movt	r0, #65535	; 0xffff
+ 1c0:	ldr	r1, [pc, #28]	; 1e4 <coda_detection_rule_entry_set_expression+0x48>
+ 1c4:	bl	0 <coda_set_error>
+ 1c8:	mvn	r0, #0
+ 1cc:	b	1d8 <coda_detection_rule_entry_set_expression+0x3c>
+ 1d0:	str	r1, [r0, #4]
+ 1d4:	mov	r0, #0
+ 1d8:	ldr	lr, [sp, #4]
+ 1dc:	add	sp, sp, #8
+ 1e0:	bx	lr
+ 1e4:	.word	0x00000163
+
+000001e8 <coda_detection_rule_delete>:
+ 1e8:	mov	ip, sp
+ 1ec:	sub	sp, sp, #16
+ 1f0:	str	ip, [sp]
+ 1f4:	str	lr, [sp, #4]
+ 1f8:	str	r4, [sp, #8]
+ 1fc:	str	r5, [sp, #12]
+ 200:	mov	r4, r0
+ 204:	ldr	r2, [r4, #4]
+ 208:	cmp	r2, #0
+ 20c:	beq	24c <coda_detection_rule_delete+0x64>
+ 210:	mov	r5, #0
+ 214:	ldr	r1, [r4]
+ 218:	cmp	r5, r1
+ 21c:	bge	244 <coda_detection_rule_delete+0x5c>
+ 220:	ldr	ip, [r4, #4]
+ 224:	ldr	r3, [ip, r5, lsl #2]
+ 228:	cmp	r3, #0
+ 22c:	beq	23c <coda_detection_rule_delete+0x54>
+ 230:	ldr	r0, [r4, #4]
+ 234:	ldr	r0, [r0, r5, lsl #2]
+ 238:	bl	0 <coda_detection_rule_entry_delete>
+ 23c:	add	r5, r5, #1
+ 240:	b	214 <coda_detection_rule_delete+0x2c>
+ 244:	ldr	r0, [r4, #4]
+ 248:	bl	0 <free>
+ 24c:	mov	r0, r4
+ 250:	bl	0 <free>
+ 254:	ldr	r4, [sp, #8]
+ 258:	ldr	r5, [sp, #12]
+ 25c:	ldr	lr, [sp, #4]
+ 260:	add	sp, sp, #16
+ 264:	bx	lr
+
+00000268 <coda_detection_rule_new>:
+ 268:	mov	ip, sp
+ 26c:	sub	sp, sp, #24
+ 270:	str	ip, [sp, #4]
+ 274:	str	lr, [sp, #8]
+ 278:	str	r4, [sp, #16]
+ 27c:	mov	r0, #12
+ 280:	bl	0 <malloc>
+ 284:	cmp	r0, #0
+ 288:	bne	2b0 <coda_detection_rule_new+0x48>
+ 28c:	mvn	r0, #0
+ 290:	ldr	r1, [pc, #64]	; 2d8 <coda_detection_rule_new+0x70>
+ 294:	mov	r2, #12
+ 298:	ldr	r3, [pc, #60]	; 2dc <coda_detection_rule_new+0x74>
+ 29c:	mov	r4, #141	; 0x8d
+ 2a0:	str	r4, [sp]
+ 2a4:	bl	0 <coda_set_error>
+ 2a8:	mov	r0, #0
+ 2ac:	b	2c8 <coda_detection_rule_new+0x60>
+ 2b0:	mov	r2, #0
+ 2b4:	str	r2, [r0]
+ 2b8:	mov	r1, #0
+ 2bc:	str	r1, [r0, #4]
+ 2c0:	mov	r3, #0
+ 2c4:	str	r3, [r0, #8]
+ 2c8:	ldr	r4, [sp, #16]
+ 2cc:	ldr	lr, [sp, #8]
+ 2d0:	add	sp, sp, #24
+ 2d4:	bx	lr
+ 2d8:	.word	0x0000018d
+ 2dc:	.word	0x000000d2
+
+000002e0 <coda_detection_rule_add_entry>:
+ 2e0:	mov	ip, sp
+ 2e4:	sub	sp, sp, #24
+ 2e8:	str	ip, [sp, #4]
+ 2ec:	str	lr, [sp, #8]
+ 2f0:	str	r4, [sp, #16]
+ 2f4:	str	r5, [sp, #20]
+ 2f8:	mov	r4, r1
+ 2fc:	mov	r5, r0
+ 300:	ldr	ip, [r4]
+ 304:	cmp	ip, #0
+ 308:	bne	320 <coda_detection_rule_add_entry+0x40>
+ 30c:	ldr	ip, [r4, #4]
+ 310:	cmp	ip, #0
+ 314:	moveq	r2, #1
+ 318:	movne	r2, #0
+ 31c:	b	324 <coda_detection_rule_add_entry+0x44>
+ 320:	mov	r2, #0
+ 324:	cmp	r2, #0
+ 328:	beq	344 <coda_detection_rule_add_entry+0x64>
+ 32c:	movw	r0, #65136	; 0xfe70
+ 330:	movt	r0, #65535	; 0xffff
+ 334:	ldr	r1, [pc, #152]	; 3d4 <coda_detection_rule_add_entry+0xf4>
+ 338:	bl	0 <coda_set_error>
+ 33c:	mvn	r0, #0
+ 340:	b	3b8 <coda_detection_rule_add_entry+0xd8>
+ 344:	ldr	r0, [r5, #4]
+ 348:	ldr	r1, [r5]
+ 34c:	lsl	ip, r1, #2
+ 350:	add	r1, ip, #4
+ 354:	bl	0 <realloc>
+ 358:	cmp	r0, #0
+ 35c:	bne	38c <coda_detection_rule_add_entry+0xac>
+ 360:	mvn	r0, #0
+ 364:	ldr	r1, [pc, #96]	; 3cc <coda_detection_rule_add_entry+0xec>
+ 368:	ldr	r2, [r5]
+ 36c:	lsl	r2, r2, #2
+ 370:	add	r2, r2, #4
+ 374:	ldr	r3, [pc, #84]	; 3d0 <coda_detection_rule_add_entry+0xf0>
+ 378:	mov	ip, #165	; 0xa5
+ 37c:	str	ip, [sp]
+ 380:	bl	0 <coda_set_error>
+ 384:	mvn	r0, #0
+ 388:	b	3b8 <coda_detection_rule_add_entry+0xd8>
+ 38c:	str	r0, [r5, #4]
+ 390:	ldr	r0, [r5]
+ 394:	add	r2, r0, #1
+ 398:	str	r2, [r5]
+ 39c:	ldr	ip, [r5, #4]
+ 3a0:	ldr	r3, [r5]
+ 3a4:	lsl	r1, r3, #2
+ 3a8:	add	r1, ip, r1
+ 3ac:	sub	lr, r1, #4096	; 0x1000
+ 3b0:	str	r4, [lr, #4092]	; 0xffc
+ 3b4:	mov	r0, #0
+ 3b8:	ldr	r4, [sp, #16]
+ 3bc:	ldr	r5, [sp, #20]
+ 3c0:	ldr	lr, [sp, #8]
+ 3c4:	add	sp, sp, #24
+ 3c8:	bx	lr
+ 3cc:	.word	0x0000018d
+ 3d0:	.word	0x000000d2
+ 3d4:	.word	0x00000037
+
+000003d8 <delete_detection_node>:
+ 3d8:	mov	ip, sp
+ 3dc:	sub	sp, sp, #16
+ 3e0:	str	ip, [sp]
+ 3e4:	str	lr, [sp, #4]
+ 3e8:	str	r4, [sp, #8]
+ 3ec:	str	r5, [sp, #12]
+ 3f0:	mov	r4, r0
+ 3f4:	ldr	r3, [r4]
+ 3f8:	cmp	r3, #0
+ 3fc:	beq	408 <delete_detection_node+0x30>
+ 400:	ldr	r0, [r4]
+ 404:	bl	0 <free>
+ 408:	ldr	r1, [r4, #16]
+ 40c:	cmp	r1, #0
+ 410:	beq	440 <delete_detection_node+0x68>
+ 414:	mov	r5, #0
+ 418:	ldr	r0, [r4, #12]
+ 41c:	cmp	r5, r0
+ 420:	bge	438 <delete_detection_node+0x60>
+ 424:	ldr	r2, [r4, #16]
+ 428:	ldr	r0, [r2, r5, lsl #2]
+ 42c:	bl	3d8 <delete_detection_node>
+ 430:	add	r5, r5, #1
+ 434:	b	418 <delete_detection_node+0x40>
+ 438:	ldr	r0, [r4, #16]
+ 43c:	bl	0 <free>
+ 440:	mov	r0, r4
+ 444:	bl	0 <free>
+ 448:	ldr	r4, [sp, #8]
+ 44c:	ldr	r5, [sp, #12]
+ 450:	ldr	lr, [sp, #4]
+ 454:	add	sp, sp, #16
+ 458:	bx	lr
+
+0000045c <detection_node_new>:
+ 45c:	mov	ip, sp
+ 460:	sub	sp, sp, #24
+ 464:	str	ip, [sp, #4]
+ 468:	str	lr, [sp, #8]
+ 46c:	str	r4, [sp, #16]
+ 470:	mov	r0, #20
+ 474:	bl	0 <malloc>
+ 478:	cmp	r0, #0
+ 47c:	bne	4a4 <detection_node_new+0x48>
+ 480:	mvn	r0, #0
+ 484:	ldr	r1, [pc, #80]	; 4dc <detection_node_new+0x80>
+ 488:	mov	r2, #20
+ 48c:	ldr	r3, [pc, #76]	; 4e0 <detection_node_new+0x84>
+ 490:	mov	r4, #202	; 0xca
+ 494:	str	r4, [sp]
+ 498:	bl	0 <coda_set_error>
+ 49c:	mov	r0, #0
+ 4a0:	b	4cc <detection_node_new+0x70>
+ 4a4:	mov	r1, #0
+ 4a8:	str	r1, [r0]
+ 4ac:	mov	r2, #0
+ 4b0:	str	r2, [r0, #4]
+ 4b4:	mov	r3, #0
+ 4b8:	str	r3, [r0, #8]
+ 4bc:	mov	r1, #0
+ 4c0:	str	r1, [r0, #12]
+ 4c4:	mov	r1, #0
+ 4c8:	str	r1, [r0, #16]
+ 4cc:	ldr	r4, [sp, #16]
+ 4d0:	ldr	lr, [sp, #8]
+ 4d4:	add	sp, sp, #24
+ 4d8:	bx	lr
+ 4dc:	.word	0x0000018d
+ 4e0:	.word	0x000000d2
+
+000004e4 <detection_node_add_node>:
+ 4e4:	mov	ip, sp
+ 4e8:	sub	sp, sp, #24
+ 4ec:	str	ip, [sp, #4]
+ 4f0:	str	lr, [sp, #8]
+ 4f4:	str	r4, [sp, #16]
+ 4f8:	str	r5, [sp, #20]
+ 4fc:	mov	r4, r1
+ 500:	mov	r5, r0
+ 504:	ldr	ip, [r5, #12]
+ 508:	asr	lr, ip, #31
+ 50c:	add	lr, ip, lr, lsr #28
+ 510:	asr	r0, lr, #4
+ 514:	lsl	r3, r0, #4
+ 518:	sub	r3, ip, r3
+ 51c:	cmp	r3, #0
+ 520:	bne	570 <detection_node_add_node+0x8c>
+ 524:	ldr	r0, [r5, #16]
+ 528:	ldr	r1, [r5, #12]
+ 52c:	lsl	r1, r1, #2
+ 530:	add	r1, r1, #64	; 0x40
+ 534:	bl	0 <realloc>
+ 538:	cmp	r0, #0
+ 53c:	bne	56c <detection_node_add_node+0x88>
+ 540:	mvn	r0, #0
+ 544:	ldr	r1, [pc, #256]	; 64c <detection_node_add_node+0x168>
+ 548:	ldr	r2, [r5, #12]
+ 54c:	lsl	r3, r2, #2
+ 550:	add	r2, r3, #64	; 0x40
+ 554:	ldr	r3, [pc, #244]	; 650 <detection_node_add_node+0x16c>
+ 558:	mov	ip, #226	; 0xe2
+ 55c:	str	ip, [sp]
+ 560:	bl	0 <coda_set_error>
+ 564:	mvn	r0, #0
+ 568:	b	638 <detection_node_add_node+0x154>
+ 56c:	str	r0, [r5, #16]
+ 570:	ldr	ip, [r5, #16]
+ 574:	ldr	r2, [r5, #12]
+ 578:	str	r4, [ip, r2, lsl #2]
+ 57c:	ldr	r2, [r5, #12]
+ 580:	add	ip, r2, #1
+ 584:	str	ip, [r5, #12]
+ 588:	ldr	r2, [r5, #12]
+ 58c:	sub	r4, r2, #1
+ 590:	cmp	r4, #0
+ 594:	ble	5b4 <detection_node_add_node+0xd0>
+ 598:	ldr	r2, [r5, #16]
+ 59c:	ldr	r1, [r2, r4, lsl #2]
+ 5a0:	ldr	r1, [r1]
+ 5a4:	cmp	r1, #0
+ 5a8:	movne	ip, #1
+ 5ac:	moveq	ip, #0
+ 5b0:	b	5b8 <detection_node_add_node+0xd4>
+ 5b4:	mov	ip, #0
+ 5b8:	cmp	ip, #0
+ 5bc:	beq	5e8 <detection_node_add_node+0x104>
+ 5c0:	ldr	r3, [r5, #16]
+ 5c4:	lsl	r0, r4, #2
+ 5c8:	add	ip, r3, r0
+ 5cc:	sub	lr, ip, #4096	; 0x1000
+ 5d0:	ldr	r0, [lr, #4092]	; 0xffc
+ 5d4:	ldr	r0, [r0, #4]
+ 5d8:	cmp	r0, #0
+ 5dc:	movne	ip, #1
+ 5e0:	moveq	ip, #0
+ 5e4:	b	5ec <detection_node_add_node+0x108>
+ 5e8:	mov	ip, #0
+ 5ec:	cmp	ip, #0
+ 5f0:	beq	634 <detection_node_add_node+0x150>
+ 5f4:	ldr	r2, [r5, #16]
+ 5f8:	ldr	r2, [r2, r4, lsl #2]
+ 5fc:	ldr	ip, [r5, #16]
+ 600:	ldr	r3, [r5, #16]
+ 604:	lsl	r0, r4, #2
+ 608:	add	r3, r3, r0
+ 60c:	sub	lr, r3, #4096	; 0x1000
+ 610:	ldr	r3, [lr, #4092]	; 0xffc
+ 614:	str	r3, [ip, r4, lsl #2]
+ 618:	ldr	r3, [r5, #16]
+ 61c:	lsl	r1, r4, #2
+ 620:	add	r0, r3, r1
+ 624:	sub	lr, r0, #4096	; 0x1000
+ 628:	str	r2, [lr, #4092]	; 0xffc
+ 62c:	sub	r4, r4, #1
+ 630:	b	590 <detection_node_add_node+0xac>
+ 634:	mov	r0, #0
+ 638:	ldr	r4, [sp, #16]
+ 63c:	ldr	r5, [sp, #20]
+ 640:	ldr	lr, [sp, #8]
+ 644:	add	sp, sp, #24
+ 648:	bx	lr
+ 64c:	.word	0x0000018d
+ 650:	.word	0x000000d2
+
+00000654 <pathcmp>:
+ 654:	mov	ip, sp
+ 658:	sub	sp, sp, #8
+ 65c:	str	ip, [sp]
+ 660:	str	lr, [sp, #4]
+ 664:	mov	r3, #0
+ 668:	str	r3, [r2]
+ 66c:	ldr	ip, [r2]
+ 670:	ldrb	r3, [r0, ip]
+ 674:	cmp	r3, #0
+ 678:	beq	69c <pathcmp+0x48>
+ 67c:	ldr	r3, [r2]
+ 680:	ldrb	r3, [r0, r3]
+ 684:	ldr	ip, [r2]
+ 688:	ldrb	ip, [r1, ip]
+ 68c:	cmp	r3, ip
+ 690:	moveq	r3, #1
+ 694:	movne	r3, #0
+ 698:	b	6a0 <pathcmp+0x4c>
+ 69c:	mov	r3, #0
+ 6a0:	cmp	r3, #0
+ 6a4:	beq	6b8 <pathcmp+0x64>
+ 6a8:	ldr	r3, [r2]
+ 6ac:	add	r3, r3, #1
+ 6b0:	str	r3, [r2]
+ 6b4:	b	66c <pathcmp+0x18>
+ 6b8:	ldr	ip, [r2]
+ 6bc:	ldrb	r3, [r0, ip]
+ 6c0:	ldr	ip, [r2]
+ 6c4:	ldrb	r1, [r1, ip]
+ 6c8:	cmp	r3, r1
+ 6cc:	bne	6d8 <pathcmp+0x84>
+ 6d0:	mov	r0, #0
+ 6d4:	b	6dc <pathcmp+0x88>
+ 6d8:	mov	r0, #1
+ 6dc:	ldr	lr, [sp, #4]
+ 6e0:	add	sp, sp, #8
+ 6e4:	bx	lr
+
+000006e8 <get_node_for_entry>:
+ 6e8:	mov	ip, sp
+ 6ec:	sub	sp, sp, #56	; 0x38
+ 6f0:	str	ip, [sp, #4]
+ 6f4:	str	lr, [sp, #8]
+ 6f8:	str	r4, [sp, #16]
+ 6fc:	str	r5, [sp, #20]
+ 700:	str	r6, [sp, #24]
+ 704:	str	r7, [sp, #28]
+ 708:	str	r8, [sp, #32]
+ 70c:	str	r9, [sp, #36]	; 0x24
+ 710:	str	sl, [sp, #40]	; 0x28
+ 714:	mov	r7, r2
+ 718:	mov	sl, r1
+ 71c:	mov	r9, r0
+ 720:	cmp	sl, #0
+ 724:	beq	73c <get_node_for_entry+0x54>
+ 728:	ldrb	r1, [sl]
+ 72c:	cmp	r1, #0
+ 730:	moveq	r3, #1
+ 734:	movne	r3, #0
+ 738:	b	740 <get_node_for_entry+0x58>
+ 73c:	mov	r3, #0
+ 740:	cmp	r3, #0
+ 744:	beq	74c <get_node_for_entry+0x64>
+ 748:	mov	sl, #0
+ 74c:	mov	r5, #0
+ 750:	ldr	r1, [r9, #12]
+ 754:	cmp	r5, r1
+ 758:	bge	b94 <get_node_for_entry+0x4ac>
+ 75c:	cmp	sl, #0
+ 760:	beq	b50 <get_node_for_entry+0x468>
+ 764:	ldr	r3, [r9, #16]
+ 768:	ldr	ip, [r3, r5, lsl #2]
+ 76c:	ldr	r2, [ip]
+ 770:	cmp	r2, #0
+ 774:	beq	b8c <get_node_for_entry+0x4a4>
+ 778:	ldr	r0, [r9, #16]
+ 77c:	ldr	r3, [r0, r5, lsl #2]
+ 780:	ldr	r0, [r3]
+ 784:	add	r2, sp, #48	; 0x30
+ 788:	mov	r1, sl
+ 78c:	bl	654 <pathcmp>
+ 790:	cmp	r0, #0
+ 794:	bne	7c8 <get_node_for_entry+0xe0>
+ 798:	ldr	r2, [r7, #4]
+ 79c:	cmp	r2, #0
+ 7a0:	beq	7bc <get_node_for_entry+0xd4>
+ 7a4:	ldr	r0, [r9, #16]
+ 7a8:	ldr	r0, [r0, r5, lsl #2]
+ 7ac:	mov	r1, #0
+ 7b0:	mov	r2, r7
+ 7b4:	bl	6e8 <get_node_for_entry>
+ 7b8:	b	c54 <get_node_for_entry+0x56c>
+ 7bc:	ldr	r0, [r9, #16]
+ 7c0:	ldr	r0, [r0, r5, lsl #2]
+ 7c4:	b	c54 <get_node_for_entry+0x56c>
+ 7c8:	ldr	r2, [r9, #16]
+ 7cc:	ldr	r1, [r2, r5, lsl #2]
+ 7d0:	ldr	r3, [r1]
+ 7d4:	ldr	ip, [sp, #48]	; 0x30
+ 7d8:	ldrb	r2, [r3, ip]
+ 7dc:	cmp	r2, #0
+ 7e0:	beq	ac4 <get_node_for_entry+0x3dc>
+ 7e4:	ldr	r3, [sp, #48]	; 0x30
+ 7e8:	cmp	r3, #1
+ 7ec:	ble	83c <get_node_for_entry+0x154>
+ 7f0:	ldr	r2, [sp, #48]	; 0x30
+ 7f4:	add	ip, sl, r2
+ 7f8:	sub	lr, ip, #4096	; 0x1000
+ 7fc:	ldrb	r1, [lr, #4095]	; 0xfff
+ 800:	cmp	r1, #47	; 0x2f
+ 804:	beq	834 <get_node_for_entry+0x14c>
+ 808:	ldr	ip, [sp, #48]	; 0x30
+ 80c:	add	r0, sl, ip
+ 810:	sub	lr, r0, #4096	; 0x1000
+ 814:	ldrb	r0, [lr, #4095]	; 0xfff
+ 818:	cmp	r0, #91	; 0x5b
+ 81c:	moveq	r1, #1
+ 820:	movne	r1, #0
+ 824:	cmp	r1, #0
+ 828:	movne	r2, #1
+ 82c:	moveq	r2, #0
+ 830:	b	840 <get_node_for_entry+0x158>
+ 834:	mov	r2, #1
+ 838:	b	840 <get_node_for_entry+0x158>
+ 83c:	mov	r2, #0
+ 840:	cmp	r2, #0
+ 844:	beq	854 <get_node_for_entry+0x16c>
+ 848:	ldr	r2, [sp, #48]	; 0x30
+ 84c:	sub	ip, r2, #1
+ 850:	str	ip, [sp, #48]	; 0x30
+ 854:	ldr	ip, [sp, #48]	; 0x30
+ 858:	cmp	ip, #0
+ 85c:	ble	8c0 <get_node_for_entry+0x1d8>
+ 860:	ldr	r0, [sp, #48]	; 0x30
+ 864:	ldrb	ip, [sl, r0]
+ 868:	cmp	ip, #47	; 0x2f
+ 86c:	beq	888 <get_node_for_entry+0x1a0>
+ 870:	ldr	ip, [sp, #48]	; 0x30
+ 874:	ldrb	ip, [sl, ip]
+ 878:	cmp	ip, #64	; 0x40
+ 87c:	moveq	r0, #1
+ 880:	movne	r0, #0
+ 884:	b	88c <get_node_for_entry+0x1a4>
+ 888:	mov	r0, #1
+ 88c:	cmp	r0, #0
+ 890:	bne	8b8 <get_node_for_entry+0x1d0>
+ 894:	ldr	r2, [sp, #48]	; 0x30
+ 898:	ldrb	r1, [sl, r2]
+ 89c:	cmp	r1, #91	; 0x5b
+ 8a0:	moveq	r0, #1
+ 8a4:	movne	r0, #0
+ 8a8:	cmp	r0, #0
+ 8ac:	movne	ip, #1
+ 8b0:	moveq	ip, #0
+ 8b4:	b	8c4 <get_node_for_entry+0x1dc>
+ 8b8:	mov	ip, #1
+ 8bc:	b	8c4 <get_node_for_entry+0x1dc>
+ 8c0:	mov	ip, #0
+ 8c4:	cmp	ip, #0
+ 8c8:	beq	950 <get_node_for_entry+0x268>
+ 8cc:	ldr	r1, [r9, #16]
+ 8d0:	ldr	ip, [r1, r5, lsl #2]
+ 8d4:	ldr	r1, [ip]
+ 8d8:	ldr	r0, [sp, #48]	; 0x30
+ 8dc:	ldrb	r0, [r1, r0]
+ 8e0:	cmp	r0, #47	; 0x2f
+ 8e4:	beq	90c <get_node_for_entry+0x224>
+ 8e8:	ldr	r1, [r9, #16]
+ 8ec:	ldr	r3, [r1, r5, lsl #2]
+ 8f0:	ldr	r2, [r3]
+ 8f4:	ldr	r1, [sp, #48]	; 0x30
+ 8f8:	ldrb	ip, [r2, r1]
+ 8fc:	cmp	ip, #64	; 0x40
+ 900:	moveq	r0, #1
+ 904:	movne	r0, #0
+ 908:	b	910 <get_node_for_entry+0x228>
+ 90c:	mov	r0, #1
+ 910:	cmp	r0, #0
+ 914:	bne	948 <get_node_for_entry+0x260>
+ 918:	ldr	r3, [r9, #16]
+ 91c:	ldr	r0, [r3, r5, lsl #2]
+ 920:	ldr	r2, [r0]
+ 924:	ldr	ip, [sp, #48]	; 0x30
+ 928:	ldrb	r3, [r2, ip]
+ 92c:	cmp	r3, #91	; 0x5b
+ 930:	moveq	r1, #1
+ 934:	movne	r1, #0
+ 938:	cmp	r1, #0
+ 93c:	movne	r3, #1
+ 940:	moveq	r3, #0
+ 944:	b	954 <get_node_for_entry+0x26c>
+ 948:	mov	r3, #1
+ 94c:	b	954 <get_node_for_entry+0x26c>
+ 950:	mov	r3, #0
+ 954:	cmp	r3, #0
+ 958:	beq	b8c <get_node_for_entry+0x4a4>
+ 95c:	ldr	r0, [sp, #48]	; 0x30
+ 960:	ldr	r2, [r9, #16]
+ 964:	ldr	r1, [r2, r5, lsl #2]
+ 968:	ldr	r3, [r1]
+ 96c:	ldr	ip, [sp, #48]	; 0x30
+ 970:	ldrb	r2, [r3, ip]
+ 974:	cmp	r2, #47	; 0x2f
+ 978:	moveq	ip, #1
+ 97c:	movne	ip, #0
+ 980:	add	r6, r0, ip
+ 984:	ldr	r0, [sp, #48]	; 0x30
+ 988:	ldr	r1, [sp, #48]	; 0x30
+ 98c:	ldrb	r2, [sl, r1]
+ 990:	cmp	r2, #47	; 0x2f
+ 994:	moveq	ip, #1
+ 998:	movne	ip, #0
+ 99c:	add	r8, r0, ip
+ 9a0:	bl	45c <detection_node_new>
+ 9a4:	mov	r4, r0
+ 9a8:	cmp	r4, #0
+ 9ac:	bne	9b8 <get_node_for_entry+0x2d0>
+ 9b0:	mov	r0, #0
+ 9b4:	b	c54 <get_node_for_entry+0x56c>
+ 9b8:	ldr	r0, [sp, #48]	; 0x30
+ 9bc:	add	r0, r0, #1
+ 9c0:	bl	0 <malloc>
+ 9c4:	str	r0, [r4]
+ 9c8:	ldr	r2, [r4]
+ 9cc:	cmp	r2, #0
+ 9d0:	bne	9f8 <get_node_for_entry+0x310>
+ 9d4:	mvn	r0, #0
+ 9d8:	ldr	r1, [pc, #668]	; c7c <get_node_for_entry+0x594>
+ 9dc:	ldr	r2, [sp, #48]	; 0x30
+ 9e0:	ldr	r3, [pc, #664]	; c80 <get_node_for_entry+0x598>
+ 9e4:	movw	ip, #331	; 0x14b
+ 9e8:	str	ip, [sp]
+ 9ec:	bl	0 <coda_set_error>
+ 9f0:	mov	r0, #0
+ 9f4:	b	c54 <get_node_for_entry+0x56c>
+ 9f8:	ldr	r0, [r4]
+ 9fc:	ldr	r2, [sp, #48]	; 0x30
+ a00:	mov	r1, sl
+ a04:	bl	0 <memcpy>
+ a08:	ldr	r0, [r4]
+ a0c:	ldr	r2, [sp, #48]	; 0x30
+ a10:	mov	r1, #0
+ a14:	strb	r1, [r0, r2]
+ a18:	ldr	r2, [r9, #16]
+ a1c:	ldr	r1, [r2, r5, lsl #2]
+ a20:	mov	r0, r4
+ a24:	bl	4e4 <detection_node_add_node>
+ a28:	cmp	r0, #0
+ a2c:	beq	a40 <get_node_for_entry+0x358>
+ a30:	mov	r0, r4
+ a34:	bl	3d8 <delete_detection_node>
+ a38:	mov	r0, #0
+ a3c:	b	c54 <get_node_for_entry+0x56c>
+ a40:	mov	r0, r6
+ a44:	ldr	ip, [r9, #16]
+ a48:	ldr	r1, [ip, r5, lsl #2]
+ a4c:	ldr	r2, [r1]
+ a50:	ldrb	r3, [r2, r0]
+ a54:	cmp	r3, #0
+ a58:	beq	a8c <get_node_for_entry+0x3a4>
+ a5c:	ldr	r1, [r9, #16]
+ a60:	ldr	r1, [r1, r5, lsl #2]
+ a64:	ldr	r3, [r1]
+ a68:	sub	ip, r0, r6
+ a6c:	ldr	r1, [r9, #16]
+ a70:	ldr	r2, [r1, r5, lsl #2]
+ a74:	ldr	r1, [r2]
+ a78:	ldrb	r2, [r1, r0]
+ a7c:	and	r1, r2, #255	; 0xff
+ a80:	strb	r1, [r3, ip]
+ a84:	add	r0, r0, #1
+ a88:	b	a44 <get_node_for_entry+0x35c>
+ a8c:	ldr	r3, [r9, #16]
+ a90:	ldr	ip, [r3, r5, lsl #2]
+ a94:	ldr	r2, [ip]
+ a98:	sub	r3, r0, r6
+ a9c:	mov	r0, #0
+ aa0:	strb	r0, [r2, r3]
+ aa4:	ldr	ip, [r9, #16]
+ aa8:	str	r4, [ip, r5, lsl #2]
+ aac:	ldr	r3, [r9, #16]
+ ab0:	ldr	r0, [r3, r5, lsl #2]
+ ab4:	add	r1, sl, r8
+ ab8:	mov	r2, r7
+ abc:	bl	6e8 <get_node_for_entry>
+ ac0:	b	c54 <get_node_for_entry+0x56c>
+ ac4:	ldr	r2, [sp, #48]	; 0x30
+ ac8:	ldrb	r3, [sl, r2]
+ acc:	cmp	r3, #47	; 0x2f
+ ad0:	beq	aec <get_node_for_entry+0x404>
+ ad4:	ldr	r0, [sp, #48]	; 0x30
+ ad8:	ldrb	r1, [sl, r0]
+ adc:	cmp	r1, #64	; 0x40
+ ae0:	moveq	r2, #1
+ ae4:	movne	r2, #0
+ ae8:	b	af0 <get_node_for_entry+0x408>
+ aec:	mov	r2, #1
+ af0:	cmp	r2, #0
+ af4:	bne	b10 <get_node_for_entry+0x428>
+ af8:	ldr	r1, [sp, #48]	; 0x30
+ afc:	ldrb	r3, [sl, r1]
+ b00:	cmp	r3, #91	; 0x5b
+ b04:	moveq	r1, #1
+ b08:	movne	r1, #0
+ b0c:	b	b14 <get_node_for_entry+0x42c>
+ b10:	mov	r1, #1
+ b14:	cmp	r1, #0
+ b18:	beq	b8c <get_node_for_entry+0x4a4>
+ b1c:	ldr	r3, [r9, #16]
+ b20:	ldr	r0, [r3, r5, lsl #2]
+ b24:	ldr	r3, [sp, #48]	; 0x30
+ b28:	ldr	r2, [sp, #48]	; 0x30
+ b2c:	ldrb	r1, [sl, r2]
+ b30:	cmp	r1, #47	; 0x2f
+ b34:	moveq	r1, #1
+ b38:	movne	r1, #0
+ b3c:	add	ip, r3, r1
+ b40:	add	r1, sl, ip
+ b44:	mov	r2, r7
+ b48:	bl	6e8 <get_node_for_entry>
+ b4c:	b	c54 <get_node_for_entry+0x56c>
+ b50:	ldr	r3, [r9, #16]
+ b54:	ldr	r2, [r3, r5, lsl #2]
+ b58:	ldr	r0, [r2]
+ b5c:	cmp	r0, #0
+ b60:	bne	b8c <get_node_for_entry+0x4a4>
+ b64:	ldr	r0, [r7, #4]
+ b68:	ldr	r3, [r9, #16]
+ b6c:	ldr	ip, [r3, r5, lsl #2]
+ b70:	ldr	r1, [ip, #4]
+ b74:	bl	0 <coda_expression_is_equal>
+ b78:	cmp	r0, #0
+ b7c:	beq	b8c <get_node_for_entry+0x4a4>
+ b80:	ldr	r3, [r9, #16]
+ b84:	ldr	r0, [r3, r5, lsl #2]
+ b88:	b	c54 <get_node_for_entry+0x56c>
+ b8c:	add	r5, r5, #1
+ b90:	b	750 <get_node_for_entry+0x68>
+ b94:	bl	45c <detection_node_new>
+ b98:	mov	r4, r0
+ b9c:	cmp	r4, #0
+ ba0:	bne	bac <get_node_for_entry+0x4c4>
+ ba4:	mov	r0, #0
+ ba8:	b	c54 <get_node_for_entry+0x56c>
+ bac:	cmp	sl, #0
+ bb0:	beq	be8 <get_node_for_entry+0x500>
+ bb4:	mov	r0, sl
+ bb8:	bl	0 <strdup>
+ bbc:	str	r0, [r4]
+ bc0:	ldr	r3, [r4]
+ bc4:	cmp	r3, #0
+ bc8:	bne	bf0 <get_node_for_entry+0x508>
+ bcc:	mvn	r0, #0
+ bd0:	ldr	r1, [pc, #172]	; c84 <get_node_for_entry+0x59c>
+ bd4:	ldr	r2, [pc, #164]	; c80 <get_node_for_entry+0x598>
+ bd8:	movw	r3, #383	; 0x17f
+ bdc:	bl	0 <coda_set_error>
+ be0:	mov	r0, #0
+ be4:	b	c54 <get_node_for_entry+0x56c>
+ be8:	ldr	r3, [r7, #4]
+ bec:	str	r3, [r4, #4]
+ bf0:	mov	r1, r4
+ bf4:	mov	r0, r9
+ bf8:	bl	4e4 <detection_node_add_node>
+ bfc:	cmp	r0, #0
+ c00:	beq	c14 <get_node_for_entry+0x52c>
+ c04:	mov	r0, r4
+ c08:	bl	3d8 <delete_detection_node>
+ c0c:	mov	r0, #0
+ c10:	b	c54 <get_node_for_entry+0x56c>
+ c14:	cmp	sl, #0
+ c18:	beq	c30 <get_node_for_entry+0x548>
+ c1c:	ldr	r0, [r7, #4]
+ c20:	cmp	r0, #0
+ c24:	movne	r3, #1
+ c28:	moveq	r3, #0
+ c2c:	b	c34 <get_node_for_entry+0x54c>
+ c30:	mov	r3, #0
+ c34:	cmp	r3, #0
+ c38:	beq	c50 <get_node_for_entry+0x568>
+ c3c:	mov	r1, #0
+ c40:	mov	r2, r7
+ c44:	mov	r0, r4
+ c48:	bl	6e8 <get_node_for_entry>
+ c4c:	b	c54 <get_node_for_entry+0x56c>
+ c50:	mov	r0, r4
+ c54:	ldr	r4, [sp, #16]
+ c58:	ldr	r5, [sp, #20]
+ c5c:	ldr	r6, [sp, #24]
+ c60:	ldr	r7, [sp, #28]
+ c64:	ldr	r8, [sp, #32]
+ c68:	ldr	r9, [sp, #36]	; 0x24
+ c6c:	ldr	sl, [sp, #40]	; 0x28
+ c70:	ldr	lr, [sp, #8]
+ c74:	add	sp, sp, #56	; 0x38
+ c78:	bx	lr
+ c7c:	.word	0x0000018d
+ c80:	.word	0x000000d2
+ c84:	.word	0x00000130
+
+00000c88 <coda_detection_tree_delete>:
+ c88:	mov	ip, sp
+ c8c:	sub	sp, sp, #8
+ c90:	str	ip, [sp]
+ c94:	str	lr, [sp, #4]
+ c98:	bl	3d8 <delete_detection_node>
+ c9c:	ldr	lr, [sp, #4]
+ ca0:	add	sp, sp, #8
+ ca4:	bx	lr
+
+00000ca8 <coda_detection_tree_add_rule>:
+ ca8:	mov	ip, sp
+ cac:	sub	sp, sp, #16
+ cb0:	str	ip, [sp]
+ cb4:	str	lr, [sp, #4]
+ cb8:	str	r4, [sp, #8]
+ cbc:	str	r5, [sp, #12]
+ cc0:	mov	r4, r1
+ cc4:	mov	r5, r0
+ cc8:	ldr	r2, [r4]
+ ccc:	cmp	r2, #0
+ cd0:	bne	cf4 <coda_detection_tree_add_rule+0x4c>
+ cd4:	movw	r0, #65136	; 0xfe70
+ cd8:	movt	r0, #65535	; 0xffff
+ cdc:	ldr	r1, [pc, #216]	; dbc <coda_detection_tree_add_rule+0x114>
+ ce0:	ldr	r2, [r4, #8]
+ ce4:	ldr	r2, [r2, #8]
+ ce8:	bl	0 <coda_set_error>
+ cec:	mvn	r0, #0
+ cf0:	b	da4 <coda_detection_tree_add_rule+0xfc>
+ cf4:	ldr	r3, [r5]
+ cf8:	cmp	r3, #0
+ cfc:	bne	d1c <coda_detection_tree_add_rule+0x74>
+ d00:	bl	45c <detection_node_new>
+ d04:	mov	r3, r0
+ d08:	cmp	r3, #0
+ d0c:	bne	d18 <coda_detection_tree_add_rule+0x70>
+ d10:	mvn	r0, #0
+ d14:	b	da4 <coda_detection_tree_add_rule+0xfc>
+ d18:	str	r3, [r5]
+ d1c:	mov	r5, #0
+ d20:	ldr	ip, [r4]
+ d24:	cmp	r5, ip
+ d28:	bge	d64 <coda_detection_tree_add_rule+0xbc>
+ d2c:	ldr	r0, [r4, #4]
+ d30:	ldr	ip, [r0, r5, lsl #2]
+ d34:	ldr	r1, [ip]
+ d38:	ldr	r0, [r4, #4]
+ d3c:	ldr	r2, [r0, r5, lsl #2]
+ d40:	mov	r0, r3
+ d44:	bl	6e8 <get_node_for_entry>
+ d48:	mov	r3, r0
+ d4c:	cmp	r3, #0
+ d50:	bne	d5c <coda_detection_tree_add_rule+0xb4>
+ d54:	mvn	r0, #0
+ d58:	b	da4 <coda_detection_tree_add_rule+0xfc>
+ d5c:	add	r5, r5, #1
+ d60:	b	d20 <coda_detection_tree_add_rule+0x78>
+ d64:	ldr	r1, [r3, #8]
+ d68:	cmp	r1, #0
+ d6c:	beq	d9c <coda_detection_tree_add_rule+0xf4>
+ d70:	movw	r0, #65136	; 0xfe70
+ d74:	movt	r0, #65535	; 0xffff
+ d78:	ldr	r1, [pc, #56]	; db8 <coda_detection_tree_add_rule+0x110>
+ d7c:	ldr	ip, [r4, #8]
+ d80:	ldr	r2, [ip, #8]
+ d84:	ldr	r3, [r3, #8]
+ d88:	ldr	r3, [r3, #8]
+ d8c:	ldr	r3, [r3, #8]
+ d90:	bl	0 <coda_set_error>
+ d94:	mvn	r0, #0
+ d98:	b	da4 <coda_detection_tree_add_rule+0xfc>
+ d9c:	str	r4, [r3, #8]
+ da0:	mov	r0, #0
+ da4:	ldr	r4, [sp, #8]
+ da8:	ldr	r5, [sp, #12]
+ dac:	ldr	lr, [sp, #4]
+ db0:	add	sp, sp, #16
+ db4:	bx	lr
+ db8:	.word	0x00000093
+ dbc:	.word	0x00000000
+
+00000dc0 <coda_evaluate_detection_node>:
+ dc0:	mov	ip, sp
+ dc4:	sub	sp, sp, #552	; 0x228
+ dc8:	str	ip, [sp]
+ dcc:	str	lr, [sp, #4]
+ dd0:	str	r4, [sp, #8]
+ dd4:	str	r5, [sp, #12]
+ dd8:	str	r6, [sp, #16]
+ ddc:	mov	r4, r2
+ de0:	mov	r5, r0
+ de4:	mov	r2, r1
+ de8:	add	r3, sp, #32
+ dec:	mov	lr, #130	; 0x82
+ df0:	ldr	ip, [r2], #4
+ df4:	subs	lr, lr, #1
+ df8:	str	ip, [r3], #4
+ dfc:	bne	df0 <coda_evaluate_detection_node+0x30>
+ e00:	mov	r0, #0
+ e04:	str	r0, [r4]
+ e08:	cmp	r5, #0
+ e0c:	bne	e18 <coda_evaluate_detection_node+0x58>
+ e10:	mov	r0, #0
+ e14:	b	f04 <coda_evaluate_detection_node+0x144>
+ e18:	ldr	r0, [r5]
+ e1c:	cmp	r0, #0
+ e20:	bne	e70 <coda_evaluate_detection_node+0xb0>
+ e24:	ldr	ip, [r5, #4]
+ e28:	cmp	ip, #0
+ e2c:	beq	e98 <coda_evaluate_detection_node+0xd8>
+ e30:	ldr	r0, [r5, #4]
+ e34:	add	r1, sp, #32
+ e38:	add	r2, sp, #24
+ e3c:	bl	0 <coda_expression_eval_bool>
+ e40:	cmp	r0, #0
+ e44:	beq	e5c <coda_evaluate_detection_node+0x9c>
+ e48:	ldr	ip, [pc, #204]	; f1c <coda_evaluate_detection_node+0x15c>
+ e4c:	mov	r1, #0
+ e50:	str	r1, [ip]
+ e54:	mov	r0, #0
+ e58:	b	f04 <coda_evaluate_detection_node+0x144>
+ e5c:	ldr	r1, [sp, #24]
+ e60:	cmp	r1, #0
+ e64:	bne	e98 <coda_evaluate_detection_node+0xd8>
+ e68:	mov	r0, #0
+ e6c:	b	f04 <coda_evaluate_detection_node+0x144>
+ e70:	add	r0, sp, #32
+ e74:	ldr	r1, [r5]
+ e78:	bl	0 <coda_cursor_goto>
+ e7c:	cmp	r0, #0
+ e80:	beq	e98 <coda_evaluate_detection_node+0xd8>
+ e84:	ldr	r0, [pc, #144]	; f1c <coda_evaluate_detection_node+0x15c>
+ e88:	mov	r3, #0
+ e8c:	str	r3, [r0]
+ e90:	mov	r0, #0
+ e94:	b	f04 <coda_evaluate_detection_node+0x144>
+ e98:	mov	r6, #0
+ e9c:	ldr	ip, [r5, #12]
+ ea0:	cmp	r6, ip
+ ea4:	bge	ee8 <coda_evaluate_detection_node+0x128>
+ ea8:	ldr	r1, [r5, #16]
+ eac:	ldr	r0, [r1, r6, lsl #2]
+ eb0:	add	r1, sp, #32
+ eb4:	mov	r2, r4
+ eb8:	bl	dc0 <coda_evaluate_detection_node>
+ ebc:	cmp	r0, #0
+ ec0:	beq	ecc <coda_evaluate_detection_node+0x10c>
+ ec4:	mvn	r0, #0
+ ec8:	b	f04 <coda_evaluate_detection_node+0x144>
+ ecc:	ldr	r1, [r4]
+ ed0:	cmp	r1, #0
+ ed4:	beq	ee0 <coda_evaluate_detection_node+0x120>
+ ed8:	mov	r0, #0
+ edc:	b	f04 <coda_evaluate_detection_node+0x144>
+ ee0:	add	r6, r6, #1
+ ee4:	b	e9c <coda_evaluate_detection_node+0xdc>
+ ee8:	ldr	r2, [r5, #8]
+ eec:	cmp	r2, #0
+ ef0:	beq	f00 <coda_evaluate_detection_node+0x140>
+ ef4:	ldr	r0, [r5, #8]
+ ef8:	ldr	r2, [r0, #8]
+ efc:	str	r2, [r4]
+ f00:	mov	r0, #0
+ f04:	ldr	r4, [sp, #8]
+ f08:	ldr	r5, [sp, #12]
+ f0c:	ldr	r6, [sp, #16]
+ f10:	ldr	lr, [sp, #4]
+ f14:	add	sp, sp, #552	; 0x228
+ f18:	bx	lr
+ f1c:	.word	0x00000000

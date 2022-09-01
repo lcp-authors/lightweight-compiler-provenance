@@ -1,0 +1,159 @@
+
+../compcert-repos/prog2/CMakeFiles/0.10.dir/Aula00_Conceitos_base/10.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <nova_tarefa>:
+   0:	mov	r1, r0
+   4:	push	{lr}		; (str lr, [sp, #-4]!)
+   8:	sub	sp, sp, #12
+   c:	add	ip, r1, #64	; 0x40
+  10:	add	r3, r1, #60	; 0x3c
+  14:	add	r2, r1, #30
+  18:	movw	r0, #0
+  1c:	movt	r0, #0
+  20:	str	ip, [sp]
+  24:	bl	0 <__isoc99_scanf>
+  28:	sub	r0, r0, #4
+  2c:	clz	r0, r0
+  30:	lsr	r0, r0, #5
+  34:	add	sp, sp, #12
+  38:	pop	{pc}		; (ldr pc, [sp], #4)
+
+0000003c <ler_tarefas>:
+  3c:	strd	r4, [sp, #-16]!
+  40:	movw	r5, #0
+  44:	movt	r5, #0
+  48:	mov	r4, r0
+  4c:	str	r6, [sp, #8]
+  50:	mov	r6, #0
+  54:	str	lr, [sp, #12]
+  58:	sub	sp, sp, #8
+  5c:	add	ip, r4, #64	; 0x40
+  60:	add	r3, r4, #60	; 0x3c
+  64:	add	r2, r4, #30
+  68:	mov	r1, r4
+  6c:	mov	r0, r5
+  70:	str	ip, [sp]
+  74:	bl	0 <__isoc99_scanf>
+  78:	cmp	r0, #4
+  7c:	beq	98 <ler_tarefas+0x5c>
+  80:	mov	r0, r6
+  84:	add	sp, sp, #8
+  88:	ldrd	r4, [sp]
+  8c:	ldr	r6, [sp, #8]
+  90:	add	sp, sp, #12
+  94:	pop	{pc}		; (ldr pc, [sp], #4)
+  98:	cmp	r6, #100	; 0x64
+  9c:	add	r4, r4, #68	; 0x44
+  a0:	beq	80 <ler_tarefas+0x44>
+  a4:	add	r6, r6, #1
+  a8:	b	5c <ler_tarefas+0x20>
+
+000000ac <lista_tarefas>:
+  ac:	cmp	r1, #0
+  b0:	bxle	lr
+  b4:	add	r1, r1, r1, lsl #4
+  b8:	strd	r4, [sp, #-16]!
+  bc:	mov	r4, r0
+  c0:	str	r6, [sp, #8]
+  c4:	movw	r6, #0
+  c8:	movt	r6, #0
+  cc:	add	r5, r0, r1, lsl #2
+  d0:	str	lr, [sp, #12]
+  d4:	sub	sp, sp, #8
+  d8:	add	r2, r4, #30
+  dc:	mov	r1, r4
+  e0:	ldr	r3, [r4, #60]	; 0x3c
+  e4:	mov	r0, r6
+  e8:	add	r4, r4, #68	; 0x44
+  ec:	ldr	ip, [r4, #-4]
+  f0:	str	ip, [sp]
+  f4:	bl	0 <printf>
+  f8:	cmp	r4, r5
+  fc:	bne	d8 <lista_tarefas+0x2c>
+ 100:	add	sp, sp, #8
+ 104:	ldrd	r4, [sp]
+ 108:	ldr	r6, [sp, #8]
+ 10c:	add	sp, sp, #12
+ 110:	pop	{pc}		; (ldr pc, [sp], #4)
+
+00000114 <analisa_tarefas>:
+ 114:	strd	r4, [sp, #-32]!	; 0xffffffe0
+ 118:	strd	r6, [sp, #8]
+ 11c:	strd	r8, [sp, #16]
+ 120:	subs	r9, r1, #0
+ 124:	str	sl, [sp, #24]
+ 128:	str	lr, [sp, #28]
+ 12c:	ble	1a4 <analisa_tarefas+0x90>
+ 130:	add	r8, r9, r9, lsl #4
+ 134:	mov	r3, #0
+ 138:	mov	r7, r2
+ 13c:	mov	r4, r0
+ 140:	mov	r6, r3
+ 144:	add	r8, r0, r8, lsl #2
+ 148:	ldr	r5, [r4, #60]	; 0x3c
+ 14c:	mov	r2, #68	; 0x44
+ 150:	mov	r1, r4
+ 154:	mov	r0, r7
+ 158:	add	r4, r4, r2
+ 15c:	cmp	r5, r3
+ 160:	add	r6, r6, r5
+ 164:	ble	170 <analisa_tarefas+0x5c>
+ 168:	bl	0 <memcpy>
+ 16c:	mov	r3, r5
+ 170:	cmp	r8, r4
+ 174:	bne	148 <analisa_tarefas+0x34>
+ 178:	vmov	s15, r6
+ 17c:	vmov	s14, r9
+ 180:	vcvt.f32.s32	s15, s15
+ 184:	vcvt.f32.s32	s0, s14
+ 188:	ldrd	r4, [sp]
+ 18c:	vdiv.f32	s0, s15, s0
+ 190:	ldrd	r6, [sp, #8]
+ 194:	ldrd	r8, [sp, #16]
+ 198:	ldr	sl, [sp, #24]
+ 19c:	add	sp, sp, #28
+ 1a0:	pop	{pc}		; (ldr pc, [sp], #4)
+ 1a4:	vldr	s0, [pc, #4]	; 1b0 <analisa_tarefas+0x9c>
+ 1a8:	vmov.f32	s15, s0
+ 1ac:	b	188 <analisa_tarefas+0x74>
+ 1b0:	.word	0x00000000
+
+Disassembly of section .text.startup:
+
+00000000 <main>:
+   0:	str	r4, [sp, #-8]!
+   4:	str	lr, [sp, #4]
+   8:	sub	sp, sp, #6848	; 0x1ac0
+   c:	sub	sp, sp, #24
+  10:	add	r0, sp, #72	; 0x48
+  14:	bl	3c <main+0x3c>
+  18:	mov	r4, r0
+  1c:	mov	r1, r0
+  20:	add	r0, sp, #72	; 0x48
+  24:	bl	ac <lista_tarefas>
+  28:	mov	r1, r4
+  2c:	movw	r0, #0
+  30:	movt	r0, #0
+  34:	bl	0 <printf>
+  38:	mov	r1, r4
+  3c:	add	r0, sp, #72	; 0x48
+  40:	add	r2, sp, #4
+  44:	bl	114 <analisa_tarefas>
+  48:	vcvt.f64.f32	d7, s0
+  4c:	movw	r0, #0
+  50:	movt	r0, #0
+  54:	vmov	r2, r3, d7
+  58:	bl	0 <printf>
+  5c:	add	r1, sp, #4
+  60:	movw	r0, #0
+  64:	movt	r0, #0
+  68:	bl	0 <printf>
+  6c:	mov	r0, #0
+  70:	add	sp, sp, #6848	; 0x1ac0
+  74:	add	sp, sp, #24
+  78:	ldr	r4, [sp]
+  7c:	add	sp, sp, #4
+  80:	pop	{pc}		; (ldr pc, [sp], #4)

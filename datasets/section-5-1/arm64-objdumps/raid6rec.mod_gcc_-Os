@@ -1,0 +1,330 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//raid6rec.mod_gcc_-Os:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_raid6_recover_gen-0x104>:
+   0:	mov	x5, #0x0                   	// #0
+   4:	add	x8, x0, x5
+   8:	add	x7, x2, x5
+   c:	add	x6, x1, x5
+  10:	subs	x9, x3, x5
+  14:	b.eq	58 <grub_raid6_recover_gen-0xac>  // b.none
+  18:	orr	x4, x6, x7
+  1c:	orr	x4, x4, x8
+  20:	ands	x4, x4, #0x7
+  24:	b.ne	5c <grub_raid6_recover_gen-0xa8>  // b.any
+  28:	mov	x1, #0x0                   	// #0
+  2c:	sub	x0, x9, x1
+  30:	cmp	x0, #0x7
+  34:	b.hi	74 <grub_raid6_recover_gen-0x90>  // b.pmore
+  38:	lsr	x0, x9, #3
+  3c:	mov	x1, #0xfffffffffffffff8    	// #-8
+  40:	add	x6, x6, x0, lsl #3
+  44:	add	x7, x7, x0, lsl #3
+  48:	madd	x1, x0, x1, x9
+  4c:	add	x0, x8, x0, lsl #3
+  50:	cmp	x4, x1
+  54:	b.ne	8c <grub_raid6_recover_gen-0x78>  // b.any
+  58:	ret
+  5c:	ldrb	w4, [x1, x5]
+  60:	ldrb	w6, [x2, x5]
+  64:	eor	w4, w4, w6
+  68:	strb	w4, [x0, x5]
+  6c:	add	x5, x5, #0x1
+  70:	b	4 <grub_raid6_recover_gen-0x100>
+  74:	ldr	x0, [x6, x1]
+  78:	ldr	x2, [x7, x1]
+  7c:	eor	x0, x0, x2
+  80:	str	x0, [x8, x1]
+  84:	add	x1, x1, #0x8
+  88:	b	2c <grub_raid6_recover_gen-0xd8>
+  8c:	ldrb	w2, [x6, x4]
+  90:	ldrb	w3, [x7, x4]
+  94:	eor	w2, w2, w3
+  98:	strb	w2, [x0, x4]
+  9c:	add	x4, x4, #0x1
+  a0:	b	50 <grub_raid6_recover_gen-0xb4>
+  a4:	mov	x3, #0x0                   	// #0
+  a8:	adrp	x6, 0 <grub_raid6_recover_gen-0x104>
+  ac:	cmp	x3, x2
+  b0:	b.ne	b8 <grub_raid6_recover_gen-0x4c>  // b.any
+  b4:	ret
+  b8:	ldrb	w4, [x1, x3]
+  bc:	cbz	w4, d8 <grub_raid6_recover_gen-0x2c>
+  c0:	ldr	x5, [x6]
+  c4:	add	x7, x5, #0x200
+  c8:	ldr	w4, [x7, w4, sxtw #2]
+  cc:	add	w4, w0, w4
+  d0:	ldrb	w4, [x5, x4]
+  d4:	strb	w4, [x1, x3]
+  d8:	add	x3, x3, #0x1
+  dc:	b	ac <grub_raid6_recover_gen-0x58>
+	...
+  e8:	mov	w5, w1
+  ec:	mov	x1, x2
+  f0:	ldr	x0, [x0, #40]
+  f4:	sbfiz	x5, x5, #5, #32
+  f8:	lsr	x2, x4, #9
+  fc:	add	x0, x0, x5
+ 100:	b	0 <grub_diskfilter_read_node>
+
+0000000000000104 <grub_raid6_recover_gen>:
+ 104:	stp	x29, x30, [sp, #-128]!
+ 108:	mov	x29, sp
+ 10c:	stp	x19, x20, [sp, #16]
+ 110:	mov	x19, x4
+ 114:	stp	x21, x22, [sp, #32]
+ 118:	mov	x22, x1
+ 11c:	stp	x23, x24, [sp, #48]
+ 120:	mov	x24, x0
+ 124:	mov	x0, x6
+ 128:	stp	x25, x26, [sp, #64]
+ 12c:	mov	x25, x5
+ 130:	stp	x27, x28, [sp, #80]
+ 134:	mov	w28, w3
+ 138:	mov	x27, x6
+ 13c:	stp	w2, w7, [sp, #104]
+ 140:	bl	0 <grub_zalloc>
+ 144:	mov	x20, x0
+ 148:	cbnz	x0, 188 <grub_raid6_recover_gen+0x84>
+ 14c:	mov	x21, #0x0                   	// #0
+ 150:	mov	x0, x20
+ 154:	bl	0 <grub_free>
+ 158:	mov	x0, x21
+ 15c:	bl	0 <grub_free>
+ 160:	adrp	x0, 0 <grub_raid6_recover_gen-0x104>
+ 164:	ldp	x19, x20, [sp, #16]
+ 168:	ldr	x0, [x0]
+ 16c:	ldp	x21, x22, [sp, #32]
+ 170:	ldr	w0, [x0]
+ 174:	ldp	x23, x24, [sp, #48]
+ 178:	ldp	x25, x26, [sp, #64]
+ 17c:	ldp	x27, x28, [sp, #80]
+ 180:	ldp	x29, x30, [sp], #128
+ 184:	ret
+ 188:	mov	x0, x27
+ 18c:	bl	0 <grub_zalloc>
+ 190:	mov	x21, x0
+ 194:	cbz	x0, 14c <grub_raid6_recover_gen+0x48>
+ 198:	str	w22, [sp, #100]
+ 19c:	add	w26, w28, #0x1
+ 1a0:	cmp	w26, w22
+ 1a4:	mov	w6, #0x0                   	// #0
+ 1a8:	ldr	w0, [sp, #100]
+ 1ac:	csel	w26, w26, wzr, ne  // ne = any
+ 1b0:	add	w5, w26, #0x1
+ 1b4:	sub	w0, w0, #0x2
+ 1b8:	cmp	w5, w22
+ 1bc:	str	w0, [sp, #112]
+ 1c0:	mov	w22, #0xffffffff            	// #-1
+ 1c4:	ldr	w0, [sp, #108]
+ 1c8:	csel	w5, w5, wzr, ne  // ne = any
+ 1cc:	mov	w23, w22
+ 1d0:	and	w0, w0, #0x4
+ 1d4:	str	w0, [sp, #108]
+ 1d8:	ldr	w0, [sp, #112]
+ 1dc:	cmp	w0, w6
+ 1e0:	b.gt	224 <grub_raid6_recover_gen+0x120>
+ 1e4:	tbnz	w23, #31, 150 <grub_raid6_recover_gen+0x4c>
+ 1e8:	mov	x4, x27
+ 1ec:	mov	x3, x19
+ 1f0:	mov	x2, x25
+ 1f4:	mov	w1, w28
+ 1f8:	mov	x0, x24
+ 1fc:	ldr	x5, [sp, #128]
+ 200:	tbz	w22, #31, 344 <grub_raid6_recover_gen+0x240>
+ 204:	blr	x5
+ 208:	cbnz	w0, 2ec <grub_raid6_recover_gen+0x1e8>
+ 20c:	mov	x3, x27
+ 210:	mov	x2, x20
+ 214:	mov	x1, x19
+ 218:	mov	x0, x19
+ 21c:	bl	0 <grub_raid6_recover_gen-0x104>
+ 220:	b	150 <grub_raid6_recover_gen+0x4c>
+ 224:	ldr	w0, [sp, #108]
+ 228:	cmp	w0, #0x0
+ 22c:	ldr	w0, [sp, #104]
+ 230:	csel	w7, w5, w6, ne  // ne = any
+ 234:	cmp	w5, w0
+ 238:	b.eq	2e4 <grub_raid6_recover_gen+0x1e0>  // b.none
+ 23c:	mov	w1, w5
+ 240:	stp	w5, w6, [sp, #116]
+ 244:	ldr	x5, [sp, #128]
+ 248:	str	w7, [sp, #124]
+ 24c:	mov	x4, x27
+ 250:	mov	x3, x19
+ 254:	mov	x2, x25
+ 258:	mov	x0, x24
+ 25c:	blr	x5
+ 260:	ldp	w5, w6, [sp, #116]
+ 264:	ldr	w7, [sp, #124]
+ 268:	cbnz	w0, 2cc <grub_raid6_recover_gen+0x1c8>
+ 26c:	mov	x3, x27
+ 270:	mov	x2, x19
+ 274:	mov	x1, x20
+ 278:	mov	x0, x20
+ 27c:	stp	w6, w5, [sp, #116]
+ 280:	str	w7, [sp, #124]
+ 284:	bl	0 <grub_raid6_recover_gen-0x104>
+ 288:	ldr	w7, [sp, #124]
+ 28c:	mov	x2, x27
+ 290:	mov	x1, x19
+ 294:	mov	w0, w7
+ 298:	bl	a4 <grub_raid6_recover_gen-0x60>
+ 29c:	mov	x3, x27
+ 2a0:	mov	x2, x19
+ 2a4:	mov	x1, x21
+ 2a8:	mov	x0, x21
+ 2ac:	bl	0 <grub_raid6_recover_gen-0x104>
+ 2b0:	ldp	w6, w5, [sp, #116]
+ 2b4:	add	w5, w5, #0x1
+ 2b8:	ldr	w0, [sp, #100]
+ 2bc:	add	w6, w6, #0x1
+ 2c0:	cmp	w0, w5
+ 2c4:	csel	w5, w5, wzr, ne  // ne = any
+ 2c8:	b	1d8 <grub_raid6_recover_gen+0xd4>
+ 2cc:	tbz	w22, #31, 150 <grub_raid6_recover_gen+0x4c>
+ 2d0:	adrp	x0, 0 <grub_raid6_recover_gen-0x104>
+ 2d4:	mov	w22, w7
+ 2d8:	ldr	x0, [x0]
+ 2dc:	str	wzr, [x0]
+ 2e0:	b	2b4 <grub_raid6_recover_gen+0x1b0>
+ 2e4:	mov	w23, w7
+ 2e8:	b	2b4 <grub_raid6_recover_gen+0x1b0>
+ 2ec:	adrp	x0, 0 <grub_raid6_recover_gen-0x104>
+ 2f0:	mov	x4, x27
+ 2f4:	ldr	x5, [sp, #128]
+ 2f8:	mov	x3, x19
+ 2fc:	ldr	x0, [x0]
+ 300:	mov	x2, x25
+ 304:	mov	w1, w26
+ 308:	str	wzr, [x0]
+ 30c:	mov	x0, x24
+ 310:	blr	x5
+ 314:	cbnz	w0, 150 <grub_raid6_recover_gen+0x4c>
+ 318:	mov	x3, x27
+ 31c:	mov	x2, x21
+ 320:	mov	x1, x19
+ 324:	mov	x0, x19
+ 328:	bl	0 <grub_raid6_recover_gen-0x104>
+ 32c:	mov	x2, x27
+ 330:	mov	x1, x19
+ 334:	mov	w0, #0xff                  	// #255
+ 338:	sub	w0, w0, w23
+ 33c:	bl	a4 <grub_raid6_recover_gen-0x60>
+ 340:	b	150 <grub_raid6_recover_gen+0x4c>
+ 344:	blr	x5
+ 348:	cbnz	w0, 150 <grub_raid6_recover_gen+0x4c>
+ 34c:	mov	x3, x27
+ 350:	mov	x2, x19
+ 354:	mov	x1, x20
+ 358:	mov	x0, x20
+ 35c:	bl	0 <grub_raid6_recover_gen-0x104>
+ 360:	ldr	x5, [sp, #128]
+ 364:	mov	x4, x27
+ 368:	mov	x3, x19
+ 36c:	mov	x2, x25
+ 370:	mov	w1, w26
+ 374:	mov	x0, x24
+ 378:	blr	x5
+ 37c:	cbnz	w0, 150 <grub_raid6_recover_gen+0x4c>
+ 380:	mov	x2, x19
+ 384:	mov	x1, x21
+ 388:	mov	x0, x21
+ 38c:	mov	x3, x27
+ 390:	bl	0 <grub_raid6_recover_gen-0x104>
+ 394:	eor	w23, w23, #0xff
+ 398:	adrp	x0, 0 <grub_raid6_recover_gen-0x104>
+ 39c:	add	w2, w23, w22
+ 3a0:	ldr	x0, [x0]
+ 3a4:	add	x1, x0, #0x200
+ 3a8:	ldrb	w0, [x0, w2, sxtw]
+ 3ac:	eor	x0, x0, #0x1
+ 3b0:	ldr	w0, [x1, x0, lsl #2]
+ 3b4:	eor	w0, w0, #0xff
+ 3b8:	add	w0, w0, w23
+ 3bc:	cmp	w0, #0xff
+ 3c0:	b.hi	414 <grub_raid6_recover_gen+0x310>  // b.pmore
+ 3c4:	csel	w0, w0, wzr, ne  // ne = any
+ 3c8:	mov	x2, x27
+ 3cc:	mov	x1, x21
+ 3d0:	bl	a4 <grub_raid6_recover_gen-0x60>
+ 3d4:	add	w0, w22, w0
+ 3d8:	cmp	w0, #0xff
+ 3dc:	b.hi	420 <grub_raid6_recover_gen+0x31c>  // b.pmore
+ 3e0:	mov	x1, x20
+ 3e4:	csel	w0, w0, wzr, ne  // ne = any
+ 3e8:	mov	x2, x27
+ 3ec:	bl	a4 <grub_raid6_recover_gen-0x60>
+ 3f0:	mov	x3, x27
+ 3f4:	mov	x2, x21
+ 3f8:	mov	x0, x20
+ 3fc:	bl	0 <grub_raid6_recover_gen-0x104>
+ 400:	mov	x2, x27
+ 404:	mov	x1, x20
+ 408:	mov	x0, x19
+ 40c:	bl	0 <grub_memmove>
+ 410:	b	150 <grub_raid6_recover_gen+0x4c>
+ 414:	and	w1, w0, #0xff
+ 418:	add	w0, w1, w0, lsr #8
+ 41c:	b	3bc <grub_raid6_recover_gen+0x2b8>
+ 420:	and	w1, w0, #0xff
+ 424:	add	w0, w1, w0, lsr #8
+ 428:	b	3d8 <grub_raid6_recover_gen+0x2d4>
+ 42c:	nop
+	...
+ 440:	sub	sp, sp, #0x20
+ 444:	adrp	x6, 0 <grub_raid6_recover_gen-0x104>
+ 448:	stp	x29, x30, [sp, #16]
+ 44c:	add	x29, sp, #0x10
+ 450:	ldr	x6, [x6]
+ 454:	ldr	w7, [x0, #20]
+ 458:	str	x6, [sp]
+ 45c:	lsl	x6, x5, #9
+ 460:	mov	x5, x4
+ 464:	mov	x4, x3
+ 468:	mov	w3, w2
+ 46c:	mov	w2, w1
+ 470:	ldr	w1, [x0, #32]
+ 474:	bl	104 <grub_raid6_recover_gen>
+ 478:	ldp	x29, x30, [sp, #16]
+ 47c:	add	sp, sp, #0x20
+ 480:	ret
+ 484:	nop
+	...
+
+0000000000000490 <grub_mod_init>:
+ 490:	adrp	x0, 0 <grub_raid6_recover_gen-0x104>
+ 494:	mov	w2, #0x0                   	// #0
+ 498:	mov	w5, #0x1d                  	// #29
+ 49c:	ldr	x1, [x0]
+ 4a0:	mov	w0, #0x1                   	// #1
+ 4a4:	add	x6, x1, #0x200
+ 4a8:	eor	w3, w5, w0, lsl #1
+ 4ac:	strb	w0, [x1]
+ 4b0:	str	w2, [x6, w0, sxtw #2]
+ 4b4:	tst	x0, #0x80
+ 4b8:	strb	w0, [x1, #255]
+ 4bc:	and	w3, w3, #0xff
+ 4c0:	ubfiz	w4, w0, #1, #7
+ 4c4:	add	w2, w2, #0x1
+ 4c8:	csel	w0, w4, w3, eq  // eq = none
+ 4cc:	add	x1, x1, #0x1
+ 4d0:	cmp	w2, #0xff
+ 4d4:	b.ne	4a8 <grub_mod_init+0x18>  // b.any
+ 4d8:	adrp	x0, 0 <grub_raid6_recover_gen-0x104>
+ 4dc:	adrp	x1, 0 <grub_raid6_recover_gen-0x104>
+ 4e0:	ldr	x0, [x0]
+ 4e4:	ldr	x1, [x1]
+ 4e8:	str	x1, [x0]
+ 4ec:	ret
+	...
+
+0000000000000508 <grub_mod_fini>:
+ 508:	adrp	x0, 0 <grub_raid6_recover_gen-0x104>
+ 50c:	ldr	x0, [x0]
+ 510:	str	xzr, [x0]
+ 514:	ret
+	...

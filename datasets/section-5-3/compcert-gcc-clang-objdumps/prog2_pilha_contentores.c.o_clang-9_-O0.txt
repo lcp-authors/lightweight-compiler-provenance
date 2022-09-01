@@ -1,0 +1,224 @@
+
+../compcert-repos/prog2/CMakeFiles/5.1.dir/Aula05_Filas_e_Pilhas/1/pilha_contentores.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <pilha_novo_elemento>:
+   0:	push	{fp, lr}
+   4:	mov	fp, sp
+   8:	sub	sp, sp, #16
+   c:	str	r0, [sp, #8]
+  10:	movw	r0, #8
+  14:	bl	0 <malloc>
+  18:	str	r0, [sp, #4]
+  1c:	ldr	r0, [sp, #4]
+  20:	movw	r1, #0
+  24:	cmp	r0, r1
+  28:	bne	38 <pilha_novo_elemento+0x38>
+  2c:	movw	r0, #0
+  30:	str	r0, [fp, #-4]
+  34:	b	90 <pilha_novo_elemento+0x90>
+  38:	ldr	r0, [sp, #8]
+  3c:	ldr	r0, [r0]
+  40:	ldr	r1, [sp, #8]
+  44:	vldr	s0, [r1, #4]
+  48:	bl	0 <contentor_novo>
+  4c:	ldr	r1, [sp, #4]
+  50:	str	r0, [r1]
+  54:	ldr	r0, [sp, #4]
+  58:	ldr	r0, [r0]
+  5c:	movw	r1, #0
+  60:	cmp	r0, r1
+  64:	bne	7c <pilha_novo_elemento+0x7c>
+  68:	ldr	r0, [sp, #4]
+  6c:	bl	0 <free>
+  70:	movw	r0, #0
+  74:	str	r0, [fp, #-4]
+  78:	b	90 <pilha_novo_elemento+0x90>
+  7c:	ldr	r0, [sp, #4]
+  80:	movw	r1, #0
+  84:	str	r1, [r0, #4]
+  88:	ldr	r0, [sp, #4]
+  8c:	str	r0, [fp, #-4]
+  90:	ldr	r0, [fp, #-4]
+  94:	mov	sp, fp
+  98:	pop	{fp, pc}
+
+0000009c <pilha_nova>:
+  9c:	push	{fp, lr}
+  a0:	mov	fp, sp
+  a4:	sub	sp, sp, #8
+  a8:	movw	r0, #8
+  ac:	bl	0 <malloc>
+  b0:	str	r0, [sp]
+  b4:	ldr	r0, [sp]
+  b8:	movw	r1, #0
+  bc:	cmp	r0, r1
+  c0:	bne	d0 <pilha_nova+0x34>
+  c4:	movw	r0, #0
+  c8:	str	r0, [sp, #4]
+  cc:	b	ec <pilha_nova+0x50>
+  d0:	ldr	r0, [sp]
+  d4:	movw	r1, #0
+  d8:	str	r1, [r0]
+  dc:	ldr	r0, [sp]
+  e0:	str	r1, [r0, #4]
+  e4:	ldr	r0, [sp]
+  e8:	str	r0, [sp, #4]
+  ec:	ldr	r0, [sp, #4]
+  f0:	mov	sp, fp
+  f4:	pop	{fp, pc}
+
+000000f8 <pilha_apaga>:
+  f8:	push	{fp, lr}
+  fc:	mov	fp, sp
+ 100:	sub	sp, sp, #8
+ 104:	str	r0, [sp, #4]
+ 108:	ldr	r0, [sp, #4]
+ 10c:	movw	r1, #0
+ 110:	cmp	r0, r1
+ 114:	bne	11c <pilha_apaga+0x24>
+ 118:	b	174 <pilha_apaga+0x7c>
+ 11c:	b	120 <pilha_apaga+0x28>
+ 120:	ldr	r0, [sp, #4]
+ 124:	ldr	r0, [r0]
+ 128:	movw	r1, #0
+ 12c:	cmp	r0, r1
+ 130:	beq	16c <pilha_apaga+0x74>
+ 134:	ldr	r0, [sp, #4]
+ 138:	ldr	r0, [r0]
+ 13c:	str	r0, [sp]
+ 140:	ldr	r0, [sp, #4]
+ 144:	ldr	r0, [r0]
+ 148:	ldr	r0, [r0, #4]
+ 14c:	ldr	r1, [sp, #4]
+ 150:	str	r0, [r1]
+ 154:	ldr	r0, [sp]
+ 158:	ldr	r0, [r0]
+ 15c:	bl	0 <contentor_apaga>
+ 160:	ldr	r0, [sp]
+ 164:	bl	0 <free>
+ 168:	b	120 <pilha_apaga+0x28>
+ 16c:	ldr	r0, [sp, #4]
+ 170:	bl	0 <free>
+ 174:	mov	sp, fp
+ 178:	pop	{fp, pc}
+
+0000017c <pilha_tamanho>:
+ 17c:	sub	sp, sp, #8
+ 180:	str	r0, [sp]
+ 184:	ldr	r0, [sp]
+ 188:	movw	r1, #0
+ 18c:	cmp	r0, r1
+ 190:	bne	1a0 <pilha_tamanho+0x24>
+ 194:	mvn	r0, #0
+ 198:	str	r0, [sp, #4]
+ 19c:	b	1ac <pilha_tamanho+0x30>
+ 1a0:	ldr	r0, [sp]
+ 1a4:	ldr	r0, [r0, #4]
+ 1a8:	str	r0, [sp, #4]
+ 1ac:	ldr	r0, [sp, #4]
+ 1b0:	add	sp, sp, #8
+ 1b4:	bx	lr
+
+000001b8 <pilha_top>:
+ 1b8:	sub	sp, sp, #12
+ 1bc:	str	r0, [sp, #4]
+ 1c0:	ldr	r0, [sp, #4]
+ 1c4:	movw	r1, #0
+ 1c8:	cmp	r0, r1
+ 1cc:	beq	1e0 <pilha_top+0x28>
+ 1d0:	ldr	r0, [sp, #4]
+ 1d4:	ldr	r0, [r0, #4]
+ 1d8:	cmp	r0, #0
+ 1dc:	bne	1ec <pilha_top+0x34>
+ 1e0:	movw	r0, #0
+ 1e4:	str	r0, [sp, #8]
+ 1e8:	b	204 <pilha_top+0x4c>
+ 1ec:	ldr	r0, [sp, #4]
+ 1f0:	ldr	r0, [r0]
+ 1f4:	str	r0, [sp]
+ 1f8:	ldr	r0, [sp]
+ 1fc:	ldr	r0, [r0]
+ 200:	str	r0, [sp, #8]
+ 204:	ldr	r0, [sp, #8]
+ 208:	add	sp, sp, #12
+ 20c:	bx	lr
+
+00000210 <pilha_push>:
+ 210:	push	{fp, lr}
+ 214:	mov	fp, sp
+ 218:	sub	sp, sp, #16
+ 21c:	str	r0, [fp, #-4]
+ 220:	str	r1, [sp, #8]
+ 224:	movw	r0, #0
+ 228:	str	r0, [sp, #4]
+ 22c:	ldr	r1, [fp, #-4]
+ 230:	cmp	r1, r0
+ 234:	bne	23c <pilha_push+0x2c>
+ 238:	b	2ac <pilha_push+0x9c>
+ 23c:	ldr	r0, [sp, #8]
+ 240:	bl	0 <pilha_novo_elemento>
+ 244:	str	r0, [sp, #4]
+ 248:	ldr	r0, [sp, #4]
+ 24c:	movw	r1, #0
+ 250:	cmp	r0, r1
+ 254:	bne	25c <pilha_push+0x4c>
+ 258:	b	2ac <pilha_push+0x9c>
+ 25c:	ldr	r0, [fp, #-4]
+ 260:	ldr	r1, [r0, #4]
+ 264:	add	r1, r1, #1
+ 268:	str	r1, [r0, #4]
+ 26c:	ldr	r0, [fp, #-4]
+ 270:	ldr	r0, [r0]
+ 274:	movw	r1, #0
+ 278:	cmp	r0, r1
+ 27c:	bne	290 <pilha_push+0x80>
+ 280:	ldr	r0, [sp, #4]
+ 284:	ldr	r1, [fp, #-4]
+ 288:	str	r0, [r1]
+ 28c:	b	2ac <pilha_push+0x9c>
+ 290:	ldr	r0, [fp, #-4]
+ 294:	ldr	r0, [r0]
+ 298:	ldr	r1, [sp, #4]
+ 29c:	str	r0, [r1, #4]
+ 2a0:	ldr	r0, [sp, #4]
+ 2a4:	ldr	r1, [fp, #-4]
+ 2a8:	str	r0, [r1]
+ 2ac:	mov	sp, fp
+ 2b0:	pop	{fp, pc}
+
+000002b4 <pilha_pop>:
+ 2b4:	push	{fp, lr}
+ 2b8:	mov	fp, sp
+ 2bc:	sub	sp, sp, #8
+ 2c0:	str	r0, [sp, #4]
+ 2c4:	ldr	r0, [sp, #4]
+ 2c8:	movw	r1, #0
+ 2cc:	cmp	r0, r1
+ 2d0:	beq	2e4 <pilha_pop+0x30>
+ 2d4:	ldr	r0, [sp, #4]
+ 2d8:	ldr	r0, [r0, #4]
+ 2dc:	cmp	r0, #0
+ 2e0:	bne	2e8 <pilha_pop+0x34>
+ 2e4:	b	32c <pilha_pop+0x78>
+ 2e8:	ldr	r0, [sp, #4]
+ 2ec:	ldr	r0, [r0]
+ 2f0:	str	r0, [sp]
+ 2f4:	ldr	r0, [sp]
+ 2f8:	ldr	r0, [r0, #4]
+ 2fc:	ldr	r1, [sp, #4]
+ 300:	str	r0, [r1]
+ 304:	ldr	r0, [sp, #4]
+ 308:	ldr	r1, [r0, #4]
+ 30c:	mvn	r2, #0
+ 310:	add	r1, r1, r2
+ 314:	str	r1, [r0, #4]
+ 318:	ldr	r0, [sp]
+ 31c:	ldr	r0, [r0]
+ 320:	bl	0 <contentor_apaga>
+ 324:	ldr	r0, [sp]
+ 328:	bl	0 <free>
+ 32c:	mov	sp, fp
+ 330:	pop	{fp, pc}

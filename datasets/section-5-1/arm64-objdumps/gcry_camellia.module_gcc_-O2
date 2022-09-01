@@ -1,0 +1,4493 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//gcry_camellia.module_gcc_-O2:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <camellia_decrypt>:
+       0:	mov	x4, x0
+       4:	stp	x29, x30, [sp, #-16]!
+       8:	mov	x3, x1
+       c:	mov	x29, sp
+      10:	ldr	w0, [x4], #4
+      14:	mov	x1, x2
+      18:	mov	x2, x4
+      1c:	bl	44d0 <Camellia_DecryptBlock>
+      20:	ldp	x29, x30, [sp], #16
+      24:	mov	w0, #0x174                 	// #372
+      28:	b	0 <_gcry_burn_stack>
+      2c:	nop
+
+0000000000000030 <camellia_encrypt>:
+      30:	mov	x4, x0
+      34:	stp	x29, x30, [sp, #-16]!
+      38:	mov	x3, x1
+      3c:	mov	x29, sp
+      40:	ldr	w0, [x4], #4
+      44:	mov	x1, x2
+      48:	mov	x2, x4
+      4c:	bl	43d0 <Camellia_EncryptBlock>
+      50:	ldp	x29, x30, [sp], #16
+      54:	mov	w0, #0x174                 	// #372
+      58:	b	0 <_gcry_burn_stack>
+      5c:	nop
+
+0000000000000060 <camellia_setkey>:
+      60:	cmp	w2, #0x20
+      64:	and	w4, w2, #0xfffffff7
+      68:	ccmp	w4, #0x10, #0x4, ne  // ne = any
+      6c:	b.ne	cc <camellia_setkey+0x6c>  // b.any
+      70:	mov	w3, w2
+      74:	mov	x2, x0
+      78:	adrp	x0, 0 <camellia_decrypt>
+      7c:	ldr	x0, [x0]
+      80:	ldr	w4, [x0]
+      84:	cbnz	w4, bc <camellia_setkey+0x5c>
+      88:	mov	w4, #0x1                   	// #1
+      8c:	str	w4, [x0]
+      90:	str	xzr, [x0, #8]
+      94:	stp	x29, x30, [sp, #-16]!
+      98:	lsl	w0, w3, #3
+      9c:	mov	x29, sp
+      a0:	str	w0, [x2], #4
+      a4:	bl	4398 <Camellia_Ekeygen>
+      a8:	mov	w0, #0x250                 	// #592
+      ac:	bl	0 <_gcry_burn_stack>
+      b0:	mov	w0, #0x0                   	// #0
+      b4:	ldp	x29, x30, [sp], #16
+      b8:	ret
+      bc:	ldr	x4, [x0, #8]
+      c0:	mov	w0, #0x1c                  	// #28
+      c4:	cbz	x4, 94 <camellia_setkey+0x34>
+      c8:	ret
+      cc:	mov	w0, #0xd                   	// #13
+      d0:	ret
+      d4:	nop
+	...
+
+00000000000000e0 <grub_mod_init>:
+      e0:	stp	x29, x30, [sp, #-32]!
+      e4:	adrp	x0, 0 <camellia_decrypt>
+      e8:	mov	x29, sp
+      ec:	str	x19, [sp, #16]
+      f0:	ldr	x19, [x0]
+      f4:	mov	x0, x19
+      f8:	bl	0 <grub_cipher_register>
+      fc:	add	x0, x19, #0x60
+     100:	bl	0 <grub_cipher_register>
+     104:	add	x0, x19, #0xc0
+     108:	ldr	x19, [sp, #16]
+     10c:	ldp	x29, x30, [sp], #32
+     110:	b	0 <grub_cipher_register>
+     114:	nop
+	...
+
+0000000000000120 <grub_mod_fini>:
+     120:	stp	x29, x30, [sp, #-32]!
+     124:	adrp	x0, 0 <camellia_decrypt>
+     128:	mov	x29, sp
+     12c:	str	x19, [sp, #16]
+     130:	ldr	x19, [x0]
+     134:	mov	x0, x19
+     138:	bl	0 <grub_cipher_unregister>
+     13c:	add	x0, x19, #0x60
+     140:	bl	0 <grub_cipher_unregister>
+     144:	add	x0, x19, #0xc0
+     148:	ldr	x19, [sp, #16]
+     14c:	ldp	x29, x30, [sp], #32
+     150:	b	0 <grub_cipher_unregister>
+     154:	nop
+	...
+
+0000000000000160 <camellia_setup128>:
+     160:	stp	x29, x30, [sp, #-208]!
+     164:	adrp	x3, 0 <camellia_decrypt>
+     168:	mov	w2, #0x667f                	// #26239
+     16c:	mov	x29, sp
+     170:	stp	x19, x20, [sp, #16]
+     174:	movk	w2, #0xa09e, lsl #16
+     178:	mov	w9, #0x73b2                	// #29618
+     17c:	stp	x21, x22, [sp, #32]
+     180:	movk	w9, #0x4caa, lsl #16
+     184:	mov	w16, #0xe858                	// #59480
+     188:	stp	x23, x24, [sp, #48]
+     18c:	movk	w16, #0xb67a, lsl #16
+     190:	mov	w24, #0x53a5                	// #21413
+     194:	stp	x25, x26, [sp, #64]
+     198:	movk	w24, #0x54ff, lsl #16
+     19c:	stp	x27, x28, [sp, #80]
+     1a0:	ldrb	w6, [x0, #1]
+     1a4:	ldrb	w22, [x0, #5]
+     1a8:	ldrb	w15, [x0, #3]
+     1ac:	ldrb	w14, [x0, #4]
+     1b0:	lsl	w6, w6, #16
+     1b4:	ldrb	w8, [x0, #7]
+     1b8:	lsl	w22, w22, #16
+     1bc:	ldrb	w7, [x0]
+     1c0:	ldrb	w5, [x0, #2]
+     1c4:	orr	w22, w22, w14, lsl #24
+     1c8:	ldrb	w12, [x0, #6]
+     1cc:	orr	w7, w6, w7, lsl #24
+     1d0:	ldrb	w6, [x0, #13]
+     1d4:	orr	w5, w15, w5, lsl #8
+     1d8:	ldrb	w17, [x0, #9]
+     1dc:	orr	w12, w8, w12, lsl #8
+     1e0:	eor	w7, w7, w5
+     1e4:	ldr	x4, [x3]
+     1e8:	eor	w12, w22, w12
+     1ec:	mov	w3, #0x908b                	// #37003
+     1f0:	eor	w2, w7, w2
+     1f4:	movk	w3, #0x3bcc, lsl #16
+     1f8:	eor	w3, w12, w3
+     1fc:	add	x13, x4, #0x400
+     200:	add	x10, x4, #0x800
+     204:	add	x11, x4, #0xc00
+     208:	and	x21, x2, #0xff
+     20c:	ubfx	x5, x2, #8, #8
+     210:	ubfx	x20, x3, #16, #8
+     214:	ubfx	x19, x3, #8, #8
+     218:	ubfx	x14, x2, #16, #8
+     21c:	lsr	w2, w2, #24
+     220:	and	x15, x3, #0xff
+     224:	lsr	w8, w3, #24
+     228:	ldr	w27, [x13, x20, lsl #2]
+     22c:	ldr	w3, [x13, x5, lsl #2]
+     230:	lsl	w18, w6, #16
+     234:	ldr	w5, [x10, x2, lsl #2]
+     238:	lsl	w17, w17, #16
+     23c:	ldr	w2, [x11, x21, lsl #2]
+     240:	lsr	w22, w22, #17
+     244:	ldr	w6, [x11, x19, lsl #2]
+     248:	ldr	w14, [x4, x14, lsl #2]
+     24c:	eor	w5, w5, w2
+     250:	ldr	w8, [x4, x8, lsl #2]
+     254:	eor	w27, w27, w6
+     258:	ldr	w2, [x10, x15, lsl #2]
+     25c:	eor	w14, w14, w3
+     260:	ldrb	w6, [x0, #12]
+     264:	eor	w14, w14, w5
+     268:	ldrb	w19, [x0, #15]
+     26c:	eor	w2, w2, w8
+     270:	ldrb	w5, [x0, #14]
+     274:	eor	w27, w27, w2
+     278:	ldrb	w8, [x0, #8]
+     27c:	orr	w6, w18, w6, lsl #24
+     280:	ldrb	w2, [x0, #10]
+     284:	eor	w27, w27, w14
+     288:	ldrb	w18, [x0, #11]
+     28c:	orr	w0, w19, w5, lsl #8
+     290:	eor	w6, w6, w0
+     294:	eor	w14, w27, w14, ror #8
+     298:	orr	w8, w17, w8, lsl #24
+     29c:	eor	w5, w6, w14
+     2a0:	orr	w2, w18, w2, lsl #8
+     2a4:	eor	w5, w5, w9
+     2a8:	eor	w2, w8, w2
+     2ac:	and	x19, x5, #0xff
+     2b0:	eor	w0, w2, w27
+     2b4:	ubfx	x8, x5, #16, #8
+     2b8:	eor	w0, w0, w16
+     2bc:	ubfx	x17, x5, #8, #8
+     2c0:	and	x21, x0, #0xff
+     2c4:	lsr	w5, w5, #24
+     2c8:	lsr	w16, w0, #24
+     2cc:	ubfx	x9, x0, #16, #8
+     2d0:	ubfx	x20, x0, #8, #8
+     2d4:	ldr	w18, [x13, x8, lsl #2]
+     2d8:	ldr	w17, [x11, x17, lsl #2]
+     2dc:	lsr	w0, w7, #17
+     2e0:	add	w28, w0, w6, lsl #15
+     2e4:	ldr	w19, [x10, x19, lsl #2]
+     2e8:	ldr	w20, [x13, x20, lsl #2]
+     2ec:	eor	w18, w18, w17
+     2f0:	ldr	w21, [x11, x21, lsl #2]
+     2f4:	mov	w3, #0x82be                	// #33470
+     2f8:	ldr	w17, [x10, x16, lsl #2]
+     2fc:	mov	w15, #0x372f                	// #14127
+     300:	ldr	w0, [x4, x9, lsl #2]
+     304:	lsr	w26, w6, #17
+     308:	ldr	w5, [x4, x5, lsl #2]
+     30c:	eor	w17, w17, w21
+     310:	eor	w0, w0, w20
+     314:	movk	w3, #0xe94f, lsl #16
+     318:	eor	w5, w19, w5
+     31c:	eor	w0, w0, w17
+     320:	eor	w5, w18, w5
+     324:	movk	w15, #0xc6ef, lsl #16
+     328:	eor	w5, w5, w0
+     32c:	add	w17, w26, w2, lsl #15
+     330:	eor	w0, w5, w0, ror #8
+     334:	eor	w15, w5, w15
+     338:	eor	w3, w0, w3
+     33c:	and	x20, x15, #0xff
+     340:	ubfx	x18, x15, #8, #8
+     344:	and	x19, x3, #0xff
+     348:	ubfx	x25, x3, #16, #8
+     34c:	ubfx	x26, x3, #8, #8
+     350:	ubfx	x23, x15, #16, #8
+     354:	lsr	w15, w15, #24
+     358:	str	w17, [sp, #104]
+     35c:	lsr	w17, w3, #24
+     360:	ldr	w25, [x13, x25, lsl #2]
+     364:	add	w16, w22, w7, lsl #15
+     368:	ldr	w30, [x13, x18, lsl #2]
+     36c:	mov	w8, #0x6f1c                	// #28444
+     370:	ldr	w18, [x11, x20, lsl #2]
+     374:	lsr	w21, w16, #2
+     378:	ldr	w23, [x4, x23, lsl #2]
+     37c:	add	w21, w21, w28, lsl #30
+     380:	ldr	w3, [x11, x26, lsl #2]
+     384:	movk	w8, #0xf1d3, lsl #16
+     388:	ldr	w26, [x4, x17, lsl #2]
+     38c:	eor	w30, w23, w30
+     390:	ldr	w19, [x10, x19, lsl #2]
+     394:	eor	w3, w25, w3
+     398:	ldr	w15, [x10, x15, lsl #2]
+     39c:	lsr	w17, w28, #2
+     3a0:	eor	w19, w19, w26
+     3a4:	str	w21, [sp, #96]
+     3a8:	eor	w15, w15, w18
+     3ac:	eor	w19, w3, w19
+     3b0:	eor	w18, w30, w15
+     3b4:	ldr	w21, [sp, #104]
+     3b8:	eor	w19, w19, w18
+     3bc:	ldr	w3, [sp, #96]
+     3c0:	eor	w27, w27, w19
+     3c4:	eor	w14, w14, w18, ror #8
+     3c8:	eor	w26, w14, w19
+     3cc:	eor	w24, w27, w24
+     3d0:	eor	w8, w26, w8
+     3d4:	add	w23, w17, w21, lsl #30
+     3d8:	ubfx	x18, x24, #16, #8
+     3dc:	ubfx	x14, x24, #8, #8
+     3e0:	and	x19, x24, #0xff
+     3e4:	lsr	w24, w24, #24
+     3e8:	ubfx	x25, x8, #8, #8
+     3ec:	and	w15, w23, #0xfffe0000
+     3f0:	str	w28, [sp, #156]
+     3f4:	ubfx	x28, x8, #16, #8
+     3f8:	str	w23, [sp, #164]
+     3fc:	and	x23, x8, #0xff
+     400:	lsr	w8, w8, #24
+     404:	lsr	w3, w3, #17
+     408:	str	w3, [sp, #120]
+     40c:	and	w20, w17, #0x1ffff
+     410:	ldr	w30, [x4, x18, lsl #2]
+     414:	add	w15, w20, w15
+     418:	ldr	w18, [x13, x14, lsl #2]
+     41c:	lsr	w14, w27, #17
+     420:	ldr	w24, [x10, x24, lsl #2]
+     424:	lsr	w9, w2, #17
+     428:	stp	w21, w26, [sp, #104]
+     42c:	eor	w18, w30, w18
+     430:	ldr	w19, [x11, x19, lsl #2]
+     434:	lsr	w26, w26, #17
+     438:	ldr	w11, [x11, x25, lsl #2]
+     43c:	add	w9, w9, w12, lsl #15
+     440:	ldr	w4, [x4, x8, lsl #2]
+     444:	eor	w19, w24, w19
+     448:	ldr	w28, [x13, x28, lsl #2]
+     44c:	add	w8, w26, w27, lsl #15
+     450:	ldr	w10, [x10, x23, lsl #2]
+     454:	eor	w18, w18, w19
+     458:	eor	w28, w28, w11
+     45c:	ldr	w11, [sp, #108]
+     460:	eor	w10, w10, w4
+     464:	mov	x4, x8
+     468:	eor	w19, w28, w10
+     46c:	eor	w0, w0, w18, ror #8
+     470:	eor	w18, w19, w18
+     474:	ubfx	x10, x4, #2, #15
+     478:	eor	w0, w0, w18
+     47c:	ldr	w4, [sp, #96]
+     480:	eor	w5, w5, w18
+     484:	ubfx	x23, x11, #2, #15
+     488:	add	w23, w23, w8, lsl #15
+     48c:	str	w8, [sp, #172]
+     490:	and	w8, w4, #0x1ffff
+     494:	lsr	w4, w0, #17
+     498:	add	w18, w4, w5, lsl #15
+     49c:	add	w14, w14, w0, lsl #15
+     4a0:	lsr	w4, w5, #17
+     4a4:	ubfx	x13, x27, #2, #15
+     4a8:	add	w26, w4, w11, lsl #15
+     4ac:	str	w11, [sp, #108]
+     4b0:	ubfx	x11, x0, #2, #15
+     4b4:	add	w25, w13, w14, lsl #15
+     4b8:	add	w13, w11, w18, lsl #15
+     4bc:	lsr	w4, w18, #17
+     4c0:	stp	w18, w26, [sp, #132]
+     4c4:	mov	w18, w13
+     4c8:	add	w30, w10, w25, lsl #15
+     4cc:	ubfx	x10, x14, #2, #15
+     4d0:	add	w24, w10, w18, lsl #15
+     4d4:	ubfx	x10, x25, #2, #15
+     4d8:	ubfx	x19, x23, #2, #15
+     4dc:	ldr	w20, [sp, #120]
+     4e0:	add	w10, w10, w24, lsl #15
+     4e4:	add	w19, w19, w30, lsl #15
+     4e8:	mov	w11, w10
+     4ec:	mov	x10, x24
+     4f0:	str	w24, [sp, #176]
+     4f4:	add	w8, w8, w20, lsl #17
+     4f8:	str	w30, [sp, #180]
+     4fc:	lsr	w30, w24, #17
+     500:	ubfx	x24, x10, #15, #2
+     504:	lsr	w10, w19, #30
+     508:	add	w10, w10, w11, lsl #2
+     50c:	str	w8, [sp, #100]
+     510:	mov	w28, w10
+     514:	lsr	w10, w21, #2
+     518:	ubfx	x8, x19, #13, #17
+     51c:	add	w10, w10, w9, lsl #30
+     520:	mov	w20, w10
+     524:	add	w10, w8, w28, lsl #17
+     528:	add	w4, w4, w26, lsl #15
+     52c:	mov	w21, w10
+     530:	mov	x10, x26
+     534:	lsr	w13, w13, #17
+     538:	add	w13, w13, w4, lsl #15
+     53c:	str	w11, [sp, #184]
+     540:	ubfx	x8, x10, #2, #15
+     544:	mov	x10, x11
+     548:	add	w30, w30, w13, lsl #15
+     54c:	add	w8, w8, w23, lsl #15
+     550:	ubfx	x11, x10, #13, #17
+     554:	lsr	w10, w15, #15
+     558:	mov	w26, w10
+     55c:	lsr	w3, w9, #2
+     560:	ubfx	x10, x4, #2, #15
+     564:	add	w24, w24, w30, lsl #2
+     568:	add	w10, w10, w8, lsl #15
+     56c:	add	w22, w3, w22, lsl #30
+     570:	ubfx	x13, x13, #15, #2
+     574:	str	w18, [sp, #140]
+     578:	add	w13, w13, w10, lsl #2
+     57c:	lsr	w18, w22, #17
+     580:	str	w22, [sp, #160]
+     584:	mov	w22, w20
+     588:	add	w20, w11, w24, lsl #17
+     58c:	stp	w13, w20, [sp, #144]
+     590:	ubfx	x8, x8, #15, #2
+     594:	bic	w11, w21, w15
+     598:	add	w8, w8, w19, lsl #2
+     59c:	stp	w8, w21, [sp, #112]
+     5a0:	ldr	w21, [sp, #148]
+     5a4:	and	w3, w3, #0x1ffff
+     5a8:	ldr	w13, [sp, #120]
+     5ac:	add	w3, w3, w18, lsl #17
+     5b0:	eor	w11, w11, w21
+     5b4:	ldr	w21, [sp, #100]
+     5b8:	add	w20, w26, w22, lsl #17
+     5bc:	str	w21, [sp, #100]
+     5c0:	add	w17, w13, w17, lsl #15
+     5c4:	str	w20, [sp, #124]
+     5c8:	lsr	w13, w21, #15
+     5cc:	str	w17, [sp, #168]
+     5d0:	stp	w28, w26, [sp, #188]
+     5d4:	eor	w7, w7, w5
+     5d8:	ldr	w8, [sp, #96]
+     5dc:	eor	w5, w16, w5
+     5e0:	add	w13, w13, w15, lsl #17
+     5e4:	str	w13, [sp, #128]
+     5e8:	ldr	w17, [sp, #132]
+     5ec:	eor	w12, w12, w0
+     5f0:	lsr	w20, w3, #15
+     5f4:	eor	w0, w5, w0
+     5f8:	add	w20, w20, w21, lsl #17
+     5fc:	eor	w16, w16, w17
+     600:	ldr	w21, [sp, #116]
+     604:	eor	w0, w0, w9
+     608:	eor	w9, w9, w14
+     60c:	and	w13, w22, w11
+     610:	eor	w9, w9, w16
+     614:	stp	w7, w12, [x1]
+     618:	ldr	w12, [sp, #124]
+     61c:	eor	w17, w21, w13, ror #31
+     620:	lsr	w28, w22, #15
+     624:	ror	w9, w9, #24
+     628:	str	w9, [x1, #40]
+     62c:	add	w28, w28, w3, lsl #17
+     630:	eor	w14, w14, w17
+     634:	lsr	w13, w12, #15
+     638:	ldr	w12, [x1, #40]
+     63c:	ubfx	x7, x10, #13, #17
+     640:	str	w14, [sp, #196]
+     644:	ror	w14, w0, #24
+     648:	eor	w5, w5, w14
+     64c:	lsr	w0, w28, #15
+     650:	stp	w14, w5, [x1, #24]
+     654:	add	w0, w0, w20, lsl #17
+     658:	ldr	w14, [sp, #112]
+     65c:	eor	w12, w16, w12
+     660:	eor	w9, w0, w24
+     664:	str	w12, [x1, #44]
+     668:	ldr	w12, [sp, #128]
+     66c:	bic	w26, w6, w4
+     670:	add	w5, w7, w14, lsl #17
+     674:	str	w9, [sp, #120]
+     678:	ldr	w9, [sp, #140]
+     67c:	eor	w5, w5, w0
+     680:	ldr	w7, [sp, #136]
+     684:	eor	w0, w12, w21
+     688:	str	w9, [x1, #64]
+     68c:	eor	w26, w26, w2
+     690:	ldp	w9, w12, [sp, #96]
+     694:	add	w18, w18, w8, lsl #15
+     698:	eor	w7, w6, w7
+     69c:	and	w8, w26, w23
+     6a0:	str	w4, [x1, #76]
+     6a4:	bic	w4, w7, w4
+     6a8:	eor	w7, w7, w9
+     6ac:	str	w21, [sp, #116]
+     6b0:	eor	w21, w9, w18
+     6b4:	ldr	w9, [sp, #180]
+     6b8:	eor	w8, w6, w8, ror #31
+     6bc:	eor	w18, w18, w30
+     6c0:	eor	w14, w8, w30
+     6c4:	eor	w30, w0, w19
+     6c8:	eor	w19, w9, w19
+     6cc:	eor	w9, w22, w9
+     6d0:	stp	w22, w15, [x1, #128]
+     6d4:	bic	w15, w0, w15
+     6d8:	lsr	w0, w24, #15
+     6dc:	stp	w9, w19, [sp, #200]
+     6e0:	eor	w19, w20, w24
+     6e4:	ldr	w24, [sp, #144]
+     6e8:	stp	w25, w23, [x1, #68]
+     6ec:	add	w13, w13, w28, lsl #17
+     6f0:	str	w12, [x1, #136]
+     6f4:	mov	w9, w22
+     6f8:	str	w3, [x1, #140]
+     6fc:	add	w0, w0, w24, lsl #17
+     700:	str	w5, [x1, #192]
+     704:	eor	w0, w0, w13
+     708:	ldr	w16, [sp, #188]
+     70c:	eor	w9, w9, w17
+     710:	str	w19, [sp, #152]
+     714:	eor	w5, w28, w16
+     718:	eor	w13, w13, w16
+     71c:	eor	w16, w8, w28
+     720:	str	w16, [sp, #188]
+     724:	ldr	w16, [sp, #120]
+     728:	eor	w5, w5, w19
+     72c:	str	w5, [sp, #180]
+     730:	eor	w19, w2, w27
+     734:	eor	w13, w13, w16
+     738:	ldr	w16, [sp, #172]
+     73c:	ldr	w5, [sp, #104]
+     740:	eor	w2, w2, w16
+     744:	str	w0, [x1, #196]
+     748:	eor	w27, w5, w27
+     74c:	eor	w16, w5, w16
+     750:	eor	w4, w2, w4
+     754:	ldr	w5, [sp, #164]
+     758:	and	w23, w23, w4
+     75c:	eor	w4, w26, w4
+     760:	ldr	w0, [sp, #108]
+     764:	eor	w24, w4, w5
+     768:	ldr	w4, [sp, #168]
+     76c:	eor	w23, w24, w23, ror #31
+     770:	ldr	w2, [sp, #156]
+     774:	eor	w12, w19, w0
+     778:	eor	w7, w23, w7
+     77c:	eor	w5, w5, w4
+     780:	eor	w6, w12, w6
+     784:	eor	w28, w27, w0
+     788:	mov	w12, w5
+     78c:	eor	w5, w7, w8
+     790:	bic	w8, w8, w3
+     794:	ldr	w7, [sp, #136]
+     798:	eor	w4, w4, w10
+     79c:	eor	w28, w28, w2
+     7a0:	eor	w10, w26, w10
+     7a4:	eor	w26, w8, w26
+     7a8:	bic	w8, w17, w25
+     7ac:	stp	w27, w16, [sp, #104]
+     7b0:	eor	w27, w16, w2
+     7b4:	ldr	w2, [sp, #132]
+     7b8:	eor	w8, w8, w11
+     7bc:	ldr	w23, [sp, #148]
+     7c0:	eor	w27, w27, w7
+     7c4:	eor	w7, w2, w8
+     7c8:	ldr	w2, [sp, #124]
+     7cc:	bic	w25, w9, w25
+     7d0:	str	w4, [sp, #96]
+     7d4:	bic	w3, w14, w3
+     7d8:	ldr	w4, [sp, #112]
+     7dc:	eor	w3, w10, w3
+     7e0:	str	w5, [sp, #156]
+     7e4:	eor	w5, w2, w23
+     7e8:	eor	w15, w5, w15
+     7ec:	eor	w16, w2, w4
+     7f0:	and	w22, w22, w15
+     7f4:	ldr	w2, [sp, #96]
+     7f8:	ldr	w0, [sp, #140]
+     7fc:	eor	w21, w21, w12
+     800:	eor	w18, w18, w2
+     804:	eor	w2, w17, w22, ror #31
+     808:	ldr	w22, [sp, #160]
+     80c:	and	w8, w0, w8
+     810:	ldr	w10, [sp, #184]
+     814:	eor	w2, w2, w30
+     818:	eor	w4, w22, w11
+     81c:	str	w12, [sp, #124]
+     820:	eor	w25, w4, w25
+     824:	ror	w12, w6, #24
+     828:	eor	w7, w7, w25
+     82c:	ldr	w6, [sp, #176]
+     830:	and	w25, w0, w25
+     834:	ldr	w0, [sp, #100]
+     838:	eor	w30, w6, w10
+     83c:	eor	w5, w10, w11
+     840:	eor	w4, w7, w8, ror #31
+     844:	eor	w10, w26, w20
+     848:	ldr	w8, [sp, #196]
+     84c:	and	w26, w26, w0
+     850:	eor	w17, w19, w12
+     854:	eor	w10, w10, w3
+     858:	ldr	w19, [sp, #128]
+     85c:	eor	w4, w4, w8
+     860:	and	w8, w0, w3
+     864:	eor	w0, w10, w26, ror #31
+     868:	ldr	w26, [sp, #192]
+     86c:	eor	w5, w5, w15
+     870:	ldr	w11, [sp, #188]
+     874:	eor	w14, w14, w8, ror #31
+     878:	eor	w22, w22, w6
+     87c:	lsr	w3, w20, #15
+     880:	ldr	w6, [sp, #112]
+     884:	lsr	w8, w19, #15
+     888:	ldr	w15, [sp, #144]
+     88c:	add	w3, w3, w19, lsl #17
+     890:	add	w8, w8, w26, lsl #17
+     894:	eor	w0, w0, w11
+     898:	eor	w25, w9, w25, ror #31
+     89c:	eor	w11, w8, w23
+     8a0:	eor	w9, w3, w15
+     8a4:	eor	w8, w8, w6
+     8a8:	eor	w0, w0, w14
+     8ac:	eor	w6, w19, w15
+     8b0:	ldp	w14, w20, [sp, #152]
+     8b4:	eor	w4, w4, w25
+     8b8:	ldr	w15, [sp, #116]
+     8bc:	ror	w28, w28, #24
+     8c0:	stp	w12, w17, [x1, #16]
+     8c4:	ror	w27, w27, #24
+     8c8:	eor	w3, w3, w15
+     8cc:	ldr	w15, [sp, #204]
+     8d0:	ldr	w17, [sp, #104]
+     8d4:	ror	w25, w20, #24
+     8d8:	eor	w19, w15, w30
+     8dc:	ldr	w20, [sp, #108]
+     8e0:	ldr	w15, [sp, #200]
+     8e4:	eor	w2, w2, w5
+     8e8:	eor	w26, w20, w27
+     8ec:	eor	w20, w17, w28
+     8f0:	eor	w23, w15, w22
+     8f4:	ldr	w15, [sp, #180]
+     8f8:	ldr	w17, [sp, #96]
+     8fc:	eor	w6, w6, w16
+     900:	eor	w9, w9, w8
+     904:	eor	w3, w3, w11
+     908:	str	w20, [x1, #36]
+     90c:	ror	w18, w18, #24
+     910:	ldr	w20, [sp, #124]
+     914:	ror	w21, w21, #24
+     918:	ldr	w12, [sp, #120]
+     91c:	ror	w4, w4, #24
+     920:	ror	w19, w19, #24
+     924:	ror	w23, w23, #24
+     928:	ror	w13, w13, #24
+     92c:	ror	w2, w2, #24
+     930:	ror	w0, w0, #24
+     934:	ror	w6, w6, #24
+     938:	eor	w24, w24, w25
+     93c:	ror	w9, w9, #24
+     940:	eor	w30, w30, w19
+     944:	ror	w3, w3, #24
+     948:	eor	w22, w22, w23
+     94c:	ror	w15, w15, #24
+     950:	eor	w20, w20, w21
+     954:	eor	w7, w7, w4
+     958:	eor	w17, w17, w18
+     95c:	str	w28, [x1, #32]
+     960:	stp	w27, w26, [x1, #48]
+     964:	eor	w5, w5, w2
+     968:	stp	w4, w7, [x1, #56]
+     96c:	eor	w10, w10, w0
+     970:	stp	w25, w24, [x1, #80]
+     974:	eor	w16, w16, w6
+     978:	stp	w23, w22, [x1, #88]
+     97c:	eor	w8, w8, w9
+     980:	str	w21, [x1, #96]
+     984:	eor	w11, w11, w3
+     988:	str	w20, [x1, #100]
+     98c:	eor	w14, w14, w15
+     990:	stp	w19, w30, [x1, #104]
+     994:	eor	w12, w12, w13
+     998:	str	w18, [x1, #112]
+     99c:	str	w17, [x1, #116]
+     9a0:	str	w2, [x1, #120]
+     9a4:	str	w5, [x1, #124]
+     9a8:	stp	w0, w10, [x1, #144]
+     9ac:	stp	w6, w16, [x1, #152]
+     9b0:	stp	w15, w14, [x1, #160]
+     9b4:	stp	w9, w8, [x1, #168]
+     9b8:	stp	w13, w12, [x1, #176]
+     9bc:	stp	w3, w11, [x1, #184]
+     9c0:	ldp	x19, x20, [sp, #16]
+     9c4:	ldp	x21, x22, [sp, #32]
+     9c8:	ldp	x23, x24, [sp, #48]
+     9cc:	ldp	x25, x26, [sp, #64]
+     9d0:	ldp	x27, x28, [sp, #80]
+     9d4:	ldp	x29, x30, [sp], #208
+     9d8:	ret
+     9dc:	nop
+	...
+
+00000000000009e8 <camellia_setup256>:
+     9e8:	stp	x29, x30, [sp, #-288]!
+     9ec:	mov	w6, #0x667f                	// #26239
+     9f0:	adrp	x3, 0 <camellia_decrypt>
+     9f4:	mov	x29, sp
+     9f8:	stp	x19, x20, [sp, #16]
+     9fc:	movk	w6, #0xa09e, lsl #16
+     a00:	mov	w7, #0x908b                	// #37003
+     a04:	stp	x21, x22, [sp, #32]
+     a08:	movk	w7, #0x3bcc, lsl #16
+     a0c:	mov	w16, #0xe858                	// #59480
+     a10:	stp	x23, x24, [sp, #48]
+     a14:	movk	w16, #0xb67a, lsl #16
+     a18:	mov	w12, #0x73b2                	// #29618
+     a1c:	stp	x25, x26, [sp, #64]
+     a20:	movk	w12, #0x4caa, lsl #16
+     a24:	mov	w30, #0x372f                	// #14127
+     a28:	stp	x27, x28, [sp, #80]
+     a2c:	movk	w30, #0xc6ef, lsl #16
+     a30:	ldrb	w8, [x0, #23]
+     a34:	ldrb	w2, [x0, #21]
+     a38:	ldrb	w5, [x0, #22]
+     a3c:	ldrb	w10, [x0, #20]
+     a40:	ldrb	w11, [x0, #19]
+     a44:	lsl	w2, w2, #16
+     a48:	ldrb	w4, [x0, #17]
+     a4c:	orr	w5, w8, w5, lsl #8
+     a50:	ldrb	w15, [x0, #18]
+     a54:	orr	w10, w2, w10, lsl #24
+     a58:	ldrb	w8, [x0, #29]
+     a5c:	eor	w10, w10, w5
+     a60:	ldrb	w24, [x0, #25]
+     a64:	lsl	w4, w4, #16
+     a68:	ldrb	w2, [x0, #16]
+     a6c:	orr	w15, w11, w15, lsl #8
+     a70:	ldrb	w9, [x0, #28]
+     a74:	lsl	w8, w8, #16
+     a78:	ldrb	w11, [x0, #31]
+     a7c:	lsl	w26, w24, #16
+     a80:	ldrb	w5, [x0, #30]
+     a84:	orr	w2, w4, w2, lsl #24
+     a88:	ldrb	w24, [x0, #24]
+     a8c:	orr	w9, w8, w9, lsl #24
+     a90:	ldrb	w4, [x0, #26]
+     a94:	eor	w2, w2, w15
+     a98:	ldrb	w8, [x0, #27]
+     a9c:	orr	w5, w11, w5, lsl #8
+     aa0:	eor	w9, w9, w5
+     aa4:	lsr	w15, w10, #17
+     aa8:	orr	w24, w26, w24, lsl #24
+     aac:	add	w5, w15, w2, lsl #15
+     ab0:	orr	w4, w8, w4, lsl #8
+     ab4:	lsr	w15, w2, #17
+     ab8:	eor	w24, w24, w4
+     abc:	add	w8, w15, w9, lsl #15
+     ac0:	ubfx	x2, x10, #2, #15
+     ac4:	lsr	w26, w5, #17
+     ac8:	mov	x15, x2
+     acc:	lsr	w2, w24, #17
+     ad0:	add	w11, w26, w8, lsl #15
+     ad4:	add	w10, w2, w10, lsl #15
+     ad8:	ldrb	w23, [x0, #1]
+     adc:	ubfx	x17, x24, #2, #15
+     ae0:	str	w5, [sp, #200]
+     ae4:	add	w5, w15, w5, lsl #15
+     ae8:	add	w4, w17, w10, lsl #15
+     aec:	lsr	w18, w11, #2
+     af0:	str	w8, [sp, #256]
+     af4:	lsr	w17, w5, #2
+     af8:	ldrb	w2, [x0, #5]
+     afc:	and	w8, w11, #0x3
+     b00:	ldrb	w14, [x0]
+     b04:	lsr	w19, w4, #2
+     b08:	ldrb	w13, [x0, #2]
+     b0c:	lsl	w23, w23, #16
+     b10:	str	w10, [sp, #252]
+     b14:	lsl	w2, w2, #16
+     b18:	ldrb	w10, [x0, #3]
+     b1c:	orr	w23, w23, w14, lsl #24
+     b20:	str	w4, [sp, #112]
+     b24:	lsr	w26, w9, #17
+     b28:	ldrb	w4, [x0, #4]
+     b2c:	add	w24, w26, w24, lsl #15
+     b30:	str	w11, [sp, #120]
+     b34:	orr	w10, w10, w13, lsl #8
+     b38:	ldrb	w11, [x0, #7]
+     b3c:	eor	w10, w23, w10
+     b40:	str	w5, [sp, #168]
+     b44:	and	w5, w15, #0x3
+     b48:	stp	w19, w15, [sp, #176]
+     b4c:	add	w15, w8, w18, lsl #2
+     b50:	ldrb	w8, [x0, #6]
+     b54:	add	w20, w5, w17, lsl #2
+     b58:	lsr	w5, w17, #28
+     b5c:	orr	w4, w2, w4, lsl #24
+     b60:	add	w5, w5, w15, lsl #2
+     b64:	lsr	w2, w19, #28
+     b68:	orr	w8, w11, w8, lsl #8
+     b6c:	str	w10, [sp, #128]
+     b70:	eor	w10, w10, w5
+     b74:	add	w2, w2, w20, lsl #2
+     b78:	eor	w6, w10, w6
+     b7c:	eor	w8, w4, w8
+     b80:	str	w8, [sp, #136]
+     b84:	eor	w8, w8, w2
+     b88:	eor	w7, w8, w7
+     b8c:	ldrb	w14, [x0, #14]
+     b90:	ldrb	w19, [x0, #11]
+     b94:	ubfx	x27, x6, #16, #8
+     b98:	ldrb	w28, [x0, #10]
+     b9c:	lsr	w22, w6, #24
+     ba0:	ldrb	w4, [x0, #9]
+     ba4:	ubfx	x25, x7, #8, #8
+     ba8:	ldrb	w8, [x0, #13]
+     bac:	and	x21, x7, #0xff
+     bb0:	str	w15, [sp, #172]
+     bb4:	ubfx	x15, x6, #8, #8
+     bb8:	str	w18, [sp, #184]
+     bbc:	lsl	w4, w4, #16
+     bc0:	ldrb	w18, [x0, #12]
+     bc4:	orr	w28, w19, w28, lsl #8
+     bc8:	str	w17, [sp, #196]
+     bcc:	lsl	w8, w8, #16
+     bd0:	ldrb	w17, [x0, #15]
+     bd4:	lsr	w23, w23, #19
+     bd8:	str	w20, [sp, #216]
+     bdc:	orr	w8, w8, w18, lsl #24
+     be0:	ldrb	w20, [x0, #8]
+     be4:	and	x0, x6, #0xff
+     be8:	ldr	x6, [x3]
+     bec:	str	w24, [sp, #204]
+     bf0:	ubfx	x3, x7, #16, #8
+     bf4:	lsr	w7, w7, #24
+     bf8:	add	x13, x6, #0x400
+     bfc:	add	x10, x6, #0x800
+     c00:	add	x11, x6, #0xc00
+     c04:	ldr	w26, [x6, x27, lsl #2]
+     c08:	ubfx	x24, x9, #2, #15
+     c0c:	ldr	w27, [sp, #204]
+     c10:	ldr	w9, [sp, #112]
+     c14:	orr	w20, w4, w20, lsl #24
+     c18:	ldr	w15, [x13, x15, lsl #2]
+     c1c:	orr	w17, w17, w14, lsl #8
+     c20:	ldr	w22, [x10, x22, lsl #2]
+     c24:	add	w27, w24, w27, lsl #15
+     c28:	ldr	w0, [x11, x0, lsl #2]
+     c2c:	and	w9, w9, #0x3
+     c30:	ldr	w25, [x11, x25, lsl #2]
+     c34:	lsr	w24, w27, #2
+     c38:	ldr	w7, [x6, x7, lsl #2]
+     c3c:	eor	w0, w22, w0
+     c40:	ldr	w3, [x13, x3, lsl #2]
+     c44:	eor	w15, w26, w15
+     c48:	ldr	w21, [x10, x21, lsl #2]
+     c4c:	eor	w15, w15, w0
+     c50:	ldr	w22, [sp, #176]
+     c54:	eor	w3, w3, w25
+     c58:	eor	w21, w21, w7
+     c5c:	str	w27, [sp, #116]
+     c60:	and	w27, w27, #0x3
+     c64:	eor	w0, w20, w28
+     c68:	add	w22, w9, w22, lsl #2
+     c6c:	eor	w9, w3, w21
+     c70:	ldr	w3, [sp, #172]
+     c74:	add	w21, w27, w24, lsl #2
+     c78:	lsr	w27, w24, #28
+     c7c:	eor	w9, w9, w15
+     c80:	add	w27, w27, w22, lsl #2
+     c84:	eor	w26, w8, w17
+     c88:	lsr	w14, w3, #30
+     c8c:	eor	w15, w9, w15, ror #8
+     c90:	eor	w3, w0, w9
+     c94:	add	w14, w14, w21, lsl #2
+     c98:	eor	w16, w27, w16
+     c9c:	eor	w12, w14, w12
+     ca0:	eor	w16, w3, w16
+     ca4:	str	w0, [sp, #104]
+     ca8:	eor	w0, w26, w15
+     cac:	str	w22, [sp, #268]
+     cb0:	eor	w12, w0, w12
+     cb4:	and	x22, x16, #0xff
+     cb8:	ubfx	x3, x16, #8, #8
+     cbc:	ubfx	x0, x16, #16, #8
+     cc0:	lsr	w16, w16, #24
+     cc4:	and	x8, x12, #0xff
+     cc8:	ubfx	x18, x12, #16, #8
+     ccc:	ubfx	x17, x12, #8, #8
+     cd0:	lsr	w12, w12, #24
+     cd4:	ldr	w19, [x13, x3, lsl #2]
+     cd8:	ldr	w7, [x10, x16, lsl #2]
+     cdc:	lsr	w20, w20, #19
+     ce0:	ldr	w16, [x11, x22, lsl #2]
+     ce4:	eor	w15, w14, w15
+     ce8:	ldr	w0, [x6, x0, lsl #2]
+     cec:	eor	w9, w27, w9
+     cf0:	ldr	w17, [x11, x17, lsl #2]
+     cf4:	eor	w7, w7, w16
+     cf8:	ldr	w12, [x6, x12, lsl #2]
+     cfc:	eor	w0, w0, w19
+     d00:	ldr	w18, [x13, x18, lsl #2]
+     d04:	eor	w0, w0, w7
+     d08:	str	w21, [sp, #212]
+     d0c:	mov	w4, #0x2d1d                	// #11549
+     d10:	ldr	w21, [x10, x8, lsl #2]
+     d14:	eor	w18, w18, w17
+     d18:	ldr	w7, [sp, #136]
+     d1c:	eor	w8, w2, w0, ror #8
+     d20:	eor	w21, w21, w12
+     d24:	mov	w12, #0x82be                	// #33470
+     d28:	eor	w18, w18, w21
+     d2c:	movk	w12, #0xe94f, lsl #16
+     d30:	eor	w0, w18, w0
+     d34:	add	w22, w20, w7, lsl #13
+     d38:	eor	w3, w5, w0
+     d3c:	lsr	w18, w7, #19
+     d40:	stp	w7, w22, [sp, #136]
+     d44:	eor	w7, w3, w30
+     d48:	eor	w8, w8, w0
+     d4c:	ldr	w30, [sp, #128]
+     d50:	eor	w17, w8, w12
+     d54:	ubfx	x16, x7, #16, #8
+     d58:	ubfx	x0, x7, #8, #8
+     d5c:	and	x21, x7, #0xff
+     d60:	ubfx	x12, x17, #16, #8
+     d64:	add	w18, w18, w30, lsl #13
+     d68:	ubfx	x19, x17, #8, #8
+     d6c:	lsr	w7, w7, #24
+     d70:	ldr	w0, [x13, x0, lsl #2]
+     d74:	and	x20, x17, #0xff
+     d78:	str	w18, [sp, #152]
+     d7c:	lsr	w17, w17, #24
+     d80:	ldr	w18, [x6, x16, lsl #2]
+     d84:	lsr	w16, w26, #19
+     d88:	ldr	w19, [x11, x19, lsl #2]
+     d8c:	movk	w4, #0xde68, lsl #16
+     d90:	ldr	w7, [x10, x7, lsl #2]
+     d94:	eor	w0, w18, w0
+     d98:	ldr	w21, [x11, x21, lsl #2]
+     d9c:	mov	w25, #0x88c2                	// #35010
+     da0:	ldr	w18, [x13, x12, lsl #2]
+     da4:	lsr	w12, w22, #17
+     da8:	eor	w21, w7, w21
+     dac:	ldr	w7, [x10, x20, lsl #2]
+     db0:	eor	w18, w18, w19
+     db4:	ldr	w19, [sp, #104]
+     db8:	ldr	w17, [x6, x17, lsl #2]
+     dbc:	eor	w0, w0, w21
+     dc0:	add	w21, w23, w26, lsl #13
+     dc4:	mov	w23, w26
+     dc8:	add	w20, w16, w19, lsl #13
+     dcc:	eor	w7, w7, w17
+     dd0:	ldr	w16, [sp, #152]
+     dd4:	eor	w18, w18, w7
+     dd8:	eor	w18, w18, w0
+     ddc:	stp	w20, w21, [sp, #144]
+     de0:	eor	w0, w18, w0, ror #8
+     de4:	eor	w9, w9, w18
+     de8:	add	w7, w12, w16, lsl #15
+     dec:	eor	w15, w15, w0
+     df0:	ldr	x16, [sp, #128]
+     df4:	mov	w0, #0x53a5                	// #21413
+     df8:	movk	w0, #0x54ff, lsl #16
+     dfc:	eor	w17, w9, w0
+     e00:	mov	w0, #0x6f1c                	// #28444
+     e04:	and	x22, x17, #0xff
+     e08:	ubfx	x16, x16, #4, #15
+     e0c:	movk	w0, #0xf1d3, lsl #16
+     e10:	str	w7, [sp, #192]
+     e14:	ubfx	x7, x17, #16, #8
+     e18:	str	x16, [sp, #240]
+     e1c:	eor	w16, w15, w0
+     e20:	ubfx	x0, x17, #8, #8
+     e24:	lsr	w17, w17, #24
+     e28:	ubfx	x21, x16, #16, #8
+     e2c:	and	x20, x16, #0xff
+     e30:	ubfx	x18, x16, #8, #8
+     e34:	lsr	w16, w16, #24
+     e38:	ldr	w19, [x11, x22, lsl #2]
+     e3c:	lsr	w26, w15, #17
+     e40:	ldr	w0, [x13, x0, lsl #2]
+     e44:	mov	x30, x23
+     e48:	ldr	w17, [x10, x17, lsl #2]
+     e4c:	eor	w14, w14, w15
+     e50:	ldr	w7, [x6, x7, lsl #2]
+     e54:	ubfx	x30, x30, #4, #15
+     e58:	ldr	w18, [x11, x18, lsl #2]
+     e5c:	eor	w19, w17, w19
+     e60:	ldr	w16, [x6, x16, lsl #2]
+     e64:	eor	w7, w7, w0
+     e68:	ldr	w17, [x10, x20, lsl #2]
+     e6c:	eor	w7, w7, w19
+     e70:	ldr	w0, [x13, x21, lsl #2]
+     e74:	eor	w27, w27, w9
+     e78:	eor	w17, w17, w16
+     e7c:	eor	w8, w8, w7, ror #8
+     e80:	eor	w0, w0, w18
+     e84:	add	w18, w26, w9, lsl #15
+     e88:	eor	w17, w0, w17
+     e8c:	ldr	w20, [sp, #144]
+     e90:	eor	w7, w17, w7
+     e94:	lsr	w0, w18, #2
+     e98:	eor	w8, w8, w7
+     e9c:	eor	w3, w3, w7
+     ea0:	eor	w2, w2, w8
+     ea4:	eor	w5, w5, w3
+     ea8:	eor	w4, w2, w4
+     eac:	str	w0, [sp, #248]
+     eb0:	mov	w0, #0x27fa                	// #10234
+     eb4:	str	w18, [sp, #224]
+     eb8:	ubfx	x17, x4, #8, #8
+     ebc:	ubfx	x18, x4, #16, #8
+     ec0:	movk	w0, #0x10e5, lsl #16
+     ec4:	eor	w7, w5, w0
+     ec8:	add	w21, w30, w20, lsl #15
+     ecc:	and	x16, x4, #0xff
+     ed0:	ubfx	x19, x7, #8, #8
+     ed4:	ubfx	x0, x7, #16, #8
+     ed8:	ldr	w17, [x11, x17, lsl #2]
+     edc:	and	x20, x7, #0xff
+     ee0:	ldr	w18, [x13, x18, lsl #2]
+     ee4:	lsr	w7, w7, #24
+     ee8:	lsr	w4, w4, #24
+     eec:	lsr	w22, w3, #17
+     ef0:	add	w26, w22, w15, lsl #15
+     ef4:	ldr	w0, [x6, x0, lsl #2]
+     ef8:	ldr	w19, [x13, x19, lsl #2]
+     efc:	eor	w18, w18, w17
+     f00:	ldr	w17, [sp, #224]
+     f04:	lsr	w9, w9, #17
+     f08:	ldr	w15, [x10, x7, lsl #2]
+     f0c:	eor	w19, w0, w19
+     f10:	ldr	w20, [x11, x20, lsl #2]
+     f14:	lsr	w0, w26, #2
+     f18:	ldr	w4, [x6, x4, lsl #2]
+     f1c:	add	w0, w0, w17, lsl #30
+     f20:	ldr	w16, [x10, x16, lsl #2]
+     f24:	eor	w7, w15, w20
+     f28:	ldr	w17, [sp, #248]
+     f2c:	add	w9, w9, w8, lsl #15
+     f30:	eor	w16, w16, w4
+     f34:	eor	w7, w19, w7
+     f38:	eor	w18, w18, w16
+     f3c:	str	w26, [sp, #124]
+     f40:	eor	w18, w18, w7
+     f44:	add	w15, w17, w9, lsl #30
+     f48:	eor	w27, w27, w18
+     f4c:	eor	w7, w18, w7, ror #8
+     f50:	str	w15, [sp, #100]
+     f54:	eor	w7, w7, w14
+     f58:	ldr	x19, [sp, #104]
+     f5c:	movk	w25, #0xb056, lsl #16
+     f60:	ldr	w17, [sp, #148]
+     f64:	eor	w14, w27, w25
+     f68:	ldr	w16, [sp, #240]
+     f6c:	mov	w28, #0xc1fd                	// #49661
+     f70:	movk	w28, #0xb3e6, lsl #16
+     f74:	eor	w4, w7, w28
+     f78:	and	x18, x14, #0xff
+     f7c:	ubfx	x20, x14, #8, #8
+     f80:	add	w16, w16, w17, lsl #15
+     f84:	ubfx	x15, x14, #16, #8
+     f88:	lsr	w14, w14, #24
+     f8c:	ubfx	x26, x19, #4, #15
+     f90:	ubfx	x17, x4, #16, #8
+     f94:	ubfx	x19, x4, #8, #8
+     f98:	str	w16, [sp, #160]
+     f9c:	and	x16, x4, #0xff
+     fa0:	lsr	w4, w4, #24
+     fa4:	ldr	w20, [x13, x20, lsl #2]
+     fa8:	ldr	w18, [x11, x18, lsl #2]
+     fac:	lsr	w25, w7, #2
+     fb0:	ldr	w15, [x6, x15, lsl #2]
+     fb4:	add	w25, w25, w27, lsl #30
+     fb8:	ldr	w14, [x10, x14, lsl #2]
+     fbc:	lsr	w8, w8, #17
+     fc0:	ldr	w11, [x11, x19, lsl #2]
+     fc4:	eor	w15, w15, w20
+     fc8:	ldr	w4, [x6, x4, lsl #2]
+     fcc:	eor	w14, w14, w18
+     fd0:	ldr	w13, [x13, x17, lsl #2]
+     fd4:	eor	w15, w15, w14
+     fd8:	ldr	w10, [x10, x16, lsl #2]
+     fdc:	lsr	w17, w27, #2
+     fe0:	eor	w13, w13, w11
+     fe4:	eor	w2, w2, w15, ror #8
+     fe8:	eor	w10, w10, w4
+     fec:	ldr	w22, [sp, #140]
+     ff0:	eor	w13, w13, w10
+     ff4:	ldr	w11, [sp, #120]
+     ff8:	eor	w15, w13, w15
+     ffc:	ldr	w4, [sp, #112]
+    1000:	eor	w2, w2, w15
+    1004:	eor	w5, w5, w15
+    1008:	ldr	w19, [sp, #104]
+    100c:	add	w6, w26, w22, lsl #15
+    1010:	lsr	w16, w2, #2
+    1014:	add	w17, w17, w2, lsl #30
+    1018:	add	w13, w16, w5, lsl #30
+    101c:	lsr	w14, w25, #2
+    1020:	str	w22, [sp, #140]
+    1024:	add	w14, w14, w17, lsl #30
+    1028:	str	w6, [sp, #156]
+    102c:	add	w6, w8, w3, lsl #15
+    1030:	and	w3, w22, #0x1ffff
+    1034:	bic	w22, w23, w11
+    1038:	eor	w22, w22, w19
+    103c:	lsr	w15, w13, #2
+    1040:	add	w24, w24, w4, lsl #30
+    1044:	lsr	w4, w17, #2
+    1048:	str	w13, [sp, #272]
+    104c:	add	w16, w4, w16, lsl #30
+    1050:	ldp	w19, w13, [sp, #176]
+    1054:	lsr	w4, w14, #13
+    1058:	add	w3, w3, w12, lsl #17
+    105c:	lsr	w28, w16, #13
+    1060:	str	w3, [sp, #164]
+    1064:	lsr	w3, w6, #2
+    1068:	str	w6, [sp, #220]
+    106c:	add	w6, w4, w16, lsl #19
+    1070:	add	w18, w28, w15, lsl #19
+    1074:	add	w13, w19, w13, lsl #30
+    1078:	mov	w28, w6
+    107c:	bic	w20, w6, w0
+    1080:	lsr	w6, w5, #2
+    1084:	str	w13, [sp, #260]
+    1088:	add	w6, w6, w7, lsl #30
+    108c:	ldr	w13, [sp, #116]
+    1090:	eor	w20, w20, w18
+    1094:	ldr	w10, [sp, #100]
+    1098:	str	w18, [sp, #232]
+    109c:	mov	w18, w6
+    10a0:	ldr	w6, [sp, #184]
+    10a4:	and	w4, w22, w13
+    10a8:	and	w10, w10, w20
+    10ac:	str	w13, [sp, #116]
+    10b0:	ldr	w19, [sp, #124]
+    10b4:	ror	w4, w4, #31
+    10b8:	add	w6, w6, w13, lsl #30
+    10bc:	str	w6, [sp, #264]
+    10c0:	eor	w13, w28, w10, ror #31
+    10c4:	ldr	w6, [sp, #148]
+    10c8:	eor	w10, w4, w23
+    10cc:	str	w28, [sp, #236]
+    10d0:	str	w23, [sp, #188]
+    10d4:	and	w6, w6, #0x1ffff
+    10d8:	ldr	w23, [sp, #192]
+    10dc:	add	w6, w6, w30, lsl #17
+    10e0:	stp	w18, w13, [sp, #176]
+    10e4:	add	w3, w3, w19, lsl #30
+    10e8:	bic	w28, w10, w23
+    10ec:	lsr	w23, w18, #2
+    10f0:	ldr	w18, [sp, #144]
+    10f4:	eor	w28, w28, w22
+    10f8:	stp	w11, w19, [sp, #120]
+    10fc:	eor	w19, w4, w19
+    1100:	and	w30, w18, #0x1ffff
+    1104:	ldr	w18, [sp, #196]
+    1108:	str	w19, [sp, #280]
+    110c:	add	w30, w30, w26, lsl #17
+    1110:	ldr	w19, [sp, #164]
+    1114:	lsr	w26, w26, #13
+    1118:	add	w11, w18, w11, lsl #30
+    111c:	str	w11, [sp, #208]
+    1120:	lsr	w11, w9, #2
+    1124:	bic	w13, w13, w21
+    1128:	add	w8, w11, w8, lsl #30
+    112c:	ldr	w11, [sp, #160]
+    1130:	add	w19, w26, w19, lsl #2
+    1134:	ldr	w26, [sp, #200]
+    1138:	and	w18, w28, w11
+    113c:	ldr	w11, [sp, #176]
+    1140:	eor	w13, w13, w20
+    1144:	add	w23, w23, w25, lsl #30
+    1148:	eor	w18, w10, w18, ror #31
+    114c:	lsr	w12, w12, #13
+    1150:	add	w15, w15, w11, lsl #30
+    1154:	str	w15, [sp, #228]
+    1158:	eor	w15, w10, w3
+    115c:	ldr	w10, [sp, #128]
+    1160:	str	w15, [sp, #184]
+    1164:	eor	w10, w10, w5
+    1168:	ldr	w15, [sp, #220]
+    116c:	str	w10, [x1]
+    1170:	lsr	w10, w6, #30
+    1174:	add	w10, w10, w30, lsl #2
+    1178:	stp	w19, w10, [sp, #196]
+    117c:	ldr	w19, [sp, #156]
+    1180:	eor	w5, w26, w5
+    1184:	eor	w15, w26, w15
+    1188:	ldr	w26, [sp, #180]
+    118c:	and	w11, w19, w13
+    1190:	eor	w11, w26, w11, ror #31
+    1194:	ldr	w26, [sp, #136]
+    1198:	eor	w4, w26, w2
+    119c:	ldr	w26, [sp, #252]
+    11a0:	eor	w2, w5, w2
+    11a4:	str	w4, [x1, #4]
+    11a8:	eor	w10, w26, w9
+    11ac:	lsr	w4, w23, #13
+    11b0:	eor	w2, w2, w26
+    11b4:	eor	w26, w9, w11
+    11b8:	add	w9, w4, w14, lsl #19
+    11bc:	ldr	w4, [sp, #240]
+    11c0:	str	w26, [sp, #276]
+    11c4:	ror	w2, w2, #24
+    11c8:	ldr	w26, [sp, #152]
+    11cc:	eor	w5, w5, w2
+    11d0:	eor	w10, w10, w15
+    11d4:	and	w19, w26, #0x1ffff
+    11d8:	add	w19, w19, w4, lsl #17
+    11dc:	lsr	w4, w4, #13
+    11e0:	add	w4, w4, w6, lsl #2
+    11e4:	str	w4, [sp, #240]
+    11e8:	ldr	w4, [sp, #196]
+    11ec:	ror	w10, w10, #24
+    11f0:	eor	w15, w15, w10
+    11f4:	eor	w4, w9, w4
+    11f8:	add	w9, w12, w19, lsl #2
+    11fc:	str	w9, [sp, #252]
+    1200:	ldr	w26, [sp, #168]
+    1204:	ldr	w12, [sp, #156]
+    1208:	str	w2, [x1, #24]
+    120c:	str	w26, [x1, #64]
+    1210:	ldr	w26, [sp, #112]
+    1214:	stp	w12, w21, [x1, #128]
+    1218:	ldp	w12, w2, [sp, #160]
+    121c:	str	w26, [x1, #68]
+    1220:	ldr	w9, [sp, #116]
+    1224:	ldr	w26, [sp, #184]
+    1228:	eor	w2, w18, w2
+    122c:	str	w12, [x1, #136]
+    1230:	ldr	w12, [sp, #192]
+    1234:	str	w9, [x1, #72]
+    1238:	ldr	w9, [sp, #120]
+    123c:	str	w9, [x1, #76]
+    1240:	bic	w9, w26, w12
+    1244:	str	w12, [x1, #140]
+    1248:	ldr	w12, [sp, #100]
+    124c:	ldr	w26, [sp, #124]
+    1250:	str	w12, [x1, #192]
+    1254:	ldr	w12, [sp, #188]
+    1258:	str	w4, [x1, #256]
+    125c:	ldr	w4, [sp, #228]
+    1260:	eor	w26, w12, w26
+    1264:	ldr	w12, [sp, #120]
+    1268:	stp	w0, w3, [x1, #196]
+    126c:	bic	w26, w26, w12
+    1270:	lsr	w4, w4, #13
+    1274:	ldr	w12, [sp, #200]
+    1278:	add	w4, w4, w23, lsl #19
+    127c:	str	w8, [x1, #204]
+    1280:	eor	w4, w4, w12
+    1284:	str	w4, [x1, #260]
+    1288:	ldr	w4, [sp, #180]
+    128c:	ldr	w12, [sp, #100]
+    1290:	eor	w4, w24, w4
+    1294:	str	w2, [sp, #120]
+    1298:	eor	w12, w4, w12
+    129c:	bic	w21, w4, w21
+    12a0:	ldr	w4, [sp, #104]
+    12a4:	eor	w24, w24, w14
+    12a8:	str	w5, [x1, #28]
+    12ac:	eor	w14, w6, w14
+    12b0:	ldr	w5, [sp, #224]
+    12b4:	stp	w10, w15, [x1, #40]
+    12b8:	eor	w2, w4, w5
+    12bc:	eor	w4, w4, w27
+    12c0:	str	w4, [sp, #104]
+    12c4:	eor	w2, w26, w2
+    12c8:	ldr	w4, [sp, #116]
+    12cc:	eor	w26, w17, w11
+    12d0:	ldr	w10, [sp, #260]
+    12d4:	and	w4, w4, w2
+    12d8:	eor	w2, w22, w2
+    12dc:	eor	w22, w22, w0
+    12e0:	eor	w2, w2, w25
+    12e4:	eor	w22, w22, w9
+    12e8:	ldr	w9, [sp, #204]
+    12ec:	eor	w4, w2, w4, ror #31
+    12f0:	eor	w27, w9, w27
+    12f4:	str	w27, [sp, #116]
+    12f8:	eor	w27, w9, w5
+    12fc:	ldr	w9, [sp, #148]
+    1300:	str	w27, [sp, #128]
+    1304:	eor	w25, w9, w25
+    1308:	eor	w9, w9, w0
+    130c:	str	w9, [sp, #148]
+    1310:	ldr	w9, [sp, #160]
+    1314:	str	w25, [sp, #136]
+    1318:	and	w27, w9, w22
+    131c:	ldr	w9, [sp, #280]
+    1320:	ldr	w25, [sp, #144]
+    1324:	eor	w4, w4, w9
+    1328:	ldr	w9, [sp, #176]
+    132c:	ldr	w5, [sp, #112]
+    1330:	eor	w17, w25, w17
+    1334:	eor	w4, w4, w9
+    1338:	ldr	w9, [sp, #100]
+    133c:	str	w27, [sp, #284]
+    1340:	eor	w27, w30, w20
+    1344:	eor	w25, w25, w9
+    1348:	bic	w9, w11, w5
+    134c:	str	w25, [sp, #280]
+    1350:	bic	w25, w26, w5
+    1354:	str	w25, [sp, #224]
+    1358:	ror	w5, w4, #24
+    135c:	eor	w2, w2, w5
+    1360:	ldr	w4, [sp, #168]
+    1364:	ldr	w25, [sp, #220]
+    1368:	eor	w9, w9, w13
+    136c:	stp	w5, w2, [x1, #80]
+    1370:	eor	w5, w10, w16
+    1374:	eor	w2, w10, w20
+    1378:	ldr	w10, [sp, #156]
+    137c:	eor	w21, w2, w21
+    1380:	eor	w25, w25, w9
+    1384:	and	w9, w4, w9
+    1388:	and	w4, w10, w21
+    138c:	eor	w10, w30, w16
+    1390:	str	w5, [sp, #160]
+    1394:	mov	w16, w10
+    1398:	eor	w10, w14, w10
+    139c:	ldr	w14, [sp, #248]
+    13a0:	eor	w4, w11, w4, ror #31
+    13a4:	str	w16, [sp, #192]
+    13a8:	eor	w4, w4, w12
+    13ac:	str	w10, [sp, #220]
+    13b0:	lsr	w10, w0, #15
+    13b4:	ldr	w15, [sp, #172]
+    13b8:	add	w10, w10, w14, lsl #17
+    13bc:	ldr	w11, [sp, #236]
+    13c0:	eor	w30, w24, w5
+    13c4:	ldr	w14, [sp, #104]
+    13c8:	eor	w20, w15, w11
+    13cc:	ldr	w24, [sp, #264]
+    13d0:	eor	w12, w20, w6
+    13d4:	ldr	w6, [sp, #188]
+    13d8:	eor	w5, w14, w7
+    13dc:	ldr	w14, [sp, #116]
+    13e0:	eor	w15, w5, w6
+    13e4:	str	w15, [sp, #188]
+    13e8:	eor	w15, w19, w23
+    13ec:	eor	w23, w24, w23
+    13f0:	str	w23, [sp, #112]
+    13f4:	eor	w5, w28, w24
+    13f8:	ldr	w23, [sp, #120]
+    13fc:	eor	w6, w5, w22
+    1400:	ldr	w16, [sp, #256]
+    1404:	eor	w7, w14, w7
+    1408:	bic	w5, w23, w8
+    140c:	ldr	w23, [sp, #128]
+    1410:	eor	w7, w7, w16
+    1414:	str	w15, [sp, #144]
+    1418:	eor	w15, w23, w16
+    141c:	ldr	w16, [sp, #272]
+    1420:	str	w7, [sp, #204]
+    1424:	eor	w14, w28, w19
+    1428:	ldr	w7, [sp, #184]
+    142c:	eor	w14, w14, w5
+    1430:	ldr	w11, [sp, #224]
+    1434:	eor	w24, w16, w13
+    1438:	ldr	w5, [sp, #140]
+    143c:	eor	w7, w7, w6
+    1440:	str	w6, [sp, #156]
+    1444:	eor	w24, w24, w11
+    1448:	ldr	w6, [sp, #168]
+    144c:	eor	w22, w5, w16
+    1450:	eor	w25, w25, w24
+    1454:	ldr	w16, [sp, #232]
+    1458:	and	w24, w6, w24
+    145c:	ldr	w6, [sp, #212]
+    1460:	bic	w2, w20, w0
+    1464:	bic	w11, w18, w8
+    1468:	eor	w20, w6, w16
+    146c:	eor	w13, w8, w13
+    1470:	eor	w20, w20, w2
+    1474:	and	w2, w3, w14
+    1478:	eor	w28, w11, w28
+    147c:	eor	w21, w13, w21
+    1480:	ldr	w13, [sp, #180]
+    1484:	ror	w11, w2, #31
+    1488:	ldr	w2, [sp, #100]
+    148c:	eor	w23, w5, w8
+    1490:	ldr	w5, [sp, #276]
+    1494:	eor	w9, w25, w9, ror #31
+    1498:	and	w6, w2, w20
+    149c:	eor	w14, w28, w14
+    14a0:	eor	w9, w9, w5
+    14a4:	lsr	w2, w2, #15
+    14a8:	eor	w6, w13, w6, ror #31
+    14ac:	ldr	w13, [sp, #208]
+    14b0:	add	w2, w2, w8, lsl #17
+    14b4:	lsr	w8, w8, #15
+    14b8:	eor	w5, w18, w13
+    14bc:	add	w19, w8, w3, lsl #17
+    14c0:	eor	w7, w5, w7
+    14c4:	lsr	w5, w3, #15
+    14c8:	ldr	w8, [sp, #148]
+    14cc:	add	w0, w5, w0, lsl #17
+    14d0:	ldr	w5, [sp, #216]
+    14d4:	and	w28, w28, w3
+    14d8:	eor	w3, w8, w3
+    14dc:	ldr	w8, [sp, #152]
+    14e0:	eor	w13, w14, w5
+    14e4:	ldr	w5, [sp, #136]
+    14e8:	eor	w24, w26, w24, ror #31
+    14ec:	eor	w11, w11, w28, ror #31
+    14f0:	ldr	w26, [sp, #124]
+    14f4:	eor	w14, w5, w8
+    14f8:	ldr	w28, [sp, #268]
+    14fc:	eor	w5, w24, w9
+    1500:	str	w13, [sp, #140]
+    1504:	eor	w6, w6, w12
+    1508:	ldr	w13, [sp, #112]
+    150c:	eor	w20, w27, w20
+    1510:	ldr	w24, [sp, #212]
+    1514:	eor	w18, w18, w28
+    1518:	ldr	w9, [sp, #200]
+    151c:	eor	w3, w3, w8
+    1520:	ldr	w12, [sp, #176]
+    1524:	eor	w24, w24, w10
+    1528:	eor	w9, w9, w2
+    152c:	eor	w2, w28, w2
+    1530:	str	w24, [sp, #124]
+    1534:	eor	w14, w14, w12
+    1538:	ldp	w28, w24, [sp, #236]
+    153c:	str	w20, [sp, #100]
+    1540:	ldr	w12, [sp, #232]
+    1544:	eor	w15, w15, w26
+    1548:	ldr	w20, [sp, #252]
+    154c:	eor	w11, w11, w18
+    1550:	ldr	w26, [sp, #228]
+    1554:	ror	w15, w15, #24
+    1558:	eor	w8, w20, w28
+    155c:	eor	w28, w24, w12
+    1560:	eor	w12, w24, w10
+    1564:	ldr	w10, [sp, #172]
+    1568:	mov	w27, w12
+    156c:	ldr	w12, [sp, #284]
+    1570:	eor	w13, w13, w26
+    1574:	ldr	w24, [sp, #196]
+    1578:	eor	w10, w10, w0
+    157c:	eor	w0, w20, w0
+    1580:	eor	w7, w7, w12, ror #31
+    1584:	ldr	w12, [sp, #208]
+    1588:	ldr	w20, [sp, #216]
+    158c:	eor	w0, w0, w27
+    1590:	eor	w13, w13, w12
+    1594:	ldr	w12, [sp, #144]
+    1598:	ldr	w18, [sp, #120]
+    159c:	ror	w30, w30, #24
+    15a0:	eor	w12, w12, w26
+    15a4:	eor	w26, w24, w19
+    15a8:	eor	w24, w20, w19
+    15ac:	ldr	w20, [sp, #140]
+    15b0:	ldr	w19, [sp, #164]
+    15b4:	ror	w14, w14, #24
+    15b8:	eor	w18, w18, w20
+    15bc:	ldr	w20, [sp, #100]
+    15c0:	eor	w11, w18, w11
+    15c4:	ldr	w18, [sp, #188]
+    15c8:	str	w27, [sp, #120]
+    15cc:	eor	w6, w6, w20
+    15d0:	ldr	w27, [sp, #104]
+    15d4:	eor	w12, w12, w19
+    15d8:	ldr	w19, [sp, #124]
+    15dc:	ror	w20, w18, #24
+    15e0:	ldr	w18, [sp, #204]
+    15e4:	eor	w27, w27, w20
+    15e8:	str	w27, [x1, #20]
+    15ec:	eor	w10, w10, w19
+    15f0:	ldr	w27, [sp, #116]
+    15f4:	ror	w3, w3, #24
+    15f8:	ldr	w16, [sp, #280]
+    15fc:	ror	w19, w18, #24
+    1600:	eor	w27, w27, w19
+    1604:	str	w27, [x1, #36]
+    1608:	ldr	w27, [sp, #128]
+    160c:	ror	w7, w7, #24
+    1610:	ldr	w18, [sp, #220]
+    1614:	eor	w2, w2, w24
+    1618:	eor	w27, w27, w15
+    161c:	stp	w15, w27, [x1, #48]
+    1620:	ldr	w27, [sp, #160]
+    1624:	ror	w5, w5, #24
+    1628:	ror	w18, w18, #24
+    162c:	eor	w27, w27, w30
+    1630:	str	w27, [x1, #156]
+    1634:	ldr	w27, [sp, #192]
+    1638:	ror	w13, w13, #24
+    163c:	eor	w17, w17, w22
+    1640:	ror	w2, w2, #24
+    1644:	eor	w27, w27, w18
+    1648:	str	w27, [x1, #172]
+    164c:	ldr	w27, [sp, #136]
+    1650:	eor	w4, w4, w21
+    1654:	eor	w16, w16, w23
+    1658:	eor	w25, w25, w5
+    165c:	eor	w27, w27, w14
+    1660:	str	w27, [x1, #100]
+    1664:	ldr	w27, [sp, #148]
+    1668:	eor	w8, w8, w28
+    166c:	eor	w9, w9, w26
+    1670:	str	w19, [x1, #32]
+    1674:	eor	w27, w27, w3
+    1678:	str	w27, [x1, #116]
+    167c:	ldr	w27, [sp, #156]
+    1680:	ror	w17, w17, #24
+    1684:	stp	w5, w25, [x1, #56]
+    1688:	eor	w5, w24, w2
+    168c:	eor	w27, w27, w7
+    1690:	str	w27, [x1, #148]
+    1694:	ldr	w27, [sp, #112]
+    1698:	ror	w4, w4, #24
+    169c:	ldp	w24, w19, [sp, #140]
+    16a0:	eor	w27, w27, w13
+    16a4:	ldr	w15, [sp, #120]
+    16a8:	ror	w16, w16, #24
+    16ac:	str	w20, [x1, #16]
+    16b0:	eor	w22, w22, w17
+    16b4:	ldr	w20, [sp, #100]
+    16b8:	eor	w21, w21, w4
+    16bc:	str	w27, [x1, #164]
+    16c0:	eor	w23, w23, w16
+    16c4:	ldr	w27, [sp, #124]
+    16c8:	ror	w8, w8, #24
+    16cc:	ror	w9, w9, #24
+    16d0:	ror	w12, w12, #24
+    16d4:	ror	w11, w11, #24
+    16d8:	ror	w6, w6, #24
+    16dc:	ror	w10, w10, #24
+    16e0:	stp	w17, w22, [x1, #88]
+    16e4:	ror	w0, w0, #24
+    16e8:	str	w14, [x1, #96]
+    16ec:	eor	w25, w24, w11
+    16f0:	stp	w16, w23, [x1, #104]
+    16f4:	eor	w28, w28, w8
+    16f8:	str	w3, [x1, #112]
+    16fc:	eor	w26, w26, w9
+    1700:	stp	w4, w21, [x1, #120]
+    1704:	eor	w20, w20, w6
+    1708:	str	w7, [x1, #144]
+    170c:	eor	w19, w19, w12
+    1710:	str	w30, [x1, #152]
+    1714:	eor	w27, w27, w10
+    1718:	eor	w15, w15, w0
+    171c:	str	w13, [x1, #160]
+    1720:	str	w18, [x1, #168]
+    1724:	stp	w12, w19, [x1, #176]
+    1728:	stp	w6, w20, [x1, #184]
+    172c:	stp	w11, w25, [x1, #208]
+    1730:	stp	w10, w27, [x1, #216]
+    1734:	stp	w2, w5, [x1, #224]
+    1738:	stp	w0, w15, [x1, #232]
+    173c:	stp	w9, w26, [x1, #240]
+    1740:	stp	w8, w28, [x1, #248]
+    1744:	ldp	x19, x20, [sp, #16]
+    1748:	ldp	x21, x22, [sp, #32]
+    174c:	ldp	x23, x24, [sp, #48]
+    1750:	ldp	x25, x26, [sp, #64]
+    1754:	ldp	x27, x28, [sp, #80]
+    1758:	ldp	x29, x30, [sp], #288
+    175c:	ret
+	...
+
+0000000000001768 <camellia_setup192>:
+    1768:	stp	x29, x30, [sp, #-80]!
+    176c:	mov	x2, #0x18                  	// #24
+    1770:	mov	x29, sp
+    1774:	stp	x19, x20, [sp, #16]
+    1778:	mov	x19, x0
+    177c:	mov	x20, x1
+    1780:	mov	x1, x0
+    1784:	add	x0, sp, #0x30
+    1788:	bl	0 <grub_memmove>
+    178c:	add	x1, x19, #0x10
+    1790:	add	x0, sp, #0x20
+    1794:	mov	x2, #0x4                   	// #4
+    1798:	bl	0 <grub_memmove>
+    179c:	add	x1, x19, #0x14
+    17a0:	add	x0, sp, #0x24
+    17a4:	mov	x2, #0x4                   	// #4
+    17a8:	bl	0 <grub_memmove>
+    17ac:	ldp	w4, w3, [sp, #32]
+    17b0:	add	x1, sp, #0x28
+    17b4:	add	x0, sp, #0x48
+    17b8:	mov	x2, #0x4                   	// #4
+    17bc:	mvn	w4, w4
+    17c0:	mvn	w3, w3
+    17c4:	stp	w4, w3, [sp, #40]
+    17c8:	bl	0 <grub_memmove>
+    17cc:	mov	x2, #0x4                   	// #4
+    17d0:	add	x1, sp, #0x2c
+    17d4:	add	x0, sp, #0x4c
+    17d8:	bl	0 <grub_memmove>
+    17dc:	mov	x1, x20
+    17e0:	add	x0, sp, #0x30
+    17e4:	bl	9e8 <camellia_setup256>
+    17e8:	ldp	x19, x20, [sp, #16]
+    17ec:	ldp	x29, x30, [sp], #80
+    17f0:	ret
+    17f4:	nop
+
+00000000000017f8 <camellia_encrypt128>:
+    17f8:	ldp	w10, w7, [x1]
+    17fc:	adrp	x2, 0 <camellia_decrypt>
+    1800:	ldr	w3, [x0]
+    1804:	ldr	x2, [x2]
+    1808:	eor	w10, w10, w3
+    180c:	str	w10, [x1]
+    1810:	and	x14, x10, #0xff
+    1814:	add	x5, x2, #0x400
+    1818:	add	x4, x2, #0xc00
+    181c:	ldr	w3, [x0, #4]
+    1820:	ubfx	x8, x10, #16, #8
+    1824:	ubfx	x15, x10, #8, #8
+    1828:	lsr	w11, w10, #24
+    182c:	eor	w9, w7, w3
+    1830:	add	x3, x2, #0x800
+    1834:	and	x7, x9, #0xff
+    1838:	ldr	w14, [x4, x14, lsl #2]
+    183c:	ubfx	x6, x9, #16, #8
+    1840:	ubfx	x12, x9, #8, #8
+    1844:	lsr	w13, w9, #24
+    1848:	ldr	w15, [x5, x15, lsl #2]
+    184c:	ldr	w8, [x2, x8, lsl #2]
+    1850:	ldr	w11, [x3, x11, lsl #2]
+    1854:	ldr	w12, [x4, x12, lsl #2]
+    1858:	eor	w8, w8, w15
+    185c:	ldr	w6, [x5, x6, lsl #2]
+    1860:	eor	w11, w11, w14
+    1864:	str	w9, [x1, #4]
+    1868:	eor	w8, w8, w11
+    186c:	ldr	w13, [x2, x13, lsl #2]
+    1870:	eor	w6, w6, w12
+    1874:	ldr	w7, [x3, x7, lsl #2]
+    1878:	ldp	w12, w11, [x0, #16]
+    187c:	eor	w7, w7, w13
+    1880:	eor	w6, w6, w7
+    1884:	ldp	w13, w7, [x1, #8]
+    1888:	eor	w8, w8, w12
+    188c:	eor	w11, w8, w11
+    1890:	eor	w6, w6, w11
+    1894:	eor	w13, w6, w13
+    1898:	eor	w8, w7, w8, ror #8
+    189c:	eor	w8, w8, w6
+    18a0:	and	x16, x13, #0xff
+    18a4:	ubfx	x7, x13, #16, #8
+    18a8:	ubfx	x17, x13, #8, #8
+    18ac:	lsr	w6, w13, #24
+    18b0:	ubfx	x12, x8, #16, #8
+    18b4:	ubfx	x14, x8, #8, #8
+    18b8:	ldr	w16, [x4, x16, lsl #2]
+    18bc:	ldr	w17, [x5, x17, lsl #2]
+    18c0:	and	x11, x8, #0xff
+    18c4:	ldr	w7, [x2, x7, lsl #2]
+    18c8:	lsr	w15, w8, #24
+    18cc:	ldr	w6, [x3, x6, lsl #2]
+    18d0:	ldr	w14, [x4, x14, lsl #2]
+    18d4:	eor	w7, w7, w17
+    18d8:	ldr	w12, [x5, x12, lsl #2]
+    18dc:	eor	w6, w6, w16
+    18e0:	stp	w13, w8, [x1, #8]
+    18e4:	eor	w7, w7, w6
+    18e8:	eor	w12, w12, w14
+    18ec:	ldr	w15, [x2, x15, lsl #2]
+    18f0:	ldp	w14, w6, [x0, #24]
+    18f4:	ldr	w11, [x3, x11, lsl #2]
+    18f8:	eor	w7, w7, w14
+    18fc:	eor	w11, w11, w15
+    1900:	eor	w6, w7, w6
+    1904:	eor	w12, w12, w11
+    1908:	eor	w7, w9, w7, ror #8
+    190c:	eor	w12, w12, w6
+    1910:	eor	w10, w10, w12
+    1914:	eor	w7, w7, w12
+    1918:	and	x16, x10, #0xff
+    191c:	stp	w10, w7, [x1]
+    1920:	ubfx	x6, x10, #16, #8
+    1924:	ubfx	x17, x10, #8, #8
+    1928:	lsr	w9, w10, #24
+    192c:	ubfx	x11, x7, #16, #8
+    1930:	ubfx	x14, x7, #8, #8
+    1934:	ldr	w16, [x4, x16, lsl #2]
+    1938:	ldr	w17, [x5, x17, lsl #2]
+    193c:	and	x12, x7, #0xff
+    1940:	ldr	w6, [x2, x6, lsl #2]
+    1944:	lsr	w15, w7, #24
+    1948:	ldr	w9, [x3, x9, lsl #2]
+    194c:	ldr	w14, [x4, x14, lsl #2]
+    1950:	eor	w6, w6, w17
+    1954:	ldr	w11, [x5, x11, lsl #2]
+    1958:	eor	w9, w9, w16
+    195c:	eor	w6, w6, w9
+    1960:	ldr	w15, [x2, x15, lsl #2]
+    1964:	eor	w11, w11, w14
+    1968:	ldr	w12, [x3, x12, lsl #2]
+    196c:	ldp	w14, w9, [x0, #32]
+    1970:	eor	w12, w12, w15
+    1974:	eor	w11, w11, w12
+    1978:	eor	w6, w6, w14
+    197c:	eor	w9, w6, w9
+    1980:	eor	w11, w11, w9
+    1984:	eor	w6, w8, w6, ror #8
+    1988:	eor	w13, w13, w11
+    198c:	eor	w6, w6, w11
+    1990:	and	x16, x13, #0xff
+    1994:	and	x11, x6, #0xff
+    1998:	ubfx	x12, x13, #16, #8
+    199c:	ubfx	x17, x13, #8, #8
+    19a0:	lsr	w8, w13, #24
+    19a4:	ubfx	x9, x6, #16, #8
+    19a8:	ubfx	x14, x6, #8, #8
+    19ac:	ldr	w16, [x4, x16, lsl #2]
+    19b0:	ldr	w17, [x5, x17, lsl #2]
+    19b4:	lsr	w15, w6, #24
+    19b8:	ldr	w12, [x2, x12, lsl #2]
+    19bc:	ldr	w8, [x3, x8, lsl #2]
+    19c0:	ldr	w14, [x4, x14, lsl #2]
+    19c4:	eor	w12, w12, w17
+    19c8:	ldr	w9, [x5, x9, lsl #2]
+    19cc:	eor	w8, w8, w16
+    19d0:	stp	w13, w6, [x1, #8]
+    19d4:	eor	w12, w12, w8
+    19d8:	eor	w9, w9, w14
+    19dc:	ldr	w15, [x2, x15, lsl #2]
+    19e0:	ldp	w14, w8, [x0, #40]
+    19e4:	ldr	w11, [x3, x11, lsl #2]
+    19e8:	eor	w12, w12, w14
+    19ec:	eor	w11, w11, w15
+    19f0:	eor	w8, w12, w8
+    19f4:	eor	w9, w9, w11
+    19f8:	eor	w12, w7, w12, ror #8
+    19fc:	eor	w9, w9, w8
+    1a00:	eor	w10, w10, w9
+    1a04:	eor	w12, w12, w9
+    1a08:	and	x16, x10, #0xff
+    1a0c:	and	x8, x12, #0xff
+    1a10:	ubfx	x11, x10, #16, #8
+    1a14:	ubfx	x17, x10, #8, #8
+    1a18:	lsr	w7, w10, #24
+    1a1c:	ubfx	x15, x12, #8, #8
+    1a20:	lsr	w14, w12, #24
+    1a24:	ubfx	x9, x12, #16, #8
+    1a28:	ldr	w17, [x5, x17, lsl #2]
+    1a2c:	ldr	w16, [x4, x16, lsl #2]
+    1a30:	ldr	w11, [x2, x11, lsl #2]
+    1a34:	ldr	w7, [x3, x7, lsl #2]
+    1a38:	stp	w10, w12, [x1]
+    1a3c:	eor	w11, w11, w17
+    1a40:	ldr	w9, [x5, x9, lsl #2]
+    1a44:	eor	w7, w7, w16
+    1a48:	ldr	w8, [x3, x8, lsl #2]
+    1a4c:	eor	w11, w11, w7
+    1a50:	ldr	w16, [x4, x15, lsl #2]
+    1a54:	ldr	w15, [x0, #48]
+    1a58:	ldr	w14, [x2, x14, lsl #2]
+    1a5c:	eor	w9, w9, w16
+    1a60:	ldr	w7, [x0, #52]
+    1a64:	eor	w11, w11, w15
+    1a68:	eor	w8, w8, w14
+    1a6c:	eor	w7, w11, w7
+    1a70:	eor	w9, w9, w8
+    1a74:	eor	w9, w9, w7
+    1a78:	eor	w11, w6, w11, ror #8
+    1a7c:	eor	w13, w13, w9
+    1a80:	eor	w11, w11, w9
+    1a84:	and	x16, x13, #0xff
+    1a88:	and	x7, x11, #0xff
+    1a8c:	ubfx	x9, x13, #16, #8
+    1a90:	ubfx	x17, x13, #8, #8
+    1a94:	lsr	w6, w13, #24
+    1a98:	ubfx	x8, x11, #16, #8
+    1a9c:	ubfx	x14, x11, #8, #8
+    1aa0:	ldr	w16, [x4, x16, lsl #2]
+    1aa4:	ldr	w17, [x5, x17, lsl #2]
+    1aa8:	lsr	w15, w11, #24
+    1aac:	ldr	w9, [x2, x9, lsl #2]
+    1ab0:	ldr	w6, [x3, x6, lsl #2]
+    1ab4:	ldr	w14, [x4, x14, lsl #2]
+    1ab8:	eor	w9, w9, w17
+    1abc:	ldr	w8, [x5, x8, lsl #2]
+    1ac0:	eor	w6, w6, w16
+    1ac4:	stp	w13, w11, [x1, #8]
+    1ac8:	eor	w9, w9, w6
+    1acc:	eor	w8, w8, w14
+    1ad0:	ldr	w15, [x2, x15, lsl #2]
+    1ad4:	ldp	w14, w6, [x0, #56]
+    1ad8:	ldr	w7, [x3, x7, lsl #2]
+    1adc:	eor	w9, w9, w14
+    1ae0:	eor	w7, w7, w15
+    1ae4:	eor	w6, w9, w6
+    1ae8:	eor	w8, w8, w7
+    1aec:	eor	w9, w12, w9, ror #8
+    1af0:	eor	w8, w8, w6
+    1af4:	eor	w10, w10, w8
+    1af8:	eor	w8, w9, w8
+    1afc:	stp	w10, w8, [x1]
+    1b00:	ldr	w6, [x0, #64]
+    1b04:	and	w6, w10, w6
+    1b08:	eor	w8, w8, w6, ror #31
+    1b0c:	str	w8, [x1, #4]
+    1b10:	and	x9, x8, #0xff
+    1b14:	ldr	w7, [x0, #68]
+    1b18:	ubfx	x6, x8, #16, #8
+    1b1c:	ubfx	x18, x8, #8, #8
+    1b20:	lsr	w16, w8, #24
+    1b24:	orr	w7, w8, w7
+    1b28:	ldr	w15, [x3, x9, lsl #2]
+    1b2c:	eor	w7, w7, w10
+    1b30:	str	w7, [x1]
+    1b34:	ldr	w10, [x5, x6, lsl #2]
+    1b38:	and	x17, x7, #0xff
+    1b3c:	ldr	w6, [x0, #76]
+    1b40:	ubfx	x9, x7, #8, #8
+    1b44:	ubfx	x12, x7, #16, #8
+    1b48:	lsr	w14, w7, #24
+    1b4c:	orr	w6, w11, w6
+    1b50:	ldr	w17, [x4, x17, lsl #2]
+    1b54:	eor	w6, w6, w13
+    1b58:	str	w6, [x1, #8]
+    1b5c:	ldr	w13, [x5, x9, lsl #2]
+    1b60:	ldr	w9, [x0, #72]
+    1b64:	ldr	w12, [x2, x12, lsl #2]
+    1b68:	and	w9, w6, w9
+    1b6c:	ldr	w14, [x3, x14, lsl #2]
+    1b70:	eor	w12, w12, w13
+    1b74:	ldr	w13, [x4, x18, lsl #2]
+    1b78:	eor	w11, w11, w9, ror #31
+    1b7c:	str	w11, [x1, #12]
+    1b80:	eor	w9, w14, w17
+    1b84:	eor	w10, w10, w13
+    1b88:	ldr	w14, [x0, #80]
+    1b8c:	eor	w9, w12, w9
+    1b90:	ldr	w13, [x2, x16, lsl #2]
+    1b94:	ldr	w12, [x0, #84]
+    1b98:	eor	w9, w9, w14
+    1b9c:	eor	w13, w15, w13
+    1ba0:	eor	w12, w9, w12
+    1ba4:	eor	w10, w10, w13
+    1ba8:	eor	w10, w10, w12
+    1bac:	eor	w9, w11, w9, ror #8
+    1bb0:	eor	w6, w6, w10
+    1bb4:	eor	w9, w9, w10
+    1bb8:	and	x16, x6, #0xff
+    1bbc:	and	x13, x9, #0xff
+    1bc0:	ubfx	x11, x6, #16, #8
+    1bc4:	ubfx	x17, x6, #8, #8
+    1bc8:	lsr	w12, w6, #24
+    1bcc:	ubfx	x10, x9, #16, #8
+    1bd0:	ubfx	x14, x9, #8, #8
+    1bd4:	ldr	w16, [x4, x16, lsl #2]
+    1bd8:	ldr	w17, [x5, x17, lsl #2]
+    1bdc:	lsr	w15, w9, #24
+    1be0:	ldr	w11, [x2, x11, lsl #2]
+    1be4:	ldr	w12, [x3, x12, lsl #2]
+    1be8:	ldr	w14, [x4, x14, lsl #2]
+    1bec:	eor	w11, w11, w17
+    1bf0:	ldr	w10, [x5, x10, lsl #2]
+    1bf4:	eor	w12, w12, w16
+    1bf8:	stp	w6, w9, [x1, #8]
+    1bfc:	eor	w11, w11, w12
+    1c00:	eor	w10, w10, w14
+    1c04:	ldr	w15, [x2, x15, lsl #2]
+    1c08:	ldp	w14, w12, [x0, #88]
+    1c0c:	ldr	w13, [x3, x13, lsl #2]
+    1c10:	eor	w11, w11, w14
+    1c14:	eor	w13, w13, w15
+    1c18:	eor	w12, w11, w12
+    1c1c:	eor	w10, w10, w13
+    1c20:	eor	w11, w8, w11, ror #8
+    1c24:	eor	w10, w10, w12
+    1c28:	eor	w7, w7, w10
+    1c2c:	eor	w11, w11, w10
+    1c30:	and	x16, x7, #0xff
+    1c34:	and	x12, x11, #0xff
+    1c38:	ubfx	x10, x7, #16, #8
+    1c3c:	ubfx	x17, x7, #8, #8
+    1c40:	lsr	w8, w7, #24
+    1c44:	ubfx	x14, x11, #16, #8
+    1c48:	ubfx	x13, x11, #8, #8
+    1c4c:	ldr	w16, [x4, x16, lsl #2]
+    1c50:	ldr	w17, [x5, x17, lsl #2]
+    1c54:	lsr	w15, w11, #24
+    1c58:	ldr	w10, [x2, x10, lsl #2]
+    1c5c:	ldr	w8, [x3, x8, lsl #2]
+    1c60:	ldr	w13, [x4, x13, lsl #2]
+    1c64:	eor	w10, w10, w17
+    1c68:	ldr	w14, [x5, x14, lsl #2]
+    1c6c:	eor	w8, w8, w16
+    1c70:	stp	w7, w11, [x1]
+    1c74:	eor	w10, w10, w8
+    1c78:	eor	w14, w14, w13
+    1c7c:	ldr	w15, [x2, x15, lsl #2]
+    1c80:	ldp	w13, w8, [x0, #96]
+    1c84:	ldr	w12, [x3, x12, lsl #2]
+    1c88:	eor	w10, w10, w13
+    1c8c:	eor	w12, w12, w15
+    1c90:	eor	w8, w10, w8
+    1c94:	eor	w14, w14, w12
+    1c98:	eor	w10, w9, w10, ror #8
+    1c9c:	eor	w14, w14, w8
+    1ca0:	eor	w6, w6, w14
+    1ca4:	eor	w14, w10, w14
+    1ca8:	and	x17, x6, #0xff
+    1cac:	and	x16, x14, #0xff
+    1cb0:	ubfx	x10, x6, #16, #8
+    1cb4:	ubfx	x15, x6, #8, #8
+    1cb8:	lsr	w8, w6, #24
+    1cbc:	ubfx	x13, x14, #16, #8
+    1cc0:	ubfx	x9, x14, #8, #8
+    1cc4:	ldr	w17, [x4, x17, lsl #2]
+    1cc8:	ldr	w10, [x2, x10, lsl #2]
+    1ccc:	lsr	w12, w14, #24
+    1cd0:	ldr	w15, [x5, x15, lsl #2]
+    1cd4:	ldr	w8, [x3, x8, lsl #2]
+    1cd8:	stp	w6, w14, [x1, #8]
+    1cdc:	eor	w10, w10, w15
+    1ce0:	eor	w8, w8, w17
+    1ce4:	ldr	w15, [x0, #104]
+    1ce8:	eor	w10, w10, w8
+    1cec:	ldr	w9, [x4, x9, lsl #2]
+    1cf0:	ldr	w13, [x5, x13, lsl #2]
+    1cf4:	eor	w10, w10, w15
+    1cf8:	ldr	w8, [x3, x16, lsl #2]
+    1cfc:	ldr	w12, [x2, x12, lsl #2]
+    1d00:	eor	w13, w13, w9
+    1d04:	ldr	w9, [x0, #108]
+    1d08:	eor	w11, w11, w10, ror #8
+    1d0c:	eor	w8, w8, w12
+    1d10:	eor	w10, w10, w9
+    1d14:	eor	w13, w13, w8
+    1d18:	eor	w13, w13, w10
+    1d1c:	eor	w7, w7, w13
+    1d20:	eor	w8, w11, w13
+    1d24:	and	x16, x7, #0xff
+    1d28:	and	x11, x8, #0xff
+    1d2c:	ubfx	x9, x7, #16, #8
+    1d30:	ubfx	x17, x7, #8, #8
+    1d34:	lsr	w10, w7, #24
+    1d38:	ubfx	x12, x8, #16, #8
+    1d3c:	ubfx	x13, x8, #8, #8
+    1d40:	ldr	w16, [x4, x16, lsl #2]
+    1d44:	ldr	w17, [x5, x17, lsl #2]
+    1d48:	lsr	w15, w8, #24
+    1d4c:	ldr	w9, [x2, x9, lsl #2]
+    1d50:	ldr	w10, [x3, x10, lsl #2]
+    1d54:	ldr	w13, [x4, x13, lsl #2]
+    1d58:	eor	w9, w9, w17
+    1d5c:	ldr	w12, [x5, x12, lsl #2]
+    1d60:	eor	w10, w10, w16
+    1d64:	stp	w7, w8, [x1]
+    1d68:	eor	w9, w9, w10
+    1d6c:	eor	w12, w12, w13
+    1d70:	ldr	w15, [x2, x15, lsl #2]
+    1d74:	ldp	w13, w10, [x0, #112]
+    1d78:	ldr	w11, [x3, x11, lsl #2]
+    1d7c:	eor	w9, w9, w13
+    1d80:	eor	w11, w11, w15
+    1d84:	eor	w10, w9, w10
+    1d88:	eor	w12, w12, w11
+    1d8c:	eor	w9, w14, w9, ror #8
+    1d90:	eor	w12, w12, w10
+    1d94:	eor	w10, w6, w12
+    1d98:	eor	w15, w9, w12
+    1d9c:	and	x16, x10, #0xff
+    1da0:	and	x12, x15, #0xff
+    1da4:	ubfx	x9, x10, #16, #8
+    1da8:	ubfx	x17, x10, #8, #8
+    1dac:	lsr	w6, w10, #24
+    1db0:	ubfx	x11, x15, #16, #8
+    1db4:	ubfx	x13, x15, #8, #8
+    1db8:	ldr	w16, [x4, x16, lsl #2]
+    1dbc:	ldr	w17, [x5, x17, lsl #2]
+    1dc0:	lsr	w14, w15, #24
+    1dc4:	ldr	w9, [x2, x9, lsl #2]
+    1dc8:	ldr	w6, [x3, x6, lsl #2]
+    1dcc:	ldr	w13, [x4, x13, lsl #2]
+    1dd0:	eor	w9, w9, w17
+    1dd4:	ldr	w11, [x5, x11, lsl #2]
+    1dd8:	eor	w6, w6, w16
+    1ddc:	stp	w10, w15, [x1, #8]
+    1de0:	eor	w9, w9, w6
+    1de4:	eor	w11, w11, w13
+    1de8:	ldr	w14, [x2, x14, lsl #2]
+    1dec:	ldp	w13, w6, [x0, #120]
+    1df0:	ldr	w12, [x3, x12, lsl #2]
+    1df4:	eor	w9, w9, w13
+    1df8:	eor	w12, w12, w14
+    1dfc:	eor	w6, w9, w6
+    1e00:	eor	w11, w11, w12
+    1e04:	eor	w8, w8, w9, ror #8
+    1e08:	eor	w11, w11, w6
+    1e0c:	eor	w7, w7, w11
+    1e10:	eor	w8, w8, w11
+    1e14:	stp	w7, w8, [x1]
+    1e18:	ldr	w11, [x0, #128]
+    1e1c:	and	w11, w7, w11
+    1e20:	eor	w8, w8, w11, ror #31
+    1e24:	str	w8, [x1, #4]
+    1e28:	and	x11, x8, #0xff
+    1e2c:	ldr	w6, [x0, #132]
+    1e30:	ubfx	x9, x8, #16, #8
+    1e34:	lsr	w16, w8, #24
+    1e38:	ubfx	x17, x8, #8, #8
+    1e3c:	orr	w6, w8, w6
+    1e40:	ldr	w11, [x3, x11, lsl #2]
+    1e44:	eor	w7, w6, w7
+    1e48:	str	w7, [x1]
+    1e4c:	ldr	w14, [x5, x9, lsl #2]
+    1e50:	and	x18, x7, #0xff
+    1e54:	ldr	w6, [x0, #140]
+    1e58:	ubfx	x9, x7, #8, #8
+    1e5c:	ubfx	x13, x7, #16, #8
+    1e60:	lsr	w12, w7, #24
+    1e64:	orr	w6, w15, w6
+    1e68:	ldr	w18, [x4, x18, lsl #2]
+    1e6c:	eor	w6, w6, w10
+    1e70:	str	w6, [x1, #8]
+    1e74:	ldr	w10, [x5, x9, lsl #2]
+    1e78:	ldr	w9, [x0, #136]
+    1e7c:	ldr	w13, [x2, x13, lsl #2]
+    1e80:	and	w9, w6, w9
+    1e84:	ldr	w12, [x3, x12, lsl #2]
+    1e88:	eor	w13, w13, w10
+    1e8c:	ldr	w17, [x4, x17, lsl #2]
+    1e90:	eor	w9, w15, w9, ror #31
+    1e94:	str	w9, [x1, #12]
+    1e98:	ldr	w15, [x2, x16, lsl #2]
+    1e9c:	eor	w12, w12, w18
+    1ea0:	ldp	w16, w10, [x0, #144]
+    1ea4:	eor	w12, w13, w12
+    1ea8:	eor	w11, w11, w15
+    1eac:	eor	w13, w14, w17
+    1eb0:	eor	w12, w12, w16
+    1eb4:	eor	w13, w13, w11
+    1eb8:	eor	w10, w12, w10
+    1ebc:	eor	w13, w13, w10
+    1ec0:	eor	w12, w9, w12, ror #8
+    1ec4:	eor	w6, w6, w13
+    1ec8:	eor	w12, w12, w13
+    1ecc:	and	x16, x6, #0xff
+    1ed0:	and	x13, x12, #0xff
+    1ed4:	ubfx	x17, x6, #8, #8
+    1ed8:	ubfx	x11, x6, #16, #8
+    1edc:	lsr	w10, w6, #24
+    1ee0:	ubfx	x9, x12, #16, #8
+    1ee4:	ubfx	x14, x12, #8, #8
+    1ee8:	ldr	w16, [x4, x16, lsl #2]
+    1eec:	ldr	w17, [x5, x17, lsl #2]
+    1ef0:	lsr	w15, w12, #24
+    1ef4:	ldr	w11, [x2, x11, lsl #2]
+    1ef8:	ldr	w10, [x3, x10, lsl #2]
+    1efc:	ldr	w14, [x4, x14, lsl #2]
+    1f00:	eor	w11, w11, w17
+    1f04:	ldr	w9, [x5, x9, lsl #2]
+    1f08:	eor	w10, w10, w16
+    1f0c:	stp	w6, w12, [x1, #8]
+    1f10:	eor	w11, w11, w10
+    1f14:	eor	w9, w9, w14
+    1f18:	ldr	w15, [x2, x15, lsl #2]
+    1f1c:	ldp	w14, w10, [x0, #152]
+    1f20:	ldr	w13, [x3, x13, lsl #2]
+    1f24:	eor	w11, w11, w14
+    1f28:	eor	w13, w13, w15
+    1f2c:	eor	w10, w11, w10
+    1f30:	eor	w9, w9, w13
+    1f34:	eor	w11, w8, w11, ror #8
+    1f38:	eor	w9, w9, w10
+    1f3c:	eor	w7, w7, w9
+    1f40:	eor	w11, w11, w9
+    1f44:	and	x16, x7, #0xff
+    1f48:	stp	w7, w11, [x1]
+    1f4c:	ubfx	x17, x7, #8, #8
+    1f50:	ubfx	x10, x7, #16, #8
+    1f54:	lsr	w9, w7, #24
+    1f58:	ubfx	x8, x11, #16, #8
+    1f5c:	ubfx	x14, x11, #8, #8
+    1f60:	and	x13, x11, #0xff
+    1f64:	ldr	w10, [x2, x10, lsl #2]
+    1f68:	lsr	w15, w11, #24
+    1f6c:	ldr	w17, [x5, x17, lsl #2]
+    1f70:	ldr	w16, [x4, x16, lsl #2]
+    1f74:	ldr	w9, [x3, x9, lsl #2]
+    1f78:	eor	w10, w10, w17
+    1f7c:	ldr	w14, [x4, x14, lsl #2]
+    1f80:	ldr	w8, [x5, x8, lsl #2]
+    1f84:	eor	w9, w9, w16
+    1f88:	eor	w10, w10, w9
+    1f8c:	ldr	w15, [x2, x15, lsl #2]
+    1f90:	eor	w8, w8, w14
+    1f94:	ldr	w13, [x3, x13, lsl #2]
+    1f98:	ldp	w14, w9, [x0, #160]
+    1f9c:	eor	w13, w13, w15
+    1fa0:	eor	w8, w8, w13
+    1fa4:	eor	w10, w10, w14
+    1fa8:	eor	w9, w10, w9
+    1fac:	eor	w8, w8, w9
+    1fb0:	eor	w10, w12, w10, ror #8
+    1fb4:	eor	w12, w6, w8
+    1fb8:	eor	w10, w10, w8
+    1fbc:	and	x16, x12, #0xff
+    1fc0:	and	x8, x10, #0xff
+    1fc4:	ubfx	x17, x12, #8, #8
+    1fc8:	ubfx	x9, x12, #16, #8
+    1fcc:	lsr	w6, w12, #24
+    1fd0:	ubfx	x13, x10, #16, #8
+    1fd4:	ubfx	x14, x10, #8, #8
+    1fd8:	ldr	w16, [x4, x16, lsl #2]
+    1fdc:	ldr	w17, [x5, x17, lsl #2]
+    1fe0:	lsr	w15, w10, #24
+    1fe4:	ldr	w9, [x2, x9, lsl #2]
+    1fe8:	ldr	w6, [x3, x6, lsl #2]
+    1fec:	ldr	w14, [x4, x14, lsl #2]
+    1ff0:	eor	w9, w9, w17
+    1ff4:	ldr	w13, [x5, x13, lsl #2]
+    1ff8:	eor	w6, w6, w16
+    1ffc:	stp	w12, w10, [x1, #8]
+    2000:	eor	w9, w9, w6
+    2004:	eor	w13, w13, w14
+    2008:	ldr	w15, [x2, x15, lsl #2]
+    200c:	ldp	w14, w6, [x0, #168]
+    2010:	ldr	w8, [x3, x8, lsl #2]
+    2014:	eor	w9, w9, w14
+    2018:	eor	w8, w8, w15
+    201c:	eor	w6, w9, w6
+    2020:	eor	w13, w13, w8
+    2024:	eor	w9, w11, w9, ror #8
+    2028:	eor	w13, w13, w6
+    202c:	eor	w7, w7, w13
+    2030:	eor	w9, w9, w13
+    2034:	and	x16, x7, #0xff
+    2038:	and	x13, x9, #0xff
+    203c:	ubfx	x17, x7, #8, #8
+    2040:	ubfx	x8, x7, #16, #8
+    2044:	lsr	w11, w7, #24
+    2048:	ubfx	x15, x9, #8, #8
+    204c:	lsr	w14, w9, #24
+    2050:	ubfx	x6, x9, #16, #8
+    2054:	ldr	w17, [x5, x17, lsl #2]
+    2058:	ldr	w16, [x4, x16, lsl #2]
+    205c:	ldr	w8, [x2, x8, lsl #2]
+    2060:	ldr	w11, [x3, x11, lsl #2]
+    2064:	stp	w7, w9, [x1]
+    2068:	eor	w8, w8, w17
+    206c:	ldr	w6, [x5, x6, lsl #2]
+    2070:	eor	w11, w11, w16
+    2074:	ldr	w13, [x3, x13, lsl #2]
+    2078:	eor	w8, w8, w11
+    207c:	ldr	w16, [x4, x15, lsl #2]
+    2080:	ldr	w15, [x0, #176]
+    2084:	ldr	w14, [x2, x14, lsl #2]
+    2088:	eor	w6, w6, w16
+    208c:	ldr	w11, [x0, #180]
+    2090:	eor	w8, w8, w15
+    2094:	eor	w13, w13, w14
+    2098:	eor	w11, w8, w11
+    209c:	eor	w6, w6, w13
+    20a0:	eor	w6, w6, w11
+    20a4:	eor	w8, w10, w8, ror #8
+    20a8:	eor	w10, w12, w6
+    20ac:	eor	w6, w8, w6
+    20b0:	and	x15, x10, #0xff
+    20b4:	and	x11, x6, #0xff
+    20b8:	ubfx	x17, x10, #8, #8
+    20bc:	ubfx	x8, x10, #16, #8
+    20c0:	lsr	w12, w10, #24
+    20c4:	ubfx	x16, x6, #16, #8
+    20c8:	ubfx	x14, x6, #8, #8
+    20cc:	ldr	w15, [x4, x15, lsl #2]
+    20d0:	ldr	w17, [x5, x17, lsl #2]
+    20d4:	lsr	w13, w6, #24
+    20d8:	ldr	w8, [x2, x8, lsl #2]
+    20dc:	ldr	w12, [x3, x12, lsl #2]
+    20e0:	ldr	w5, [x5, x16, lsl #2]
+    20e4:	eor	w8, w8, w17
+    20e8:	ldr	w4, [x4, x14, lsl #2]
+    20ec:	eor	w12, w12, w15
+    20f0:	stp	w10, w6, [x1, #8]
+    20f4:	ldr	w11, [x3, x11, lsl #2]
+    20f8:	eor	w3, w8, w12
+    20fc:	ldr	w12, [x2, x13, lsl #2]
+    2100:	eor	w2, w5, w4
+    2104:	ldp	w8, w4, [x0, #184]
+    2108:	eor	w5, w11, w12
+    210c:	eor	w2, w2, w5
+    2110:	eor	w3, w3, w8
+    2114:	eor	w4, w3, w4
+    2118:	eor	w2, w2, w4
+    211c:	eor	w3, w9, w3, ror #8
+    2120:	eor	w7, w7, w2
+    2124:	eor	w2, w3, w2
+    2128:	stp	w7, w2, [x1]
+    212c:	ldr	w3, [x0, #192]
+    2130:	eor	w3, w10, w3
+    2134:	str	w3, [x1, #8]
+    2138:	ldr	w0, [x0, #196]
+    213c:	stp	w7, w2, [x1, #8]
+    2140:	eor	w6, w6, w0
+    2144:	stp	w3, w6, [x1]
+    2148:	ret
+    214c:	nop
+	...
+
+0000000000002158 <camellia_decrypt128>:
+    2158:	ldp	w10, w7, [x1]
+    215c:	adrp	x2, 0 <camellia_decrypt>
+    2160:	ldr	w3, [x0, #192]
+    2164:	ldr	x2, [x2]
+    2168:	eor	w10, w10, w3
+    216c:	str	w10, [x1]
+    2170:	and	x14, x10, #0xff
+    2174:	add	x5, x2, #0x400
+    2178:	add	x4, x2, #0xc00
+    217c:	ldr	w3, [x0, #196]
+    2180:	ubfx	x8, x10, #16, #8
+    2184:	ubfx	x15, x10, #8, #8
+    2188:	lsr	w11, w10, #24
+    218c:	eor	w9, w7, w3
+    2190:	add	x3, x2, #0x800
+    2194:	and	x7, x9, #0xff
+    2198:	ldr	w14, [x4, x14, lsl #2]
+    219c:	ubfx	x6, x9, #16, #8
+    21a0:	ubfx	x12, x9, #8, #8
+    21a4:	lsr	w13, w9, #24
+    21a8:	ldr	w15, [x5, x15, lsl #2]
+    21ac:	ldr	w8, [x2, x8, lsl #2]
+    21b0:	ldr	w11, [x3, x11, lsl #2]
+    21b4:	ldr	w12, [x4, x12, lsl #2]
+    21b8:	eor	w8, w8, w15
+    21bc:	ldr	w6, [x5, x6, lsl #2]
+    21c0:	eor	w11, w11, w14
+    21c4:	str	w9, [x1, #4]
+    21c8:	eor	w8, w8, w11
+    21cc:	ldr	w13, [x2, x13, lsl #2]
+    21d0:	eor	w6, w6, w12
+    21d4:	ldr	w7, [x3, x7, lsl #2]
+    21d8:	ldp	w12, w11, [x0, #184]
+    21dc:	eor	w7, w7, w13
+    21e0:	eor	w6, w6, w7
+    21e4:	ldp	w13, w7, [x1, #8]
+    21e8:	eor	w8, w8, w12
+    21ec:	eor	w11, w8, w11
+    21f0:	eor	w6, w6, w11
+    21f4:	eor	w13, w6, w13
+    21f8:	eor	w8, w7, w8, ror #8
+    21fc:	eor	w8, w8, w6
+    2200:	and	x16, x13, #0xff
+    2204:	ubfx	x7, x13, #16, #8
+    2208:	ubfx	x17, x13, #8, #8
+    220c:	lsr	w6, w13, #24
+    2210:	ubfx	x12, x8, #16, #8
+    2214:	ubfx	x14, x8, #8, #8
+    2218:	ldr	w16, [x4, x16, lsl #2]
+    221c:	ldr	w17, [x5, x17, lsl #2]
+    2220:	and	x11, x8, #0xff
+    2224:	ldr	w7, [x2, x7, lsl #2]
+    2228:	lsr	w15, w8, #24
+    222c:	ldr	w6, [x3, x6, lsl #2]
+    2230:	ldr	w14, [x4, x14, lsl #2]
+    2234:	eor	w7, w7, w17
+    2238:	ldr	w12, [x5, x12, lsl #2]
+    223c:	eor	w6, w6, w16
+    2240:	stp	w13, w8, [x1, #8]
+    2244:	eor	w7, w7, w6
+    2248:	eor	w12, w12, w14
+    224c:	ldr	w15, [x2, x15, lsl #2]
+    2250:	ldp	w14, w6, [x0, #176]
+    2254:	ldr	w11, [x3, x11, lsl #2]
+    2258:	eor	w7, w7, w14
+    225c:	eor	w11, w11, w15
+    2260:	eor	w6, w7, w6
+    2264:	eor	w12, w12, w11
+    2268:	eor	w7, w9, w7, ror #8
+    226c:	eor	w12, w12, w6
+    2270:	eor	w10, w10, w12
+    2274:	eor	w7, w7, w12
+    2278:	and	x16, x10, #0xff
+    227c:	stp	w10, w7, [x1]
+    2280:	ubfx	x6, x10, #16, #8
+    2284:	ubfx	x17, x10, #8, #8
+    2288:	lsr	w9, w10, #24
+    228c:	ubfx	x11, x7, #16, #8
+    2290:	ubfx	x14, x7, #8, #8
+    2294:	ldr	w16, [x4, x16, lsl #2]
+    2298:	ldr	w17, [x5, x17, lsl #2]
+    229c:	and	x12, x7, #0xff
+    22a0:	ldr	w6, [x2, x6, lsl #2]
+    22a4:	lsr	w15, w7, #24
+    22a8:	ldr	w9, [x3, x9, lsl #2]
+    22ac:	ldr	w14, [x4, x14, lsl #2]
+    22b0:	eor	w6, w6, w17
+    22b4:	ldr	w11, [x5, x11, lsl #2]
+    22b8:	eor	w9, w9, w16
+    22bc:	eor	w6, w6, w9
+    22c0:	ldr	w15, [x2, x15, lsl #2]
+    22c4:	eor	w11, w11, w14
+    22c8:	ldr	w12, [x3, x12, lsl #2]
+    22cc:	ldp	w14, w9, [x0, #168]
+    22d0:	eor	w12, w12, w15
+    22d4:	eor	w11, w11, w12
+    22d8:	eor	w6, w6, w14
+    22dc:	eor	w9, w6, w9
+    22e0:	eor	w11, w11, w9
+    22e4:	eor	w6, w8, w6, ror #8
+    22e8:	eor	w13, w13, w11
+    22ec:	eor	w6, w6, w11
+    22f0:	and	x16, x13, #0xff
+    22f4:	and	x11, x6, #0xff
+    22f8:	ubfx	x12, x13, #16, #8
+    22fc:	ubfx	x17, x13, #8, #8
+    2300:	lsr	w8, w13, #24
+    2304:	ubfx	x9, x6, #16, #8
+    2308:	ubfx	x14, x6, #8, #8
+    230c:	ldr	w16, [x4, x16, lsl #2]
+    2310:	ldr	w17, [x5, x17, lsl #2]
+    2314:	lsr	w15, w6, #24
+    2318:	ldr	w12, [x2, x12, lsl #2]
+    231c:	ldr	w8, [x3, x8, lsl #2]
+    2320:	ldr	w14, [x4, x14, lsl #2]
+    2324:	eor	w12, w12, w17
+    2328:	ldr	w9, [x5, x9, lsl #2]
+    232c:	eor	w8, w8, w16
+    2330:	stp	w13, w6, [x1, #8]
+    2334:	eor	w12, w12, w8
+    2338:	eor	w9, w9, w14
+    233c:	ldr	w15, [x2, x15, lsl #2]
+    2340:	ldp	w14, w8, [x0, #160]
+    2344:	ldr	w11, [x3, x11, lsl #2]
+    2348:	eor	w12, w12, w14
+    234c:	eor	w11, w11, w15
+    2350:	eor	w8, w12, w8
+    2354:	eor	w9, w9, w11
+    2358:	eor	w12, w7, w12, ror #8
+    235c:	eor	w9, w9, w8
+    2360:	eor	w10, w10, w9
+    2364:	eor	w12, w12, w9
+    2368:	and	x16, x10, #0xff
+    236c:	and	x8, x12, #0xff
+    2370:	ubfx	x11, x10, #16, #8
+    2374:	ubfx	x17, x10, #8, #8
+    2378:	lsr	w7, w10, #24
+    237c:	ubfx	x15, x12, #8, #8
+    2380:	lsr	w14, w12, #24
+    2384:	ubfx	x9, x12, #16, #8
+    2388:	ldr	w17, [x5, x17, lsl #2]
+    238c:	ldr	w16, [x4, x16, lsl #2]
+    2390:	ldr	w11, [x2, x11, lsl #2]
+    2394:	ldr	w7, [x3, x7, lsl #2]
+    2398:	stp	w10, w12, [x1]
+    239c:	eor	w11, w11, w17
+    23a0:	ldr	w9, [x5, x9, lsl #2]
+    23a4:	eor	w7, w7, w16
+    23a8:	ldr	w8, [x3, x8, lsl #2]
+    23ac:	eor	w11, w11, w7
+    23b0:	ldr	w16, [x4, x15, lsl #2]
+    23b4:	ldr	w15, [x0, #152]
+    23b8:	ldr	w14, [x2, x14, lsl #2]
+    23bc:	eor	w9, w9, w16
+    23c0:	ldr	w7, [x0, #156]
+    23c4:	eor	w11, w11, w15
+    23c8:	eor	w8, w8, w14
+    23cc:	eor	w7, w11, w7
+    23d0:	eor	w9, w9, w8
+    23d4:	eor	w9, w9, w7
+    23d8:	eor	w11, w6, w11, ror #8
+    23dc:	eor	w13, w13, w9
+    23e0:	eor	w11, w11, w9
+    23e4:	and	x16, x13, #0xff
+    23e8:	and	x7, x11, #0xff
+    23ec:	ubfx	x9, x13, #16, #8
+    23f0:	ubfx	x17, x13, #8, #8
+    23f4:	lsr	w6, w13, #24
+    23f8:	ubfx	x8, x11, #16, #8
+    23fc:	ubfx	x14, x11, #8, #8
+    2400:	ldr	w16, [x4, x16, lsl #2]
+    2404:	ldr	w17, [x5, x17, lsl #2]
+    2408:	lsr	w15, w11, #24
+    240c:	ldr	w9, [x2, x9, lsl #2]
+    2410:	ldr	w6, [x3, x6, lsl #2]
+    2414:	ldr	w14, [x4, x14, lsl #2]
+    2418:	eor	w9, w9, w17
+    241c:	ldr	w8, [x5, x8, lsl #2]
+    2420:	eor	w6, w6, w16
+    2424:	stp	w13, w11, [x1, #8]
+    2428:	eor	w9, w9, w6
+    242c:	eor	w8, w8, w14
+    2430:	ldr	w15, [x2, x15, lsl #2]
+    2434:	ldp	w14, w6, [x0, #144]
+    2438:	ldr	w7, [x3, x7, lsl #2]
+    243c:	eor	w9, w9, w14
+    2440:	eor	w7, w7, w15
+    2444:	eor	w6, w9, w6
+    2448:	eor	w8, w8, w7
+    244c:	eor	w9, w12, w9, ror #8
+    2450:	eor	w8, w8, w6
+    2454:	eor	w10, w10, w8
+    2458:	eor	w8, w9, w8
+    245c:	stp	w10, w8, [x1]
+    2460:	ldr	w6, [x0, #136]
+    2464:	and	w6, w10, w6
+    2468:	eor	w8, w8, w6, ror #31
+    246c:	str	w8, [x1, #4]
+    2470:	and	x9, x8, #0xff
+    2474:	ldr	w7, [x0, #140]
+    2478:	ubfx	x6, x8, #16, #8
+    247c:	ubfx	x18, x8, #8, #8
+    2480:	lsr	w16, w8, #24
+    2484:	orr	w7, w8, w7
+    2488:	ldr	w15, [x3, x9, lsl #2]
+    248c:	eor	w7, w7, w10
+    2490:	str	w7, [x1]
+    2494:	ldr	w10, [x5, x6, lsl #2]
+    2498:	and	x17, x7, #0xff
+    249c:	ldr	w6, [x0, #132]
+    24a0:	ubfx	x9, x7, #8, #8
+    24a4:	ubfx	x12, x7, #16, #8
+    24a8:	lsr	w14, w7, #24
+    24ac:	orr	w6, w11, w6
+    24b0:	ldr	w17, [x4, x17, lsl #2]
+    24b4:	eor	w6, w6, w13
+    24b8:	str	w6, [x1, #8]
+    24bc:	ldr	w13, [x5, x9, lsl #2]
+    24c0:	ldr	w9, [x0, #128]
+    24c4:	ldr	w12, [x2, x12, lsl #2]
+    24c8:	and	w9, w6, w9
+    24cc:	ldr	w14, [x3, x14, lsl #2]
+    24d0:	eor	w12, w12, w13
+    24d4:	ldr	w13, [x4, x18, lsl #2]
+    24d8:	eor	w11, w11, w9, ror #31
+    24dc:	str	w11, [x1, #12]
+    24e0:	eor	w9, w14, w17
+    24e4:	eor	w10, w10, w13
+    24e8:	ldr	w14, [x0, #120]
+    24ec:	eor	w9, w12, w9
+    24f0:	ldr	w13, [x2, x16, lsl #2]
+    24f4:	ldr	w12, [x0, #124]
+    24f8:	eor	w9, w9, w14
+    24fc:	eor	w13, w15, w13
+    2500:	eor	w12, w9, w12
+    2504:	eor	w10, w10, w13
+    2508:	eor	w10, w10, w12
+    250c:	eor	w9, w11, w9, ror #8
+    2510:	eor	w6, w6, w10
+    2514:	eor	w9, w9, w10
+    2518:	and	x16, x6, #0xff
+    251c:	and	x13, x9, #0xff
+    2520:	ubfx	x11, x6, #16, #8
+    2524:	ubfx	x17, x6, #8, #8
+    2528:	lsr	w12, w6, #24
+    252c:	ubfx	x10, x9, #16, #8
+    2530:	ubfx	x14, x9, #8, #8
+    2534:	ldr	w16, [x4, x16, lsl #2]
+    2538:	ldr	w17, [x5, x17, lsl #2]
+    253c:	lsr	w15, w9, #24
+    2540:	ldr	w11, [x2, x11, lsl #2]
+    2544:	ldr	w12, [x3, x12, lsl #2]
+    2548:	ldr	w14, [x4, x14, lsl #2]
+    254c:	eor	w11, w11, w17
+    2550:	ldr	w10, [x5, x10, lsl #2]
+    2554:	eor	w12, w12, w16
+    2558:	stp	w6, w9, [x1, #8]
+    255c:	eor	w11, w11, w12
+    2560:	eor	w10, w10, w14
+    2564:	ldr	w15, [x2, x15, lsl #2]
+    2568:	ldp	w14, w12, [x0, #112]
+    256c:	ldr	w13, [x3, x13, lsl #2]
+    2570:	eor	w11, w11, w14
+    2574:	eor	w13, w13, w15
+    2578:	eor	w12, w11, w12
+    257c:	eor	w10, w10, w13
+    2580:	eor	w11, w8, w11, ror #8
+    2584:	eor	w10, w10, w12
+    2588:	eor	w7, w7, w10
+    258c:	eor	w11, w11, w10
+    2590:	and	x16, x7, #0xff
+    2594:	and	x12, x11, #0xff
+    2598:	ubfx	x10, x7, #16, #8
+    259c:	ubfx	x17, x7, #8, #8
+    25a0:	lsr	w8, w7, #24
+    25a4:	ubfx	x14, x11, #16, #8
+    25a8:	ubfx	x13, x11, #8, #8
+    25ac:	ldr	w16, [x4, x16, lsl #2]
+    25b0:	ldr	w17, [x5, x17, lsl #2]
+    25b4:	lsr	w15, w11, #24
+    25b8:	ldr	w10, [x2, x10, lsl #2]
+    25bc:	ldr	w8, [x3, x8, lsl #2]
+    25c0:	ldr	w13, [x4, x13, lsl #2]
+    25c4:	eor	w10, w10, w17
+    25c8:	ldr	w14, [x5, x14, lsl #2]
+    25cc:	eor	w8, w8, w16
+    25d0:	stp	w7, w11, [x1]
+    25d4:	eor	w10, w10, w8
+    25d8:	eor	w14, w14, w13
+    25dc:	ldr	w15, [x2, x15, lsl #2]
+    25e0:	ldp	w13, w8, [x0, #104]
+    25e4:	ldr	w12, [x3, x12, lsl #2]
+    25e8:	eor	w10, w10, w13
+    25ec:	eor	w12, w12, w15
+    25f0:	eor	w8, w10, w8
+    25f4:	eor	w14, w14, w12
+    25f8:	eor	w10, w9, w10, ror #8
+    25fc:	eor	w14, w14, w8
+    2600:	eor	w6, w6, w14
+    2604:	eor	w14, w10, w14
+    2608:	and	x17, x6, #0xff
+    260c:	and	x16, x14, #0xff
+    2610:	ubfx	x10, x6, #16, #8
+    2614:	ubfx	x15, x6, #8, #8
+    2618:	lsr	w8, w6, #24
+    261c:	ubfx	x13, x14, #16, #8
+    2620:	ubfx	x9, x14, #8, #8
+    2624:	ldr	w17, [x4, x17, lsl #2]
+    2628:	ldr	w10, [x2, x10, lsl #2]
+    262c:	lsr	w12, w14, #24
+    2630:	ldr	w15, [x5, x15, lsl #2]
+    2634:	ldr	w8, [x3, x8, lsl #2]
+    2638:	stp	w6, w14, [x1, #8]
+    263c:	eor	w10, w10, w15
+    2640:	eor	w8, w8, w17
+    2644:	ldr	w15, [x0, #96]
+    2648:	eor	w10, w10, w8
+    264c:	ldr	w9, [x4, x9, lsl #2]
+    2650:	ldr	w13, [x5, x13, lsl #2]
+    2654:	eor	w10, w10, w15
+    2658:	ldr	w8, [x3, x16, lsl #2]
+    265c:	ldr	w12, [x2, x12, lsl #2]
+    2660:	eor	w13, w13, w9
+    2664:	ldr	w9, [x0, #100]
+    2668:	eor	w11, w11, w10, ror #8
+    266c:	eor	w8, w8, w12
+    2670:	eor	w10, w10, w9
+    2674:	eor	w13, w13, w8
+    2678:	eor	w13, w13, w10
+    267c:	eor	w7, w7, w13
+    2680:	eor	w8, w11, w13
+    2684:	and	x16, x7, #0xff
+    2688:	and	x11, x8, #0xff
+    268c:	ubfx	x9, x7, #16, #8
+    2690:	ubfx	x17, x7, #8, #8
+    2694:	lsr	w10, w7, #24
+    2698:	ubfx	x12, x8, #16, #8
+    269c:	ubfx	x13, x8, #8, #8
+    26a0:	ldr	w16, [x4, x16, lsl #2]
+    26a4:	ldr	w17, [x5, x17, lsl #2]
+    26a8:	lsr	w15, w8, #24
+    26ac:	ldr	w9, [x2, x9, lsl #2]
+    26b0:	ldr	w10, [x3, x10, lsl #2]
+    26b4:	ldr	w13, [x4, x13, lsl #2]
+    26b8:	eor	w9, w9, w17
+    26bc:	ldr	w12, [x5, x12, lsl #2]
+    26c0:	eor	w10, w10, w16
+    26c4:	stp	w7, w8, [x1]
+    26c8:	eor	w9, w9, w10
+    26cc:	eor	w12, w12, w13
+    26d0:	ldr	w15, [x2, x15, lsl #2]
+    26d4:	ldp	w13, w10, [x0, #88]
+    26d8:	ldr	w11, [x3, x11, lsl #2]
+    26dc:	eor	w9, w9, w13
+    26e0:	eor	w11, w11, w15
+    26e4:	eor	w10, w9, w10
+    26e8:	eor	w12, w12, w11
+    26ec:	eor	w9, w14, w9, ror #8
+    26f0:	eor	w12, w12, w10
+    26f4:	eor	w10, w6, w12
+    26f8:	eor	w15, w9, w12
+    26fc:	and	x16, x10, #0xff
+    2700:	and	x12, x15, #0xff
+    2704:	ubfx	x9, x10, #16, #8
+    2708:	ubfx	x17, x10, #8, #8
+    270c:	lsr	w6, w10, #24
+    2710:	ubfx	x11, x15, #16, #8
+    2714:	ubfx	x13, x15, #8, #8
+    2718:	ldr	w16, [x4, x16, lsl #2]
+    271c:	ldr	w17, [x5, x17, lsl #2]
+    2720:	lsr	w14, w15, #24
+    2724:	ldr	w9, [x2, x9, lsl #2]
+    2728:	ldr	w6, [x3, x6, lsl #2]
+    272c:	ldr	w13, [x4, x13, lsl #2]
+    2730:	eor	w9, w9, w17
+    2734:	ldr	w11, [x5, x11, lsl #2]
+    2738:	eor	w6, w6, w16
+    273c:	stp	w10, w15, [x1, #8]
+    2740:	eor	w9, w9, w6
+    2744:	eor	w11, w11, w13
+    2748:	ldr	w14, [x2, x14, lsl #2]
+    274c:	ldp	w13, w6, [x0, #80]
+    2750:	ldr	w12, [x3, x12, lsl #2]
+    2754:	eor	w9, w9, w13
+    2758:	eor	w12, w12, w14
+    275c:	eor	w6, w9, w6
+    2760:	eor	w11, w11, w12
+    2764:	eor	w8, w8, w9, ror #8
+    2768:	eor	w11, w11, w6
+    276c:	eor	w7, w7, w11
+    2770:	eor	w8, w8, w11
+    2774:	stp	w7, w8, [x1]
+    2778:	ldr	w11, [x0, #72]
+    277c:	and	w11, w7, w11
+    2780:	eor	w8, w8, w11, ror #31
+    2784:	str	w8, [x1, #4]
+    2788:	and	x11, x8, #0xff
+    278c:	ldr	w6, [x0, #76]
+    2790:	ubfx	x9, x8, #16, #8
+    2794:	lsr	w16, w8, #24
+    2798:	ubfx	x17, x8, #8, #8
+    279c:	orr	w6, w8, w6
+    27a0:	ldr	w11, [x3, x11, lsl #2]
+    27a4:	eor	w7, w6, w7
+    27a8:	str	w7, [x1]
+    27ac:	ldr	w14, [x5, x9, lsl #2]
+    27b0:	and	x18, x7, #0xff
+    27b4:	ldr	w6, [x0, #68]
+    27b8:	ubfx	x9, x7, #8, #8
+    27bc:	ubfx	x13, x7, #16, #8
+    27c0:	lsr	w12, w7, #24
+    27c4:	orr	w6, w15, w6
+    27c8:	ldr	w18, [x4, x18, lsl #2]
+    27cc:	eor	w6, w6, w10
+    27d0:	str	w6, [x1, #8]
+    27d4:	ldr	w10, [x5, x9, lsl #2]
+    27d8:	ldr	w9, [x0, #64]
+    27dc:	ldr	w13, [x2, x13, lsl #2]
+    27e0:	and	w9, w6, w9
+    27e4:	ldr	w12, [x3, x12, lsl #2]
+    27e8:	eor	w13, w13, w10
+    27ec:	ldr	w17, [x4, x17, lsl #2]
+    27f0:	eor	w9, w15, w9, ror #31
+    27f4:	str	w9, [x1, #12]
+    27f8:	ldr	w15, [x2, x16, lsl #2]
+    27fc:	eor	w12, w12, w18
+    2800:	ldp	w16, w10, [x0, #56]
+    2804:	eor	w12, w13, w12
+    2808:	eor	w11, w11, w15
+    280c:	eor	w13, w14, w17
+    2810:	eor	w12, w12, w16
+    2814:	eor	w13, w13, w11
+    2818:	eor	w10, w12, w10
+    281c:	eor	w13, w13, w10
+    2820:	eor	w12, w9, w12, ror #8
+    2824:	eor	w6, w6, w13
+    2828:	eor	w12, w12, w13
+    282c:	and	x16, x6, #0xff
+    2830:	and	x13, x12, #0xff
+    2834:	ubfx	x17, x6, #8, #8
+    2838:	ubfx	x11, x6, #16, #8
+    283c:	lsr	w10, w6, #24
+    2840:	ubfx	x9, x12, #16, #8
+    2844:	ubfx	x14, x12, #8, #8
+    2848:	ldr	w16, [x4, x16, lsl #2]
+    284c:	ldr	w17, [x5, x17, lsl #2]
+    2850:	lsr	w15, w12, #24
+    2854:	ldr	w11, [x2, x11, lsl #2]
+    2858:	ldr	w10, [x3, x10, lsl #2]
+    285c:	ldr	w14, [x4, x14, lsl #2]
+    2860:	eor	w11, w11, w17
+    2864:	ldr	w9, [x5, x9, lsl #2]
+    2868:	eor	w10, w10, w16
+    286c:	stp	w6, w12, [x1, #8]
+    2870:	eor	w11, w11, w10
+    2874:	eor	w9, w9, w14
+    2878:	ldr	w15, [x2, x15, lsl #2]
+    287c:	ldp	w14, w10, [x0, #48]
+    2880:	ldr	w13, [x3, x13, lsl #2]
+    2884:	eor	w11, w11, w14
+    2888:	eor	w13, w13, w15
+    288c:	eor	w10, w11, w10
+    2890:	eor	w9, w9, w13
+    2894:	eor	w11, w8, w11, ror #8
+    2898:	eor	w9, w9, w10
+    289c:	eor	w7, w7, w9
+    28a0:	eor	w11, w11, w9
+    28a4:	and	x16, x7, #0xff
+    28a8:	stp	w7, w11, [x1]
+    28ac:	ubfx	x17, x7, #8, #8
+    28b0:	ubfx	x10, x7, #16, #8
+    28b4:	lsr	w9, w7, #24
+    28b8:	ubfx	x8, x11, #16, #8
+    28bc:	ubfx	x14, x11, #8, #8
+    28c0:	and	x13, x11, #0xff
+    28c4:	ldr	w10, [x2, x10, lsl #2]
+    28c8:	lsr	w15, w11, #24
+    28cc:	ldr	w17, [x5, x17, lsl #2]
+    28d0:	ldr	w16, [x4, x16, lsl #2]
+    28d4:	ldr	w9, [x3, x9, lsl #2]
+    28d8:	eor	w10, w10, w17
+    28dc:	ldr	w14, [x4, x14, lsl #2]
+    28e0:	ldr	w8, [x5, x8, lsl #2]
+    28e4:	eor	w9, w9, w16
+    28e8:	eor	w10, w10, w9
+    28ec:	ldr	w15, [x2, x15, lsl #2]
+    28f0:	eor	w8, w8, w14
+    28f4:	ldr	w13, [x3, x13, lsl #2]
+    28f8:	ldp	w14, w9, [x0, #40]
+    28fc:	eor	w13, w13, w15
+    2900:	eor	w8, w8, w13
+    2904:	eor	w10, w10, w14
+    2908:	eor	w9, w10, w9
+    290c:	eor	w8, w8, w9
+    2910:	eor	w10, w12, w10, ror #8
+    2914:	eor	w12, w6, w8
+    2918:	eor	w10, w10, w8
+    291c:	and	x16, x12, #0xff
+    2920:	and	x8, x10, #0xff
+    2924:	ubfx	x17, x12, #8, #8
+    2928:	ubfx	x9, x12, #16, #8
+    292c:	lsr	w6, w12, #24
+    2930:	ubfx	x13, x10, #16, #8
+    2934:	ubfx	x14, x10, #8, #8
+    2938:	ldr	w16, [x4, x16, lsl #2]
+    293c:	ldr	w17, [x5, x17, lsl #2]
+    2940:	lsr	w15, w10, #24
+    2944:	ldr	w9, [x2, x9, lsl #2]
+    2948:	ldr	w6, [x3, x6, lsl #2]
+    294c:	ldr	w14, [x4, x14, lsl #2]
+    2950:	eor	w9, w9, w17
+    2954:	ldr	w13, [x5, x13, lsl #2]
+    2958:	eor	w6, w6, w16
+    295c:	stp	w12, w10, [x1, #8]
+    2960:	eor	w9, w9, w6
+    2964:	eor	w13, w13, w14
+    2968:	ldr	w15, [x2, x15, lsl #2]
+    296c:	ldp	w14, w6, [x0, #32]
+    2970:	ldr	w8, [x3, x8, lsl #2]
+    2974:	eor	w9, w9, w14
+    2978:	eor	w8, w8, w15
+    297c:	eor	w6, w9, w6
+    2980:	eor	w13, w13, w8
+    2984:	eor	w9, w11, w9, ror #8
+    2988:	eor	w13, w13, w6
+    298c:	eor	w7, w7, w13
+    2990:	eor	w9, w9, w13
+    2994:	and	x16, x7, #0xff
+    2998:	and	x13, x9, #0xff
+    299c:	ubfx	x17, x7, #8, #8
+    29a0:	ubfx	x8, x7, #16, #8
+    29a4:	lsr	w11, w7, #24
+    29a8:	ubfx	x15, x9, #8, #8
+    29ac:	lsr	w14, w9, #24
+    29b0:	ubfx	x6, x9, #16, #8
+    29b4:	ldr	w17, [x5, x17, lsl #2]
+    29b8:	ldr	w16, [x4, x16, lsl #2]
+    29bc:	ldr	w8, [x2, x8, lsl #2]
+    29c0:	ldr	w11, [x3, x11, lsl #2]
+    29c4:	stp	w7, w9, [x1]
+    29c8:	eor	w8, w8, w17
+    29cc:	ldr	w6, [x5, x6, lsl #2]
+    29d0:	eor	w11, w11, w16
+    29d4:	ldr	w13, [x3, x13, lsl #2]
+    29d8:	eor	w8, w8, w11
+    29dc:	ldr	w16, [x4, x15, lsl #2]
+    29e0:	ldr	w15, [x0, #24]
+    29e4:	ldr	w14, [x2, x14, lsl #2]
+    29e8:	eor	w6, w6, w16
+    29ec:	ldr	w11, [x0, #28]
+    29f0:	eor	w8, w8, w15
+    29f4:	eor	w13, w13, w14
+    29f8:	eor	w11, w8, w11
+    29fc:	eor	w6, w6, w13
+    2a00:	eor	w6, w6, w11
+    2a04:	eor	w8, w10, w8, ror #8
+    2a08:	eor	w10, w12, w6
+    2a0c:	eor	w6, w8, w6
+    2a10:	and	x15, x10, #0xff
+    2a14:	and	x11, x6, #0xff
+    2a18:	ubfx	x17, x10, #8, #8
+    2a1c:	ubfx	x8, x10, #16, #8
+    2a20:	lsr	w12, w10, #24
+    2a24:	ubfx	x16, x6, #16, #8
+    2a28:	ubfx	x14, x6, #8, #8
+    2a2c:	ldr	w15, [x4, x15, lsl #2]
+    2a30:	ldr	w17, [x5, x17, lsl #2]
+    2a34:	lsr	w13, w6, #24
+    2a38:	ldr	w8, [x2, x8, lsl #2]
+    2a3c:	ldr	w12, [x3, x12, lsl #2]
+    2a40:	ldr	w5, [x5, x16, lsl #2]
+    2a44:	eor	w8, w8, w17
+    2a48:	ldr	w4, [x4, x14, lsl #2]
+    2a4c:	eor	w12, w12, w15
+    2a50:	stp	w10, w6, [x1, #8]
+    2a54:	ldr	w11, [x3, x11, lsl #2]
+    2a58:	eor	w3, w8, w12
+    2a5c:	ldr	w12, [x2, x13, lsl #2]
+    2a60:	eor	w2, w5, w4
+    2a64:	ldp	w8, w4, [x0, #16]
+    2a68:	eor	w5, w11, w12
+    2a6c:	eor	w2, w2, w5
+    2a70:	eor	w3, w3, w8
+    2a74:	eor	w4, w3, w4
+    2a78:	eor	w2, w2, w4
+    2a7c:	eor	w3, w9, w3, ror #8
+    2a80:	eor	w7, w7, w2
+    2a84:	eor	w2, w3, w2
+    2a88:	stp	w7, w2, [x1]
+    2a8c:	ldr	w3, [x0]
+    2a90:	eor	w3, w10, w3
+    2a94:	str	w3, [x1, #8]
+    2a98:	ldr	w0, [x0, #4]
+    2a9c:	stp	w7, w2, [x1, #8]
+    2aa0:	eor	w6, w6, w0
+    2aa4:	stp	w3, w6, [x1]
+    2aa8:	ret
+    2aac:	nop
+	...
+
+0000000000002ab8 <camellia_encrypt256>:
+    2ab8:	ldp	w10, w7, [x1]
+    2abc:	adrp	x2, 0 <camellia_decrypt>
+    2ac0:	ldr	w3, [x0]
+    2ac4:	ldr	x2, [x2]
+    2ac8:	eor	w10, w10, w3
+    2acc:	str	w10, [x1]
+    2ad0:	and	x14, x10, #0xff
+    2ad4:	add	x5, x2, #0x400
+    2ad8:	add	x4, x2, #0x800
+    2adc:	ldr	w3, [x0, #4]
+    2ae0:	ubfx	x8, x10, #16, #8
+    2ae4:	ubfx	x15, x10, #8, #8
+    2ae8:	lsr	w11, w10, #24
+    2aec:	eor	w9, w7, w3
+    2af0:	add	x3, x2, #0xc00
+    2af4:	and	x7, x9, #0xff
+    2af8:	ldr	w8, [x2, x8, lsl #2]
+    2afc:	ubfx	x6, x9, #16, #8
+    2b00:	ubfx	x12, x9, #8, #8
+    2b04:	lsr	w13, w9, #24
+    2b08:	ldr	w15, [x5, x15, lsl #2]
+    2b0c:	ldr	w14, [x3, x14, lsl #2]
+    2b10:	ldr	w11, [x4, x11, lsl #2]
+    2b14:	eor	w8, w8, w15
+    2b18:	ldr	w12, [x3, x12, lsl #2]
+    2b1c:	ldr	w6, [x5, x6, lsl #2]
+    2b20:	eor	w11, w11, w14
+    2b24:	str	w9, [x1, #4]
+    2b28:	eor	w8, w8, w11
+    2b2c:	ldr	w13, [x2, x13, lsl #2]
+    2b30:	eor	w6, w6, w12
+    2b34:	ldr	w7, [x4, x7, lsl #2]
+    2b38:	ldp	w12, w11, [x0, #16]
+    2b3c:	eor	w7, w7, w13
+    2b40:	eor	w6, w6, w7
+    2b44:	ldp	w13, w7, [x1, #8]
+    2b48:	eor	w8, w8, w12
+    2b4c:	eor	w11, w8, w11
+    2b50:	eor	w6, w6, w11
+    2b54:	eor	w13, w6, w13
+    2b58:	eor	w8, w7, w8, ror #8
+    2b5c:	eor	w8, w8, w6
+    2b60:	and	x16, x13, #0xff
+    2b64:	ubfx	x7, x13, #16, #8
+    2b68:	ubfx	x17, x13, #8, #8
+    2b6c:	lsr	w6, w13, #24
+    2b70:	ubfx	x12, x8, #16, #8
+    2b74:	ubfx	x14, x8, #8, #8
+    2b78:	ldr	w16, [x3, x16, lsl #2]
+    2b7c:	ldr	w17, [x5, x17, lsl #2]
+    2b80:	and	x11, x8, #0xff
+    2b84:	ldr	w7, [x2, x7, lsl #2]
+    2b88:	lsr	w15, w8, #24
+    2b8c:	ldr	w6, [x4, x6, lsl #2]
+    2b90:	ldr	w14, [x3, x14, lsl #2]
+    2b94:	eor	w7, w7, w17
+    2b98:	ldr	w12, [x5, x12, lsl #2]
+    2b9c:	eor	w6, w6, w16
+    2ba0:	stp	w13, w8, [x1, #8]
+    2ba4:	eor	w7, w7, w6
+    2ba8:	eor	w12, w12, w14
+    2bac:	ldr	w15, [x2, x15, lsl #2]
+    2bb0:	ldp	w14, w6, [x0, #24]
+    2bb4:	ldr	w11, [x4, x11, lsl #2]
+    2bb8:	eor	w7, w7, w14
+    2bbc:	eor	w11, w11, w15
+    2bc0:	eor	w6, w7, w6
+    2bc4:	eor	w12, w12, w11
+    2bc8:	eor	w7, w9, w7, ror #8
+    2bcc:	eor	w12, w12, w6
+    2bd0:	eor	w10, w10, w12
+    2bd4:	eor	w7, w7, w12
+    2bd8:	and	x16, x10, #0xff
+    2bdc:	stp	w10, w7, [x1]
+    2be0:	ubfx	x6, x10, #16, #8
+    2be4:	ubfx	x17, x10, #8, #8
+    2be8:	lsr	w9, w10, #24
+    2bec:	ubfx	x11, x7, #16, #8
+    2bf0:	ubfx	x14, x7, #8, #8
+    2bf4:	ldr	w16, [x3, x16, lsl #2]
+    2bf8:	ldr	w17, [x5, x17, lsl #2]
+    2bfc:	and	x12, x7, #0xff
+    2c00:	ldr	w6, [x2, x6, lsl #2]
+    2c04:	lsr	w15, w7, #24
+    2c08:	ldr	w9, [x4, x9, lsl #2]
+    2c0c:	ldr	w14, [x3, x14, lsl #2]
+    2c10:	eor	w6, w6, w17
+    2c14:	ldr	w11, [x5, x11, lsl #2]
+    2c18:	eor	w9, w9, w16
+    2c1c:	eor	w6, w6, w9
+    2c20:	ldr	w15, [x2, x15, lsl #2]
+    2c24:	eor	w11, w11, w14
+    2c28:	ldr	w12, [x4, x12, lsl #2]
+    2c2c:	ldp	w14, w9, [x0, #32]
+    2c30:	eor	w12, w12, w15
+    2c34:	eor	w11, w11, w12
+    2c38:	eor	w6, w6, w14
+    2c3c:	eor	w9, w6, w9
+    2c40:	eor	w11, w11, w9
+    2c44:	eor	w6, w8, w6, ror #8
+    2c48:	eor	w13, w13, w11
+    2c4c:	eor	w6, w6, w11
+    2c50:	and	x16, x13, #0xff
+    2c54:	and	x11, x6, #0xff
+    2c58:	ubfx	x12, x13, #16, #8
+    2c5c:	ubfx	x17, x13, #8, #8
+    2c60:	lsr	w8, w13, #24
+    2c64:	ubfx	x9, x6, #16, #8
+    2c68:	ubfx	x14, x6, #8, #8
+    2c6c:	ldr	w16, [x3, x16, lsl #2]
+    2c70:	ldr	w17, [x5, x17, lsl #2]
+    2c74:	lsr	w15, w6, #24
+    2c78:	ldr	w12, [x2, x12, lsl #2]
+    2c7c:	ldr	w8, [x4, x8, lsl #2]
+    2c80:	ldr	w14, [x3, x14, lsl #2]
+    2c84:	eor	w12, w12, w17
+    2c88:	ldr	w9, [x5, x9, lsl #2]
+    2c8c:	eor	w8, w8, w16
+    2c90:	stp	w13, w6, [x1, #8]
+    2c94:	eor	w12, w12, w8
+    2c98:	eor	w9, w9, w14
+    2c9c:	ldr	w15, [x2, x15, lsl #2]
+    2ca0:	ldp	w14, w8, [x0, #40]
+    2ca4:	ldr	w11, [x4, x11, lsl #2]
+    2ca8:	eor	w12, w12, w14
+    2cac:	eor	w11, w11, w15
+    2cb0:	eor	w8, w12, w8
+    2cb4:	eor	w9, w9, w11
+    2cb8:	eor	w12, w7, w12, ror #8
+    2cbc:	eor	w9, w9, w8
+    2cc0:	eor	w10, w10, w9
+    2cc4:	eor	w12, w12, w9
+    2cc8:	and	x16, x10, #0xff
+    2ccc:	and	x8, x12, #0xff
+    2cd0:	ubfx	x11, x10, #16, #8
+    2cd4:	ubfx	x17, x10, #8, #8
+    2cd8:	lsr	w7, w10, #24
+    2cdc:	ubfx	x15, x12, #8, #8
+    2ce0:	lsr	w14, w12, #24
+    2ce4:	ubfx	x9, x12, #16, #8
+    2ce8:	ldr	w17, [x5, x17, lsl #2]
+    2cec:	ldr	w16, [x3, x16, lsl #2]
+    2cf0:	ldr	w11, [x2, x11, lsl #2]
+    2cf4:	ldr	w7, [x4, x7, lsl #2]
+    2cf8:	stp	w10, w12, [x1]
+    2cfc:	eor	w11, w11, w17
+    2d00:	ldr	w9, [x5, x9, lsl #2]
+    2d04:	eor	w7, w7, w16
+    2d08:	ldr	w8, [x4, x8, lsl #2]
+    2d0c:	eor	w11, w11, w7
+    2d10:	ldr	w16, [x3, x15, lsl #2]
+    2d14:	ldr	w15, [x0, #48]
+    2d18:	ldr	w14, [x2, x14, lsl #2]
+    2d1c:	eor	w9, w9, w16
+    2d20:	ldr	w7, [x0, #52]
+    2d24:	eor	w11, w11, w15
+    2d28:	eor	w8, w8, w14
+    2d2c:	eor	w7, w11, w7
+    2d30:	eor	w9, w9, w8
+    2d34:	eor	w9, w9, w7
+    2d38:	eor	w11, w6, w11, ror #8
+    2d3c:	eor	w13, w13, w9
+    2d40:	eor	w11, w11, w9
+    2d44:	and	x16, x13, #0xff
+    2d48:	and	x7, x11, #0xff
+    2d4c:	ubfx	x9, x13, #16, #8
+    2d50:	ubfx	x17, x13, #8, #8
+    2d54:	lsr	w6, w13, #24
+    2d58:	ubfx	x8, x11, #16, #8
+    2d5c:	ubfx	x14, x11, #8, #8
+    2d60:	ldr	w16, [x3, x16, lsl #2]
+    2d64:	ldr	w17, [x5, x17, lsl #2]
+    2d68:	lsr	w15, w11, #24
+    2d6c:	ldr	w9, [x2, x9, lsl #2]
+    2d70:	ldr	w6, [x4, x6, lsl #2]
+    2d74:	ldr	w14, [x3, x14, lsl #2]
+    2d78:	eor	w9, w9, w17
+    2d7c:	ldr	w8, [x5, x8, lsl #2]
+    2d80:	eor	w6, w6, w16
+    2d84:	stp	w13, w11, [x1, #8]
+    2d88:	eor	w9, w9, w6
+    2d8c:	eor	w8, w8, w14
+    2d90:	ldr	w15, [x2, x15, lsl #2]
+    2d94:	ldp	w14, w6, [x0, #56]
+    2d98:	ldr	w7, [x4, x7, lsl #2]
+    2d9c:	eor	w9, w9, w14
+    2da0:	eor	w7, w7, w15
+    2da4:	eor	w6, w9, w6
+    2da8:	eor	w8, w8, w7
+    2dac:	eor	w9, w12, w9, ror #8
+    2db0:	eor	w8, w8, w6
+    2db4:	eor	w10, w10, w8
+    2db8:	eor	w8, w9, w8
+    2dbc:	stp	w10, w8, [x1]
+    2dc0:	ldr	w6, [x0, #64]
+    2dc4:	and	w6, w10, w6
+    2dc8:	eor	w8, w8, w6, ror #31
+    2dcc:	str	w8, [x1, #4]
+    2dd0:	and	x9, x8, #0xff
+    2dd4:	ldr	w7, [x0, #68]
+    2dd8:	ubfx	x6, x8, #16, #8
+    2ddc:	lsr	w17, w8, #24
+    2de0:	orr	w7, w8, w7
+    2de4:	ldr	w15, [x4, x9, lsl #2]
+    2de8:	eor	w7, w7, w10
+    2dec:	str	w7, [x1]
+    2df0:	ldr	w10, [x5, x6, lsl #2]
+    2df4:	and	x14, x7, #0xff
+    2df8:	ldr	w6, [x0, #76]
+    2dfc:	ubfx	x9, x7, #8, #8
+    2e00:	ubfx	x12, x7, #16, #8
+    2e04:	orr	w6, w11, w6
+    2e08:	ldr	w16, [x3, x14, lsl #2]
+    2e0c:	eor	w6, w6, w13
+    2e10:	str	w6, [x1, #8]
+    2e14:	ldr	w18, [x5, x9, lsl #2]
+    2e18:	lsr	w14, w7, #24
+    2e1c:	ldr	w9, [x0, #72]
+    2e20:	ubfx	x13, x8, #8, #8
+    2e24:	ldr	w12, [x2, x12, lsl #2]
+    2e28:	and	w9, w6, w9
+    2e2c:	ldr	w14, [x4, x14, lsl #2]
+    2e30:	eor	w12, w12, w18
+    2e34:	eor	w11, w11, w9, ror #31
+    2e38:	str	w11, [x1, #12]
+    2e3c:	eor	w9, w14, w16
+    2e40:	ldr	w16, [x3, x13, lsl #2]
+    2e44:	ldr	w14, [x0, #80]
+    2e48:	eor	w9, w12, w9
+    2e4c:	ldr	w13, [x2, x17, lsl #2]
+    2e50:	eor	w10, w10, w16
+    2e54:	ldr	w12, [x0, #84]
+    2e58:	eor	w9, w9, w14
+    2e5c:	eor	w13, w15, w13
+    2e60:	eor	w12, w9, w12
+    2e64:	eor	w10, w10, w13
+    2e68:	eor	w10, w10, w12
+    2e6c:	eor	w9, w11, w9, ror #8
+    2e70:	eor	w6, w6, w10
+    2e74:	eor	w9, w9, w10
+    2e78:	and	x16, x6, #0xff
+    2e7c:	and	x13, x9, #0xff
+    2e80:	ubfx	x11, x6, #16, #8
+    2e84:	ubfx	x17, x6, #8, #8
+    2e88:	lsr	w12, w6, #24
+    2e8c:	ubfx	x10, x9, #16, #8
+    2e90:	ubfx	x14, x9, #8, #8
+    2e94:	ldr	w16, [x3, x16, lsl #2]
+    2e98:	ldr	w17, [x5, x17, lsl #2]
+    2e9c:	lsr	w15, w9, #24
+    2ea0:	ldr	w11, [x2, x11, lsl #2]
+    2ea4:	ldr	w12, [x4, x12, lsl #2]
+    2ea8:	ldr	w14, [x3, x14, lsl #2]
+    2eac:	eor	w11, w11, w17
+    2eb0:	ldr	w10, [x5, x10, lsl #2]
+    2eb4:	eor	w12, w12, w16
+    2eb8:	stp	w6, w9, [x1, #8]
+    2ebc:	eor	w11, w11, w12
+    2ec0:	eor	w10, w10, w14
+    2ec4:	ldr	w15, [x2, x15, lsl #2]
+    2ec8:	ldp	w14, w12, [x0, #88]
+    2ecc:	ldr	w13, [x4, x13, lsl #2]
+    2ed0:	eor	w11, w11, w14
+    2ed4:	eor	w13, w13, w15
+    2ed8:	eor	w12, w11, w12
+    2edc:	eor	w10, w10, w13
+    2ee0:	eor	w11, w8, w11, ror #8
+    2ee4:	eor	w10, w10, w12
+    2ee8:	eor	w7, w7, w10
+    2eec:	eor	w8, w11, w10
+    2ef0:	and	x16, x7, #0xff
+    2ef4:	and	x13, x8, #0xff
+    2ef8:	ubfx	x10, x7, #16, #8
+    2efc:	ubfx	x17, x7, #8, #8
+    2f00:	lsr	w12, w7, #24
+    2f04:	ubfx	x11, x8, #16, #8
+    2f08:	ubfx	x14, x8, #8, #8
+    2f0c:	ldr	w16, [x3, x16, lsl #2]
+    2f10:	ldr	w17, [x5, x17, lsl #2]
+    2f14:	lsr	w15, w8, #24
+    2f18:	ldr	w10, [x2, x10, lsl #2]
+    2f1c:	ldr	w12, [x4, x12, lsl #2]
+    2f20:	ldr	w14, [x3, x14, lsl #2]
+    2f24:	eor	w10, w10, w17
+    2f28:	ldr	w11, [x5, x11, lsl #2]
+    2f2c:	eor	w12, w12, w16
+    2f30:	stp	w7, w8, [x1]
+    2f34:	eor	w10, w10, w12
+    2f38:	eor	w11, w11, w14
+    2f3c:	ldr	w15, [x2, x15, lsl #2]
+    2f40:	ldp	w14, w12, [x0, #96]
+    2f44:	ldr	w13, [x4, x13, lsl #2]
+    2f48:	eor	w10, w10, w14
+    2f4c:	eor	w13, w13, w15
+    2f50:	eor	w12, w10, w12
+    2f54:	eor	w11, w11, w13
+    2f58:	eor	w10, w9, w10, ror #8
+    2f5c:	eor	w11, w11, w12
+    2f60:	eor	w6, w6, w11
+    2f64:	eor	w10, w10, w11
+    2f68:	and	x16, x6, #0xff
+    2f6c:	and	x15, x10, #0xff
+    2f70:	ubfx	x11, x6, #16, #8
+    2f74:	ubfx	x17, x6, #8, #8
+    2f78:	lsr	w9, w6, #24
+    2f7c:	ubfx	x12, x10, #16, #8
+    2f80:	ubfx	x13, x10, #8, #8
+    2f84:	ldr	w16, [x3, x16, lsl #2]
+    2f88:	ldr	w17, [x5, x17, lsl #2]
+    2f8c:	lsr	w14, w10, #24
+    2f90:	ldr	w11, [x2, x11, lsl #2]
+    2f94:	ldr	w9, [x4, x9, lsl #2]
+    2f98:	stp	w6, w10, [x1, #8]
+    2f9c:	eor	w11, w11, w17
+    2fa0:	eor	w9, w9, w16
+    2fa4:	ldr	w16, [x0, #104]
+    2fa8:	eor	w11, w11, w9
+    2fac:	ldr	w13, [x3, x13, lsl #2]
+    2fb0:	ldr	w12, [x5, x12, lsl #2]
+    2fb4:	eor	w11, w11, w16
+    2fb8:	ldr	w9, [x4, x15, lsl #2]
+    2fbc:	ldr	w14, [x2, x14, lsl #2]
+    2fc0:	eor	w12, w12, w13
+    2fc4:	ldr	w13, [x0, #108]
+    2fc8:	eor	w8, w8, w11, ror #8
+    2fcc:	eor	w9, w9, w14
+    2fd0:	eor	w12, w12, w9
+    2fd4:	eor	w11, w11, w13
+    2fd8:	eor	w11, w12, w11
+    2fdc:	eor	w7, w7, w11
+    2fe0:	eor	w8, w8, w11
+    2fe4:	and	x16, x7, #0xff
+    2fe8:	and	x13, x8, #0xff
+    2fec:	ubfx	x9, x7, #16, #8
+    2ff0:	ubfx	x17, x7, #8, #8
+    2ff4:	lsr	w12, w7, #24
+    2ff8:	ubfx	x11, x8, #16, #8
+    2ffc:	ubfx	x14, x8, #8, #8
+    3000:	ldr	w16, [x3, x16, lsl #2]
+    3004:	ldr	w17, [x5, x17, lsl #2]
+    3008:	lsr	w15, w8, #24
+    300c:	ldr	w9, [x2, x9, lsl #2]
+    3010:	ldr	w12, [x4, x12, lsl #2]
+    3014:	ldr	w14, [x3, x14, lsl #2]
+    3018:	eor	w9, w9, w17
+    301c:	ldr	w11, [x5, x11, lsl #2]
+    3020:	eor	w12, w12, w16
+    3024:	stp	w7, w8, [x1]
+    3028:	eor	w9, w9, w12
+    302c:	eor	w11, w11, w14
+    3030:	ldr	w15, [x2, x15, lsl #2]
+    3034:	ldp	w14, w12, [x0, #112]
+    3038:	ldr	w13, [x4, x13, lsl #2]
+    303c:	eor	w9, w9, w14
+    3040:	eor	w13, w13, w15
+    3044:	eor	w12, w9, w12
+    3048:	eor	w11, w11, w13
+    304c:	eor	w9, w10, w9, ror #8
+    3050:	eor	w11, w11, w12
+    3054:	eor	w15, w6, w11
+    3058:	eor	w14, w9, w11
+    305c:	and	x16, x15, #0xff
+    3060:	and	x10, x14, #0xff
+    3064:	ubfx	x9, x15, #16, #8
+    3068:	ubfx	x17, x15, #8, #8
+    306c:	lsr	w6, w15, #24
+    3070:	ubfx	x11, x14, #16, #8
+    3074:	ubfx	x12, x14, #8, #8
+    3078:	ldr	w16, [x3, x16, lsl #2]
+    307c:	ldr	w17, [x5, x17, lsl #2]
+    3080:	lsr	w13, w14, #24
+    3084:	ldr	w9, [x2, x9, lsl #2]
+    3088:	ldr	w6, [x4, x6, lsl #2]
+    308c:	ldr	w12, [x3, x12, lsl #2]
+    3090:	eor	w9, w9, w17
+    3094:	ldr	w11, [x5, x11, lsl #2]
+    3098:	eor	w6, w6, w16
+    309c:	stp	w15, w14, [x1, #8]
+    30a0:	eor	w9, w9, w6
+    30a4:	eor	w11, w11, w12
+    30a8:	ldr	w13, [x2, x13, lsl #2]
+    30ac:	ldp	w12, w6, [x0, #120]
+    30b0:	ldr	w10, [x4, x10, lsl #2]
+    30b4:	eor	w9, w9, w12
+    30b8:	eor	w10, w10, w13
+    30bc:	eor	w6, w9, w6
+    30c0:	eor	w11, w11, w10
+    30c4:	eor	w8, w8, w9, ror #8
+    30c8:	eor	w11, w11, w6
+    30cc:	eor	w7, w7, w11
+    30d0:	eor	w8, w8, w11
+    30d4:	stp	w7, w8, [x1]
+    30d8:	ldr	w9, [x0, #128]
+    30dc:	and	w9, w7, w9
+    30e0:	eor	w8, w8, w9, ror #31
+    30e4:	str	w8, [x1, #4]
+    30e8:	and	x11, x8, #0xff
+    30ec:	ldr	w6, [x0, #132]
+    30f0:	ubfx	x9, x8, #16, #8
+    30f4:	ubfx	x10, x8, #8, #8
+    30f8:	orr	w6, w8, w6
+    30fc:	ldr	w16, [x4, x11, lsl #2]
+    3100:	eor	w7, w6, w7
+    3104:	str	w7, [x1]
+    3108:	ldr	w12, [x5, x9, lsl #2]
+    310c:	and	x13, x7, #0xff
+    3110:	ldr	w6, [x0, #140]
+    3114:	ubfx	x9, x7, #8, #8
+    3118:	ldr	w10, [x3, x10, lsl #2]
+    311c:	ubfx	x11, x7, #16, #8
+    3120:	orr	w6, w14, w6
+    3124:	ldr	w17, [x3, x13, lsl #2]
+    3128:	eor	w6, w6, w15
+    312c:	str	w6, [x1, #8]
+    3130:	ldr	w15, [x5, x9, lsl #2]
+    3134:	eor	w12, w12, w10
+    3138:	ldr	w9, [x0, #136]
+    313c:	lsr	w10, w7, #24
+    3140:	ldr	w13, [x2, x11, lsl #2]
+    3144:	lsr	w11, w8, #24
+    3148:	and	w9, w6, w9
+    314c:	ldr	w10, [x4, x10, lsl #2]
+    3150:	eor	w13, w13, w15
+    3154:	eor	w9, w14, w9, ror #31
+    3158:	str	w9, [x1, #12]
+    315c:	ldr	w15, [x2, x11, lsl #2]
+    3160:	eor	w10, w10, w17
+    3164:	ldp	w14, w11, [x0, #144]
+    3168:	eor	w10, w13, w10
+    316c:	eor	w13, w16, w15
+    3170:	eor	w10, w10, w14
+    3174:	eor	w12, w12, w13
+    3178:	eor	w11, w10, w11
+    317c:	eor	w12, w12, w11
+    3180:	eor	w10, w9, w10, ror #8
+    3184:	eor	w6, w6, w12
+    3188:	eor	w10, w10, w12
+    318c:	and	x16, x6, #0xff
+    3190:	and	x13, x10, #0xff
+    3194:	ubfx	x9, x6, #16, #8
+    3198:	ubfx	x17, x6, #8, #8
+    319c:	lsr	w12, w6, #24
+    31a0:	ubfx	x11, x10, #16, #8
+    31a4:	ubfx	x14, x10, #8, #8
+    31a8:	ldr	w16, [x3, x16, lsl #2]
+    31ac:	ldr	w17, [x5, x17, lsl #2]
+    31b0:	lsr	w15, w10, #24
+    31b4:	ldr	w9, [x2, x9, lsl #2]
+    31b8:	ldr	w12, [x4, x12, lsl #2]
+    31bc:	ldr	w14, [x3, x14, lsl #2]
+    31c0:	eor	w9, w9, w17
+    31c4:	ldr	w11, [x5, x11, lsl #2]
+    31c8:	eor	w12, w12, w16
+    31cc:	stp	w6, w10, [x1, #8]
+    31d0:	eor	w9, w9, w12
+    31d4:	eor	w11, w11, w14
+    31d8:	ldr	w15, [x2, x15, lsl #2]
+    31dc:	ldp	w14, w12, [x0, #152]
+    31e0:	ldr	w13, [x4, x13, lsl #2]
+    31e4:	eor	w9, w9, w14
+    31e8:	eor	w13, w13, w15
+    31ec:	eor	w12, w9, w12
+    31f0:	eor	w11, w11, w13
+    31f4:	eor	w9, w8, w9, ror #8
+    31f8:	eor	w11, w11, w12
+    31fc:	eor	w7, w7, w11
+    3200:	eor	w9, w9, w11
+    3204:	and	x16, x7, #0xff
+    3208:	stp	w7, w9, [x1]
+    320c:	ubfx	x12, x7, #16, #8
+    3210:	ubfx	x17, x7, #8, #8
+    3214:	lsr	w8, w7, #24
+    3218:	ubfx	x13, x9, #16, #8
+    321c:	ubfx	x14, x9, #8, #8
+    3220:	and	x11, x9, #0xff
+    3224:	ldr	w12, [x2, x12, lsl #2]
+    3228:	lsr	w15, w9, #24
+    322c:	ldr	w17, [x5, x17, lsl #2]
+    3230:	ldr	w16, [x3, x16, lsl #2]
+    3234:	ldr	w8, [x4, x8, lsl #2]
+    3238:	eor	w12, w12, w17
+    323c:	ldr	w14, [x3, x14, lsl #2]
+    3240:	ldr	w13, [x5, x13, lsl #2]
+    3244:	eor	w8, w8, w16
+    3248:	eor	w12, w12, w8
+    324c:	ldr	w15, [x2, x15, lsl #2]
+    3250:	eor	w13, w13, w14
+    3254:	ldr	w11, [x4, x11, lsl #2]
+    3258:	ldp	w14, w8, [x0, #160]
+    325c:	eor	w11, w11, w15
+    3260:	eor	w13, w13, w11
+    3264:	eor	w12, w12, w14
+    3268:	eor	w8, w12, w8
+    326c:	eor	w13, w13, w8
+    3270:	eor	w12, w10, w12, ror #8
+    3274:	eor	w6, w6, w13
+    3278:	eor	w12, w12, w13
+    327c:	and	x16, x6, #0xff
+    3280:	and	x10, x12, #0xff
+    3284:	ubfx	x11, x6, #16, #8
+    3288:	ubfx	x17, x6, #8, #8
+    328c:	lsr	w8, w6, #24
+    3290:	ubfx	x13, x12, #16, #8
+    3294:	ubfx	x14, x12, #8, #8
+    3298:	ldr	w16, [x3, x16, lsl #2]
+    329c:	ldr	w17, [x5, x17, lsl #2]
+    32a0:	lsr	w15, w12, #24
+    32a4:	ldr	w11, [x2, x11, lsl #2]
+    32a8:	ldr	w8, [x4, x8, lsl #2]
+    32ac:	ldr	w14, [x3, x14, lsl #2]
+    32b0:	eor	w11, w11, w17
+    32b4:	ldr	w13, [x5, x13, lsl #2]
+    32b8:	eor	w8, w8, w16
+    32bc:	stp	w6, w12, [x1, #8]
+    32c0:	eor	w11, w11, w8
+    32c4:	eor	w13, w13, w14
+    32c8:	ldr	w15, [x2, x15, lsl #2]
+    32cc:	ldp	w14, w8, [x0, #168]
+    32d0:	ldr	w10, [x4, x10, lsl #2]
+    32d4:	eor	w11, w11, w14
+    32d8:	eor	w10, w10, w15
+    32dc:	eor	w8, w11, w8
+    32e0:	eor	w13, w13, w10
+    32e4:	eor	w11, w9, w11, ror #8
+    32e8:	eor	w13, w13, w8
+    32ec:	eor	w7, w7, w13
+    32f0:	eor	w11, w11, w13
+    32f4:	and	x16, x7, #0xff
+    32f8:	and	x8, x11, #0xff
+    32fc:	ubfx	x17, x7, #8, #8
+    3300:	ubfx	x10, x7, #16, #8
+    3304:	lsr	w9, w7, #24
+    3308:	ubfx	x15, x11, #8, #8
+    330c:	lsr	w14, w11, #24
+    3310:	ubfx	x13, x11, #16, #8
+    3314:	ldr	w17, [x5, x17, lsl #2]
+    3318:	ldr	w16, [x3, x16, lsl #2]
+    331c:	ldr	w10, [x2, x10, lsl #2]
+    3320:	ldr	w9, [x4, x9, lsl #2]
+    3324:	stp	w7, w11, [x1]
+    3328:	eor	w10, w10, w17
+    332c:	ldr	w13, [x5, x13, lsl #2]
+    3330:	eor	w9, w9, w16
+    3334:	ldr	w8, [x4, x8, lsl #2]
+    3338:	eor	w10, w10, w9
+    333c:	ldr	w16, [x3, x15, lsl #2]
+    3340:	ldr	w15, [x0, #176]
+    3344:	ldr	w14, [x2, x14, lsl #2]
+    3348:	eor	w13, w13, w16
+    334c:	ldr	w9, [x0, #180]
+    3350:	eor	w10, w10, w15
+    3354:	eor	w8, w8, w14
+    3358:	eor	w9, w10, w9
+    335c:	eor	w13, w13, w8
+    3360:	eor	w13, w13, w9
+    3364:	eor	w10, w12, w10, ror #8
+    3368:	eor	w6, w6, w13
+    336c:	eor	w10, w10, w13
+    3370:	and	x16, x6, #0xff
+    3374:	and	x13, x10, #0xff
+    3378:	ubfx	x17, x6, #8, #8
+    337c:	ubfx	x9, x6, #16, #8
+    3380:	lsr	w12, w6, #24
+    3384:	ubfx	x8, x10, #16, #8
+    3388:	ubfx	x14, x10, #8, #8
+    338c:	ldr	w16, [x3, x16, lsl #2]
+    3390:	ldr	w17, [x5, x17, lsl #2]
+    3394:	lsr	w15, w10, #24
+    3398:	ldr	w9, [x2, x9, lsl #2]
+    339c:	ldr	w12, [x4, x12, lsl #2]
+    33a0:	ldr	w14, [x3, x14, lsl #2]
+    33a4:	eor	w9, w9, w17
+    33a8:	ldr	w8, [x5, x8, lsl #2]
+    33ac:	eor	w12, w12, w16
+    33b0:	stp	w6, w10, [x1, #8]
+    33b4:	eor	w9, w9, w12
+    33b8:	eor	w8, w8, w14
+    33bc:	ldr	w15, [x2, x15, lsl #2]
+    33c0:	ldp	w14, w12, [x0, #184]
+    33c4:	ldr	w13, [x4, x13, lsl #2]
+    33c8:	eor	w9, w9, w14
+    33cc:	eor	w13, w13, w15
+    33d0:	eor	w12, w9, w12
+    33d4:	eor	w8, w8, w13
+    33d8:	eor	w9, w11, w9, ror #8
+    33dc:	eor	w8, w8, w12
+    33e0:	eor	w7, w7, w8
+    33e4:	eor	w8, w9, w8
+    33e8:	stp	w7, w8, [x1]
+    33ec:	ldr	w11, [x0, #192]
+    33f0:	and	w11, w7, w11
+    33f4:	eor	w8, w8, w11, ror #31
+    33f8:	str	w8, [x1, #4]
+    33fc:	and	x12, x8, #0xff
+    3400:	ldr	w11, [x0, #196]
+    3404:	ubfx	x9, x8, #16, #8
+    3408:	lsr	w16, w8, #24
+    340c:	orr	w11, w8, w11
+    3410:	ldr	w14, [x4, x12, lsl #2]
+    3414:	eor	w7, w11, w7
+    3418:	str	w7, [x1]
+    341c:	ldr	w13, [x5, x9, lsl #2]
+    3420:	and	x11, x7, #0xff
+    3424:	ldr	w12, [x0, #204]
+    3428:	ubfx	x9, x7, #8, #8
+    342c:	ubfx	x15, x7, #16, #8
+    3430:	orr	w12, w10, w12
+    3434:	ldr	w17, [x3, x11, lsl #2]
+    3438:	eor	w6, w12, w6
+    343c:	str	w6, [x1, #8]
+    3440:	ldr	w18, [x5, x9, lsl #2]
+    3444:	lsr	w11, w7, #24
+    3448:	ldr	w9, [x0, #200]
+    344c:	ldr	w12, [x2, x15, lsl #2]
+    3450:	ubfx	x15, x8, #8, #8
+    3454:	and	w9, w6, w9
+    3458:	ldr	w11, [x4, x11, lsl #2]
+    345c:	eor	w12, w12, w18
+    3460:	eor	w10, w10, w9, ror #31
+    3464:	str	w10, [x1, #12]
+    3468:	eor	w9, w11, w17
+    346c:	ldr	w11, [x3, x15, lsl #2]
+    3470:	eor	w9, w12, w9
+    3474:	ldr	w15, [x0, #208]
+    3478:	ldr	w12, [x2, x16, lsl #2]
+    347c:	eor	w13, w13, w11
+    3480:	ldr	w11, [x0, #212]
+    3484:	eor	w9, w9, w15
+    3488:	eor	w12, w14, w12
+    348c:	eor	w11, w9, w11
+    3490:	eor	w13, w13, w12
+    3494:	eor	w13, w13, w11
+    3498:	eor	w9, w10, w9, ror #8
+    349c:	eor	w12, w6, w13
+    34a0:	eor	w9, w9, w13
+    34a4:	and	x16, x12, #0xff
+    34a8:	and	x10, x9, #0xff
+    34ac:	ubfx	x17, x12, #8, #8
+    34b0:	ubfx	x11, x12, #16, #8
+    34b4:	lsr	w6, w12, #24
+    34b8:	ubfx	x13, x9, #16, #8
+    34bc:	ubfx	x14, x9, #8, #8
+    34c0:	ldr	w16, [x3, x16, lsl #2]
+    34c4:	ldr	w17, [x5, x17, lsl #2]
+    34c8:	lsr	w15, w9, #24
+    34cc:	ldr	w11, [x2, x11, lsl #2]
+    34d0:	ldr	w6, [x4, x6, lsl #2]
+    34d4:	ldr	w14, [x3, x14, lsl #2]
+    34d8:	eor	w11, w11, w17
+    34dc:	ldr	w13, [x5, x13, lsl #2]
+    34e0:	eor	w6, w6, w16
+    34e4:	stp	w12, w9, [x1, #8]
+    34e8:	eor	w11, w11, w6
+    34ec:	eor	w13, w13, w14
+    34f0:	ldr	w15, [x2, x15, lsl #2]
+    34f4:	ldp	w14, w6, [x0, #216]
+    34f8:	ldr	w10, [x4, x10, lsl #2]
+    34fc:	eor	w11, w11, w14
+    3500:	eor	w10, w10, w15
+    3504:	eor	w6, w11, w6
+    3508:	eor	w13, w13, w10
+    350c:	eor	w11, w8, w11, ror #8
+    3510:	eor	w13, w13, w6
+    3514:	eor	w7, w7, w13
+    3518:	eor	w11, w11, w13
+    351c:	and	x16, x7, #0xff
+    3520:	and	x8, x11, #0xff
+    3524:	ubfx	x15, x7, #8, #8
+    3528:	ubfx	x10, x7, #16, #8
+    352c:	lsr	w6, w7, #24
+    3530:	ubfx	x14, x11, #8, #8
+    3534:	ubfx	x13, x11, #16, #8
+    3538:	ldr	w16, [x3, x16, lsl #2]
+    353c:	ldr	w17, [x5, x15, lsl #2]
+    3540:	lsr	w15, w11, #24
+    3544:	ldr	w10, [x2, x10, lsl #2]
+    3548:	ldr	w6, [x4, x6, lsl #2]
+    354c:	ldr	w14, [x3, x14, lsl #2]
+    3550:	eor	w10, w10, w17
+    3554:	ldr	w13, [x5, x13, lsl #2]
+    3558:	eor	w6, w6, w16
+    355c:	stp	w7, w11, [x1]
+    3560:	eor	w10, w10, w6
+    3564:	eor	w13, w13, w14
+    3568:	ldr	w15, [x2, x15, lsl #2]
+    356c:	ldp	w14, w6, [x0, #224]
+    3570:	ldr	w8, [x4, x8, lsl #2]
+    3574:	eor	w10, w10, w14
+    3578:	eor	w8, w8, w15
+    357c:	eor	w6, w10, w6
+    3580:	eor	w13, w13, w8
+    3584:	eor	w10, w9, w10, ror #8
+    3588:	eor	w13, w13, w6
+    358c:	eor	w12, w12, w13
+    3590:	eor	w14, w10, w13
+    3594:	and	x17, x12, #0xff
+    3598:	stp	w12, w14, [x1, #8]
+    359c:	ubfx	x10, x12, #16, #8
+    35a0:	ubfx	x16, x12, #8, #8
+    35a4:	lsr	w6, w12, #24
+    35a8:	and	x8, x14, #0xff
+    35ac:	ldr	w17, [x3, x17, lsl #2]
+    35b0:	ubfx	x13, x14, #16, #8
+    35b4:	ldr	w10, [x2, x10, lsl #2]
+    35b8:	ubfx	x15, x14, #8, #8
+    35bc:	ldr	w16, [x5, x16, lsl #2]
+    35c0:	lsr	w9, w14, #24
+    35c4:	ldr	w6, [x4, x6, lsl #2]
+    35c8:	eor	w10, w10, w16
+    35cc:	eor	w6, w6, w17
+    35d0:	eor	w10, w10, w6
+    35d4:	ldp	w16, w6, [x0, #232]
+    35d8:	ldr	w15, [x3, x15, lsl #2]
+    35dc:	ldr	w9, [x2, x9, lsl #2]
+    35e0:	eor	w10, w10, w16
+    35e4:	ldr	w13, [x5, x13, lsl #2]
+    35e8:	ldr	w8, [x4, x8, lsl #2]
+    35ec:	eor	w11, w11, w10, ror #8
+    35f0:	eor	w13, w13, w15
+    35f4:	eor	w10, w10, w6
+    35f8:	eor	w8, w8, w9
+    35fc:	eor	w8, w13, w8
+    3600:	eor	w8, w8, w10
+    3604:	eor	w7, w7, w8
+    3608:	eor	w8, w11, w8
+    360c:	and	x16, x7, #0xff
+    3610:	and	x11, x8, #0xff
+    3614:	ubfx	x9, x7, #16, #8
+    3618:	ubfx	x17, x7, #8, #8
+    361c:	lsr	w10, w7, #24
+    3620:	ubfx	x6, x8, #16, #8
+    3624:	ubfx	x13, x8, #8, #8
+    3628:	ldr	w16, [x3, x16, lsl #2]
+    362c:	ldr	w17, [x5, x17, lsl #2]
+    3630:	lsr	w15, w8, #24
+    3634:	ldr	w9, [x2, x9, lsl #2]
+    3638:	ldr	w10, [x4, x10, lsl #2]
+    363c:	ldr	w13, [x3, x13, lsl #2]
+    3640:	eor	w9, w9, w17
+    3644:	ldr	w6, [x5, x6, lsl #2]
+    3648:	eor	w10, w10, w16
+    364c:	stp	w7, w8, [x1]
+    3650:	eor	w9, w9, w10
+    3654:	eor	w6, w6, w13
+    3658:	ldr	w15, [x2, x15, lsl #2]
+    365c:	ldp	w13, w10, [x0, #240]
+    3660:	ldr	w11, [x4, x11, lsl #2]
+    3664:	eor	w9, w9, w13
+    3668:	eor	w11, w11, w15
+    366c:	eor	w10, w9, w10
+    3670:	eor	w6, w6, w11
+    3674:	eor	w9, w14, w9, ror #8
+    3678:	eor	w6, w6, w10
+    367c:	eor	w10, w12, w6
+    3680:	eor	w6, w9, w6
+    3684:	and	x17, x10, #0xff
+    3688:	and	x15, x6, #0xff
+    368c:	ubfx	x16, x10, #8, #8
+    3690:	lsr	w12, w10, #24
+    3694:	ubfx	x9, x10, #16, #8
+    3698:	ubfx	x11, x6, #16, #8
+    369c:	ldr	w17, [x3, x17, lsl #2]
+    36a0:	ubfx	x14, x6, #8, #8
+    36a4:	ldr	w16, [x5, x16, lsl #2]
+    36a8:	lsr	w13, w6, #24
+    36ac:	ldr	w9, [x2, x9, lsl #2]
+    36b0:	ldr	w12, [x4, x12, lsl #2]
+    36b4:	stp	w10, w6, [x1, #8]
+    36b8:	ldr	w11, [x5, x11, lsl #2]
+    36bc:	eor	w12, w12, w17
+    36c0:	eor	w5, w9, w16
+    36c4:	ldr	w9, [x4, x15, lsl #2]
+    36c8:	ldr	w4, [x3, x14, lsl #2]
+    36cc:	eor	w3, w5, w12
+    36d0:	ldr	w12, [x2, x13, lsl #2]
+    36d4:	ldp	w2, w5, [x0, #248]
+    36d8:	eor	w4, w11, w4
+    36dc:	eor	w9, w9, w12
+    36e0:	eor	w2, w3, w2
+    36e4:	eor	w3, w4, w9
+    36e8:	eor	w4, w2, w5
+    36ec:	eor	w8, w8, w2, ror #8
+    36f0:	eor	w2, w3, w4
+    36f4:	eor	w7, w7, w2
+    36f8:	eor	w8, w8, w2
+    36fc:	stp	w7, w8, [x1]
+    3700:	ldr	w2, [x0, #256]
+    3704:	eor	w2, w10, w2
+    3708:	str	w2, [x1, #8]
+    370c:	ldr	w0, [x0, #260]
+    3710:	stp	w7, w8, [x1, #8]
+    3714:	eor	w6, w6, w0
+    3718:	stp	w2, w6, [x1]
+    371c:	ret
+	...
+
+0000000000003728 <camellia_decrypt256>:
+    3728:	ldp	w10, w7, [x1]
+    372c:	adrp	x2, 0 <camellia_decrypt>
+    3730:	ldr	w3, [x0, #256]
+    3734:	ldr	x2, [x2]
+    3738:	eor	w10, w10, w3
+    373c:	str	w10, [x1]
+    3740:	and	x14, x10, #0xff
+    3744:	add	x5, x2, #0x400
+    3748:	add	x4, x2, #0x800
+    374c:	ldr	w3, [x0, #260]
+    3750:	ubfx	x8, x10, #16, #8
+    3754:	ubfx	x15, x10, #8, #8
+    3758:	lsr	w11, w10, #24
+    375c:	eor	w9, w7, w3
+    3760:	add	x3, x2, #0xc00
+    3764:	and	x7, x9, #0xff
+    3768:	ldr	w8, [x2, x8, lsl #2]
+    376c:	ubfx	x6, x9, #16, #8
+    3770:	ubfx	x12, x9, #8, #8
+    3774:	lsr	w13, w9, #24
+    3778:	ldr	w15, [x5, x15, lsl #2]
+    377c:	ldr	w14, [x3, x14, lsl #2]
+    3780:	ldr	w11, [x4, x11, lsl #2]
+    3784:	eor	w8, w8, w15
+    3788:	ldr	w12, [x3, x12, lsl #2]
+    378c:	ldr	w6, [x5, x6, lsl #2]
+    3790:	eor	w11, w11, w14
+    3794:	str	w9, [x1, #4]
+    3798:	eor	w8, w8, w11
+    379c:	ldr	w13, [x2, x13, lsl #2]
+    37a0:	eor	w6, w6, w12
+    37a4:	ldr	w7, [x4, x7, lsl #2]
+    37a8:	ldp	w12, w11, [x0, #248]
+    37ac:	eor	w7, w7, w13
+    37b0:	eor	w6, w6, w7
+    37b4:	ldp	w13, w7, [x1, #8]
+    37b8:	eor	w8, w8, w12
+    37bc:	eor	w11, w8, w11
+    37c0:	eor	w6, w6, w11
+    37c4:	eor	w13, w6, w13
+    37c8:	eor	w8, w7, w8, ror #8
+    37cc:	eor	w8, w8, w6
+    37d0:	and	x16, x13, #0xff
+    37d4:	ubfx	x7, x13, #16, #8
+    37d8:	ubfx	x17, x13, #8, #8
+    37dc:	lsr	w6, w13, #24
+    37e0:	ubfx	x12, x8, #16, #8
+    37e4:	ubfx	x14, x8, #8, #8
+    37e8:	ldr	w16, [x3, x16, lsl #2]
+    37ec:	ldr	w17, [x5, x17, lsl #2]
+    37f0:	and	x11, x8, #0xff
+    37f4:	ldr	w7, [x2, x7, lsl #2]
+    37f8:	lsr	w15, w8, #24
+    37fc:	ldr	w6, [x4, x6, lsl #2]
+    3800:	ldr	w14, [x3, x14, lsl #2]
+    3804:	eor	w7, w7, w17
+    3808:	ldr	w12, [x5, x12, lsl #2]
+    380c:	eor	w6, w6, w16
+    3810:	stp	w13, w8, [x1, #8]
+    3814:	eor	w7, w7, w6
+    3818:	eor	w12, w12, w14
+    381c:	ldr	w15, [x2, x15, lsl #2]
+    3820:	ldp	w14, w6, [x0, #240]
+    3824:	ldr	w11, [x4, x11, lsl #2]
+    3828:	eor	w7, w7, w14
+    382c:	eor	w11, w11, w15
+    3830:	eor	w6, w7, w6
+    3834:	eor	w12, w12, w11
+    3838:	eor	w7, w9, w7, ror #8
+    383c:	eor	w12, w12, w6
+    3840:	eor	w10, w10, w12
+    3844:	eor	w7, w7, w12
+    3848:	and	x16, x10, #0xff
+    384c:	stp	w10, w7, [x1]
+    3850:	ubfx	x6, x10, #16, #8
+    3854:	ubfx	x17, x10, #8, #8
+    3858:	lsr	w9, w10, #24
+    385c:	ubfx	x11, x7, #16, #8
+    3860:	ubfx	x14, x7, #8, #8
+    3864:	ldr	w16, [x3, x16, lsl #2]
+    3868:	ldr	w17, [x5, x17, lsl #2]
+    386c:	and	x12, x7, #0xff
+    3870:	ldr	w6, [x2, x6, lsl #2]
+    3874:	lsr	w15, w7, #24
+    3878:	ldr	w9, [x4, x9, lsl #2]
+    387c:	ldr	w14, [x3, x14, lsl #2]
+    3880:	eor	w6, w6, w17
+    3884:	ldr	w11, [x5, x11, lsl #2]
+    3888:	eor	w9, w9, w16
+    388c:	eor	w6, w6, w9
+    3890:	ldr	w15, [x2, x15, lsl #2]
+    3894:	eor	w11, w11, w14
+    3898:	ldr	w12, [x4, x12, lsl #2]
+    389c:	ldp	w14, w9, [x0, #232]
+    38a0:	eor	w12, w12, w15
+    38a4:	eor	w11, w11, w12
+    38a8:	eor	w6, w6, w14
+    38ac:	eor	w9, w6, w9
+    38b0:	eor	w11, w11, w9
+    38b4:	eor	w6, w8, w6, ror #8
+    38b8:	eor	w13, w13, w11
+    38bc:	eor	w6, w6, w11
+    38c0:	and	x16, x13, #0xff
+    38c4:	and	x11, x6, #0xff
+    38c8:	ubfx	x12, x13, #16, #8
+    38cc:	ubfx	x17, x13, #8, #8
+    38d0:	lsr	w8, w13, #24
+    38d4:	ubfx	x9, x6, #16, #8
+    38d8:	ubfx	x14, x6, #8, #8
+    38dc:	ldr	w16, [x3, x16, lsl #2]
+    38e0:	ldr	w17, [x5, x17, lsl #2]
+    38e4:	lsr	w15, w6, #24
+    38e8:	ldr	w12, [x2, x12, lsl #2]
+    38ec:	ldr	w8, [x4, x8, lsl #2]
+    38f0:	ldr	w14, [x3, x14, lsl #2]
+    38f4:	eor	w12, w12, w17
+    38f8:	ldr	w9, [x5, x9, lsl #2]
+    38fc:	eor	w8, w8, w16
+    3900:	stp	w13, w6, [x1, #8]
+    3904:	eor	w12, w12, w8
+    3908:	eor	w9, w9, w14
+    390c:	ldr	w15, [x2, x15, lsl #2]
+    3910:	ldp	w14, w8, [x0, #224]
+    3914:	ldr	w11, [x4, x11, lsl #2]
+    3918:	eor	w12, w12, w14
+    391c:	eor	w11, w11, w15
+    3920:	eor	w8, w12, w8
+    3924:	eor	w9, w9, w11
+    3928:	eor	w12, w7, w12, ror #8
+    392c:	eor	w9, w9, w8
+    3930:	eor	w10, w10, w9
+    3934:	eor	w12, w12, w9
+    3938:	and	x16, x10, #0xff
+    393c:	and	x8, x12, #0xff
+    3940:	ubfx	x11, x10, #16, #8
+    3944:	ubfx	x17, x10, #8, #8
+    3948:	lsr	w7, w10, #24
+    394c:	ubfx	x15, x12, #8, #8
+    3950:	lsr	w14, w12, #24
+    3954:	ubfx	x9, x12, #16, #8
+    3958:	ldr	w17, [x5, x17, lsl #2]
+    395c:	ldr	w16, [x3, x16, lsl #2]
+    3960:	ldr	w11, [x2, x11, lsl #2]
+    3964:	ldr	w7, [x4, x7, lsl #2]
+    3968:	stp	w10, w12, [x1]
+    396c:	eor	w11, w11, w17
+    3970:	ldr	w9, [x5, x9, lsl #2]
+    3974:	eor	w7, w7, w16
+    3978:	ldr	w8, [x4, x8, lsl #2]
+    397c:	eor	w11, w11, w7
+    3980:	ldr	w16, [x3, x15, lsl #2]
+    3984:	ldr	w15, [x0, #216]
+    3988:	ldr	w14, [x2, x14, lsl #2]
+    398c:	eor	w9, w9, w16
+    3990:	ldr	w7, [x0, #220]
+    3994:	eor	w11, w11, w15
+    3998:	eor	w8, w8, w14
+    399c:	eor	w7, w11, w7
+    39a0:	eor	w9, w9, w8
+    39a4:	eor	w9, w9, w7
+    39a8:	eor	w11, w6, w11, ror #8
+    39ac:	eor	w13, w13, w9
+    39b0:	eor	w11, w11, w9
+    39b4:	and	x16, x13, #0xff
+    39b8:	and	x7, x11, #0xff
+    39bc:	ubfx	x9, x13, #16, #8
+    39c0:	ubfx	x17, x13, #8, #8
+    39c4:	lsr	w6, w13, #24
+    39c8:	ubfx	x8, x11, #16, #8
+    39cc:	ubfx	x14, x11, #8, #8
+    39d0:	ldr	w16, [x3, x16, lsl #2]
+    39d4:	ldr	w17, [x5, x17, lsl #2]
+    39d8:	lsr	w15, w11, #24
+    39dc:	ldr	w9, [x2, x9, lsl #2]
+    39e0:	ldr	w6, [x4, x6, lsl #2]
+    39e4:	ldr	w14, [x3, x14, lsl #2]
+    39e8:	eor	w9, w9, w17
+    39ec:	ldr	w8, [x5, x8, lsl #2]
+    39f0:	eor	w6, w6, w16
+    39f4:	stp	w13, w11, [x1, #8]
+    39f8:	eor	w9, w9, w6
+    39fc:	eor	w8, w8, w14
+    3a00:	ldr	w15, [x2, x15, lsl #2]
+    3a04:	ldp	w14, w6, [x0, #208]
+    3a08:	ldr	w7, [x4, x7, lsl #2]
+    3a0c:	eor	w9, w9, w14
+    3a10:	eor	w7, w7, w15
+    3a14:	eor	w6, w9, w6
+    3a18:	eor	w8, w8, w7
+    3a1c:	eor	w9, w12, w9, ror #8
+    3a20:	eor	w8, w8, w6
+    3a24:	eor	w10, w10, w8
+    3a28:	eor	w8, w9, w8
+    3a2c:	stp	w10, w8, [x1]
+    3a30:	ldr	w6, [x0, #200]
+    3a34:	and	w6, w10, w6
+    3a38:	eor	w8, w8, w6, ror #31
+    3a3c:	str	w8, [x1, #4]
+    3a40:	and	x9, x8, #0xff
+    3a44:	ldr	w7, [x0, #204]
+    3a48:	ubfx	x6, x8, #16, #8
+    3a4c:	lsr	w17, w8, #24
+    3a50:	orr	w7, w8, w7
+    3a54:	ldr	w15, [x4, x9, lsl #2]
+    3a58:	eor	w7, w7, w10
+    3a5c:	str	w7, [x1]
+    3a60:	ldr	w10, [x5, x6, lsl #2]
+    3a64:	and	x14, x7, #0xff
+    3a68:	ldr	w6, [x0, #196]
+    3a6c:	ubfx	x9, x7, #8, #8
+    3a70:	ubfx	x12, x7, #16, #8
+    3a74:	orr	w6, w11, w6
+    3a78:	ldr	w16, [x3, x14, lsl #2]
+    3a7c:	eor	w6, w6, w13
+    3a80:	str	w6, [x1, #8]
+    3a84:	ldr	w18, [x5, x9, lsl #2]
+    3a88:	lsr	w14, w7, #24
+    3a8c:	ldr	w9, [x0, #192]
+    3a90:	ubfx	x13, x8, #8, #8
+    3a94:	ldr	w12, [x2, x12, lsl #2]
+    3a98:	and	w9, w6, w9
+    3a9c:	ldr	w14, [x4, x14, lsl #2]
+    3aa0:	eor	w12, w12, w18
+    3aa4:	eor	w11, w11, w9, ror #31
+    3aa8:	str	w11, [x1, #12]
+    3aac:	eor	w9, w14, w16
+    3ab0:	ldr	w16, [x3, x13, lsl #2]
+    3ab4:	ldr	w14, [x0, #184]
+    3ab8:	eor	w9, w12, w9
+    3abc:	ldr	w13, [x2, x17, lsl #2]
+    3ac0:	eor	w10, w10, w16
+    3ac4:	ldr	w12, [x0, #188]
+    3ac8:	eor	w9, w9, w14
+    3acc:	eor	w13, w15, w13
+    3ad0:	eor	w12, w9, w12
+    3ad4:	eor	w10, w10, w13
+    3ad8:	eor	w10, w10, w12
+    3adc:	eor	w9, w11, w9, ror #8
+    3ae0:	eor	w6, w6, w10
+    3ae4:	eor	w9, w9, w10
+    3ae8:	and	x16, x6, #0xff
+    3aec:	and	x13, x9, #0xff
+    3af0:	ubfx	x11, x6, #16, #8
+    3af4:	ubfx	x17, x6, #8, #8
+    3af8:	lsr	w12, w6, #24
+    3afc:	ubfx	x10, x9, #16, #8
+    3b00:	ubfx	x14, x9, #8, #8
+    3b04:	ldr	w16, [x3, x16, lsl #2]
+    3b08:	ldr	w17, [x5, x17, lsl #2]
+    3b0c:	lsr	w15, w9, #24
+    3b10:	ldr	w11, [x2, x11, lsl #2]
+    3b14:	ldr	w12, [x4, x12, lsl #2]
+    3b18:	ldr	w14, [x3, x14, lsl #2]
+    3b1c:	eor	w11, w11, w17
+    3b20:	ldr	w10, [x5, x10, lsl #2]
+    3b24:	eor	w12, w12, w16
+    3b28:	stp	w6, w9, [x1, #8]
+    3b2c:	eor	w11, w11, w12
+    3b30:	eor	w10, w10, w14
+    3b34:	ldr	w15, [x2, x15, lsl #2]
+    3b38:	ldp	w14, w12, [x0, #176]
+    3b3c:	ldr	w13, [x4, x13, lsl #2]
+    3b40:	eor	w11, w11, w14
+    3b44:	eor	w13, w13, w15
+    3b48:	eor	w12, w11, w12
+    3b4c:	eor	w10, w10, w13
+    3b50:	eor	w11, w8, w11, ror #8
+    3b54:	eor	w10, w10, w12
+    3b58:	eor	w7, w7, w10
+    3b5c:	eor	w8, w11, w10
+    3b60:	and	x16, x7, #0xff
+    3b64:	and	x13, x8, #0xff
+    3b68:	ubfx	x10, x7, #16, #8
+    3b6c:	ubfx	x17, x7, #8, #8
+    3b70:	lsr	w12, w7, #24
+    3b74:	ubfx	x11, x8, #16, #8
+    3b78:	ubfx	x14, x8, #8, #8
+    3b7c:	ldr	w16, [x3, x16, lsl #2]
+    3b80:	ldr	w17, [x5, x17, lsl #2]
+    3b84:	lsr	w15, w8, #24
+    3b88:	ldr	w10, [x2, x10, lsl #2]
+    3b8c:	ldr	w12, [x4, x12, lsl #2]
+    3b90:	ldr	w14, [x3, x14, lsl #2]
+    3b94:	eor	w10, w10, w17
+    3b98:	ldr	w11, [x5, x11, lsl #2]
+    3b9c:	eor	w12, w12, w16
+    3ba0:	stp	w7, w8, [x1]
+    3ba4:	eor	w10, w10, w12
+    3ba8:	eor	w11, w11, w14
+    3bac:	ldr	w15, [x2, x15, lsl #2]
+    3bb0:	ldp	w14, w12, [x0, #168]
+    3bb4:	ldr	w13, [x4, x13, lsl #2]
+    3bb8:	eor	w10, w10, w14
+    3bbc:	eor	w13, w13, w15
+    3bc0:	eor	w12, w10, w12
+    3bc4:	eor	w11, w11, w13
+    3bc8:	eor	w10, w9, w10, ror #8
+    3bcc:	eor	w11, w11, w12
+    3bd0:	eor	w6, w6, w11
+    3bd4:	eor	w10, w10, w11
+    3bd8:	and	x16, x6, #0xff
+    3bdc:	and	x15, x10, #0xff
+    3be0:	ubfx	x11, x6, #16, #8
+    3be4:	ubfx	x17, x6, #8, #8
+    3be8:	lsr	w9, w6, #24
+    3bec:	ubfx	x12, x10, #16, #8
+    3bf0:	ubfx	x13, x10, #8, #8
+    3bf4:	ldr	w16, [x3, x16, lsl #2]
+    3bf8:	ldr	w17, [x5, x17, lsl #2]
+    3bfc:	lsr	w14, w10, #24
+    3c00:	ldr	w11, [x2, x11, lsl #2]
+    3c04:	ldr	w9, [x4, x9, lsl #2]
+    3c08:	stp	w6, w10, [x1, #8]
+    3c0c:	eor	w11, w11, w17
+    3c10:	eor	w9, w9, w16
+    3c14:	ldr	w16, [x0, #160]
+    3c18:	eor	w11, w11, w9
+    3c1c:	ldr	w13, [x3, x13, lsl #2]
+    3c20:	ldr	w12, [x5, x12, lsl #2]
+    3c24:	eor	w11, w11, w16
+    3c28:	ldr	w9, [x4, x15, lsl #2]
+    3c2c:	ldr	w14, [x2, x14, lsl #2]
+    3c30:	eor	w12, w12, w13
+    3c34:	ldr	w13, [x0, #164]
+    3c38:	eor	w8, w8, w11, ror #8
+    3c3c:	eor	w9, w9, w14
+    3c40:	eor	w12, w12, w9
+    3c44:	eor	w11, w11, w13
+    3c48:	eor	w11, w12, w11
+    3c4c:	eor	w7, w7, w11
+    3c50:	eor	w8, w8, w11
+    3c54:	and	x16, x7, #0xff
+    3c58:	and	x13, x8, #0xff
+    3c5c:	ubfx	x9, x7, #16, #8
+    3c60:	ubfx	x17, x7, #8, #8
+    3c64:	lsr	w12, w7, #24
+    3c68:	ubfx	x11, x8, #16, #8
+    3c6c:	ubfx	x14, x8, #8, #8
+    3c70:	ldr	w16, [x3, x16, lsl #2]
+    3c74:	ldr	w17, [x5, x17, lsl #2]
+    3c78:	lsr	w15, w8, #24
+    3c7c:	ldr	w9, [x2, x9, lsl #2]
+    3c80:	ldr	w12, [x4, x12, lsl #2]
+    3c84:	ldr	w14, [x3, x14, lsl #2]
+    3c88:	eor	w9, w9, w17
+    3c8c:	ldr	w11, [x5, x11, lsl #2]
+    3c90:	eor	w12, w12, w16
+    3c94:	stp	w7, w8, [x1]
+    3c98:	eor	w9, w9, w12
+    3c9c:	eor	w11, w11, w14
+    3ca0:	ldr	w15, [x2, x15, lsl #2]
+    3ca4:	ldp	w14, w12, [x0, #152]
+    3ca8:	ldr	w13, [x4, x13, lsl #2]
+    3cac:	eor	w9, w9, w14
+    3cb0:	eor	w13, w13, w15
+    3cb4:	eor	w12, w9, w12
+    3cb8:	eor	w11, w11, w13
+    3cbc:	eor	w9, w10, w9, ror #8
+    3cc0:	eor	w11, w11, w12
+    3cc4:	eor	w15, w6, w11
+    3cc8:	eor	w14, w9, w11
+    3ccc:	and	x16, x15, #0xff
+    3cd0:	and	x10, x14, #0xff
+    3cd4:	ubfx	x9, x15, #16, #8
+    3cd8:	ubfx	x17, x15, #8, #8
+    3cdc:	lsr	w6, w15, #24
+    3ce0:	ubfx	x11, x14, #16, #8
+    3ce4:	ubfx	x12, x14, #8, #8
+    3ce8:	ldr	w16, [x3, x16, lsl #2]
+    3cec:	ldr	w17, [x5, x17, lsl #2]
+    3cf0:	lsr	w13, w14, #24
+    3cf4:	ldr	w9, [x2, x9, lsl #2]
+    3cf8:	ldr	w6, [x4, x6, lsl #2]
+    3cfc:	ldr	w12, [x3, x12, lsl #2]
+    3d00:	eor	w9, w9, w17
+    3d04:	ldr	w11, [x5, x11, lsl #2]
+    3d08:	eor	w6, w6, w16
+    3d0c:	stp	w15, w14, [x1, #8]
+    3d10:	eor	w9, w9, w6
+    3d14:	eor	w11, w11, w12
+    3d18:	ldr	w13, [x2, x13, lsl #2]
+    3d1c:	ldp	w12, w6, [x0, #144]
+    3d20:	ldr	w10, [x4, x10, lsl #2]
+    3d24:	eor	w9, w9, w12
+    3d28:	eor	w10, w10, w13
+    3d2c:	eor	w6, w9, w6
+    3d30:	eor	w11, w11, w10
+    3d34:	eor	w8, w8, w9, ror #8
+    3d38:	eor	w11, w11, w6
+    3d3c:	eor	w7, w7, w11
+    3d40:	eor	w8, w8, w11
+    3d44:	stp	w7, w8, [x1]
+    3d48:	ldr	w9, [x0, #136]
+    3d4c:	and	w9, w7, w9
+    3d50:	eor	w8, w8, w9, ror #31
+    3d54:	str	w8, [x1, #4]
+    3d58:	and	x11, x8, #0xff
+    3d5c:	ldr	w6, [x0, #140]
+    3d60:	ubfx	x9, x8, #16, #8
+    3d64:	ubfx	x10, x8, #8, #8
+    3d68:	orr	w6, w8, w6
+    3d6c:	ldr	w16, [x4, x11, lsl #2]
+    3d70:	eor	w7, w6, w7
+    3d74:	str	w7, [x1]
+    3d78:	ldr	w12, [x5, x9, lsl #2]
+    3d7c:	and	x13, x7, #0xff
+    3d80:	ldr	w6, [x0, #132]
+    3d84:	ubfx	x9, x7, #8, #8
+    3d88:	ldr	w10, [x3, x10, lsl #2]
+    3d8c:	ubfx	x11, x7, #16, #8
+    3d90:	orr	w6, w14, w6
+    3d94:	ldr	w17, [x3, x13, lsl #2]
+    3d98:	eor	w6, w6, w15
+    3d9c:	str	w6, [x1, #8]
+    3da0:	ldr	w15, [x5, x9, lsl #2]
+    3da4:	eor	w12, w12, w10
+    3da8:	ldr	w9, [x0, #128]
+    3dac:	lsr	w10, w7, #24
+    3db0:	ldr	w13, [x2, x11, lsl #2]
+    3db4:	lsr	w11, w8, #24
+    3db8:	and	w9, w6, w9
+    3dbc:	ldr	w10, [x4, x10, lsl #2]
+    3dc0:	eor	w13, w13, w15
+    3dc4:	eor	w9, w14, w9, ror #31
+    3dc8:	str	w9, [x1, #12]
+    3dcc:	ldr	w15, [x2, x11, lsl #2]
+    3dd0:	eor	w10, w10, w17
+    3dd4:	ldp	w14, w11, [x0, #120]
+    3dd8:	eor	w10, w13, w10
+    3ddc:	eor	w13, w16, w15
+    3de0:	eor	w10, w10, w14
+    3de4:	eor	w12, w12, w13
+    3de8:	eor	w11, w10, w11
+    3dec:	eor	w12, w12, w11
+    3df0:	eor	w10, w9, w10, ror #8
+    3df4:	eor	w6, w6, w12
+    3df8:	eor	w10, w10, w12
+    3dfc:	and	x16, x6, #0xff
+    3e00:	and	x13, x10, #0xff
+    3e04:	ubfx	x9, x6, #16, #8
+    3e08:	ubfx	x17, x6, #8, #8
+    3e0c:	lsr	w12, w6, #24
+    3e10:	ubfx	x11, x10, #16, #8
+    3e14:	ubfx	x14, x10, #8, #8
+    3e18:	ldr	w16, [x3, x16, lsl #2]
+    3e1c:	ldr	w17, [x5, x17, lsl #2]
+    3e20:	lsr	w15, w10, #24
+    3e24:	ldr	w9, [x2, x9, lsl #2]
+    3e28:	ldr	w12, [x4, x12, lsl #2]
+    3e2c:	ldr	w14, [x3, x14, lsl #2]
+    3e30:	eor	w9, w9, w17
+    3e34:	ldr	w11, [x5, x11, lsl #2]
+    3e38:	eor	w12, w12, w16
+    3e3c:	stp	w6, w10, [x1, #8]
+    3e40:	eor	w9, w9, w12
+    3e44:	eor	w11, w11, w14
+    3e48:	ldr	w15, [x2, x15, lsl #2]
+    3e4c:	ldp	w14, w12, [x0, #112]
+    3e50:	ldr	w13, [x4, x13, lsl #2]
+    3e54:	eor	w9, w9, w14
+    3e58:	eor	w13, w13, w15
+    3e5c:	eor	w12, w9, w12
+    3e60:	eor	w11, w11, w13
+    3e64:	eor	w9, w8, w9, ror #8
+    3e68:	eor	w11, w11, w12
+    3e6c:	eor	w7, w7, w11
+    3e70:	eor	w9, w9, w11
+    3e74:	and	x16, x7, #0xff
+    3e78:	stp	w7, w9, [x1]
+    3e7c:	ubfx	x12, x7, #16, #8
+    3e80:	ubfx	x17, x7, #8, #8
+    3e84:	lsr	w8, w7, #24
+    3e88:	ubfx	x13, x9, #16, #8
+    3e8c:	ubfx	x14, x9, #8, #8
+    3e90:	and	x11, x9, #0xff
+    3e94:	ldr	w12, [x2, x12, lsl #2]
+    3e98:	lsr	w15, w9, #24
+    3e9c:	ldr	w17, [x5, x17, lsl #2]
+    3ea0:	ldr	w16, [x3, x16, lsl #2]
+    3ea4:	ldr	w8, [x4, x8, lsl #2]
+    3ea8:	eor	w12, w12, w17
+    3eac:	ldr	w14, [x3, x14, lsl #2]
+    3eb0:	ldr	w13, [x5, x13, lsl #2]
+    3eb4:	eor	w8, w8, w16
+    3eb8:	eor	w12, w12, w8
+    3ebc:	ldr	w15, [x2, x15, lsl #2]
+    3ec0:	eor	w13, w13, w14
+    3ec4:	ldr	w11, [x4, x11, lsl #2]
+    3ec8:	ldp	w14, w8, [x0, #104]
+    3ecc:	eor	w11, w11, w15
+    3ed0:	eor	w13, w13, w11
+    3ed4:	eor	w12, w12, w14
+    3ed8:	eor	w8, w12, w8
+    3edc:	eor	w13, w13, w8
+    3ee0:	eor	w12, w10, w12, ror #8
+    3ee4:	eor	w6, w6, w13
+    3ee8:	eor	w12, w12, w13
+    3eec:	and	x16, x6, #0xff
+    3ef0:	and	x10, x12, #0xff
+    3ef4:	ubfx	x11, x6, #16, #8
+    3ef8:	ubfx	x17, x6, #8, #8
+    3efc:	lsr	w8, w6, #24
+    3f00:	ubfx	x13, x12, #16, #8
+    3f04:	ubfx	x14, x12, #8, #8
+    3f08:	ldr	w16, [x3, x16, lsl #2]
+    3f0c:	ldr	w17, [x5, x17, lsl #2]
+    3f10:	lsr	w15, w12, #24
+    3f14:	ldr	w11, [x2, x11, lsl #2]
+    3f18:	ldr	w8, [x4, x8, lsl #2]
+    3f1c:	ldr	w14, [x3, x14, lsl #2]
+    3f20:	eor	w11, w11, w17
+    3f24:	ldr	w13, [x5, x13, lsl #2]
+    3f28:	eor	w8, w8, w16
+    3f2c:	stp	w6, w12, [x1, #8]
+    3f30:	eor	w11, w11, w8
+    3f34:	eor	w13, w13, w14
+    3f38:	ldr	w15, [x2, x15, lsl #2]
+    3f3c:	ldp	w14, w8, [x0, #96]
+    3f40:	ldr	w10, [x4, x10, lsl #2]
+    3f44:	eor	w11, w11, w14
+    3f48:	eor	w10, w10, w15
+    3f4c:	eor	w8, w11, w8
+    3f50:	eor	w13, w13, w10
+    3f54:	eor	w11, w9, w11, ror #8
+    3f58:	eor	w13, w13, w8
+    3f5c:	eor	w7, w7, w13
+    3f60:	eor	w11, w11, w13
+    3f64:	and	x16, x7, #0xff
+    3f68:	and	x8, x11, #0xff
+    3f6c:	ubfx	x17, x7, #8, #8
+    3f70:	ubfx	x10, x7, #16, #8
+    3f74:	lsr	w9, w7, #24
+    3f78:	ubfx	x15, x11, #8, #8
+    3f7c:	lsr	w14, w11, #24
+    3f80:	ubfx	x13, x11, #16, #8
+    3f84:	ldr	w17, [x5, x17, lsl #2]
+    3f88:	ldr	w16, [x3, x16, lsl #2]
+    3f8c:	ldr	w10, [x2, x10, lsl #2]
+    3f90:	ldr	w9, [x4, x9, lsl #2]
+    3f94:	stp	w7, w11, [x1]
+    3f98:	eor	w10, w10, w17
+    3f9c:	ldr	w13, [x5, x13, lsl #2]
+    3fa0:	eor	w9, w9, w16
+    3fa4:	ldr	w8, [x4, x8, lsl #2]
+    3fa8:	eor	w10, w10, w9
+    3fac:	ldr	w16, [x3, x15, lsl #2]
+    3fb0:	ldr	w15, [x0, #88]
+    3fb4:	ldr	w14, [x2, x14, lsl #2]
+    3fb8:	eor	w13, w13, w16
+    3fbc:	ldr	w9, [x0, #92]
+    3fc0:	eor	w10, w10, w15
+    3fc4:	eor	w8, w8, w14
+    3fc8:	eor	w9, w10, w9
+    3fcc:	eor	w13, w13, w8
+    3fd0:	eor	w13, w13, w9
+    3fd4:	eor	w10, w12, w10, ror #8
+    3fd8:	eor	w6, w6, w13
+    3fdc:	eor	w10, w10, w13
+    3fe0:	and	x16, x6, #0xff
+    3fe4:	and	x13, x10, #0xff
+    3fe8:	ubfx	x17, x6, #8, #8
+    3fec:	ubfx	x9, x6, #16, #8
+    3ff0:	lsr	w12, w6, #24
+    3ff4:	ubfx	x8, x10, #16, #8
+    3ff8:	ubfx	x14, x10, #8, #8
+    3ffc:	ldr	w16, [x3, x16, lsl #2]
+    4000:	ldr	w17, [x5, x17, lsl #2]
+    4004:	lsr	w15, w10, #24
+    4008:	ldr	w9, [x2, x9, lsl #2]
+    400c:	ldr	w12, [x4, x12, lsl #2]
+    4010:	ldr	w14, [x3, x14, lsl #2]
+    4014:	eor	w9, w9, w17
+    4018:	ldr	w8, [x5, x8, lsl #2]
+    401c:	eor	w12, w12, w16
+    4020:	stp	w6, w10, [x1, #8]
+    4024:	eor	w9, w9, w12
+    4028:	eor	w8, w8, w14
+    402c:	ldr	w15, [x2, x15, lsl #2]
+    4030:	ldp	w14, w12, [x0, #80]
+    4034:	ldr	w13, [x4, x13, lsl #2]
+    4038:	eor	w9, w9, w14
+    403c:	eor	w13, w13, w15
+    4040:	eor	w12, w9, w12
+    4044:	eor	w8, w8, w13
+    4048:	eor	w9, w11, w9, ror #8
+    404c:	eor	w8, w8, w12
+    4050:	eor	w7, w7, w8
+    4054:	eor	w8, w9, w8
+    4058:	stp	w7, w8, [x1]
+    405c:	ldr	w11, [x0, #72]
+    4060:	and	w11, w7, w11
+    4064:	eor	w8, w8, w11, ror #31
+    4068:	str	w8, [x1, #4]
+    406c:	and	x12, x8, #0xff
+    4070:	ldr	w11, [x0, #76]
+    4074:	ubfx	x9, x8, #16, #8
+    4078:	lsr	w16, w8, #24
+    407c:	orr	w11, w8, w11
+    4080:	ldr	w14, [x4, x12, lsl #2]
+    4084:	eor	w7, w11, w7
+    4088:	str	w7, [x1]
+    408c:	ldr	w13, [x5, x9, lsl #2]
+    4090:	and	x11, x7, #0xff
+    4094:	ldr	w12, [x0, #68]
+    4098:	ubfx	x9, x7, #8, #8
+    409c:	ubfx	x15, x7, #16, #8
+    40a0:	orr	w12, w10, w12
+    40a4:	ldr	w17, [x3, x11, lsl #2]
+    40a8:	eor	w6, w12, w6
+    40ac:	str	w6, [x1, #8]
+    40b0:	ldr	w18, [x5, x9, lsl #2]
+    40b4:	lsr	w11, w7, #24
+    40b8:	ldr	w9, [x0, #64]
+    40bc:	ldr	w12, [x2, x15, lsl #2]
+    40c0:	ubfx	x15, x8, #8, #8
+    40c4:	and	w9, w6, w9
+    40c8:	ldr	w11, [x4, x11, lsl #2]
+    40cc:	eor	w12, w12, w18
+    40d0:	eor	w10, w10, w9, ror #31
+    40d4:	str	w10, [x1, #12]
+    40d8:	eor	w9, w11, w17
+    40dc:	ldr	w11, [x3, x15, lsl #2]
+    40e0:	eor	w9, w12, w9
+    40e4:	ldr	w15, [x0, #56]
+    40e8:	ldr	w12, [x2, x16, lsl #2]
+    40ec:	eor	w13, w13, w11
+    40f0:	ldr	w11, [x0, #60]
+    40f4:	eor	w9, w9, w15
+    40f8:	eor	w12, w14, w12
+    40fc:	eor	w11, w9, w11
+    4100:	eor	w13, w13, w12
+    4104:	eor	w13, w13, w11
+    4108:	eor	w9, w10, w9, ror #8
+    410c:	eor	w12, w6, w13
+    4110:	eor	w9, w9, w13
+    4114:	and	x16, x12, #0xff
+    4118:	and	x10, x9, #0xff
+    411c:	ubfx	x17, x12, #8, #8
+    4120:	ubfx	x11, x12, #16, #8
+    4124:	lsr	w6, w12, #24
+    4128:	ubfx	x13, x9, #16, #8
+    412c:	ubfx	x14, x9, #8, #8
+    4130:	ldr	w16, [x3, x16, lsl #2]
+    4134:	ldr	w17, [x5, x17, lsl #2]
+    4138:	lsr	w15, w9, #24
+    413c:	ldr	w11, [x2, x11, lsl #2]
+    4140:	ldr	w6, [x4, x6, lsl #2]
+    4144:	ldr	w14, [x3, x14, lsl #2]
+    4148:	eor	w11, w11, w17
+    414c:	ldr	w13, [x5, x13, lsl #2]
+    4150:	eor	w6, w6, w16
+    4154:	stp	w12, w9, [x1, #8]
+    4158:	eor	w11, w11, w6
+    415c:	eor	w13, w13, w14
+    4160:	ldr	w15, [x2, x15, lsl #2]
+    4164:	ldp	w14, w6, [x0, #48]
+    4168:	ldr	w10, [x4, x10, lsl #2]
+    416c:	eor	w11, w11, w14
+    4170:	eor	w10, w10, w15
+    4174:	eor	w6, w11, w6
+    4178:	eor	w13, w13, w10
+    417c:	eor	w11, w8, w11, ror #8
+    4180:	eor	w13, w13, w6
+    4184:	eor	w7, w7, w13
+    4188:	eor	w11, w11, w13
+    418c:	and	x16, x7, #0xff
+    4190:	and	x8, x11, #0xff
+    4194:	ubfx	x15, x7, #8, #8
+    4198:	ubfx	x10, x7, #16, #8
+    419c:	lsr	w6, w7, #24
+    41a0:	ubfx	x14, x11, #8, #8
+    41a4:	ubfx	x13, x11, #16, #8
+    41a8:	ldr	w16, [x3, x16, lsl #2]
+    41ac:	ldr	w17, [x5, x15, lsl #2]
+    41b0:	lsr	w15, w11, #24
+    41b4:	ldr	w10, [x2, x10, lsl #2]
+    41b8:	ldr	w6, [x4, x6, lsl #2]
+    41bc:	ldr	w14, [x3, x14, lsl #2]
+    41c0:	eor	w10, w10, w17
+    41c4:	ldr	w13, [x5, x13, lsl #2]
+    41c8:	eor	w6, w6, w16
+    41cc:	stp	w7, w11, [x1]
+    41d0:	eor	w10, w10, w6
+    41d4:	eor	w13, w13, w14
+    41d8:	ldr	w15, [x2, x15, lsl #2]
+    41dc:	ldp	w14, w6, [x0, #40]
+    41e0:	ldr	w8, [x4, x8, lsl #2]
+    41e4:	eor	w10, w10, w14
+    41e8:	eor	w8, w8, w15
+    41ec:	eor	w6, w10, w6
+    41f0:	eor	w13, w13, w8
+    41f4:	eor	w10, w9, w10, ror #8
+    41f8:	eor	w13, w13, w6
+    41fc:	eor	w12, w12, w13
+    4200:	eor	w14, w10, w13
+    4204:	and	x17, x12, #0xff
+    4208:	stp	w12, w14, [x1, #8]
+    420c:	ubfx	x10, x12, #16, #8
+    4210:	ubfx	x16, x12, #8, #8
+    4214:	lsr	w6, w12, #24
+    4218:	and	x8, x14, #0xff
+    421c:	ldr	w17, [x3, x17, lsl #2]
+    4220:	ubfx	x13, x14, #16, #8
+    4224:	ldr	w10, [x2, x10, lsl #2]
+    4228:	ubfx	x15, x14, #8, #8
+    422c:	ldr	w16, [x5, x16, lsl #2]
+    4230:	lsr	w9, w14, #24
+    4234:	ldr	w6, [x4, x6, lsl #2]
+    4238:	eor	w10, w10, w16
+    423c:	eor	w6, w6, w17
+    4240:	eor	w10, w10, w6
+    4244:	ldp	w16, w6, [x0, #32]
+    4248:	ldr	w15, [x3, x15, lsl #2]
+    424c:	ldr	w9, [x2, x9, lsl #2]
+    4250:	eor	w10, w10, w16
+    4254:	ldr	w13, [x5, x13, lsl #2]
+    4258:	ldr	w8, [x4, x8, lsl #2]
+    425c:	eor	w11, w11, w10, ror #8
+    4260:	eor	w13, w13, w15
+    4264:	eor	w10, w10, w6
+    4268:	eor	w8, w8, w9
+    426c:	eor	w8, w13, w8
+    4270:	eor	w8, w8, w10
+    4274:	eor	w7, w7, w8
+    4278:	eor	w8, w11, w8
+    427c:	and	x16, x7, #0xff
+    4280:	and	x11, x8, #0xff
+    4284:	ubfx	x9, x7, #16, #8
+    4288:	ubfx	x17, x7, #8, #8
+    428c:	lsr	w10, w7, #24
+    4290:	ubfx	x6, x8, #16, #8
+    4294:	ubfx	x13, x8, #8, #8
+    4298:	ldr	w16, [x3, x16, lsl #2]
+    429c:	ldr	w17, [x5, x17, lsl #2]
+    42a0:	lsr	w15, w8, #24
+    42a4:	ldr	w9, [x2, x9, lsl #2]
+    42a8:	ldr	w10, [x4, x10, lsl #2]
+    42ac:	ldr	w13, [x3, x13, lsl #2]
+    42b0:	eor	w9, w9, w17
+    42b4:	ldr	w6, [x5, x6, lsl #2]
+    42b8:	eor	w10, w10, w16
+    42bc:	stp	w7, w8, [x1]
+    42c0:	eor	w9, w9, w10
+    42c4:	eor	w6, w6, w13
+    42c8:	ldr	w15, [x2, x15, lsl #2]
+    42cc:	ldp	w13, w10, [x0, #24]
+    42d0:	ldr	w11, [x4, x11, lsl #2]
+    42d4:	eor	w9, w9, w13
+    42d8:	eor	w11, w11, w15
+    42dc:	eor	w10, w9, w10
+    42e0:	eor	w6, w6, w11
+    42e4:	eor	w9, w14, w9, ror #8
+    42e8:	eor	w6, w6, w10
+    42ec:	eor	w10, w12, w6
+    42f0:	eor	w6, w9, w6
+    42f4:	and	x17, x10, #0xff
+    42f8:	and	x15, x6, #0xff
+    42fc:	ubfx	x16, x10, #8, #8
+    4300:	lsr	w12, w10, #24
+    4304:	ubfx	x9, x10, #16, #8
+    4308:	ubfx	x11, x6, #16, #8
+    430c:	ldr	w17, [x3, x17, lsl #2]
+    4310:	ubfx	x14, x6, #8, #8
+    4314:	ldr	w16, [x5, x16, lsl #2]
+    4318:	lsr	w13, w6, #24
+    431c:	ldr	w9, [x2, x9, lsl #2]
+    4320:	ldr	w12, [x4, x12, lsl #2]
+    4324:	stp	w10, w6, [x1, #8]
+    4328:	ldr	w11, [x5, x11, lsl #2]
+    432c:	eor	w12, w12, w17
+    4330:	eor	w5, w9, w16
+    4334:	ldr	w9, [x4, x15, lsl #2]
+    4338:	ldr	w4, [x3, x14, lsl #2]
+    433c:	eor	w3, w5, w12
+    4340:	ldr	w12, [x2, x13, lsl #2]
+    4344:	ldp	w2, w5, [x0, #16]
+    4348:	eor	w4, w11, w4
+    434c:	eor	w9, w9, w12
+    4350:	eor	w2, w3, w2
+    4354:	eor	w3, w4, w9
+    4358:	eor	w4, w2, w5
+    435c:	eor	w8, w8, w2, ror #8
+    4360:	eor	w2, w3, w4
+    4364:	eor	w7, w7, w2
+    4368:	eor	w8, w8, w2
+    436c:	stp	w7, w8, [x1]
+    4370:	ldr	w2, [x0]
+    4374:	eor	w2, w10, w2
+    4378:	str	w2, [x1, #8]
+    437c:	ldr	w0, [x0, #4]
+    4380:	stp	w7, w8, [x1, #8]
+    4384:	eor	w6, w6, w0
+    4388:	stp	w2, w6, [x1]
+    438c:	ret
+	...
+
+0000000000004398 <Camellia_Ekeygen>:
+    4398:	mov	w3, w0
+    439c:	cmp	w0, #0xc0
+    43a0:	mov	x0, x1
+    43a4:	mov	x1, x2
+    43a8:	b.eq	43c0 <Camellia_Ekeygen+0x28>  // b.none
+    43ac:	cmp	w3, #0x100
+    43b0:	b.eq	43c8 <Camellia_Ekeygen+0x30>  // b.none
+    43b4:	cmp	w3, #0x80
+    43b8:	b.eq	43c4 <Camellia_Ekeygen+0x2c>  // b.none
+    43bc:	ret
+    43c0:	b	1768 <camellia_setup192>
+    43c4:	b	160 <camellia_setup128>
+    43c8:	b	9e8 <camellia_setup256>
+    43cc:	nop
+
+00000000000043d0 <Camellia_EncryptBlock>:
+    43d0:	stp	x29, x30, [sp, #-48]!
+    43d4:	sub	w4, w0, #0xc0
+    43d8:	mov	w8, w0
+    43dc:	mov	x29, sp
+    43e0:	str	x19, [sp, #16]
+    43e4:	mov	x0, x2
+    43e8:	tst	w4, #0xffffffbf
+    43ec:	mov	x19, x3
+    43f0:	ldrb	w7, [x1, #1]
+    43f4:	ldrb	w5, [x1, #9]
+    43f8:	ldrb	w6, [x1, #5]
+    43fc:	lsl	w2, w7, #16
+    4400:	ldrb	w4, [x1, #2]
+    4404:	lsl	w3, w5, #16
+    4408:	ldrb	w7, [x1]
+    440c:	ldrb	w5, [x1, #3]
+    4410:	lsl	w9, w6, #16
+    4414:	ldrb	w11, [x1, #6]
+    4418:	ldrb	w6, [x1, #4]
+    441c:	orr	w7, w2, w7, lsl #24
+    4420:	orr	w4, w5, w4, lsl #8
+    4424:	ldrb	w2, [x1, #7]
+    4428:	ldrb	w5, [x1, #8]
+    442c:	eor	w7, w7, w4
+    4430:	ldrb	w10, [x1, #13]
+    4434:	orr	w6, w9, w6, lsl #24
+    4438:	ldrb	w12, [x1, #11]
+    443c:	orr	w11, w2, w11, lsl #8
+    4440:	ldrb	w9, [x1, #10]
+    4444:	orr	w5, w3, w5, lsl #24
+    4448:	ldrb	w4, [x1, #12]
+    444c:	lsl	w10, w10, #16
+    4450:	ldrb	w3, [x1, #14]
+    4454:	eor	w6, w6, w11
+    4458:	ldrb	w2, [x1, #15]
+    445c:	orr	w9, w12, w9, lsl #8
+    4460:	orr	w1, w10, w4, lsl #24
+    4464:	eor	w4, w5, w9
+    4468:	stp	w7, w6, [sp, #32]
+    446c:	orr	w3, w2, w3, lsl #8
+    4470:	eor	w1, w1, w3
+    4474:	stp	w4, w1, [sp, #40]
+    4478:	b.eq	44b8 <Camellia_EncryptBlock+0xe8>  // b.none
+    447c:	cmp	w8, #0x80
+    4480:	b.ne	4494 <Camellia_EncryptBlock+0xc4>  // b.any
+    4484:	add	x1, sp, #0x20
+    4488:	bl	17f8 <camellia_encrypt128>
+    448c:	ldp	w7, w6, [sp, #32]
+    4490:	ldp	w4, w1, [sp, #40]
+    4494:	rev	w7, w7
+    4498:	rev	w6, w6
+    449c:	rev	w4, w4
+    44a0:	rev	w1, w1
+    44a4:	stp	w7, w6, [x19]
+    44a8:	stp	w4, w1, [x19, #8]
+    44ac:	ldr	x19, [sp, #16]
+    44b0:	ldp	x29, x30, [sp], #48
+    44b4:	ret
+    44b8:	add	x1, sp, #0x20
+    44bc:	bl	2ab8 <camellia_encrypt256>
+    44c0:	ldp	w7, w6, [sp, #32]
+    44c4:	ldp	w4, w1, [sp, #40]
+    44c8:	b	4494 <Camellia_EncryptBlock+0xc4>
+    44cc:	nop
+
+00000000000044d0 <Camellia_DecryptBlock>:
+    44d0:	stp	x29, x30, [sp, #-48]!
+    44d4:	sub	w4, w0, #0xc0
+    44d8:	mov	w8, w0
+    44dc:	mov	x29, sp
+    44e0:	str	x19, [sp, #16]
+    44e4:	mov	x0, x2
+    44e8:	tst	w4, #0xffffffbf
+    44ec:	mov	x19, x3
+    44f0:	ldrb	w7, [x1, #1]
+    44f4:	ldrb	w5, [x1, #9]
+    44f8:	ldrb	w6, [x1, #5]
+    44fc:	lsl	w2, w7, #16
+    4500:	ldrb	w4, [x1, #2]
+    4504:	lsl	w3, w5, #16
+    4508:	ldrb	w7, [x1]
+    450c:	ldrb	w5, [x1, #3]
+    4510:	lsl	w9, w6, #16
+    4514:	ldrb	w11, [x1, #6]
+    4518:	ldrb	w6, [x1, #4]
+    451c:	orr	w7, w2, w7, lsl #24
+    4520:	orr	w4, w5, w4, lsl #8
+    4524:	ldrb	w2, [x1, #7]
+    4528:	ldrb	w5, [x1, #8]
+    452c:	eor	w7, w7, w4
+    4530:	ldrb	w10, [x1, #13]
+    4534:	orr	w6, w9, w6, lsl #24
+    4538:	ldrb	w12, [x1, #11]
+    453c:	orr	w11, w2, w11, lsl #8
+    4540:	ldrb	w9, [x1, #10]
+    4544:	orr	w5, w3, w5, lsl #24
+    4548:	ldrb	w4, [x1, #12]
+    454c:	lsl	w10, w10, #16
+    4550:	ldrb	w3, [x1, #14]
+    4554:	eor	w6, w6, w11
+    4558:	ldrb	w2, [x1, #15]
+    455c:	orr	w9, w12, w9, lsl #8
+    4560:	orr	w1, w10, w4, lsl #24
+    4564:	eor	w4, w5, w9
+    4568:	stp	w7, w6, [sp, #32]
+    456c:	orr	w3, w2, w3, lsl #8
+    4570:	eor	w1, w1, w3
+    4574:	stp	w4, w1, [sp, #40]
+    4578:	b.eq	45b8 <Camellia_DecryptBlock+0xe8>  // b.none
+    457c:	cmp	w8, #0x80
+    4580:	b.ne	4594 <Camellia_DecryptBlock+0xc4>  // b.any
+    4584:	add	x1, sp, #0x20
+    4588:	bl	2158 <camellia_decrypt128>
+    458c:	ldp	w7, w6, [sp, #32]
+    4590:	ldp	w4, w1, [sp, #40]
+    4594:	rev	w7, w7
+    4598:	rev	w6, w6
+    459c:	rev	w4, w4
+    45a0:	rev	w1, w1
+    45a4:	stp	w7, w6, [x19]
+    45a8:	stp	w4, w1, [x19, #8]
+    45ac:	ldr	x19, [sp, #16]
+    45b0:	ldp	x29, x30, [sp], #48
+    45b4:	ret
+    45b8:	add	x1, sp, #0x20
+    45bc:	bl	3728 <camellia_decrypt256>
+    45c0:	ldp	w7, w6, [sp, #32]
+    45c4:	ldp	w4, w1, [sp, #40]
+    45c8:	b	4594 <Camellia_DecryptBlock+0xc4>

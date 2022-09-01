@@ -1,0 +1,114 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//offsetio.mod_gcc_-Os:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_file_offset_close-0x98>:
+   0:	stp	x29, x30, [sp, #-32]!
+   4:	mov	x29, sp
+   8:	str	x19, [sp, #16]
+   c:	mov	x19, x0
+  10:	ldr	x0, [x0, #80]
+  14:	ldr	x0, [x0]
+  18:	cbz	x0, 20 <grub_file_offset_close-0x78>
+  1c:	bl	0 <grub_file_close>
+  20:	str	xzr, [x19, #8]
+  24:	mov	w0, #0x0                   	// #0
+  28:	ldr	x19, [sp, #16]
+  2c:	ldp	x29, x30, [sp], #32
+  30:	ret
+  34:	stp	x29, x30, [sp, #-48]!
+  38:	mov	x29, sp
+  3c:	stp	x19, x20, [sp, #16]
+  40:	mov	x20, x1
+  44:	ldr	x19, [x0, #80]
+  48:	ldr	x0, [x0, #24]
+  4c:	ldr	x1, [x19, #8]
+  50:	add	x1, x1, x0
+  54:	ldr	x0, [x19]
+  58:	str	x21, [sp, #32]
+  5c:	mov	x21, x2
+  60:	bl	0 <grub_file_seek>
+  64:	cmn	x0, #0x1
+  68:	b.eq	88 <grub_file_offset_close-0x10>  // b.none
+  6c:	mov	x2, x21
+  70:	mov	x1, x20
+  74:	ldr	x0, [x19]
+  78:	ldp	x19, x20, [sp, #16]
+  7c:	ldr	x21, [sp, #32]
+  80:	ldp	x29, x30, [sp], #48
+  84:	b	0 <grub_file_read>
+  88:	ldp	x19, x20, [sp, #16]
+  8c:	ldr	x21, [sp, #32]
+  90:	ldp	x29, x30, [sp], #48
+  94:	ret
+
+0000000000000098 <grub_file_offset_close>:
+  98:	ldr	x1, [x0, #80]
+  9c:	str	xzr, [x1]
+  a0:	b	0 <grub_file_close>
+
+00000000000000a4 <grub_file_offset_open>:
+  a4:	stp	x29, x30, [sp, #-64]!
+  a8:	mov	x29, sp
+  ac:	stp	x19, x20, [sp, #16]
+  b0:	stp	x21, x22, [sp, #32]
+  b4:	mov	w22, w1
+  b8:	mov	x21, x0
+  bc:	mov	x0, #0x68                  	// #104
+  c0:	stp	x23, x24, [sp, #48]
+  c4:	mov	x24, x2
+  c8:	mov	x23, x3
+  cc:	bl	0 <grub_zalloc>
+  d0:	mov	x19, x0
+  d4:	mov	x0, #0x10                  	// #16
+  d8:	bl	0 <grub_zalloc>
+  dc:	mov	x20, x0
+  e0:	cmp	x19, #0x0
+  e4:	ccmp	x0, #0x0, #0x4, ne  // ne = any
+  e8:	b.ne	118 <grub_file_offset_open+0x74>  // b.any
+  ec:	mov	x0, x19
+  f0:	mov	x19, #0x0                   	// #0
+  f4:	bl	0 <grub_free>
+  f8:	mov	x0, x20
+  fc:	bl	0 <grub_free>
+ 100:	mov	x0, x19
+ 104:	ldp	x19, x20, [sp, #16]
+ 108:	ldp	x21, x22, [sp, #32]
+ 10c:	ldp	x23, x24, [sp, #48]
+ 110:	ldp	x29, x30, [sp], #64
+ 114:	ret
+ 118:	ldr	x0, [x21, #8]
+ 11c:	stp	x21, x24, [x20]
+ 120:	mov	x21, #0x1                   	// #1
+ 124:	str	x0, [x19, #8]
+ 128:	adrp	x0, 0 <grub_file_offset_close-0x98>
+ 12c:	str	x23, [x19, #64]
+ 130:	adrp	x23, 0 <grub_file_offset_close-0x98>
+ 134:	ldr	x0, [x0]
+ 138:	str	x0, [x19, #16]
+ 13c:	mov	x0, #0x0                   	// #0
+ 140:	str	x20, [x19, #80]
+ 144:	ldr	x1, [x23]
+ 148:	ldr	x2, [x1, x21, lsl #3]
+ 14c:	cbz	x2, 168 <grub_file_offset_open+0xc4>
+ 150:	mov	w1, w22
+ 154:	mov	x0, x19
+ 158:	blr	x2
+ 15c:	mov	x1, x0
+ 160:	mov	x0, x19
+ 164:	mov	x19, x1
+ 168:	add	w1, w21, #0x1
+ 16c:	add	x21, x21, #0x1
+ 170:	cmp	w1, #0x3
+ 174:	cset	w2, ls  // ls = plast
+ 178:	cmp	x19, #0x0
+ 17c:	csel	w2, w2, wzr, ne  // ne = any
+ 180:	cbnz	w2, 144 <grub_file_offset_open+0xa0>
+ 184:	cbnz	x19, 100 <grub_file_offset_open+0x5c>
+ 188:	str	xzr, [x20]
+ 18c:	bl	0 <grub_file_close>
+ 190:	b	100 <grub_file_offset_open+0x5c>
+ 194:	nop
+	...

@@ -1,0 +1,822 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//hashsum.module_gcc_-O0:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_memcpy>:
+   0:	stp	x29, x30, [sp, #-48]!
+   4:	mov	x29, sp
+   8:	str	x0, [sp, #40]
+   c:	str	x1, [sp, #32]
+  10:	str	x2, [sp, #24]
+  14:	ldr	x2, [sp, #24]
+  18:	ldr	x1, [sp, #32]
+  1c:	ldr	x0, [sp, #40]
+  20:	bl	0 <grub_memmove>
+  24:	ldp	x29, x30, [sp], #48
+  28:	ret
+
+000000000000002c <hextoval>:
+  2c:	sub	sp, sp, #0x10
+  30:	strb	w0, [sp, #15]
+  34:	ldrb	w0, [sp, #15]
+  38:	cmp	w0, #0x2f
+  3c:	b.ls	58 <hextoval+0x2c>  // b.plast
+  40:	ldrb	w0, [sp, #15]
+  44:	cmp	w0, #0x39
+  48:	b.hi	58 <hextoval+0x2c>  // b.pmore
+  4c:	ldrb	w0, [sp, #15]
+  50:	sub	w0, w0, #0x30
+  54:	b	a4 <hextoval+0x78>
+  58:	ldrb	w0, [sp, #15]
+  5c:	cmp	w0, #0x60
+  60:	b.ls	7c <hextoval+0x50>  // b.plast
+  64:	ldrb	w0, [sp, #15]
+  68:	cmp	w0, #0x66
+  6c:	b.hi	7c <hextoval+0x50>  // b.pmore
+  70:	ldrb	w0, [sp, #15]
+  74:	sub	w0, w0, #0x57
+  78:	b	a4 <hextoval+0x78>
+  7c:	ldrb	w0, [sp, #15]
+  80:	cmp	w0, #0x40
+  84:	b.ls	a0 <hextoval+0x74>  // b.plast
+  88:	ldrb	w0, [sp, #15]
+  8c:	cmp	w0, #0x46
+  90:	b.hi	a0 <hextoval+0x74>  // b.pmore
+  94:	ldrb	w0, [sp, #15]
+  98:	sub	w0, w0, #0x37
+  9c:	b	a4 <hextoval+0x78>
+  a0:	mov	w0, #0xffffffff            	// #-1
+  a4:	add	sp, sp, #0x10
+  a8:	ret
+
+00000000000000ac <hash_file>:
+  ac:	stp	x29, x30, [sp, #-80]!
+  b0:	mov	x29, sp
+  b4:	str	x0, [sp, #40]
+  b8:	str	x1, [sp, #32]
+  bc:	str	x2, [sp, #24]
+  c0:	mov	x0, #0x1000                	// #4096
+  c4:	bl	0 <grub_malloc>
+  c8:	str	x0, [sp, #72]
+  cc:	ldr	x0, [sp, #72]
+  d0:	cmp	x0, #0x0
+  d4:	b.ne	ec <hash_file+0x40>  // b.any
+  d8:	adrp	x0, 0 <grub_memcpy>
+  dc:	add	x0, x0, #0x0
+  e0:	ldr	x0, [x0]
+  e4:	ldr	w0, [x0]
+  e8:	b	1f0 <hash_file+0x144>
+  ec:	ldr	x0, [sp, #32]
+  f0:	ldr	x0, [x0, #72]
+  f4:	bl	0 <grub_zalloc>
+  f8:	str	x0, [sp, #64]
+  fc:	ldr	x0, [sp, #72]
+ 100:	cmp	x0, #0x0
+ 104:	b.eq	1c4 <hash_file+0x118>  // b.none
+ 108:	ldr	x0, [sp, #64]
+ 10c:	cmp	x0, #0x0
+ 110:	b.eq	1c4 <hash_file+0x118>  // b.none
+ 114:	ldr	x0, [sp, #32]
+ 118:	ldr	x1, [x0, #40]
+ 11c:	ldr	x0, [sp, #64]
+ 120:	blr	x1
+ 124:	mov	x2, #0x1000                	// #4096
+ 128:	ldr	x1, [sp, #72]
+ 12c:	ldr	x0, [sp, #40]
+ 130:	bl	0 <grub_file_read>
+ 134:	str	x0, [sp, #56]
+ 138:	ldr	x0, [sp, #56]
+ 13c:	cmp	x0, #0x0
+ 140:	b.lt	1cc <hash_file+0x120>  // b.tstop
+ 144:	ldr	x0, [sp, #56]
+ 148:	cmp	x0, #0x0
+ 14c:	b.eq	170 <hash_file+0xc4>  // b.none
+ 150:	ldr	x0, [sp, #32]
+ 154:	ldr	x3, [x0, #48]
+ 158:	ldr	x0, [sp, #56]
+ 15c:	mov	x2, x0
+ 160:	ldr	x1, [sp, #72]
+ 164:	ldr	x0, [sp, #64]
+ 168:	blr	x3
+ 16c:	b	124 <hash_file+0x78>
+ 170:	nop
+ 174:	ldr	x0, [sp, #32]
+ 178:	ldr	x1, [x0, #56]
+ 17c:	ldr	x0, [sp, #64]
+ 180:	blr	x1
+ 184:	ldr	x0, [sp, #32]
+ 188:	ldr	x1, [x0, #64]
+ 18c:	ldr	x0, [sp, #64]
+ 190:	blr	x1
+ 194:	mov	x1, x0
+ 198:	ldr	x0, [sp, #32]
+ 19c:	ldr	x0, [x0, #32]
+ 1a0:	mov	x2, x0
+ 1a4:	ldr	x0, [sp, #24]
+ 1a8:	bl	0 <grub_memcpy>
+ 1ac:	ldr	x0, [sp, #72]
+ 1b0:	bl	0 <grub_free>
+ 1b4:	ldr	x0, [sp, #64]
+ 1b8:	bl	0 <grub_free>
+ 1bc:	mov	w0, #0x0                   	// #0
+ 1c0:	b	1f0 <hash_file+0x144>
+ 1c4:	nop
+ 1c8:	b	1d0 <hash_file+0x124>
+ 1cc:	nop
+ 1d0:	ldr	x0, [sp, #72]
+ 1d4:	bl	0 <grub_free>
+ 1d8:	ldr	x0, [sp, #64]
+ 1dc:	bl	0 <grub_free>
+ 1e0:	adrp	x0, 0 <grub_memcpy>
+ 1e4:	add	x0, x0, #0x0
+ 1e8:	ldr	x0, [x0]
+ 1ec:	ldr	w0, [x0]
+ 1f0:	ldp	x29, x30, [sp], #80
+ 1f4:	ret
+	...
+
+0000000000000200 <check_list>:
+ 200:	stp	x29, x30, [sp, #-256]!
+ 204:	mov	x29, sp
+ 208:	str	x0, [sp, #40]
+ 20c:	str	x1, [sp, #32]
+ 210:	str	x2, [sp, #24]
+ 214:	str	w3, [sp, #20]
+ 218:	str	w4, [sp, #16]
+ 21c:	str	xzr, [sp, #240]
+ 220:	str	wzr, [sp, #232]
+ 224:	str	wzr, [sp, #228]
+ 228:	ldr	x0, [sp, #40]
+ 22c:	ldr	x0, [x0, #32]
+ 230:	cmp	x0, #0x40
+ 234:	b.ls	250 <check_list+0x50>  // b.plast
+ 238:	adrp	x0, 0 <grub_memcpy>
+ 23c:	add	x0, x0, #0x0
+ 240:	ldr	x1, [x0]
+ 244:	mov	w0, #0x26                  	// #38
+ 248:	bl	0 <grub_error>
+ 24c:	b	618 <check_list+0x418>
+ 250:	mov	w1, #0x2e                  	// #46
+ 254:	ldr	x0, [sp, #32]
+ 258:	bl	0 <grub_file_open>
+ 25c:	str	x0, [sp, #208]
+ 260:	ldr	x0, [sp, #208]
+ 264:	cmp	x0, #0x0
+ 268:	b.ne	5bc <check_list+0x3bc>  // b.any
+ 26c:	adrp	x0, 0 <grub_memcpy>
+ 270:	add	x0, x0, #0x0
+ 274:	ldr	x0, [x0]
+ 278:	ldr	w0, [x0]
+ 27c:	b	618 <check_list+0x418>
+ 280:	ldr	x0, [sp, #240]
+ 284:	str	x0, [sp, #216]
+ 288:	b	298 <check_list+0x98>
+ 28c:	ldr	x0, [sp, #216]
+ 290:	add	x0, x0, #0x1
+ 294:	str	x0, [sp, #216]
+ 298:	ldr	x0, [sp, #216]
+ 29c:	ldrb	w0, [x0]
+ 2a0:	bl	0 <grub_isspace>
+ 2a4:	cmp	w0, #0x0
+ 2a8:	b.ne	28c <check_list+0x8c>  // b.any
+ 2ac:	str	wzr, [sp, #236]
+ 2b0:	b	34c <check_list+0x14c>
+ 2b4:	ldr	x0, [sp, #216]
+ 2b8:	add	x1, x0, #0x1
+ 2bc:	str	x1, [sp, #216]
+ 2c0:	ldrb	w0, [x0]
+ 2c4:	bl	2c <hextoval>
+ 2c8:	str	w0, [sp, #192]
+ 2cc:	ldr	x0, [sp, #216]
+ 2d0:	add	x1, x0, #0x1
+ 2d4:	str	x1, [sp, #216]
+ 2d8:	ldrb	w0, [x0]
+ 2dc:	bl	2c <hextoval>
+ 2e0:	str	w0, [sp, #188]
+ 2e4:	ldr	w0, [sp, #192]
+ 2e8:	cmp	w0, #0x0
+ 2ec:	b.lt	2fc <check_list+0xfc>  // b.tstop
+ 2f0:	ldr	w0, [sp, #188]
+ 2f4:	cmp	w0, #0x0
+ 2f8:	b.ge	314 <check_list+0x114>  // b.tcont
+ 2fc:	adrp	x0, 0 <grub_memcpy>
+ 300:	add	x0, x0, #0x0
+ 304:	ldr	x1, [x0]
+ 308:	mov	w0, #0x4                   	// #4
+ 30c:	bl	0 <grub_error>
+ 310:	b	618 <check_list+0x418>
+ 314:	ldr	w0, [sp, #192]
+ 318:	lsl	w0, w0, #4
+ 31c:	sxtb	w1, w0
+ 320:	ldr	w0, [sp, #188]
+ 324:	sxtb	w0, w0
+ 328:	orr	w0, w1, w0
+ 32c:	sxtb	w0, w0
+ 330:	and	w2, w0, #0xff
+ 334:	ldr	w0, [sp, #236]
+ 338:	add	x1, sp, #0x78
+ 33c:	strb	w2, [x1, x0]
+ 340:	ldr	w0, [sp, #236]
+ 344:	add	w0, w0, #0x1
+ 348:	str	w0, [sp, #236]
+ 34c:	ldr	w1, [sp, #236]
+ 350:	ldr	x0, [sp, #40]
+ 354:	ldr	x0, [x0, #32]
+ 358:	cmp	x1, x0
+ 35c:	b.cc	2b4 <check_list+0xb4>  // b.lo, b.ul, b.last
+ 360:	ldr	x0, [sp, #216]
+ 364:	ldrb	w0, [x0]
+ 368:	cmp	w0, #0x20
+ 36c:	b.eq	380 <check_list+0x180>  // b.none
+ 370:	ldr	x0, [sp, #216]
+ 374:	ldrb	w0, [x0]
+ 378:	cmp	w0, #0x9
+ 37c:	b.ne	3a8 <check_list+0x1a8>  // b.any
+ 380:	ldr	x0, [sp, #216]
+ 384:	add	x0, x0, #0x1
+ 388:	ldrb	w0, [x0]
+ 38c:	cmp	w0, #0x20
+ 390:	b.eq	3c0 <check_list+0x1c0>  // b.none
+ 394:	ldr	x0, [sp, #216]
+ 398:	add	x0, x0, #0x1
+ 39c:	ldrb	w0, [x0]
+ 3a0:	cmp	w0, #0x9
+ 3a4:	b.eq	3c0 <check_list+0x1c0>  // b.none
+ 3a8:	adrp	x0, 0 <grub_memcpy>
+ 3ac:	add	x0, x0, #0x0
+ 3b0:	ldr	x1, [x0]
+ 3b4:	mov	w0, #0x4                   	// #4
+ 3b8:	bl	0 <grub_error>
+ 3bc:	b	618 <check_list+0x418>
+ 3c0:	ldr	x0, [sp, #216]
+ 3c4:	add	x0, x0, #0x2
+ 3c8:	str	x0, [sp, #216]
+ 3cc:	ldr	x0, [sp, #24]
+ 3d0:	cmp	x0, #0x0
+ 3d4:	b.eq	44c <check_list+0x24c>  // b.none
+ 3d8:	ldr	x2, [sp, #216]
+ 3dc:	ldr	x1, [sp, #24]
+ 3e0:	adrp	x0, 0 <grub_memcpy>
+ 3e4:	add	x0, x0, #0x0
+ 3e8:	ldr	x0, [x0]
+ 3ec:	bl	0 <grub_xasprintf>
+ 3f0:	str	x0, [sp, #200]
+ 3f4:	ldr	x0, [sp, #200]
+ 3f8:	cmp	x0, #0x0
+ 3fc:	b.ne	414 <check_list+0x214>  // b.any
+ 400:	adrp	x0, 0 <grub_memcpy>
+ 404:	add	x0, x0, #0x0
+ 408:	ldr	x0, [x0]
+ 40c:	ldr	w0, [x0]
+ 410:	b	618 <check_list+0x418>
+ 414:	ldr	w0, [sp, #16]
+ 418:	cmp	w0, #0x0
+ 41c:	b.ne	42c <check_list+0x22c>  // b.any
+ 420:	mov	w0, #0x2f                  	// #47
+ 424:	movk	w0, #0x2, lsl #16
+ 428:	b	430 <check_list+0x230>
+ 42c:	mov	w0, #0x2f                  	// #47
+ 430:	mov	w1, w0
+ 434:	ldr	x0, [sp, #200]
+ 438:	bl	0 <grub_file_open>
+ 43c:	str	x0, [sp, #248]
+ 440:	ldr	x0, [sp, #200]
+ 444:	bl	0 <grub_free>
+ 448:	b	478 <check_list+0x278>
+ 44c:	ldr	w0, [sp, #16]
+ 450:	cmp	w0, #0x0
+ 454:	b.ne	464 <check_list+0x264>  // b.any
+ 458:	mov	w0, #0x2f                  	// #47
+ 45c:	movk	w0, #0x2, lsl #16
+ 460:	b	468 <check_list+0x268>
+ 464:	mov	w0, #0x2f                  	// #47
+ 468:	mov	w1, w0
+ 46c:	ldr	x0, [sp, #216]
+ 470:	bl	0 <grub_file_open>
+ 474:	str	x0, [sp, #248]
+ 478:	ldr	x0, [sp, #248]
+ 47c:	cmp	x0, #0x0
+ 480:	b.ne	4a8 <check_list+0x2a8>  // b.any
+ 484:	ldr	x0, [sp, #208]
+ 488:	bl	0 <grub_file_close>
+ 48c:	ldr	x0, [sp, #240]
+ 490:	bl	0 <grub_free>
+ 494:	adrp	x0, 0 <grub_memcpy>
+ 498:	add	x0, x0, #0x0
+ 49c:	ldr	x0, [x0]
+ 4a0:	ldr	w0, [x0]
+ 4a4:	b	618 <check_list+0x418>
+ 4a8:	add	x0, sp, #0x38
+ 4ac:	mov	x2, x0
+ 4b0:	ldr	x1, [sp, #40]
+ 4b4:	ldr	x0, [sp, #248]
+ 4b8:	bl	ac <hash_file>
+ 4bc:	str	w0, [sp, #196]
+ 4c0:	ldr	x0, [sp, #248]
+ 4c4:	bl	0 <grub_file_close>
+ 4c8:	ldr	w0, [sp, #196]
+ 4cc:	cmp	w0, #0x0
+ 4d0:	b.eq	530 <check_list+0x330>  // b.none
+ 4d4:	ldr	x1, [sp, #216]
+ 4d8:	adrp	x0, 0 <grub_memcpy>
+ 4dc:	add	x0, x0, #0x0
+ 4e0:	ldr	x0, [x0]
+ 4e4:	bl	0 <grub_printf_>
+ 4e8:	ldr	w0, [sp, #20]
+ 4ec:	cmp	w0, #0x0
+ 4f0:	b.ne	50c <check_list+0x30c>  // b.any
+ 4f4:	ldr	x0, [sp, #208]
+ 4f8:	bl	0 <grub_file_close>
+ 4fc:	ldr	x0, [sp, #240]
+ 500:	bl	0 <grub_free>
+ 504:	ldr	w0, [sp, #196]
+ 508:	b	618 <check_list+0x418>
+ 50c:	bl	0 <grub_print_error>
+ 510:	adrp	x0, 0 <grub_memcpy>
+ 514:	add	x0, x0, #0x0
+ 518:	ldr	x0, [x0]
+ 51c:	str	wzr, [x0]
+ 520:	ldr	w0, [sp, #232]
+ 524:	add	w0, w0, #0x1
+ 528:	str	w0, [sp, #232]
+ 52c:	b	5bc <check_list+0x3bc>
+ 530:	ldr	x0, [sp, #40]
+ 534:	ldr	x2, [x0, #32]
+ 538:	add	x1, sp, #0x38
+ 53c:	add	x0, sp, #0x78
+ 540:	bl	0 <grub_crypto_memcmp>
+ 544:	cmp	w0, #0x0
+ 548:	b.eq	5a8 <check_list+0x3a8>  // b.none
+ 54c:	ldr	x1, [sp, #216]
+ 550:	adrp	x0, 0 <grub_memcpy>
+ 554:	add	x0, x0, #0x0
+ 558:	ldr	x0, [x0]
+ 55c:	bl	0 <grub_printf_>
+ 560:	ldr	w0, [sp, #20]
+ 564:	cmp	w0, #0x0
+ 568:	b.ne	598 <check_list+0x398>  // b.any
+ 56c:	ldr	x0, [sp, #208]
+ 570:	bl	0 <grub_file_close>
+ 574:	ldr	x0, [sp, #240]
+ 578:	bl	0 <grub_free>
+ 57c:	ldr	x2, [sp, #216]
+ 580:	adrp	x0, 0 <grub_memcpy>
+ 584:	add	x0, x0, #0x0
+ 588:	ldr	x1, [x0]
+ 58c:	mov	w0, #0x1                   	// #1
+ 590:	bl	0 <grub_error>
+ 594:	b	618 <check_list+0x418>
+ 598:	ldr	w0, [sp, #228]
+ 59c:	add	w0, w0, #0x1
+ 5a0:	str	w0, [sp, #228]
+ 5a4:	b	5bc <check_list+0x3bc>
+ 5a8:	ldr	x1, [sp, #216]
+ 5ac:	adrp	x0, 0 <grub_memcpy>
+ 5b0:	add	x0, x0, #0x0
+ 5b4:	ldr	x0, [x0]
+ 5b8:	bl	0 <grub_printf_>
+ 5bc:	ldr	x0, [sp, #240]
+ 5c0:	bl	0 <grub_free>
+ 5c4:	ldr	x0, [sp, #208]
+ 5c8:	bl	0 <grub_file_getline>
+ 5cc:	str	x0, [sp, #240]
+ 5d0:	ldr	x0, [sp, #240]
+ 5d4:	cmp	x0, #0x0
+ 5d8:	b.ne	280 <check_list+0x80>  // b.any
+ 5dc:	ldr	w0, [sp, #228]
+ 5e0:	cmp	w0, #0x0
+ 5e4:	b.ne	5f4 <check_list+0x3f4>  // b.any
+ 5e8:	ldr	w0, [sp, #232]
+ 5ec:	cmp	w0, #0x0
+ 5f0:	b.eq	614 <check_list+0x414>  // b.none
+ 5f4:	ldr	w3, [sp, #228]
+ 5f8:	ldr	w2, [sp, #232]
+ 5fc:	adrp	x0, 0 <grub_memcpy>
+ 600:	add	x0, x0, #0x0
+ 604:	ldr	x1, [x0]
+ 608:	mov	w0, #0x1                   	// #1
+ 60c:	bl	0 <grub_error>
+ 610:	b	618 <check_list+0x418>
+ 614:	mov	w0, #0x0                   	// #0
+ 618:	ldp	x29, x30, [sp], #256
+ 61c:	ret
+	...
+
+0000000000000668 <grub_cmd_hashsum>:
+ 668:	stp	x29, x30, [sp, #-192]!
+ 66c:	mov	x29, sp
+ 670:	str	x0, [sp, #40]
+ 674:	str	w1, [sp, #36]
+ 678:	str	x2, [sp, #24]
+ 67c:	ldr	x0, [sp, #40]
+ 680:	ldr	x0, [x0, #8]
+ 684:	str	x0, [sp, #152]
+ 688:	str	xzr, [sp, #184]
+ 68c:	str	xzr, [sp, #176]
+ 690:	ldr	x0, [sp, #152]
+ 694:	add	x0, x0, #0x30
+ 698:	ldr	w0, [x0]
+ 69c:	str	w0, [sp, #148]
+ 6a0:	ldr	x0, [sp, #152]
+ 6a4:	add	x0, x0, #0x40
+ 6a8:	ldr	w0, [x0]
+ 6ac:	str	w0, [sp, #144]
+ 6b0:	str	wzr, [sp, #168]
+ 6b4:	str	wzr, [sp, #172]
+ 6b8:	b	728 <grub_cmd_hashsum+0xc0>
+ 6bc:	ldr	x0, [sp, #40]
+ 6c0:	ldr	x0, [x0]
+ 6c4:	ldr	x0, [x0]
+ 6c8:	ldr	x2, [x0, #16]
+ 6cc:	adrp	x0, 0 <grub_memcpy>
+ 6d0:	add	x0, x0, #0x0
+ 6d4:	ldr	x1, [x0]
+ 6d8:	ldr	w0, [sp, #172]
+ 6dc:	lsl	x0, x0, #4
+ 6e0:	add	x0, x1, x0
+ 6e4:	ldr	x0, [x0]
+ 6e8:	mov	x1, x0
+ 6ec:	mov	x0, x2
+ 6f0:	bl	0 <grub_strcmp>
+ 6f4:	cmp	w0, #0x0
+ 6f8:	b.ne	71c <grub_cmd_hashsum+0xb4>  // b.any
+ 6fc:	adrp	x0, 0 <grub_memcpy>
+ 700:	add	x0, x0, #0x0
+ 704:	ldr	x1, [x0]
+ 708:	ldr	w0, [sp, #172]
+ 70c:	lsl	x0, x0, #4
+ 710:	add	x0, x1, x0
+ 714:	ldr	x0, [x0, #8]
+ 718:	str	x0, [sp, #184]
+ 71c:	ldr	w0, [sp, #172]
+ 720:	add	w0, w0, #0x1
+ 724:	str	w0, [sp, #172]
+ 728:	ldr	w0, [sp, #172]
+ 72c:	cmp	w0, #0x4
+ 730:	b.ls	6bc <grub_cmd_hashsum+0x54>  // b.plast
+ 734:	ldr	x0, [sp, #152]
+ 738:	ldr	w0, [x0]
+ 73c:	cmp	w0, #0x0
+ 740:	b.eq	750 <grub_cmd_hashsum+0xe8>  // b.none
+ 744:	ldr	x0, [sp, #152]
+ 748:	ldr	x0, [x0, #8]
+ 74c:	str	x0, [sp, #184]
+ 750:	ldr	x0, [sp, #184]
+ 754:	cmp	x0, #0x0
+ 758:	b.ne	774 <grub_cmd_hashsum+0x10c>  // b.any
+ 75c:	adrp	x0, 0 <grub_memcpy>
+ 760:	add	x0, x0, #0x0
+ 764:	ldr	x1, [x0]
+ 768:	mov	w0, #0x12                  	// #18
+ 76c:	bl	0 <grub_error>
+ 770:	b	a08 <grub_cmd_hashsum+0x3a0>
+ 774:	ldr	x0, [sp, #184]
+ 778:	bl	0 <grub_crypto_lookup_md_by_name>
+ 77c:	str	x0, [sp, #136]
+ 780:	ldr	x0, [sp, #136]
+ 784:	cmp	x0, #0x0
+ 788:	b.ne	7a4 <grub_cmd_hashsum+0x13c>  // b.any
+ 78c:	adrp	x0, 0 <grub_memcpy>
+ 790:	add	x0, x0, #0x0
+ 794:	ldr	x1, [x0]
+ 798:	mov	w0, #0x12                  	// #18
+ 79c:	bl	0 <grub_error>
+ 7a0:	b	a08 <grub_cmd_hashsum+0x3a0>
+ 7a4:	ldr	x0, [sp, #136]
+ 7a8:	ldr	x0, [x0, #32]
+ 7ac:	cmp	x0, #0x40
+ 7b0:	b.ls	7cc <grub_cmd_hashsum+0x164>  // b.plast
+ 7b4:	adrp	x0, 0 <grub_memcpy>
+ 7b8:	add	x0, x0, #0x0
+ 7bc:	ldr	x1, [x0]
+ 7c0:	mov	w0, #0x26                  	// #38
+ 7c4:	bl	0 <grub_error>
+ 7c8:	b	a08 <grub_cmd_hashsum+0x3a0>
+ 7cc:	ldr	x0, [sp, #152]
+ 7d0:	add	x0, x0, #0x20
+ 7d4:	ldr	w0, [x0]
+ 7d8:	cmp	w0, #0x0
+ 7dc:	b.eq	7f0 <grub_cmd_hashsum+0x188>  // b.none
+ 7e0:	ldr	x0, [sp, #152]
+ 7e4:	add	x0, x0, #0x20
+ 7e8:	ldr	x0, [x0, #8]
+ 7ec:	str	x0, [sp, #176]
+ 7f0:	ldr	x0, [sp, #152]
+ 7f4:	add	x0, x0, #0x10
+ 7f8:	ldr	w0, [x0]
+ 7fc:	cmp	w0, #0x0
+ 800:	b.eq	850 <grub_cmd_hashsum+0x1e8>  // b.none
+ 804:	ldr	w0, [sp, #36]
+ 808:	cmp	w0, #0x0
+ 80c:	b.eq	828 <grub_cmd_hashsum+0x1c0>  // b.none
+ 810:	adrp	x0, 0 <grub_memcpy>
+ 814:	add	x0, x0, #0x0
+ 818:	ldr	x1, [x0]
+ 81c:	mov	w0, #0x12                  	// #18
+ 820:	bl	0 <grub_error>
+ 824:	b	a08 <grub_cmd_hashsum+0x3a0>
+ 828:	ldr	x0, [sp, #152]
+ 82c:	add	x0, x0, #0x10
+ 830:	ldr	x0, [x0, #8]
+ 834:	ldr	w4, [sp, #144]
+ 838:	ldr	w3, [sp, #148]
+ 83c:	ldr	x2, [sp, #176]
+ 840:	mov	x1, x0
+ 844:	ldr	x0, [sp, #136]
+ 848:	bl	200 <check_list>
+ 84c:	b	a08 <grub_cmd_hashsum+0x3a0>
+ 850:	str	wzr, [sp, #172]
+ 854:	b	9cc <grub_cmd_hashsum+0x364>
+ 858:	ldr	w0, [sp, #172]
+ 85c:	lsl	x0, x0, #3
+ 860:	ldr	x1, [sp, #24]
+ 864:	add	x0, x1, x0
+ 868:	ldr	x2, [x0]
+ 86c:	ldr	w0, [sp, #144]
+ 870:	cmp	w0, #0x0
+ 874:	b.ne	884 <grub_cmd_hashsum+0x21c>  // b.any
+ 878:	mov	w0, #0x2f                  	// #47
+ 87c:	movk	w0, #0x2, lsl #16
+ 880:	b	888 <grub_cmd_hashsum+0x220>
+ 884:	mov	w0, #0x2f                  	// #47
+ 888:	mov	w1, w0
+ 88c:	mov	x0, x2
+ 890:	bl	0 <grub_file_open>
+ 894:	str	x0, [sp, #128]
+ 898:	ldr	x0, [sp, #128]
+ 89c:	cmp	x0, #0x0
+ 8a0:	b.ne	8e8 <grub_cmd_hashsum+0x280>  // b.any
+ 8a4:	ldr	w0, [sp, #148]
+ 8a8:	cmp	w0, #0x0
+ 8ac:	b.ne	8c4 <grub_cmd_hashsum+0x25c>  // b.any
+ 8b0:	adrp	x0, 0 <grub_memcpy>
+ 8b4:	add	x0, x0, #0x0
+ 8b8:	ldr	x0, [x0]
+ 8bc:	ldr	w0, [x0]
+ 8c0:	b	a08 <grub_cmd_hashsum+0x3a0>
+ 8c4:	bl	0 <grub_print_error>
+ 8c8:	adrp	x0, 0 <grub_memcpy>
+ 8cc:	add	x0, x0, #0x0
+ 8d0:	ldr	x0, [x0]
+ 8d4:	str	wzr, [x0]
+ 8d8:	ldr	w0, [sp, #168]
+ 8dc:	add	w0, w0, #0x1
+ 8e0:	str	w0, [sp, #168]
+ 8e4:	b	9c0 <grub_cmd_hashsum+0x358>
+ 8e8:	add	x0, sp, #0x38
+ 8ec:	mov	x2, x0
+ 8f0:	ldr	x1, [sp, #136]
+ 8f4:	ldr	x0, [sp, #128]
+ 8f8:	bl	ac <hash_file>
+ 8fc:	str	w0, [sp, #124]
+ 900:	ldr	x0, [sp, #128]
+ 904:	bl	0 <grub_file_close>
+ 908:	ldr	w0, [sp, #124]
+ 90c:	cmp	w0, #0x0
+ 910:	b.eq	94c <grub_cmd_hashsum+0x2e4>  // b.none
+ 914:	ldr	w0, [sp, #148]
+ 918:	cmp	w0, #0x0
+ 91c:	b.ne	928 <grub_cmd_hashsum+0x2c0>  // b.any
+ 920:	ldr	w0, [sp, #124]
+ 924:	b	a08 <grub_cmd_hashsum+0x3a0>
+ 928:	bl	0 <grub_print_error>
+ 92c:	adrp	x0, 0 <grub_memcpy>
+ 930:	add	x0, x0, #0x0
+ 934:	ldr	x0, [x0]
+ 938:	str	wzr, [x0]
+ 93c:	ldr	w0, [sp, #168]
+ 940:	add	w0, w0, #0x1
+ 944:	str	w0, [sp, #168]
+ 948:	b	9c0 <grub_cmd_hashsum+0x358>
+ 94c:	str	wzr, [sp, #164]
+ 950:	b	984 <grub_cmd_hashsum+0x31c>
+ 954:	ldr	w0, [sp, #164]
+ 958:	add	x1, sp, #0x38
+ 95c:	add	x0, x1, x0
+ 960:	ldrb	w0, [x0]
+ 964:	mov	w1, w0
+ 968:	adrp	x0, 0 <grub_memcpy>
+ 96c:	add	x0, x0, #0x0
+ 970:	ldr	x0, [x0]
+ 974:	bl	0 <grub_printf>
+ 978:	ldr	w0, [sp, #164]
+ 97c:	add	w0, w0, #0x1
+ 980:	str	w0, [sp, #164]
+ 984:	ldr	w1, [sp, #164]
+ 988:	ldr	x0, [sp, #136]
+ 98c:	ldr	x0, [x0, #32]
+ 990:	cmp	x1, x0
+ 994:	b.cc	954 <grub_cmd_hashsum+0x2ec>  // b.lo, b.ul, b.last
+ 998:	ldr	w0, [sp, #172]
+ 99c:	lsl	x0, x0, #3
+ 9a0:	ldr	x1, [sp, #24]
+ 9a4:	add	x0, x1, x0
+ 9a8:	ldr	x0, [x0]
+ 9ac:	mov	x1, x0
+ 9b0:	adrp	x0, 0 <grub_memcpy>
+ 9b4:	add	x0, x0, #0x0
+ 9b8:	ldr	x0, [x0]
+ 9bc:	bl	0 <grub_printf>
+ 9c0:	ldr	w0, [sp, #172]
+ 9c4:	add	w0, w0, #0x1
+ 9c8:	str	w0, [sp, #172]
+ 9cc:	ldr	w0, [sp, #36]
+ 9d0:	ldr	w1, [sp, #172]
+ 9d4:	cmp	w1, w0
+ 9d8:	b.cc	858 <grub_cmd_hashsum+0x1f0>  // b.lo, b.ul, b.last
+ 9dc:	ldr	w0, [sp, #168]
+ 9e0:	cmp	w0, #0x0
+ 9e4:	b.eq	a04 <grub_cmd_hashsum+0x39c>  // b.none
+ 9e8:	ldr	w2, [sp, #168]
+ 9ec:	adrp	x0, 0 <grub_memcpy>
+ 9f0:	add	x0, x0, #0x0
+ 9f4:	ldr	x1, [x0]
+ 9f8:	mov	w0, #0x1                   	// #1
+ 9fc:	bl	0 <grub_error>
+ a00:	b	a08 <grub_cmd_hashsum+0x3a0>
+ a04:	mov	w0, #0x0                   	// #0
+ a08:	ldp	x29, x30, [sp], #192
+ a0c:	ret
+	...
+
+0000000000000a58 <grub_mod_init>:
+ a58:	stp	x29, x30, [sp, #-32]!
+ a5c:	mov	x29, sp
+ a60:	str	x0, [sp, #24]
+ a64:	adrp	x0, 0 <grub_memcpy>
+ a68:	add	x0, x0, #0x0
+ a6c:	ldr	x5, [x0]
+ a70:	adrp	x0, 0 <grub_memcpy>
+ a74:	add	x0, x0, #0x0
+ a78:	ldr	x4, [x0]
+ a7c:	adrp	x0, 0 <grub_memcpy>
+ a80:	add	x0, x0, #0x0
+ a84:	ldr	x3, [x0]
+ a88:	mov	w2, #0x0                   	// #0
+ a8c:	adrp	x0, 0 <grub_memcpy>
+ a90:	add	x0, x0, #0x0
+ a94:	ldr	x1, [x0]
+ a98:	adrp	x0, 0 <grub_memcpy>
+ a9c:	add	x0, x0, #0x0
+ aa0:	ldr	x0, [x0]
+ aa4:	bl	0 <grub_register_extcmd>
+ aa8:	mov	x1, x0
+ aac:	adrp	x0, 0 <grub_memcpy>
+ ab0:	add	x0, x0, #0x0
+ ab4:	ldr	x0, [x0]
+ ab8:	str	x1, [x0]
+ abc:	adrp	x0, 0 <grub_memcpy>
+ ac0:	add	x0, x0, #0x0
+ ac4:	ldr	x5, [x0]
+ ac8:	adrp	x0, 0 <grub_memcpy>
+ acc:	add	x0, x0, #0x0
+ ad0:	ldr	x4, [x0]
+ ad4:	adrp	x0, 0 <grub_memcpy>
+ ad8:	add	x0, x0, #0x0
+ adc:	ldr	x3, [x0]
+ ae0:	mov	w2, #0x0                   	// #0
+ ae4:	adrp	x0, 0 <grub_memcpy>
+ ae8:	add	x0, x0, #0x0
+ aec:	ldr	x1, [x0]
+ af0:	adrp	x0, 0 <grub_memcpy>
+ af4:	add	x0, x0, #0x0
+ af8:	ldr	x0, [x0]
+ afc:	bl	0 <grub_register_extcmd>
+ b00:	mov	x1, x0
+ b04:	adrp	x0, 0 <grub_memcpy>
+ b08:	add	x0, x0, #0x0
+ b0c:	ldr	x0, [x0]
+ b10:	str	x1, [x0]
+ b14:	adrp	x0, 0 <grub_memcpy>
+ b18:	add	x0, x0, #0x0
+ b1c:	ldr	x5, [x0]
+ b20:	adrp	x0, 0 <grub_memcpy>
+ b24:	add	x0, x0, #0x0
+ b28:	ldr	x4, [x0]
+ b2c:	adrp	x0, 0 <grub_memcpy>
+ b30:	add	x0, x0, #0x0
+ b34:	ldr	x3, [x0]
+ b38:	mov	w2, #0x0                   	// #0
+ b3c:	adrp	x0, 0 <grub_memcpy>
+ b40:	add	x0, x0, #0x0
+ b44:	ldr	x1, [x0]
+ b48:	adrp	x0, 0 <grub_memcpy>
+ b4c:	add	x0, x0, #0x0
+ b50:	ldr	x0, [x0]
+ b54:	bl	0 <grub_register_extcmd>
+ b58:	mov	x1, x0
+ b5c:	adrp	x0, 0 <grub_memcpy>
+ b60:	add	x0, x0, #0x0
+ b64:	ldr	x0, [x0]
+ b68:	str	x1, [x0]
+ b6c:	adrp	x0, 0 <grub_memcpy>
+ b70:	add	x0, x0, #0x0
+ b74:	ldr	x5, [x0]
+ b78:	adrp	x0, 0 <grub_memcpy>
+ b7c:	add	x0, x0, #0x0
+ b80:	ldr	x4, [x0]
+ b84:	adrp	x0, 0 <grub_memcpy>
+ b88:	add	x0, x0, #0x0
+ b8c:	ldr	x3, [x0]
+ b90:	mov	w2, #0x0                   	// #0
+ b94:	adrp	x0, 0 <grub_memcpy>
+ b98:	add	x0, x0, #0x0
+ b9c:	ldr	x1, [x0]
+ ba0:	adrp	x0, 0 <grub_memcpy>
+ ba4:	add	x0, x0, #0x0
+ ba8:	ldr	x0, [x0]
+ bac:	bl	0 <grub_register_extcmd>
+ bb0:	mov	x1, x0
+ bb4:	adrp	x0, 0 <grub_memcpy>
+ bb8:	add	x0, x0, #0x0
+ bbc:	ldr	x0, [x0]
+ bc0:	str	x1, [x0]
+ bc4:	adrp	x0, 0 <grub_memcpy>
+ bc8:	add	x0, x0, #0x0
+ bcc:	ldr	x5, [x0]
+ bd0:	adrp	x0, 0 <grub_memcpy>
+ bd4:	add	x0, x0, #0x0
+ bd8:	ldr	x4, [x0]
+ bdc:	adrp	x0, 0 <grub_memcpy>
+ be0:	add	x0, x0, #0x0
+ be4:	ldr	x3, [x0]
+ be8:	mov	w2, #0x0                   	// #0
+ bec:	adrp	x0, 0 <grub_memcpy>
+ bf0:	add	x0, x0, #0x0
+ bf4:	ldr	x1, [x0]
+ bf8:	adrp	x0, 0 <grub_memcpy>
+ bfc:	add	x0, x0, #0x0
+ c00:	ldr	x0, [x0]
+ c04:	bl	0 <grub_register_extcmd>
+ c08:	mov	x1, x0
+ c0c:	adrp	x0, 0 <grub_memcpy>
+ c10:	add	x0, x0, #0x0
+ c14:	ldr	x0, [x0]
+ c18:	str	x1, [x0]
+ c1c:	adrp	x0, 0 <grub_memcpy>
+ c20:	add	x0, x0, #0x0
+ c24:	ldr	x5, [x0]
+ c28:	adrp	x0, 0 <grub_memcpy>
+ c2c:	add	x0, x0, #0x0
+ c30:	ldr	x4, [x0]
+ c34:	adrp	x0, 0 <grub_memcpy>
+ c38:	add	x0, x0, #0x0
+ c3c:	ldr	x3, [x0]
+ c40:	mov	w2, #0x0                   	// #0
+ c44:	adrp	x0, 0 <grub_memcpy>
+ c48:	add	x0, x0, #0x0
+ c4c:	ldr	x1, [x0]
+ c50:	adrp	x0, 0 <grub_memcpy>
+ c54:	add	x0, x0, #0x0
+ c58:	ldr	x0, [x0]
+ c5c:	bl	0 <grub_register_extcmd>
+ c60:	mov	x1, x0
+ c64:	adrp	x0, 0 <grub_memcpy>
+ c68:	add	x0, x0, #0x0
+ c6c:	ldr	x0, [x0]
+ c70:	str	x1, [x0]
+ c74:	nop
+ c78:	ldp	x29, x30, [sp], #32
+ c7c:	ret
+	...
+
+0000000000000d08 <grub_mod_fini>:
+ d08:	stp	x29, x30, [sp, #-16]!
+ d0c:	mov	x29, sp
+ d10:	adrp	x0, 0 <grub_memcpy>
+ d14:	add	x0, x0, #0x0
+ d18:	ldr	x0, [x0]
+ d1c:	ldr	x0, [x0]
+ d20:	bl	0 <grub_unregister_extcmd>
+ d24:	adrp	x0, 0 <grub_memcpy>
+ d28:	add	x0, x0, #0x0
+ d2c:	ldr	x0, [x0]
+ d30:	ldr	x0, [x0]
+ d34:	bl	0 <grub_unregister_extcmd>
+ d38:	adrp	x0, 0 <grub_memcpy>
+ d3c:	add	x0, x0, #0x0
+ d40:	ldr	x0, [x0]
+ d44:	ldr	x0, [x0]
+ d48:	bl	0 <grub_unregister_extcmd>
+ d4c:	adrp	x0, 0 <grub_memcpy>
+ d50:	add	x0, x0, #0x0
+ d54:	ldr	x0, [x0]
+ d58:	ldr	x0, [x0]
+ d5c:	bl	0 <grub_unregister_extcmd>
+ d60:	adrp	x0, 0 <grub_memcpy>
+ d64:	add	x0, x0, #0x0
+ d68:	ldr	x0, [x0]
+ d6c:	ldr	x0, [x0]
+ d70:	bl	0 <grub_unregister_extcmd>
+ d74:	adrp	x0, 0 <grub_memcpy>
+ d78:	add	x0, x0, #0x0
+ d7c:	ldr	x0, [x0]
+ d80:	ldr	x0, [x0]
+ d84:	bl	0 <grub_unregister_extcmd>
+ d88:	nop
+ d8c:	ldp	x29, x30, [sp], #16
+ d90:	ret
+ d94:	nop
+	...

@@ -1,0 +1,1030 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//crypto.module_gcc_-O1:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_burn_stack>:
+   0:	stp	x29, x30, [sp, #-96]!
+   4:	mov	x29, sp
+   8:	str	x19, [sp, #16]
+   c:	mov	x19, x0
+  10:	mov	x2, #0x40                  	// #64
+  14:	mov	w1, #0x0                   	// #0
+  18:	add	x0, sp, #0x20
+  1c:	bl	0 <grub_memset>
+  20:	cmp	x19, #0x40
+  24:	b.hi	34 <grub_burn_stack+0x34>  // b.pmore
+  28:	ldr	x19, [sp, #16]
+  2c:	ldp	x29, x30, [sp], #96
+  30:	ret
+  34:	sub	x0, x19, #0x40
+  38:	bl	0 <grub_burn_stack>
+  3c:	b	28 <grub_burn_stack+0x28>
+
+0000000000000040 <_gcry_burn_stack>:
+  40:	stp	x29, x30, [sp, #-16]!
+  44:	mov	x29, sp
+  48:	sxtw	x0, w0
+  4c:	bl	0 <grub_burn_stack>
+  50:	ldp	x29, x30, [sp], #16
+  54:	ret
+
+0000000000000058 <_gcry_assert_failed>:
+  58:	stp	x29, x30, [sp, #-16]!
+  5c:	mov	x29, sp
+  60:	mov	x4, x3
+  64:	mov	w3, w2
+  68:	mov	x2, x1
+  6c:	mov	x1, x0
+  70:	adrp	x0, 0 <grub_burn_stack>
+  74:	ldr	x0, [x0]
+  78:	bl	0 <grub_fatal>
+  7c:	nop
+	...
+
+0000000000000088 <_gcry_log_error>:
+  88:	stp	x29, x30, [sp, #-160]!
+  8c:	mov	x29, sp
+  90:	stp	x19, x20, [sp, #16]
+  94:	mov	x20, x0
+  98:	str	x1, [sp, #104]
+  9c:	str	x2, [sp, #112]
+  a0:	str	x3, [sp, #120]
+  a4:	str	x4, [sp, #128]
+  a8:	str	x5, [sp, #136]
+  ac:	str	x6, [sp, #144]
+  b0:	str	x7, [sp, #152]
+  b4:	adrp	x1, 0 <grub_burn_stack>
+  b8:	ldr	x0, [x1]
+  bc:	bl	0 <grub_env_get>
+  c0:	cbz	x0, 13c <_gcry_log_error+0xb4>
+  c4:	mov	x19, x0
+  c8:	adrp	x0, 0 <grub_burn_stack>
+  cc:	ldr	x1, [x0]
+  d0:	mov	x0, x19
+  d4:	bl	0 <grub_strword>
+  d8:	cbnz	w0, f0 <_gcry_log_error+0x68>
+  dc:	adrp	x0, 0 <grub_burn_stack>
+  e0:	ldr	x1, [x0]
+  e4:	mov	x0, x19
+  e8:	bl	0 <grub_strword>
+  ec:	cbz	w0, 13c <_gcry_log_error+0xb4>
+  f0:	adrp	x0, 0 <grub_burn_stack>
+  f4:	ldr	x0, [x0]
+  f8:	bl	0 <grub_printf>
+  fc:	add	x0, sp, #0xa0
+ 100:	str	x0, [sp, #64]
+ 104:	str	x0, [sp, #72]
+ 108:	add	x0, sp, #0x60
+ 10c:	str	x0, [sp, #80]
+ 110:	mov	w0, #0xffffffc8            	// #-56
+ 114:	str	w0, [sp, #88]
+ 118:	str	wzr, [sp, #92]
+ 11c:	ldp	x0, x1, [sp, #64]
+ 120:	stp	x0, x1, [sp, #32]
+ 124:	ldp	x0, x1, [sp, #80]
+ 128:	stp	x0, x1, [sp, #48]
+ 12c:	add	x1, sp, #0x20
+ 130:	mov	x0, x20
+ 134:	bl	0 <grub_vprintf>
+ 138:	bl	0 <grub_refresh>
+ 13c:	ldp	x19, x20, [sp, #16]
+ 140:	ldp	x29, x30, [sp], #160
+ 144:	ret
+	...
+
+0000000000000168 <grub_cipher_register>:
+ 168:	adrp	x1, 0 <grub_burn_stack>
+ 16c:	ldr	x1, [x1]
+ 170:	ldr	x2, [x1]
+ 174:	str	x2, [x0, #88]
+ 178:	str	x0, [x1]
+ 17c:	ret
+	...
+
+0000000000000188 <grub_cipher_unregister>:
+ 188:	adrp	x1, 0 <grub_burn_stack>
+ 18c:	ldr	x1, [x1]
+ 190:	ldr	x1, [x1]
+ 194:	cbz	x1, 1c0 <grub_cipher_unregister+0x38>
+ 198:	cmp	x0, x1
+ 19c:	b.eq	1c4 <grub_cipher_unregister+0x3c>  // b.none
+ 1a0:	mov	x2, x1
+ 1a4:	ldr	x1, [x1, #88]
+ 1a8:	cbz	x1, 1c0 <grub_cipher_unregister+0x38>
+ 1ac:	cmp	x0, x1
+ 1b0:	b.ne	1a0 <grub_cipher_unregister+0x18>  // b.any
+ 1b4:	add	x2, x2, #0x58
+ 1b8:	ldr	x0, [x1, #88]
+ 1bc:	str	x0, [x2]
+ 1c0:	ret
+ 1c4:	adrp	x0, 0 <grub_burn_stack>
+ 1c8:	ldr	x2, [x0]
+ 1cc:	b	1b8 <grub_cipher_unregister+0x30>
+	...
+
+00000000000001d8 <grub_md_register>:
+ 1d8:	adrp	x1, 0 <grub_burn_stack>
+ 1dc:	ldr	x1, [x1]
+ 1e0:	ldr	x2, [x1, #8]
+ 1e4:	str	x2, [x0, #88]
+ 1e8:	str	x0, [x1, #8]
+ 1ec:	ret
+	...
+
+00000000000001f8 <grub_md_unregister>:
+ 1f8:	adrp	x1, 0 <grub_burn_stack>
+ 1fc:	ldr	x1, [x1]
+ 200:	ldr	x1, [x1, #8]
+ 204:	cbz	x1, 230 <grub_md_unregister+0x38>
+ 208:	cmp	x0, x1
+ 20c:	b.eq	234 <grub_md_unregister+0x3c>  // b.none
+ 210:	mov	x2, x1
+ 214:	ldr	x1, [x1, #88]
+ 218:	cbz	x1, 230 <grub_md_unregister+0x38>
+ 21c:	cmp	x0, x1
+ 220:	b.ne	210 <grub_md_unregister+0x18>  // b.any
+ 224:	add	x2, x2, #0x58
+ 228:	ldr	x0, [x1, #88]
+ 22c:	str	x0, [x2]
+ 230:	ret
+ 234:	adrp	x0, 0 <grub_burn_stack>
+ 238:	ldr	x2, [x0]
+ 23c:	add	x2, x2, #0x8
+ 240:	b	228 <grub_md_unregister+0x30>
+ 244:	nop
+	...
+
+0000000000000250 <grub_crypto_hash>:
+ 250:	stp	x29, x30, [sp, #-304]!
+ 254:	mov	x29, sp
+ 258:	stp	x19, x20, [sp, #16]
+ 25c:	stp	x21, x22, [sp, #32]
+ 260:	mov	x19, x0
+ 264:	ldr	x0, [x0, #72]
+ 268:	cmp	x0, #0x100
+ 26c:	b.hi	2d4 <grub_crypto_hash+0x84>  // b.pmore
+ 270:	mov	x22, x1
+ 274:	mov	x20, x2
+ 278:	mov	x21, x3
+ 27c:	ldr	x1, [x19, #40]
+ 280:	add	x0, sp, #0x30
+ 284:	blr	x1
+ 288:	ldr	x3, [x19, #48]
+ 28c:	mov	x2, x21
+ 290:	mov	x1, x20
+ 294:	add	x0, sp, #0x30
+ 298:	blr	x3
+ 29c:	ldr	x1, [x19, #56]
+ 2a0:	add	x0, sp, #0x30
+ 2a4:	blr	x1
+ 2a8:	ldr	x1, [x19, #64]
+ 2ac:	add	x0, sp, #0x30
+ 2b0:	blr	x1
+ 2b4:	ldr	x2, [x19, #32]
+ 2b8:	mov	x1, x0
+ 2bc:	mov	x0, x22
+ 2c0:	bl	0 <grub_memmove>
+ 2c4:	ldp	x19, x20, [sp, #16]
+ 2c8:	ldp	x21, x22, [sp, #32]
+ 2cc:	ldp	x29, x30, [sp], #304
+ 2d0:	ret
+ 2d4:	adrp	x0, 0 <grub_burn_stack>
+ 2d8:	ldr	x0, [x0]
+ 2dc:	bl	0 <grub_fatal>
+	...
+
+00000000000002e8 <grub_crypto_lookup_md_by_name>:
+ 2e8:	stp	x29, x30, [sp, #-48]!
+ 2ec:	mov	x29, sp
+ 2f0:	stp	x19, x20, [sp, #16]
+ 2f4:	str	x21, [sp, #32]
+ 2f8:	mov	x19, x0
+ 2fc:	mov	w11, #0x1                   	// #1
+ 300:	adrp	x20, 0 <grub_burn_stack>
+ 304:	mov	w21, #0x0                   	// #0
+ 308:	ldr	x0, [x20]
+ 30c:	ldr	x0, [x0, #8]
+ 310:	cbz	x0, 32c <grub_crypto_lookup_md_by_name+0x44>
+ 314:	ldrb	w9, [x19]
+ 318:	mov	w10, w9
+ 31c:	b	38c <grub_crypto_lookup_md_by_name+0xa4>
+ 320:	cmp	w7, #0x19
+ 324:	b.ls	3f8 <grub_crypto_lookup_md_by_name+0x110>  // b.plast
+ 328:	b	368 <grub_crypto_lookup_md_by_name+0x80>
+ 32c:	ldr	x0, [x20]
+ 330:	ldr	x1, [x0, #16]
+ 334:	cmp	w11, #0x0
+ 338:	ccmp	x1, #0x0, #0x4, ne  // ne = any
+ 33c:	b.ne	354 <grub_crypto_lookup_md_by_name+0x6c>  // b.any
+ 340:	mov	x0, #0x0                   	// #0
+ 344:	ldp	x19, x20, [sp, #16]
+ 348:	ldr	x21, [sp, #32]
+ 34c:	ldp	x29, x30, [sp], #48
+ 350:	ret
+ 354:	mov	x0, x19
+ 358:	blr	x1
+ 35c:	mov	w11, w21
+ 360:	b	308 <grub_crypto_lookup_md_by_name+0x20>
+ 364:	mov	w5, #0x0                   	// #0
+ 368:	ldrb	w1, [x3]
+ 36c:	sub	w3, w1, #0x41
+ 370:	add	w2, w1, #0x20
+ 374:	cmp	w3, #0x1a
+ 378:	csel	w1, w2, w1, cc  // cc = lo, ul, last
+ 37c:	cmp	w1, w5
+ 380:	b.eq	344 <grub_crypto_lookup_md_by_name+0x5c>  // b.none
+ 384:	ldr	x0, [x0, #88]
+ 388:	cbz	x0, 32c <grub_crypto_lookup_md_by_name+0x44>
+ 38c:	ldr	x3, [x0]
+ 390:	mov	x6, x19
+ 394:	mov	w1, w10
+ 398:	cbz	w9, 364 <grub_crypto_lookup_md_by_name+0x7c>
+ 39c:	ldrb	w2, [x3]
+ 3a0:	cbz	w2, 3e8 <grub_crypto_lookup_md_by_name+0x100>
+ 3a4:	mov	w5, w1
+ 3a8:	sub	w7, w1, #0x41
+ 3ac:	add	w4, w1, #0x20
+ 3b0:	cmp	w7, #0x1a
+ 3b4:	csel	w1, w4, w1, cc  // cc = lo, ul, last
+ 3b8:	sub	w8, w2, #0x41
+ 3bc:	add	w4, w2, #0x20
+ 3c0:	cmp	w8, #0x1a
+ 3c4:	csel	w2, w4, w2, cc  // cc = lo, ul, last
+ 3c8:	cmp	w2, w1
+ 3cc:	b.ne	320 <grub_crypto_lookup_md_by_name+0x38>  // b.any
+ 3d0:	add	x3, x3, #0x1
+ 3d4:	ldrb	w1, [x6, #1]!
+ 3d8:	cbnz	w1, 39c <grub_crypto_lookup_md_by_name+0xb4>
+ 3dc:	b	364 <grub_crypto_lookup_md_by_name+0x7c>
+ 3e0:	ldrb	w1, [x3]
+ 3e4:	b	37c <grub_crypto_lookup_md_by_name+0x94>
+ 3e8:	mov	w5, w1
+ 3ec:	sub	w1, w1, #0x41
+ 3f0:	cmp	w1, #0x19
+ 3f4:	b.hi	3e0 <grub_crypto_lookup_md_by_name+0xf8>  // b.pmore
+ 3f8:	add	w5, w5, #0x20
+ 3fc:	b	368 <grub_crypto_lookup_md_by_name+0x80>
+	...
+
+0000000000000408 <grub_crypto_lookup_cipher_by_name>:
+ 408:	stp	x29, x30, [sp, #-48]!
+ 40c:	mov	x29, sp
+ 410:	stp	x19, x20, [sp, #16]
+ 414:	str	x21, [sp, #32]
+ 418:	mov	x19, x0
+ 41c:	mov	w12, #0x1                   	// #1
+ 420:	adrp	x20, 0 <grub_burn_stack>
+ 424:	mov	w21, #0x0                   	// #0
+ 428:	ldr	x0, [x20]
+ 42c:	ldr	x0, [x0]
+ 430:	cbz	x0, 4e8 <grub_crypto_lookup_cipher_by_name+0xe0>
+ 434:	ldrb	w9, [x19]
+ 438:	mov	w11, w9
+ 43c:	mov	w10, w9
+ 440:	b	464 <grub_crypto_lookup_cipher_by_name+0x5c>
+ 444:	cmp	w6, #0x19
+ 448:	b.ls	5d0 <grub_crypto_lookup_cipher_by_name+0x1c8>  // b.plast
+ 44c:	b	4b8 <grub_crypto_lookup_cipher_by_name+0xb0>
+ 450:	cmp	w7, #0x19
+ 454:	b.ls	5b0 <grub_crypto_lookup_cipher_by_name+0x1a8>  // b.plast
+ 458:	b	524 <grub_crypto_lookup_cipher_by_name+0x11c>
+ 45c:	ldr	x0, [x0, #88]
+ 460:	cbz	x0, 4e8 <grub_crypto_lookup_cipher_by_name+0xe0>
+ 464:	ldr	x4, [x0]
+ 468:	mov	x5, x19
+ 46c:	mov	w1, w11
+ 470:	cbz	w9, 4b4 <grub_crypto_lookup_cipher_by_name+0xac>
+ 474:	ldrb	w2, [x4]
+ 478:	cbz	w2, 5c0 <grub_crypto_lookup_cipher_by_name+0x1b8>
+ 47c:	mov	w8, w1
+ 480:	sub	w6, w1, #0x41
+ 484:	add	w3, w1, #0x20
+ 488:	cmp	w6, #0x1a
+ 48c:	csel	w1, w3, w1, cc  // cc = lo, ul, last
+ 490:	sub	w7, w2, #0x41
+ 494:	add	w3, w2, #0x20
+ 498:	cmp	w7, #0x1a
+ 49c:	csel	w2, w3, w2, cc  // cc = lo, ul, last
+ 4a0:	cmp	w2, w1
+ 4a4:	b.ne	444 <grub_crypto_lookup_cipher_by_name+0x3c>  // b.any
+ 4a8:	add	x4, x4, #0x1
+ 4ac:	ldrb	w1, [x5, #1]!
+ 4b0:	cbnz	w1, 474 <grub_crypto_lookup_cipher_by_name+0x6c>
+ 4b4:	mov	w8, #0x0                   	// #0
+ 4b8:	ldrb	w1, [x4]
+ 4bc:	sub	w3, w1, #0x41
+ 4c0:	add	w2, w1, #0x20
+ 4c4:	cmp	w3, #0x1a
+ 4c8:	csel	w1, w2, w1, cc  // cc = lo, ul, last
+ 4cc:	cmp	w1, w8
+ 4d0:	b.eq	500 <grub_crypto_lookup_cipher_by_name+0xf8>  // b.none
+ 4d4:	ldr	x8, [x0, #8]
+ 4d8:	cbz	x8, 45c <grub_crypto_lookup_cipher_by_name+0x54>
+ 4dc:	ldr	x2, [x8]
+ 4e0:	cbnz	x2, 548 <grub_crypto_lookup_cipher_by_name+0x140>
+ 4e4:	b	45c <grub_crypto_lookup_cipher_by_name+0x54>
+ 4e8:	ldr	x0, [x20]
+ 4ec:	ldr	x1, [x0, #16]
+ 4f0:	cmp	w12, #0x0
+ 4f4:	ccmp	x1, #0x0, #0x4, ne  // ne = any
+ 4f8:	b.ne	510 <grub_crypto_lookup_cipher_by_name+0x108>  // b.any
+ 4fc:	mov	x0, #0x0                   	// #0
+ 500:	ldp	x19, x20, [sp, #16]
+ 504:	ldr	x21, [sp, #32]
+ 508:	ldp	x29, x30, [sp], #48
+ 50c:	ret
+ 510:	mov	x0, x19
+ 514:	blr	x1
+ 518:	mov	w12, w21
+ 51c:	b	428 <grub_crypto_lookup_cipher_by_name+0x20>
+ 520:	mov	w5, #0x0                   	// #0
+ 524:	ldrb	w1, [x2]
+ 528:	sub	w3, w1, #0x41
+ 52c:	add	w2, w1, #0x20
+ 530:	cmp	w3, #0x1a
+ 534:	csel	w1, w2, w1, cc  // cc = lo, ul, last
+ 538:	cmp	w1, w5
+ 53c:	b.eq	500 <grub_crypto_lookup_cipher_by_name+0xf8>  // b.none
+ 540:	ldr	x2, [x8, #8]!
+ 544:	cbz	x2, 45c <grub_crypto_lookup_cipher_by_name+0x54>
+ 548:	mov	x6, x19
+ 54c:	mov	w1, w10
+ 550:	cbz	w9, 520 <grub_crypto_lookup_cipher_by_name+0x118>
+ 554:	ldrb	w3, [x2]
+ 558:	cbz	w3, 5a0 <grub_crypto_lookup_cipher_by_name+0x198>
+ 55c:	mov	w5, w1
+ 560:	sub	w7, w1, #0x41
+ 564:	add	w4, w1, #0x20
+ 568:	cmp	w7, #0x1a
+ 56c:	csel	w1, w4, w1, cc  // cc = lo, ul, last
+ 570:	sub	w13, w3, #0x41
+ 574:	add	w4, w3, #0x20
+ 578:	cmp	w13, #0x1a
+ 57c:	csel	w3, w4, w3, cc  // cc = lo, ul, last
+ 580:	cmp	w3, w1
+ 584:	b.ne	450 <grub_crypto_lookup_cipher_by_name+0x48>  // b.any
+ 588:	add	x2, x2, #0x1
+ 58c:	ldrb	w1, [x6, #1]!
+ 590:	cbnz	w1, 554 <grub_crypto_lookup_cipher_by_name+0x14c>
+ 594:	b	520 <grub_crypto_lookup_cipher_by_name+0x118>
+ 598:	ldrb	w1, [x2]
+ 59c:	b	538 <grub_crypto_lookup_cipher_by_name+0x130>
+ 5a0:	mov	w5, w1
+ 5a4:	sub	w1, w1, #0x41
+ 5a8:	cmp	w1, #0x19
+ 5ac:	b.hi	598 <grub_crypto_lookup_cipher_by_name+0x190>  // b.pmore
+ 5b0:	add	w5, w5, #0x20
+ 5b4:	b	524 <grub_crypto_lookup_cipher_by_name+0x11c>
+ 5b8:	ldrb	w1, [x4]
+ 5bc:	b	4cc <grub_crypto_lookup_cipher_by_name+0xc4>
+ 5c0:	mov	w8, w1
+ 5c4:	sub	w1, w1, #0x41
+ 5c8:	cmp	w1, #0x19
+ 5cc:	b.hi	5b8 <grub_crypto_lookup_cipher_by_name+0x1b0>  // b.pmore
+ 5d0:	add	w8, w8, #0x20
+ 5d4:	b	4b8 <grub_crypto_lookup_cipher_by_name+0xb0>
+	...
+
+00000000000005e0 <grub_crypto_cipher_open>:
+ 5e0:	stp	x29, x30, [sp, #-32]!
+ 5e4:	mov	x29, sp
+ 5e8:	str	x19, [sp, #16]
+ 5ec:	mov	x19, x0
+ 5f0:	ldr	x0, [x0, #40]
+ 5f4:	add	x0, x0, #0x8
+ 5f8:	bl	0 <grub_malloc>
+ 5fc:	cbz	x0, 604 <grub_crypto_cipher_open+0x24>
+ 600:	str	x19, [x0]
+ 604:	ldr	x19, [sp, #16]
+ 608:	ldp	x29, x30, [sp], #32
+ 60c:	ret
+
+0000000000000610 <grub_crypto_cipher_set_key>:
+ 610:	stp	x29, x30, [sp, #-16]!
+ 614:	mov	x29, sp
+ 618:	ldr	x3, [x0], #8
+ 61c:	ldr	x3, [x3, #48]
+ 620:	blr	x3
+ 624:	ldp	x29, x30, [sp], #16
+ 628:	ret
+
+000000000000062c <grub_crypto_ecb_decrypt>:
+ 62c:	stp	x29, x30, [sp, #-64]!
+ 630:	mov	x29, sp
+ 634:	stp	x19, x20, [sp, #16]
+ 638:	stp	x23, x24, [sp, #48]
+ 63c:	mov	x23, x0
+ 640:	mov	x20, x1
+ 644:	ldr	x0, [x0]
+ 648:	ldr	x1, [x0, #64]
+ 64c:	cbz	x1, 6c4 <grub_crypto_ecb_decrypt+0x98>
+ 650:	stp	x21, x22, [sp, #32]
+ 654:	mov	x19, x2
+ 658:	ldr	x21, [x0, #24]
+ 65c:	mov	w0, #0xa                   	// #10
+ 660:	cbz	x21, 6d8 <grub_crypto_ecb_decrypt+0xac>
+ 664:	sub	x2, x21, #0x1
+ 668:	orr	x1, x21, x3
+ 66c:	tst	x2, x1
+ 670:	b.ne	6e0 <grub_crypto_ecb_decrypt+0xb4>  // b.any
+ 674:	add	x22, x19, x3
+ 678:	cmp	x19, x22
+ 67c:	b.cs	6cc <grub_crypto_ecb_decrypt+0xa0>  // b.hs, b.nlast
+ 680:	add	x24, x23, #0x8
+ 684:	ldr	x0, [x23]
+ 688:	ldr	x3, [x0, #64]
+ 68c:	mov	x2, x19
+ 690:	mov	x1, x20
+ 694:	mov	x0, x24
+ 698:	blr	x3
+ 69c:	add	x19, x19, x21
+ 6a0:	add	x20, x20, x21
+ 6a4:	cmp	x22, x19
+ 6a8:	b.hi	684 <grub_crypto_ecb_decrypt+0x58>  // b.pmore
+ 6ac:	mov	w0, #0x0                   	// #0
+ 6b0:	ldp	x21, x22, [sp, #32]
+ 6b4:	ldp	x19, x20, [sp, #16]
+ 6b8:	ldp	x23, x24, [sp, #48]
+ 6bc:	ldp	x29, x30, [sp], #64
+ 6c0:	ret
+ 6c4:	mov	w0, #0x19                  	// #25
+ 6c8:	b	6b4 <grub_crypto_ecb_decrypt+0x88>
+ 6cc:	mov	w0, #0x0                   	// #0
+ 6d0:	ldp	x21, x22, [sp, #32]
+ 6d4:	b	6b4 <grub_crypto_ecb_decrypt+0x88>
+ 6d8:	ldp	x21, x22, [sp, #32]
+ 6dc:	b	6b4 <grub_crypto_ecb_decrypt+0x88>
+ 6e0:	ldp	x21, x22, [sp, #32]
+ 6e4:	b	6b4 <grub_crypto_ecb_decrypt+0x88>
+
+00000000000006e8 <grub_crypto_ecb_encrypt>:
+ 6e8:	stp	x29, x30, [sp, #-64]!
+ 6ec:	mov	x29, sp
+ 6f0:	stp	x19, x20, [sp, #16]
+ 6f4:	stp	x23, x24, [sp, #48]
+ 6f8:	mov	x23, x0
+ 6fc:	mov	x20, x1
+ 700:	ldr	x0, [x0]
+ 704:	ldr	x1, [x0, #56]
+ 708:	cbz	x1, 780 <grub_crypto_ecb_encrypt+0x98>
+ 70c:	stp	x21, x22, [sp, #32]
+ 710:	mov	x19, x2
+ 714:	ldr	x21, [x0, #24]
+ 718:	mov	w0, #0xa                   	// #10
+ 71c:	cbz	x21, 794 <grub_crypto_ecb_encrypt+0xac>
+ 720:	sub	x2, x21, #0x1
+ 724:	orr	x1, x21, x3
+ 728:	tst	x2, x1
+ 72c:	b.ne	79c <grub_crypto_ecb_encrypt+0xb4>  // b.any
+ 730:	add	x22, x19, x3
+ 734:	cmp	x19, x22
+ 738:	b.cs	788 <grub_crypto_ecb_encrypt+0xa0>  // b.hs, b.nlast
+ 73c:	add	x24, x23, #0x8
+ 740:	ldr	x0, [x23]
+ 744:	ldr	x3, [x0, #56]
+ 748:	mov	x2, x19
+ 74c:	mov	x1, x20
+ 750:	mov	x0, x24
+ 754:	blr	x3
+ 758:	add	x19, x19, x21
+ 75c:	add	x20, x20, x21
+ 760:	cmp	x22, x19
+ 764:	b.hi	740 <grub_crypto_ecb_encrypt+0x58>  // b.pmore
+ 768:	mov	w0, #0x0                   	// #0
+ 76c:	ldp	x21, x22, [sp, #32]
+ 770:	ldp	x19, x20, [sp, #16]
+ 774:	ldp	x23, x24, [sp, #48]
+ 778:	ldp	x29, x30, [sp], #64
+ 77c:	ret
+ 780:	mov	w0, #0x19                  	// #25
+ 784:	b	770 <grub_crypto_ecb_encrypt+0x88>
+ 788:	mov	w0, #0x0                   	// #0
+ 78c:	ldp	x21, x22, [sp, #32]
+ 790:	b	770 <grub_crypto_ecb_encrypt+0x88>
+ 794:	ldp	x21, x22, [sp, #32]
+ 798:	b	770 <grub_crypto_ecb_encrypt+0x88>
+ 79c:	ldp	x21, x22, [sp, #32]
+ 7a0:	b	770 <grub_crypto_ecb_encrypt+0x88>
+
+00000000000007a4 <grub_crypto_cbc_encrypt>:
+ 7a4:	stp	x29, x30, [sp, #-80]!
+ 7a8:	mov	x29, sp
+ 7ac:	stp	x19, x20, [sp, #16]
+ 7b0:	stp	x23, x24, [sp, #48]
+ 7b4:	mov	x23, x0
+ 7b8:	mov	x19, x1
+ 7bc:	ldr	x0, [x0]
+ 7c0:	ldr	x1, [x0, #56]
+ 7c4:	cbz	x1, 904 <grub_crypto_cbc_encrypt+0x160>
+ 7c8:	stp	x21, x22, [sp, #32]
+ 7cc:	mov	x20, x2
+ 7d0:	mov	x24, x4
+ 7d4:	ldr	x21, [x0, #24]
+ 7d8:	mov	w0, #0xa                   	// #10
+ 7dc:	cbz	x21, 90c <grub_crypto_cbc_encrypt+0x168>
+ 7e0:	sub	x2, x21, #0x1
+ 7e4:	orr	x1, x21, x3
+ 7e8:	tst	x2, x1
+ 7ec:	b.ne	914 <grub_crypto_cbc_encrypt+0x170>  // b.any
+ 7f0:	str	x25, [sp, #64]
+ 7f4:	add	x22, x20, x3
+ 7f8:	mov	x1, x4
+ 7fc:	add	x25, x23, #0x8
+ 800:	cmp	x20, x22
+ 804:	b.cc	8cc <grub_crypto_cbc_encrypt+0x128>  // b.lo, b.ul, b.last
+ 808:	mov	x19, x4
+ 80c:	mov	x2, x21
+ 810:	mov	x1, x19
+ 814:	mov	x0, x24
+ 818:	bl	0 <grub_memmove>
+ 81c:	mov	w0, #0x0                   	// #0
+ 820:	ldp	x21, x22, [sp, #32]
+ 824:	ldr	x25, [sp, #64]
+ 828:	ldp	x19, x20, [sp, #16]
+ 82c:	ldp	x23, x24, [sp, #48]
+ 830:	ldp	x29, x30, [sp], #80
+ 834:	ret
+ 838:	cmp	x0, #0x7
+ 83c:	b.ls	87c <grub_crypto_cbc_encrypt+0xd8>  // b.plast
+ 840:	sub	x5, x0, #0x8
+ 844:	and	x5, x5, #0xfffffffffffffff8
+ 848:	add	x5, x5, #0x8
+ 84c:	mov	x6, x3
+ 850:	ldr	x7, [x2, x6]
+ 854:	ldr	x8, [x1, x6]
+ 858:	eor	x7, x7, x8
+ 85c:	str	x7, [x4, x6]
+ 860:	add	x6, x6, #0x8
+ 864:	cmp	x6, x5
+ 868:	b.ne	850 <grub_crypto_cbc_encrypt+0xac>  // b.any
+ 86c:	add	x2, x2, x5
+ 870:	add	x1, x1, x5
+ 874:	add	x4, x4, x5
+ 878:	and	x0, x0, #0x7
+ 87c:	cbz	x0, 89c <grub_crypto_cbc_encrypt+0xf8>
+ 880:	ldrb	w5, [x2, x3]
+ 884:	ldrb	w6, [x1, x3]
+ 888:	eor	w5, w5, w6
+ 88c:	strb	w5, [x4, x3]
+ 890:	add	x3, x3, #0x1
+ 894:	cmp	x3, x0
+ 898:	b.ne	880 <grub_crypto_cbc_encrypt+0xdc>  // b.any
+ 89c:	ldr	x0, [x23]
+ 8a0:	ldr	x3, [x0, #56]
+ 8a4:	mov	x2, x19
+ 8a8:	mov	x1, x19
+ 8ac:	mov	x0, x25
+ 8b0:	blr	x3
+ 8b4:	add	x20, x20, x21
+ 8b8:	add	x0, x19, x21
+ 8bc:	mov	x1, x19
+ 8c0:	cmp	x22, x20
+ 8c4:	b.ls	80c <grub_crypto_cbc_encrypt+0x68>  // b.plast
+ 8c8:	mov	x19, x0
+ 8cc:	mov	x0, x21
+ 8d0:	mov	x4, x19
+ 8d4:	mov	x2, x20
+ 8d8:	orr	x3, x1, x2
+ 8dc:	orr	x3, x4, x3
+ 8e0:	ands	x3, x3, #0x7
+ 8e4:	b.eq	838 <grub_crypto_cbc_encrypt+0x94>  // b.none
+ 8e8:	ldrb	w3, [x2], #1
+ 8ec:	ldrb	w5, [x1], #1
+ 8f0:	eor	w3, w3, w5
+ 8f4:	strb	w3, [x4], #1
+ 8f8:	subs	x0, x0, #0x1
+ 8fc:	b.ne	8d8 <grub_crypto_cbc_encrypt+0x134>  // b.any
+ 900:	b	89c <grub_crypto_cbc_encrypt+0xf8>
+ 904:	mov	w0, #0x19                  	// #25
+ 908:	b	828 <grub_crypto_cbc_encrypt+0x84>
+ 90c:	ldp	x21, x22, [sp, #32]
+ 910:	b	828 <grub_crypto_cbc_encrypt+0x84>
+ 914:	ldp	x21, x22, [sp, #32]
+ 918:	b	828 <grub_crypto_cbc_encrypt+0x84>
+
+000000000000091c <grub_crypto_cbc_decrypt>:
+ 91c:	stp	x29, x30, [sp, #-96]!
+ 920:	mov	x29, sp
+ 924:	stp	x21, x22, [sp, #32]
+ 928:	stp	x23, x24, [sp, #48]
+ 92c:	mov	x24, x0
+ 930:	mov	x21, x1
+ 934:	ldr	x0, [x0]
+ 938:	ldr	x1, [x0, #64]
+ 93c:	cbz	x1, a8c <grub_crypto_cbc_decrypt+0x170>
+ 940:	stp	x19, x20, [sp, #16]
+ 944:	mov	x19, x2
+ 948:	mov	x22, x4
+ 94c:	ldr	x20, [x0, #24]
+ 950:	sub	x2, x20, #0x1
+ 954:	mov	w0, #0xa                   	// #10
+ 958:	cmp	x2, #0xf
+ 95c:	b.hi	aa0 <grub_crypto_cbc_decrypt+0x184>  // b.pmore
+ 960:	orr	x1, x20, x3
+ 964:	tst	x1, x2
+ 968:	b.eq	980 <grub_crypto_cbc_decrypt+0x64>  // b.none
+ 96c:	ldp	x19, x20, [sp, #16]
+ 970:	ldp	x21, x22, [sp, #32]
+ 974:	ldp	x23, x24, [sp, #48]
+ 978:	ldp	x29, x30, [sp], #96
+ 97c:	ret
+ 980:	add	x23, x19, x3
+ 984:	cmp	x19, x23
+ 988:	b.cs	a94 <grub_crypto_cbc_decrypt+0x178>  // b.hs, b.nlast
+ 98c:	str	x25, [sp, #64]
+ 990:	add	x25, x24, #0x8
+ 994:	b	a20 <grub_crypto_cbc_decrypt+0x104>
+ 998:	mov	x6, x5
+ 99c:	cmp	x0, #0x7
+ 9a0:	b.ls	9e0 <grub_crypto_cbc_decrypt+0xc4>  // b.plast
+ 9a4:	sub	x4, x0, #0x8
+ 9a8:	and	x4, x4, #0xfffffffffffffff8
+ 9ac:	add	x4, x4, #0x8
+ 9b0:	mov	x2, x3
+ 9b4:	ldr	x6, [x5, x2]
+ 9b8:	ldr	x7, [x1, x2]
+ 9bc:	eor	x6, x6, x7
+ 9c0:	str	x6, [x5, x2]
+ 9c4:	add	x2, x2, #0x8
+ 9c8:	cmp	x4, x2
+ 9cc:	b.ne	9b4 <grub_crypto_cbc_decrypt+0x98>  // b.any
+ 9d0:	add	x6, x5, x4
+ 9d4:	add	x1, x1, x4
+ 9d8:	mov	x5, x6
+ 9dc:	and	x0, x0, #0x7
+ 9e0:	cbz	x0, a00 <grub_crypto_cbc_decrypt+0xe4>
+ 9e4:	ldrb	w2, [x6, x3]
+ 9e8:	ldrb	w4, [x1, x3]
+ 9ec:	eor	w2, w2, w4
+ 9f0:	strb	w2, [x5, x3]
+ 9f4:	add	x3, x3, #0x1
+ 9f8:	cmp	x3, x0
+ 9fc:	b.ne	9e4 <grub_crypto_cbc_decrypt+0xc8>  // b.any
+ a00:	mov	x2, x20
+ a04:	add	x1, sp, #0x50
+ a08:	mov	x0, x22
+ a0c:	bl	0 <grub_memmove>
+ a10:	add	x19, x19, x20
+ a14:	add	x21, x21, x20
+ a18:	cmp	x23, x19
+ a1c:	b.ls	a7c <grub_crypto_cbc_decrypt+0x160>  // b.plast
+ a20:	mov	x2, x20
+ a24:	mov	x1, x19
+ a28:	add	x0, sp, #0x50
+ a2c:	bl	0 <grub_memmove>
+ a30:	ldr	x0, [x24]
+ a34:	ldr	x3, [x0, #64]
+ a38:	mov	x2, x19
+ a3c:	mov	x1, x21
+ a40:	mov	x0, x25
+ a44:	blr	x3
+ a48:	mov	x0, x20
+ a4c:	mov	x1, x22
+ a50:	mov	x5, x21
+ a54:	orr	x3, x1, x5
+ a58:	ands	x3, x3, #0x7
+ a5c:	b.eq	998 <grub_crypto_cbc_decrypt+0x7c>  // b.none
+ a60:	ldrb	w2, [x5]
+ a64:	ldrb	w3, [x1], #1
+ a68:	eor	w2, w2, w3
+ a6c:	strb	w2, [x5], #1
+ a70:	subs	x0, x0, #0x1
+ a74:	b.ne	a54 <grub_crypto_cbc_decrypt+0x138>  // b.any
+ a78:	b	a00 <grub_crypto_cbc_decrypt+0xe4>
+ a7c:	mov	w0, #0x0                   	// #0
+ a80:	ldp	x19, x20, [sp, #16]
+ a84:	ldr	x25, [sp, #64]
+ a88:	b	970 <grub_crypto_cbc_decrypt+0x54>
+ a8c:	mov	w0, #0x19                  	// #25
+ a90:	b	970 <grub_crypto_cbc_decrypt+0x54>
+ a94:	mov	w0, #0x0                   	// #0
+ a98:	ldp	x19, x20, [sp, #16]
+ a9c:	b	970 <grub_crypto_cbc_decrypt+0x54>
+ aa0:	ldp	x19, x20, [sp, #16]
+ aa4:	b	970 <grub_crypto_cbc_decrypt+0x54>
+
+0000000000000aa8 <grub_crypto_hmac_init>:
+ aa8:	stp	x29, x30, [sp, #-80]!
+ aac:	mov	x29, sp
+ ab0:	stp	x19, x20, [sp, #16]
+ ab4:	stp	x21, x22, [sp, #32]
+ ab8:	stp	x23, x24, [sp, #48]
+ abc:	mov	x19, x0
+ ac0:	mov	x24, x2
+ ac4:	ldr	x2, [x0, #32]
+ ac8:	ldr	x0, [x0, #80]
+ acc:	mov	x22, #0x0                   	// #0
+ ad0:	cmp	x2, x0
+ ad4:	b.hi	c14 <grub_crypto_hmac_init+0x16c>  // b.pmore
+ ad8:	str	x25, [sp, #64]
+ adc:	mov	x25, x1
+ ae0:	ldr	x0, [x19, #72]
+ ae4:	bl	0 <grub_malloc>
+ ae8:	mov	x23, x0
+ aec:	cbz	x0, c2c <grub_crypto_hmac_init+0x184>
+ af0:	ldr	x0, [x19, #80]
+ af4:	cmp	x0, x24
+ af8:	b.cs	b2c <grub_crypto_hmac_init+0x84>  // b.hs, b.nlast
+ afc:	ldr	x0, [x19, #32]
+ b00:	bl	0 <grub_malloc>
+ b04:	mov	x22, x0
+ b08:	cbz	x0, c3c <grub_crypto_hmac_init+0x194>
+ b0c:	mov	x3, x24
+ b10:	mov	x2, x25
+ b14:	mov	x1, x0
+ b18:	mov	x0, x19
+ b1c:	bl	250 <grub_crypto_hash>
+ b20:	ldr	x24, [x19, #32]
+ b24:	mov	x25, x22
+ b28:	b	b30 <grub_crypto_hmac_init+0x88>
+ b2c:	mov	x22, #0x0                   	// #0
+ b30:	ldr	x0, [x19, #80]
+ b34:	bl	0 <grub_zalloc>
+ b38:	mov	x20, x0
+ b3c:	cbz	x0, c48 <grub_crypto_hmac_init+0x1a0>
+ b40:	ldr	x0, [x19, #80]
+ b44:	bl	0 <grub_zalloc>
+ b48:	mov	x21, x0
+ b4c:	cbz	x0, c4c <grub_crypto_hmac_init+0x1a4>
+ b50:	mov	x2, x24
+ b54:	mov	x1, x25
+ b58:	mov	x0, x20
+ b5c:	bl	0 <grub_memmove>
+ b60:	mov	x2, x24
+ b64:	mov	x1, x25
+ b68:	mov	x0, x21
+ b6c:	bl	0 <grub_memmove>
+ b70:	ldr	x0, [x19, #80]
+ b74:	cbz	x0, bb4 <grub_crypto_hmac_init+0x10c>
+ b78:	mov	w2, #0x0                   	// #0
+ b7c:	mov	x1, #0x0                   	// #0
+ b80:	mov	w5, #0x36                  	// #54
+ b84:	mov	w4, #0x5c                  	// #92
+ b88:	ldrb	w3, [x20, x1]
+ b8c:	eor	w3, w3, w5
+ b90:	strb	w3, [x20, x1]
+ b94:	ldrb	w3, [x21, x1]
+ b98:	eor	w3, w3, w4
+ b9c:	strb	w3, [x21, x1]
+ ba0:	add	w2, w2, #0x1
+ ba4:	mov	w1, w2
+ ba8:	ldr	x0, [x19, #80]
+ bac:	cmp	x0, w2, uxtw
+ bb0:	b.hi	b88 <grub_crypto_hmac_init+0xe0>  // b.pmore
+ bb4:	mov	x0, x22
+ bb8:	bl	0 <grub_free>
+ bbc:	ldr	x1, [x19, #40]
+ bc0:	mov	x0, x23
+ bc4:	blr	x1
+ bc8:	ldr	x3, [x19, #48]
+ bcc:	ldr	x2, [x19, #80]
+ bd0:	mov	x1, x20
+ bd4:	mov	x0, x23
+ bd8:	blr	x3
+ bdc:	ldr	x2, [x19, #80]
+ be0:	mov	w1, #0x0                   	// #0
+ be4:	mov	x0, x20
+ be8:	bl	0 <grub_memset>
+ bec:	mov	x0, x20
+ bf0:	bl	0 <grub_free>
+ bf4:	mov	x0, #0x18                  	// #24
+ bf8:	bl	0 <grub_malloc>
+ bfc:	mov	x22, x0
+ c00:	cbz	x0, c78 <grub_crypto_hmac_init+0x1d0>
+ c04:	str	x19, [x0]
+ c08:	str	x23, [x0, #8]
+ c0c:	str	x21, [x0, #16]
+ c10:	ldr	x25, [sp, #64]
+ c14:	mov	x0, x22
+ c18:	ldp	x19, x20, [sp, #16]
+ c1c:	ldp	x21, x22, [sp, #32]
+ c20:	ldp	x23, x24, [sp, #48]
+ c24:	ldp	x29, x30, [sp], #80
+ c28:	ret
+ c2c:	mov	x21, x0
+ c30:	mov	x20, x0
+ c34:	mov	x22, x0
+ c38:	b	c4c <grub_crypto_hmac_init+0x1a4>
+ c3c:	mov	x21, x0
+ c40:	mov	x20, x0
+ c44:	b	c4c <grub_crypto_hmac_init+0x1a4>
+ c48:	mov	x21, x0
+ c4c:	mov	x0, x22
+ c50:	bl	0 <grub_free>
+ c54:	mov	x0, x23
+ c58:	bl	0 <grub_free>
+ c5c:	mov	x0, x20
+ c60:	bl	0 <grub_free>
+ c64:	mov	x0, x21
+ c68:	bl	0 <grub_free>
+ c6c:	mov	x22, #0x0                   	// #0
+ c70:	ldr	x25, [sp, #64]
+ c74:	b	c14 <grub_crypto_hmac_init+0x16c>
+ c78:	mov	x20, x0
+ c7c:	b	c4c <grub_crypto_hmac_init+0x1a4>
+
+0000000000000c80 <grub_crypto_hmac_write>:
+ c80:	stp	x29, x30, [sp, #-16]!
+ c84:	mov	x29, sp
+ c88:	ldr	x3, [x0]
+ c8c:	ldr	x3, [x3, #48]
+ c90:	ldr	x0, [x0, #8]
+ c94:	blr	x3
+ c98:	ldp	x29, x30, [sp], #16
+ c9c:	ret
+
+0000000000000ca0 <grub_crypto_hmac_fini>:
+ ca0:	stp	x29, x30, [sp, #-48]!
+ ca4:	mov	x29, sp
+ ca8:	stp	x19, x20, [sp, #16]
+ cac:	stp	x21, x22, [sp, #32]
+ cb0:	mov	x19, x0
+ cb4:	mov	x22, x1
+ cb8:	ldr	x0, [x0]
+ cbc:	ldr	x0, [x0, #72]
+ cc0:	bl	0 <grub_malloc>
+ cc4:	cbz	x0, df4 <grub_crypto_hmac_fini+0x154>
+ cc8:	mov	x20, x0
+ ccc:	ldr	x0, [x19]
+ cd0:	ldr	x1, [x0, #56]
+ cd4:	ldr	x0, [x19, #8]
+ cd8:	blr	x1
+ cdc:	ldr	x0, [x19]
+ ce0:	ldr	x1, [x0, #64]
+ ce4:	ldr	x0, [x19, #8]
+ ce8:	blr	x1
+ cec:	ldr	x0, [x19]
+ cf0:	ldr	x1, [x0, #64]
+ cf4:	ldr	x0, [x19, #8]
+ cf8:	blr	x1
+ cfc:	mov	x21, x0
+ d00:	ldr	x0, [x19]
+ d04:	ldr	x1, [x0, #40]
+ d08:	mov	x0, x20
+ d0c:	blr	x1
+ d10:	ldr	x0, [x19]
+ d14:	ldr	x3, [x0, #48]
+ d18:	ldr	x2, [x0, #80]
+ d1c:	ldr	x1, [x19, #16]
+ d20:	mov	x0, x20
+ d24:	blr	x3
+ d28:	ldr	x0, [x19]
+ d2c:	ldr	x3, [x0, #48]
+ d30:	ldr	x2, [x0, #32]
+ d34:	mov	x1, x21
+ d38:	mov	x0, x20
+ d3c:	blr	x3
+ d40:	ldr	x0, [x19]
+ d44:	ldr	x1, [x0, #56]
+ d48:	mov	x0, x20
+ d4c:	blr	x1
+ d50:	ldr	x0, [x19]
+ d54:	ldr	x2, [x0, #80]
+ d58:	mov	w1, #0x0                   	// #0
+ d5c:	ldr	x0, [x19, #16]
+ d60:	bl	0 <grub_memset>
+ d64:	ldr	x0, [x19, #16]
+ d68:	bl	0 <grub_free>
+ d6c:	ldr	x0, [x19]
+ d70:	ldr	x2, [x0, #72]
+ d74:	mov	w1, #0x0                   	// #0
+ d78:	ldr	x0, [x19, #8]
+ d7c:	bl	0 <grub_memset>
+ d80:	ldr	x0, [x19, #8]
+ d84:	bl	0 <grub_free>
+ d88:	ldr	x0, [x19]
+ d8c:	ldr	x1, [x0, #64]
+ d90:	mov	x0, x20
+ d94:	blr	x1
+ d98:	ldr	x1, [x19]
+ d9c:	ldr	x2, [x1, #32]
+ da0:	mov	x1, x0
+ da4:	mov	x0, x22
+ da8:	bl	0 <grub_memmove>
+ dac:	ldr	x0, [x19]
+ db0:	ldr	x2, [x0, #72]
+ db4:	mov	w1, #0x0                   	// #0
+ db8:	mov	x0, x20
+ dbc:	bl	0 <grub_memset>
+ dc0:	mov	x0, x20
+ dc4:	bl	0 <grub_free>
+ dc8:	mov	x2, #0x18                  	// #24
+ dcc:	mov	w1, #0x0                   	// #0
+ dd0:	mov	x0, x19
+ dd4:	bl	0 <grub_memset>
+ dd8:	mov	x0, x19
+ ddc:	bl	0 <grub_free>
+ de0:	mov	w0, #0x0                   	// #0
+ de4:	ldp	x19, x20, [sp, #16]
+ de8:	ldp	x21, x22, [sp, #32]
+ dec:	ldp	x29, x30, [sp], #48
+ df0:	ret
+ df4:	mov	w0, #0x22                  	// #34
+ df8:	b	de4 <grub_crypto_hmac_fini+0x144>
+
+0000000000000dfc <grub_crypto_hmac_buffer>:
+ dfc:	stp	x29, x30, [sp, #-48]!
+ e00:	mov	x29, sp
+ e04:	stp	x19, x20, [sp, #16]
+ e08:	stp	x21, x22, [sp, #32]
+ e0c:	mov	x21, x3
+ e10:	mov	x22, x4
+ e14:	mov	x20, x5
+ e18:	bl	aa8 <grub_crypto_hmac_init>
+ e1c:	cbz	x0, e4c <grub_crypto_hmac_buffer+0x50>
+ e20:	mov	x19, x0
+ e24:	mov	x2, x22
+ e28:	mov	x1, x21
+ e2c:	bl	c80 <grub_crypto_hmac_write>
+ e30:	mov	x1, x20
+ e34:	mov	x0, x19
+ e38:	bl	ca0 <grub_crypto_hmac_fini>
+ e3c:	ldp	x19, x20, [sp, #16]
+ e40:	ldp	x21, x22, [sp, #32]
+ e44:	ldp	x29, x30, [sp], #48
+ e48:	ret
+ e4c:	mov	w0, #0x22                  	// #34
+ e50:	b	e3c <grub_crypto_hmac_buffer+0x40>
+
+0000000000000e54 <grub_crypto_gcry_error>:
+ e54:	cbnz	w0, e5c <grub_crypto_gcry_error+0x8>
+ e58:	ret
+ e5c:	stp	x29, x30, [sp, #-16]!
+ e60:	mov	x29, sp
+ e64:	adrp	x0, 0 <grub_burn_stack>
+ e68:	ldr	x1, [x0]
+ e6c:	mov	w0, #0x1e                  	// #30
+ e70:	bl	0 <grub_error>
+ e74:	ldp	x29, x30, [sp], #16
+ e78:	ret
+ e7c:	nop
+	...
+
+0000000000000e88 <grub_crypto_memcmp>:
+ e88:	cbz	x2, ebc <grub_crypto_memcmp+0x34>
+ e8c:	mov	x3, #0x0                   	// #0
+ e90:	mov	x4, #0x0                   	// #0
+ e94:	ldrb	w6, [x0, x3]
+ e98:	ldrb	w5, [x1, x3]
+ e9c:	cmp	w6, w5
+ ea0:	cinc	x4, x4, ne  // ne = any
+ ea4:	add	x3, x3, #0x1
+ ea8:	cmp	x3, x2
+ eac:	b.ne	e94 <grub_crypto_memcmp+0xc>  // b.any
+ eb0:	cmp	x4, #0x0
+ eb4:	cset	w0, ne  // ne = any
+ eb8:	ret
+ ebc:	mov	x4, x2
+ ec0:	b	eb0 <grub_crypto_memcmp+0x28>
+
+0000000000000ec4 <grub_password_get>:
+ ec4:	stp	x29, x30, [sp, #-48]!
+ ec8:	mov	x29, sp
+ ecc:	stp	x19, x20, [sp, #16]
+ ed0:	stp	x21, x22, [sp, #32]
+ ed4:	mov	x22, x0
+ ed8:	mov	w21, w1
+ edc:	mov	w20, #0x0                   	// #0
+ ee0:	b	ef0 <grub_password_get+0x2c>
+ ee4:	cmp	w20, #0x0
+ ee8:	cset	w0, ne  // ne = any
+ eec:	sub	w20, w20, w0
+ ef0:	bl	0 <grub_getkey>
+ ef4:	mov	w19, w0
+ ef8:	cmp	w0, #0xa
+ efc:	ccmp	w0, #0xd, #0x4, ne  // ne = any
+ f00:	b.eq	f3c <grub_password_get+0x78>  // b.none
+ f04:	cmp	w0, #0x1b
+ f08:	b.eq	f38 <grub_password_get+0x74>  // b.none
+ f0c:	cmp	w0, #0x8
+ f10:	b.eq	ee4 <grub_password_get+0x20>  // b.none
+ f14:	sub	w2, w0, #0x20
+ f18:	cmp	w2, #0x5e
+ f1c:	b.hi	ef0 <grub_password_get+0x2c>  // b.pmore
+ f20:	add	w2, w20, #0x2
+ f24:	cmp	w2, w21
+ f28:	b.cs	ef0 <grub_password_get+0x2c>  // b.hs, b.nlast
+ f2c:	strb	w0, [x22, w20, uxtw]
+ f30:	add	w20, w20, #0x1
+ f34:	b	ef0 <grub_password_get+0x2c>
+ f38:	mov	w20, #0x0                   	// #0
+ f3c:	sub	w2, w21, w20
+ f40:	mov	w1, #0x0                   	// #0
+ f44:	add	x0, x22, w20, uxtw
+ f48:	bl	0 <grub_memset>
+ f4c:	adrp	x0, 0 <grub_burn_stack>
+ f50:	ldr	x0, [x0]
+ f54:	ldr	x1, [x0]
+ f58:	adrp	x0, 0 <grub_burn_stack>
+ f5c:	ldr	x0, [x0]
+ f60:	blr	x1
+ f64:	bl	0 <grub_refresh>
+ f68:	cmp	w19, #0x1b
+ f6c:	cset	w0, ne  // ne = any
+ f70:	ldp	x19, x20, [sp, #16]
+ f74:	ldp	x21, x22, [sp, #32]
+ f78:	ldp	x29, x30, [sp], #48
+ f7c:	ret
+	...

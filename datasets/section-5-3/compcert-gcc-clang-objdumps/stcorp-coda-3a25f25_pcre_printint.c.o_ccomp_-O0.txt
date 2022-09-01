@@ -1,0 +1,1312 @@
+
+../repos/stcorp-coda-3a25f25/CMakeFiles/coda.dir/libcoda/pcre/pcre_printint.c.o:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <print_char>:
+       0:	mov	ip, sp
+       4:	sub	sp, sp, #8
+       8:	str	ip, [sp]
+       c:	str	lr, [sp, #4]
+      10:	ldrb	r2, [r1]
+      14:	cmp	r2, #32
+      18:	bcs	24 <print_char+0x24>
+      1c:	mov	r3, #0
+      20:	b	30 <print_char+0x30>
+      24:	cmp	r2, #127	; 0x7f
+      28:	movcc	r3, #1
+      2c:	movcs	r3, #0
+      30:	cmp	r3, #0
+      34:	beq	48 <print_char+0x48>
+      38:	ldr	r1, [pc, #52]	; 74 <print_char+0x74>
+      3c:	and	r2, r2, #255	; 0xff
+      40:	bl	0 <fprintf>
+      44:	b	64 <print_char+0x64>
+      48:	cmp	r2, #128	; 0x80
+      4c:	bls	5c <print_char+0x5c>
+      50:	ldr	r1, [pc, #36]	; 7c <print_char+0x7c>
+      54:	bl	0 <fprintf>
+      58:	b	64 <print_char+0x64>
+      5c:	ldr	r1, [pc, #20]	; 78 <print_char+0x78>
+      60:	bl	0 <fprintf>
+      64:	mov	r0, #0
+      68:	ldr	lr, [sp, #4]
+      6c:	add	sp, sp, #8
+      70:	bx	lr
+      74:	.word	0x0000029d
+      78:	.word	0x00000288
+      7c:	.word	0x000002d4
+
+00000080 <print_puchar>:
+      80:	mov	ip, sp
+      84:	sub	sp, sp, #16
+      88:	str	ip, [sp]
+      8c:	str	lr, [sp, #4]
+      90:	str	r4, [sp, #8]
+      94:	str	r5, [sp, #12]
+      98:	mov	r4, r1
+      9c:	mov	r5, r0
+      a0:	ldrb	ip, [r4]
+      a4:	cmp	ip, #0
+      a8:	beq	fc <print_puchar+0x7c>
+      ac:	mov	r0, r4
+      b0:	add	r4, r0, #1
+      b4:	ldrb	r2, [r0]
+      b8:	cmp	r2, #32
+      bc:	bcs	c8 <print_puchar+0x48>
+      c0:	mov	r3, #0
+      c4:	b	d4 <print_puchar+0x54>
+      c8:	cmp	r2, #127	; 0x7f
+      cc:	movcc	r3, #1
+      d0:	movcs	r3, #0
+      d4:	cmp	r3, #0
+      d8:	bne	ec <print_puchar+0x6c>
+      dc:	ldr	r1, [pc, #48]	; 114 <print_puchar+0x94>
+      e0:	mov	r0, r5
+      e4:	bl	0 <fprintf>
+      e8:	b	a0 <print_puchar+0x20>
+      ec:	ldr	r1, [pc, #28]	; 110 <print_puchar+0x90>
+      f0:	mov	r0, r5
+      f4:	bl	0 <fprintf>
+      f8:	b	a0 <print_puchar+0x20>
+      fc:	ldr	r4, [sp, #8]
+     100:	ldr	r5, [sp, #12]
+     104:	ldr	lr, [sp, #4]
+     108:	add	sp, sp, #16
+     10c:	bx	lr
+     110:	.word	0x0000029d
+     114:	.word	0x000002d4
+
+00000118 <get_ucpname>:
+     118:	mov	ip, sp
+     11c:	sub	sp, sp, #8
+     120:	str	ip, [sp]
+     124:	str	lr, [sp, #4]
+     128:	mul	r2, r0, r1
+     12c:	cmp	r2, r1
+     130:	beq	13c <get_ucpname+0x24>
+     134:	ldr	r0, [pc, #16]	; 14c <get_ucpname+0x34>
+     138:	b	140 <get_ucpname+0x28>
+     13c:	ldr	r0, [pc, #8]	; 14c <get_ucpname+0x34>
+     140:	ldr	lr, [sp, #4]
+     144:	add	sp, sp, #8
+     148:	bx	lr
+     14c:	.word	0x000000a0
+
+00000150 <print_prop>:
+     150:	mov	ip, sp
+     154:	sub	sp, sp, #32
+     158:	str	ip, [sp, #8]
+     15c:	str	lr, [sp, #12]
+     160:	str	r4, [sp, #16]
+     164:	str	r5, [sp, #20]
+     168:	str	r6, [sp, #24]
+     16c:	str	r7, [sp, #28]
+     170:	mov	r4, r3
+     174:	mov	r5, r2
+     178:	mov	r6, r1
+     17c:	mov	r7, r0
+     180:	ldrb	r3, [r6, #1]
+     184:	cmp	r3, #9
+     188:	beq	1c0 <print_prop+0x70>
+     18c:	ldrb	r0, [r6, #1]
+     190:	ldrb	r1, [r6, #2]
+     194:	bl	118 <get_ucpname>
+     198:	ldr	r1, [pc, #112]	; 210 <print_prop+0xc0>
+     19c:	ldr	r3, [pc, #120]	; 21c <print_prop+0xcc>
+     1a0:	ldrb	r2, [r6]
+     1a4:	ldr	r3, [r3, r2, lsl #2]
+     1a8:	str	r4, [sp, #4]
+     1ac:	str	r0, [sp]
+     1b0:	mov	r2, r5
+     1b4:	mov	r0, r7
+     1b8:	bl	0 <fprintf>
+     1bc:	b	1f4 <print_prop+0xa4>
+     1c0:	ldrb	r0, [r6]
+     1c4:	cmp	r0, #16
+     1c8:	beq	1d4 <print_prop+0x84>
+     1cc:	ldr	r3, [pc, #64]	; 214 <print_prop+0xc4>
+     1d0:	b	1d8 <print_prop+0x88>
+     1d4:	ldr	r3, [pc, #68]	; 220 <print_prop+0xd0>
+     1d8:	ldr	r1, [pc, #56]	; 218 <print_prop+0xc8>
+     1dc:	ldrb	r0, [r6, #2]
+     1e0:	str	r4, [sp, #4]
+     1e4:	str	r0, [sp]
+     1e8:	mov	r2, r5
+     1ec:	mov	r0, r7
+     1f0:	bl	0 <fprintf>
+     1f4:	ldr	r4, [sp, #16]
+     1f8:	ldr	r5, [sp, #20]
+     1fc:	ldr	r6, [sp, #24]
+     200:	ldr	r7, [sp, #28]
+     204:	ldr	lr, [sp, #12]
+     208:	add	sp, sp, #32
+     20c:	bx	lr
+     210:	.word	0x0000035d
+     214:	.word	0x00000171
+     218:	.word	0x000000e3
+     21c:	.word	0x00000000
+     220:	.word	0x000003ae
+
+00000224 <coda_pcre_printint>:
+     224:	mov	ip, sp
+     228:	sub	sp, sp, #104	; 0x68
+     22c:	str	ip, [sp, #8]
+     230:	str	lr, [sp, #12]
+     234:	str	r4, [sp, #40]	; 0x28
+     238:	str	r5, [sp, #44]	; 0x2c
+     23c:	str	r6, [sp, #48]	; 0x30
+     240:	str	r7, [sp, #52]	; 0x34
+     244:	str	r8, [sp, #56]	; 0x38
+     248:	str	r9, [sp, #60]	; 0x3c
+     24c:	str	sl, [sp, #64]	; 0x40
+     250:	str	fp, [sp, #68]	; 0x44
+     254:	str	r2, [sp, #32]
+     258:	mov	sl, r1
+     25c:	mov	r7, r0
+     260:	ldr	r1, [r7, #8]
+     264:	ldrh	r9, [r7, #34]	; 0x22
+     268:	ldrh	ip, [r7, #38]	; 0x26
+     26c:	ldrh	r2, [r7, #36]	; 0x24
+     270:	str	r2, [sp, #28]
+     274:	ldr	r2, [r7]
+     278:	movw	lr, #21061	; 0x5245
+     27c:	movt	lr, #20547	; 0x5043
+     280:	cmp	r2, lr
+     284:	beq	2f8 <coda_pcre_printint+0xd4>
+     288:	lsl	r2, r9, #8
+     28c:	and	r3, r2, #65280	; 0xff00
+     290:	asr	r2, r9, #8
+     294:	and	r0, r2, #255	; 0xff
+     298:	orr	r9, r3, r0
+     29c:	lsl	r0, ip, #8
+     2a0:	and	r2, r0, #65280	; 0xff00
+     2a4:	asr	r3, ip, #8
+     2a8:	and	ip, r3, #255	; 0xff
+     2ac:	orr	ip, r2, ip
+     2b0:	ldr	r3, [sp, #28]
+     2b4:	lsl	r0, r3, #8
+     2b8:	and	r4, r0, #65280	; 0xff00
+     2bc:	asr	r2, r3, #8
+     2c0:	and	r0, r2, #255	; 0xff
+     2c4:	orr	r0, r4, r0
+     2c8:	str	r0, [sp, #28]
+     2cc:	lsl	r3, r1, #24
+     2d0:	and	r3, r3, #-16777216	; 0xff000000
+     2d4:	lsl	r2, r1, #8
+     2d8:	and	r2, r2, #16711680	; 0xff0000
+     2dc:	orr	r0, r3, r2
+     2e0:	lsr	r2, r1, #8
+     2e4:	and	r2, r2, #65280	; 0xff00
+     2e8:	orr	r3, r0, r2
+     2ec:	lsr	r0, r1, #24
+     2f0:	and	r2, r0, #255	; 0xff
+     2f4:	orr	r1, r3, r2
+     2f8:	add	r0, r7, r9
+     2fc:	ldr	r3, [sp, #28]
+     300:	mla	ip, ip, r3, r0
+     304:	mov	r5, ip
+     308:	str	ip, [sp, #36]	; 0x24
+     30c:	and	r0, r1, #2048	; 0x800
+     310:	cmp	r0, #0
+     314:	movne	r1, #1
+     318:	moveq	r1, #0
+     31c:	str	r1, [sp, #16]
+     320:	ldr	r8, [pc, #3728]	; 11b8 <coda_pcre_printint+0xf94>
+     324:	mov	r6, #0
+     328:	ldr	r1, [sp, #32]
+     32c:	cmp	r1, #0
+     330:	beq	34c <coda_pcre_printint+0x128>
+     334:	ldr	r1, [pc, #3760]	; 11ec <coda_pcre_printint+0xfc8>
+     338:	ldr	r2, [sp, #36]	; 0x24
+     33c:	sub	r2, r5, r2
+     340:	mov	r0, sl
+     344:	bl	0 <fprintf>
+     348:	b	358 <coda_pcre_printint+0x134>
+     34c:	ldr	r1, [pc, #3768]	; 120c <coda_pcre_printint+0xfe8>
+     350:	mov	r0, sl
+     354:	bl	0 <fprintf>
+     358:	ldrb	r0, [r5]
+     35c:	cmp	r0, #164	; 0xa4
+     360:	bcs	13c0 <coda_pcre_printint+0x119c>
+     364:	add	pc, pc, r0, lsl #2
+     368:	nop	{0}
+     36c:	b	5fc <coda_pcre_printint+0x3d8>
+     370:	b	13c0 <coda_pcre_printint+0x119c>
+     374:	b	13c0 <coda_pcre_printint+0x119c>
+     378:	b	13c0 <coda_pcre_printint+0x119c>
+     37c:	b	13c0 <coda_pcre_printint+0x119c>
+     380:	b	13c0 <coda_pcre_printint+0x119c>
+     384:	b	13c0 <coda_pcre_printint+0x119c>
+     388:	b	13c0 <coda_pcre_printint+0x119c>
+     38c:	b	13c0 <coda_pcre_printint+0x119c>
+     390:	b	13c0 <coda_pcre_printint+0x119c>
+     394:	b	13c0 <coda_pcre_printint+0x119c>
+     398:	b	13c0 <coda_pcre_printint+0x119c>
+     39c:	b	13c0 <coda_pcre_printint+0x119c>
+     3a0:	b	13c0 <coda_pcre_printint+0x119c>
+     3a4:	b	13c0 <coda_pcre_printint+0x119c>
+     3a8:	b	de8 <coda_pcre_printint+0xbc4>
+     3ac:	b	de8 <coda_pcre_printint+0xbc4>
+     3b0:	b	13c0 <coda_pcre_printint+0x119c>
+     3b4:	b	13c0 <coda_pcre_printint+0x119c>
+     3b8:	b	13c0 <coda_pcre_printint+0x119c>
+     3bc:	b	13c0 <coda_pcre_printint+0x119c>
+     3c0:	b	13c0 <coda_pcre_printint+0x119c>
+     3c4:	b	13c0 <coda_pcre_printint+0x119c>
+     3c8:	b	13c0 <coda_pcre_printint+0x119c>
+     3cc:	b	13c0 <coda_pcre_printint+0x119c>
+     3d0:	b	13c0 <coda_pcre_printint+0x119c>
+     3d4:	b	13bc <coda_pcre_printint+0x1198>
+     3d8:	b	13c0 <coda_pcre_printint+0x119c>
+     3dc:	b	13bc <coda_pcre_printint+0x1198>
+     3e0:	b	64c <coda_pcre_printint+0x428>
+     3e4:	b	690 <coda_pcre_printint+0x46c>
+     3e8:	b	b48 <coda_pcre_printint+0x924>
+     3ec:	b	b44 <coda_pcre_printint+0x920>
+     3f0:	b	8c4 <coda_pcre_printint+0x6a0>
+     3f4:	b	8c4 <coda_pcre_printint+0x6a0>
+     3f8:	b	8c4 <coda_pcre_printint+0x6a0>
+     3fc:	b	8c4 <coda_pcre_printint+0x6a0>
+     400:	b	8c4 <coda_pcre_printint+0x6a0>
+     404:	b	8c4 <coda_pcre_printint+0x6a0>
+     408:	b	978 <coda_pcre_printint+0x754>
+     40c:	b	978 <coda_pcre_printint+0x754>
+     410:	b	978 <coda_pcre_printint+0x754>
+     414:	b	8c4 <coda_pcre_printint+0x6a0>
+     418:	b	8c4 <coda_pcre_printint+0x6a0>
+     41c:	b	8c4 <coda_pcre_printint+0x6a0>
+     420:	b	978 <coda_pcre_printint+0x754>
+     424:	b	8c0 <coda_pcre_printint+0x69c>
+     428:	b	8c0 <coda_pcre_printint+0x69c>
+     42c:	b	8c0 <coda_pcre_printint+0x69c>
+     430:	b	8c0 <coda_pcre_printint+0x69c>
+     434:	b	8c0 <coda_pcre_printint+0x69c>
+     438:	b	8c0 <coda_pcre_printint+0x69c>
+     43c:	b	974 <coda_pcre_printint+0x750>
+     440:	b	974 <coda_pcre_printint+0x750>
+     444:	b	974 <coda_pcre_printint+0x750>
+     448:	b	8c0 <coda_pcre_printint+0x69c>
+     44c:	b	8c0 <coda_pcre_printint+0x69c>
+     450:	b	8c0 <coda_pcre_printint+0x69c>
+     454:	b	974 <coda_pcre_printint+0x750>
+     458:	b	b80 <coda_pcre_printint+0x95c>
+     45c:	b	b80 <coda_pcre_printint+0x95c>
+     460:	b	b80 <coda_pcre_printint+0x95c>
+     464:	b	b80 <coda_pcre_printint+0x95c>
+     468:	b	b80 <coda_pcre_printint+0x95c>
+     46c:	b	b80 <coda_pcre_printint+0x95c>
+     470:	b	bc4 <coda_pcre_printint+0x9a0>
+     474:	b	bc4 <coda_pcre_printint+0x9a0>
+     478:	b	bc4 <coda_pcre_printint+0x9a0>
+     47c:	b	b80 <coda_pcre_printint+0x95c>
+     480:	b	b80 <coda_pcre_printint+0x95c>
+     484:	b	b80 <coda_pcre_printint+0x95c>
+     488:	b	bc4 <coda_pcre_printint+0x9a0>
+     48c:	b	b7c <coda_pcre_printint+0x958>
+     490:	b	b7c <coda_pcre_printint+0x958>
+     494:	b	b7c <coda_pcre_printint+0x958>
+     498:	b	b7c <coda_pcre_printint+0x958>
+     49c:	b	b7c <coda_pcre_printint+0x958>
+     4a0:	b	b7c <coda_pcre_printint+0x958>
+     4a4:	b	bc0 <coda_pcre_printint+0x99c>
+     4a8:	b	bc0 <coda_pcre_printint+0x99c>
+     4ac:	b	bc0 <coda_pcre_printint+0x99c>
+     4b0:	b	b7c <coda_pcre_printint+0x958>
+     4b4:	b	b7c <coda_pcre_printint+0x958>
+     4b8:	b	b7c <coda_pcre_printint+0x958>
+     4bc:	b	bc0 <coda_pcre_printint+0x99c>
+     4c0:	b	8c4 <coda_pcre_printint+0x6a0>
+     4c4:	b	8c4 <coda_pcre_printint+0x6a0>
+     4c8:	b	8c4 <coda_pcre_printint+0x6a0>
+     4cc:	b	8c4 <coda_pcre_printint+0x6a0>
+     4d0:	b	8c4 <coda_pcre_printint+0x6a0>
+     4d4:	b	8c4 <coda_pcre_printint+0x6a0>
+     4d8:	b	a70 <coda_pcre_printint+0x84c>
+     4dc:	b	a70 <coda_pcre_printint+0x84c>
+     4e0:	b	a70 <coda_pcre_printint+0x84c>
+     4e4:	b	8c4 <coda_pcre_printint+0x6a0>
+     4e8:	b	8c4 <coda_pcre_printint+0x6a0>
+     4ec:	b	8c4 <coda_pcre_printint+0x6a0>
+     4f0:	b	a70 <coda_pcre_printint+0x84c>
+     4f4:	b	13c0 <coda_pcre_printint+0x119c>
+     4f8:	b	13c0 <coda_pcre_printint+0x119c>
+     4fc:	b	13c0 <coda_pcre_printint+0x119c>
+     500:	b	13c0 <coda_pcre_printint+0x119c>
+     504:	b	13c0 <coda_pcre_printint+0x119c>
+     508:	b	13c0 <coda_pcre_printint+0x119c>
+     50c:	b	13c0 <coda_pcre_printint+0x119c>
+     510:	b	13c0 <coda_pcre_printint+0x119c>
+     514:	b	13c0 <coda_pcre_printint+0x119c>
+     518:	b	13c0 <coda_pcre_printint+0x119c>
+     51c:	b	13c0 <coda_pcre_printint+0x119c>
+     520:	b	13c0 <coda_pcre_printint+0x119c>
+     524:	b	e00 <coda_pcre_printint+0xbdc>
+     528:	b	e00 <coda_pcre_printint+0xbdc>
+     52c:	b	e00 <coda_pcre_printint+0xbdc>
+     530:	b	d10 <coda_pcre_printint+0xaec>
+     534:	b	d0c <coda_pcre_printint+0xae8>
+     538:	b	d44 <coda_pcre_printint+0xb20>
+     53c:	b	d40 <coda_pcre_printint+0xb1c>
+     540:	b	cbc <coda_pcre_printint+0xa98>
+     544:	b	da8 <coda_pcre_printint+0xb84>
+     548:	b	730 <coda_pcre_printint+0x50c>
+     54c:	b	730 <coda_pcre_printint+0x50c>
+     550:	b	730 <coda_pcre_printint+0x50c>
+     554:	b	730 <coda_pcre_printint+0x50c>
+     558:	b	730 <coda_pcre_printint+0x50c>
+     55c:	b	730 <coda_pcre_printint+0x50c>
+     560:	b	730 <coda_pcre_printint+0x50c>
+     564:	b	730 <coda_pcre_printint+0x50c>
+     568:	b	730 <coda_pcre_printint+0x50c>
+     56c:	b	730 <coda_pcre_printint+0x50c>
+     570:	b	730 <coda_pcre_printint+0x50c>
+     574:	b	730 <coda_pcre_printint+0x50c>
+     578:	b	730 <coda_pcre_printint+0x50c>
+     57c:	b	730 <coda_pcre_printint+0x50c>
+     580:	b	6d4 <coda_pcre_printint+0x4b0>
+     584:	b	6d4 <coda_pcre_printint+0x4b0>
+     588:	b	730 <coda_pcre_printint+0x50c>
+     58c:	b	730 <coda_pcre_printint+0x50c>
+     590:	b	730 <coda_pcre_printint+0x50c>
+     594:	b	6d4 <coda_pcre_printint+0x4b0>
+     598:	b	6d4 <coda_pcre_printint+0x4b0>
+     59c:	b	730 <coda_pcre_printint+0x50c>
+     5a0:	b	7a8 <coda_pcre_printint+0x584>
+     5a4:	b	7d0 <coda_pcre_printint+0x5ac>
+     5a8:	b	824 <coda_pcre_printint+0x600>
+     5ac:	b	85c <coda_pcre_printint+0x638>
+     5b0:	b	8b0 <coda_pcre_printint+0x68c>
+     5b4:	b	13c0 <coda_pcre_printint+0x119c>
+     5b8:	b	13c0 <coda_pcre_printint+0x119c>
+     5bc:	b	13c0 <coda_pcre_printint+0x119c>
+     5c0:	b	1370 <coda_pcre_printint+0x114c>
+     5c4:	b	13c0 <coda_pcre_printint+0x119c>
+     5c8:	b	1370 <coda_pcre_printint+0x114c>
+     5cc:	b	13c0 <coda_pcre_printint+0x119c>
+     5d0:	b	1370 <coda_pcre_printint+0x114c>
+     5d4:	b	13a0 <coda_pcre_printint+0x117c>
+     5d8:	b	1370 <coda_pcre_printint+0x114c>
+     5dc:	b	13c0 <coda_pcre_printint+0x119c>
+     5e0:	b	13c0 <coda_pcre_printint+0x119c>
+     5e4:	b	13c0 <coda_pcre_printint+0x119c>
+     5e8:	b	13c0 <coda_pcre_printint+0x119c>
+     5ec:	b	780 <coda_pcre_printint+0x55c>
+     5f0:	b	13c0 <coda_pcre_printint+0x119c>
+     5f4:	b	13dc <coda_pcre_printint+0x11b8>
+     5f8:	b	13dc <coda_pcre_printint+0x11b8>
+     5fc:	ldr	r1, [pc, #2980]	; 11a8 <coda_pcre_printint+0xf84>
+     600:	ldr	r2, [pc, #3072]	; 1208 <coda_pcre_printint+0xfe4>
+     604:	ldrb	r0, [r5]
+     608:	ldr	r2, [r2, r0, lsl #2]
+     60c:	mov	r0, sl
+     610:	bl	0 <fprintf>
+     614:	ldr	r1, [pc, #2968]	; 11b4 <coda_pcre_printint+0xf90>
+     618:	mov	r0, sl
+     61c:	bl	0 <fprintf>
+     620:	ldr	r4, [sp, #40]	; 0x28
+     624:	ldr	r5, [sp, #44]	; 0x2c
+     628:	ldr	r6, [sp, #48]	; 0x30
+     62c:	ldr	r7, [sp, #52]	; 0x34
+     630:	ldr	r8, [sp, #56]	; 0x38
+     634:	ldr	r9, [sp, #60]	; 0x3c
+     638:	ldr	sl, [sp, #64]	; 0x40
+     63c:	ldr	fp, [sp, #68]	; 0x44
+     640:	ldr	lr, [sp, #12]
+     644:	add	sp, sp, #104	; 0x68
+     648:	bx	lr
+     64c:	ldr	r1, [pc, #3000]	; 120c <coda_pcre_printint+0xfe8>
+     650:	mov	r0, sl
+     654:	bl	0 <fprintf>
+     658:	add	r4, r5, #1
+     65c:	ldr	r2, [sp, #16]
+     660:	mov	r1, r4
+     664:	mov	r0, sl
+     668:	bl	0 <print_char>
+     66c:	add	r0, r4, r0
+     670:	add	r5, r0, #1
+     674:	ldrb	r0, [r5]
+     678:	cmp	r0, #29
+     67c:	beq	658 <coda_pcre_printint+0x434>
+     680:	ldr	r1, [pc, #2808]	; 1180 <coda_pcre_printint+0xf5c>
+     684:	mov	r0, sl
+     688:	bl	0 <fprintf>
+     68c:	b	320 <coda_pcre_printint+0xfc>
+     690:	ldr	r1, [pc, #2916]	; 11fc <coda_pcre_printint+0xfd8>
+     694:	mov	r0, sl
+     698:	bl	0 <fprintf>
+     69c:	add	r4, r5, #1
+     6a0:	ldr	r2, [sp, #16]
+     6a4:	mov	r1, r4
+     6a8:	mov	r0, sl
+     6ac:	bl	0 <print_char>
+     6b0:	add	r1, r4, r0
+     6b4:	add	r5, r1, #1
+     6b8:	ldrb	r2, [r5]
+     6bc:	cmp	r2, #30
+     6c0:	beq	69c <coda_pcre_printint+0x478>
+     6c4:	ldr	r1, [pc, #2740]	; 1180 <coda_pcre_printint+0xf5c>
+     6c8:	mov	r0, sl
+     6cc:	bl	0 <fprintf>
+     6d0:	b	320 <coda_pcre_printint+0xfc>
+     6d4:	ldr	r2, [sp, #32]
+     6d8:	cmp	r2, #0
+     6dc:	beq	6fc <coda_pcre_printint+0x4d8>
+     6e0:	ldr	r1, [pc, #2820]	; 11ec <coda_pcre_printint+0xfc8>
+     6e4:	ldrb	r3, [r5, #2]
+     6e8:	ldrb	ip, [r5, #1]
+     6ec:	orr	r2, r3, ip, lsl #8
+     6f0:	mov	r0, sl
+     6f4:	bl	0 <fprintf>
+     6f8:	b	708 <coda_pcre_printint+0x4e4>
+     6fc:	ldr	r1, [pc, #2824]	; 120c <coda_pcre_printint+0xfe8>
+     700:	mov	r0, sl
+     704:	bl	0 <fprintf>
+     708:	ldr	r1, [pc, #2816]	; 1210 <coda_pcre_printint+0xfec>
+     70c:	ldr	ip, [pc, #2804]	; 1208 <coda_pcre_printint+0xfe4>
+     710:	ldrb	r2, [r5]
+     714:	ldr	r2, [ip, r2, lsl #2]
+     718:	ldrb	ip, [r5, #4]
+     71c:	ldrb	r3, [r5, #3]
+     720:	orr	r3, ip, r3, lsl #8
+     724:	mov	r0, sl
+     728:	bl	0 <fprintf>
+     72c:	b	13dc <coda_pcre_printint+0x11b8>
+     730:	ldr	ip, [sp, #32]
+     734:	cmp	ip, #0
+     738:	beq	758 <coda_pcre_printint+0x534>
+     73c:	ldr	r1, [pc, #2728]	; 11ec <coda_pcre_printint+0xfc8>
+     740:	ldrb	r3, [r5, #2]
+     744:	ldrb	ip, [r5, #1]
+     748:	orr	r2, r3, ip, lsl #8
+     74c:	mov	r0, sl
+     750:	bl	0 <fprintf>
+     754:	b	764 <coda_pcre_printint+0x540>
+     758:	ldr	r1, [pc, #2732]	; 120c <coda_pcre_printint+0xfe8>
+     75c:	mov	r0, sl
+     760:	bl	0 <fprintf>
+     764:	ldr	r1, [pc, #2656]	; 11cc <coda_pcre_printint+0xfa8>
+     768:	ldr	r3, [pc, #2712]	; 1208 <coda_pcre_printint+0xfe4>
+     76c:	ldrb	r2, [r5]
+     770:	ldr	r2, [r3, r2, lsl #2]
+     774:	mov	r0, sl
+     778:	bl	0 <fprintf>
+     77c:	b	13dc <coda_pcre_printint+0x11b8>
+     780:	ldr	r1, [pc, #2632]	; 11d0 <coda_pcre_printint+0xfac>
+     784:	ldr	r2, [pc, #2684]	; 1208 <coda_pcre_printint+0xfe4>
+     788:	ldrb	r3, [r5]
+     78c:	ldr	r2, [r2, r3, lsl #2]
+     790:	ldrb	ip, [r5, #2]
+     794:	ldrb	r3, [r5, #1]
+     798:	orr	r3, ip, r3, lsl #8
+     79c:	mov	r0, sl
+     7a0:	bl	0 <fprintf>
+     7a4:	b	13dc <coda_pcre_printint+0x11b8>
+     7a8:	ldr	r1, [pc, #2572]	; 11bc <coda_pcre_printint+0xf98>
+     7ac:	ldrb	r2, [r5, #2]
+     7b0:	ldrb	r3, [r5, #1]
+     7b4:	orr	r2, r2, r3, lsl #8
+     7b8:	ldr	r3, [pc, #2632]	; 1208 <coda_pcre_printint+0xfe4>
+     7bc:	ldrb	ip, [r5]
+     7c0:	ldr	r3, [r3, ip, lsl #2]
+     7c4:	mov	r0, sl
+     7c8:	bl	0 <fprintf>
+     7cc:	b	13dc <coda_pcre_printint+0x11b8>
+     7d0:	ldrb	r2, [r5, #2]
+     7d4:	ldrb	r3, [r5, #1]
+     7d8:	orr	r0, r2, r3, lsl #8
+     7dc:	add	r3, r7, r9
+     7e0:	ldr	ip, [sp, #28]
+     7e4:	mla	r0, r0, ip, r3
+     7e8:	add	r4, r0, #2
+     7ec:	ldr	r1, [pc, #2488]	; 11ac <coda_pcre_printint+0xf88>
+     7f0:	mov	r2, r8
+     7f4:	mov	r0, sl
+     7f8:	bl	0 <fprintf>
+     7fc:	mov	r1, r4
+     800:	mov	r0, sl
+     804:	bl	80 <print_puchar>
+     808:	ldr	r1, [pc, #2480]	; 11c0 <coda_pcre_printint+0xf9c>
+     80c:	ldrb	r2, [r5, #4]
+     810:	ldrb	r3, [r5, #3]
+     814:	orr	r2, r2, r3, lsl #8
+     818:	mov	r0, sl
+     81c:	bl	0 <fprintf>
+     820:	b	13dc <coda_pcre_printint+0x11b8>
+     824:	ldrb	r3, [r5, #2]
+     828:	ldrb	r0, [r5, #1]
+     82c:	orr	r2, r3, r0, lsl #8
+     830:	movw	lr, #65535	; 0xffff
+     834:	cmp	r2, lr
+     838:	beq	84c <coda_pcre_printint+0x628>
+     83c:	ldr	r1, [pc, #2464]	; 11e4 <coda_pcre_printint+0xfc0>
+     840:	mov	r0, sl
+     844:	bl	0 <fprintf>
+     848:	b	13dc <coda_pcre_printint+0x11b8>
+     84c:	ldr	r1, [pc, #2468]	; 11f8 <coda_pcre_printint+0xfd4>
+     850:	mov	r0, sl
+     854:	bl	0 <fprintf>
+     858:	b	13dc <coda_pcre_printint+0x11b8>
+     85c:	ldrb	ip, [r5, #2]
+     860:	ldrb	r3, [r5, #1]
+     864:	orr	r0, ip, r3, lsl #8
+     868:	add	ip, r7, r9
+     86c:	ldr	r3, [sp, #28]
+     870:	mla	r2, r0, r3, ip
+     874:	add	r4, r2, #2
+     878:	ldr	r1, [pc, #2372]	; 11c4 <coda_pcre_printint+0xfa0>
+     87c:	mov	r2, r8
+     880:	mov	r0, sl
+     884:	bl	0 <fprintf>
+     888:	mov	r1, r4
+     88c:	mov	r0, sl
+     890:	bl	80 <print_puchar>
+     894:	ldr	r1, [pc, #2340]	; 11c0 <coda_pcre_printint+0xf9c>
+     898:	ldrb	r0, [r5, #4]
+     89c:	ldrb	r2, [r5, #3]
+     8a0:	orr	r2, r0, r2, lsl #8
+     8a4:	mov	r0, sl
+     8a8:	bl	0 <fprintf>
+     8ac:	b	13dc <coda_pcre_printint+0x11b8>
+     8b0:	ldr	r1, [pc, #2352]	; 11e8 <coda_pcre_printint+0xfc4>
+     8b4:	mov	r0, sl
+     8b8:	bl	0 <fprintf>
+     8bc:	b	13dc <coda_pcre_printint+0x11b8>
+     8c0:	ldr	r8, [pc, #2360]	; 1200 <coda_pcre_printint+0xfdc>
+     8c4:	ldr	r1, [pc, #2380]	; 1218 <coda_pcre_printint+0xff4>
+     8c8:	mov	r2, r8
+     8cc:	mov	r0, sl
+     8d0:	bl	0 <fprintf>
+     8d4:	ldrb	r2, [r5]
+     8d8:	cmp	r2, #85	; 0x55
+     8dc:	blt	944 <coda_pcre_printint+0x720>
+     8e0:	ldrb	r2, [r5, #1]
+     8e4:	cmp	r2, #16
+     8e8:	beq	900 <coda_pcre_printint+0x6dc>
+     8ec:	ldrb	r0, [r5, #1]
+     8f0:	cmp	r0, #15
+     8f4:	moveq	r3, #1
+     8f8:	movne	r3, #0
+     8fc:	b	904 <coda_pcre_printint+0x6e0>
+     900:	mov	r3, #1
+     904:	cmp	r3, #0
+     908:	beq	928 <coda_pcre_printint+0x704>
+     90c:	add	r1, r5, #1
+     910:	ldr	r2, [pc, #2300]	; 1214 <coda_pcre_printint+0xff0>
+     914:	ldr	r3, [pc, #2168]	; 1194 <coda_pcre_printint+0xf70>
+     918:	mov	r0, sl
+     91c:	bl	150 <print_prop>
+     920:	mov	r6, #2
+     924:	b	958 <coda_pcre_printint+0x734>
+     928:	ldr	r1, [pc, #2204]	; 11cc <coda_pcre_printint+0xfa8>
+     92c:	ldr	r3, [pc, #2260]	; 1208 <coda_pcre_printint+0xfe4>
+     930:	ldrb	r0, [r5, #1]
+     934:	ldr	r2, [r3, r0, lsl #2]
+     938:	mov	r0, sl
+     93c:	bl	0 <fprintf>
+     940:	b	958 <coda_pcre_printint+0x734>
+     944:	add	r1, r5, #1
+     948:	ldr	r2, [sp, #16]
+     94c:	mov	r0, sl
+     950:	bl	0 <print_char>
+     954:	mov	r6, r0
+     958:	ldr	r1, [pc, #2156]	; 11cc <coda_pcre_printint+0xfa8>
+     95c:	ldr	r2, [pc, #2212]	; 1208 <coda_pcre_printint+0xfe4>
+     960:	ldrb	r0, [r5]
+     964:	ldr	r2, [r2, r0, lsl #2]
+     968:	mov	r0, sl
+     96c:	bl	0 <fprintf>
+     970:	b	13dc <coda_pcre_printint+0x11b8>
+     974:	ldr	r8, [pc, #2180]	; 1200 <coda_pcre_printint+0xfdc>
+     978:	ldr	r1, [pc, #2200]	; 1218 <coda_pcre_printint+0xff4>
+     97c:	mov	r2, r8
+     980:	mov	r0, sl
+     984:	bl	0 <fprintf>
+     988:	add	r1, r5, #3
+     98c:	ldr	r2, [sp, #16]
+     990:	mov	r0, sl
+     994:	bl	0 <print_char>
+     998:	mov	r6, r0
+     99c:	ldr	r1, [pc, #2008]	; 117c <coda_pcre_printint+0xf58>
+     9a0:	mov	r0, sl
+     9a4:	bl	0 <fprintf>
+     9a8:	ldrb	r3, [r5]
+     9ac:	cmp	r3, #41	; 0x29
+     9b0:	beq	9c8 <coda_pcre_printint+0x7a4>
+     9b4:	ldrb	r2, [r5]
+     9b8:	cmp	r2, #54	; 0x36
+     9bc:	movne	ip, #1
+     9c0:	moveq	ip, #0
+     9c4:	b	9cc <coda_pcre_printint+0x7a8>
+     9c8:	mov	ip, #0
+     9cc:	cmp	ip, #0
+     9d0:	beq	9e0 <coda_pcre_printint+0x7bc>
+     9d4:	ldr	r1, [pc, #1944]	; 1174 <coda_pcre_printint+0xf50>
+     9d8:	mov	r0, sl
+     9dc:	bl	0 <fprintf>
+     9e0:	ldr	r1, [pc, #2040]	; 11e0 <coda_pcre_printint+0xfbc>
+     9e4:	ldrb	r2, [r5, #2]
+     9e8:	ldrb	r3, [r5, #1]
+     9ec:	orr	r2, r2, r3, lsl #8
+     9f0:	mov	r0, sl
+     9f4:	bl	0 <fprintf>
+     9f8:	ldrb	r1, [r5]
+     9fc:	cmp	r1, #40	; 0x28
+     a00:	beq	a18 <coda_pcre_printint+0x7f4>
+     a04:	ldrb	r0, [r5]
+     a08:	cmp	r0, #53	; 0x35
+     a0c:	moveq	r3, #1
+     a10:	movne	r3, #0
+     a14:	b	a1c <coda_pcre_printint+0x7f8>
+     a18:	mov	r3, #1
+     a1c:	cmp	r3, #0
+     a20:	bne	a60 <coda_pcre_printint+0x83c>
+     a24:	ldrb	ip, [r5]
+     a28:	cmp	ip, #45	; 0x2d
+     a2c:	beq	a44 <coda_pcre_printint+0x820>
+     a30:	ldrb	r2, [r5]
+     a34:	cmp	r2, #58	; 0x3a
+     a38:	moveq	ip, #1
+     a3c:	movne	ip, #0
+     a40:	b	a48 <coda_pcre_printint+0x824>
+     a44:	mov	ip, #1
+     a48:	cmp	ip, #0
+     a4c:	beq	13dc <coda_pcre_printint+0x11b8>
+     a50:	ldr	r1, [pc, #1880]	; 11b0 <coda_pcre_printint+0xf8c>
+     a54:	mov	r0, sl
+     a58:	bl	0 <fprintf>
+     a5c:	b	13dc <coda_pcre_printint+0x11b8>
+     a60:	ldr	r1, [pc, #1808]	; 1178 <coda_pcre_printint+0xf54>
+     a64:	mov	r0, sl
+     a68:	bl	0 <fprintf>
+     a6c:	b	13dc <coda_pcre_printint+0x11b8>
+     a70:	ldrb	r1, [r5, #3]
+     a74:	cmp	r1, #16
+     a78:	beq	a90 <coda_pcre_printint+0x86c>
+     a7c:	ldrb	r2, [r5, #3]
+     a80:	cmp	r2, #15
+     a84:	moveq	ip, #1
+     a88:	movne	ip, #0
+     a8c:	b	a94 <coda_pcre_printint+0x870>
+     a90:	mov	ip, #1
+     a94:	cmp	ip, #0
+     a98:	beq	ab8 <coda_pcre_printint+0x894>
+     a9c:	add	r1, r5, #3
+     aa0:	ldr	r2, [pc, #1892]	; 120c <coda_pcre_printint+0xfe8>
+     aa4:	ldr	r3, [pc, #1768]	; 1194 <coda_pcre_printint+0xf70>
+     aa8:	mov	r0, sl
+     aac:	bl	150 <print_prop>
+     ab0:	mov	r6, #2
+     ab4:	b	ad0 <coda_pcre_printint+0x8ac>
+     ab8:	ldr	r1, [pc, #1816]	; 11d8 <coda_pcre_printint+0xfb4>
+     abc:	ldr	r2, [pc, #1860]	; 1208 <coda_pcre_printint+0xfe4>
+     ac0:	ldrb	r3, [r5, #3]
+     ac4:	ldr	r2, [r2, r3, lsl #2]
+     ac8:	mov	r0, sl
+     acc:	bl	0 <fprintf>
+     ad0:	ldr	r1, [pc, #1700]	; 117c <coda_pcre_printint+0xf58>
+     ad4:	mov	r0, sl
+     ad8:	bl	0 <fprintf>
+     adc:	ldrb	r0, [r5]
+     ae0:	cmp	r0, #93	; 0x5d
+     ae4:	beq	af4 <coda_pcre_printint+0x8d0>
+     ae8:	ldr	r1, [pc, #1668]	; 1174 <coda_pcre_printint+0xf50>
+     aec:	mov	r0, sl
+     af0:	bl	0 <fprintf>
+     af4:	ldr	r1, [pc, #1764]	; 11e0 <coda_pcre_printint+0xfbc>
+     af8:	ldrb	r0, [r5, #2]
+     afc:	ldrb	ip, [r5, #1]
+     b00:	orr	r2, r0, ip, lsl #8
+     b04:	mov	r0, sl
+     b08:	bl	0 <fprintf>
+     b0c:	ldrb	r2, [r5]
+     b10:	cmp	r2, #92	; 0x5c
+     b14:	beq	b34 <coda_pcre_printint+0x910>
+     b18:	ldrb	r0, [r5]
+     b1c:	cmp	r0, #97	; 0x61
+     b20:	bne	13dc <coda_pcre_printint+0x11b8>
+     b24:	ldr	r1, [pc, #1668]	; 11b0 <coda_pcre_printint+0xf8c>
+     b28:	mov	r0, sl
+     b2c:	bl	0 <fprintf>
+     b30:	b	13dc <coda_pcre_printint+0x11b8>
+     b34:	ldr	r1, [pc, #1596]	; 1178 <coda_pcre_printint+0xf54>
+     b38:	mov	r0, sl
+     b3c:	bl	0 <fprintf>
+     b40:	b	13dc <coda_pcre_printint+0x11b8>
+     b44:	ldr	r8, [pc, #1716]	; 1200 <coda_pcre_printint+0xfdc>
+     b48:	ldr	r1, [pc, #1696]	; 11f0 <coda_pcre_printint+0xfcc>
+     b4c:	mov	r2, r8
+     b50:	mov	r0, sl
+     b54:	bl	0 <fprintf>
+     b58:	add	r1, r5, #1
+     b5c:	ldr	r2, [sp, #16]
+     b60:	mov	r0, sl
+     b64:	bl	0 <print_char>
+     b68:	mov	r6, r0
+     b6c:	ldr	r1, [pc, #1552]	; 1184 <coda_pcre_printint+0xf60>
+     b70:	mov	r0, sl
+     b74:	bl	0 <fprintf>
+     b78:	b	13dc <coda_pcre_printint+0x11b8>
+     b7c:	ldr	r8, [pc, #1660]	; 1200 <coda_pcre_printint+0xfdc>
+     b80:	ldr	r1, [pc, #1640]	; 11f0 <coda_pcre_printint+0xfcc>
+     b84:	mov	r2, r8
+     b88:	mov	r0, sl
+     b8c:	bl	0 <fprintf>
+     b90:	add	r1, r5, #1
+     b94:	ldr	r2, [sp, #16]
+     b98:	mov	r0, sl
+     b9c:	bl	0 <print_char>
+     ba0:	mov	r6, r0
+     ba4:	ldr	r1, [pc, #1608]	; 11f4 <coda_pcre_printint+0xfd0>
+     ba8:	ldr	ip, [pc, #1624]	; 1208 <coda_pcre_printint+0xfe4>
+     bac:	ldrb	r0, [r5]
+     bb0:	ldr	r2, [ip, r0, lsl #2]
+     bb4:	mov	r0, sl
+     bb8:	bl	0 <fprintf>
+     bbc:	b	13dc <coda_pcre_printint+0x11b8>
+     bc0:	ldr	r8, [pc, #1592]	; 1200 <coda_pcre_printint+0xfdc>
+     bc4:	ldr	r1, [pc, #1572]	; 11f0 <coda_pcre_printint+0xfcc>
+     bc8:	mov	r2, r8
+     bcc:	mov	r0, sl
+     bd0:	bl	0 <fprintf>
+     bd4:	add	r1, r5, #3
+     bd8:	ldr	r2, [sp, #16]
+     bdc:	mov	r0, sl
+     be0:	bl	0 <print_char>
+     be4:	mov	r6, r0
+     be8:	ldr	r1, [pc, #1580]	; 121c <coda_pcre_printint+0xff8>
+     bec:	mov	r0, sl
+     bf0:	bl	0 <fprintf>
+     bf4:	ldrb	r1, [r5]
+     bf8:	cmp	r1, #67	; 0x43
+     bfc:	beq	c14 <coda_pcre_printint+0x9f0>
+     c00:	ldrb	ip, [r5]
+     c04:	cmp	ip, #80	; 0x50
+     c08:	movne	r2, #1
+     c0c:	moveq	r2, #0
+     c10:	b	c18 <coda_pcre_printint+0x9f4>
+     c14:	mov	r2, #0
+     c18:	cmp	r2, #0
+     c1c:	beq	c2c <coda_pcre_printint+0xa08>
+     c20:	ldr	r1, [pc, #1356]	; 1174 <coda_pcre_printint+0xf50>
+     c24:	mov	r0, sl
+     c28:	bl	0 <fprintf>
+     c2c:	ldr	r1, [pc, #1452]	; 11e0 <coda_pcre_printint+0xfbc>
+     c30:	ldrb	r3, [r5, #2]
+     c34:	ldrb	r2, [r5, #1]
+     c38:	orr	r2, r3, r2, lsl #8
+     c3c:	mov	r0, sl
+     c40:	bl	0 <fprintf>
+     c44:	ldrb	r1, [r5]
+     c48:	cmp	r1, #66	; 0x42
+     c4c:	beq	c64 <coda_pcre_printint+0xa40>
+     c50:	ldrb	r1, [r5]
+     c54:	cmp	r1, #79	; 0x4f
+     c58:	moveq	r0, #1
+     c5c:	movne	r0, #0
+     c60:	b	c68 <coda_pcre_printint+0xa44>
+     c64:	mov	r0, #1
+     c68:	cmp	r0, #0
+     c6c:	bne	cac <coda_pcre_printint+0xa88>
+     c70:	ldrb	r3, [r5]
+     c74:	cmp	r3, #71	; 0x47
+     c78:	beq	c90 <coda_pcre_printint+0xa6c>
+     c7c:	ldrb	r1, [r5]
+     c80:	cmp	r1, #84	; 0x54
+     c84:	moveq	ip, #1
+     c88:	movne	ip, #0
+     c8c:	b	c94 <coda_pcre_printint+0xa70>
+     c90:	mov	ip, #1
+     c94:	cmp	ip, #0
+     c98:	beq	13dc <coda_pcre_printint+0x11b8>
+     c9c:	ldr	r1, [pc, #1292]	; 11b0 <coda_pcre_printint+0xf8c>
+     ca0:	mov	r0, sl
+     ca4:	bl	0 <fprintf>
+     ca8:	b	13dc <coda_pcre_printint+0x11b8>
+     cac:	ldr	r1, [pc, #1220]	; 1178 <coda_pcre_printint+0xf54>
+     cb0:	mov	r0, sl
+     cb4:	bl	0 <fprintf>
+     cb8:	b	13dc <coda_pcre_printint+0x11b8>
+     cbc:	ldr	r0, [sp, #32]
+     cc0:	cmp	r0, #0
+     cc4:	beq	ce4 <coda_pcre_printint+0xac0>
+     cc8:	ldr	r1, [pc, #1308]	; 11ec <coda_pcre_printint+0xfc8>
+     ccc:	ldrb	r0, [r5, #2]
+     cd0:	ldrb	r2, [r5, #1]
+     cd4:	orr	r2, r0, r2, lsl #8
+     cd8:	mov	r0, sl
+     cdc:	bl	0 <fprintf>
+     ce0:	b	cf0 <coda_pcre_printint+0xacc>
+     ce4:	ldr	r1, [pc, #1312]	; 120c <coda_pcre_printint+0xfe8>
+     ce8:	mov	r0, sl
+     cec:	bl	0 <fprintf>
+     cf0:	ldr	r1, [pc, #1236]	; 11cc <coda_pcre_printint+0xfa8>
+     cf4:	ldr	r0, [pc, #1292]	; 1208 <coda_pcre_printint+0xfe4>
+     cf8:	ldrb	r2, [r5]
+     cfc:	ldr	r2, [r0, r2, lsl #2]
+     d00:	mov	r0, sl
+     d04:	bl	0 <fprintf>
+     d08:	b	13dc <coda_pcre_printint+0x11b8>
+     d0c:	ldr	r8, [pc, #1260]	; 1200 <coda_pcre_printint+0xfdc>
+     d10:	ldr	r1, [pc, #1200]	; 11c8 <coda_pcre_printint+0xfa4>
+     d14:	ldrb	r3, [r5, #2]
+     d18:	ldrb	ip, [r5, #1]
+     d1c:	orr	r3, r3, ip, lsl #8
+     d20:	mov	r2, r8
+     d24:	mov	r0, sl
+     d28:	bl	0 <fprintf>
+     d2c:	ldr	r2, [pc, #1192]	; 11dc <coda_pcre_printint+0xfb8>
+     d30:	ldrb	ip, [r5]
+     d34:	ldrb	r0, [r2, ip]
+     d38:	add	fp, r5, r0
+     d3c:	b	1270 <coda_pcre_printint+0x104c>
+     d40:	ldr	r8, [pc, #1208]	; 1200 <coda_pcre_printint+0xfdc>
+     d44:	ldrb	r1, [r5, #2]
+     d48:	ldrb	r2, [r5, #1]
+     d4c:	orr	r0, r1, r2, lsl #8
+     d50:	add	r2, r7, r9
+     d54:	ldr	r3, [sp, #28]
+     d58:	mla	r2, r0, r3, r2
+     d5c:	add	r4, r2, #2
+     d60:	ldr	r1, [pc, #1056]	; 1188 <coda_pcre_printint+0xf64>
+     d64:	mov	r2, r8
+     d68:	mov	r0, sl
+     d6c:	bl	0 <fprintf>
+     d70:	mov	r1, r4
+     d74:	mov	r0, sl
+     d78:	bl	80 <print_puchar>
+     d7c:	ldr	r1, [pc, #1084]	; 11c0 <coda_pcre_printint+0xf9c>
+     d80:	ldrb	r0, [r5, #4]
+     d84:	ldrb	ip, [r5, #3]
+     d88:	orr	r2, r0, ip, lsl #8
+     d8c:	mov	r0, sl
+     d90:	bl	0 <fprintf>
+     d94:	ldr	r0, [pc, #1088]	; 11dc <coda_pcre_printint+0xfb8>
+     d98:	ldrb	ip, [r5]
+     d9c:	ldrb	r3, [r0, ip]
+     da0:	add	fp, r5, r3
+     da4:	b	1270 <coda_pcre_printint+0x104c>
+     da8:	ldr	r1, [pc, #992]	; 1190 <coda_pcre_printint+0xf6c>
+     dac:	ldr	r0, [pc, #1108]	; 1208 <coda_pcre_printint+0xfe4>
+     db0:	ldrb	r3, [r5]
+     db4:	ldr	r2, [r0, r3, lsl #2]
+     db8:	ldrb	r3, [r5, #1]
+     dbc:	ldrb	r0, [r5, #3]
+     dc0:	ldrb	ip, [r5, #2]
+     dc4:	orr	r0, r0, ip, lsl #8
+     dc8:	ldrb	ip, [r5, #5]
+     dcc:	ldrb	r4, [r5, #4]
+     dd0:	orr	r4, ip, r4, lsl #8
+     dd4:	str	r4, [sp, #4]
+     dd8:	str	r0, [sp]
+     ddc:	mov	r0, sl
+     de0:	bl	0 <fprintf>
+     de4:	b	13dc <coda_pcre_printint+0x11b8>
+     de8:	ldr	r2, [pc, #1052]	; 120c <coda_pcre_printint+0xfe8>
+     dec:	ldr	r3, [pc, #1056]	; 1214 <coda_pcre_printint+0xff0>
+     df0:	mov	r1, r5
+     df4:	mov	r0, sl
+     df8:	bl	150 <print_prop>
+     dfc:	b	13dc <coda_pcre_printint+0x11b8>
+     e00:	mov	r2, #0
+     e04:	str	r2, [sp, #24]
+     e08:	ldr	r1, [pc, #912]	; 11a0 <coda_pcre_printint+0xf7c>
+     e0c:	mov	r0, sl
+     e10:	bl	0 <fprintf>
+     e14:	ldrb	r3, [r5]
+     e18:	cmp	r3, #112	; 0x70
+     e1c:	bne	e80 <coda_pcre_printint+0xc5c>
+     e20:	ldrb	r3, [r5, #2]
+     e24:	ldrb	r2, [r5, #1]
+     e28:	orr	r6, r3, r2, lsl #8
+     e2c:	add	r8, r5, #3
+     e30:	ldrb	r2, [r8]
+     e34:	and	ip, r2, #2
+     e38:	cmp	ip, #0
+     e3c:	movne	r4, #1
+     e40:	moveq	r4, #0
+     e44:	ldrb	ip, [r8]
+     e48:	and	r0, ip, #1
+     e4c:	cmp	r0, #0
+     e50:	beq	e78 <coda_pcre_printint+0xc54>
+     e54:	ldrb	r0, [r8]
+     e58:	and	r1, r0, #4
+     e5c:	cmp	r1, #0
+     e60:	moveq	r0, #1
+     e64:	movne	r0, #0
+     e68:	str	r0, [sp, #24]
+     e6c:	ldr	r1, [pc, #940]	; 1220 <coda_pcre_printint+0xffc>
+     e70:	mov	r0, sl
+     e74:	bl	0 <fprintf>
+     e78:	add	fp, r8, #1
+     e7c:	b	e88 <coda_pcre_printint+0xc64>
+     e80:	mov	r4, #1
+     e84:	add	fp, r5, #1
+     e88:	cmp	r4, #0
+     e8c:	beq	1070 <coda_pcre_printint+0xe4c>
+     e90:	str	fp, [sp, #20]
+     e94:	ldr	r3, [sp, #24]
+     e98:	cmp	r3, #0
+     e9c:	beq	ed4 <coda_pcre_printint+0xcb0>
+     ea0:	mov	r2, #0
+     ea4:	cmp	r2, #32
+     ea8:	bge	ecc <coda_pcre_printint+0xca8>
+     eac:	add	ip, sp, #72	; 0x48
+     eb0:	ldr	r0, [sp, #20]
+     eb4:	ldrb	r0, [r0, r2]
+     eb8:	mvn	r3, r0
+     ebc:	and	r0, r3, #255	; 0xff
+     ec0:	strb	r0, [ip, r2]
+     ec4:	add	r2, r2, #1
+     ec8:	b	ea4 <coda_pcre_printint+0xc80>
+     ecc:	add	r1, sp, #72	; 0x48
+     ed0:	str	r1, [sp, #20]
+     ed4:	mov	r8, #0
+     ed8:	cmp	r8, #256	; 0x100
+     edc:	bge	106c <coda_pcre_printint+0xe48>
+     ee0:	asr	lr, r8, #31
+     ee4:	add	lr, r8, lr, lsr #29
+     ee8:	asr	r0, lr, #3
+     eec:	ldr	r1, [sp, #20]
+     ef0:	ldrb	r2, [r1, r0]
+     ef4:	mov	r1, #1
+     ef8:	and	r3, r8, #7
+     efc:	lsl	r3, r1, r3
+     f00:	and	r1, r2, r3
+     f04:	cmp	r1, #0
+     f08:	beq	1064 <coda_pcre_printint+0xe40>
+     f0c:	add	r4, r8, #1
+     f10:	cmp	r4, #256	; 0x100
+     f14:	bge	f4c <coda_pcre_printint+0xd28>
+     f18:	asr	lr, r4, #31
+     f1c:	add	lr, r4, lr, lsr #29
+     f20:	asr	r2, lr, #3
+     f24:	ldr	r3, [sp, #20]
+     f28:	ldrb	r0, [r3, r2]
+     f2c:	mov	r2, #1
+     f30:	and	r3, r4, #7
+     f34:	lsl	r1, r2, r3
+     f38:	and	r2, r0, r1
+     f3c:	cmp	r2, #0
+     f40:	beq	f4c <coda_pcre_printint+0xd28>
+     f44:	add	r4, r4, #1
+     f48:	b	f10 <coda_pcre_printint+0xcec>
+     f4c:	cmp	r8, #45	; 0x2d
+     f50:	beq	f64 <coda_pcre_printint+0xd40>
+     f54:	cmp	r8, #93	; 0x5d
+     f58:	moveq	r2, #1
+     f5c:	movne	r2, #0
+     f60:	b	f68 <coda_pcre_printint+0xd44>
+     f64:	mov	r2, #1
+     f68:	cmp	r2, #0
+     f6c:	beq	f7c <coda_pcre_printint+0xd58>
+     f70:	ldr	r1, [pc, #556]	; 11a4 <coda_pcre_printint+0xf80>
+     f74:	mov	r0, sl
+     f78:	bl	0 <fprintf>
+     f7c:	cmp	r8, #32
+     f80:	bge	f8c <coda_pcre_printint+0xd68>
+     f84:	mov	r1, #0
+     f88:	b	f98 <coda_pcre_printint+0xd74>
+     f8c:	cmp	r8, #127	; 0x7f
+     f90:	movlt	r1, #1
+     f94:	movge	r1, #0
+     f98:	cmp	r1, #0
+     f9c:	bne	fb4 <coda_pcre_printint+0xd90>
+     fa0:	ldr	r1, [pc, #496]	; 1198 <coda_pcre_printint+0xf74>
+     fa4:	mov	r2, r8
+     fa8:	mov	r0, sl
+     fac:	bl	0 <fprintf>
+     fb0:	b	fc4 <coda_pcre_printint+0xda0>
+     fb4:	ldr	r1, [pc, #464]	; 118c <coda_pcre_printint+0xf68>
+     fb8:	mov	r2, r8
+     fbc:	mov	r0, sl
+     fc0:	bl	0 <fprintf>
+     fc4:	sub	r4, r4, #1
+     fc8:	cmp	r4, r8
+     fcc:	ble	1060 <coda_pcre_printint+0xe3c>
+     fd0:	add	r3, r8, #1
+     fd4:	cmp	r4, r3
+     fd8:	beq	fe8 <coda_pcre_printint+0xdc4>
+     fdc:	ldr	r1, [pc, #544]	; 1204 <coda_pcre_printint+0xfe0>
+     fe0:	mov	r0, sl
+     fe4:	bl	0 <fprintf>
+     fe8:	cmp	r4, #45	; 0x2d
+     fec:	beq	1000 <coda_pcre_printint+0xddc>
+     ff0:	cmp	r4, #93	; 0x5d
+     ff4:	moveq	r2, #1
+     ff8:	movne	r2, #0
+     ffc:	b	1004 <coda_pcre_printint+0xde0>
+    1000:	mov	r2, #1
+    1004:	cmp	r2, #0
+    1008:	beq	1018 <coda_pcre_printint+0xdf4>
+    100c:	ldr	r1, [pc, #400]	; 11a4 <coda_pcre_printint+0xf80>
+    1010:	mov	r0, sl
+    1014:	bl	0 <fprintf>
+    1018:	cmp	r4, #32
+    101c:	bge	1028 <coda_pcre_printint+0xe04>
+    1020:	mov	ip, #0
+    1024:	b	1034 <coda_pcre_printint+0xe10>
+    1028:	cmp	r4, #127	; 0x7f
+    102c:	movlt	ip, #1
+    1030:	movge	ip, #0
+    1034:	cmp	ip, #0
+    1038:	bne	1050 <coda_pcre_printint+0xe2c>
+    103c:	ldr	r1, [pc, #340]	; 1198 <coda_pcre_printint+0xf74>
+    1040:	mov	r2, r4
+    1044:	mov	r0, sl
+    1048:	bl	0 <fprintf>
+    104c:	b	1060 <coda_pcre_printint+0xe3c>
+    1050:	ldr	r1, [pc, #308]	; 118c <coda_pcre_printint+0xf68>
+    1054:	mov	r2, r4
+    1058:	mov	r0, sl
+    105c:	bl	0 <fprintf>
+    1060:	mov	r8, r4
+    1064:	add	r8, r8, #1
+    1068:	b	ed8 <coda_pcre_printint+0xcb4>
+    106c:	add	fp, fp, #32
+    1070:	ldrb	r2, [r5]
+    1074:	cmp	r2, #112	; 0x70
+    1078:	bne	124c <coda_pcre_printint+0x1028>
+    107c:	mov	r0, fp
+    1080:	add	fp, r0, #1
+    1084:	ldrb	r1, [r0]
+    1088:	and	ip, r1, #255	; 0xff
+    108c:	and	r4, ip, #255	; 0xff
+    1090:	cmp	ip, #0
+    1094:	beq	124c <coda_pcre_printint+0x1028>
+    1098:	mov	r3, #0
+    109c:	ldr	r2, [pc, #368]	; 1214 <coda_pcre_printint+0xff0>
+    10a0:	cmp	r4, #3
+    10a4:	beq	1104 <coda_pcre_printint+0xee0>
+    10a8:	cmp	r4, #4
+    10ac:	bne	10bc <coda_pcre_printint+0xe98>
+    10b0:	mov	r3, #1
+    10b4:	ldr	r2, [pc, #356]	; 1220 <coda_pcre_printint+0xffc>
+    10b8:	b	1104 <coda_pcre_printint+0xee0>
+    10bc:	ldr	r2, [sp, #16]
+    10c0:	mov	r1, fp
+    10c4:	mov	r0, sl
+    10c8:	bl	0 <print_char>
+    10cc:	add	r2, fp, r0
+    10d0:	add	fp, r2, #1
+    10d4:	cmp	r4, #2
+    10d8:	bne	107c <coda_pcre_printint+0xe58>
+    10dc:	ldr	r1, [pc, #288]	; 1204 <coda_pcre_printint+0xfe0>
+    10e0:	mov	r0, sl
+    10e4:	bl	0 <fprintf>
+    10e8:	ldr	r2, [sp, #16]
+    10ec:	mov	r1, fp
+    10f0:	mov	r0, sl
+    10f4:	bl	0 <print_char>
+    10f8:	add	r1, fp, r0
+    10fc:	add	fp, r1, #1
+    1100:	b	107c <coda_pcre_printint+0xe58>
+    1104:	add	r1, fp, #1
+    1108:	ldrb	r0, [fp]
+    110c:	add	fp, r1, #1
+    1110:	ldrb	r1, [r1]
+    1114:	mov	ip, r0
+    1118:	cmp	ip, #11
+    111c:	beq	1238 <coda_pcre_printint+0x1014>
+    1120:	cmp	ip, #12
+    1124:	beq	1224 <coda_pcre_printint+0x1000>
+    1128:	cmp	ip, #13
+    112c:	bne	1144 <coda_pcre_printint+0xf20>
+    1130:	ldr	ip, [pc, #156]	; 11d4 <coda_pcre_printint+0xfb0>
+    1134:	mov	r1, ip
+    1138:	mov	r0, sl
+    113c:	bl	0 <fprintf>
+    1140:	b	107c <coda_pcre_printint+0xe58>
+    1144:	cmp	r3, #0
+    1148:	bne	1154 <coda_pcre_printint+0xf30>
+    114c:	mov	r4, #112	; 0x70
+    1150:	b	1158 <coda_pcre_printint+0xf34>
+    1154:	mov	r4, #80	; 0x50
+    1158:	bl	118 <get_ucpname>
+    115c:	mov	r3, r0
+    1160:	ldr	r1, [pc, #52]	; 119c <coda_pcre_printint+0xf78>
+    1164:	mov	r2, r4
+    1168:	mov	r0, sl
+    116c:	bl	0 <fprintf>
+    1170:	b	107c <coda_pcre_printint+0xe58>
+    1174:	.word	0x00000032
+    1178:	.word	0x00000129
+    117c:	.word	0x0000025f
+    1180:	.word	0x0000012b
+    1184:	.word	0x000000ab
+    1188:	.word	0x000001f7
+    118c:	.word	0x0000029d
+    1190:	.word	0x00000231
+    1194:	.word	0x00000306
+    1198:	.word	0x00000288
+    119c:	.word	0x00000155
+    11a0:	.word	0x000002e0
+    11a4:	.word	0x000002db
+    11a8:	.word	0x00000367
+    11ac:	.word	0x00000247
+    11b0:	.word	0x000000f9
+    11b4:	.word	0x0000030f
+    11b8:	.word	0x00000126
+    11bc:	.word	0x000000cb
+    11c0:	.word	0x000001a0
+    11c4:	.word	0x000000ad
+    11c8:	.word	0x00000048
+    11cc:	.word	0x00000011
+    11d0:	.word	0x00000035
+    11d4:	.word	0x00000291
+    11d8:	.word	0x0000000a
+    11dc:	.word	0x000003af
+    11e0:	.word	0x00000165
+    11e4:	.word	0x0000006b
+    11e8:	.word	0x0000001a
+    11ec:	.word	0x00000390
+    11f0:	.word	0x00000064
+    11f4:	.word	0x00000122
+    11f8:	.word	0x000001d1
+    11fc:	.word	0x00000261
+    1200:	.word	0x00000141
+    1204:	.word	0x000002c8
+    1208:	.word	0x00000000
+    120c:	.word	0x00000213
+    1210:	.word	0x0000022b
+    1214:	.word	0x000003ae
+    1218:	.word	0x0000010f
+    121c:	.word	0x0000021d
+    1220:	.word	0x0000028f
+    1224:	ldr	r0, [pc, #520]	; 1434 <coda_pcre_printint+0x1210>
+    1228:	mov	r1, r0
+    122c:	mov	r0, sl
+    1230:	bl	0 <fprintf>
+    1234:	b	107c <coda_pcre_printint+0xe58>
+    1238:	ldr	r0, [pc, #476]	; 141c <coda_pcre_printint+0x11f8>
+    123c:	mov	r1, r0
+    1240:	mov	r0, sl
+    1244:	bl	0 <fprintf>
+    1248:	b	107c <coda_pcre_printint+0xe58>
+    124c:	ldrb	r1, [r5]
+    1250:	cmp	r1, #111	; 0x6f
+    1254:	beq	1260 <coda_pcre_printint+0x103c>
+    1258:	ldr	r2, [pc, #480]	; 1440 <coda_pcre_printint+0x121c>
+    125c:	b	1264 <coda_pcre_printint+0x1040>
+    1260:	ldr	r2, [pc, #424]	; 1410 <coda_pcre_printint+0x11ec>
+    1264:	ldr	r1, [pc, #448]	; 142c <coda_pcre_printint+0x1208>
+    1268:	mov	r0, sl
+    126c:	bl	0 <fprintf>
+    1270:	ldrb	r1, [fp]
+    1274:	sub	r1, r1, #98	; 0x62
+    1278:	cmp	r1, #12
+    127c:	bcs	13dc <coda_pcre_printint+0x11b8>
+    1280:	add	pc, pc, r1, lsl #2
+    1284:	nop	{0}
+    1288:	b	12b8 <coda_pcre_printint+0x1094>
+    128c:	b	12b8 <coda_pcre_printint+0x1094>
+    1290:	b	12b8 <coda_pcre_printint+0x1094>
+    1294:	b	12b8 <coda_pcre_printint+0x1094>
+    1298:	b	12b8 <coda_pcre_printint+0x1094>
+    129c:	b	12b8 <coda_pcre_printint+0x1094>
+    12a0:	b	12e4 <coda_pcre_printint+0x10c0>
+    12a4:	b	12e4 <coda_pcre_printint+0x10c0>
+    12a8:	b	12b8 <coda_pcre_printint+0x1094>
+    12ac:	b	12b8 <coda_pcre_printint+0x1094>
+    12b0:	b	12b8 <coda_pcre_printint+0x1094>
+    12b4:	b	12e4 <coda_pcre_printint+0x10c0>
+    12b8:	ldr	r1, [pc, #352]	; 1420 <coda_pcre_printint+0x11fc>
+    12bc:	ldr	r3, [pc, #372]	; 1438 <coda_pcre_printint+0x1214>
+    12c0:	ldrb	ip, [fp]
+    12c4:	ldr	r2, [r3, ip, lsl #2]
+    12c8:	mov	r0, sl
+    12cc:	bl	0 <fprintf>
+    12d0:	ldr	r3, [pc, #336]	; 1428 <coda_pcre_printint+0x1204>
+    12d4:	ldrb	r2, [fp]
+    12d8:	ldrb	r0, [r3, r2]
+    12dc:	add	r6, r6, r0
+    12e0:	b	13dc <coda_pcre_printint+0x11b8>
+    12e4:	ldrb	r0, [fp, #2]
+    12e8:	ldrb	r1, [fp, #1]
+    12ec:	orr	r2, r0, r1, lsl #8
+    12f0:	ldrb	r3, [fp, #4]
+    12f4:	ldrb	r0, [fp, #3]
+    12f8:	orr	r0, r3, r0, lsl #8
+    12fc:	cmp	r0, #0
+    1300:	beq	1318 <coda_pcre_printint+0x10f4>
+    1304:	ldr	r1, [pc, #264]	; 1414 <coda_pcre_printint+0x11f0>
+    1308:	mov	r3, r0
+    130c:	mov	r0, sl
+    1310:	bl	0 <fprintf>
+    1314:	b	1328 <coda_pcre_printint+0x1104>
+    1318:	ldr	ip, [pc, #284]	; 143c <coda_pcre_printint+0x1218>
+    131c:	mov	r1, ip
+    1320:	mov	r0, sl
+    1324:	bl	0 <fprintf>
+    1328:	ldrb	r3, [fp]
+    132c:	cmp	r3, #105	; 0x69
+    1330:	beq	1350 <coda_pcre_printint+0x112c>
+    1334:	ldrb	r1, [fp]
+    1338:	cmp	r1, #109	; 0x6d
+    133c:	bne	135c <coda_pcre_printint+0x1138>
+    1340:	ldr	r1, [pc, #208]	; 1418 <coda_pcre_printint+0x11f4>
+    1344:	mov	r0, sl
+    1348:	bl	0 <fprintf>
+    134c:	b	135c <coda_pcre_printint+0x1138>
+    1350:	ldr	r1, [pc, #168]	; 1400 <coda_pcre_printint+0x11dc>
+    1354:	mov	r0, sl
+    1358:	bl	0 <fprintf>
+    135c:	ldr	r2, [pc, #196]	; 1428 <coda_pcre_printint+0x1204>
+    1360:	ldrb	r3, [fp]
+    1364:	ldrb	ip, [r2, r3]
+    1368:	add	r6, r6, ip
+    136c:	b	13dc <coda_pcre_printint+0x11b8>
+    1370:	ldr	r1, [pc, #148]	; 140c <coda_pcre_printint+0x11e8>
+    1374:	ldr	r0, [pc, #188]	; 1438 <coda_pcre_printint+0x1214>
+    1378:	ldrb	r2, [r5]
+    137c:	ldr	r2, [r0, r2, lsl #2]
+    1380:	mov	r0, sl
+    1384:	bl	0 <fprintf>
+    1388:	add	r1, r5, #2
+    138c:	mov	r0, sl
+    1390:	bl	80 <print_puchar>
+    1394:	ldrb	r3, [r5, #1]
+    1398:	add	r6, r6, r3
+    139c:	b	13dc <coda_pcre_printint+0x11b8>
+    13a0:	ldr	r1, [pc, #124]	; 1424 <coda_pcre_printint+0x1200>
+    13a4:	ldr	r2, [pc, #140]	; 1438 <coda_pcre_printint+0x1214>
+    13a8:	ldrb	r0, [r5]
+    13ac:	ldr	r2, [r2, r0, lsl #2]
+    13b0:	mov	r0, sl
+    13b4:	bl	0 <fprintf>
+    13b8:	b	13dc <coda_pcre_printint+0x11b8>
+    13bc:	ldr	r8, [pc, #68]	; 1408 <coda_pcre_printint+0x11e4>
+    13c0:	ldr	r1, [pc, #104]	; 1430 <coda_pcre_printint+0x120c>
+    13c4:	ldr	r0, [pc, #108]	; 1438 <coda_pcre_printint+0x1214>
+    13c8:	ldrb	ip, [r5]
+    13cc:	ldr	r3, [r0, ip, lsl #2]
+    13d0:	mov	r2, r8
+    13d4:	mov	r0, sl
+    13d8:	bl	0 <fprintf>
+    13dc:	ldr	r1, [pc, #68]	; 1428 <coda_pcre_printint+0x1204>
+    13e0:	ldrb	r2, [r5]
+    13e4:	ldrb	r0, [r1, r2]
+    13e8:	add	r1, r0, r6
+    13ec:	add	r5, r5, r1
+    13f0:	ldr	r1, [pc, #12]	; 1404 <coda_pcre_printint+0x11e0>
+    13f4:	mov	r0, sl
+    13f8:	bl	0 <fprintf>
+    13fc:	b	320 <coda_pcre_printint+0xfc>
+    1400:	.word	0x00000129
+    1404:	.word	0x0000012b
+    1408:	.word	0x00000152
+    140c:	.word	0x00000198
+    1410:	.word	0x000002f4
+    1414:	.word	0x000002e6
+    1418:	.word	0x000000f9
+    141c:	.word	0x00000058
+    1420:	.word	0x00000011
+    1424:	.word	0x0000000a
+    1428:	.word	0x000003af
+    142c:	.word	0x00000122
+    1430:	.word	0x000002ab
+    1434:	.word	0x000001c5
+    1438:	.word	0x00000000
+    143c:	.word	0x0000036f
+    1440:	.word	0x000003ae

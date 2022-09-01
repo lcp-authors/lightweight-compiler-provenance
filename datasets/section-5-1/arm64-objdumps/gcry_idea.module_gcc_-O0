@@ -1,0 +1,1108 @@
+
+/home/anony/Documents/anonymous--anonymous/pizzolotto-binaries//gcry_idea.module_gcc_-O0:     file format elf64-littleaarch64
+
+
+Disassembly of section .text:
+
+0000000000000000 <grub_memcpy>:
+       0:	stp	x29, x30, [sp, #-48]!
+       4:	mov	x29, sp
+       8:	str	x0, [sp, #40]
+       c:	str	x1, [sp, #32]
+      10:	str	x2, [sp, #24]
+      14:	ldr	x2, [sp, #24]
+      18:	ldr	x1, [sp, #32]
+      1c:	ldr	x0, [sp, #40]
+      20:	bl	0 <grub_memmove>
+      24:	ldp	x29, x30, [sp], #48
+      28:	ret
+
+000000000000002c <selftest>:
+      2c:	mov	x0, #0x0                   	// #0
+      30:	ret
+
+0000000000000034 <mul_inv>:
+      34:	sub	sp, sp, #0x20
+      38:	strh	w0, [sp, #14]
+      3c:	ldrh	w0, [sp, #14]
+      40:	cmp	w0, #0x1
+      44:	b.hi	50 <mul_inv+0x1c>  // b.pmore
+      48:	ldrh	w0, [sp, #14]
+      4c:	b	158 <mul_inv+0x124>
+      50:	ldrh	w0, [sp, #14]
+      54:	mov	w1, #0x10001               	// #65537
+      58:	udiv	x0, x1, x0
+      5c:	strh	w0, [sp, #28]
+      60:	ldrh	w1, [sp, #14]
+      64:	mov	w0, #0x10001               	// #65537
+      68:	udiv	x2, x0, x1
+      6c:	mul	x1, x2, x1
+      70:	sub	x0, x0, x1
+      74:	strh	w0, [sp, #26]
+      78:	ldrh	w0, [sp, #26]
+      7c:	cmp	w0, #0x1
+      80:	b.ne	98 <mul_inv+0x64>  // b.any
+      84:	ldrh	w0, [sp, #28]
+      88:	mov	w1, #0x1                   	// #1
+      8c:	sub	w0, w1, w0
+      90:	and	w0, w0, #0xffff
+      94:	b	158 <mul_inv+0x124>
+      98:	mov	w0, #0x1                   	// #1
+      9c:	strh	w0, [sp, #30]
+      a0:	ldrh	w1, [sp, #14]
+      a4:	ldrh	w0, [sp, #26]
+      a8:	udiv	w0, w1, w0
+      ac:	strh	w0, [sp, #24]
+      b0:	ldrh	w0, [sp, #14]
+      b4:	ldrh	w1, [sp, #26]
+      b8:	udiv	w2, w0, w1
+      bc:	mul	w1, w2, w1
+      c0:	sub	w0, w0, w1
+      c4:	strh	w0, [sp, #14]
+      c8:	ldrh	w1, [sp, #24]
+      cc:	ldrh	w0, [sp, #28]
+      d0:	mul	w0, w1, w0
+      d4:	and	w0, w0, #0xffff
+      d8:	ldrh	w1, [sp, #30]
+      dc:	add	w0, w0, w1
+      e0:	strh	w0, [sp, #30]
+      e4:	ldrh	w0, [sp, #14]
+      e8:	cmp	w0, #0x1
+      ec:	b.ne	f8 <mul_inv+0xc4>  // b.any
+      f0:	ldrh	w0, [sp, #30]
+      f4:	b	158 <mul_inv+0x124>
+      f8:	ldrh	w1, [sp, #26]
+      fc:	ldrh	w0, [sp, #14]
+     100:	udiv	w0, w1, w0
+     104:	strh	w0, [sp, #24]
+     108:	ldrh	w0, [sp, #26]
+     10c:	ldrh	w1, [sp, #14]
+     110:	udiv	w2, w0, w1
+     114:	mul	w1, w2, w1
+     118:	sub	w0, w0, w1
+     11c:	strh	w0, [sp, #26]
+     120:	ldrh	w1, [sp, #24]
+     124:	ldrh	w0, [sp, #30]
+     128:	mul	w0, w1, w0
+     12c:	and	w0, w0, #0xffff
+     130:	ldrh	w1, [sp, #28]
+     134:	add	w0, w0, w1
+     138:	strh	w0, [sp, #28]
+     13c:	ldrh	w0, [sp, #26]
+     140:	cmp	w0, #0x1
+     144:	b.ne	a0 <mul_inv+0x6c>  // b.any
+     148:	ldrh	w0, [sp, #28]
+     14c:	mov	w1, #0x1                   	// #1
+     150:	sub	w0, w1, w0
+     154:	and	w0, w0, #0xffff
+     158:	add	sp, sp, #0x20
+     15c:	ret
+
+0000000000000160 <expand_key>:
+     160:	sub	sp, sp, #0x20
+     164:	str	x0, [sp, #8]
+     168:	str	x1, [sp]
+     16c:	str	wzr, [sp, #24]
+     170:	b	1cc <expand_key+0x6c>
+     174:	ldr	x0, [sp, #8]
+     178:	ldrb	w0, [x0]
+     17c:	and	w0, w0, #0xffff
+     180:	ubfiz	w0, w0, #8, #8
+     184:	and	w2, w0, #0xffff
+     188:	ldr	x0, [sp, #8]
+     18c:	add	x0, x0, #0x1
+     190:	ldrb	w0, [x0]
+     194:	and	w1, w0, #0xffff
+     198:	ldrsw	x0, [sp, #24]
+     19c:	lsl	x0, x0, #1
+     1a0:	ldr	x3, [sp]
+     1a4:	add	x0, x3, x0
+     1a8:	add	w1, w2, w1
+     1ac:	and	w1, w1, #0xffff
+     1b0:	strh	w1, [x0]
+     1b4:	ldr	x0, [sp, #8]
+     1b8:	add	x0, x0, #0x2
+     1bc:	str	x0, [sp, #8]
+     1c0:	ldr	w0, [sp, #24]
+     1c4:	add	w0, w0, #0x1
+     1c8:	str	w0, [sp, #24]
+     1cc:	ldr	w0, [sp, #24]
+     1d0:	cmp	w0, #0x7
+     1d4:	b.le	174 <expand_key+0x14>
+     1d8:	str	wzr, [sp, #28]
+     1dc:	b	294 <expand_key+0x134>
+     1e0:	ldr	w0, [sp, #28]
+     1e4:	add	w0, w0, #0x1
+     1e8:	str	w0, [sp, #28]
+     1ec:	ldr	w0, [sp, #28]
+     1f0:	mov	w0, w0
+     1f4:	and	x0, x0, #0x7
+     1f8:	lsl	x0, x0, #1
+     1fc:	ldr	x1, [sp]
+     200:	add	x0, x1, x0
+     204:	ldrh	w0, [x0]
+     208:	lsl	w0, w0, #9
+     20c:	sxth	w1, w0
+     210:	ldr	w0, [sp, #28]
+     214:	add	w0, w0, #0x1
+     218:	mov	w0, w0
+     21c:	and	x0, x0, #0x7
+     220:	lsl	x0, x0, #1
+     224:	ldr	x2, [sp]
+     228:	add	x0, x2, x0
+     22c:	ldrh	w0, [x0]
+     230:	lsr	w0, w0, #7
+     234:	and	w0, w0, #0xffff
+     238:	sxth	w0, w0
+     23c:	orr	w0, w1, w0
+     240:	sxth	w2, w0
+     244:	ldrsw	x0, [sp, #28]
+     248:	add	x0, x0, #0x7
+     24c:	lsl	x0, x0, #1
+     250:	ldr	x1, [sp]
+     254:	add	x0, x1, x0
+     258:	and	w1, w2, #0xffff
+     25c:	strh	w1, [x0]
+     260:	ldr	w0, [sp, #28]
+     264:	mov	w0, w0
+     268:	and	x0, x0, #0x8
+     26c:	lsl	x0, x0, #1
+     270:	ldr	x1, [sp]
+     274:	add	x0, x1, x0
+     278:	str	x0, [sp]
+     27c:	ldr	w0, [sp, #28]
+     280:	and	w0, w0, #0x7
+     284:	str	w0, [sp, #28]
+     288:	ldr	w0, [sp, #24]
+     28c:	add	w0, w0, #0x1
+     290:	str	w0, [sp, #24]
+     294:	ldr	w0, [sp, #24]
+     298:	cmp	w0, #0x33
+     29c:	b.le	1e0 <expand_key+0x80>
+     2a0:	nop
+     2a4:	nop
+     2a8:	add	sp, sp, #0x20
+     2ac:	ret
+
+00000000000002b0 <invert_key>:
+     2b0:	stp	x29, x30, [sp, #-160]!
+     2b4:	mov	x29, sp
+     2b8:	str	x0, [sp, #24]
+     2bc:	str	x1, [sp, #16]
+     2c0:	add	x0, sp, #0x20
+     2c4:	add	x0, x0, #0x68
+     2c8:	str	x0, [sp, #144]
+     2cc:	ldr	x0, [sp, #24]
+     2d0:	add	x1, x0, #0x2
+     2d4:	str	x1, [sp, #24]
+     2d8:	ldrh	w0, [x0]
+     2dc:	bl	34 <mul_inv>
+     2e0:	strh	w0, [sp, #142]
+     2e4:	ldr	x0, [sp, #24]
+     2e8:	add	x1, x0, #0x2
+     2ec:	str	x1, [sp, #24]
+     2f0:	ldrh	w0, [x0]
+     2f4:	neg	w0, w0
+     2f8:	strh	w0, [sp, #140]
+     2fc:	ldr	x0, [sp, #24]
+     300:	add	x1, x0, #0x2
+     304:	str	x1, [sp, #24]
+     308:	ldrh	w0, [x0]
+     30c:	neg	w0, w0
+     310:	strh	w0, [sp, #138]
+     314:	ldr	x0, [sp, #24]
+     318:	add	x1, x0, #0x2
+     31c:	str	x1, [sp, #24]
+     320:	ldrh	w1, [x0]
+     324:	ldr	x0, [sp, #144]
+     328:	sub	x0, x0, #0x2
+     32c:	str	x0, [sp, #144]
+     330:	mov	w0, w1
+     334:	bl	34 <mul_inv>
+     338:	and	w1, w0, #0xffff
+     33c:	ldr	x0, [sp, #144]
+     340:	strh	w1, [x0]
+     344:	ldr	x0, [sp, #144]
+     348:	sub	x0, x0, #0x2
+     34c:	str	x0, [sp, #144]
+     350:	ldr	x0, [sp, #144]
+     354:	ldrh	w1, [sp, #138]
+     358:	strh	w1, [x0]
+     35c:	ldr	x0, [sp, #144]
+     360:	sub	x0, x0, #0x2
+     364:	str	x0, [sp, #144]
+     368:	ldr	x0, [sp, #144]
+     36c:	ldrh	w1, [sp, #140]
+     370:	strh	w1, [x0]
+     374:	ldr	x0, [sp, #144]
+     378:	sub	x0, x0, #0x2
+     37c:	str	x0, [sp, #144]
+     380:	ldr	x0, [sp, #144]
+     384:	ldrh	w1, [sp, #142]
+     388:	strh	w1, [x0]
+     38c:	str	wzr, [sp, #156]
+     390:	b	4b0 <invert_key+0x200>
+     394:	ldr	x0, [sp, #24]
+     398:	add	x1, x0, #0x2
+     39c:	str	x1, [sp, #24]
+     3a0:	ldrh	w0, [x0]
+     3a4:	strh	w0, [sp, #142]
+     3a8:	ldr	x0, [sp, #24]
+     3ac:	add	x1, x0, #0x2
+     3b0:	str	x1, [sp, #24]
+     3b4:	ldr	x1, [sp, #144]
+     3b8:	sub	x1, x1, #0x2
+     3bc:	str	x1, [sp, #144]
+     3c0:	ldrh	w1, [x0]
+     3c4:	ldr	x0, [sp, #144]
+     3c8:	strh	w1, [x0]
+     3cc:	ldr	x0, [sp, #144]
+     3d0:	sub	x0, x0, #0x2
+     3d4:	str	x0, [sp, #144]
+     3d8:	ldr	x0, [sp, #144]
+     3dc:	ldrh	w1, [sp, #142]
+     3e0:	strh	w1, [x0]
+     3e4:	ldr	x0, [sp, #24]
+     3e8:	add	x1, x0, #0x2
+     3ec:	str	x1, [sp, #24]
+     3f0:	ldrh	w0, [x0]
+     3f4:	bl	34 <mul_inv>
+     3f8:	strh	w0, [sp, #142]
+     3fc:	ldr	x0, [sp, #24]
+     400:	add	x1, x0, #0x2
+     404:	str	x1, [sp, #24]
+     408:	ldrh	w0, [x0]
+     40c:	neg	w0, w0
+     410:	strh	w0, [sp, #140]
+     414:	ldr	x0, [sp, #24]
+     418:	add	x1, x0, #0x2
+     41c:	str	x1, [sp, #24]
+     420:	ldrh	w0, [x0]
+     424:	neg	w0, w0
+     428:	strh	w0, [sp, #138]
+     42c:	ldr	x0, [sp, #24]
+     430:	add	x1, x0, #0x2
+     434:	str	x1, [sp, #24]
+     438:	ldrh	w1, [x0]
+     43c:	ldr	x0, [sp, #144]
+     440:	sub	x0, x0, #0x2
+     444:	str	x0, [sp, #144]
+     448:	mov	w0, w1
+     44c:	bl	34 <mul_inv>
+     450:	and	w1, w0, #0xffff
+     454:	ldr	x0, [sp, #144]
+     458:	strh	w1, [x0]
+     45c:	ldr	x0, [sp, #144]
+     460:	sub	x0, x0, #0x2
+     464:	str	x0, [sp, #144]
+     468:	ldr	x0, [sp, #144]
+     46c:	ldrh	w1, [sp, #140]
+     470:	strh	w1, [x0]
+     474:	ldr	x0, [sp, #144]
+     478:	sub	x0, x0, #0x2
+     47c:	str	x0, [sp, #144]
+     480:	ldr	x0, [sp, #144]
+     484:	ldrh	w1, [sp, #138]
+     488:	strh	w1, [x0]
+     48c:	ldr	x0, [sp, #144]
+     490:	sub	x0, x0, #0x2
+     494:	str	x0, [sp, #144]
+     498:	ldr	x0, [sp, #144]
+     49c:	ldrh	w1, [sp, #142]
+     4a0:	strh	w1, [x0]
+     4a4:	ldr	w0, [sp, #156]
+     4a8:	add	w0, w0, #0x1
+     4ac:	str	w0, [sp, #156]
+     4b0:	ldr	w0, [sp, #156]
+     4b4:	cmp	w0, #0x6
+     4b8:	b.le	394 <invert_key+0xe4>
+     4bc:	ldr	x0, [sp, #24]
+     4c0:	add	x1, x0, #0x2
+     4c4:	str	x1, [sp, #24]
+     4c8:	ldrh	w0, [x0]
+     4cc:	strh	w0, [sp, #142]
+     4d0:	ldr	x0, [sp, #24]
+     4d4:	add	x1, x0, #0x2
+     4d8:	str	x1, [sp, #24]
+     4dc:	ldr	x1, [sp, #144]
+     4e0:	sub	x1, x1, #0x2
+     4e4:	str	x1, [sp, #144]
+     4e8:	ldrh	w1, [x0]
+     4ec:	ldr	x0, [sp, #144]
+     4f0:	strh	w1, [x0]
+     4f4:	ldr	x0, [sp, #144]
+     4f8:	sub	x0, x0, #0x2
+     4fc:	str	x0, [sp, #144]
+     500:	ldr	x0, [sp, #144]
+     504:	ldrh	w1, [sp, #142]
+     508:	strh	w1, [x0]
+     50c:	ldr	x0, [sp, #24]
+     510:	add	x1, x0, #0x2
+     514:	str	x1, [sp, #24]
+     518:	ldrh	w0, [x0]
+     51c:	bl	34 <mul_inv>
+     520:	strh	w0, [sp, #142]
+     524:	ldr	x0, [sp, #24]
+     528:	add	x1, x0, #0x2
+     52c:	str	x1, [sp, #24]
+     530:	ldrh	w0, [x0]
+     534:	neg	w0, w0
+     538:	strh	w0, [sp, #140]
+     53c:	ldr	x0, [sp, #24]
+     540:	add	x1, x0, #0x2
+     544:	str	x1, [sp, #24]
+     548:	ldrh	w0, [x0]
+     54c:	neg	w0, w0
+     550:	strh	w0, [sp, #138]
+     554:	ldr	x0, [sp, #24]
+     558:	add	x1, x0, #0x2
+     55c:	str	x1, [sp, #24]
+     560:	ldrh	w1, [x0]
+     564:	ldr	x0, [sp, #144]
+     568:	sub	x0, x0, #0x2
+     56c:	str	x0, [sp, #144]
+     570:	mov	w0, w1
+     574:	bl	34 <mul_inv>
+     578:	and	w1, w0, #0xffff
+     57c:	ldr	x0, [sp, #144]
+     580:	strh	w1, [x0]
+     584:	ldr	x0, [sp, #144]
+     588:	sub	x0, x0, #0x2
+     58c:	str	x0, [sp, #144]
+     590:	ldr	x0, [sp, #144]
+     594:	ldrh	w1, [sp, #138]
+     598:	strh	w1, [x0]
+     59c:	ldr	x0, [sp, #144]
+     5a0:	sub	x0, x0, #0x2
+     5a4:	str	x0, [sp, #144]
+     5a8:	ldr	x0, [sp, #144]
+     5ac:	ldrh	w1, [sp, #140]
+     5b0:	strh	w1, [x0]
+     5b4:	ldr	x0, [sp, #144]
+     5b8:	sub	x0, x0, #0x2
+     5bc:	str	x0, [sp, #144]
+     5c0:	ldr	x0, [sp, #144]
+     5c4:	ldrh	w1, [sp, #142]
+     5c8:	strh	w1, [x0]
+     5cc:	add	x0, sp, #0x20
+     5d0:	mov	x2, #0x68                  	// #104
+     5d4:	mov	x1, x0
+     5d8:	ldr	x0, [sp, #16]
+     5dc:	bl	0 <grub_memcpy>
+     5e0:	add	x0, sp, #0x20
+     5e4:	mov	x2, #0x68                  	// #104
+     5e8:	mov	w1, #0x0                   	// #0
+     5ec:	bl	0 <grub_memset>
+     5f0:	nop
+     5f4:	ldp	x29, x30, [sp], #160
+     5f8:	ret
+
+00000000000005fc <cipher>:
+     5fc:	stp	x29, x30, [sp, #-112]!
+     600:	mov	x29, sp
+     604:	str	x0, [sp, #40]
+     608:	str	x1, [sp, #32]
+     60c:	str	x2, [sp, #24]
+     610:	mov	w0, #0x8                   	// #8
+     614:	str	w0, [sp, #108]
+     618:	add	x0, sp, #0x30
+     61c:	mov	x2, #0x8                   	// #8
+     620:	ldr	x1, [sp, #32]
+     624:	bl	0 <grub_memcpy>
+     628:	ldrh	w0, [sp, #48]
+     62c:	lsr	w0, w0, #8
+     630:	and	w0, w0, #0xffff
+     634:	sxth	w1, w0
+     638:	ldrh	w0, [sp, #48]
+     63c:	lsl	w0, w0, #8
+     640:	sxth	w0, w0
+     644:	orr	w0, w1, w0
+     648:	sxth	w0, w0
+     64c:	and	w0, w0, #0xffff
+     650:	strh	w0, [sp, #48]
+     654:	ldrh	w0, [sp, #50]
+     658:	lsr	w0, w0, #8
+     65c:	and	w0, w0, #0xffff
+     660:	sxth	w1, w0
+     664:	ldrh	w0, [sp, #50]
+     668:	lsl	w0, w0, #8
+     66c:	sxth	w0, w0
+     670:	orr	w0, w1, w0
+     674:	sxth	w0, w0
+     678:	and	w0, w0, #0xffff
+     67c:	strh	w0, [sp, #50]
+     680:	ldrh	w0, [sp, #52]
+     684:	lsr	w0, w0, #8
+     688:	and	w0, w0, #0xffff
+     68c:	sxth	w1, w0
+     690:	ldrh	w0, [sp, #52]
+     694:	lsl	w0, w0, #8
+     698:	sxth	w0, w0
+     69c:	orr	w0, w1, w0
+     6a0:	sxth	w0, w0
+     6a4:	and	w0, w0, #0xffff
+     6a8:	strh	w0, [sp, #52]
+     6ac:	ldrh	w0, [sp, #54]
+     6b0:	lsr	w0, w0, #8
+     6b4:	and	w0, w0, #0xffff
+     6b8:	sxth	w1, w0
+     6bc:	ldrh	w0, [sp, #54]
+     6c0:	lsl	w0, w0, #8
+     6c4:	sxth	w0, w0
+     6c8:	orr	w0, w1, w0
+     6cc:	sxth	w0, w0
+     6d0:	and	w0, w0, #0xffff
+     6d4:	strh	w0, [sp, #54]
+     6d8:	ldr	x0, [sp, #24]
+     6dc:	add	x1, x0, #0x2
+     6e0:	str	x1, [sp, #24]
+     6e4:	ldrh	w0, [x0]
+     6e8:	strh	w0, [sp, #106]
+     6ec:	ldrh	w0, [sp, #106]
+     6f0:	cmp	w0, #0x0
+     6f4:	b.eq	788 <cipher+0x18c>  // b.none
+     6f8:	ldrh	w0, [sp, #48]
+     6fc:	strh	w0, [sp, #48]
+     700:	ldrh	w0, [sp, #48]
+     704:	cmp	w0, #0x0
+     708:	b.eq	770 <cipher+0x174>  // b.none
+     70c:	ldrh	w0, [sp, #48]
+     710:	mov	w1, w0
+     714:	ldrh	w0, [sp, #106]
+     718:	mul	w0, w1, w0
+     71c:	str	w0, [sp, #100]
+     720:	ldr	w0, [sp, #100]
+     724:	and	w0, w0, #0xffff
+     728:	strh	w0, [sp, #48]
+     72c:	ldr	w0, [sp, #100]
+     730:	lsr	w0, w0, #16
+     734:	strh	w0, [sp, #106]
+     738:	ldrh	w1, [sp, #48]
+     73c:	ldrh	w0, [sp, #106]
+     740:	sub	w0, w1, w0
+     744:	and	w1, w0, #0xffff
+     748:	ldrh	w0, [sp, #48]
+     74c:	ldrh	w2, [sp, #106]
+     750:	cmp	w2, w0
+     754:	cset	w0, hi  // hi = pmore
+     758:	and	w0, w0, #0xff
+     75c:	and	w0, w0, #0xffff
+     760:	add	w0, w1, w0
+     764:	and	w0, w0, #0xffff
+     768:	strh	w0, [sp, #48]
+     76c:	b	79c <cipher+0x1a0>
+     770:	ldrh	w0, [sp, #106]
+     774:	mov	w1, #0x1                   	// #1
+     778:	sub	w0, w1, w0
+     77c:	and	w0, w0, #0xffff
+     780:	strh	w0, [sp, #48]
+     784:	b	79c <cipher+0x1a0>
+     788:	ldrh	w0, [sp, #48]
+     78c:	mov	w1, #0x1                   	// #1
+     790:	sub	w0, w1, w0
+     794:	and	w0, w0, #0xffff
+     798:	strh	w0, [sp, #48]
+     79c:	ldr	x0, [sp, #24]
+     7a0:	add	x1, x0, #0x2
+     7a4:	str	x1, [sp, #24]
+     7a8:	ldrh	w1, [x0]
+     7ac:	ldrh	w0, [sp, #50]
+     7b0:	add	w0, w1, w0
+     7b4:	and	w0, w0, #0xffff
+     7b8:	strh	w0, [sp, #50]
+     7bc:	ldr	x0, [sp, #24]
+     7c0:	add	x1, x0, #0x2
+     7c4:	str	x1, [sp, #24]
+     7c8:	ldrh	w1, [x0]
+     7cc:	ldrh	w0, [sp, #52]
+     7d0:	add	w0, w1, w0
+     7d4:	and	w0, w0, #0xffff
+     7d8:	strh	w0, [sp, #52]
+     7dc:	ldr	x0, [sp, #24]
+     7e0:	add	x1, x0, #0x2
+     7e4:	str	x1, [sp, #24]
+     7e8:	ldrh	w0, [x0]
+     7ec:	strh	w0, [sp, #98]
+     7f0:	ldrh	w0, [sp, #98]
+     7f4:	cmp	w0, #0x0
+     7f8:	b.eq	88c <cipher+0x290>  // b.none
+     7fc:	ldrh	w0, [sp, #54]
+     800:	strh	w0, [sp, #54]
+     804:	ldrh	w0, [sp, #54]
+     808:	cmp	w0, #0x0
+     80c:	b.eq	874 <cipher+0x278>  // b.none
+     810:	ldrh	w0, [sp, #54]
+     814:	mov	w1, w0
+     818:	ldrh	w0, [sp, #98]
+     81c:	mul	w0, w1, w0
+     820:	str	w0, [sp, #92]
+     824:	ldr	w0, [sp, #92]
+     828:	and	w0, w0, #0xffff
+     82c:	strh	w0, [sp, #54]
+     830:	ldr	w0, [sp, #92]
+     834:	lsr	w0, w0, #16
+     838:	strh	w0, [sp, #98]
+     83c:	ldrh	w1, [sp, #54]
+     840:	ldrh	w0, [sp, #98]
+     844:	sub	w0, w1, w0
+     848:	and	w1, w0, #0xffff
+     84c:	ldrh	w0, [sp, #54]
+     850:	ldrh	w2, [sp, #98]
+     854:	cmp	w2, w0
+     858:	cset	w0, hi  // hi = pmore
+     85c:	and	w0, w0, #0xff
+     860:	and	w0, w0, #0xffff
+     864:	add	w0, w1, w0
+     868:	and	w0, w0, #0xffff
+     86c:	strh	w0, [sp, #54]
+     870:	b	8a0 <cipher+0x2a4>
+     874:	ldrh	w0, [sp, #98]
+     878:	mov	w1, #0x1                   	// #1
+     87c:	sub	w0, w1, w0
+     880:	and	w0, w0, #0xffff
+     884:	strh	w0, [sp, #54]
+     888:	b	8a0 <cipher+0x2a4>
+     88c:	ldrh	w0, [sp, #54]
+     890:	mov	w1, #0x1                   	// #1
+     894:	sub	w0, w1, w0
+     898:	and	w0, w0, #0xffff
+     89c:	strh	w0, [sp, #54]
+     8a0:	ldrh	w0, [sp, #52]
+     8a4:	strh	w0, [sp, #90]
+     8a8:	ldrh	w1, [sp, #52]
+     8ac:	ldrh	w0, [sp, #48]
+     8b0:	eor	w0, w1, w0
+     8b4:	and	w0, w0, #0xffff
+     8b8:	strh	w0, [sp, #52]
+     8bc:	ldr	x0, [sp, #24]
+     8c0:	add	x1, x0, #0x2
+     8c4:	str	x1, [sp, #24]
+     8c8:	ldrh	w0, [x0]
+     8cc:	strh	w0, [sp, #88]
+     8d0:	ldrh	w0, [sp, #88]
+     8d4:	cmp	w0, #0x0
+     8d8:	b.eq	96c <cipher+0x370>  // b.none
+     8dc:	ldrh	w0, [sp, #52]
+     8e0:	strh	w0, [sp, #52]
+     8e4:	ldrh	w0, [sp, #52]
+     8e8:	cmp	w0, #0x0
+     8ec:	b.eq	954 <cipher+0x358>  // b.none
+     8f0:	ldrh	w0, [sp, #52]
+     8f4:	mov	w1, w0
+     8f8:	ldrh	w0, [sp, #88]
+     8fc:	mul	w0, w1, w0
+     900:	str	w0, [sp, #84]
+     904:	ldr	w0, [sp, #84]
+     908:	and	w0, w0, #0xffff
+     90c:	strh	w0, [sp, #52]
+     910:	ldr	w0, [sp, #84]
+     914:	lsr	w0, w0, #16
+     918:	strh	w0, [sp, #88]
+     91c:	ldrh	w1, [sp, #52]
+     920:	ldrh	w0, [sp, #88]
+     924:	sub	w0, w1, w0
+     928:	and	w1, w0, #0xffff
+     92c:	ldrh	w0, [sp, #52]
+     930:	ldrh	w2, [sp, #88]
+     934:	cmp	w2, w0
+     938:	cset	w0, hi  // hi = pmore
+     93c:	and	w0, w0, #0xff
+     940:	and	w0, w0, #0xffff
+     944:	add	w0, w1, w0
+     948:	and	w0, w0, #0xffff
+     94c:	strh	w0, [sp, #52]
+     950:	b	980 <cipher+0x384>
+     954:	ldrh	w0, [sp, #88]
+     958:	mov	w1, #0x1                   	// #1
+     95c:	sub	w0, w1, w0
+     960:	and	w0, w0, #0xffff
+     964:	strh	w0, [sp, #52]
+     968:	b	980 <cipher+0x384>
+     96c:	ldrh	w0, [sp, #52]
+     970:	mov	w1, #0x1                   	// #1
+     974:	sub	w0, w1, w0
+     978:	and	w0, w0, #0xffff
+     97c:	strh	w0, [sp, #52]
+     980:	ldrh	w0, [sp, #50]
+     984:	strh	w0, [sp, #82]
+     988:	ldrh	w1, [sp, #50]
+     98c:	ldrh	w0, [sp, #54]
+     990:	eor	w0, w1, w0
+     994:	and	w0, w0, #0xffff
+     998:	strh	w0, [sp, #50]
+     99c:	ldrh	w1, [sp, #50]
+     9a0:	ldrh	w0, [sp, #52]
+     9a4:	add	w0, w1, w0
+     9a8:	and	w0, w0, #0xffff
+     9ac:	strh	w0, [sp, #50]
+     9b0:	ldr	x0, [sp, #24]
+     9b4:	add	x1, x0, #0x2
+     9b8:	str	x1, [sp, #24]
+     9bc:	ldrh	w0, [x0]
+     9c0:	strh	w0, [sp, #80]
+     9c4:	ldrh	w0, [sp, #80]
+     9c8:	cmp	w0, #0x0
+     9cc:	b.eq	a60 <cipher+0x464>  // b.none
+     9d0:	ldrh	w0, [sp, #50]
+     9d4:	strh	w0, [sp, #50]
+     9d8:	ldrh	w0, [sp, #50]
+     9dc:	cmp	w0, #0x0
+     9e0:	b.eq	a48 <cipher+0x44c>  // b.none
+     9e4:	ldrh	w0, [sp, #50]
+     9e8:	mov	w1, w0
+     9ec:	ldrh	w0, [sp, #80]
+     9f0:	mul	w0, w1, w0
+     9f4:	str	w0, [sp, #76]
+     9f8:	ldr	w0, [sp, #76]
+     9fc:	and	w0, w0, #0xffff
+     a00:	strh	w0, [sp, #50]
+     a04:	ldr	w0, [sp, #76]
+     a08:	lsr	w0, w0, #16
+     a0c:	strh	w0, [sp, #80]
+     a10:	ldrh	w1, [sp, #50]
+     a14:	ldrh	w0, [sp, #80]
+     a18:	sub	w0, w1, w0
+     a1c:	and	w1, w0, #0xffff
+     a20:	ldrh	w0, [sp, #50]
+     a24:	ldrh	w2, [sp, #80]
+     a28:	cmp	w2, w0
+     a2c:	cset	w0, hi  // hi = pmore
+     a30:	and	w0, w0, #0xff
+     a34:	and	w0, w0, #0xffff
+     a38:	add	w0, w1, w0
+     a3c:	and	w0, w0, #0xffff
+     a40:	strh	w0, [sp, #50]
+     a44:	b	a74 <cipher+0x478>
+     a48:	ldrh	w0, [sp, #80]
+     a4c:	mov	w1, #0x1                   	// #1
+     a50:	sub	w0, w1, w0
+     a54:	and	w0, w0, #0xffff
+     a58:	strh	w0, [sp, #50]
+     a5c:	b	a74 <cipher+0x478>
+     a60:	ldrh	w0, [sp, #50]
+     a64:	mov	w1, #0x1                   	// #1
+     a68:	sub	w0, w1, w0
+     a6c:	and	w0, w0, #0xffff
+     a70:	strh	w0, [sp, #50]
+     a74:	ldrh	w1, [sp, #52]
+     a78:	ldrh	w0, [sp, #50]
+     a7c:	add	w0, w1, w0
+     a80:	and	w0, w0, #0xffff
+     a84:	strh	w0, [sp, #52]
+     a88:	ldrh	w1, [sp, #48]
+     a8c:	ldrh	w0, [sp, #50]
+     a90:	eor	w0, w1, w0
+     a94:	and	w0, w0, #0xffff
+     a98:	strh	w0, [sp, #48]
+     a9c:	ldrh	w1, [sp, #54]
+     aa0:	ldrh	w0, [sp, #52]
+     aa4:	eor	w0, w1, w0
+     aa8:	and	w0, w0, #0xffff
+     aac:	strh	w0, [sp, #54]
+     ab0:	ldrh	w1, [sp, #50]
+     ab4:	ldrh	w0, [sp, #90]
+     ab8:	eor	w0, w1, w0
+     abc:	and	w0, w0, #0xffff
+     ac0:	strh	w0, [sp, #50]
+     ac4:	ldrh	w1, [sp, #52]
+     ac8:	ldrh	w0, [sp, #82]
+     acc:	eor	w0, w1, w0
+     ad0:	and	w0, w0, #0xffff
+     ad4:	strh	w0, [sp, #52]
+     ad8:	ldr	w0, [sp, #108]
+     adc:	sub	w0, w0, #0x1
+     ae0:	str	w0, [sp, #108]
+     ae4:	ldr	w0, [sp, #108]
+     ae8:	cmp	w0, #0x0
+     aec:	b.ne	6d8 <cipher+0xdc>  // b.any
+     af0:	ldr	x0, [sp, #24]
+     af4:	add	x1, x0, #0x2
+     af8:	str	x1, [sp, #24]
+     afc:	ldrh	w0, [x0]
+     b00:	strh	w0, [sp, #74]
+     b04:	ldrh	w0, [sp, #74]
+     b08:	cmp	w0, #0x0
+     b0c:	b.eq	ba0 <cipher+0x5a4>  // b.none
+     b10:	ldrh	w0, [sp, #48]
+     b14:	strh	w0, [sp, #48]
+     b18:	ldrh	w0, [sp, #48]
+     b1c:	cmp	w0, #0x0
+     b20:	b.eq	b88 <cipher+0x58c>  // b.none
+     b24:	ldrh	w0, [sp, #48]
+     b28:	mov	w1, w0
+     b2c:	ldrh	w0, [sp, #74]
+     b30:	mul	w0, w1, w0
+     b34:	str	w0, [sp, #68]
+     b38:	ldr	w0, [sp, #68]
+     b3c:	and	w0, w0, #0xffff
+     b40:	strh	w0, [sp, #48]
+     b44:	ldr	w0, [sp, #68]
+     b48:	lsr	w0, w0, #16
+     b4c:	strh	w0, [sp, #74]
+     b50:	ldrh	w1, [sp, #48]
+     b54:	ldrh	w0, [sp, #74]
+     b58:	sub	w0, w1, w0
+     b5c:	and	w1, w0, #0xffff
+     b60:	ldrh	w0, [sp, #48]
+     b64:	ldrh	w2, [sp, #74]
+     b68:	cmp	w2, w0
+     b6c:	cset	w0, hi  // hi = pmore
+     b70:	and	w0, w0, #0xff
+     b74:	and	w0, w0, #0xffff
+     b78:	add	w0, w1, w0
+     b7c:	and	w0, w0, #0xffff
+     b80:	strh	w0, [sp, #48]
+     b84:	b	bb4 <cipher+0x5b8>
+     b88:	ldrh	w0, [sp, #74]
+     b8c:	mov	w1, #0x1                   	// #1
+     b90:	sub	w0, w1, w0
+     b94:	and	w0, w0, #0xffff
+     b98:	strh	w0, [sp, #48]
+     b9c:	b	bb4 <cipher+0x5b8>
+     ba0:	ldrh	w0, [sp, #48]
+     ba4:	mov	w1, #0x1                   	// #1
+     ba8:	sub	w0, w1, w0
+     bac:	and	w0, w0, #0xffff
+     bb0:	strh	w0, [sp, #48]
+     bb4:	ldr	x0, [sp, #24]
+     bb8:	add	x1, x0, #0x2
+     bbc:	str	x1, [sp, #24]
+     bc0:	ldrh	w1, [x0]
+     bc4:	ldrh	w0, [sp, #52]
+     bc8:	add	w0, w1, w0
+     bcc:	and	w0, w0, #0xffff
+     bd0:	strh	w0, [sp, #52]
+     bd4:	ldr	x0, [sp, #24]
+     bd8:	add	x1, x0, #0x2
+     bdc:	str	x1, [sp, #24]
+     be0:	ldrh	w1, [x0]
+     be4:	ldrh	w0, [sp, #50]
+     be8:	add	w0, w1, w0
+     bec:	and	w0, w0, #0xffff
+     bf0:	strh	w0, [sp, #50]
+     bf4:	ldr	x0, [sp, #24]
+     bf8:	ldrh	w0, [x0]
+     bfc:	strh	w0, [sp, #66]
+     c00:	ldrh	w0, [sp, #66]
+     c04:	cmp	w0, #0x0
+     c08:	b.eq	c9c <cipher+0x6a0>  // b.none
+     c0c:	ldrh	w0, [sp, #54]
+     c10:	strh	w0, [sp, #54]
+     c14:	ldrh	w0, [sp, #54]
+     c18:	cmp	w0, #0x0
+     c1c:	b.eq	c84 <cipher+0x688>  // b.none
+     c20:	ldrh	w0, [sp, #54]
+     c24:	mov	w1, w0
+     c28:	ldrh	w0, [sp, #66]
+     c2c:	mul	w0, w1, w0
+     c30:	str	w0, [sp, #60]
+     c34:	ldr	w0, [sp, #60]
+     c38:	and	w0, w0, #0xffff
+     c3c:	strh	w0, [sp, #54]
+     c40:	ldr	w0, [sp, #60]
+     c44:	lsr	w0, w0, #16
+     c48:	strh	w0, [sp, #66]
+     c4c:	ldrh	w1, [sp, #54]
+     c50:	ldrh	w0, [sp, #66]
+     c54:	sub	w0, w1, w0
+     c58:	and	w1, w0, #0xffff
+     c5c:	ldrh	w0, [sp, #54]
+     c60:	ldrh	w2, [sp, #66]
+     c64:	cmp	w2, w0
+     c68:	cset	w0, hi  // hi = pmore
+     c6c:	and	w0, w0, #0xff
+     c70:	and	w0, w0, #0xffff
+     c74:	add	w0, w1, w0
+     c78:	and	w0, w0, #0xffff
+     c7c:	strh	w0, [sp, #54]
+     c80:	b	cb0 <cipher+0x6b4>
+     c84:	ldrh	w0, [sp, #66]
+     c88:	mov	w1, #0x1                   	// #1
+     c8c:	sub	w0, w1, w0
+     c90:	and	w0, w0, #0xffff
+     c94:	strh	w0, [sp, #54]
+     c98:	b	cb0 <cipher+0x6b4>
+     c9c:	ldrh	w0, [sp, #54]
+     ca0:	mov	w1, #0x1                   	// #1
+     ca4:	sub	w0, w1, w0
+     ca8:	and	w0, w0, #0xffff
+     cac:	strh	w0, [sp, #54]
+     cb0:	ldrh	w0, [sp, #48]
+     cb4:	lsr	w0, w0, #8
+     cb8:	and	w0, w0, #0xffff
+     cbc:	sxth	w1, w0
+     cc0:	ldrh	w0, [sp, #48]
+     cc4:	lsl	w0, w0, #8
+     cc8:	sxth	w0, w0
+     ccc:	orr	w0, w1, w0
+     cd0:	sxth	w0, w0
+     cd4:	and	w0, w0, #0xffff
+     cd8:	strh	w0, [sp, #48]
+     cdc:	ldrh	w0, [sp, #50]
+     ce0:	lsr	w0, w0, #8
+     ce4:	and	w0, w0, #0xffff
+     ce8:	sxth	w1, w0
+     cec:	ldrh	w0, [sp, #50]
+     cf0:	lsl	w0, w0, #8
+     cf4:	sxth	w0, w0
+     cf8:	orr	w0, w1, w0
+     cfc:	sxth	w0, w0
+     d00:	and	w0, w0, #0xffff
+     d04:	strh	w0, [sp, #50]
+     d08:	ldrh	w0, [sp, #52]
+     d0c:	lsr	w0, w0, #8
+     d10:	and	w0, w0, #0xffff
+     d14:	sxth	w1, w0
+     d18:	ldrh	w0, [sp, #52]
+     d1c:	lsl	w0, w0, #8
+     d20:	sxth	w0, w0
+     d24:	orr	w0, w1, w0
+     d28:	sxth	w0, w0
+     d2c:	and	w0, w0, #0xffff
+     d30:	strh	w0, [sp, #52]
+     d34:	ldrh	w0, [sp, #54]
+     d38:	lsr	w0, w0, #8
+     d3c:	and	w0, w0, #0xffff
+     d40:	sxth	w1, w0
+     d44:	ldrh	w0, [sp, #54]
+     d48:	lsl	w0, w0, #8
+     d4c:	sxth	w0, w0
+     d50:	orr	w0, w1, w0
+     d54:	sxth	w0, w0
+     d58:	and	w0, w0, #0xffff
+     d5c:	strh	w0, [sp, #54]
+     d60:	add	x0, sp, #0x30
+     d64:	mov	x2, #0x2                   	// #2
+     d68:	mov	x1, x0
+     d6c:	ldr	x0, [sp, #40]
+     d70:	bl	0 <grub_memcpy>
+     d74:	ldr	x0, [sp, #40]
+     d78:	add	x3, x0, #0x2
+     d7c:	add	x0, sp, #0x30
+     d80:	add	x0, x0, #0x4
+     d84:	mov	x2, #0x2                   	// #2
+     d88:	mov	x1, x0
+     d8c:	mov	x0, x3
+     d90:	bl	0 <grub_memcpy>
+     d94:	ldr	x0, [sp, #40]
+     d98:	add	x3, x0, #0x4
+     d9c:	add	x0, sp, #0x30
+     da0:	add	x0, x0, #0x2
+     da4:	mov	x2, #0x2                   	// #2
+     da8:	mov	x1, x0
+     dac:	mov	x0, x3
+     db0:	bl	0 <grub_memcpy>
+     db4:	ldr	x0, [sp, #40]
+     db8:	add	x3, x0, #0x6
+     dbc:	add	x0, sp, #0x30
+     dc0:	add	x0, x0, #0x6
+     dc4:	mov	x2, #0x2                   	// #2
+     dc8:	mov	x1, x0
+     dcc:	mov	x0, x3
+     dd0:	bl	0 <grub_memcpy>
+     dd4:	nop
+     dd8:	ldp	x29, x30, [sp], #112
+     ddc:	ret
+
+0000000000000de0 <do_setkey>:
+     de0:	stp	x29, x30, [sp, #-48]!
+     de4:	mov	x29, sp
+     de8:	str	x0, [sp, #40]
+     dec:	str	x1, [sp, #32]
+     df0:	str	w2, [sp, #28]
+     df4:	adrp	x0, 0 <grub_memcpy>
+     df8:	add	x0, x0, #0x0
+     dfc:	ldr	x0, [x0]
+     e00:	ldr	w0, [x0]
+     e04:	cmp	w0, #0x0
+     e08:	b.ne	e74 <do_setkey+0x94>  // b.any
+     e0c:	adrp	x0, 0 <grub_memcpy>
+     e10:	add	x0, x0, #0x0
+     e14:	ldr	x0, [x0]
+     e18:	mov	w1, #0x1                   	// #1
+     e1c:	str	w1, [x0]
+     e20:	bl	2c <selftest>
+     e24:	mov	x1, x0
+     e28:	adrp	x0, 0 <grub_memcpy>
+     e2c:	add	x0, x0, #0x0
+     e30:	ldr	x0, [x0]
+     e34:	str	x1, [x0]
+     e38:	adrp	x0, 0 <grub_memcpy>
+     e3c:	add	x0, x0, #0x0
+     e40:	ldr	x0, [x0]
+     e44:	ldr	x0, [x0]
+     e48:	cmp	x0, #0x0
+     e4c:	b.eq	e74 <do_setkey+0x94>  // b.none
+     e50:	adrp	x0, 0 <grub_memcpy>
+     e54:	add	x0, x0, #0x0
+     e58:	ldr	x0, [x0]
+     e5c:	ldr	x0, [x0]
+     e60:	mov	x1, x0
+     e64:	adrp	x0, 0 <grub_memcpy>
+     e68:	add	x0, x0, #0x0
+     e6c:	ldr	x0, [x0]
+     e70:	bl	0 <_gcry_log_error>
+     e74:	adrp	x0, 0 <grub_memcpy>
+     e78:	add	x0, x0, #0x0
+     e7c:	ldr	x0, [x0]
+     e80:	ldr	x0, [x0]
+     e84:	cmp	x0, #0x0
+     e88:	b.eq	e94 <do_setkey+0xb4>  // b.none
+     e8c:	mov	w0, #0x1c                  	// #28
+     e90:	b	f00 <do_setkey+0x120>
+     e94:	ldr	w0, [sp, #28]
+     e98:	cmp	w0, #0x10
+     e9c:	b.eq	ecc <do_setkey+0xec>  // b.none
+     ea0:	adrp	x0, 0 <grub_memcpy>
+     ea4:	add	x0, x0, #0x0
+     ea8:	ldr	x3, [x0]
+     eac:	mov	w2, #0xfb                  	// #251
+     eb0:	adrp	x0, 0 <grub_memcpy>
+     eb4:	add	x0, x0, #0x0
+     eb8:	ldr	x1, [x0]
+     ebc:	adrp	x0, 0 <grub_memcpy>
+     ec0:	add	x0, x0, #0x0
+     ec4:	ldr	x0, [x0]
+     ec8:	bl	0 <_gcry_assert_failed>
+     ecc:	ldr	x0, [sp, #40]
+     ed0:	str	wzr, [x0, #208]
+     ed4:	ldr	x0, [sp, #40]
+     ed8:	mov	x1, x0
+     edc:	ldr	x0, [sp, #32]
+     ee0:	bl	160 <expand_key>
+     ee4:	ldr	x2, [sp, #40]
+     ee8:	ldr	x0, [sp, #40]
+     eec:	add	x0, x0, #0x68
+     ef0:	mov	x1, x0
+     ef4:	mov	x0, x2
+     ef8:	bl	2b0 <invert_key>
+     efc:	mov	w0, #0x0                   	// #0
+     f00:	ldp	x29, x30, [sp], #48
+     f04:	ret
+	...
+
+0000000000000f38 <idea_setkey>:
+     f38:	stp	x29, x30, [sp, #-64]!
+     f3c:	mov	x29, sp
+     f40:	str	x0, [sp, #40]
+     f44:	str	x1, [sp, #32]
+     f48:	str	w2, [sp, #28]
+     f4c:	ldr	x0, [sp, #40]
+     f50:	str	x0, [sp, #56]
+     f54:	ldr	w2, [sp, #28]
+     f58:	ldr	x1, [sp, #32]
+     f5c:	ldr	x0, [sp, #56]
+     f60:	bl	de0 <do_setkey>
+     f64:	str	w0, [sp, #52]
+     f68:	mov	w0, #0x47                  	// #71
+     f6c:	bl	0 <_gcry_burn_stack>
+     f70:	ldr	w0, [sp, #52]
+     f74:	ldp	x29, x30, [sp], #64
+     f78:	ret
+
+0000000000000f7c <encrypt_block>:
+     f7c:	stp	x29, x30, [sp, #-48]!
+     f80:	mov	x29, sp
+     f84:	str	x0, [sp, #40]
+     f88:	str	x1, [sp, #32]
+     f8c:	str	x2, [sp, #24]
+     f90:	ldr	x0, [sp, #40]
+     f94:	mov	x2, x0
+     f98:	ldr	x1, [sp, #24]
+     f9c:	ldr	x0, [sp, #32]
+     fa0:	bl	5fc <cipher>
+     fa4:	nop
+     fa8:	ldp	x29, x30, [sp], #48
+     fac:	ret
+
+0000000000000fb0 <idea_encrypt>:
+     fb0:	stp	x29, x30, [sp, #-64]!
+     fb4:	mov	x29, sp
+     fb8:	str	x0, [sp, #40]
+     fbc:	str	x1, [sp, #32]
+     fc0:	str	x2, [sp, #24]
+     fc4:	ldr	x0, [sp, #40]
+     fc8:	str	x0, [sp, #56]
+     fcc:	ldr	x2, [sp, #24]
+     fd0:	ldr	x1, [sp, #32]
+     fd4:	ldr	x0, [sp, #56]
+     fd8:	bl	f7c <encrypt_block>
+     fdc:	mov	w0, #0x30                  	// #48
+     fe0:	bl	0 <_gcry_burn_stack>
+     fe4:	nop
+     fe8:	ldp	x29, x30, [sp], #64
+     fec:	ret
+
+0000000000000ff0 <decrypt_block>:
+     ff0:	stp	x29, x30, [sp, #-48]!
+     ff4:	mov	x29, sp
+     ff8:	str	x0, [sp, #40]
+     ffc:	str	x1, [sp, #32]
+    1000:	str	x2, [sp, #24]
+    1004:	ldr	x0, [sp, #40]
+    1008:	ldr	w0, [x0, #208]
+    100c:	cmp	w0, #0x0
+    1010:	b.ne	1038 <decrypt_block+0x48>  // b.any
+    1014:	ldr	x0, [sp, #40]
+    1018:	mov	w1, #0x1                   	// #1
+    101c:	str	w1, [x0, #208]
+    1020:	ldr	x2, [sp, #40]
+    1024:	ldr	x0, [sp, #40]
+    1028:	add	x0, x0, #0x68
+    102c:	mov	x1, x0
+    1030:	mov	x0, x2
+    1034:	bl	2b0 <invert_key>
+    1038:	ldr	x0, [sp, #40]
+    103c:	add	x0, x0, #0x68
+    1040:	mov	x2, x0
+    1044:	ldr	x1, [sp, #24]
+    1048:	ldr	x0, [sp, #32]
+    104c:	bl	5fc <cipher>
+    1050:	nop
+    1054:	ldp	x29, x30, [sp], #48
+    1058:	ret
+
+000000000000105c <idea_decrypt>:
+    105c:	stp	x29, x30, [sp, #-64]!
+    1060:	mov	x29, sp
+    1064:	str	x0, [sp, #40]
+    1068:	str	x1, [sp, #32]
+    106c:	str	x2, [sp, #24]
+    1070:	ldr	x0, [sp, #40]
+    1074:	str	x0, [sp, #56]
+    1078:	ldr	x2, [sp, #24]
+    107c:	ldr	x1, [sp, #32]
+    1080:	ldr	x0, [sp, #56]
+    1084:	bl	ff0 <decrypt_block>
+    1088:	mov	w0, #0x30                  	// #48
+    108c:	bl	0 <_gcry_burn_stack>
+    1090:	nop
+    1094:	ldp	x29, x30, [sp], #64
+    1098:	ret
+
+000000000000109c <grub_mod_init>:
+    109c:	stp	x29, x30, [sp, #-32]!
+    10a0:	mov	x29, sp
+    10a4:	str	x0, [sp, #24]
+    10a8:	adrp	x0, 0 <grub_memcpy>
+    10ac:	add	x0, x0, #0x0
+    10b0:	ldr	x0, [x0]
+    10b4:	bl	0 <grub_cipher_register>
+    10b8:	nop
+    10bc:	ldp	x29, x30, [sp], #32
+    10c0:	ret
+    10c4:	nop
+	...
+
+00000000000010d0 <grub_mod_fini>:
+    10d0:	stp	x29, x30, [sp, #-16]!
+    10d4:	mov	x29, sp
+    10d8:	adrp	x0, 0 <grub_memcpy>
+    10dc:	add	x0, x0, #0x0
+    10e0:	ldr	x0, [x0]
+    10e4:	bl	0 <grub_cipher_unregister>
+    10e8:	nop
+    10ec:	ldp	x29, x30, [sp], #16
+    10f0:	ret
+    10f4:	nop
+	...
